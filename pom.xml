@@ -201,7 +201,7 @@
                             <verbose>true</verbose>
                             <includeTests>true</includeTests>
                             <rulesets>
-                                <ruleset>src/main/docs/pmd-ruleset.xml</ruleset>
+                                <ruleset>../jsf-spring-boot-autoconfigure/src/main/docs/pmd-ruleset.xml</ruleset>
                             </rulesets>
                         </configuration>
                         <executions>
