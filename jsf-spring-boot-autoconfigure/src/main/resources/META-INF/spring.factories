@@ -1,0 +1,1 @@
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=org.persapiens.jsfboot.mojarra.MojarraSpringBootAutoConfiguration,org.persapiens.jsfboot.javaxfaces.JavaxFacesSpringBootAutoConfiguration,org.persapiens.jsfboot.omnifaces.OmnifacesSpringBootAutoConfiguration,org.persapiens.jsfboot.primefaces.PrimefacesSpringBootAutoConfiguration
