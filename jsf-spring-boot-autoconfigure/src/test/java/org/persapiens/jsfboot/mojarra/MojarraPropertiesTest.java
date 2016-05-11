@@ -1,0 +1,16 @@
+package org.persapiens.jsfboot.mojarra;
+
+import org.testng.annotations.Test;
+import static org.assertj.core.api.Assertions.assertThat;
+
+@Test
+public class MojarraPropertiesTest {
+
+	public void testForceLoadConfiguration() {
+		MojarraProperties mojarraProperties = new MojarraProperties();
+        mojarraProperties.setForceLoadConfiguration(true);
+
+		assertThat(mojarraProperties.getForceLoadConfiguration()).isTrue();
+	}
+
+}
