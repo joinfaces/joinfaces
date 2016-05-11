@@ -11,7 +11,7 @@
     <groupId>org.persapiens</groupId>
     <artifactId>jsf-spring-boot-starter</artifactId>
     <name>JSF Spring Boot Starter</name>
-    <version>1.0-SNAPSHOT</version>
+    <version>1.0.0-SNAPSHOT</version>
 
     <properties>
         <all-themes.version>1.0.8</all-themes.version>
