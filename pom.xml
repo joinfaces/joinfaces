@@ -28,6 +28,8 @@
         <primefaces.version>5.3</primefaces.version>
         <primefaces-extensions.version>4.0.0</primefaces-extensions.version>
         <maven-gpg-plugin.version>1.6</maven-gpg-plugin.version>
+        <nexus-staging-maven-plugin.version>1.6.7</nexus-staging-maven-plugin.version>
+        <maven-release-plugin.version>2.5.3</maven-release-plugin.version>
         
         <findbugs-maven-plugin.version>3.0.3</findbugs-maven-plugin.version>
         <jdepend-maven-plugin.version>2.0</jdepend-maven-plugin.version>
@@ -47,6 +49,33 @@
         <module>jsf-spring-boot-starter</module>
     </modules>
     
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.sonatype.plugins</groupId>
+                <artifactId>nexus-staging-maven-plugin</artifactId>
+                <version>${nexus-staging-maven-plugin.version}</version>
+                <extensions>true</extensions>
+                <configuration>
+                    <serverId>ossrh</serverId>
+                    <nexusUrl>https://oss.sonatype.org/</nexusUrl>
+                    <autoReleaseAfterClose>true</autoReleaseAfterClose>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-release-plugin</artifactId>
+                <version>${maven-release-plugin.version}</version>
+                <configuration>
+                    <autoVersionSubmodules>true</autoVersionSubmodules>
+                    <useReleaseProfile>false</useReleaseProfile>
+                    <releaseProfiles>check-pmd-cpd-jdepend-findbugs,attach-test-source-javadoc,sign-artifacts</releaseProfiles>
+                    <goals>deploy</goals>
+                </configuration>
+            </plugin>            
+        </plugins>
+    </build>    
+
     <reporting>
         <plugins>
             <plugin>
@@ -138,7 +167,7 @@
                             <execution>
                                 <id>attach-sources</id>
                                 <goals>
-                                    <goal>jar</goal>
+                                    <goal>jar-no-fork</goal>
                                 </goals>
                             </execution>
                         </executions>
@@ -374,4 +403,15 @@
             <timezone>-3</timezone>
         </developer>
     </developers>
+    
+    <distributionManagement>
+        <snapshotRepository>
+            <id>ossrh</id>
+            <url>https://oss.sonatype.org/content/repositories/snapshots</url>
+        </snapshotRepository>
+        <repository>
+            <id>ossrh</id>
+            <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+        </repository>    
+    </distributionManagement>
 </project>

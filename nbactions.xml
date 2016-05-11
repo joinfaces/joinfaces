@@ -1,10 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <actions>
-        <action>
-            <actionName>CUSTOM-site</actionName>
-            <displayName>site</displayName>
-            <goals>
-                <goal>site</goal>
-            </goals>
-        </action>
-    </actions>
+    <action>
+        <actionName>CUSTOM-site</actionName>
+        <displayName>site</displayName>
+        <goals>
+            <goal>site</goal>
+        </goals>
+    </action>
+    <action>
+        <actionName>CUSTOM-deploySnapshot</actionName>
+        <displayName>deploySnapshot</displayName>
+        <goals>
+            <goal>clean</goal>
+            <goal>deploy</goal>
+        </goals>
+        <activatedProfiles>
+            <activatedProfile>check-pmd-cpd-jdepend-findbugs</activatedProfile>
+            <activatedProfile>attach-test-source-javadoc</activatedProfile>
+            <activatedProfile>sign-artifacts</activatedProfile>
+        </activatedProfiles>
+    </action>
+</actions>
