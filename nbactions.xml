@@ -20,4 +20,14 @@
             <activatedProfile>sign-artifacts</activatedProfile>
         </activatedProfiles>
     </action>
+    <action>
+        <actionName>CUSTOM-fullVerify</actionName>
+        <displayName>fullVerify</displayName>
+        <goals>
+            <goal>verify</goal>
+        </goals>
+        <activatedProfiles>
+            <activatedProfile>check-pmd-cpd-jdepend-findbugs</activatedProfile>
+        </activatedProfiles>
+    </action>
 </actions>
