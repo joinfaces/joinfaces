@@ -1,6 +1,5 @@
 package com.github.persapiens.jsfboot.mojarra;
 
-import com.github.persapiens.jsfboot.mojarra.MojarraProperties;
 import org.testng.annotations.Test;
 import static org.assertj.core.api.Assertions.assertThat;
 
