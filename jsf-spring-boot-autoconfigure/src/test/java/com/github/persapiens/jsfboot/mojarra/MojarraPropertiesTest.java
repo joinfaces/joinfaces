@@ -1,4 +1,4 @@
-package com.github.github.persapiens.jsfboot.mojarra;
+package com.github.persapiens.jsfboot.mojarra;
 
 import com.github.persapiens.jsfboot.mojarra.MojarraProperties;
 import org.testng.annotations.Test;
