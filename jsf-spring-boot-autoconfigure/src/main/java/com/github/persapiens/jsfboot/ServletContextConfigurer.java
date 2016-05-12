@@ -2,10 +2,15 @@ package com.github.persapiens.jsfboot;
 
 import javax.servlet.ServletContext;
 import lombok.AllArgsConstructor;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 @AllArgsConstructor
 public abstract class ServletContextConfigurer {
     
+    private static final Logger logger = LoggerFactory
+			.getLogger(ServletContextConfigurer.class);
+        
     private ServletContext servletContext;
     
     private String preffix;
@@ -25,24 +30,32 @@ public abstract class ServletContextConfigurer {
         return result;
     }
     
+    private void setInitParameterWithDebug(String name, String value) {
+        name = fullName(name);
+        
+        servletContext.setInitParameter(name, value);
+
+        logger.debug(name + " = " + value);
+    }
+    
     protected void setInitParameter(String name, String value) {
         if (!isNullOrEmpty(value))
         {
-            servletContext.setInitParameter(fullName(name), value);
+            setInitParameterWithDebug(name, value);
         }
     }
     
     protected void setInitParameter(String name, Boolean value) {
         if (value != null)
         {
-            servletContext.setInitParameter(fullName(name), Boolean.toString(value));
+            setInitParameterWithDebug(name, Boolean.toString(value));
         }
     }
     
     protected void setInitParameter(String name, Long value) {
         if (value != null)
         {
-            servletContext.setInitParameter(fullName(name), Long.toString(value));
+            setInitParameterWithDebug(name, Long.toString(value));
         }
     }
     
