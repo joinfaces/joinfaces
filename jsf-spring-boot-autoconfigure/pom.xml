@@ -13,6 +13,13 @@
     <name>JSF Spring Boot AutoConfigure</name>
     <version>1.0.1-SNAPSHOT</version>
 
+    <properties>
+        <testng.version>6.9.10</testng.version>        
+        <assertj.version>3.4.1</assertj.version>
+        <lombok.version>1.16.8</lombok.version>
+        <lombok-maven-plugin.version>1.16.8.0</lombok-maven-plugin.version>        
+    </properties>
+
     <dependencies>
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -77,4 +84,40 @@
             <optional>true</optional>
         </dependency>
     </dependencies>
+        
+    <profiles>
+        <profile>
+            <id>delombok</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.projectlombok</groupId>
+                        <artifactId>lombok-maven-plugin</artifactId>
+                        <version>${lombok-maven-plugin.version}</version>
+                        <executions>
+                            <execution>
+                                <phase>generate-sources</phase>
+                                <goals>
+                                    <goal>delombok</goal>
+                                </goals>
+                                <configuration>
+                                    <addOutputDirectory>false</addOutputDirectory>
+                                    <sourceDirectory>src/main/java</sourceDirectory>
+                                </configuration>                        
+                            </execution>
+                        </executions>
+                        <dependencies>
+                            <dependency>
+                                <groupId>sun.jdk</groupId>
+                                <artifactId>tools</artifactId>
+                                <version>${java.version}</version>
+                                <scope>system</scope>
+                                <systemPath>${java.home}/../lib/tools.jar</systemPath>
+                            </dependency>
+                        </dependencies>              
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>        
+    </profiles>
 </project>

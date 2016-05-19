@@ -15,6 +15,7 @@
 
     <properties>
         <all-themes.version>1.0.8</all-themes.version>
+        <primefaces-extensions.version>4.0.0</primefaces-extensions.version>
         <jsf-spring-boot-autoconfigure.version>1.0.1-SNAPSHOT</jsf-spring-boot-autoconfigure.version>
     </properties>
 
