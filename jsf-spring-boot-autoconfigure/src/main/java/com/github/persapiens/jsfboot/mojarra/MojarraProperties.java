@@ -9,7 +9,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
  */
 @Getter
 @Setter
-@ConfigurationProperties(prefix = "com.sun.faces")
+@ConfigurationProperties(prefix = "jsf.mojarra")
 public class MojarraProperties {
 
 	/**

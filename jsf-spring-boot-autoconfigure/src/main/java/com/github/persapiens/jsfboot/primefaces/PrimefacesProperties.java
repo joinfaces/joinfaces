@@ -9,7 +9,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
  */
 @Getter
 @Setter
-@ConfigurationProperties(prefix = "primefaces")
+@ConfigurationProperties(prefix = "jsf.primefaces")
 public class PrimefacesProperties {
     
     private String privateCaptchaKey;

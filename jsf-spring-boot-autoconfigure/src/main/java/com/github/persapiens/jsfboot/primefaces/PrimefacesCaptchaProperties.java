@@ -6,7 +6,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 
 @Getter
 @Setter
-@ConfigurationProperties(prefix = "org.primefaces.component.captcha")
+@ConfigurationProperties(prefix = "jsf.primefaces.captcha")
 public class PrimefacesCaptchaProperties {
     
     private String privateKey;

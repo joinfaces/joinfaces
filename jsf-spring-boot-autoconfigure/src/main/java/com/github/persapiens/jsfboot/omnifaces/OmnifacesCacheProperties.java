@@ -9,7 +9,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
  */
 @Getter
 @Setter
-@ConfigurationProperties(prefix = "")
+@ConfigurationProperties(prefix = "jsf.omnifaces.cache")
 public class OmnifacesCacheProperties {
     private String applicationMaxCapacity;
             

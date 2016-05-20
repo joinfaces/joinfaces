@@ -9,7 +9,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
  */
 @Getter
 @Setter
-@ConfigurationProperties(prefix = "omnifaces")
+@ConfigurationProperties(prefix = "jsf.omnifaces")
 public class OmnifacesProperties {
     private String cacheProvider;
             

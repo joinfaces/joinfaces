@@ -9,7 +9,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
  */
 @Getter
 @Setter
-@ConfigurationProperties(prefix = "javax.faces")
+@ConfigurationProperties(prefix = "jsf")
 public class JavaxFacesProperties {
 
 	/**
