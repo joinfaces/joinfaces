@@ -18,6 +18,7 @@
         <assertj.version>3.4.1</assertj.version>
         <lombok.version>1.16.8</lombok.version>
         <lombok-maven-plugin.version>1.16.8.0</lombok-maven-plugin.version>        
+        <myfaces.version>2.2.10</myfaces.version>
     </properties>
 
     <dependencies>
@@ -81,6 +82,12 @@
             <groupId>javax.enterprise</groupId>
             <artifactId>cdi-api</artifactId>
             <version>${cdi.version}</version>
+            <optional>true</optional>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.myfaces.core</groupId>
+            <artifactId>myfaces-bundle</artifactId>
+            <version>${myfaces.version}</version>
             <optional>true</optional>
         </dependency>
     </dependencies>
