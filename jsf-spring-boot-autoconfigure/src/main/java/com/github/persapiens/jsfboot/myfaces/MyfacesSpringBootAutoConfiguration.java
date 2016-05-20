@@ -58,25 +58,25 @@ public class MyfacesSpringBootAutoConfiguration {
                     .configure();
                 
                 Set<Class<?>> set = new HashSet<>();
-                Collections.addAll(set, 
-                    ManagedBean.class,
-                    FacesComponent.class,
-                    FacesValidator.class,
-                    FacesConverter.class,
-                    FacesBehaviorRenderer.class,
-                    ResourceDependency.class,
-                    ResourceDependencies.class,
-                    ListenerFor.class,
-                    ListenersFor.class,
-                    UIComponent.class,
-                    Validator.class,
-                    Converter.class,
-                    Renderer.class,
-                    FacesBehavior.class, 
-                    PhaseListener.class,
-                    FaceletsResourceResolver.class,
-                    Resource.class,
-                    NamedEvent.class);
+                Collections.addAll(set 
+                    , UIComponent.class
+                    , Validator.class
+                    , FacesBehaviorRenderer.class
+                    , ResourceDependency.class
+                    , Converter.class
+                    , Renderer.class
+                    , FacesBehavior.class
+                    , PhaseListener.class
+                    , FaceletsResourceResolver.class
+                    , ManagedBean.class
+                    , FacesComponent.class
+                    , FacesValidator.class
+                    , FacesConverter.class
+                    , ResourceDependencies.class
+                    , ListenerFor.class
+                    , ListenersFor.class
+                    , Resource.class
+                    , NamedEvent.class);
                 new MyFacesContainerInitializer().onStartup(set, sc);
             }            
         };
