@@ -33,7 +33,6 @@ import org.springframework.boot.context.embedded.ServletContextInitializer;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.web.context.request.RequestContextListener;
 
 @Configuration
 @EnableConfigurationProperties({ MyfacesProperties.class })
@@ -81,9 +80,4 @@ public class MyfacesSpringBootAutoConfiguration {
             }            
         };
     }
-    
-    @Bean
-    public RequestContextListener requestContextListener(){
-        return new RequestContextListener();
-    }     
 }
