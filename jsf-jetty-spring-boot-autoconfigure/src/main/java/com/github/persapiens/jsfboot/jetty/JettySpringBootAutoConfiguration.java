@@ -5,6 +5,7 @@ import java.net.URL;
 import java.net.URLClassLoader;
 import java.security.AccessController;
 import java.security.PrivilegedAction;
+import org.eclipse.jetty.server.Handler;
 import org.eclipse.jetty.server.Server;
 import org.eclipse.jetty.util.resource.ResourceCollection;
 import org.eclipse.jetty.webapp.WebAppContext;
@@ -50,7 +51,8 @@ public class JettySpringBootAutoConfiguration extends SpringBootServletInitializ
     private class JettyServerCustomizerImpl implements JettyServerCustomizer {
         @Override
         public void customize(Server server) {
-            WebAppContext webAppContext = (WebAppContext) server.getHandler();
+            Handler[] childHandlersByClass = server.getChildHandlersByClass(WebAppContext.class);
+            WebAppContext webAppContext = (WebAppContext) childHandlersByClass[0];
             
             try {
                 ClassPathResource classPathResource = new ClassPathResource(jettyProperties.getClassPathResource());
