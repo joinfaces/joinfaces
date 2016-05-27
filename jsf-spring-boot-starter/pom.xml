@@ -38,6 +38,12 @@
         </dependency>
         <dependency>
             <groupId>com.github.persapiens</groupId>
+            <artifactId>jsf-spring-boot-integration</artifactId>
+            <version>${jsf-spring-boot-autoconfigure.version}</version>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.github.persapiens</groupId>
             <artifactId>jsf-spring-boot-autoconfigure</artifactId>
             <version>${jsf-spring-boot-autoconfigure.version}</version>
             <scope>compile</scope>

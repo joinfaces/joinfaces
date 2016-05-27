@@ -46,6 +46,7 @@
     </properties>
     
     <modules>
+        <module>jsf-spring-boot-integration</module>
         <module>jsf-spring-boot-autoconfigure</module>
         <module>jsf-spring-boot-starter</module>
         <module>jsf-jetty-spring-boot-starter</module>
@@ -122,7 +123,7 @@
                     <skipEmptyReport>false</skipEmptyReport>
                     <includeTests>true</includeTests>
                     <rulesets>
-                        <ruleset>../jsf-spring-boot-autoconfigure/src/main/docs/pmd-ruleset.xml</ruleset>
+                        <ruleset>../jsf-spring-boot-integration/src/main/docs/pmd-ruleset.xml</ruleset>
                     </rulesets>
                 </configuration>
             </plugin>
@@ -291,7 +292,7 @@
                             <verbose>true</verbose>
                             <includeTests>true</includeTests>
                             <rulesets>
-                                <ruleset>../jsf-spring-boot-autoconfigure/src/main/docs/pmd-ruleset.xml</ruleset>
+                                <ruleset>../jsf-spring-boot-integration/src/main/docs/pmd-ruleset.xml</ruleset>
                             </rulesets>
                         </configuration>
                         <executions>
