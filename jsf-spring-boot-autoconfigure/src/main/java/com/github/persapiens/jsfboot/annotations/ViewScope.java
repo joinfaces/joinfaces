@@ -1,7 +1,7 @@
 //
 // Copyright described at LICENSE.txt
 //
-package com.github.persapiens.jsfboot.javaxfaces;
+package com.github.persapiens.jsfboot.annotations;
 
 import java.util.Map;
 

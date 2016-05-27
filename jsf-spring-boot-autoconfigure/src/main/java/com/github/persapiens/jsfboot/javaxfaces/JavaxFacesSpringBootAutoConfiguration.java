@@ -6,9 +6,7 @@ import com.github.persapiens.jsfboot.myfaces.MyfacesSpringBootAutoConfiguration;
 import javax.faces.application.ProjectStage;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
-import org.springframework.beans.factory.annotation.Autowire;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.config.CustomScopeConfigurer;
 import org.springframework.boot.autoconfigure.AutoConfigureBefore;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnWebApplication;
@@ -40,14 +38,5 @@ public class JavaxFacesSpringBootAutoConfiguration {
                     .configure();
             }            
         };
-    }
-    
-    @Bean(autowire = Autowire.BY_NAME)
-    public static CustomScopeConfigurer customScopeConfigurer() {
-        CustomScopeConfigurer result = new CustomScopeConfigurer();
-        
-        result.addScope("view", new ViewScope());
-        
-        return result;
     }
 }
