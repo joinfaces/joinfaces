@@ -50,4 +50,17 @@ public class OmnifacesProperties {
     private String combinedResourceHandlerInlineJs;
     
     private String combinedResourceHandlerSuppressedResources;
+    
+    private Cache cache = new Cache();
+    
+    @Getter @Setter
+    public static class Cache {
+        private String applicationMaxCapacity;
+
+        private String applicationTtl;;
+
+        private String sessionMaxCapacity;
+
+        private String sessionTtl;
+    }
 }

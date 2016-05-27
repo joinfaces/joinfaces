@@ -46,5 +46,9 @@ public class OmnifacesServletContextConfigurer extends ServletContextConfigurer 
         setInitParameter(CombinedResourceHandler.PARAM_NAME_INLINE_JS, omnifacesProperties.getCombinedResourceHandlerInlineJs());
         setInitParameter(CombinedResourceHandler.PARAM_NAME_SUPPRESSED_RESOURCES, omnifacesProperties.getCombinedResourceHandlerSuppressedResources());
         
+        setInitParameter(CacheInstancePerScopeProvider.APP_MAX_CAP_PARAM_NAME, omnifacesProperties.getCache().getApplicationMaxCapacity());
+        setInitParameter(CacheInstancePerScopeProvider.APP_TTL_PARAM_NAME, omnifacesProperties.getCache().getApplicationTtl());
+        setInitParameter(CacheInstancePerScopeProvider.SESSION_MAX_CAP_PARAM_NAME, omnifacesProperties.getCache().getSessionMaxCapacity());
+        setInitParameter(CacheInstancePerScopeProvider.SESSION_TTL_PARAM_NAME, omnifacesProperties.getCache().getSessionTtl());
     }
 }

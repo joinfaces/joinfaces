@@ -17,7 +17,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
-@EnableConfigurationProperties({ OmnifacesProperties.class, OmnifacesCacheProperties.class })
+@EnableConfigurationProperties(OmnifacesProperties.class)
 @ConditionalOnClass({CharacterEncodingFilter.class})
 @AutoConfigureBefore(JavaxFacesSpringBootAutoConfiguration.class)
 @ConditionalOnWebApplication
@@ -25,9 +25,6 @@ public class OmnifacesSpringBootAutoConfiguration {
 
 	@Autowired
 	private OmnifacesProperties omnifacesProperties;
-
-	@Autowired
-	private OmnifacesCacheProperties omnifacesCacheProperties;
     
     @Bean
     public ServletContextInitializer omnifacesServletContextInitializer()
@@ -37,12 +34,6 @@ public class OmnifacesSpringBootAutoConfiguration {
             public void onStartup(ServletContext sc) throws ServletException {                
                 OmnifacesServletContextConfigurer.builder()
                     .omnifacesProperties(omnifacesProperties)
-                    .servletContext(sc)
-                    .build()
-                    .configure();
-                
-                OmnifacesCacheServletContextConfigurer.builder()
-                    .omnifacesCacheProperties(omnifacesCacheProperties)
                     .servletContext(sc)
                     .build()
                     .configure();

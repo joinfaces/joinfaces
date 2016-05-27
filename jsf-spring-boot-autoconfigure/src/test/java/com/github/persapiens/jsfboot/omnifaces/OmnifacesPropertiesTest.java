@@ -6,11 +6,18 @@ import static org.assertj.core.api.Assertions.assertThat;
 @Test
 public class OmnifacesPropertiesTest {
 
-	public void testTheme() {
+	public void testCacheProvider() {
 		OmnifacesProperties omnifacesProperties = new OmnifacesProperties();
         omnifacesProperties.setCacheProvider("myCacheProvider");
 
 		assertThat(omnifacesProperties.getCacheProvider()).isEqualTo("myCacheProvider");
+	}
+
+	public void testCacheApplicationMaxCapacity() {
+		OmnifacesProperties omnifacesProperties = new OmnifacesProperties();
+        omnifacesProperties.getCache().setApplicationMaxCapacity("myCapacity");
+
+		assertThat(omnifacesProperties.getCache().getApplicationMaxCapacity()).isEqualTo("myCapacity");
 	}
 
 }
