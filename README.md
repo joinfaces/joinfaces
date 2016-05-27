@@ -15,7 +15,7 @@ It autoconfigures [Primefaces](http://primefaces.org/), [Omnifaces](http://omnif
 
 #### Key Features
 
-- Choose one of three spring boot starter availables:
+- Choose one of three spring boot starters availables:
 
 Starter | Servlet Container
 ------------ | -------------
