@@ -4,17 +4,21 @@
 package com.github.persapiens.jsfboot.annotations;
 
 import java.util.Set;
-import org.springframework.beans.factory.annotation.AnnotatedBeanDefinition;
 
 /**
- * Convert jsf and cdi annotation types to spring scope
+ * Convert jsf and cdi enterprise annotation types to spring scope
  */
 public class JsfCdiToSpring
 {
-    public static String scopeName( AnnotatedBeanDefinition annDef )
+    public final static String REQUEST = "request";
+    public final static String SESSION = "session";
+    public final static String SINGLETON = "singleton";
+    public final static String PROTOTYPE = "prototype";
+    public final static String VIEW = "view";
+    
+    public static String scopeName( Set<String> annotationTypes )
     {
         String result = null;
-        Set<String> annotationTypes = annDef.getMetadata().getAnnotationTypes();
         if (annotationTypes != null && !annotationTypes.isEmpty())
         {
             if ( annotationTypes.contains(
@@ -22,38 +26,38 @@ public class JsfCdiToSpring
                 || annotationTypes.contains(
                 javax.faces.bean.RequestScoped.class.getName() ) )
             {
-                result = "request";
+                result = REQUEST;
             }
             else if ( annotationTypes.contains(
                 javax.enterprise.context.SessionScoped.class.getName() )
                 || annotationTypes.contains(
                 javax.faces.bean.SessionScoped.class.getName() ) )
             {
-                result = "session";
+                result = SESSION;
             }
             else if ( annotationTypes.contains(
                 javax.enterprise.context.ApplicationScoped.class.getName() )
                 || annotationTypes.contains(
                 javax.faces.bean.ApplicationScoped.class.getName() ) )
             {
-                result = "singleton";
+                result = SINGLETON;
             }
             else if ( annotationTypes.contains(
                 javax.faces.bean.NoneScoped.class.getName() ) )
             {
-                result = "prototype";
+                result = PROTOTYPE;
             }
             else if ( annotationTypes.contains(
                 javax.faces.view.ViewScoped.class.getName() )
                 || annotationTypes.contains(
                 javax.faces.bean.ViewScoped.class.getName() ))
             {
-                result = "view";
+                result = VIEW;
             }
             else if ( annotationTypes.contains(
                 javax.enterprise.context.ConversationScoped.class.getName() ) )
             {
-                result = "session";
+                result = SESSION;
             }
         }
         return result;

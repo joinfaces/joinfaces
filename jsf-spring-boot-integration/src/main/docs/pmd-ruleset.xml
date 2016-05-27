@@ -56,6 +56,11 @@ under the License.
     <exclude name="TooManyFields"/>
     <exclude name="CyclomaticComplexity"/>
   </rule>
+  <rule ref="rulesets/java/codesize.xml/TooManyMethods">
+    <properties>
+      <property name="maxmethods" value="12"/>
+    </properties>
+  </rule>
   <rule ref="rulesets/java/clone.xml"/>
   <rule ref="rulesets/java/coupling.xml">
       <exclude name="LawOfDemeter"/>

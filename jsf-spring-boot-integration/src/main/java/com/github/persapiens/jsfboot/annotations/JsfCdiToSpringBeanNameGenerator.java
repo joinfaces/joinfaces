@@ -28,7 +28,7 @@ public class JsfCdiToSpringBeanNameGenerator
         {
             AnnotatedBeanDefinition annDef = ( AnnotatedBeanDefinition ) definition;
 
-            String scopeName = JsfCdiToSpring.scopeName(annDef);
+            String scopeName = JsfCdiToSpring.scopeName(annDef.getMetadata().getAnnotationTypes());
             if ( scopeName != null )
             {
                 definition.setScope( scopeName );
