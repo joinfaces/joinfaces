@@ -9,11 +9,11 @@ This project enables JSF usage inside JAR packaged Spring Boot Application.
 
 It autoconfigures [Primefaces](http://primefaces.org/), [Omnifaces](http://omnifaces.org/), [Mojarra](https://javaserverfaces.java.net/) and [Myfaces](http://myfaces.apache.org/) libraries to run at embedded [Tomcat](http://tomcat.apache.org/), [Jetty](http://www.eclipse.org/jetty) or [Undertow](http://undertow.io) servlet containers.
 
-#### How to use
+## How to use
 
 [Jsf Spring Boot Starter Example](https://github.com/persapiens/jsf-spring-boot-starter-example) shows jsf spring boot starter usage.
 
-#### Key Features
+## Key Features
 
 - Choose one of three spring boot starters availables:
 
@@ -46,3 +46,15 @@ mojarra (com.sun.faces) | jsf.mojarra | jsf.mojarra.preferXHTML=true
 myfaces (org.apache.myfaces) | jsf.myfaces | jsf.myfaces.PRETTY_HTML=true
 
 - Enable JSF and CDI annotations automatically, including [@RequestScoped](http://docs.oracle.com/javaee/7/api/javax/enterprise/context/RequestScoped.html), [@ViewScoped](https://javaserverfaces.java.net/docs/2.2/javadocs/javax/faces/view/ViewScoped.html) and  [@SessionScoped](http://docs.oracle.com/javaee/7/api/javax/enterprise/context/SessionScoped.html).
+
+## Getting Help
+
+* Report questions and bugs at [github.com/jsf-spring-boot-starter/issues](https://github.com/persapiens/jsf-spring-boot-starter/issues).
+
+## Contributing
+
+* Report documentation, features, enhancement and bugs at [github.com/jsf-spring-boot-starter/issues](https://github.com/persapiens/jsf-spring-boot-starter/issues).
+* Pull requests are welcome.
+
+
+
