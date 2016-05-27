@@ -15,7 +15,6 @@
 
     <properties>
         <jsf-spring-boot-autoconfigure.version>1.2.2-SNAPSHOT</jsf-spring-boot-autoconfigure.version>
-        <myfaces.version>2.2.10</myfaces.version>
     </properties>
 
     <dependencies>

@@ -383,7 +383,7 @@ public class MyfacesProperties {
      */
     private String validate;
     
-    private Annotation annotation;
+    private Annotation annotation = new Annotation();
     
     @Getter @Setter    
     public static class Annotation {

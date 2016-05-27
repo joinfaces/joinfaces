@@ -27,6 +27,7 @@
         <omnifaces.version>1.13</omnifaces.version>
         <cdi.version>1.2</cdi.version>
         <primefaces.version>5.3</primefaces.version>
+        <myfaces.version>2.2.10</myfaces.version>
         <maven-gpg-plugin.version>1.6</maven-gpg-plugin.version>
         <nexus-staging-maven-plugin.version>1.6.7</nexus-staging-maven-plugin.version>
         <maven-release-plugin.version>2.5.3</maven-release-plugin.version>
@@ -49,11 +50,12 @@
         <module>jsf-spring-boot-integration</module>
         <module>jsf-spring-boot-autoconfigure</module>
         <module>jsf-spring-boot-starter</module>
-        <module>jsf-myfaces-spring-boot-autoconfigure</module>
         <module>jsf-jetty-spring-boot-autoconfigure</module>
         <module>jsf-jetty-spring-boot-starter</module>
         <module>jsf-undertow-spring-boot-autoconfigure</module>
         <module>jsf-undertow-spring-boot-starter</module>
+        <module>jsf-myfaces-spring-boot-autoconfigure</module>
+        <module>jsf-myfaces-spring-boot-starter</module>
     </modules>
 
     <dependencies>
