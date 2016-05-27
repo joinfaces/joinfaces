@@ -40,7 +40,7 @@ public class JavaxFacesProperties {
     /**
      * If this param is set, and calling toLowerCase().equals("true") on a String representation of its value returns true, and the javax.faces.STATE_SAVING_METHOD is set to "server" (as indicated below), the server state must be guaranteed to be Serializable such that the aggregate state implements java.io.Serializable. The intent of this parameter is to ensure that the act of writing out the state to an ObjectOutputStream would not throw a NotSerializableException, but the runtime is not required verify this before saving the state.
      */
-    private Boolean serializeStateServer;
+    private Boolean serializeServerState;
 
 	/**
 	 * "server" or "client"

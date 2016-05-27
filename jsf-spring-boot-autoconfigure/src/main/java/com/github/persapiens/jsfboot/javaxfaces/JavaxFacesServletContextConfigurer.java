@@ -39,7 +39,7 @@ public class JavaxFacesServletContextConfigurer extends ServletContextConfigurer
         
         setInitParameter(StateManager.FULL_STATE_SAVING_VIEW_IDS_PARAM_NAME, javaxFacesProperties.getFullStateSavingViewIds());
         setInitParameter(StateManager.PARTIAL_STATE_SAVING_PARAM_NAME, javaxFacesProperties.getPartialStateSaving());
-        setInitParameter(StateManager.SERIALIZE_SERVER_STATE_PARAM_NAME, javaxFacesProperties.getSerializeStateServer());
+        setInitParameter(StateManager.SERIALIZE_SERVER_STATE_PARAM_NAME, javaxFacesProperties.getSerializeServerState());
         setInitParameter(StateManager.STATE_SAVING_METHOD_PARAM_NAME, javaxFacesProperties.getStateSavingMethod());
         
         setInitParameter(ViewHandler.DEFAULT_SUFFIX_PARAM_NAME, javaxFacesProperties.getDefaultSuffix());
