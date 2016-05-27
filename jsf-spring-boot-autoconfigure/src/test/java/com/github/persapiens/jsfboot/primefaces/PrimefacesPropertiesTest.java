@@ -13,4 +13,11 @@ public class PrimefacesPropertiesTest {
 		assertThat(primefacesProperties.getTheme()).isEqualTo("cupertino");
 	}
 
+	public void testCaptchaPrivateKey() {
+		PrimefacesProperties primefacesProperties = new PrimefacesProperties();
+        primefacesProperties.getCaptcha().setPrivateKey("myPrivateKey");
+
+		assertThat(primefacesProperties.getCaptcha().getPrivateKey()).isEqualTo("myPrivateKey");
+	}
+
 }

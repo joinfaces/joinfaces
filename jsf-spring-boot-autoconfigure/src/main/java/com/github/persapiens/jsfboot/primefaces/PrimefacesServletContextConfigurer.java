@@ -36,5 +36,6 @@ public class PrimefacesServletContextConfigurer extends ServletContextConfigurer
         setInitParameter(ContextParams.CACHE_PROVIDER, primefacesProperties.getCacheProvider());
         setInitParameter(ContextParams.AUTO_UPDATE, primefacesProperties.getAutoUpdate());
         
+        setInitParameter("org.primefaces.component.captcha.PRIVATE_KEY", primefacesProperties.getCaptcha().getPrivateKey());
     }
 }

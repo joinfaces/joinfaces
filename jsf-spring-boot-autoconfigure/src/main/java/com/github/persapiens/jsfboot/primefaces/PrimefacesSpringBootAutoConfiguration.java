@@ -15,7 +15,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
-@EnableConfigurationProperties({ PrimefacesProperties.class, PrimefacesCaptchaProperties.class })
+@EnableConfigurationProperties(PrimefacesProperties.class)
 @ConditionalOnClass(DialogViewHandler.class)
 @AutoConfigureBefore(JavaxFacesSpringBootAutoConfiguration.class)
 @ConditionalOnWebApplication
@@ -23,9 +23,6 @@ public class PrimefacesSpringBootAutoConfiguration {
 
 	@Autowired
 	private PrimefacesProperties primefacesProperties;
-
-	@Autowired
-	private PrimefacesCaptchaProperties captchaPrimefacesProperties;
     
     @Bean
     public ServletContextInitializer primefacesServletContextInitializer()
@@ -35,12 +32,6 @@ public class PrimefacesSpringBootAutoConfiguration {
             public void onStartup(ServletContext sc) throws ServletException {                
                 PrimefacesServletContextConfigurer.builder()
                     .primefacesProperties(primefacesProperties)
-                    .servletContext(sc)
-                    .build()
-                    .configure();
-                
-                PrimefacesCaptchaServletContextConfigurer.builder()
-                    .captchaPrimefacesProperties(captchaPrimefacesProperties)
                     .servletContext(sc)
                     .build()
                     .configure();
