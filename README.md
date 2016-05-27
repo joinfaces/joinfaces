@@ -45,4 +45,4 @@ omnifaces | jsf.omnifaces | jsf.omnifaces.FACES_VIEWS_ENABLED=true
 mojarra (com.sun.faces) | jsf.mojarra | jsf.mojarra.preferXHTML=true
 myfaces (org.apache.myfaces) | jsf.myfaces | jsf.myfaces.PRETTY_HTML=true
 
-- Enable JSF and CDI annotations automatically, including [@ViewScoped](https://javaserverfaces.java.net/docs/2.2/javadocs/javax/faces/view/ViewScoped.html) and  [@SessionScoped](http://docs.oracle.com/javaee/7/api/javax/enterprise/context/SessionScoped.html).
+- Enable JSF and CDI annotations automatically, including [@RequestScoped](http://docs.oracle.com/javaee/7/api/javax/enterprise/context/RequestScoped.html), [@ViewScoped](https://javaserverfaces.java.net/docs/2.2/javadocs/javax/faces/view/ViewScoped.html) and  [@SessionScoped](http://docs.oracle.com/javaee/7/api/javax/enterprise/context/SessionScoped.html).
