@@ -9,11 +9,21 @@
     </parent>
     
     <groupId>com.github.persapiens</groupId>
-    <artifactId>jsf-spring-boot-autoconfigure</artifactId>
-    <name>JSF Spring Boot AutoConfigure</name>
+    <artifactId>jsf-myfaces-spring-boot-autoconfigure</artifactId>
+    <name>JSF MyFaces Spring Boot AutoConfigure</name>
     <version>1.2.2-SNAPSHOT</version>
 
+    <properties>
+        <jsf-spring-boot-autoconfigure.version>1.2.2-SNAPSHOT</jsf-spring-boot-autoconfigure.version>
+        <myfaces.version>2.2.10</myfaces.version>
+    </properties>
+
     <dependencies>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-undertow</artifactId>
+            <optional>true</optional>
+        </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter</artifactId>
@@ -35,21 +45,15 @@
             <optional>true</optional>
         </dependency>
         <dependency>
-            <groupId>org.glassfish</groupId>
-            <artifactId>javax.faces</artifactId>
-            <version>${javax.faces.version}</version>
+            <groupId>com.github.persapiens</groupId>
+            <artifactId>jsf-spring-boot-autoconfigure</artifactId>
+            <version>${jsf-spring-boot-autoconfigure.version}</version>
             <optional>true</optional>
         </dependency>
         <dependency>
-            <groupId>org.primefaces</groupId>
-            <artifactId>primefaces</artifactId>
-            <version>${primefaces.version}</version>
-            <optional>true</optional>
-        </dependency>
-        <dependency>
-            <groupId>org.omnifaces</groupId>
-            <artifactId>omnifaces</artifactId>
-            <version>${omnifaces.version}</version>
+            <groupId>org.apache.myfaces.core</groupId>
+            <artifactId>myfaces-bundle</artifactId>
+            <version>${myfaces.version}</version>
             <optional>true</optional>
         </dependency>
     </dependencies>

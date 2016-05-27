@@ -1,5 +1,6 @@
 package com.github.persapiens.jsfboot.myfaces;
 
+import com.github.persapiens.jsfboot.javaxfaces.JavaxFacesSpringBootAutoConfiguration;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
@@ -25,6 +26,7 @@ import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import org.apache.myfaces.ee6.MyFacesContainerInitializer;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.AutoConfigureAfter;
 import org.springframework.boot.autoconfigure.AutoConfigureBefore;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnWebApplication;
@@ -38,6 +40,7 @@ import org.springframework.context.annotation.Configuration;
 @EnableConfigurationProperties({ MyfacesProperties.class })
 @ConditionalOnClass(MyFacesContainerInitializer.class)
 @AutoConfigureBefore(WebMvcAutoConfiguration.class)
+@AutoConfigureAfter({JavaxFacesSpringBootAutoConfiguration.class})
 @ConditionalOnWebApplication
 public class MyfacesSpringBootAutoConfiguration {
 

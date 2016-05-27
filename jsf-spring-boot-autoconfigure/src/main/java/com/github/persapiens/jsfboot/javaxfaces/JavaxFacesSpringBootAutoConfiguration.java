@@ -2,7 +2,6 @@ package com.github.persapiens.jsfboot.javaxfaces;
 
 
 import com.github.persapiens.jsfboot.mojarra.MojarraSpringBootAutoConfiguration;
-import com.github.persapiens.jsfboot.myfaces.MyfacesSpringBootAutoConfiguration;
 import javax.faces.application.ProjectStage;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
@@ -18,7 +17,7 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 @EnableConfigurationProperties({ JavaxFacesProperties.class })
 @ConditionalOnClass(ProjectStage.class)
-@AutoConfigureBefore({MojarraSpringBootAutoConfiguration.class, MyfacesSpringBootAutoConfiguration.class})
+@AutoConfigureBefore({MojarraSpringBootAutoConfiguration.class})
 @ConditionalOnWebApplication
 public class JavaxFacesSpringBootAutoConfiguration {
 
