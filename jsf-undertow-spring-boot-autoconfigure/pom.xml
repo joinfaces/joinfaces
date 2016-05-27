@@ -5,13 +5,13 @@
     <parent>
         <groupId>com.github.persapiens</groupId>
         <artifactId>jsf-spring-boot-parent</artifactId>
-        <version>1.2.1</version>
+        <version>1.2.2-SNAPSHOT</version>
     </parent>
     
     <groupId>com.github.persapiens</groupId>
     <artifactId>jsf-undertow-spring-boot-autoconfigure</artifactId>
     <name>JSF Undertow Spring Boot AutoConfigure</name>
-    <version>1.2.1</version>
+    <version>1.2.2-SNAPSHOT</version>
 
     <dependencies>
         <dependency>
