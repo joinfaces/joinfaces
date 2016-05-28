@@ -15,7 +15,7 @@ It autoconfigures [PrimeFaces](http://primefaces.org/), [OmniFaces](http://omnif
 
 ## Key Features
 
-- Choose one of six JSF Spring Boot Starters availables:
+- Choose one of six JSF Spring Boot Starters available:
 
 Starter | JSF Implementation | Servlet Container
 ------------ | ------------- | -------------
