@@ -29,7 +29,7 @@ import org.springframework.core.io.ClassPathResource;
  */
 @Configuration
 @EnableConfigurationProperties({ JettyProperties.class })
-@ConditionalOnClass(JettyEmbeddedServletContainerFactory.class)
+@ConditionalOnClass(Server.class)
 public class JettySpringBootAutoConfiguration extends SpringBootServletInitializer implements EmbeddedServletContainerCustomizer {
 
     @Autowired
