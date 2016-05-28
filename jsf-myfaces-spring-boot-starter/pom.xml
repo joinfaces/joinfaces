@@ -43,5 +43,9 @@
             <artifactId>myfaces-bundle</artifactId>
             <version>${myfaces.version}</version>
         </dependency>        
+        <dependency>
+            <groupId>commons-digester</groupId>
+            <artifactId>commons-digester</artifactId>
+        </dependency>
     </dependencies>
 </project>
