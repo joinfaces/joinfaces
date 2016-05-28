@@ -55,8 +55,8 @@
             <artifactId>javax.el</artifactId>
         </dependency>  
         <dependency>
-            <groupId>org.eclipse.jetty.orbit</groupId>
-            <artifactId>javax.servlet.jsp</artifactId>
+            <groupId>org.eclipse.jetty</groupId>
+            <artifactId>jetty-jsp</artifactId>
         </dependency>    
     </dependencies>
 </project>
