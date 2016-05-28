@@ -1,5 +1,6 @@
 package com.github.persapiens.jsfboot.undertow;
 
+import io.undertow.Undertow;
 import io.undertow.server.handlers.resource.ClassPathResourceManager;
 import io.undertow.servlet.api.DeploymentInfo;
 import java.net.URL;
@@ -23,7 +24,7 @@ import org.springframework.context.annotation.Configuration;
  */
 @Configuration
 @EnableConfigurationProperties({UndertowProperties.class})
-@ConditionalOnClass(UndertowEmbeddedServletContainerFactory.class)
+@ConditionalOnClass(Undertow.class)
 public class UndertowSpringBootAutoConfiguration extends SpringBootServletInitializer implements EmbeddedServletContainerCustomizer {
 
     @Autowired
