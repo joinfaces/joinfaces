@@ -11,19 +11,22 @@ It autoconfigures [Primefaces](http://primefaces.org/), [Omnifaces](http://omnif
 
 ## How to use
 
-[Jsf Spring Boot Starter Example](https://github.com/persapiens/jsf-spring-boot-starter-example) shows jsf spring boot starter usage.
+[Jsf Spring Boot Starter Example](https://github.com/persapiens/jsf-spring-boot-starter-example) shows JSF Spring Boot Starter usage.
 
 ## Key Features
 
-- Choose one of three spring boot starters availables:
+- Choose one of six JSF Spring Boot Starters availables:
 
-Starter | Servlet Container
------------- | -------------
-jsf-spring-boot-starter | [Tomcat](http://tomcat.apache.org/)
-jsf-jetty-spring-boot-starter | [Jetty](http://www.eclipse.org/jetty)
-jsf-undertow-spring-boot-starter | [Undertow](http://undertow.io)
+Starter | JSF Implementation | Servlet Container
+------------ | ------------- | -------------
+jsf-spring-boot-starter | [Mojarra](https://javaserverfaces.java.net/) | [Tomcat](http://tomcat.apache.org/)
+jsf-jetty-spring-boot-starter | [Mojarra](https://javaserverfaces.java.net/) | [Jetty](http://www.eclipse.org/jetty)
+jsf-undertow-spring-boot-starter | [Mojarra](https://javaserverfaces.java.net/) | [Undertow](http://undertow.io)
+jsf-myfaces-spring-boot-starter | [Myfaces](http://myfaces.apache.org/) | [Tomcat](http://tomcat.apache.org/)
+jsf-jetty-myfaces-spring-boot-starter | [Myfaces](http://myfaces.apache.org/) | [Jetty](http://www.eclipse.org/jetty)
+jsf-undertow-myfaces-spring-boot-starter | [Myfaces](http://myfaces.apache.org/) | [Undertow](http://undertow.io)
 
-- Includes Primefaces, Primefaces-Extensions, Primefaces-All-Themes, OmniFaces, Mojarra and CDI-api dependency libraries. Note that MyFaces is optional and **should not** be used with Mojarra if you prefer MyFaces.
+- Includes Primefaces, Primefaces-Extensions, Primefaces-All-Themes, OmniFaces, Mojarra and CDI-api dependency libraries.
 
 Library | Dependency
 ------------ | -------------
