@@ -9,15 +9,16 @@
     </parent>
     
     <groupId>com.github.persapiens</groupId>
-    <artifactId>jsf-myfaces-spring-boot-autoconfigure</artifactId>
-    <name>JSF MyFaces Spring Boot AutoConfigure</name>
+    <artifactId>jsf-undertow-myfaces-spring-boot-autoconfigure</artifactId>
+    <name>JSF Undertow MyFaces Spring Boot AutoConfigure</name>
     <version>1.2.2-SNAPSHOT</version>
 
-    <properties>
-        <jsf-spring-boot-autoconfigure.version>1.2.2-SNAPSHOT</jsf-spring-boot-autoconfigure.version>
-    </properties>
-
     <dependencies>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-undertow</artifactId>
+            <optional>true</optional>
+        </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter</artifactId>
@@ -36,12 +37,6 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-configuration-processor</artifactId>
-            <optional>true</optional>
-        </dependency>
-        <dependency>
-            <groupId>com.github.persapiens</groupId>
-            <artifactId>jsf-spring-boot-autoconfigure</artifactId>
-            <version>${jsf-spring-boot-autoconfigure.version}</version>
             <optional>true</optional>
         </dependency>
         <dependency>

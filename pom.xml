@@ -58,6 +58,8 @@
         <module>jsf-myfaces-spring-boot-starter</module>
         <module>jsf-jetty-myfaces-spring-boot-autoconfigure</module>
         <module>jsf-jetty-myfaces-spring-boot-starter</module>
+        <module>jsf-undertow-myfaces-spring-boot-autoconfigure</module>
+        <module>jsf-undertow-myfaces-spring-boot-starter</module>
     </modules>
 
     <dependencies>
