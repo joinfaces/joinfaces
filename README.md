@@ -7,7 +7,7 @@ JSF Spring Boot Starter
 
 This project enables JSF usage inside JAR packaged Spring Boot Application.
 
-It autoconfigures [Primefaces](http://primefaces.org/), [Omnifaces](http://omnifaces.org/), [Mojarra](https://javaserverfaces.java.net/) and [Myfaces](http://myfaces.apache.org/) libraries to run at embedded [Tomcat](http://tomcat.apache.org/), [Jetty](http://www.eclipse.org/jetty) or [Undertow](http://undertow.io) servlet containers.
+It autoconfigures [PrimeFaces](http://primefaces.org/), [OmniFaces](http://omnifaces.org/), [Mojarra](https://javaserverfaces.java.net/) and [MyFaces](http://myfaces.apache.org/) libraries to run at embedded [Tomcat](http://tomcat.apache.org/), [Jetty](http://www.eclipse.org/jetty) or [Undertow](http://undertow.io) servlet containers.
 
 ## How to use
 
@@ -22,9 +22,9 @@ Starter | JSF Implementation | Servlet Container
 jsf-spring-boot-starter | [Mojarra](https://javaserverfaces.java.net/) | [Tomcat](http://tomcat.apache.org/)
 jsf-jetty-spring-boot-starter | [Mojarra](https://javaserverfaces.java.net/) | [Jetty](http://www.eclipse.org/jetty)
 jsf-undertow-spring-boot-starter | [Mojarra](https://javaserverfaces.java.net/) | [Undertow](http://undertow.io)
-jsf-myfaces-spring-boot-starter | [Myfaces](http://myfaces.apache.org/) | [Tomcat](http://tomcat.apache.org/)
-jsf-jetty-myfaces-spring-boot-starter | [Myfaces](http://myfaces.apache.org/) | [Jetty](http://www.eclipse.org/jetty)
-jsf-undertow-myfaces-spring-boot-starter | [Myfaces](http://myfaces.apache.org/) | [Undertow](http://undertow.io)
+jsf-myfaces-spring-boot-starter | [MyFaces](http://myfaces.apache.org/) | [Tomcat](http://tomcat.apache.org/)
+jsf-jetty-myfaces-spring-boot-starter | [MyFaces](http://myfaces.apache.org/) | [Jetty](http://www.eclipse.org/jetty)
+jsf-undertow-myfaces-spring-boot-starter | [MyFaces](http://myfaces.apache.org/) | [Undertow](http://undertow.io)
 
 - Includes Primefaces, Primefaces-Extensions, Primefaces-All-Themes, OmniFaces, Mojarra and CDI-api dependency libraries.
 
