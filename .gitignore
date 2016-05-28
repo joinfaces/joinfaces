@@ -10,3 +10,8 @@
 /jsf-spring-boot-integration/target/
 /jsf-myfaces-spring-boot-autoconfigure/target/
 /jsf-myfaces-spring-boot-starter/target/
+/jsf-jetty-myfaces-spring-boot-starter/target/
+/jsf-jetty-myfaces-spring-boot-starter (copy)/target/
+/jsf-undertow-myfaces-spring-boot-starter/target/
+/jsf-jetty-spring-boot-autoconfigure (copy)/target/
+/jsf-jetty-myfaces-spring-boot-autoconfigure/target/
