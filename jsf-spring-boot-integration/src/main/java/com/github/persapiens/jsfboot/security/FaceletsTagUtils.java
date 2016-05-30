@@ -14,7 +14,7 @@ public abstract class FaceletsTagUtils {
 	 * @param authorities a comma-separated list of user authorities.
 	 */
 	public static boolean areAllGranted(String authorities) throws IOException {
-		FaceletsAuthorizeTag authorizeTag = new FaceletsAuthorizeTag();
+		AuthorizeFaceletsTag authorizeTag = new AuthorizeFaceletsTag();
 		authorizeTag.setIfAllGranted(authorities);
 		return authorizeTag.authorize();
 	}
@@ -25,7 +25,7 @@ public abstract class FaceletsTagUtils {
 	 * @param authorities a comma-separated list of user authorities.
 	 */
 	public static boolean areAnyGranted(String authorities) throws IOException {
-		FaceletsAuthorizeTag authorizeTag = new FaceletsAuthorizeTag();
+		AuthorizeFaceletsTag authorizeTag = new AuthorizeFaceletsTag();
 		authorizeTag.setIfAnyGranted(authorities);
 		return authorizeTag.authorize();
 	}
@@ -36,7 +36,7 @@ public abstract class FaceletsTagUtils {
 	 * @param authorities a comma-separated list of user authorities.
 	 */
 	public static boolean areNotGranted(String authorities) throws IOException {
-		FaceletsAuthorizeTag authorizeTag = new FaceletsAuthorizeTag();
+		AuthorizeFaceletsTag authorizeTag = new AuthorizeFaceletsTag();
 		authorizeTag.setIfNotGranted(authorities);
 		return authorizeTag.authorize();
 	}
@@ -46,24 +46,34 @@ public abstract class FaceletsTagUtils {
 	 * optional and case insensitive.
 	 */
 	public static boolean isAllowed(String url, String method) throws IOException {
-		FaceletsAuthorizeTag authorizeTag = new FaceletsAuthorizeTag();
+		AuthorizeFaceletsTag authorizeTag = new AuthorizeFaceletsTag();
 		authorizeTag.setUrl(url);
 		authorizeTag.setMethod(method);
 		return authorizeTag.authorizeUsingUrlCheck();
 	}
 
 	/**
-	 * Returns true if the user is authenticated.
+	 * Returns true if user is anonymous.
 	 */
-	public static boolean isAuthenticated() throws IOException {
-		return FaceletsAuthenticatedTagHandler.authenticated();
+	public static boolean isAnonymous() throws IOException {
+		AnonymousFaceletsTag anonymousTag = new AnonymousFaceletsTag();
+		return anonymousTag.authorize();
 	}
 
 	/**
-	 * Returns true if no user is authenticated.
+	 * Returns true if the user is not anonymous.
 	 */
-	public static boolean isAnonymous() throws IOException {
-		return FaceletsAnonymousTagHandler.anonymous();
+	public static boolean isAuthenticated() throws IOException {
+		AuthenticatedFaceletsTag authenticatedTag = new AuthenticatedFaceletsTag();
+		return authenticatedTag.authorize();
+	}
+
+	/**
+	 * Returns true if the is not an anonymous or a remember-me user.
+	 */
+	public static boolean isFullyAuthenticated() throws IOException {
+		FullyAuthenticatedFaceletsTag authenticatedTag = new FullyAuthenticatedFaceletsTag();
+		return authenticatedTag.authorize();
 	}
 
 }

@@ -20,9 +20,9 @@ import org.springframework.security.core.context.SecurityContextHolder;
  * </ul>
  * The var attribute can be used to store the result of the authorization decision for later use in the view.
  *
- * @see FaceletsAuthorizeTag
+ * @see AuthorizeFaceletsTag
  */
-public class FaceletsAuthorizeTagHandler extends TagHandler {
+public class AuthorizeFaceletsTagHandler extends TagHandler {
 
 	private final TagAttribute access;
 	private final TagAttribute url;
@@ -35,7 +35,7 @@ public class FaceletsAuthorizeTagHandler extends TagHandler {
 	/**
 	 * @see TagHandler#TagHandler(TagConfig)
 	 */
-	public FaceletsAuthorizeTagHandler(TagConfig config) {
+	public AuthorizeFaceletsTagHandler(TagConfig config) {
 		super(config);
 		this.access = this.getAttribute("access");
 		this.url = this.getAttribute("url");
@@ -49,12 +49,13 @@ public class FaceletsAuthorizeTagHandler extends TagHandler {
 	/**
 	 * @see TagHandler#apply(FaceletContext, UIComponent)
 	 */
+    @Override
 	public void apply(FaceletContext faceletContext, UIComponent parent) throws IOException {
 		if (SecurityContextHolder.getContext().getAuthentication() == null) {
 			return;
 		}
 
-		FaceletsAuthorizeTag authorizeTag = new FaceletsAuthorizeTag(faceletContext
+		AuthorizeFaceletsTag authorizeTag = new AuthorizeFaceletsTag(faceletContext
             , this.access, this.url, this.method, this.ifAllGranted
             , this.ifAnyGranted, this.ifNotGranted);
 

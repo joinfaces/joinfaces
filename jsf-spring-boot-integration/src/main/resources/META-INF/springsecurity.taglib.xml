@@ -13,7 +13,7 @@
             The var attribute can be used to store the result of the authorization decision for later use in the view.
         </description>
 		<tag-name>authorize</tag-name>
-		<handler-class>com.github.persapiens.jsfboot.security.FaceletsAuthorizeTagHandler</handler-class>
+		<handler-class>com.github.persapiens.jsfboot.security.AuthorizeFaceletsTagHandler</handler-class>
         
         <attribute>
             <description>
@@ -80,15 +80,21 @@
     </tag>
         
 	<tag>
-        <description>Verify if the user is authenticated.</description>
-		<tag-name>authenticated</tag-name>
-		<handler-class>com.github.persapiens.jsfboot.security.FaceletsAuthenticatedTagHandler</handler-class>
+        <description>Verify if the user is anonymous.</description>
+		<tag-name>anonymous</tag-name>
+		<handler-class>com.github.persapiens.jsfboot.security.AnonymousFaceletsTagHandler</handler-class>
 	</tag>
         
 	<tag>
-        <description>Verify if no user is authenticated.</description>
-		<tag-name>anonymous</tag-name>
-		<handler-class>com.github.persapiens.jsfboot.security.FaceletsAnonymousTagHandler</handler-class>
+        <description>Verify if the user is not anonymous.</description>
+		<tag-name>authenticated</tag-name>
+		<handler-class>com.github.persapiens.jsfboot.security.AuthenticatedFaceletsTagHandler</handler-class>
+	</tag>
+        
+	<tag>
+        <description>Verify if the is not an anonymous or a remember-me user.</description>
+		<tag-name>fullyAuthenticated</tag-name>
+		<handler-class>com.github.persapiens.jsfboot.security.FullyAuthenticatedFaceletsTagHandler</handler-class>
 	</tag>
     
 	<function>
@@ -112,13 +118,18 @@
         <function-signature>boolean isAllowed(java.lang.String, java.lang.String)</function-signature>
 	</function>
 	<function>
+		<function-name>isAnonymous</function-name>
+		<function-class>com.github.persapiens.jsfboot.security.FaceletsTagUtils</function-class>
+        <function-signature>boolean isAnonymous()</function-signature>
+	</function>
+	<function>
 		<function-name>isAuthenticated</function-name>
 		<function-class>com.github.persapiens.jsfboot.security.FaceletsTagUtils</function-class>
         <function-signature>boolean isAuthenticated()</function-signature>
 	</function>
 	<function>
-		<function-name>isAnonymous</function-name>
+		<function-name>isFullyAuthenticated</function-name>
 		<function-class>com.github.persapiens.jsfboot.security.FaceletsTagUtils</function-class>
-        <function-signature>boolean isAnonymous()</function-signature>
+        <function-signature>boolean isFullyAuthenticated()</function-signature>
 	</function>
 </facelet-taglib>

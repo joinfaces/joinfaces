@@ -1,13 +1,9 @@
 package com.github.persapiens.jsfboot.security;
 
 import javax.el.ValueExpression;
-import javax.faces.context.FacesContext;
 import javax.faces.view.facelets.FaceletContext;
 import javax.faces.view.facelets.TagAttribute;
 import javax.faces.view.facelets.TagHandler;
-import javax.servlet.ServletContext;
-import javax.servlet.ServletRequest;
-import javax.servlet.ServletResponse;
 
 import org.springframework.security.taglibs.authz.AbstractAuthorizeTag;
 import org.springframework.util.ObjectUtils;
@@ -16,7 +12,7 @@ import org.springframework.util.StringUtils;
 /**
  * A concrete implementation of {@link AbstractAuthorizeTag} for use with standard Facelets rendering technology.
  */
-public class FaceletsAuthorizeTag extends AbstractAuthorizeTag {
+public class AuthorizeFaceletsTag extends AbstractFaceletsAuthorizeTag {
 
 	/**
 	 * A class constructor for use in a {@link TagHandler}. Accepts all possible tag attributes as {@link TagAttribute}
@@ -31,7 +27,7 @@ public class FaceletsAuthorizeTag extends AbstractAuthorizeTag {
 	 * @param ifAnyGranted the ifAnyGranted attribute or null
 	 * @param ifNotGranted the ifNotGranted attribute or null
 	 */
-	public FaceletsAuthorizeTag(FaceletContext faceletContext, TagAttribute access
+	public AuthorizeFaceletsTag(FaceletContext faceletContext, TagAttribute access
             , TagAttribute url, TagAttribute method, TagAttribute ifAllGranted
             , TagAttribute ifAnyGranted, TagAttribute ifNotGranted) {
 		setAccess(getAttributeValue(faceletContext, access, false));
@@ -46,22 +42,7 @@ public class FaceletsAuthorizeTag extends AbstractAuthorizeTag {
 	 * A default constructor. Callers of this constructor are responsible for setting one or more of the tag attributes
 	 * in {@link AbstractAuthorizeTag}.
 	 */
-	public FaceletsAuthorizeTag() {
-	}
-
-    @Override
-	protected ServletRequest getRequest() {
-		return (ServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
-	}
-
-    @Override
-	protected ServletResponse getResponse() {
-		return (ServletResponse) FacesContext.getCurrentInstance().getExternalContext().getResponse();
-	}
-
-    @Override
-	protected ServletContext getServletContext() {
-		return (ServletContext) FacesContext.getCurrentInstance().getExternalContext().getContext();
+	public AuthorizeFaceletsTag() {
 	}
 
     private static final String AND = " and ";
