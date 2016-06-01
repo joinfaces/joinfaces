@@ -46,6 +46,7 @@
         <maven-changelog-plugin.version>2.3</maven-changelog-plugin.version>
         <maven-jar-plugin.version>3.0.0</maven-jar-plugin.version>
         <cobertura-maven-plugin.version>2.7</cobertura-maven-plugin.version>
+        <coveralls-maven-plugin.version>4.2.0</coveralls-maven-plugin.version>
     </properties>
     
     <modules>
@@ -121,6 +122,11 @@
                     <aggregate>true</aggregate>
                 </configuration>
             </plugin>
+            <plugin>
+                <groupId>org.eluder.coveralls</groupId>
+                <artifactId>coveralls-maven-plugin</artifactId>
+                <version>${coveralls-maven-plugin.version}</version>
+            </plugin>    
         </plugins>
     </build>    
 
