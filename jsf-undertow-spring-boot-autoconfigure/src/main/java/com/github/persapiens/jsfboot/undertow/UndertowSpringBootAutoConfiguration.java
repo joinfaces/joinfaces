@@ -45,7 +45,7 @@ public class UndertowSpringBootAutoConfiguration extends SpringBootServletInitia
 
     private class UndertowDeploymentInfoCustomizerImpl implements UndertowDeploymentInfoCustomizer {
         @Override
-        public void customize(DeploymentInfo di) {
+        public void customize(final DeploymentInfo di) {
             AccessController.doPrivileged(new PrivilegedAction<Void>() {
                 @Override
                 public Void run() {

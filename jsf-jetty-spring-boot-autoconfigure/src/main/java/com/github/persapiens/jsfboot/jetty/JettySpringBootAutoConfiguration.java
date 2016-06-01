@@ -52,7 +52,7 @@ public class JettySpringBootAutoConfiguration extends SpringBootServletInitializ
         @Override
         public void customize(Server server) {
             Handler[] childHandlersByClass = server.getChildHandlersByClass(WebAppContext.class);
-            WebAppContext webAppContext = (WebAppContext) childHandlersByClass[0];
+            final WebAppContext webAppContext = (WebAppContext) childHandlersByClass[0];
             
             try {
                 ClassPathResource classPathResource = new ClassPathResource(jettyProperties.getClassPathResource());
