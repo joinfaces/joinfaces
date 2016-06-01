@@ -79,7 +79,7 @@ Additional information in [#29](https://github.com/persapiens/jsf-spring-boot-st
 
 ## System Requirements
 
-JSF Spring Boot Starter requires [Java 8](http://java.com) and [Spring Boot 1.3.5](http://projects.spring.io/spring-boot/).
+By default, JSF Spring Boot Starter requires [Java 7](http://java.com) and [Spring Boot 1.3.5](http://projects.spring.io/spring-boot/) or above.
 
 ## Getting Help
 
