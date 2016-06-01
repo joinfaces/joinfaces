@@ -75,6 +75,16 @@ anonymous | verify if the user is anonymous.
 authenticated | verify if the user is not anonymous.
 fullyAuthenticated | verify if the is not an anonymous or a remember-me user.
 
+Function | Description
+------------ | -------------
+areAllGranted | returns true if the user has all of of the given authorities.
+areAnyGranted | returns true if the user has any of the given authorities.
+areNotGranted | returns true if the user does not have any of the given authorities.
+isAllowed | returns true if the user is allowed to access the given URL and HTTP method combination.
+isAnonymous | returns true if user is anonymous.
+isAuthenticated | returns true if the user is not anonymous.
+isFullyAuthenticated | returns true if the is not an anonymous or a remember-me user.
+
 Additional information in [#29](https://github.com/persapiens/jsf-spring-boot-starter/issues/29)
 
 ## System Requirements
