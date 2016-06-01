@@ -28,6 +28,7 @@
         <cdi.version>1.2</cdi.version>
         <primefaces.version>5.3</primefaces.version>
         <myfaces.version>2.2.10</myfaces.version>
+        
         <maven-gpg-plugin.version>1.6</maven-gpg-plugin.version>
         <nexus-staging-maven-plugin.version>1.6.7</nexus-staging-maven-plugin.version>
         <maven-release-plugin.version>2.5.3</maven-release-plugin.version>
@@ -44,6 +45,7 @@
         <maven-surefire-report-plugin.version>2.19.1</maven-surefire-report-plugin.version>
         <maven-changelog-plugin.version>2.3</maven-changelog-plugin.version>
         <maven-jar-plugin.version>3.0.0</maven-jar-plugin.version>
+        <cobertura-maven-plugin.version>2.7</cobertura-maven-plugin.version>
     </properties>
     
     <modules>
@@ -107,6 +109,18 @@
                     <goals>deploy</goals>
                 </configuration>
             </plugin>            
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>cobertura-maven-plugin</artifactId>
+                <version>${cobertura-maven-plugin.version}</version>
+                <configuration>
+                    <formats>
+                        <format>html</format>
+                        <format>xml</format>
+                    </formats>
+                    <aggregate>true</aggregate>
+                </configuration>
+            </plugin>
         </plugins>
     </build>    
 
@@ -173,6 +187,11 @@
                 <artifactId>maven-changelog-plugin</artifactId>
                 <version>${maven-changelog-plugin.version}</version>
             </plugin>                    
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>cobertura-maven-plugin</artifactId>
+                <version>${cobertura-maven-plugin.version}</version>
+            </plugin>
         </plugins>
     </reporting>
     

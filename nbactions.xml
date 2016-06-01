@@ -21,13 +21,27 @@
         </activatedProfiles>
     </action>
     <action>
-        <actionName>CUSTOM-fullVerify</actionName>
-        <displayName>fullVerify</displayName>
+        <actionName>CUSTOM-pmd-cpd-jdepend-findbugs</actionName>
+        <displayName>pmd-cpd-jdepend-findbugs</displayName>
         <goals>
             <goal>verify</goal>
         </goals>
         <activatedProfiles>
             <activatedProfile>check-pmd-cpd-jdepend-findbugs</activatedProfile>
+        </activatedProfiles>
+    </action>
+    <action>
+        <actionName>CUSTOM-cobertura</actionName>
+        <displayName>cobertura</displayName>
+        <goals>
+            <goal>clean</goal>
+            <goal>cobertura:cobertura-integration-test</goal>
+        </goals>
+        <properties>
+            <logging.level.root>WARN</logging.level.root>
+        </properties>
+        <activatedProfiles>
+            <activatedProfile>attach-integration-test</activatedProfile>
         </activatedProfiles>
     </action>
 </actions>
