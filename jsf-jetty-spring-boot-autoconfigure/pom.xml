@@ -5,13 +5,13 @@
     <parent>
         <groupId>com.github.persapiens</groupId>
         <artifactId>jsf-spring-boot-parent</artifactId>
-        <version>1.4.2</version>
+        <version>1.4.3-SNAPSHOT</version>
     </parent>
     
     <groupId>com.github.persapiens</groupId>
     <artifactId>jsf-jetty-spring-boot-autoconfigure</artifactId>
     <name>JSF Jetty Spring Boot AutoConfigure</name>
-    <version>1.4.2</version>
+    <version>1.4.3-SNAPSHOT</version>
 
     <dependencies>
         <dependency>

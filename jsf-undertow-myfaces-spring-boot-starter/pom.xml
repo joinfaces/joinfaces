@@ -5,16 +5,16 @@
     <parent>
         <groupId>com.github.persapiens</groupId>
         <artifactId>jsf-spring-boot-parent</artifactId>
-        <version>1.4.2</version>
+        <version>1.4.3-SNAPSHOT</version>
     </parent>
     
     <groupId>com.github.persapiens</groupId>
     <artifactId>jsf-undertow-myfaces-spring-boot-starter</artifactId>
     <name>JSF Undertow MyFaces Spring Boot Starter</name>
-    <version>1.4.2</version>
+    <version>1.4.3-SNAPSHOT</version>
 
     <properties>
-        <jsf-spring-boot-starter.version>1.4.2</jsf-spring-boot-starter.version>
+        <jsf-spring-boot-starter.version>1.4.3-SNAPSHOT</jsf-spring-boot-starter.version>
     </properties>
 
     <dependencies>
