@@ -5,16 +5,16 @@
     <parent>
         <groupId>com.github.persapiens</groupId>
         <artifactId>jsf-spring-boot-parent</artifactId>
-        <version>1.4.2-SNAPSHOT</version>
+        <version>1.4.2</version>
     </parent>
     
     <groupId>com.github.persapiens</groupId>
     <artifactId>jsf-myfaces-spring-boot-autoconfigure</artifactId>
     <name>JSF MyFaces Spring Boot AutoConfigure</name>
-    <version>1.4.2-SNAPSHOT</version>
+    <version>1.4.2</version>
 
     <properties>
-        <jsf-spring-boot-autoconfigure.version>1.4.2-SNAPSHOT</jsf-spring-boot-autoconfigure.version>
+        <jsf-spring-boot-autoconfigure.version>1.4.2</jsf-spring-boot-autoconfigure.version>
     </properties>
 
     <dependencies>
