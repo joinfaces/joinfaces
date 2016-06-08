@@ -21,20 +21,22 @@ public class PrimefacesServletContextConfigurer extends ServletContextConfigurer
     {        
         setInitParameter(Captcha.PRIVATE_KEY, primefacesProperties.getPrivateCaptchaKey());
         setInitParameter(Captcha.PUBLIC_KEY, primefacesProperties.getPublicCaptchaKey());
-        setInitParameter(ContextParams.THEME, primefacesProperties.getTheme());
-        setInitParameter(ContextParams.MOBILE_THEME, primefacesProperties.getMobile().getTheme());                
-        setInitParameter(ContextParams.PUSH_SERVER_URL, primefacesProperties.getPushServerUrl());
-        setInitParameter(ContextParams.SUBMIT, primefacesProperties.getSubmit());
+        setInitParameter(ContextParams.AUTO_UPDATE, primefacesProperties.getAutoUpdate());
+        setInitParameter(ContextParams.BEAN_VALIDATION_DISABLED, primefacesProperties.getBeanValidationDisabled());        
+        setInitParameter(ContextParams.CACHE_PROVIDER, primefacesProperties.getCacheProvider());
         setInitParameter(ContextParams.DIRECTION, primefacesProperties.getDir());
+        setInitParameter(ContextParams.EARLY_POST_PARAM_EVALUATION, primefacesProperties.getEarlyPostParamEvaluation());
+        setInitParameter(ContextParams.FONT_AWESOME, primefacesProperties.getFontAwesome());
+        setInitParameter(ContextParams.LEGACY_WIDGET_NAMESPACE, primefacesProperties.getLegacyWidgetNamespace());
+        setInitParameter(ContextParams.MOBILE_THEME, primefacesProperties.getMobile().getTheme());                
+        setInitParameter(ContextParams.PFV_KEY, primefacesProperties.getClientSideValidation());
+        setInitParameter(ContextParams.PUSH_SERVER_URL, primefacesProperties.getPushServerUrl());
         setInitParameter(ContextParams.RESET_VALUES, primefacesProperties.getResetValues());
         setInitParameter(ContextParams.SECRET_KEY, primefacesProperties.getSecret());
-        setInitParameter(ContextParams.PFV_KEY, primefacesProperties.getClientSideValidation());
-        setInitParameter(ContextParams.UPLOADER, primefacesProperties.getUploader());
+        setInitParameter(ContextParams.SUBMIT, primefacesProperties.getSubmit());
+        setInitParameter(ContextParams.THEME, primefacesProperties.getTheme());
         setInitParameter(ContextParams.TRANSFORM_METADATA, primefacesProperties.getTransformMetadata());
-        setInitParameter(ContextParams.LEGACY_WIDGET_NAMESPACE, primefacesProperties.getLegacyWidgetNamespace());
-        setInitParameter(ContextParams.FONT_AWESOME, primefacesProperties.getFontAwesome());
-        setInitParameter(ContextParams.CACHE_PROVIDER, primefacesProperties.getCacheProvider());
-        setInitParameter(ContextParams.AUTO_UPDATE, primefacesProperties.getAutoUpdate());
+        setInitParameter(ContextParams.UPLOADER, primefacesProperties.getUploader());
         
         setInitParameter("org.primefaces.component.captcha.PRIVATE_KEY", primefacesProperties.getCaptcha().getPrivateKey());
     }

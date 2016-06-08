@@ -8,9 +8,9 @@ public class PrimefacesPropertiesTest {
 
 	public void testTheme() {
 		PrimefacesProperties primefacesProperties = new PrimefacesProperties();
-        primefacesProperties.setTheme("cupertino");
+        primefacesProperties.setTheme("omega");
 
-		assertThat(primefacesProperties.getTheme()).isEqualTo("cupertino");
+		assertThat(primefacesProperties.getTheme()).isEqualTo("omega");
 	}
 
 	public void testCaptchaPrivateKey() {

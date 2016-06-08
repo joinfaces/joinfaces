@@ -5,7 +5,7 @@ import lombok.Setter;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
 /**
- * Taken from http://www.primefaces.org/docs/api/5.3/constant-values.html
+ * Taken from http://www.primefaces.org/docs/api/6.0/constant-values.html
  */
 @Getter
 @Setter
@@ -98,4 +98,8 @@ public class PrimefacesProperties {
         private String privateKey;
 
     }
+    
+    private String earlyPostParamEvaluation;
+    
+    private String beanValidationDisabled;
 }
