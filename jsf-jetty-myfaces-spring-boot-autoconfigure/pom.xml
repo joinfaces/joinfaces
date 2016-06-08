@@ -39,10 +39,10 @@
             <artifactId>spring-boot-configuration-processor</artifactId>
             <optional>true</optional>
         </dependency>
+        
         <dependency>
             <groupId>org.apache.myfaces.core</groupId>
             <artifactId>myfaces-bundle</artifactId>
-            <version>${myfaces.version}</version>
             <optional>true</optional>
         </dependency>
     </dependencies>

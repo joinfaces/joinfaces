@@ -13,17 +13,11 @@
     <name>JSF Undertow MyFaces Spring Boot Starter</name>
     <version>1.4.3-SNAPSHOT</version>
 
-    <properties>
-        <jsf-spring-boot-starter.version>1.4.3-SNAPSHOT</jsf-spring-boot-starter.version>
-    </properties>
-
     <dependencies>
         <!-- undertow dependencies without mojarra -->
         <dependency>
             <groupId>com.github.persapiens</groupId>
             <artifactId>jsf-undertow-spring-boot-starter</artifactId>
-            <version>${jsf-spring-boot-starter.version}</version>
-            <scope>compile</scope>
             <exclusions>
                 <exclusion>
                     <groupId>org.glassfish</groupId>
@@ -35,14 +29,10 @@
         <dependency>
             <groupId>com.github.persapiens</groupId>
             <artifactId>jsf-myfaces-spring-boot-starter</artifactId>
-            <version>${jsf-spring-boot-starter.version}</version>
-            <scope>compile</scope>
         </dependency>
         <dependency>
             <groupId>com.github.persapiens</groupId>
             <artifactId>jsf-undertow-myfaces-spring-boot-autoconfigure</artifactId>
-            <version>${jsf-spring-boot-starter.version}</version>
-            <scope>compile</scope>
         </dependency>
         <dependency>
             <groupId>org.apache.tomcat.embed</groupId>

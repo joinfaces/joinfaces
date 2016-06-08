@@ -37,19 +37,16 @@
         <dependency>
             <groupId>org.glassfish</groupId>
             <artifactId>javax.faces</artifactId>
-            <version>${javax.faces.version}</version>
             <optional>true</optional>
         </dependency>
         <dependency>
             <groupId>org.primefaces</groupId>
             <artifactId>primefaces</artifactId>
-            <version>${primefaces.version}</version>
             <optional>true</optional>
         </dependency>
         <dependency>
             <groupId>org.omnifaces</groupId>
             <artifactId>omnifaces</artifactId>
-            <version>${omnifaces.version}</version>
             <optional>true</optional>
         </dependency>
     </dependencies>

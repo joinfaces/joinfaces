@@ -13,10 +13,6 @@
     <name>JSF MyFaces Spring Boot AutoConfigure</name>
     <version>1.4.3-SNAPSHOT</version>
 
-    <properties>
-        <jsf-spring-boot-autoconfigure.version>1.4.3-SNAPSHOT</jsf-spring-boot-autoconfigure.version>
-    </properties>
-
     <dependencies>
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -38,16 +34,15 @@
             <artifactId>spring-boot-configuration-processor</artifactId>
             <optional>true</optional>
         </dependency>
+        
         <dependency>
             <groupId>com.github.persapiens</groupId>
             <artifactId>jsf-spring-boot-autoconfigure</artifactId>
-            <version>${jsf-spring-boot-autoconfigure.version}</version>
             <optional>true</optional>
         </dependency>
         <dependency>
             <groupId>org.apache.myfaces.core</groupId>
             <artifactId>myfaces-bundle</artifactId>
-            <version>${myfaces.version}</version>
             <optional>true</optional>
         </dependency>
     </dependencies>

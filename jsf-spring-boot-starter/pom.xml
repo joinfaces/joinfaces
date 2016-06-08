@@ -13,12 +13,6 @@
     <name>JSF Spring Boot Starter</name>
     <version>1.4.3-SNAPSHOT</version>
 
-    <properties>
-        <all-themes.version>1.0.8</all-themes.version>
-        <primefaces-extensions.version>4.0.0</primefaces-extensions.version>
-        <jsf-spring-boot-autoconfigure.version>1.4.3-SNAPSHOT</jsf-spring-boot-autoconfigure.version>
-    </properties>
-
     <dependencies>
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -39,56 +33,38 @@
         <dependency>
             <groupId>com.github.persapiens</groupId>
             <artifactId>jsf-spring-boot-integration</artifactId>
-            <version>${jsf-spring-boot-autoconfigure.version}</version>
-            <scope>compile</scope>
         </dependency>
         <dependency>
             <groupId>com.github.persapiens</groupId>
             <artifactId>jsf-spring-boot-autoconfigure</artifactId>
-            <version>${jsf-spring-boot-autoconfigure.version}</version>
-            <scope>compile</scope>
         </dependency>
         <dependency>
             <groupId>org.glassfish</groupId>
             <artifactId>javax.faces</artifactId>
-            <version>${javax.faces.version}</version>
-            <scope>compile</scope>
         </dependency>
         <dependency>
             <groupId>org.omnifaces</groupId>
             <artifactId>omnifaces</artifactId>
-            <version>${omnifaces.version}</version>
-            <scope>compile</scope>
         </dependency>
         <dependency>
             <groupId>org.primefaces</groupId>
             <artifactId>primefaces</artifactId>
-            <version>${primefaces.version}</version>
-            <scope>compile</scope>
         </dependency>
         <dependency>
             <groupId>org.primefaces.extensions</groupId>
             <artifactId>all-themes</artifactId>
-            <version>${all-themes.version}</version>
-            <scope>runtime</scope>
         </dependency>        
         <dependency>
             <groupId>org.primefaces.extensions</groupId>
             <artifactId>primefaces-extensions</artifactId>
-            <version>${primefaces-extensions.version}</version>
-            <scope>compile</scope>
         </dependency>
         <dependency>
             <groupId>org.primefaces.extensions</groupId>
             <artifactId>resources-ckeditor</artifactId>
-            <version>${primefaces-extensions.version}</version>
-            <scope>runtime</scope>
         </dependency>
         <dependency>
             <groupId>javax.enterprise</groupId>
             <artifactId>cdi-api</artifactId>
-            <version>${cdi.version}</version>
-            <scope>compile</scope>
             <exclusions>
                 <exclusion>
                     <groupId>javax.el</groupId>

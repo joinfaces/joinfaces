@@ -32,13 +32,11 @@
         <dependency>
             <groupId>org.glassfish</groupId>
             <artifactId>javax.faces</artifactId>
-            <version>${javax.faces.version}</version>
             <optional>true</optional>
         </dependency>
         <dependency>
             <groupId>javax.enterprise</groupId>
             <artifactId>cdi-api</artifactId>
-            <version>${cdi.version}</version>
             <optional>true</optional>
         </dependency>
         <dependency>

@@ -29,6 +29,12 @@
         <primefaces.version>5.3</primefaces.version>
         <myfaces.version>2.2.10</myfaces.version>
         
+        <jboss-jsp-api_2.3_spec.version>1.0.1.Final</jboss-jsp-api_2.3_spec.version>
+        <all-themes.version>1.0.8</all-themes.version>
+        <primefaces-extensions.version>4.0.0</primefaces-extensions.version>
+        
+        <jsf-spring-boot-starter.version>1.4.3-SNAPSHOT</jsf-spring-boot-starter.version>
+        
         <maven-gpg-plugin.version>1.6</maven-gpg-plugin.version>
         <nexus-staging-maven-plugin.version>1.6.7</nexus-staging-maven-plugin.version>
         <maven-release-plugin.version>2.5.3</maven-release-plugin.version>
@@ -66,24 +72,145 @@
         <module>jsf-undertow-myfaces-spring-boot-starter</module>
     </modules>
 
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.testng</groupId>
+                <artifactId>testng</artifactId>
+                <version>${testng.version}</version>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.assertj</groupId>
+                <artifactId>assertj-core</artifactId>
+                <version>${assertj.version}</version>
+                <scope>test</scope>
+            </dependency>        
+            <dependency>
+                <groupId>org.projectlombok</groupId>
+                <artifactId>lombok</artifactId>
+                <version>${lombok.version}</version>
+                <optional>true</optional>
+            </dependency>
+        
+            <dependency>
+                <groupId>org.glassfish</groupId>
+                <artifactId>javax.faces</artifactId>
+                <version>${javax.faces.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.myfaces.core</groupId>
+                <artifactId>myfaces-bundle</artifactId>
+                <version>${myfaces.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.primefaces</groupId>
+                <artifactId>primefaces</artifactId>
+                <version>${primefaces.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.omnifaces</groupId>
+                <artifactId>omnifaces</artifactId>
+                <version>${omnifaces.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>javax.enterprise</groupId>
+                <artifactId>cdi-api</artifactId>
+                <version>${cdi.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.jboss.spec.javax.servlet.jsp</groupId>
+                <artifactId>jboss-jsp-api_2.3_spec</artifactId>
+                <version>${jboss-jsp-api_2.3_spec.version}</version>
+            </dependency>    
+            <dependency>
+                <groupId>org.primefaces.extensions</groupId>
+                <artifactId>all-themes</artifactId>
+                <version>${all-themes.version}</version>
+                <scope>runtime</scope>
+            </dependency>        
+            <dependency>
+                <groupId>org.primefaces.extensions</groupId>
+                <artifactId>primefaces-extensions</artifactId>
+                <version>${primefaces-extensions.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.primefaces.extensions</groupId>
+                <artifactId>resources-ckeditor</artifactId>
+                <version>${primefaces-extensions.version}</version>
+                <scope>runtime</scope>
+            </dependency>
+            
+            <dependency>
+                <groupId>com.github.persapiens</groupId>
+                <artifactId>jsf-spring-boot-integration</artifactId>
+                <version>${jsf-spring-boot-starter.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.github.persapiens</groupId>
+                <artifactId>jsf-spring-boot-autoconfigure</artifactId>
+                <version>${jsf-spring-boot-starter.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.github.persapiens</groupId>
+                <artifactId>jsf-spring-boot-starter</artifactId>
+                <version>${jsf-spring-boot-starter.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.github.persapiens</groupId>
+                <artifactId>jsf-myfaces-spring-boot-autoconfigure</artifactId>
+                <version>${jsf-spring-boot-starter.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.github.persapiens</groupId>
+                <artifactId>jsf-myfaces-spring-boot-starter</artifactId>
+                <version>${jsf-spring-boot-starter.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.github.persapiens</groupId>
+                <artifactId>jsf-jetty-spring-boot-autoconfigure</artifactId>
+                <version>${jsf-spring-boot-starter.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.github.persapiens</groupId>
+                <artifactId>jsf-jetty-spring-boot-starter</artifactId>
+                <version>${jsf-spring-boot-starter.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.github.persapiens</groupId>
+                <artifactId>jsf-jetty-myfaces-spring-boot-autoconfigure</artifactId>
+                <version>${jsf-spring-boot-starter.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.github.persapiens</groupId>
+                <artifactId>jsf-undertow-spring-boot-autoconfigure</artifactId>
+                <version>${jsf-spring-boot-starter.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.github.persapiens</groupId>
+                <artifactId>jsf-undertow-spring-boot-starter</artifactId>
+                <version>${jsf-spring-boot-starter.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.github.persapiens</groupId>
+                <artifactId>jsf-undertow-myfaces-spring-boot-autoconfigure</artifactId>
+                <version>${jsf-spring-boot-starter.version}</version>
+            </dependency>
+        </dependencies>        
+    </dependencyManagement>
+
     <dependencies>
         <dependency>
             <groupId>org.testng</groupId>
             <artifactId>testng</artifactId>
-            <version>${testng.version}</version>
-            <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>org.assertj</groupId>
             <artifactId>assertj-core</artifactId>
-            <version>${assertj.version}</version>
-            <scope>test</scope>
         </dependency>        
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
-            <version>${lombok.version}</version>
-            <optional>true</optional>
         </dependency>
     </dependencies>
             
