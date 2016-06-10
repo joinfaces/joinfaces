@@ -34,8 +34,8 @@ jsf-undertow-myfaces-spring-boot-starter | [MyFaces](http://myfaces.apache.org/)
 
 Library | Dependency
 ------------ | -------------
-primefaces | [5.3](http://search.maven.org/#artifactdetails\|org.primefaces\|primefaces\|5.3\|jar)
-primefaces-extensions | [4.0.0](http://search.maven.org/#artifactdetails\|org.primefaces.extensions\|primefaces-extensions\|4.0.0\|jar)
+primefaces | [6.0](http://search.maven.org/#artifactdetails\|org.primefaces\|primefaces\|6.0\|jar)
+primefaces-extensions | [6.0.0](http://search.maven.org/#artifactdetails\|org.primefaces.extensions\|primefaces-extensions\|6.0.0\|jar)
 primefaces-all-themes | [1.0.8](http://search.maven.org/#artifactdetails\|org.primefaces.extensions\|all-themes\|1.0.8\|jar)
 omnifaces | [1.13](http://search.maven.org/#artifactdetails\|org.omnifaces\|omnifaces\|1.13\|jar)
 mojarra | [2.2.13](http://search.maven.org/#artifactdetails\|org.glassfish\|javax.faces\|2.2.13\|jar) 
