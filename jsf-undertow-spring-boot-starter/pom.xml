@@ -5,13 +5,13 @@
     <parent>
         <groupId>com.github.persapiens</groupId>
         <artifactId>jsf-spring-boot-parent</artifactId>
-        <version>1.5.0-SNAPSHOT</version>
+        <version>1.5.0</version>
     </parent>
     
     <groupId>com.github.persapiens</groupId>
     <artifactId>jsf-undertow-spring-boot-starter</artifactId>
     <name>JSF Undertow Spring Boot Starter</name>
-    <version>1.5.0-SNAPSHOT</version>
+    <version>1.5.0</version>
 
     <dependencies>
         <!-- remove tomcat dependencies -->
