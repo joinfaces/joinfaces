@@ -32,7 +32,7 @@
         
         <primefaces.version>6.0</primefaces.version>        
         <all-themes.version>1.0.8</all-themes.version>
-        <primefaces-extensions.version>4.0.0</primefaces-extensions.version>
+        <primefaces-extensions.version>6.0.0</primefaces-extensions.version>
         
         <cdi.version>1.2</cdi.version>
         
@@ -144,6 +144,12 @@
             <dependency>
                 <groupId>org.primefaces.extensions</groupId>
                 <artifactId>resources-ckeditor</artifactId>
+                <version>${primefaces-extensions.version}</version>
+                <scope>runtime</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.primefaces.extensions</groupId>
+                <artifactId>resources-codemirror</artifactId>
                 <version>${primefaces-extensions.version}</version>
                 <scope>runtime</scope>
             </dependency>
