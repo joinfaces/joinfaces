@@ -57,8 +57,6 @@ public class JavaxFacesServletContextConfigurer extends ServletContextConfigurer
         
         setInitParameter(UIInput.VALIDATE_EMPTY_FIELDS_PARAM_NAME
             , javaxFacesProperties.getValidateEmptyFields());
-        setInitParameter(UIInput.VALIDATE_EMPTY_FIELDS_PARAM_NAME
-            , javaxFacesProperties.getValidateEmptyFields());
         
         setInitParameter(UINamingContainer.SEPARATOR_CHAR_PARAM_NAME
             , javaxFacesProperties.getSeparatorChar());
