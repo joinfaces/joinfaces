@@ -19,7 +19,7 @@ public class OmnifacesProperties {
     
     private String facesViewsDispatchMethod;
     
-    private String facesViewsEnabled;
+    private Boolean facesViewsEnabled;
                     
     private String facesViewsExtensionAction;
     
@@ -29,25 +29,25 @@ public class OmnifacesProperties {
                         
     private String facesViewsScanPaths;
                             
-    private String facesViewsScannedViewsAlwaysExtensionless;
+    private Boolean facesViewsScannedViewsAlwaysExtensionless;
                             
     private String facesViewsViewHandlerMode;
                                 
     private String html5RenderKitPassthroughAttributes;
     
-    private String cdnResourceHandlerDisabled;
+    private Boolean cdnResourceHandlerDisabled;
     
     private String cdnResourceHandlerUrls;
                                     
-    private String combinedResourceHandlerCacheTtl;
+    private Integer combinedResourceHandlerCacheTtl;
                                         
-    private String combinedResourceHandlerDisabled;
+    private Boolean combinedResourceHandlerDisabled;
                                         
     private String combinedResourceHandlerExcludedResources;
                                             
-    private String combinedResourceHandlerInlineCss;
+    private Boolean combinedResourceHandlerInlineCss;
     
-    private String combinedResourceHandlerInlineJs;
+    private Boolean combinedResourceHandlerInlineJs;
     
     private String combinedResourceHandlerSuppressedResources;
     
@@ -55,12 +55,12 @@ public class OmnifacesProperties {
     
     @Getter @Setter
     public static class Cache {
-        private String applicationMaxCapacity;
+        private Integer applicationMaxCapacity;
 
-        private String applicationTtl;;
+        private Integer applicationTtl;
 
-        private String sessionMaxCapacity;
+        private Integer sessionMaxCapacity;
 
-        private String sessionTtl;
+        private Integer sessionTtl;
     }
 }

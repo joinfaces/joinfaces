@@ -52,6 +52,13 @@ public abstract class ServletContextConfigurer {
         }
     }
     
+    protected void setInitParameter(String name, Integer value) {
+        if (value != null)
+        {
+            setInitParameterWithDebug(name, Integer.toString(value));
+        }
+    }
+    
     protected void setInitParameter(String name, Long value) {
         if (value != null)
         {

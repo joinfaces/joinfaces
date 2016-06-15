@@ -26,7 +26,7 @@ public class OmnifacesServletContextConfigurer extends ServletContextConfigurer 
     public void configure()
     {        
         setInitParameter(CacheInitializerListener.CACHE_PROVIDER_INIT_PARAM_NAME, omnifacesProperties.getCacheProvider());
-        setInitParameter(CacheInstancePerScopeProvider.DEFAULT_CACHE_PARAM_NAME, omnifacesProperties.getDefaultcache());
+        setInitParameter(CacheInstancePerScopeProvider.DEFAULT_CACHE_PARAM_NAME, omnifacesProperties.getDefaultcache());        
         setInitParameter(FullAjaxExceptionHandler.PARAM_NAME_EXCEPTION_TYPES_TO_UNWRAP, omnifacesProperties.getExceptionTypesToUnwrap());
         setInitParameter(FacesViews.FACES_VIEWS_DISPATCH_METHOD_PARAM_NAME, omnifacesProperties.getFacesViewsDispatchMethod());
         setInitParameter(FacesViews.FACES_VIEWS_ENABLED_PARAM_NAME, omnifacesProperties.getFacesViewsEnabled());
