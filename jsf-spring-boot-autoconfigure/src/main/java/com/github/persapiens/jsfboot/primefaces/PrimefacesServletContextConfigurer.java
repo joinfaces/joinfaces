@@ -27,6 +27,7 @@ public class PrimefacesServletContextConfigurer extends ServletContextConfigurer
         setInitParameter(ContextParams.DIRECTION, primefacesProperties.getDir());
         setInitParameter(ContextParams.EARLY_POST_PARAM_EVALUATION, primefacesProperties.getEarlyPostParamEvaluation());
         setInitParameter(ContextParams.FONT_AWESOME, primefacesProperties.getFontAwesome());
+        setInitParameter(ContextParams.INTERPOLATE_CLIENT_SIDE_VALIDATION_MESSAGES, primefacesProperties.getInterpolateClientSideValidationMessages());
         setInitParameter(ContextParams.LEGACY_WIDGET_NAMESPACE, primefacesProperties.getLegacyWidgetNamespace());
         setInitParameter(ContextParams.MOBILE_THEME, primefacesProperties.getMobile().getTheme());                
         setInitParameter(ContextParams.PFV_KEY, primefacesProperties.getClientSideValidation());

@@ -86,6 +86,10 @@ public class PrimefacesProperties {
      */
     private Boolean fontAwesome;
 
+    /**
+     * A cache store is required to use the cache component, two different
+     * providers are supported as cache implementation; EHCache and Hazelcast.
+     */
     private String cacheProvider;
 
     private String autoUpdate;
@@ -99,7 +103,9 @@ public class PrimefacesProperties {
 
     }
     
-    private String earlyPostParamEvaluation;
+    private Boolean earlyPostParamEvaluation;
     
-    private String beanValidationDisabled;
+    private Boolean beanValidationDisabled;
+    
+    private Boolean interpolateClientSideValidationMessages;
 }
