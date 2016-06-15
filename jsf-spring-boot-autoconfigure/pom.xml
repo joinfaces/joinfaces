@@ -49,5 +49,11 @@
             <artifactId>omnifaces</artifactId>
             <optional>true</optional>
         </dependency>
+        <dependency>
+            <groupId>org.reflections</groupId>
+            <artifactId>reflections</artifactId>
+            <scope>compile</scope>
+            <optional>true</optional>
+        </dependency>
     </dependencies>
 </project>

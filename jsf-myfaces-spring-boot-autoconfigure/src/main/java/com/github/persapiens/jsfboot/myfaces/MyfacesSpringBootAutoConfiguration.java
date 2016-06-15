@@ -1,29 +1,6 @@
 package com.github.persapiens.jsfboot.myfaces;
 
 import com.github.persapiens.jsfboot.javaxfaces.JavaxFacesSpringBootAutoConfiguration;
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.Set;
-import javax.annotation.Resource;
-import javax.faces.application.ResourceDependencies;
-import javax.faces.application.ResourceDependency;
-import javax.faces.bean.ManagedBean;
-import javax.faces.component.FacesComponent;
-import javax.faces.component.UIComponent;
-import javax.faces.component.behavior.FacesBehavior;
-import javax.faces.convert.Converter;
-import javax.faces.convert.FacesConverter;
-import javax.faces.event.ListenerFor;
-import javax.faces.event.ListenersFor;
-import javax.faces.event.NamedEvent;
-import javax.faces.event.PhaseListener;
-import javax.faces.render.FacesBehaviorRenderer;
-import javax.faces.render.Renderer;
-import javax.faces.validator.FacesValidator;
-import javax.faces.validator.Validator;
-import javax.faces.view.facelets.FaceletsResourceResolver;
-import javax.servlet.ServletContext;
-import javax.servlet.ServletException;
 import org.apache.myfaces.ee6.MyFacesContainerInitializer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.AutoConfigureAfter;
@@ -48,39 +25,8 @@ public class MyfacesSpringBootAutoConfiguration {
 	private MyfacesProperties myfacesProperties;
     
     @Bean
-    public ServletContextInitializer mojarraServletContextInitializer()
+    public ServletContextInitializer myfacesServletContextInitializer()
     {
-        return  new ServletContextInitializer() {
-            @Override
-            public void onStartup(ServletContext sc) throws ServletException {                
-                MyfacesServletContextConfigurer.builder()
-                    .myfacesProperties(myfacesProperties)
-                    .servletContext(sc)
-                    .build()
-                    .configure();
-                
-                Set<Class<?>> set = new HashSet<>();
-                Collections.addAll(set 
-                    , UIComponent.class
-                    , Validator.class
-                    , FacesBehaviorRenderer.class
-                    , ResourceDependency.class
-                    , Converter.class
-                    , Renderer.class
-                    , FacesBehavior.class
-                    , PhaseListener.class
-                    , FaceletsResourceResolver.class
-                    , ManagedBean.class
-                    , FacesComponent.class
-                    , FacesValidator.class
-                    , FacesConverter.class
-                    , ResourceDependencies.class
-                    , ListenerFor.class
-                    , ListenersFor.class
-                    , Resource.class
-                    , NamedEvent.class);
-                new MyFacesContainerInitializer().onStartup(set, sc);
-            }            
-        };
+        return new MyfacesServletContextInitializer(myfacesProperties);
     }
 }
