@@ -2,10 +2,10 @@ package com.github.persapiens.jsfboot.omnifaces;
 
 
 import javax.servlet.DispatcherType;
-import javax.servlet.ServletContext;
-import javax.servlet.ServletException;
 import org.omnifaces.filter.CharacterEncodingFilter;
 import com.github.persapiens.jsfboot.javaxfaces.JavaxFacesSpringBootAutoConfiguration;
+import javax.servlet.ServletContainerInitializer;
+import org.omnifaces.facesviews.FacesViewsInitializer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.AutoConfigureBefore;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
@@ -25,20 +25,24 @@ public class OmnifacesSpringBootAutoConfiguration {
 
 	@Autowired
 	private OmnifacesProperties omnifacesProperties;
+
+    public ServletContainerInitializer getServletContainerInitializer()
+    {
+        return new FacesViewsInitializer();
+    }
+    
+    public String getAnotherFacesConfig() {
+        return null;
+    }
+    
+    public boolean isExcludeScopedAnnotations() {
+        return true;
+    }
     
     @Bean
     public ServletContextInitializer omnifacesServletContextInitializer()
     {
-        return new ServletContextInitializer() {
-            @Override
-            public void onStartup(ServletContext sc) throws ServletException {                
-                OmnifacesServletContextConfigurer.builder()
-                    .omnifacesProperties(omnifacesProperties)
-                    .servletContext(sc)
-                    .build()
-                    .configure();
-            }
-        };
+        return new OmnifacesServletContextInitializer(omnifacesProperties);
     }
     
     /**
