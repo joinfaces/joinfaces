@@ -38,7 +38,7 @@ public class OmnifacesPropertiesTest {
 		OmnifacesProperties omnifacesProperties = new OmnifacesProperties();
         omnifacesProperties.setFacesViewsEnabled(true);
 
-		assertThat(omnifacesProperties.getFacesViewsEnabled()).isEqualTo(true);
+		assertThat(omnifacesProperties.getFacesViewsEnabled()).isTrue();
 	}
 
 	public void testFacesViewsExtensionAction() {
@@ -73,7 +73,7 @@ public class OmnifacesPropertiesTest {
 		OmnifacesProperties omnifacesProperties = new OmnifacesProperties();
         omnifacesProperties.setFacesViewsScannedViewsAlwaysExtensionless(true);
 
-		assertThat(omnifacesProperties.getFacesViewsScannedViewsAlwaysExtensionless()).isEqualTo(true);
+		assertThat(omnifacesProperties.getFacesViewsScannedViewsAlwaysExtensionless()).isTrue();
 	}
 
 	public void testFacesViewsViewHandlerMode() {
@@ -94,7 +94,7 @@ public class OmnifacesPropertiesTest {
 		OmnifacesProperties omnifacesProperties = new OmnifacesProperties();
         omnifacesProperties.setCdnResourceHandlerDisabled(true);
 
-		assertThat(omnifacesProperties.getCdnResourceHandlerDisabled()).isEqualTo(true);
+		assertThat(omnifacesProperties.getCdnResourceHandlerDisabled()).isTrue();
 	}
 
 	public void testCdnResourceHandlerUrls() {
@@ -115,7 +115,7 @@ public class OmnifacesPropertiesTest {
 		OmnifacesProperties omnifacesProperties = new OmnifacesProperties();
         omnifacesProperties.setCombinedResourceHandlerDisabled(false);
 
-		assertThat(omnifacesProperties.getCombinedResourceHandlerDisabled()).isEqualTo(false);
+		assertThat(omnifacesProperties.getCombinedResourceHandlerDisabled()).isFalse();
 	}
 
 	public void testCombinedResourceHandlerExcludedResources() {
@@ -129,14 +129,14 @@ public class OmnifacesPropertiesTest {
 		OmnifacesProperties omnifacesProperties = new OmnifacesProperties();
         omnifacesProperties.setCombinedResourceHandlerInlineCss(false);
 
-		assertThat(omnifacesProperties.getCombinedResourceHandlerInlineCss()).isEqualTo(false);
+		assertThat(omnifacesProperties.getCombinedResourceHandlerInlineCss()).isFalse();
 	}
 
 	public void testCombinedResourceHandlerInlineJs() {
 		OmnifacesProperties omnifacesProperties = new OmnifacesProperties();
         omnifacesProperties.setCombinedResourceHandlerInlineJs(true);
 
-		assertThat(omnifacesProperties.getCombinedResourceHandlerInlineJs()).isEqualTo(true);
+		assertThat(omnifacesProperties.getCombinedResourceHandlerInlineJs()).isTrue();
 	}
 
 	public void testCombinedResourceHandlerSuppressedResources() {
