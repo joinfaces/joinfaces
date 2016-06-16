@@ -8,16 +8,16 @@ public class MojarraPropertiesTest {
         
 	public void testClientStateTimeout() {
 		MojarraProperties mojarraProperties = new MojarraProperties();
-        mojarraProperties.setClientStateTimeout(10l);
+        mojarraProperties.setClientStateTimeout(10);
 
-		assertThat(mojarraProperties.getClientStateTimeout()).isEqualTo(10l);
+		assertThat(mojarraProperties.getClientStateTimeout()).isEqualTo(10);
 	}
 
 	public void testClientStateWriteBufferSize() {
 		MojarraProperties mojarraProperties = new MojarraProperties();
-        mojarraProperties.setClientStateWriteBufferSize(11l);
+        mojarraProperties.setClientStateWriteBufferSize(11);
 
-		assertThat(mojarraProperties.getClientStateWriteBufferSize()).isEqualTo(11l);
+		assertThat(mojarraProperties.getClientStateWriteBufferSize()).isEqualTo(11);
 	}
 
 	public void testCompressViewState() {
@@ -29,9 +29,9 @@ public class MojarraPropertiesTest {
 
 	public void testDisableClientStateEncryption() {
 		MojarraProperties mojarraProperties = new MojarraProperties();
-        mojarraProperties.setDisableClientStateEncryption(false);
+        mojarraProperties.setDisableClientStateEncryption(true);
 
-		assertThat(mojarraProperties.getDisableClientStateEncryption()).isFalse();
+		assertThat(mojarraProperties.getDisableClientStateEncryption()).isTrue();
 	}
 
 	public void testEnableClientStateDebugging() {
@@ -50,16 +50,16 @@ public class MojarraPropertiesTest {
 
 	public void testNumberOfLogicalViews() {
 		MojarraProperties mojarraProperties = new MojarraProperties();
-        mojarraProperties.setNumberOfLogicalViews(15l);
+        mojarraProperties.setNumberOfLogicalViews(15);
 
-		assertThat(mojarraProperties.getNumberOfLogicalViews()).isEqualTo(15l);
+		assertThat(mojarraProperties.getNumberOfLogicalViews()).isEqualTo(15);
 	}
 
 	public void testNumberOfViewsInSession() {
 		MojarraProperties mojarraProperties = new MojarraProperties();
-        mojarraProperties.setNumberOfViewsInSession(16l);
+        mojarraProperties.setNumberOfViewsInSession(16);
 
-		assertThat(mojarraProperties.getNumberOfViewsInSession()).isEqualTo(16l);
+		assertThat(mojarraProperties.getNumberOfViewsInSession()).isEqualTo(16);
 	}
 
 	public void testSerializeServerState() {
@@ -71,9 +71,9 @@ public class MojarraPropertiesTest {
 
 	public void testWriteStateAtFormEnd() {
 		MojarraProperties mojarraProperties = new MojarraProperties();
-        mojarraProperties.setWriteStateAtFormEnd(false);
+        mojarraProperties.setWriteStateAtFormEnd(true);
 
-		assertThat(mojarraProperties.getWriteStateAtFormEnd()).isFalse();
+		assertThat(mojarraProperties.getWriteStateAtFormEnd()).isTrue();
 	}
 
 	public void testAllowTextChildren() {
@@ -85,16 +85,16 @@ public class MojarraPropertiesTest {
 
 	public void testAutoCompleteOffOnViewState() {
 		MojarraProperties mojarraProperties = new MojarraProperties();
-        mojarraProperties.setAutoCompleteOffOnViewState(false);
+        mojarraProperties.setAutoCompleteOffOnViewState(true);
 
-		assertThat(mojarraProperties.getAutoCompleteOffOnViewState()).isFalse();
+		assertThat(mojarraProperties.getAutoCompleteOffOnViewState()).isTrue();
 	}
 
 	public void testCompressJavaScript() {
 		MojarraProperties mojarraProperties = new MojarraProperties();
-        mojarraProperties.setCompressJavaScript(false);
+        mojarraProperties.setCompressJavaScript(true);
 
-		assertThat(mojarraProperties.getCompressJavaScript()).isFalse();
+		assertThat(mojarraProperties.getCompressJavaScript()).isTrue();
 	}
 
 	public void testDisableUnicodeEscaping() {
@@ -106,16 +106,16 @@ public class MojarraPropertiesTest {
 
 	public void testDisableIdUniquenessCheck() {
 		MojarraProperties mojarraProperties = new MojarraProperties();
-        mojarraProperties.setDisableIdUniquenessCheck(false);
+        mojarraProperties.setDisableIdUniquenessCheck(true);
 
-		assertThat(mojarraProperties.getDisableIdUniquenessCheck()).isFalse();
+		assertThat(mojarraProperties.getDisableIdUniquenessCheck()).isTrue();
 	}
 
 	public void testEnabledJSStyleHiding() {
 		MojarraProperties mojarraProperties = new MojarraProperties();
-        mojarraProperties.setEnabledJSStyleHiding(false);
+        mojarraProperties.setEnabledJSStyleHiding(true);
 
-		assertThat(mojarraProperties.getEnabledJSStyleHiding()).isFalse();
+		assertThat(mojarraProperties.getEnabledJSStyleHiding()).isTrue();
 	}
 
 	public void testEnableScriptsInAttributeValues() {
@@ -127,9 +127,9 @@ public class MojarraPropertiesTest {
         
 	public void testEnableViewStateIdRendering() {
 		MojarraProperties mojarraProperties = new MojarraProperties();
-        mojarraProperties.setEnableViewStateIdRendering(false);
+        mojarraProperties.setEnableViewStateIdRendering(true);
 
-		assertThat(mojarraProperties.getEnableViewStateIdRendering()).isFalse();
+		assertThat(mojarraProperties.getEnableViewStateIdRendering()).isTrue();
 	}
 
 	public void testPreferXHTML() {
@@ -141,16 +141,16 @@ public class MojarraPropertiesTest {
 
 	public void testResponseBufferSize() {
 		MojarraProperties mojarraProperties = new MojarraProperties();
-        mojarraProperties.setResponseBufferSize(20l);
+        mojarraProperties.setResponseBufferSize(20);
 
-		assertThat(mojarraProperties.getResponseBufferSize()).isEqualTo(20l);
+		assertThat(mojarraProperties.getResponseBufferSize()).isEqualTo(20);
 	}
 
 	public void testCacheResourceModificationTimestamp() {
 		MojarraProperties mojarraProperties = new MojarraProperties();
-        mojarraProperties.setCacheResourceModificationTimestamp(false);
+        mojarraProperties.setCacheResourceModificationTimestamp(true);
 
-		assertThat(mojarraProperties.getCacheResourceModificationTimestamp()).isFalse();
+		assertThat(mojarraProperties.getCacheResourceModificationTimestamp()).isTrue();
 	}
 
 	public void testCompressableMimeTypes() {
@@ -162,9 +162,9 @@ public class MojarraPropertiesTest {
 
 	public void testDefaultResourceMaxAge() {
 		MojarraProperties mojarraProperties = new MojarraProperties();
-        mojarraProperties.setDefaultResourceMaxAge(30l);
+        mojarraProperties.setDefaultResourceMaxAge(30);
 
-		assertThat(mojarraProperties.getDefaultResourceMaxAge()).isEqualTo(30l);
+		assertThat(mojarraProperties.getDefaultResourceMaxAge()).isEqualTo(30);
 	}
 
 	public void testEnableFaceletsResourceResolverCompositeComponents() {
@@ -183,9 +183,9 @@ public class MojarraPropertiesTest {
 
 	public void testResourceUpdateCheckPeriod() {
 		MojarraProperties mojarraProperties = new MojarraProperties();
-        mojarraProperties.setResourceUpdateCheckPeriod(50l);
+        mojarraProperties.setResourceUpdateCheckPeriod(50);
 
-		assertThat(mojarraProperties.getResourceUpdateCheckPeriod()).isEqualTo(50l);
+		assertThat(mojarraProperties.getResourceUpdateCheckPeriod()).isEqualTo(50);
 	}
 
 	public void testEnableAgressiveSessionDirtying() {
@@ -246,9 +246,9 @@ public class MojarraPropertiesTest {
 
 	public void testForceLoadConfiguration() {
 		MojarraProperties mojarraProperties = new MojarraProperties();
-        mojarraProperties.setForceLoadConfiguration(false);
+        mojarraProperties.setForceLoadConfiguration(true);
 
-		assertThat(mojarraProperties.getForceLoadConfiguration()).isFalse();
+		assertThat(mojarraProperties.getForceLoadConfiguration()).isTrue();
 	}
         
 	public void testValidateXml() {

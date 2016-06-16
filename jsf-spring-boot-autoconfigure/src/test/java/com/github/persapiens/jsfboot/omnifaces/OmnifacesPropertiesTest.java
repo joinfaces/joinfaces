@@ -113,9 +113,9 @@ public class OmnifacesPropertiesTest {
 
 	public void testCombinedResourceHandlerDisabled() {
 		OmnifacesProperties omnifacesProperties = new OmnifacesProperties();
-        omnifacesProperties.setCombinedResourceHandlerDisabled(false);
+        omnifacesProperties.setCombinedResourceHandlerDisabled(true);
 
-		assertThat(omnifacesProperties.getCombinedResourceHandlerDisabled()).isFalse();
+		assertThat(omnifacesProperties.getCombinedResourceHandlerDisabled()).isTrue();
 	}
 
 	public void testCombinedResourceHandlerExcludedResources() {
@@ -127,9 +127,9 @@ public class OmnifacesPropertiesTest {
 
 	public void testCombinedResourceHandlerInlineCss() {
 		OmnifacesProperties omnifacesProperties = new OmnifacesProperties();
-        omnifacesProperties.setCombinedResourceHandlerInlineCss(false);
+        omnifacesProperties.setCombinedResourceHandlerInlineCss(true);
 
-		assertThat(omnifacesProperties.getCombinedResourceHandlerInlineCss()).isFalse();
+		assertThat(omnifacesProperties.getCombinedResourceHandlerInlineCss()).isTrue();
 	}
 
 	public void testCombinedResourceHandlerInlineJs() {

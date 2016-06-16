@@ -40,6 +40,7 @@ public class MyfacesServletContextConfigurer extends ServletContextConfigurer {
         setInitParameter(ResolverBuilderBase.EL_RESOLVER_COMPARATOR, myfacesProperties.getElResolverComparator());
         setInitParameter(ResolverBuilderBase.EL_RESOLVER_PREDICATE, myfacesProperties.getElResolverPredicate());        
         setInitParameter(FaceletCompositionContextImpl.INIT_PARAM_CACHE_EL_EXPRESSIONS, myfacesProperties.getCacheElExpressions());        
+        setInitParameter(PREFFIX + "EXPRESSION_FACTORY", myfacesProperties.getExpressionFactory());
     }
 
     private void configureCDI() {
@@ -98,9 +99,9 @@ public class MyfacesServletContextConfigurer extends ServletContextConfigurer {
         setInitParameter(PREFFIX + "CLIENT_VIEW_STATE_TIMEOUT", myfacesProperties.getClientViewStateTimeout());
         setInitParameter(PREFFIX + "COMPRESS_STATE_IN_SESSION", myfacesProperties.getCompressStateInSession());
         setInitParameter(PREFFIX + "USE_FLASH_SCOPE_PURGE_VIEWS_IN_SESSION", myfacesProperties.getUseFlashScopePurgeViewsInSession());
-        setInitParameter(PREFFIX + "RANDOM_KEY_IN_VIEW_STATE_SESSION_TOKEN", myfacesProperties.getRandomKeyInCsrfSessionToken());
-        setInitParameter(PREFFIX + "RANDOM_KEY_IN_VIEW_STATE_SESSION_TOKEN_LENGTH", myfacesProperties.getRandomKeyInCsrfSessionTokenLength());
-        setInitParameter(PREFFIX + "RANDOM_KEY_IN_VIEW_STATE_SESSION_TOKEN_SECURE_RANDOM_CLASS", myfacesProperties.getRandomKeyInCsrfSessionTokenSecureRandomClass());
+        setInitParameter(PREFFIX + "RANDOM_KEY_IN_VIEW_STATE_SESSION_TOKEN", myfacesProperties.getRandomKeyInViewStateSessionToken());
+        setInitParameter(PREFFIX + "RANDOM_KEY_IN_VIEW_STATE_SESSION_TOKEN_LENGTH", myfacesProperties.getRandomKeyInViewStateSessionTokenLength());
+        setInitParameter(PREFFIX + "RANDOM_KEY_IN_VIEW_STATE_SESSION_TOKEN_SECURE_RANDOM_CLASS", myfacesProperties.getRandomKeyInViewStateSessionTokenSecureRandomClass());
         setInitParameter(PREFFIX + "RANDOM_KEY_IN_VIEW_STATE_SESSION_TOKEN_SECURE_RANDOM_PROVIDER", myfacesProperties.getRandomKeyInViewStateSessionTokenSecureRandomProvider());
         setInitParameter(PREFFIX + "RANDOM_KEY_IN_VIEW_STATE_SESSION_TOKEN_SECURE_RANDOM_ALGORITM", myfacesProperties.getRandomKeyInViewStateSessionTokenSecureRandomAlgorithm());
         setInitParameter(HtmlResponseStateManager.INIT_PARAM_AUTOCOMPLETE_OFF_VIEW_STATE, myfacesProperties.getAutocompleteOffViewState());
@@ -149,6 +150,9 @@ public class MyfacesServletContextConfigurer extends ServletContextConfigurer {
         setInitParameter(AbstractFacesInitializer.INIT_PARAM_LOG_WEB_CONTEXT_PARAMS, myfacesProperties.getLogWebContextParams());
         setInitParameter(PREFFIX + "FACES_INITIALIZER", myfacesProperties.getFacesInitializer());
         setInitParameter(PREFFIX + "FACES_INIT_PLUGINS", myfacesProperties.getFacesInitPlugins());
+        setInitParameter(CdiAnnotationProviderExtension.USE_CDI_FOR_ANNOTATION_SCANNING, myfacesProperties.getAnnotation().getUseCdiForAnnotationScanning());
+        setInitParameter(DefaultAnnotationProvider.SCAN_PACKAGES, myfacesProperties.getAnnotation().getScanPackages());
+        setInitParameter(PREFFIX + "INITIALIZE_ALWAYS_STANDALONE", myfacesProperties.getInitializeAlwaysStandalone());
     }
 
     private void configureDeprecated() {
@@ -158,8 +162,6 @@ public class MyfacesServletContextConfigurer extends ServletContextConfigurer {
         setInitParameter(PREFFIX + "CACHE_OLD_VIEWS_IN_SESSION_MODE", myfacesProperties.getCacheOldViewsInSessionMode());
         setInitParameter(HtmlResponseStateManager.INIT_PARAM_HANDLE_STATE_CACHING_MECHANICS, myfacesProperties.getHandleStateCachingMechanics());
         setInitParameter(DefaultFaceletsStateManagementStrategy.SAVE_STATE_WITH_VISIT_TREE_ON_PSS, myfacesProperties.getSaveStateWithVisitTreeOnPass());
-        setInitParameter(CdiAnnotationProviderExtension.USE_CDI_FOR_ANNOTATION_SCANNING, myfacesProperties.getAnnotation().getUseCdiForAnnotationScanning());
-        setInitParameter(DefaultAnnotationProvider.SCAN_PACKAGES, myfacesProperties.getAnnotation().getScanPackages());
     }
     
     @Override

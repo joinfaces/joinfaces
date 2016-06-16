@@ -87,7 +87,7 @@ public class JavaxFacesProperties {
 	/**
 	 * The buffer size set on the response.
 	 */
-	private Long faceletsBufferSize; 
+	private Integer faceletsBufferSize; 
 
 	/**
 	 * TagDecorator implementations. See javadoc for javax.faces.view .facelets.TagDecorator.
@@ -102,7 +102,7 @@ public class JavaxFacesProperties {
 	/**
 	 * Time in seconds that facelets should be checked for changes since last request. A value of -1 disables refresh checking.
 	 */
-	private Long faceletsRefreshPeriod; 
+	private Integer faceletsRefreshPeriod; 
 
 	/**
 	 * If true, strip XML comments out of Facelets before delivering to the client.

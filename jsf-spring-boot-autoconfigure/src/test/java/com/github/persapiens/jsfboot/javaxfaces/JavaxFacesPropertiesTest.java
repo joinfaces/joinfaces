@@ -43,9 +43,9 @@ public class JavaxFacesPropertiesTest {
 
 	public void testPartialStateSaving() {
 		JavaxFacesProperties javaxFacesProperties = new JavaxFacesProperties();
-        javaxFacesProperties.setPartialStateSaving(false);
+        javaxFacesProperties.setPartialStateSaving(true);
 
-		assertThat(javaxFacesProperties.getPartialStateSaving()).isFalse();
+		assertThat(javaxFacesProperties.getPartialStateSaving()).isTrue();
 	}
 
 	public void testSerializeServerState() {
@@ -71,16 +71,16 @@ public class JavaxFacesPropertiesTest {
 
 	public void testDisableFaceletJsfViewhandler() {
 		JavaxFacesProperties javaxFacesProperties = new JavaxFacesProperties();
-        javaxFacesProperties.setDisableFaceletJsfViewhandler(false);
+        javaxFacesProperties.setDisableFaceletJsfViewhandler(true);
 
-		assertThat(javaxFacesProperties.getDisableFaceletJsfViewhandler()).isFalse();
+		assertThat(javaxFacesProperties.getDisableFaceletJsfViewhandler()).isTrue();
 	}
 
 	public void testFaceletsBufferSize() {
 		JavaxFacesProperties javaxFacesProperties = new JavaxFacesProperties();
-        javaxFacesProperties.setFaceletsBufferSize(33l);
+        javaxFacesProperties.setFaceletsBufferSize(33);
 
-		assertThat(javaxFacesProperties.getFaceletsBufferSize()).isEqualTo(33l);
+		assertThat(javaxFacesProperties.getFaceletsBufferSize()).isEqualTo(33);
 	}
 
 	public void testFaceletsDecorators() {
@@ -99,9 +99,9 @@ public class JavaxFacesPropertiesTest {
 
 	public void testFaceletsRefreshPeriod() {
 		JavaxFacesProperties javaxFacesProperties = new JavaxFacesProperties();
-        javaxFacesProperties.setFaceletsRefreshPeriod(35l);
+        javaxFacesProperties.setFaceletsRefreshPeriod(35);
 
-		assertThat(javaxFacesProperties.getFaceletsRefreshPeriod()).isEqualTo(35l);
+		assertThat(javaxFacesProperties.getFaceletsRefreshPeriod()).isEqualTo(35);
 	}
 
 	public void testFaceletsSkipComments() {
@@ -155,9 +155,9 @@ public class JavaxFacesPropertiesTest {
 
 	public void testPartialRender() {
 		JavaxFacesProperties javaxFacesProperties = new JavaxFacesProperties();
-        javaxFacesProperties.getPartial().setRender(false);
+        javaxFacesProperties.getPartial().setRender(true);
 
-		assertThat(javaxFacesProperties.getPartial().getRender()).isFalse();
+		assertThat(javaxFacesProperties.getPartial().getRender()).isTrue();
 	}
 
 	public void testPartialResetValues() {
@@ -183,9 +183,9 @@ public class JavaxFacesPropertiesTest {
 
 	public void testValidatorDisableDefaultBeanValidator() {
 		JavaxFacesProperties javaxFacesProperties = new JavaxFacesProperties();
-        javaxFacesProperties.getValidator().setDisableDefaultBeanValidator(false);
+        javaxFacesProperties.getValidator().setDisableDefaultBeanValidator(true);
 
-		assertThat(javaxFacesProperties.getValidator().getDisableDefaultBeanValidator()).isFalse();
+		assertThat(javaxFacesProperties.getValidator().getDisableDefaultBeanValidator()).isTrue();
 	}
 
 	public void testFaceletsResourceResolver() {

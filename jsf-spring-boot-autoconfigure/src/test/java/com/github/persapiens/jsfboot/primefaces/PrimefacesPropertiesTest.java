@@ -29,9 +29,9 @@ public class PrimefacesPropertiesTest {
 
 	public void testBeanValidationDisabled() {
 		PrimefacesProperties primefacesProperties = new PrimefacesProperties();
-        primefacesProperties.setBeanValidationDisabled(false);
+        primefacesProperties.setBeanValidationDisabled(true);
 
-		assertThat(primefacesProperties.getBeanValidationDisabled()).isFalse();
+		assertThat(primefacesProperties.getBeanValidationDisabled()).isTrue();
 	}
 
 	public void testCacheProvider() {
@@ -57,9 +57,9 @@ public class PrimefacesPropertiesTest {
 
 	public void testFontAwesome() {
 		PrimefacesProperties primefacesProperties = new PrimefacesProperties();
-        primefacesProperties.setFontAwesome(false);
+        primefacesProperties.setFontAwesome(true);
 
-		assertThat(primefacesProperties.getFontAwesome()).isFalse();
+		assertThat(primefacesProperties.getFontAwesome()).isTrue();
 	}
 
 	public void testInterpolateClientSideValidationMessages() {
@@ -71,9 +71,9 @@ public class PrimefacesPropertiesTest {
     
 	public void testLegacyWidgetNamespace() {
 		PrimefacesProperties primefacesProperties = new PrimefacesProperties();
-        primefacesProperties.setLegacyWidgetNamespace(false);
+        primefacesProperties.setLegacyWidgetNamespace(true);
 
-		assertThat(primefacesProperties.getLegacyWidgetNamespace()).isFalse();
+		assertThat(primefacesProperties.getLegacyWidgetNamespace()).isTrue();
 	}
 
 	public void testMobileTheme() {
@@ -85,9 +85,9 @@ public class PrimefacesPropertiesTest {
 
 	public void testClientSideValidation() {
 		PrimefacesProperties primefacesProperties = new PrimefacesProperties();
-        primefacesProperties.setClientSideValidation(false);
+        primefacesProperties.setClientSideValidation(true);
 
-		assertThat(primefacesProperties.getClientSideValidation()).isFalse();
+		assertThat(primefacesProperties.getClientSideValidation()).isTrue();
 	}
 
 	public void testPushServerUrl() {
@@ -127,9 +127,9 @@ public class PrimefacesPropertiesTest {
         
 	public void testTransformMetadata() {
 		PrimefacesProperties primefacesProperties = new PrimefacesProperties();
-        primefacesProperties.setTransformMetadata(false);
+        primefacesProperties.setTransformMetadata(true);
 
-		assertThat(primefacesProperties.getTransformMetadata()).isFalse();
+		assertThat(primefacesProperties.getTransformMetadata()).isTrue();
 	}
 
 	public void testUploader() {

@@ -15,12 +15,12 @@ public class MojarraProperties {
 	/**
 	 * Maximum time, in seconds, that client state will be considered valid by the default StateManager/ResponseStateManager implementations. If the time between requests exceeds the configured time, a javax.faces.application.ViewExpiredException. will be thrown. It is important to note that if this feature is enabled, and client requests are recieved with view state produced from a previous version, the ViewExpiredException will be thrown immediately.
 	 */
-	private Long clientStateTimeout;
+	private Integer clientStateTimeout;
 
 	/**
 	 * The size, in bytes, of the buffer that is used to write client state. It should be noted, that the buffer used is split - half is for raw bytes, the other half is for the Base64 encoded characters of said bytes. So, for example, if the default, 8192, is used, then 4096 of that is used for the bytes, and the other 4096 is used for the Base64 encoded characters.
 	 */
-	private Long clientStateWriteBufferSize;
+	private Integer clientStateWriteBufferSize;
 
 	/**
 	 * When true, the view is compressed after it is serialized and before base64 encoded. Works with client state saving only. As of 1.2_09, this option also impacts server side state saving when com.sun.faces.serializeServerState is set to true (this has a large impact of the size of the state in the session when using this option, at the expense of more CPU of course)
@@ -33,7 +33,7 @@ public class MojarraProperties {
 	private Boolean disableClientStateEncryption;
 
 	/**
-	 * When true, the client state will as test be unserialized before writing and any serialization exceptions will be logged aLong with a debug path to the cause of the serialization error
+	 * When true, the client state will as test be unserialized before writing and any serialization exceptions will be logged aInteger with a debug path to the cause of the serialization error
 	 */
 	private Boolean enableClientStateDebugging;
 
@@ -45,12 +45,12 @@ public class MojarraProperties {
 	/**
 	 * Defines the maximum number of serialized views stored in the session. Works with server state saving only (note the implementation unintentionally has swapped the meaning, as we cannot change this without breaking what people have become used to we have updated this here). See com.sun.faces.numberOfViewsInSession vs com.sun.faces.numberOfLogicalViews for detail.
 	 */
-	private Long numberOfLogicalViews;
+	private Integer numberOfLogicalViews;
 
 	/**
 	 * Definies the maximum number of serialized logical views per view. Works with server state saving only (note the implementation unintentionally has swapped the meaning, as we cannot change this without breaking what people have become used to we have updated this here) See com.sun.faces.numberOfViewsInSession vs com.sun.faces.numberOfLogicalViews for detail.
 	 */
-	private Long numberOfViewsInSession;
+	private Integer numberOfViewsInSession;
 
 	/**
 	 * If enabled the component state (not the tree) will be serialized before being stored in the session. This may be desirable for applications that may have issues with view state being sensitive to model changes after state saving which are reflected back in view state. This has since JSF 2.2 been replaced by javax.faces.SERIALIZE_SERVER_STATE.
@@ -110,7 +110,7 @@ public class MojarraProperties {
 	/**
 	 * This parameter specifies the size, in bytes, of the buffer that is used to write all generated JSP content excluding state. Note that this is ignored when Facelets is used. For Facelets, use javax.faces.FACELETS_BUFFER_SIZE instead.
 	 */
-	private Long responseBufferSize;
+	private Integer responseBufferSize;
 
 	/**
 	 * If true, cache the modification time of the resource and use the cached time to tell if the resource needs to be refreshed
@@ -125,7 +125,7 @@ public class MojarraProperties {
 	/**
 	 * This affects the value of the Expires response header that will be sent for a resource. The logic is basically Date.getTime() + valueOf(defaultResourceManxAge). Increase this value to increase the amount of time that a Resource is valid. The value is in milliseconds (so the default value of 604800000 is 7 days).
 	 */
-	private Long defaultResourceMaxAge;
+	private Integer defaultResourceMaxAge;
 
 	/**
 	 * See issue 3684 for details.
@@ -140,7 +140,7 @@ public class MojarraProperties {
 	/**
 	 * When javax.faces.PROJECT_STATE is Production, UnitTest, or SystemTest resource paths will be cached to reduce the overhead of resource path compuation. By default, updates (i.e. new files, new directories, new versions, etc.) will be checked for every 5 minutes. If a change is detected, the cache will be cleared and rebuilt. If the value of this option is -1, the cache will never be cleared and new resources will not be picked up. The value is in minutes.
 	 */
-	private Long resourceUpdateCheckPeriod;
+	private Integer resourceUpdateCheckPeriod;
 
 	/**
 	 * If true, makes it so every session attribute is touched in for every request through the lifecycle. This makes it much harder to make mistakes that cause session replication to fail.
