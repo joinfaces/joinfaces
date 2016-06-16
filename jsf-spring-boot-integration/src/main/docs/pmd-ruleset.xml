@@ -54,11 +54,17 @@ under the License.
   <rule ref="rulesets/java/braces.xml"/>
   <rule ref="rulesets/java/codesize.xml">
     <exclude name="TooManyFields"/>
+    <exclude name="ExcessivePublicCount"/>
     <exclude name="CyclomaticComplexity"/>
   </rule>
   <rule ref="rulesets/java/codesize.xml/TooManyMethods">
     <properties>
-      <property name="maxmethods" value="31"/>
+      <property name="maxmethods" value="46"/>
+    </properties>
+  </rule>
+  <rule ref="rulesets/java/codesize.xml/ExcessivePublicCount">
+    <properties>
+      <property name="minimum" value="50"/>
     </properties>
   </rule>
   <rule ref="rulesets/java/clone.xml"/>

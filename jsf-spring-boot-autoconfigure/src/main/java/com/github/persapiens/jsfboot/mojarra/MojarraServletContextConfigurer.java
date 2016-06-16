@@ -18,8 +18,8 @@ public class MojarraServletContextConfigurer extends ServletContextConfigurer {
     public void configure()
     {
         setInitParameter("clientStateTimeout", mojarraProperties.getClientStateTimeout());
-        setInitParameter("clientStateWriteBufferSize", mojarraProperties.getDisableClientStateEncryption());
-        setInitParameter("compressViewState", mojarraProperties.getEnableAgressiveSessionDirtying());
+        setInitParameter("clientStateWriteBufferSize", mojarraProperties.getClientStateWriteBufferSize());
+        setInitParameter("compressViewState", mojarraProperties.getCompressViewState());
         setInitParameter("disableClientStateEncryption", mojarraProperties.getDisableClientStateEncryption());
         setInitParameter("enableClientStateDebugging", mojarraProperties.getEnableClientStateDebugging());
         setInitParameter("generateUniqueServerStateIds", mojarraProperties.getGenerateUniqueServerStateIds());
@@ -32,7 +32,7 @@ public class MojarraServletContextConfigurer extends ServletContextConfigurer {
         setInitParameter("compressJavaScript", mojarraProperties.getCompressJavaScript());
         setInitParameter("disableUnicodeEscaping", mojarraProperties.getDisableUnicodeEscaping());
         setInitParameter("disableIdUniquenessCheck", mojarraProperties.getDisableIdUniquenessCheck());
-        setInitParameter("enabledJSStyleHiding", mojarraProperties.getEnableScriptsInAttributeValues());
+        setInitParameter("enabledJSStyleHiding", mojarraProperties.getEnabledJSStyleHiding());
         setInitParameter("enableScriptsInAttributeValues", mojarraProperties.getEnableScriptsInAttributeValues());
         setInitParameter("enableViewStateIdRendering", mojarraProperties.getEnableViewStateIdRendering());
         setInitParameter("preferXHTML", mojarraProperties.getPreferXHTML());
