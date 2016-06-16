@@ -2,7 +2,6 @@ package com.github.persapiens.jsfboot;
 
 import java.lang.annotation.Annotation;
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
@@ -93,7 +92,7 @@ public class JsfAnnotatedClassFactory {
         if (handlesTypes != null && !handlesTypes.isEmpty())
         {
             // get only urls of libraries that contains jsf types
-            Collection<URL> urls = new ArrayList<>(ClasspathHelper.forResource("META-INF/faces-config.xml", this.getClass().getClassLoader()));
+            Collection<URL> urls = new HashSet<>(ClasspathHelper.forResource("META-INF/faces-config.xml", this.getClass().getClassLoader()));
             // add jsf library with anotherFacesConfig
             String anotherFacesConfig = jsfAnnotatedClassFactoryConfiguration.getAnotherFacesConfig();
             if (anotherFacesConfig != null)
