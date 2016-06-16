@@ -24,7 +24,7 @@ public class MyfacesServletContextConfigurer extends ServletContextConfigurer {
 
     private MyfacesProperties myfacesProperties;
 
-    private static final String PREFFIX = "org.apache.myfaces.";
+    public static final String PREFFIX = "org.apache.myfaces.";
     
     @Builder
     public MyfacesServletContextConfigurer(MyfacesProperties myfacesProperties, ServletContext servletContext) {

@@ -8,9 +8,11 @@ public class MojarraServletContextConfigurer extends ServletContextConfigurer {
 
     private MojarraProperties mojarraProperties;
 
+    public static final String PREFFIX = "com.sun.faces";
+    
     @Builder
     public MojarraServletContextConfigurer(MojarraProperties mojarraProperties, ServletContext servletContext) {
-        super(servletContext, "com.sun.faces");
+        super(servletContext, PREFFIX);
         this.mojarraProperties = mojarraProperties;
     }
     
