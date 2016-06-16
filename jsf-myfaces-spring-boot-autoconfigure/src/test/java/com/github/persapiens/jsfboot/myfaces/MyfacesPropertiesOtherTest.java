@@ -213,7 +213,7 @@ public class MyfacesPropertiesOtherTest {
 		MyfacesProperties myfacesProperties = new MyfacesProperties();
         myfacesProperties.setInitializeAlwaysStandalone(false);
 
-		assertThat(myfacesProperties.getInitializeAlwaysStandalone()).isEqualTo("myExpressionFactory");
+		assertThat(myfacesProperties.getInitializeAlwaysStandalone()).isFalse();
 	}
 
 }
