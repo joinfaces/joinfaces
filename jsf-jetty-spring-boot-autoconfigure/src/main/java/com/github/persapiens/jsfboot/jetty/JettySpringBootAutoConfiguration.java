@@ -51,25 +51,28 @@ public class JettySpringBootAutoConfiguration extends SpringBootServletInitializ
     private class JettyServerCustomizerImpl implements JettyServerCustomizer {
         @Override
         public void customize(Server server) {
-            Handler[] childHandlersByClass = server.getChildHandlersByClass(WebAppContext.class);
-            final WebAppContext webAppContext = (WebAppContext) childHandlersByClass[0];
-            
-            try {
-                ClassPathResource classPathResource = new ClassPathResource(jettyProperties.getClassPathResource());
-                webAppContext.setBaseResource(new ResourceCollection(classPathResource.getURI().toString()));
-                
-                AccessController.doPrivileged(new PrivilegedAction<Void>() {
-                    @Override
-                    public Void run() {
-                        webAppContext.setClassLoader(new URLClassLoader(new URL[0], this.getClass().getClassLoader()));
-                        return null;
-                    }
-                });
-                
-                LOGGER.info("Setting Jetty classLoader to META-INF/resources directory");
-            }
-            catch (IOException exception) {
-                LOGGER.error("Unable to configure Jetty classLoader to META-INF/resources directory " + exception.getMessage());
+            String classPathRessource = jettyProperties.getClassPathResource();
+            if ( classPathRessource != null && !classPathRessource.isEmpty() ){
+
+                Handler[] childHandlersByClass = server.getChildHandlersByClass(WebAppContext.class);
+                final WebAppContext webAppContext = (WebAppContext) childHandlersByClass[0];
+
+                try {
+                    ClassPathResource classPathResource = new ClassPathResource(classPathRessource);
+                    webAppContext.setBaseResource(new ResourceCollection(classPathResource.getURI().toString()));
+
+                    AccessController.doPrivileged(new PrivilegedAction<Void>() {
+                        @Override
+                        public Void run() {
+                            webAppContext.setClassLoader(new URLClassLoader(new URL[0], this.getClass().getClassLoader()));
+                            return null;
+                        }
+                    });
+
+                    LOGGER.info("Setting Jetty classLoader to " + classPathRessource + " directory");
+                } catch (IOException exception) {
+                    LOGGER.error("Unable to configure Jetty classLoader to " + classPathRessource + " directory " + exception.getMessage());
+                }
             }
         }
     }
