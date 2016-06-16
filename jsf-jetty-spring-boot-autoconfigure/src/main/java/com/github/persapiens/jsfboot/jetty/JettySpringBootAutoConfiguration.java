@@ -66,10 +66,10 @@ public class JettySpringBootAutoConfiguration extends SpringBootServletInitializ
                     }
                 });
                 
-                LOGGER.info("Setting Jetty classLoader to META-INF/resources directory");
+                LOGGER.info("Setting Jetty classLoader to " + jettyProperties.getClassPathResource() + " directory");
             }
             catch (IOException exception) {
-                LOGGER.error("Unable to configure Jetty classLoader to META-INF/resources directory " + exception.getMessage());
+                LOGGER.error("Unable to configure Jetty classLoader to " + jettyProperties.getClassPathResource() + " directory " + exception.getMessage());
             }
         }
     }

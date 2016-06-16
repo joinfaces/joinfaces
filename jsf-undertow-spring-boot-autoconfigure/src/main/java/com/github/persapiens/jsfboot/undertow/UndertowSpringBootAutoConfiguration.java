@@ -58,7 +58,7 @@ public class UndertowSpringBootAutoConfiguration extends SpringBootServletInitia
                 }
             });
 
-            LOGGER.info("Setting Undertow classLoader to META-INF/resources directory");
+            LOGGER.info("Setting Undertow classLoader to " + undertowProperties.getClassPathResource() + " directory");
         }
     }
 }
