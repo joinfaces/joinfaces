@@ -5,13 +5,13 @@
     <parent>
         <groupId>com.github.persapiens</groupId>
         <artifactId>jsf-spring-boot-parent</artifactId>
-        <version>1.5.1-SNAPSHOT</version>
+        <version>1.5.1</version>
     </parent>
     
     <groupId>com.github.persapiens</groupId>
     <artifactId>jsf-spring-boot-starter</artifactId>
     <name>JSF Spring Boot Starter</name>
-    <version>1.5.1-SNAPSHOT</version>
+    <version>1.5.1</version>
 
     <dependencies>
         <dependency>
