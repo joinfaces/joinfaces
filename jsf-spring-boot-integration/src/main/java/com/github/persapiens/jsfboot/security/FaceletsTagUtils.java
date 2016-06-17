@@ -6,7 +6,7 @@ import java.io.IOException;
  * This class provides static methods that are registered as EL functions and available for use in Unified EL
  * expressions in standard Facelets views.
  */
-public abstract class FaceletsTagUtils {
+public class FaceletsTagUtils {
 
 	/**
 	 * Returns true if the user has all of of the given authorities.

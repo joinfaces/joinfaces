@@ -9,7 +9,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 @Test
 public class FullyAuthenticatedFaceletsTagTest {
 
-	public void testAnonymous() {
+	public void testFullyAuthenticated() {
 		FullyAuthenticatedFaceletsTag tag = new FullyAuthenticatedFaceletsTag();
 		assertThat("isFullyAuthenticated()")
             .isEqualTo(tag.getAccess());
