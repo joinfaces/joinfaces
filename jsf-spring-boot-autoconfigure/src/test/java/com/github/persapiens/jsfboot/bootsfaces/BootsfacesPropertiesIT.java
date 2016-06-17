@@ -20,11 +20,11 @@ public class BootsfacesPropertiesIT extends AbstractTestNGSpringContextTests {
 	}
 
 	public void testUsetheme() {
-		assertThat(bootsfacesProperties.getUsetheme()).isEqualTo(Boolean.TRUE.toString());
+		assertThat(bootsfacesProperties.getUsetheme()).isTrue();
 	}
 
 	public void testUseViewport() {
-		assertThat(bootsfacesProperties.getUseViewport()).isEqualTo(Boolean.TRUE.toString());
+		assertThat(bootsfacesProperties.getUseViewport()).isTrue();
 	}
 
 	public void testDefaultsRenderLabel() {
@@ -32,23 +32,23 @@ public class BootsfacesPropertiesIT extends AbstractTestNGSpringContextTests {
 	}
 
 	public void testGetFontawesomeFromCdn() {
-		assertThat(bootsfacesProperties.getGetFontawesomeFromCdn()).isEqualTo(Boolean.TRUE.toString());
+		assertThat(bootsfacesProperties.getGetFontawesomeFromCdn()).isTrue();
 	}
 
 	public void testGetJqueryFromCdn() {
-		assertThat(bootsfacesProperties.getGetJqueryFromCdn()).isEqualTo(Boolean.TRUE.toString());
+		assertThat(bootsfacesProperties.getGetJqueryFromCdn()).isTrue();
 	}
 
 	public void testGetJqueryuiFromCdn() {
-		assertThat(bootsfacesProperties.getGetJqueryuiFromCdn()).isEqualTo(Boolean.TRUE.toString());
+		assertThat(bootsfacesProperties.getGetJqueryuiFromCdn()).isTrue();
 	}
 
 	public void testGetBootstrapFromCdn() {
-		assertThat(bootsfacesProperties.getGetBootstrapFromCdn()).isEqualTo(Boolean.TRUE.toString());
+		assertThat(bootsfacesProperties.getGetBootstrapFromCdn()).isTrue();
 	}
 
 	public void testBlockUI() {
-		assertThat(bootsfacesProperties.getBlockUI()).isEqualTo("false");
+		assertThat(bootsfacesProperties.getBlockUI()).isFalse();
 	}
 
 }

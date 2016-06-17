@@ -23,9 +23,9 @@ public class BootsfacesProperties {
     /**
      * deactivate FontAwesome support if the no-fa facet is found in the h:head tag
      */
-    private String getFontawesomeFromCdn;
+    private Boolean getFontawesomeFromCdn;
     
-    private String blockUI;
+    private Boolean blockUI;
     
     /**
      * BootsFaces_THEME - controls the Theme to use: the value "default" is plain 
@@ -40,13 +40,13 @@ public class BootsfacesProperties {
      * is to be rendered in the Flat variant (default) or in its Enhanced variant,
      * with shadows and decorations turned on.
      */
-    private String usetheme;
+    private Boolean usetheme;
     
-    private String useViewport;
+    private Boolean useViewport;
     
-    private String getJqueryFromCdn;
+    private Boolean getJqueryFromCdn;
     
-    private String getJqueryuiFromCdn;
+    private Boolean getJqueryuiFromCdn;
     
-    private String getBootstrapFromCdn;
+    private Boolean getBootstrapFromCdn;
 }
