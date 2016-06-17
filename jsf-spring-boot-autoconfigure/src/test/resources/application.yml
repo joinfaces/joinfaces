@@ -1,4 +1,27 @@
 jsf:
+  primefaces:
+    privateCaptchaKey: myPrivateCaptchaKey
+    publicCaptchaKey: myKey
+    autoUpdate: auto
+    beanValidationDisabled: true
+    cacheProvider: myCacheProvider
+    dir: left
+    earlyPostParamEvaluation: true
+    fontAwesome: true
+    interpolateClientSideValidationMessages: true
+    legacyWidgetNamespace: true
+    clientSideValidation: true
+    pushServerUrl: http://myhost.org
+    resetValues: true
+    secret: mySecret
+    submit: partial
+    theme: omega
+    transformMetadata: true
+    uploader: myUploader
+    captcha:
+      privateKey: myPrivateKey
+    mobile:
+      theme: cupertino
   bootsfaces:
     theme: bootstrap
     usetheme: yes
