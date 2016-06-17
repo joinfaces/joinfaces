@@ -10,11 +10,10 @@ import static org.assertj.core.api.Assertions.assertThat;
 @SpringApplicationConfiguration(classes = PrimefacesSpringBootAutoConfiguration.class)
 @WebAppConfiguration
 @Test
-public class PrimefacesPropertiesIT  extends AbstractTestNGSpringContextTests {
+public class PrimefacesPropertiesIT extends AbstractTestNGSpringContextTests {
 
     @Autowired
     private PrimefacesProperties primefacesProperties;
-
 
 	public void testPrivateCaptchaKey() {
 		assertThat(primefacesProperties.getPrivateCaptchaKey()).isEqualTo("myPrivateCaptchaKey");

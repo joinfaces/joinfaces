@@ -22,6 +22,32 @@ jsf:
       privateKey: myPrivateKey
     mobile:
       theme: cupertino
+  omnifaces:
+    cacheProvider: myCacheProvider
+    defaultcache: myCache
+    exceptionTypesToUnwrap: myException
+    facesViewsDispatchMethod: myFacesMethod
+    facesViewsEnabled: true
+    facesViewsExtensionAction: extensionAction
+    facesViewsFilterAfterDeclaredFilters: myView
+    facesViewsPathAction: pathAction
+    facesViewsScanPaths: scanPath
+    facesViewsScannedViewsAlwaysExtensionless: true
+    facesViewsViewHandlerMode: myMode
+    html5RenderKitPassthroughAttributes: myAttribute
+    cdnResourceHandlerDisabled: true
+    cdnResourceHandlerUrls: myurl
+    combinedResourceHandlerCacheTtl: 15
+    combinedResourceHandlerDisabled: true
+    combinedResourceHandlerExcludedResources: excludedResource
+    combinedResourceHandlerInlineCss: true
+    combinedResourceHandlerInlineJs: true
+    combinedResourceHandlerSuppressedResources: suppressedResource
+    cache:
+      applicationMaxCapacity: 10
+      applicationTtl: 11
+      sessionMaxCapacity: 12
+      sessionTtl: 13
   bootsfaces:
     theme: bootstrap
     usetheme: yes
