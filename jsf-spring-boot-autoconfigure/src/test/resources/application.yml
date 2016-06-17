@@ -149,3 +149,15 @@ jsf:
     blockUI: no
     defaults:
       renderLabel: myRenderLabel
+      
+  # angularfaces namespace
+  angularfaces:
+    addLabels: true
+    addMessages: true
+    translation: true
+    includeAngularJS: true
+    includeJQuery: true
+    includeJQueryUI: true
+    includeAngularMessages: true
+    clientSideMessages: true
+    includeMainJS: true
