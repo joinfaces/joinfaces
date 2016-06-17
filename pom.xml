@@ -33,7 +33,9 @@
         <primefaces.version>6.0</primefaces.version>        
         <all-themes.version>1.0.8</all-themes.version>
         <primefaces-extensions.version>6.0.0</primefaces-extensions.version>
-        
+
+        <bootsfaces.version>0.8.6</bootsfaces.version>
+                        
         <cdi.version>1.2</cdi.version>
         <reflections.version>0.9.10</reflections.version>
         
@@ -159,6 +161,11 @@
                 <artifactId>reflections</artifactId>
                 <version>${reflections.version}</version>
                 <scope>runtime</scope>
+            </dependency>
+            <dependency>
+                <groupId>net.bootsfaces</groupId>
+                <artifactId>bootsfaces</artifactId>
+                <version>${bootsfaces.version}</version>
             </dependency>
             
             <dependency>
