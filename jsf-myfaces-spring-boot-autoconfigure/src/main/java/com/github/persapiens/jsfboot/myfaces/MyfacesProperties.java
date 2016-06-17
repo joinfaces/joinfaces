@@ -346,7 +346,7 @@ public class MyfacesProperties {
     /**
      * This parameter has been removed from 2
      */
-    private String cacheOldViewsInSessionMode;
+    private Boolean cacheOldViewsInSessionMode;
     
     /**
      * Allow use flash scope to keep track of the views used in session and the previous ones, so server side state saving can delete old views even if POST-REDIRECT-GET pattern is used

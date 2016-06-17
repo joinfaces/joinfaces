@@ -1,0 +1,127 @@
+jsf:
+  myfaces:
+    
+    # view handling
+    checkedViewidCacheSize: 500
+    checkedViewidCacheEnabled: true
+    viewUniqueIdsCacheEnabled: true
+    componentUniqueIdsCacheSize: 100
+    strictJsf2ViewNotFound: true
+    strictJsf2FaceletsCompatibility: true
+    
+    # state saving
+    renderViewstateId: true
+    refreshTransientBuildOnPss: auto
+    refreshTransientBuildOnPssPreserveState: true
+    numberOfViewsInSession: 20
+    numberOfSequentialViewsInSession: 4
+    numberOfFlashTokensInSession: 5
+    facesFlowClientWindowIdsInSession: 6
+    useEncryption: true
+    secret: mySecret
+    algorithm: DES
+    secretCache: true
+    algorithmIv: iv
+    algorithmParameters: ECB/PKCS5Padding
+    serialFactory: mySerialFactory
+    compressStateInClient: true
+    macAlgorithm: HmacSHA1
+    macSecret: myMacSecret
+    macSecretCache: true
+    randomKeyInCsrfSessionToken: none
+    randomKeyInCsrfSessionTokenLength: 16
+    randomKeyInCsrfSessionTokenSecureRandomClass: mySecureRamdomClass
+    randomKeyInCsrfSessionTokenSecureRandomProvider: mySecureRamdomProvider
+    randomKeyInCsrfSessionTokenSecureRandomAlgoritm: SHA1PRNG
+    clientViewStateTimeout: 0
+    compressStateInSession: true
+    useFlashScopePurgeViewsInSession: true
+    randomKeyInViewStateSessionToken: myStateSessionToken
+    randomKeyInViewStateSessionTokenLength: 8
+    randomKeyInViewStateSessionTokenSecureRandomClass: mySecureRandomClass
+    randomKeyInViewStateSessionTokenSecureRandomProvider: mySecureRandomProvider
+    randomKeyInViewStateSessionTokenSecureRandomAlgorithm: SHA1PRNG
+    autocompleteOffViewState: true
+    checkIdProductionMode: auto
+    
+    # resources
+    resourceMaxTimeExpires: 604800000
+    resourceHandlerCacheSize: 500
+    resourceHandlerCacheEnabled: true
+    strictJsf2AllowSlashLibraryName: true
+    resourceBufferSize: 2048
+    
+    # rendering
+    prettyHtml: true
+    allowJavascript: true
+    strictXhtmlLinks: true
+    renderClearJavascriptForButton: true
+    renderHiddenFieldsForLinkParams: true
+    saveFormSubmitLinkIe: true
+    wrapScriptContentWithXmlCommentTag: true
+    renderFormSubmitScriptInline: true
+    defaultResponseWriterContentTypeMode: text/html
+    useMultipleJsFilesForJsfUncompressedJs: true
+    jsfJsMode: normal
+    earlyFlushEnabled: true
+    renderFormViewStateAtBegin: true
+    
+    # CDI
+    cdiManagedConvertersEnabled: true
+    cdiManagedValidatorsEnabled: true
+    
+    # conversion and validation
+    enumConverterAllowStringPasstrough: true
+    validator:
+      beanBeforeJsfValidation: true
+      
+    # expression language
+    strictJsf2CcElResolver: myElResolver
+    supportJspAndFacesEl: true
+    supportEl3ImportHandler: true
+    elResolverComparator: myResolverComparator
+    elResolverPredicate: myResolverPredicate
+    cacheElExpressions: true
+    expressionFactory: myExpressionFactory
+    
+    # other
+    configRefreshPeriod: 2
+    delegateFacesServlet: myFacesServlet
+    validateXml: true
+    debugPhaseListener: true
+    strictJsf2RefreshTargetAjax: true
+    gaeJsfJarFiles: myjar.jar
+    gaeJsfAnnotationsJarFiles: myAnnotationJar.jar
+    flashScopeDisabled: true
+    lazyLoadConfigObjects: true
+    validate: true
+    initializeSkipJarFacesConfigScan: true
+    defaultWindowMode: url
+    errorTemplateResource: META-INF/rsc/myfaces-dev-error.xml
+    debugTemplateResource: META-INF/rsc/myfaces-dev-debug.xml
+    errorHandling: true
+    temporalResourcehandlerCacheEnabled: true
+    serviceProviderFinder: true
+    markInitialStateWhenApplyBuildView: true
+    wrapTagExceptionsAsContextAware: true
+    viewPoolMaxPoolSize: 5
+    viewPoolMaxDynamicPartialLimit: 2
+    viewPoolEntryMode: soft
+    viewPoolDeferredNavigation: true
+    logWebContextParams: auto
+    facesInitializer: myFacesInitializer
+    facesInitPlugins: myInitPlugin
+    initializeAlwaysStandalone: false
+    annotation:
+      useCdiForAnnotationScanning: true
+      scanPackages: myScanPackages
+    spi:
+      injectionProvider: myInjectionProvider
+      
+    # deprecated
+    errorHandler: myHandler
+    viewstateJavascript: true
+    serializeStateInSession: true
+    cacheOldViewsInSessionMode: off
+    handleStateCachingMechanics: true
+    saveStateWithVisitTreeOnPass: true
