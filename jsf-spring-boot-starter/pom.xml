@@ -71,6 +71,10 @@
             <artifactId>bootsfaces</artifactId>
         </dependency>
         <dependency>
+            <groupId>de.beyondjava</groupId>
+            <artifactId>angularFaces-core</artifactId>
+        </dependency>
+        <dependency>
             <groupId>javax.enterprise</groupId>
             <artifactId>cdi-api</artifactId>
             <exclusions>
