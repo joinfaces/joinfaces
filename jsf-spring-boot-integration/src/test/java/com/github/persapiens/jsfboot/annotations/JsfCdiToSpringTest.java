@@ -96,4 +96,14 @@ public class JsfCdiToSpringTest {
             .isNull();
 	}
 
+	public void testNull() {
+		assertThat(JsfCdiToSpring.scopeName(null))
+            .isNull();
+	}
+
+	public void testNotNull() {
+		assertThat(new JsfCdiToSpring())
+            .isNotNull();
+	}
+
 }
