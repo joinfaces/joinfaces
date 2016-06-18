@@ -40,4 +40,23 @@ public class JsfJettyServerCustomizerIT extends AbstractTestNGSpringContextTests
         
         assertThat(webAppContext.getBaseResource().getResource("test.txt").exists()).isTrue();
 	}
+    
+    @Test(expectedExceptions = RuntimeException.class)
+	public void invalidClassPathResource() throws MalformedURLException {
+		JettyEmbeddedServletContainerFactory factory = new JettyEmbeddedServletContainerFactory();
+
+        JettyProperties jp = new JettyProperties();
+        jp.setClassPathResource("/~ã``'[ªº*-+.@#$%{&*ç|°;.<>");
+        
+        JsfJettyServerCustomizer customizer = new JsfJettyServerCustomizer(jp);
+        
+        Server server = ((JettyEmbeddedServletContainer) factory.getEmbeddedServletContainer()).getServer();
+        
+        customizer.customize(server);
+        
+        Handler[] childHandlersByClass = server.getChildHandlersByClass(WebAppContext.class);
+        WebAppContext webAppContext = (WebAppContext) childHandlersByClass[0];
+        
+        assertThat(webAppContext.getBaseResource().getResource("test.txt").exists()).isTrue();
+	}
 }
