@@ -491,7 +491,7 @@
                         <artifactId>maven-jar-plugin</artifactId>
                         <executions>
                             <execution>
-                                <id>attach-test</id>
+                                <id>attach-test-jar</id>
                                 <goals>
                                     <goal>test-jar</goal>
                                 </goals>
@@ -504,9 +504,15 @@
                         <artifactId>maven-source-plugin</artifactId>
                         <executions>
                             <execution>
-                                <id>attach-sources</id>
+                                <id>attach-jar-no-fork</id>
                                 <goals>
                                     <goal>jar-no-fork</goal>
+                                </goals>
+                            </execution>
+                            <execution>
+                                <id>attach-test-jar-no-fork</id>
+                                <goals>
+                                    <goal>test-jar-no-fork</goal>
                                 </goals>
                             </execution>
                         </executions>
@@ -522,9 +528,27 @@
                         </configuration>
                         <executions>
                             <execution>
-                                <id>attach-javadocs</id>
+                                <id>attach-jar</id>
                                 <goals>
                                     <goal>jar</goal>
+                                </goals>
+                            </execution>
+                            <execution>
+                                <id>attach-test-jar</id>
+                                <goals>
+                                    <goal>test-jar</goal>
+                                </goals>
+                            </execution>
+                            <execution>
+                                <id>attach-aggregate-jar</id>
+                                <goals>
+                                    <goal>aggregate-jar</goal>
+                                </goals>
+                            </execution>
+                            <execution>
+                                <id>attach-test-aggregate-jar</id>
+                                <goals>
+                                    <goal>test-aggregate-jar</goal>
                                 </goals>
                             </execution>
                         </executions>
