@@ -2,15 +2,15 @@ package com.github.persapiens.jsfboot.annotations;
 
 import org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext;
 import org.testng.annotations.Test;
-import static org.assertj.core.api.Assertions.assertThat;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.web.context.support.AnnotationConfigWebApplicationContext;
+import static org.assertj.core.api.Assertions.assertThat;
 
 /**
  * Jsf Cdi to Spring application context initializer
  */
 @Test
-public class JsfCdiToSpringApplicationContextInitializerTest {
+public class JsfCdiToSpringApplicationContextInitializerIT {
 
     public void testAnnotationConfigEmbeddedWebApplicationContext() {
         AnnotationConfigEmbeddedWebApplicationContext annotationConfigEmbeddedWebApplicationContext = new AnnotationConfigEmbeddedWebApplicationContext();
