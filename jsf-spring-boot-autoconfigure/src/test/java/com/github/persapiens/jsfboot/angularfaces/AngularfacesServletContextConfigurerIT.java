@@ -1,5 +1,7 @@
 package com.github.persapiens.jsfboot.angularfaces;
 
+import de.beyondjava.angularFaces.core.tagTransformer.AngularTagDecorator;
+import javax.faces.application.ViewHandler;
 import javax.servlet.ServletContext;
 import static org.assertj.core.api.Assertions.assertThat;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,7 +29,8 @@ public class AngularfacesServletContextConfigurerIT extends AbstractTestNGSpring
         
         angularfacesServletContextConfigurer.configure();
         
-        assertThat(servletContext.getInitParameter(AngularfacesServletContextConfigurer.PREFFIX + ".addLabels")).isEqualTo("true");
+        assertThat(servletContext.getInitParameter(AngularfacesServletContextConfigurer.PREFFIX + "addLabels")).isEqualTo("true");
+        assertThat(servletContext.getInitParameter(ViewHandler.FACELETS_DECORATORS_PARAM_NAME)).isEqualTo(AngularTagDecorator.class.getName());
 	}
 
 }
