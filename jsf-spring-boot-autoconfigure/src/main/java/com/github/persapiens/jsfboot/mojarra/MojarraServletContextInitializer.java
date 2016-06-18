@@ -11,7 +11,9 @@ import org.springframework.boot.context.embedded.ServletContextInitializer;
 
 public class MojarraServletContextInitializer implements ServletContextInitializer, JsfAnnotatedClassFactoryConfiguration {
 	
-	private MojarraProperties mojarraProperties;
+    public static final String ANOTHER_FACES_CONFIG = "com/sun/faces/jsf-ri-runtime.xml";
+    
+	private final MojarraProperties mojarraProperties;
 
     public MojarraServletContextInitializer(MojarraProperties mojarraProperties) {
         this.mojarraProperties = mojarraProperties;
@@ -31,7 +33,7 @@ public class MojarraServletContextInitializer implements ServletContextInitializ
     
     @Override
     public String getAnotherFacesConfig() {
-        return "com/sun/faces/jsf-ri-runtime.xml";
+        return ANOTHER_FACES_CONFIG;
     }
     
     @Override

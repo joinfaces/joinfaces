@@ -3,16 +3,22 @@ package com.github.persapiens.jsfboot.myfaces;
 import static com.github.persapiens.jsfboot.myfaces.MyfacesServletContextConfigurer.PREFFIX;
 import javax.servlet.ServletContext;
 import static org.assertj.core.api.Assertions.assertThat;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.SpringApplicationConfiguration;
 import org.testng.annotations.Test;
 import org.springframework.mock.web.MockServletContext;
+import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
+import org.springframework.test.context.web.WebAppConfiguration;
 
+@SpringApplicationConfiguration(classes = MyfacesSpringBootAutoConfiguration.class)
+@WebAppConfiguration
 @Test
-public class MyfacesServletContextConfigurerIT {
+public class MyfacesServletContextConfigurerIT extends AbstractTestNGSpringContextTests {
 
-    public void test() {
-        MyfacesProperties myfacesProperties = new MyfacesProperties();
-        myfacesProperties.setStrictJsf2CcElResolver("myElResolver");
+    @Autowired
+    private MyfacesProperties myfacesProperties;
 
+    public void testConfigure() {
         ServletContext servletContext = new MockServletContext();
         
         MyfacesServletContextConfigurer myfacesServletContextConfigurer = MyfacesServletContextConfigurer.builder()
@@ -22,7 +28,7 @@ public class MyfacesServletContextConfigurerIT {
         
         myfacesServletContextConfigurer.configure();
         
-        assertThat(servletContext.getInitParameter(PREFFIX + "STRICT_JSF_2_CC_EL_RESOLVER")).isEqualTo("myElResolver");        
+        assertThat(servletContext.getInitParameter(PREFFIX + "STRICT_JSF_2_CC_EL_RESOLVER")).isEqualTo("myElResolver");
 	}
 
 }

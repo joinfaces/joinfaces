@@ -12,7 +12,7 @@ import org.springframework.boot.context.embedded.ServletContextInitializer;
 
 public class OmnifacesServletContextInitializer implements ServletContextInitializer, JsfAnnotatedClassFactoryConfiguration {
 
-	private OmnifacesProperties omnifacesProperties;
+	private final OmnifacesProperties omnifacesProperties;
 
     public OmnifacesServletContextInitializer(OmnifacesProperties omnifacesProperties) {
         this.omnifacesProperties = omnifacesProperties;

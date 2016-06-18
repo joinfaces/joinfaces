@@ -1,7 +1,5 @@
 package com.github.persapiens.jsfboot.bootsfaces;
 
-import javax.servlet.ServletContext;
-import javax.servlet.ServletException;
 import com.github.persapiens.jsfboot.javaxfaces.JavaxFacesSpringBootAutoConfiguration;
 import net.bootsfaces.C;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,15 +24,6 @@ public class BootsfacesSpringBootAutoConfiguration {
     @Bean
     public ServletContextInitializer bootsfacesServletContextInitializer()
     {
-        return new ServletContextInitializer() {
-            @Override
-            public void onStartup(ServletContext sc) throws ServletException {                
-                BootsfacesServletContextConfigurer.builder()
-                    .bootsfacesProperties(bootsfacesProperties)
-                    .servletContext(sc)
-                    .build()
-                    .configure();
-            }
-        };
+        return new BootsfacesServletContextInitializer(bootsfacesProperties);
     }
 }

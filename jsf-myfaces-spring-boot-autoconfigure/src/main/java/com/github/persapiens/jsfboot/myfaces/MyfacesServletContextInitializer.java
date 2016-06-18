@@ -11,7 +11,9 @@ import org.springframework.boot.context.embedded.ServletContextInitializer;
 
 public class MyfacesServletContextInitializer implements ServletContextInitializer, JsfAnnotatedClassFactoryConfiguration {
 	
-	private MyfacesProperties myfacesProperties;
+    public static final String ANOTHER_FACES_CONFIG = "META-INF/standard-faces-config.xml";
+    
+	private final MyfacesProperties myfacesProperties;
 
     public MyfacesServletContextInitializer(MyfacesProperties myfacesProperties) {
         this.myfacesProperties = myfacesProperties;
@@ -31,7 +33,7 @@ public class MyfacesServletContextInitializer implements ServletContextInitializ
     
     @Override
     public String getAnotherFacesConfig() {
-        return "META-INF/standard-faces-config.xml";
+        return ANOTHER_FACES_CONFIG;
     }
     
     @Override

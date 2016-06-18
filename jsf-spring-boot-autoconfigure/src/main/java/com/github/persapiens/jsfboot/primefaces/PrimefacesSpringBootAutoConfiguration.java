@@ -1,8 +1,6 @@
 package com.github.persapiens.jsfboot.primefaces;
 
 
-import javax.servlet.ServletContext;
-import javax.servlet.ServletException;
 import com.github.persapiens.jsfboot.javaxfaces.JavaxFacesSpringBootAutoConfiguration;
 import org.primefaces.application.DialogViewHandler;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,15 +25,6 @@ public class PrimefacesSpringBootAutoConfiguration {
     @Bean
     public ServletContextInitializer primefacesServletContextInitializer()
     {
-        return new ServletContextInitializer() {
-            @Override
-            public void onStartup(ServletContext sc) throws ServletException {                
-                PrimefacesServletContextConfigurer.builder()
-                    .primefacesProperties(primefacesProperties)
-                    .servletContext(sc)
-                    .build()
-                    .configure();
-            }
-        };
+        return new PrimefacesServletContextInitializer(primefacesProperties);
     }
 }
