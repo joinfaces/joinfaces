@@ -44,6 +44,8 @@ public class JsfJettyServerCustomizer implements JettyServerCustomizer {
             LOGGER.info("Setting Jetty classLoader to " + jettyProperties.getClassPathResource() + " directory");
         } catch (IOException exception) {
             LOGGER.error("Unable to configure Jetty classLoader to " + jettyProperties.getClassPathResource() + " directory " + exception.getMessage());
+            
+            throw new RuntimeException(exception);
         }
     }
 }
