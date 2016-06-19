@@ -9,7 +9,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.test.context.web.WebAppConfiguration;
 
 /**
- * Unit tests for {@link AuthorizeFaceletsTag}.
+ * Unit tests for {@link FaceletsTagUtils}.
  */
 @SpringApplicationConfiguration(classes = SecurityConfiguration.class)
 @Test
@@ -69,6 +69,22 @@ public class FaceletsTagUtilsIT extends JsfIT {
                 
 		assertThat(FaceletsTagUtils.areAnyGranted(Roles.ROLE_A + "," + Roles.ROLE_C))
             .isTrue();
+	}
+
+    public void testIsAllowed() throws IOException {
+        Authentication authentication = AuthenticationFactory.authentication(
+            Roles.ROLE_A, Roles.ROLE_B);
+        new SpringSecurityMock().init(authentication);
+                
+		assertThat(FaceletsTagUtils.isAllowed("myurl", "mymethod"))
+            .isTrue();
+	}
+
+    public void testIsAllowedFalse() throws IOException {
+        new SpringSecurityMock().init(null);
+                
+		assertThat(FaceletsTagUtils.isAllowed("myurl", "mymethod"))
+            .isFalse();
 	}
 
 }
