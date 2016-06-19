@@ -12,6 +12,7 @@
     <artifactId>jsf-spring-boot-autoconfigure</artifactId>
     <name>JSF Spring Boot AutoConfigure</name>
     <version>1.5.2-SNAPSHOT</version>
+    <description>Jsf Spring Boot Autoconfigure for JavaxFaces, PrimeFaces, OmniFaces and Mojarra</description>
 
     <dependencies>
         <dependency>

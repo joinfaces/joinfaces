@@ -12,6 +12,7 @@
     <artifactId>jsf-spring-boot-starter</artifactId>
     <name>JSF Spring Boot Starter</name>
     <version>1.5.2-SNAPSHOT</version>
+    <description>Jsf Spring Boot Starter for Tomcat and Mojarra</description>
 
     <dependencies>
         <dependency>

@@ -12,6 +12,7 @@
     <artifactId>jsf-myfaces-spring-boot-starter</artifactId>
     <name>JSF MyFaces Spring Boot Starter</name>
     <version>1.5.2-SNAPSHOT</version>
+    <description>Jsf Spring Boot Starter for Tomcat and MyFaces</description>
 
     <dependencies>
         <!-- remove mojarra dependencies -->

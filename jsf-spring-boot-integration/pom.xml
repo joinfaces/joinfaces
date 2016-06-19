@@ -12,6 +12,7 @@
     <artifactId>jsf-spring-boot-integration</artifactId>
     <name>JSF Spring Boot Integration</name>
     <version>1.5.2-SNAPSHOT</version>
+    <description>Jsf Spring Boot Integration</description>
 
     <dependencies>
         <dependency>

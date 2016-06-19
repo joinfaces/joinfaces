@@ -692,7 +692,7 @@
     </profiles>
 
     <name>JSF Spring Boot Starter Parent</name>
-    <description>Starter for building MVC web applications using JSF, Primefaces and Omnifaces</description>
+    <description>Parent project for starters to build MVC web applications using JSF, PrimeFaces, Primefaces Extensions, OmniFaces, Mojarra and MyFaces</description>
     <url>https://github.com/persapiens/jsf-spring-boot-starter</url>
     <inceptionYear>2016</inceptionYear>
 
