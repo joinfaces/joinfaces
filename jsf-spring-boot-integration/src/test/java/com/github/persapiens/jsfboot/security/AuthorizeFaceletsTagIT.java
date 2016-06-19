@@ -1,19 +1,22 @@
 package com.github.persapiens.jsfboot.security;
 
+import com.github.persapiens.jsfboot.mock.JsfIT;
 import org.testng.annotations.Test;
 import static org.assertj.core.api.Assertions.assertThat;
+import org.springframework.boot.test.SpringApplicationConfiguration;
+import org.springframework.test.context.web.WebAppConfiguration;
 
 /**
  * Unit tests for {@link AuthorizeFaceletsTag}.
  */
+@SpringApplicationConfiguration(classes = SecurityConfiguration.class)
 @Test
-public class AuthorizeFaceletsTagTest {
+@WebAppConfiguration
+public class AuthorizeFaceletsTagIT extends JsfIT {
 
-    private static String ROLE_A = "ROLE_A";
-    
 	public void testIfAllGrantedWithOneRole() {
 		AuthorizeFaceletsTag tag = new AuthorizeFaceletsTag();
-		tag.setIfAllGranted(ROLE_A);
+		tag.setIfAllGranted(Roles.ROLE_A);
 		assertThat("hasRole('ROLE_A')")
             .isEqualTo(tag.getAccess());
 	}
@@ -27,7 +30,7 @@ public class AuthorizeFaceletsTagTest {
 
 	public void testIfAnyGrantedWithOneRole() {
 		AuthorizeFaceletsTag tag = new AuthorizeFaceletsTag();
-		tag.setIfAnyGranted(ROLE_A);
+		tag.setIfAnyGranted(Roles.ROLE_A);
 		assertThat("hasAnyRole('ROLE_A')")
             .isEqualTo(tag.getAccess());
 	}
@@ -41,7 +44,7 @@ public class AuthorizeFaceletsTagTest {
 
 	public void testIfNoneGrantedWithOneRole() {
 		AuthorizeFaceletsTag tag = new AuthorizeFaceletsTag();
-		tag.setIfNotGranted(ROLE_A);
+		tag.setIfNotGranted(Roles.ROLE_A);
 		assertThat("!hasAnyRole('ROLE_A')")
             .isEqualTo(tag.getAccess());
 	}
@@ -55,9 +58,9 @@ public class AuthorizeFaceletsTagTest {
 
 	public void testIfAllAnyNotGranted() {
 		AuthorizeFaceletsTag tag = new AuthorizeFaceletsTag();
-		tag.setIfAllGranted(ROLE_A);
-		tag.setIfAnyGranted("ROLE_B");
-		tag.setIfNotGranted("ROLE_C");
+		tag.setIfAllGranted(Roles.ROLE_A);
+		tag.setIfAnyGranted(Roles.ROLE_B);
+		tag.setIfNotGranted(Roles.ROLE_C);
 		assertThat("hasRole('ROLE_A') and hasAnyRole('ROLE_B') and !hasAnyRole('ROLE_C')")
             .isEqualTo(tag.getAccess());
 	}

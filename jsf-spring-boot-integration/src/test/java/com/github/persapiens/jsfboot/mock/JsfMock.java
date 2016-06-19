@@ -9,12 +9,16 @@ import javax.faces.application.Application;
 import javax.faces.component.UIViewRoot;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
+import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import lombok.Getter;
  
 import org.mockito.Mockito;
+import org.springframework.context.ApplicationContext;
+import org.springframework.mock.web.MockServletContext;
+import org.springframework.web.context.WebApplicationContext;
  
 /**
  * Taken from http://ovaraksin.blogspot.com.br/2014/03/set-up-jsf-environment-for-junit-tests.html
@@ -30,12 +34,13 @@ public class JsfMock {
     private HttpServletRequest mockHttpServletRequest;
     private HttpServletResponse mockHttpServletResponse;
     private Map<String, Object> mockViewMap;
+    private ServletContext mockServletContext;
  
     public void release() {
         mockFacesContext.release();
     }
  
-    public void init() {
+    public void init(ApplicationContext applicationContext) {
         mockFacesContext = FacesContextMocker.mockFacesContext();
         mockApplication = Mockito.mock(Application.class);
         mockViewRoot = Mockito.mock(UIViewRoot.class);
@@ -43,8 +48,13 @@ public class JsfMock {
         mockHttpServletRequest = Mockito.mock(HttpServletRequest.class);
         mockHttpServletResponse = Mockito.mock(HttpServletResponse.class);
         mockHttpSession = Mockito.mock(HttpSession.class);
- 
+        
         mockViewMap = new HashMap<>();
+        mockServletContext = new MockServletContext();
+        if (applicationContext != null)
+        {
+            mockServletContext.setAttribute(WebApplicationContext.ROOT_WEB_APPLICATION_CONTEXT_ATTRIBUTE, applicationContext);
+        }
         
         Mockito.when(mockFacesContext.getApplication()).thenReturn(mockApplication);
         Mockito.when(mockApplication.getSupportedLocales()).thenReturn(createLocales().iterator());
@@ -56,8 +66,10 @@ public class JsfMock {
         Mockito.when(mockFacesContext.getExternalContext()).thenReturn(mockExternalContext);
         Mockito.when(mockExternalContext.getRequest()).thenReturn(mockHttpServletRequest);
         Mockito.when(mockHttpServletRequest.getSession()).thenReturn(mockHttpSession);
+        Mockito.when(mockExternalContext.getResponse()).thenReturn(mockHttpServletResponse);
+        Mockito.when(mockExternalContext.getContext()).thenReturn(mockServletContext);
  
-        Map<String, String> requestMap = new HashMap<String, String>();
+        Map<String, String> requestMap = new HashMap<>();
         Mockito.when(mockExternalContext.getRequestParameterMap()).thenReturn(requestMap);        
     }
 
@@ -65,6 +77,7 @@ public class JsfMock {
         ArrayList<Locale> locales = new ArrayList<>();
         locales.add(new Locale("en"));
         locales.add(new Locale("de"));
+        locales.add(new Locale("pt_BR"));
         return locales;
     }
 }    

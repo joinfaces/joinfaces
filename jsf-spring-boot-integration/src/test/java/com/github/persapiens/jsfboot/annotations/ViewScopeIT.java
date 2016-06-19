@@ -1,28 +1,17 @@
 package com.github.persapiens.jsfboot.annotations;
 
-import com.github.persapiens.jsfboot.mock.JsfMock;
+import com.github.persapiens.jsfboot.mock.JsfIT;
 import static org.assertj.core.api.Assertions.assertThat;
-import org.testng.annotations.AfterClass;
-import org.testng.annotations.BeforeClass;
+import org.springframework.boot.test.SpringApplicationConfiguration;
+import org.springframework.test.context.web.WebAppConfiguration;
 import org.testng.annotations.Test;
 
+@SpringApplicationConfiguration(classes = AnnotationConfiguration.class)
 @Test
-public class ViewScopeIT {
-
-    private JsfMock jsfMock;
+@WebAppConfiguration
+public class ViewScopeIT extends JsfIT {
 
     private static final String KEY = "key";
-    
-    @BeforeClass
-    public void init() {
-        jsfMock = new JsfMock();
-        jsfMock.init();
-    }
-
-    @AfterClass
-    public void release() {
-        jsfMock.release();        
-    }
     
     public void testViewScope() {
         ViewScope viewScope = new ViewScope();
