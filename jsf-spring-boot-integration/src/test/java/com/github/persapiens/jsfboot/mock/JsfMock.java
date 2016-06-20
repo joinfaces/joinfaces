@@ -9,6 +9,9 @@ import javax.faces.application.Application;
 import javax.faces.component.UIViewRoot;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
+import javax.faces.view.facelets.FaceletContext;
+import javax.faces.view.facelets.Tag;
+import javax.faces.view.facelets.TagConfig;
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -35,6 +38,11 @@ public class JsfMock {
     private HttpServletResponse mockHttpServletResponse;
     private Map<String, Object> mockViewMap;
     private ServletContext mockServletContext;
+    private TagConfig mockTagConfig;
+    private MockFaceletHandler mockFaceletHandler;
+    private Tag mockTag;
+    private MockTagAttributes mockTagAttributes;
+    private FaceletContext mockFaceletContext;
  
     public void release() {
         mockFacesContext.release();
@@ -48,6 +56,11 @@ public class JsfMock {
         mockHttpServletRequest = Mockito.mock(HttpServletRequest.class);
         mockHttpServletResponse = Mockito.mock(HttpServletResponse.class);
         mockHttpSession = Mockito.mock(HttpSession.class);
+        mockTagConfig = Mockito.mock(TagConfig.class);
+        mockFaceletHandler = new MockFaceletHandler();
+        mockTagAttributes = new MockTagAttributes();
+        mockTag = new Tag(null, null, null, null, mockTagAttributes);
+        mockFaceletContext = Mockito.mock(FaceletContext.class);
         
         mockViewMap = new HashMap<>();
         mockServletContext = new MockServletContext();
@@ -55,6 +68,11 @@ public class JsfMock {
         {
             mockServletContext.setAttribute(WebApplicationContext.ROOT_WEB_APPLICATION_CONTEXT_ATTRIBUTE, applicationContext);
         }
+        
+        Mockito.when(mockTagConfig.getNextHandler()).thenReturn(mockFaceletHandler);
+        Mockito.when(mockTagConfig.getTag()).thenReturn(mockTag);
+
+        Mockito.when(mockFaceletContext.getFacesContext()).thenReturn(mockFacesContext);
         
         Mockito.when(mockFacesContext.getApplication()).thenReturn(mockApplication);
         Mockito.when(mockApplication.getSupportedLocales()).thenReturn(createLocales().iterator());

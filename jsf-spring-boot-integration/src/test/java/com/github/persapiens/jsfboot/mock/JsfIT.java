@@ -1,6 +1,7 @@
 package com.github.persapiens.jsfboot.mock;
 
 import javax.inject.Inject;
+import lombok.Getter;
 import org.springframework.context.ApplicationContext;
 import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
 import org.testng.annotations.AfterMethod;
@@ -12,6 +13,7 @@ import org.testng.annotations.BeforeMethod;
  */
 public class JsfIT extends AbstractTestNGSpringContextTests {
 
+    @Getter
     private JsfMock jsfMock;
     
     @Inject
