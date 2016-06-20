@@ -44,13 +44,15 @@ cdi-api | [1.2](http://search.maven.org/#artifactdetails\|javax.enterprise\|cdi-
 
 ### JSF properties configuration via application.properties or application.yml
 
-Library | Namespace | Example
------------- | ------------- | ---------
-standard (javax.faces) | jsf | jsf.PROJECT_STAGE=Development
-primefaces | jsf.primefaces | jsf.primefaces.theme=overcast
-omnifaces | jsf.omnifaces | jsf.omnifaces.FACES_VIEWS_ENABLED=true
-mojarra (com.sun.faces) | jsf.mojarra | jsf.mojarra.preferXHTML=true
-myfaces (org.apache.myfaces) | jsf.myfaces | jsf.myfaces.PRETTY_HTML=true
+Library | Namespace | Example | Full Example
+------------ | ------------- | --------- | ---------
+standard (javax.faces) | jsf | jsf.PROJECT_STAGE: Development | [application.yml](https://github.com/persapiens/jsf-spring-boot-starter/blob/master/jsf-spring-boot-autoconfigure/src/test/resources/application.yml)
+primefaces | jsf.primefaces | jsf.primefaces.theme: overcast | [application.yml](https://github.com/persapiens/jsf-spring-boot-starter/blob/master/jsf-spring-boot-autoconfigure/src/test/resources/application.yml)
+omnifaces | jsf.omnifaces | jsf.omnifaces.FACES_VIEWS_ENABLED: true | [application.yml](https://github.com/persapiens/jsf-spring-boot-starter/blob/master/jsf-spring-boot-autoconfigure/src/test/resources/application.yml)
+mojarra (com.sun.faces) | jsf.mojarra | jsf.mojarra.preferXHTML: true | [application.yml](https://github.com/persapiens/jsf-spring-boot-starter/blob/master/jsf-spring-boot-autoconfigure/src/test/resources/application.yml)
+myfaces (org.apache.myfaces) | jsf.myfaces | jsf.myfaces.PRETTY_HTML: true | [application.yml](https://github.com/persapiens/jsf-spring-boot-starter/blob/master/jsf-myfaces-spring-boot-autoconfigure/src/test/resources/application.yml)
+jetty | jsf.jetty | jsf.jetty.classPathResource: META-INF/resources | [application.yml](https://github.com/persapiens/jsf-spring-boot-starter/blob/master/jsf-jetty-spring-boot-autoconfigure/src/test/resources/application.yml)
+undertow | jsf.undertow | jsf.undertow.classPathResource: META-INF/resources | [application.yml](https://github.com/persapiens/jsf-spring-boot-starter/blob/master/jsf-undertow-spring-boot-autoconfigure/src/test/resources/application.yml)
 
 Additional information in [#22](https://github.com/persapiens/jsf-spring-boot-starter/issues/22)
 
