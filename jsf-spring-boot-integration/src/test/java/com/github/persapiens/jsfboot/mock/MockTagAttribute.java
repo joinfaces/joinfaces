@@ -69,7 +69,7 @@ public class MockTagAttribute extends TagAttribute {
 
     @Override
     public String getValue(FaceletContext ctx) {
-        throw new UnsupportedOperationException(NOT_SUPPORTED_YET);
+        return value;
     }
 
     @Override
