@@ -3,8 +3,8 @@ package com.github.persapiens.jsfboot.myfaces;
 import com.github.persapiens.jsfboot.JsfAnnotatedClassFactory;
 import static com.github.persapiens.jsfboot.myfaces.MyfacesServletContextInitializer.ANOTHER_FACES_CONFIG;
 import java.util.Set;
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
-import static org.assertj.core.api.Assertions.assertThat;
 import org.omnifaces.component.input.Form;
 import org.testng.annotations.Test;
 import org.omnifaces.converter.SelectItemsIndexConverter;
@@ -14,6 +14,7 @@ import org.springframework.boot.test.SpringApplicationConfiguration;
 import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
 import org.springframework.test.context.web.WebAppConfiguration;
 import org.testng.annotations.BeforeSuite;
+import static org.assertj.core.api.Assertions.assertThat;
 
 @SpringApplicationConfiguration(classes = MyfacesSpringBootAutoConfiguration.class)
 @WebAppConfiguration
@@ -60,6 +61,19 @@ public class MyfacesServletContextInitializerIT extends AbstractTestNGSpringCont
             = new MyfacesServletContextInitializer(myfacesProperties);
 
         assertThat(myfacesServletContextInitializer.isExcludeScopedAnnotations()).isTrue();
+	}
+    
+    public void testOnStartup() throws ServletException
+    {
+        MyfacesServletContextInitializer myfacesServletContextInitializer =
+            new MyfacesServletContextInitializer(myfacesProperties);
+        
+        ServletContext servletContext = new MyfacesMockServletContext();
+        
+        myfacesServletContextInitializer.onStartup(servletContext);
+        
+        assertThat(servletContext.getInitParameter(MyfacesServletContextConfigurer.PREFFIX + "STRICT_JSF_2_CC_EL_RESOLVER"))
+            .isEqualTo("myElResolver");
 	}
 
 }

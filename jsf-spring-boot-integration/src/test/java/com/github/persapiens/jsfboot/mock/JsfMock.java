@@ -11,7 +11,6 @@ import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import javax.faces.view.facelets.Tag;
 import javax.faces.view.facelets.TagConfig;
-import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -36,7 +35,7 @@ public class JsfMock {
     private HttpServletRequest mockHttpServletRequest;
     private HttpServletResponse mockHttpServletResponse;
     private Map<String, Object> mockViewMap;
-    private ServletContext mockServletContext;
+    private MockServletContext mockServletContext;
     private TagConfig mockTagConfig;
     private MockFaceletHandler mockFaceletHandler;
     private Tag mockTag;
