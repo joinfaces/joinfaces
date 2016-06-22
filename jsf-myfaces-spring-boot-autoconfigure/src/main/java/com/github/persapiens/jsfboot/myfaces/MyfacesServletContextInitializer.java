@@ -1,7 +1,7 @@
 package com.github.persapiens.jsfboot.myfaces;
 
-import com.github.persapiens.jsfboot.JsfAnnotatedClassFactory;
-import com.github.persapiens.jsfboot.JsfAnnotatedClassFactoryConfiguration;
+import com.github.persapiens.jsfboot.JsfClassFactory;
+import com.github.persapiens.jsfboot.JsfClassFactoryConfiguration;
 import java.util.Set;
 import javax.servlet.ServletContainerInitializer;
 import javax.servlet.ServletContext;
@@ -9,7 +9,7 @@ import javax.servlet.ServletException;
 import org.apache.myfaces.ee6.MyFacesContainerInitializer;
 import org.springframework.boot.context.embedded.ServletContextInitializer;
 
-public class MyfacesServletContextInitializer implements ServletContextInitializer, JsfAnnotatedClassFactoryConfiguration {
+public class MyfacesServletContextInitializer implements ServletContextInitializer, JsfClassFactoryConfiguration {
 	
     public static final String ANOTHER_FACES_CONFIG = "META-INF/standard-faces-config.xml";
     
@@ -50,7 +50,7 @@ public class MyfacesServletContextInitializer implements ServletContextInitializ
             .configure();
         
         ServletContainerInitializer servletContainerInitializer = getServletContainerInitializer();
-        Set<Class<?>> classes = JsfAnnotatedClassFactory.builder()
+        Set<Class<?>> classes = JsfClassFactory.builder()
             .jsfAnnotatedClassFactoryConfiguration(this)
             .build().find();
         servletContainerInitializer.onStartup(classes, sc);

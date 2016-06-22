@@ -11,6 +11,7 @@ import javax.faces.bean.SessionScoped;
 import javax.faces.bean.ViewScoped;
 import javax.servlet.annotation.HandlesTypes;
 import lombok.Builder;
+import lombok.Getter;
 import lombok.NonNull;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -19,16 +20,16 @@ import org.reflections.util.ClasspathHelper;
 import org.reflections.util.ConfigurationBuilder;
 
 /**
- * Factory of classes annotated with jsf types handled by servlet context initializer
+ * Factory of classes with jsf types handled by servlet context initializer
  */
 @Builder
-public class JsfAnnotatedClassFactory {
+public class JsfClassFactory {
     
     private static final Logger log = LoggerFactory
-			.getLogger(JsfAnnotatedClassFactory.class);    
+			.getLogger(JsfClassFactory.class);    
 
     @NonNull
-    private JsfAnnotatedClassFactoryConfiguration jsfAnnotatedClassFactoryConfiguration;
+    private JsfClassFactoryConfiguration jsfAnnotatedClassFactoryConfiguration;
     
     /**
      * Return list of annotations to exclude from handlesType.
@@ -46,12 +47,20 @@ public class JsfAnnotatedClassFactory {
         }
         return result;
     }
+
+    @Getter
+    private static class TypesToBeHandled {
+        private Set<Class<? extends Annotation>> annotationTypes = new HashSet<>();
+        private Set<Class> otherTypes = new HashSet<>();
+    }
     
     /**
-     * Return set of annotation classes to be handled by servlet container initializar
+     * Return handlesTypes of
+     * - set of annotation classes to be handled by servlet container initializer
+     * - set of other classes to be handled by servlet container initializar
      */
-    private Set<Class<? extends Annotation>> handlesTypes() {
-        Set<Class<? extends Annotation>> result = null;
+    private TypesToBeHandled handlesTypes() {
+        TypesToBeHandled result = new TypesToBeHandled();
         
         HandlesTypes ht = jsfAnnotatedClassFactoryConfiguration.getServletContainerInitializer().getClass().getAnnotation(HandlesTypes.class);
         if (ht != null) {
@@ -66,12 +75,11 @@ public class JsfAnnotatedClassFactory {
                         Class<? extends Annotation> annotation = (Class<? extends Annotation>) type;
                         if (!annotationsToExclude.contains(annotation))
                         {
-                            if (result == null)
-                            {
-                                result = new HashSet<>();
-                            }
-                            result.add(annotation);
+                            result.getAnnotationTypes().add(annotation);
                         }
+                    }
+                    else {
+                        result.getOtherTypes().add(type);
                     }
                 }
             }        
@@ -87,9 +95,9 @@ public class JsfAnnotatedClassFactory {
     public Set<Class<?>> find() {        
         Set<Class<?>> result = new HashSet<>();
         
-        Set<Class<? extends Annotation>> handlesTypes = handlesTypes();
+        TypesToBeHandled handlesTypes = handlesTypes();
         // check if any annotation type is handled
-        if (handlesTypes != null && !handlesTypes.isEmpty())
+        if (!(handlesTypes.getAnnotationTypes().isEmpty() && handlesTypes.getOtherTypes().isEmpty()))
         {
             // get only urls of libraries that contains jsf types
             Collection<URL> urls = new HashSet<>(ClasspathHelper.forResource("META-INF/faces-config.xml", this.getClass().getClassLoader()));
@@ -104,9 +112,14 @@ public class JsfAnnotatedClassFactory {
             Reflections reflections = new Reflections(new ConfigurationBuilder().setUrls(urls));
             
             // add types annotated for each type to be handled
-            for (Class<? extends Annotation> annotationType : handlesTypes)
+            for (Class<? extends Annotation> annotationType : handlesTypes.getAnnotationTypes())
             {
                 result.addAll(reflections.getTypesAnnotatedWith(annotationType));
+            }
+            // add subtype of other types to be handled
+            for (Class<?> otherType : handlesTypes.getOtherTypes())
+            {
+                result.addAll(reflections.getSubTypesOf(otherType));
             }
         }
         

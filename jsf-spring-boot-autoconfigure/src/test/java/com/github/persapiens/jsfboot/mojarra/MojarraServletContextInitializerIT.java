@@ -1,10 +1,11 @@
 package com.github.persapiens.jsfboot.mojarra;
 
-import com.github.persapiens.jsfboot.JsfAnnotatedClassFactory;
+import com.github.persapiens.jsfboot.JsfClassFactory;
 import static com.github.persapiens.jsfboot.mojarra.MojarraServletContextInitializer.ANOTHER_FACES_CONFIG;
 import java.util.Set;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
+import net.bootsfaces.component.tree.TreeRenderer;
 import org.testng.annotations.Test;
 import org.testng.annotations.BeforeSuite;
 import org.omnifaces.component.input.Form;
@@ -30,21 +31,25 @@ public class MojarraServletContextInitializerIT extends AbstractTestNGSpringCont
     public void setupClasses() {
         MojarraServletContextInitializer configuration = new MojarraServletContextInitializer(null);
         
-        classes = JsfAnnotatedClassFactory.builder()
+        classes = JsfClassFactory.builder()
             .jsfAnnotatedClassFactoryConfiguration(configuration)
             .build().find();        
     }
     
-	public void testMojarraSelectItemsIndexConverter() {        
+	public void testOmniFacesSelectItemsIndexConverter() {        
 		assertThat(classes).contains(SelectItemsIndexConverter.class);
 	}
     
-	public void testMojarraRequiredCheckboxValidator() {        
+	public void testOmniFacesRequiredCheckboxValidator() {        
 		assertThat(classes).contains(RequiredCheckboxValidator.class);
 	}
     
-	public void testMojarraFormComponent() {        
+	public void testOmniFacesFormComponent() {        
 		assertThat(classes).contains(Form.class);
+	}
+    
+	public void testButterFacesTreeRenderer() {        
+		assertThat(classes).contains(TreeRenderer.class);
 	}
 
     public void testAnotherFacesConfig() throws ServletException

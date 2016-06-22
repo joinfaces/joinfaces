@@ -1,6 +1,6 @@
 package com.github.persapiens.jsfboot.omnifaces;
 
-import com.github.persapiens.jsfboot.JsfAnnotatedClassFactory;
+import com.github.persapiens.jsfboot.JsfClassFactory;
 import java.util.Set;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
@@ -28,7 +28,7 @@ public class OmnifacesServletContextInitializerIT extends AbstractTestNGSpringCo
     public void setupClasses() {
         OmnifacesServletContextInitializer configuration = new OmnifacesServletContextInitializer(null);
         
-        classes = JsfAnnotatedClassFactory.builder()
+        classes = JsfClassFactory.builder()
             .jsfAnnotatedClassFactoryConfiguration(configuration)
             .build().find();
     }

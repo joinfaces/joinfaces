@@ -3,9 +3,9 @@ package com.github.persapiens.jsfboot;
 import javax.servlet.ServletContainerInitializer;
 
 /**
- * Configuration of Jsf Annotated Class Factory
+ * Configuration of Jsf Class Factory
  */
-public interface JsfAnnotatedClassFactoryConfiguration {
+public interface JsfClassFactoryConfiguration {
 
     /**
      * Servlet container initializer that contains handleTypes

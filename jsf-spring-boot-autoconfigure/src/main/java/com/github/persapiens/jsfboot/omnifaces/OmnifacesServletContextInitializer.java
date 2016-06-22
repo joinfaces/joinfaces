@@ -1,16 +1,16 @@
 package com.github.persapiens.jsfboot.omnifaces;
 
 
-import com.github.persapiens.jsfboot.JsfAnnotatedClassFactory;
-import com.github.persapiens.jsfboot.JsfAnnotatedClassFactoryConfiguration;
+import com.github.persapiens.jsfboot.JsfClassFactory;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import java.util.Set;
 import javax.servlet.ServletContainerInitializer;
 import org.omnifaces.facesviews.FacesViewsInitializer;
 import org.springframework.boot.context.embedded.ServletContextInitializer;
+import com.github.persapiens.jsfboot.JsfClassFactoryConfiguration;
 
-public class OmnifacesServletContextInitializer implements ServletContextInitializer, JsfAnnotatedClassFactoryConfiguration {
+public class OmnifacesServletContextInitializer implements ServletContextInitializer, JsfClassFactoryConfiguration {
 
 	private final OmnifacesProperties omnifacesProperties;
 
@@ -49,7 +49,7 @@ public class OmnifacesServletContextInitializer implements ServletContextInitial
             .configure();
         
         ServletContainerInitializer servletContainerInitializer = getServletContainerInitializer();
-        Set<Class<?>> classes = JsfAnnotatedClassFactory.builder()
+        Set<Class<?>> classes = JsfClassFactory.builder()
             .jsfAnnotatedClassFactoryConfiguration(this)
             .build().find();
         servletContainerInitializer.onStartup(classes, sc);

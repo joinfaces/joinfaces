@@ -1,6 +1,6 @@
 package com.github.persapiens.jsfboot.myfaces;
 
-import com.github.persapiens.jsfboot.JsfAnnotatedClassFactory;
+import com.github.persapiens.jsfboot.JsfClassFactory;
 import static com.github.persapiens.jsfboot.myfaces.MyfacesServletContextInitializer.ANOTHER_FACES_CONFIG;
 import java.util.Set;
 import javax.servlet.ServletContext;
@@ -30,7 +30,7 @@ public class MyfacesServletContextInitializerIT extends AbstractTestNGSpringCont
     public void setupClasses() {
         MyfacesServletContextInitializer configuration = new MyfacesServletContextInitializer(null);
         
-        classes = JsfAnnotatedClassFactory.builder()
+        classes = JsfClassFactory.builder()
             .jsfAnnotatedClassFactoryConfiguration(configuration)
             .build().find();
 	}

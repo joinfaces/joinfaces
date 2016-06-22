@@ -1,15 +1,15 @@
 package com.github.persapiens.jsfboot.mojarra;
 
-import com.github.persapiens.jsfboot.JsfAnnotatedClassFactory;
-import com.github.persapiens.jsfboot.JsfAnnotatedClassFactoryConfiguration;
+import com.github.persapiens.jsfboot.JsfClassFactory;
 import com.sun.faces.config.FacesInitializer;
 import java.util.Set;
 import javax.servlet.ServletContainerInitializer;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import org.springframework.boot.context.embedded.ServletContextInitializer;
+import com.github.persapiens.jsfboot.JsfClassFactoryConfiguration;
 
-public class MojarraServletContextInitializer implements ServletContextInitializer, JsfAnnotatedClassFactoryConfiguration {
+public class MojarraServletContextInitializer implements ServletContextInitializer, JsfClassFactoryConfiguration {
 	
     public static final String ANOTHER_FACES_CONFIG = "com/sun/faces/jsf-ri-runtime.xml";
     
@@ -50,7 +50,7 @@ public class MojarraServletContextInitializer implements ServletContextInitializ
             .configure();
         
         ServletContainerInitializer servletContainerInitializer = getServletContainerInitializer();
-        Set<Class<?>> classes = JsfAnnotatedClassFactory.builder()
+        Set<Class<?>> classes = JsfClassFactory.builder()
             .jsfAnnotatedClassFactoryConfiguration(this)
             .build().find();
         servletContainerInitializer.onStartup(classes, sc);
