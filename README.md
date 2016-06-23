@@ -21,14 +21,14 @@ It also aims to solve [JSF](http://www.oracle.com/technetwork/java/javaee/javase
 
 ### Six JSF Spring Boot Starters available
 
-Starter | JSF Implementation | Servlet Container
+Starter | Servlet Container | JSF Implementation
 ------------ | ------------- | -------------
-jsf-spring-boot-starter | [Mojarra](https://javaserverfaces.java.net/) | [Tomcat](http://tomcat.apache.org/)
-jsf-jetty-spring-boot-starter | [Mojarra](https://javaserverfaces.java.net/) | [Jetty](http://www.eclipse.org/jetty)
-jsf-undertow-spring-boot-starter | [Mojarra](https://javaserverfaces.java.net/) | [Undertow](http://undertow.io)
-jsf-myfaces-spring-boot-starter | [MyFaces](http://myfaces.apache.org/) | [Tomcat](http://tomcat.apache.org/)
-jsf-jetty-myfaces-spring-boot-starter | [MyFaces](http://myfaces.apache.org/) | [Jetty](http://www.eclipse.org/jetty)
-jsf-undertow-myfaces-spring-boot-starter | [MyFaces](http://myfaces.apache.org/) | [Undertow](http://undertow.io)
+jsf-spring-boot-starter | [Tomcat](http://tomcat.apache.org/) | [Mojarra](https://javaserverfaces.java.net/)
+jsf-myfaces-spring-boot-starter | [Tomcat](http://tomcat.apache.org/) | [MyFaces](http://myfaces.apache.org/)
+jsf-jetty-spring-boot-starter | [Jetty](http://www.eclipse.org/jetty) | [Mojarra](https://javaserverfaces.java.net/)
+jsf-jetty-myfaces-spring-boot-starter | [Jetty](http://www.eclipse.org/jetty) | [MyFaces](http://myfaces.apache.org/)
+jsf-undertow-spring-boot-starter | [Undertow](http://undertow.io) | [Mojarra](https://javaserverfaces.java.net/)
+jsf-undertow-myfaces-spring-boot-starter | [Undertow](http://undertow.io) | [MyFaces](http://myfaces.apache.org/)
 
 ### Primefaces, Primefaces-Extensions, Primefaces-All-Themes, OmniFaces, Mojarra and CDI-api libraries included
 
