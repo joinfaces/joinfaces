@@ -1,7 +1,9 @@
 package com.github.persapiens.jsfboot.mojarra;
 
+import com.github.persapiens.jsfboot.javaxfaces.JavaxFacesSpringBootAutoConfiguration;
 import com.sun.faces.config.FacesInitializer;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.AutoConfigureAfter;
 import org.springframework.boot.autoconfigure.AutoConfigureBefore;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnWebApplication;
@@ -15,6 +17,7 @@ import org.springframework.context.annotation.Configuration;
 @EnableConfigurationProperties({ MojarraProperties.class })
 @ConditionalOnClass(FacesInitializer.class)
 @AutoConfigureBefore(WebMvcAutoConfiguration.class)
+@AutoConfigureAfter({JavaxFacesSpringBootAutoConfiguration.class})
 @ConditionalOnWebApplication
 public class MojarraSpringBootAutoConfiguration {
 

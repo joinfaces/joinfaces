@@ -3,18 +3,21 @@ package com.github.persapiens.jsfboot.myfaces;
 import com.github.persapiens.jsfboot.JsfClassFactory;
 import static com.github.persapiens.jsfboot.myfaces.MyfacesServletContextInitializer.ANOTHER_FACES_CONFIG;
 import java.util.Set;
+import javax.faces.component.html.HtmlPanelGroup;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
+import net.bootsfaces.component.tree.TreeRenderer;
+import org.apache.myfaces.renderkit.html.HtmlGridRenderer;
+import static org.assertj.core.api.Assertions.assertThat;
 import org.omnifaces.component.input.Form;
-import org.testng.annotations.Test;
 import org.omnifaces.converter.SelectItemsIndexConverter;
 import org.omnifaces.validator.RequiredCheckboxValidator;
+import org.testng.annotations.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.SpringApplicationConfiguration;
 import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
 import org.springframework.test.context.web.WebAppConfiguration;
 import org.testng.annotations.BeforeSuite;
-import static org.assertj.core.api.Assertions.assertThat;
 
 @SpringApplicationConfiguration(classes = MyfacesSpringBootAutoConfiguration.class)
 @WebAppConfiguration
@@ -35,6 +38,14 @@ public class MyfacesServletContextInitializerIT extends AbstractTestNGSpringCont
             .build().find();
 	}
     
+	public void testJavaxFacesHtmlPanelGroup() {        
+		assertThat(classes).contains(HtmlPanelGroup.class);
+	}
+
+	public void testMyacesHtmlGridRenderer() {        
+		assertThat(classes).contains(HtmlGridRenderer.class);
+	}
+    
 	public void testOmnifacesSelectItemsIndexConverter() {        
 		assertThat(classes).contains(SelectItemsIndexConverter.class);
 	}
@@ -45,6 +56,10 @@ public class MyfacesServletContextInitializerIT extends AbstractTestNGSpringCont
     
 	public void testOmnifacesFormComponent() {        
 		assertThat(classes).contains(Form.class);
+	}
+    
+	public void testBootsfacesTreeRenderer() {        
+		assertThat(classes).contains(TreeRenderer.class);
 	}
 
     public void testAnotherFacesConfig() throws ServletException

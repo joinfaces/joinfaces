@@ -1,22 +1,21 @@
-package com.github.persapiens.jsfboot.mojarra;
+package com.github.persapiens.jsfboot.omnifaces;
+
 
 import com.github.persapiens.jsfboot.JsfClassFactory;
-import com.sun.faces.config.FacesInitializer;
-import java.util.Set;
-import javax.servlet.ServletContainerInitializer;
+import com.github.persapiens.jsfboot.JsfClassFactoryConfiguration;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
+import java.util.Set;
+import javax.servlet.ServletContainerInitializer;
+import org.omnifaces.facesviews.FacesViewsInitializer;
 import org.springframework.boot.context.embedded.ServletContextInitializer;
-import com.github.persapiens.jsfboot.JsfClassFactoryConfiguration;
 
-public class MojarraServletContextInitializer implements ServletContextInitializer, JsfClassFactoryConfiguration {
-	
-    public static final String ANOTHER_FACES_CONFIG = "com/sun/faces/jsf-ri-runtime.xml";
-    
-	private final MojarraProperties mojarraProperties;
+public class OmnifacesServletContextInitializer implements ServletContextInitializer, JsfClassFactoryConfiguration {
 
-    public MojarraServletContextInitializer(MojarraProperties mojarraProperties) {
-        this.mojarraProperties = mojarraProperties;
+	private final OmnifacesProperties omnifacesProperties;
+
+    public OmnifacesServletContextInitializer(OmnifacesProperties omnifacesProperties) {
+        this.omnifacesProperties = omnifacesProperties;
     }
     
     private ServletContainerInitializer servletContainerInitializer;
@@ -26,14 +25,14 @@ public class MojarraServletContextInitializer implements ServletContextInitializ
     {
         if (servletContainerInitializer == null)
         {
-            servletContainerInitializer = new FacesInitializer();
+            servletContainerInitializer = new FacesViewsInitializer();
         }
         return servletContainerInitializer;
     }
     
     @Override
     public String getAnotherFacesConfig() {
-        return ANOTHER_FACES_CONFIG;
+        return null;
     }
     
     @Override
@@ -42,9 +41,9 @@ public class MojarraServletContextInitializer implements ServletContextInitializ
     }
     
     @Override
-    public void onStartup(ServletContext sc) throws ServletException {
-        MojarraServletContextConfigurer.builder()
-            .mojarraProperties(mojarraProperties)
+    public void onStartup(ServletContext sc) throws ServletException {                
+        OmnifacesServletContextConfigurer.builder()
+            .omnifacesProperties(omnifacesProperties)
             .servletContext(sc)
             .build()
             .configure();
@@ -54,5 +53,5 @@ public class MojarraServletContextInitializer implements ServletContextInitializ
             .jsfAnnotatedClassFactoryConfiguration(this)
             .build().find();
         servletContainerInitializer.onStartup(classes, sc);
-    }            
+    }
 }

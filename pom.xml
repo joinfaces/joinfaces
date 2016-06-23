@@ -69,17 +69,24 @@
     
     <modules>
         <module>jsf-spring-boot-integration</module>
+
         <module>jsf-spring-boot-autoconfigure</module>
-        <module>jsf-spring-boot-starter</module>
-        <module>jsf-jetty-spring-boot-autoconfigure</module>
-        <module>jsf-jetty-spring-boot-starter</module>
-        <module>jsf-undertow-spring-boot-autoconfigure</module>
-        <module>jsf-undertow-spring-boot-starter</module>
+        <module>jsf-mojarra-spring-boot-autoconfigure</module>
         <module>jsf-myfaces-spring-boot-autoconfigure</module>
-        <module>jsf-myfaces-spring-boot-starter</module>
+        <module>jsf-omnifaces-spring-boot-autoconfigure</module>
+        <module>jsf-primefaces-spring-boot-autoconfigure</module>
+        <module>jsf-bootsfaces-spring-boot-autoconfigure</module>
+        <module>jsf-angularfaces-spring-boot-autoconfigure</module>
+        <module>jsf-jetty-spring-boot-autoconfigure</module>
+        <module>jsf-undertow-spring-boot-autoconfigure</module>
         <module>jsf-jetty-myfaces-spring-boot-autoconfigure</module>
-        <module>jsf-jetty-myfaces-spring-boot-starter</module>
         <module>jsf-undertow-myfaces-spring-boot-autoconfigure</module>
+
+        <module>jsf-spring-boot-starter</module>
+        <module>jsf-jetty-spring-boot-starter</module>
+        <module>jsf-undertow-spring-boot-starter</module>
+        <module>jsf-myfaces-spring-boot-starter</module>
+        <module>jsf-jetty-myfaces-spring-boot-starter</module>
         <module>jsf-undertow-myfaces-spring-boot-starter</module>
     </modules>
 
@@ -105,6 +112,11 @@
                 <optional>true</optional>
             </dependency>
         
+            <dependency>
+                <groupId>com.sun.faces</groupId>
+                <artifactId>jsf-api</artifactId>
+                <version>${javax.faces.version}</version>
+            </dependency>
             <dependency>
                 <groupId>org.glassfish</groupId>
                 <artifactId>javax.faces</artifactId>
@@ -187,7 +199,7 @@
             </dependency>
             <dependency>
                 <groupId>com.github.persapiens</groupId>
-                <artifactId>jsf-spring-boot-starter</artifactId>
+                <artifactId>jsf-mojarra-spring-boot-autoconfigure</artifactId>
                 <version>${jsf-spring-boot-starter.version}</version>
             </dependency>
             <dependency>
@@ -197,17 +209,27 @@
             </dependency>
             <dependency>
                 <groupId>com.github.persapiens</groupId>
-                <artifactId>jsf-myfaces-spring-boot-starter</artifactId>
+                <artifactId>jsf-omnifaces-spring-boot-autoconfigure</artifactId>
+                <version>${jsf-spring-boot-starter.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.github.persapiens</groupId>
+                <artifactId>jsf-primefaces-spring-boot-autoconfigure</artifactId>
+                <version>${jsf-spring-boot-starter.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.github.persapiens</groupId>
+                <artifactId>jsf-angularfaces-spring-boot-autoconfigure</artifactId>
+                <version>${jsf-spring-boot-starter.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.github.persapiens</groupId>
+                <artifactId>jsf-bootsfaces-spring-boot-autoconfigure</artifactId>
                 <version>${jsf-spring-boot-starter.version}</version>
             </dependency>
             <dependency>
                 <groupId>com.github.persapiens</groupId>
                 <artifactId>jsf-jetty-spring-boot-autoconfigure</artifactId>
-                <version>${jsf-spring-boot-starter.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>com.github.persapiens</groupId>
-                <artifactId>jsf-jetty-spring-boot-starter</artifactId>
                 <version>${jsf-spring-boot-starter.version}</version>
             </dependency>
             <dependency>
@@ -222,12 +244,28 @@
             </dependency>
             <dependency>
                 <groupId>com.github.persapiens</groupId>
-                <artifactId>jsf-undertow-spring-boot-starter</artifactId>
+                <artifactId>jsf-undertow-myfaces-spring-boot-autoconfigure</artifactId>
+                <version>${jsf-spring-boot-starter.version}</version>
+            </dependency>
+            
+            <dependency>
+                <groupId>com.github.persapiens</groupId>
+                <artifactId>jsf-spring-boot-starter</artifactId>
                 <version>${jsf-spring-boot-starter.version}</version>
             </dependency>
             <dependency>
                 <groupId>com.github.persapiens</groupId>
-                <artifactId>jsf-undertow-myfaces-spring-boot-autoconfigure</artifactId>
+                <artifactId>jsf-myfaces-spring-boot-starter</artifactId>
+                <version>${jsf-spring-boot-starter.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.github.persapiens</groupId>
+                <artifactId>jsf-jetty-spring-boot-starter</artifactId>
+                <version>${jsf-spring-boot-starter.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.github.persapiens</groupId>
+                <artifactId>jsf-undertow-spring-boot-starter</artifactId>
                 <version>${jsf-spring-boot-starter.version}</version>
             </dependency>
         </dependencies>        

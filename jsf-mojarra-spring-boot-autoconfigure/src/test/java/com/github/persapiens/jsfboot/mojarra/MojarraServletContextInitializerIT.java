@@ -2,20 +2,22 @@ package com.github.persapiens.jsfboot.mojarra;
 
 import com.github.persapiens.jsfboot.JsfClassFactory;
 import static com.github.persapiens.jsfboot.mojarra.MojarraServletContextInitializer.ANOTHER_FACES_CONFIG;
+import com.sun.faces.facelets.compiler.UIText;
 import java.util.Set;
+import javax.faces.component.html.HtmlPanelGroup;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import net.bootsfaces.component.tree.TreeRenderer;
 import org.testng.annotations.Test;
 import org.testng.annotations.BeforeSuite;
-import org.omnifaces.component.input.Form;
-import org.omnifaces.converter.SelectItemsIndexConverter;
-import org.omnifaces.validator.RequiredCheckboxValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.SpringApplicationConfiguration;
 import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
 import org.springframework.test.context.web.WebAppConfiguration;
 import static org.assertj.core.api.Assertions.assertThat;
+import org.omnifaces.component.input.Form;
+import org.omnifaces.converter.SelectItemsIndexConverter;
+import org.omnifaces.validator.RequiredCheckboxValidator;
 
 @SpringApplicationConfiguration(classes = MojarraSpringBootAutoConfiguration.class)
 @WebAppConfiguration
@@ -36,19 +38,27 @@ public class MojarraServletContextInitializerIT extends AbstractTestNGSpringCont
             .build().find();        
     }
     
-	public void testOmniFacesSelectItemsIndexConverter() {        
+	public void testJavaxFacesHtmlPanelGroup() {        
+		assertThat(classes).contains(HtmlPanelGroup.class);
+	}
+    
+	public void testMojarraUIText() {        
+		assertThat(classes).contains(UIText.class);
+	}
+    
+	public void testOmnifacesSelectItemsIndexConverter() {        
 		assertThat(classes).contains(SelectItemsIndexConverter.class);
 	}
     
-	public void testOmniFacesRequiredCheckboxValidator() {        
+	public void testOmnifacesRequiredCheckboxValidator() {        
 		assertThat(classes).contains(RequiredCheckboxValidator.class);
 	}
     
-	public void testOmniFacesFormComponent() {        
+	public void testOmnifacesFormComponent() {        
 		assertThat(classes).contains(Form.class);
 	}
     
-	public void testButterFacesTreeRenderer() {        
+	public void testBootsfacesTreeRenderer() {        
 		assertThat(classes).contains(TreeRenderer.class);
 	}
 

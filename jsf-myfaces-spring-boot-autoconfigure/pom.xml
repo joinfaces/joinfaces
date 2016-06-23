@@ -28,6 +28,7 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
+            <optional>true</optional>
             <scope>test</scope>
         </dependency>
         <dependency>
@@ -42,9 +43,10 @@
             <optional>true</optional>
         </dependency>
         <dependency>
-            <groupId>org.apache.myfaces.core</groupId>
-            <artifactId>myfaces-bundle</artifactId>
+            <groupId>org.reflections</groupId>
+            <artifactId>reflections</artifactId>
             <optional>true</optional>
+            <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>org.omnifaces</groupId>
@@ -53,10 +55,15 @@
             <scope>test</scope>
         </dependency>
         <dependency>
-            <groupId>org.reflections</groupId>
-            <artifactId>reflections</artifactId>
+            <groupId>net.bootsfaces</groupId>
+            <artifactId>bootsfaces</artifactId>
             <optional>true</optional>
             <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.myfaces.core</groupId>
+            <artifactId>myfaces-bundle</artifactId>
+            <optional>true</optional>
         </dependency>
     </dependencies>
 </project>

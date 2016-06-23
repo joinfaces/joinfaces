@@ -1,0 +1,13 @@
+jsf:
+  # bootsfaces namespace
+  bootsfaces:
+    theme: bootstrap
+    usetheme: yes
+    useViewport: yes
+    getFontawesomeFromCdn: yes
+    getJqueryFromCdn: yes
+    getJqueryuiFromCdn: yes
+    getBootstrapFromCdn: yes
+    blockUI: no
+    defaults:
+      renderLabel: myRenderLabel

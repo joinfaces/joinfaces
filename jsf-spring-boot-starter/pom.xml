@@ -40,6 +40,26 @@
             <artifactId>jsf-spring-boot-autoconfigure</artifactId>
         </dependency>
         <dependency>
+            <groupId>com.github.persapiens</groupId>
+            <artifactId>jsf-mojarra-spring-boot-autoconfigure</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.github.persapiens</groupId>
+            <artifactId>jsf-omnifaces-spring-boot-autoconfigure</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.github.persapiens</groupId>
+            <artifactId>jsf-primefaces-spring-boot-autoconfigure</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.github.persapiens</groupId>
+            <artifactId>jsf-angularfaces-spring-boot-autoconfigure</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.github.persapiens</groupId>
+            <artifactId>jsf-bootsfaces-spring-boot-autoconfigure</artifactId>
+        </dependency>
+        <dependency>
             <groupId>org.glassfish</groupId>
             <artifactId>javax.faces</artifactId>
         </dependency>
