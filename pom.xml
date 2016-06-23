@@ -78,15 +78,15 @@
         <module>jsf-bootsfaces-spring-boot-autoconfigure</module>
         <module>jsf-angularfaces-spring-boot-autoconfigure</module>
         <module>jsf-jetty-spring-boot-autoconfigure</module>
-        <module>jsf-undertow-spring-boot-autoconfigure</module>
         <module>jsf-jetty-myfaces-spring-boot-autoconfigure</module>
+        <module>jsf-undertow-spring-boot-autoconfigure</module>
         <module>jsf-undertow-myfaces-spring-boot-autoconfigure</module>
 
         <module>jsf-spring-boot-starter</module>
-        <module>jsf-jetty-spring-boot-starter</module>
-        <module>jsf-undertow-spring-boot-starter</module>
         <module>jsf-myfaces-spring-boot-starter</module>
+        <module>jsf-jetty-spring-boot-starter</module>
         <module>jsf-jetty-myfaces-spring-boot-starter</module>
+        <module>jsf-undertow-spring-boot-starter</module>
         <module>jsf-undertow-myfaces-spring-boot-starter</module>
     </modules>
 
