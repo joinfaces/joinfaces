@@ -104,7 +104,7 @@ By default, JSF Spring Boot Starter requires [Java 7](http://java.com) and [Spri
 
 ## Structure
 
-This software is multi module [Maven](http://maven.apache.org) project. See what's inside each submodule:
+This software is multi module [Maven](http://maven.apache.org) project and follows [Spring Boot Reference](http://docs.spring.io/spring-boot/docs/current/reference/html/boot-features-developing-auto-configuration.html) to create JSF Auto Configuration. See what's inside each submodule:
 
 Submodule | Description
 ------------ | -------------
