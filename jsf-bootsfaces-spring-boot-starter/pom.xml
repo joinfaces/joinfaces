@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>com.github.persapiens</groupId>
+        <artifactId>jsf-spring-boot-parent</artifactId>
+        <version>1.5.2-SNAPSHOT</version>
+    </parent>
+    
+    <groupId>com.github.persapiens</groupId>
+    <artifactId>jsf-bootsfaces-spring-boot-starter</artifactId>
+    <name>JSF BootsFaces Spring Boot Starter</name>
+    <version>1.5.2-SNAPSHOT</version>
+    <description>Jsf Spring Boot Starter for Tomcat and Mojarra and BootsFaces</description>
+
+    <properties>
+        <primefaces.version>5.3</primefaces.version>
+        <primefaces-extensions.version>4.0.0</primefaces-extensions.version>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>com.github.persapiens</groupId>
+            <artifactId>jsf-spring-boot-starter</artifactId>
+            <exclusions>
+                <exclusion>
+                    <groupId>com.github.persapiens</groupId>
+                    <artifactId>jsf-primefaces-spring-boot-autoconfigure</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        <dependency>
+            <groupId>com.github.persapiens</groupId>
+            <artifactId>jsf-primefaces53-spring-boot-autoconfigure</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.github.persapiens</groupId>
+            <artifactId>jsf-angularfaces-spring-boot-autoconfigure</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.github.persapiens</groupId>
+            <artifactId>jsf-bootsfaces-spring-boot-autoconfigure</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>net.bootsfaces</groupId>
+            <artifactId>bootsfaces</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>de.beyondjava</groupId>
+            <artifactId>angularFaces-core</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.primefaces</groupId>
+            <artifactId>primefaces</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.primefaces.extensions</groupId>
+            <artifactId>all-themes</artifactId>
+        </dependency>        
+        <dependency>
+            <groupId>org.primefaces.extensions</groupId>
+            <artifactId>primefaces-extensions</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.primefaces.extensions</groupId>
+            <artifactId>resources-ckeditor</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.primefaces.extensions</groupId>
+            <artifactId>resources-codemirror</artifactId>
+        </dependency>
+    </dependencies>
+</project>

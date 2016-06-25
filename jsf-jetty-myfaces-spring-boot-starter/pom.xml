@@ -24,6 +24,10 @@
                     <groupId>org.glassfish</groupId>
                     <artifactId>javax.faces</artifactId>
                 </exclusion>
+                <exclusion>
+                    <groupId>com.github.persapiens</groupId>
+                    <artifactId>jsf-mojarra-spring-boot-autoconfigure</artifactId>
+                </exclusion>
             </exclusions>
         </dependency>
         <!-- myfaces dependencies -->

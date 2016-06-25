@@ -52,14 +52,6 @@
             <artifactId>jsf-primefaces-spring-boot-autoconfigure</artifactId>
         </dependency>
         <dependency>
-            <groupId>com.github.persapiens</groupId>
-            <artifactId>jsf-angularfaces-spring-boot-autoconfigure</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>com.github.persapiens</groupId>
-            <artifactId>jsf-bootsfaces-spring-boot-autoconfigure</artifactId>
-        </dependency>
-        <dependency>
             <groupId>org.glassfish</groupId>
             <artifactId>javax.faces</artifactId>
         </dependency>
@@ -87,14 +79,7 @@
             <groupId>org.primefaces.extensions</groupId>
             <artifactId>resources-codemirror</artifactId>
         </dependency>
-        <dependency>
-            <groupId>net.bootsfaces</groupId>
-            <artifactId>bootsfaces</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>de.beyondjava</groupId>
-            <artifactId>angularFaces-core</artifactId>
-        </dependency>
+
         <dependency>
             <groupId>javax.enterprise</groupId>
             <artifactId>cdi-api</artifactId>

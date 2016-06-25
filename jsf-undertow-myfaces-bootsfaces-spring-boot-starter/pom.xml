@@ -9,16 +9,16 @@
     </parent>
     
     <groupId>com.github.persapiens</groupId>
-    <artifactId>jsf-myfaces-spring-boot-starter</artifactId>
-    <name>JSF MyFaces Spring Boot Starter</name>
+    <artifactId>jsf-undertow-myfaces-bootsfaces-spring-boot-starter</artifactId>
+    <name>JSF Undertow MyFaces BootsFaces Spring Boot Starter</name>
     <version>1.5.2-SNAPSHOT</version>
-    <description>Jsf Spring Boot Starter for Tomcat and MyFaces</description>
+    <description>Jsf Spring Boot Starter for Undertow and MyFaces and BootsFaces</description>
 
     <dependencies>
-        <!-- remove mojarra dependencies -->
+        <!-- undertow and bootsfaces dependencies without mojarra -->
         <dependency>
             <groupId>com.github.persapiens</groupId>
-            <artifactId>jsf-spring-boot-starter</artifactId>
+            <artifactId>jsf-undertow-bootsfaces-spring-boot-starter</artifactId>
             <exclusions>
                 <exclusion>
                     <groupId>org.glassfish</groupId>
@@ -36,12 +36,20 @@
             <artifactId>jsf-myfaces-spring-boot-autoconfigure</artifactId>
         </dependency>
         <dependency>
+            <groupId>com.github.persapiens</groupId>
+            <artifactId>jsf-undertow-myfaces-spring-boot-autoconfigure</artifactId>
+        </dependency>
+        <dependency>
             <groupId>org.apache.myfaces.core</groupId>
             <artifactId>myfaces-bundle</artifactId>
         </dependency>        
         <dependency>
             <groupId>commons-digester</groupId>
             <artifactId>commons-digester</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.tomcat.embed</groupId>
+            <artifactId>tomcat-embed-jasper</artifactId>
         </dependency>
     </dependencies>
 </project>

@@ -9,16 +9,16 @@
     </parent>
     
     <groupId>com.github.persapiens</groupId>
-    <artifactId>jsf-myfaces-spring-boot-starter</artifactId>
-    <name>JSF MyFaces Spring Boot Starter</name>
+    <artifactId>jsf-myfaces-bootsfaces-spring-boot-starter</artifactId>
+    <name>JSF MyFaces BootsFaces Spring Boot Starter</name>
     <version>1.5.2-SNAPSHOT</version>
-    <description>Jsf Spring Boot Starter for Tomcat and MyFaces</description>
+    <description>Jsf Spring Boot Starter for Tomcat and MyFaces and BootsFaces</description>
 
     <dependencies>
         <!-- remove mojarra dependencies -->
         <dependency>
             <groupId>com.github.persapiens</groupId>
-            <artifactId>jsf-spring-boot-starter</artifactId>
+            <artifactId>jsf-bootsfaces-spring-boot-starter</artifactId>
             <exclusions>
                 <exclusion>
                     <groupId>org.glassfish</groupId>
