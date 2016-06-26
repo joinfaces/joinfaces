@@ -4,6 +4,7 @@
         <actionName>CUSTOM-site</actionName>
         <displayName>site</displayName>
         <goals>
+            <goal>clean</goal>
             <goal>site</goal>
         </goals>
     </action>
@@ -24,6 +25,7 @@
         <actionName>CUSTOM-pmd-cpd-jdepend-findbugs</actionName>
         <displayName>pmd-cpd-jdepend-findbugs</displayName>
         <goals>
+            <goal>clean</goal>
             <goal>verify</goal>
         </goals>
         <activatedProfiles>
