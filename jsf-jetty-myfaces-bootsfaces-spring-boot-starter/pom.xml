@@ -5,13 +5,13 @@
     <parent>
         <groupId>com.github.persapiens</groupId>
         <artifactId>jsf-spring-boot-parent</artifactId>
-        <version>1.6.0</version>
+        <version>1.6.1-SNAPSHOT</version>
     </parent>
     
     <groupId>com.github.persapiens</groupId>
     <artifactId>jsf-jetty-myfaces-bootsfaces-spring-boot-starter</artifactId>
     <name>JSF Jetty MyFaces BootsFaces Spring Boot Starter</name>
-    <version>1.6.0</version>
+    <version>1.6.1-SNAPSHOT</version>
     <description>Jsf Spring Boot Starter for Jetty and MyFaces and BootsFaces</description>
 
     <dependencies>
