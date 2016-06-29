@@ -663,6 +663,13 @@
                                 <goals>
                                     <goal>test-aggregate-jar</goal>
                                 </goals>
+                                <configuration>
+                                    <additionalDependencies>
+                                        <groupId>${project.groupId}</groupId>
+                                        <artifactId>${project.artifactId}</artifactId>
+                                        <version>${project.version}</version>
+                                    </additionalDependencies>
+                                </configuration>
                             </execution>
                         </executions>
                     </plugin>
