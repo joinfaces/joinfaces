@@ -15,7 +15,7 @@ It also aims to solve [JSF](http://www.oracle.com/technetwork/java/javaee/javase
 
 ## How to use
 
-[Jsf Spring Boot Starter Example](https://github.com/persapiens/jsf-spring-boot-starter-example) shows JSF Spring Boot Starter usage.
+[Jsf Spring Boot Starter Example](https://github.com/persapiens/jsf-spring-boot-starter-example) shows JSF Spring Boot Starter usage. It may help you to choose the JSF Spring Boot Starter that fits your needs.
 
 ## Key Features
 
@@ -53,8 +53,8 @@ standard (javax.faces) | jsf | jsf.PROJECT_STAGE: Development | [application.yml
 [bootsfaces](http://bootsfaces.net/) | jsf.bootsfaces | jsf.bootsfaces.USETHEME: true | [application.yml](https://github.com/persapiens/jsf-spring-boot-starter/blob/master/jsf-bootsfaces-spring-boot-autoconfigure/src/test/resources/application.yml)
 [omnifaces](http://omnifaces.org/) | jsf.omnifaces | jsf.omnifaces.FACES_VIEWS_ENABLED: true | [application.yml](https://github.com/persapiens/jsf-spring-boot-starter/blob/master/jsf-omnifaces-spring-boot-autoconfigure/src/test/resources/application.yml)
 [angularfaces](http://angularfaces.com/) | jsf.angularfaces | jsf.angularfaces.addLabels: true | [application.yml](https://github.com/persapiens/jsf-spring-boot-starter/blob/master/jsf-angularfaces-spring-boot-autoconfigure/src/test/resources/application.yml)
-[mojarra](https://javaserverfaces.java.net/) (com.sun.faces) | jsf.mojarra | jsf.mojarra.preferXHTML: true | [application.yml](https://github.com/persapiens/jsf-spring-boot-starter/blob/master/jsf-mojarra-spring-boot-autoconfigure/src/test/resources/application.yml)
-[myfaces](http://myfaces.apache.org/) (org.apache.myfaces) | jsf.myfaces | jsf.myfaces.PRETTY_HTML: true | [application.yml](https://github.com/persapiens/jsf-spring-boot-starter/blob/master/jsf-myfaces-spring-boot-autoconfigure/src/test/resources/application.yml)
+[mojarra](https://javaserverfaces.java.net/) | jsf.mojarra | jsf.mojarra.preferXHTML: true | [application.yml](https://github.com/persapiens/jsf-spring-boot-starter/blob/master/jsf-mojarra-spring-boot-autoconfigure/src/test/resources/application.yml)
+[myfaces](http://myfaces.apache.org/) | jsf.myfaces | jsf.myfaces.PRETTY_HTML: true | [application.yml](https://github.com/persapiens/jsf-spring-boot-starter/blob/master/jsf-myfaces-spring-boot-autoconfigure/src/test/resources/application.yml)
 [jetty](http://www.eclipse.org/jetty) | jsf.jetty | jsf.jetty.classPathResource: META-INF/resources | [application.yml](https://github.com/persapiens/jsf-spring-boot-starter/blob/master/jsf-jetty-spring-boot-autoconfigure/src/test/resources/application.yml)
 [undertow](http://undertow.io) | jsf.undertow | jsf.undertow.classPathResource: META-INF/resources | [application.yml](https://github.com/persapiens/jsf-spring-boot-starter/blob/master/jsf-undertow-spring-boot-autoconfigure/src/test/resources/application.yml)
 
