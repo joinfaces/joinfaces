@@ -21,7 +21,7 @@
         <jsf-spring-boot-starter.version>1.6.1-SNAPSHOT</jsf-spring-boot-starter.version>
         
         <testng.version>6.9.10</testng.version>
-        <assertj.version>3.4.1</assertj.version>
+        <assertj.version>3.5.1</assertj.version>
         <lombok.version>1.16.8</lombok.version>
         <lombok-maven-plugin.version>1.16.8.0</lombok-maven-plugin.version>        
         
