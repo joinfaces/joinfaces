@@ -28,7 +28,7 @@
         <javax.faces.version>2.2.13</javax.faces.version>
         <myfaces.version>2.2.10</myfaces.version>
 
-        <omnifaces.version>1.13</omnifaces.version>
+        <omnifaces.version>1.14</omnifaces.version>
         
         <primefaces.version>6.0</primefaces.version>        
         <all-themes.version>1.0.8</all-themes.version>
