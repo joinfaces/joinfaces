@@ -14,25 +14,10 @@
     <version>1.6.1-SNAPSHOT</version>
     <description>Jsf Spring Boot Starter for Tomcat and Mojarra and BootsFaces</description>
 
-    <properties>
-        <primefaces.version>5.3</primefaces.version>
-        <primefaces-extensions.version>4.0.0</primefaces-extensions.version>
-    </properties>
-
     <dependencies>
         <dependency>
             <groupId>com.github.persapiens</groupId>
             <artifactId>jsf-spring-boot-starter</artifactId>
-            <exclusions>
-                <exclusion>
-                    <groupId>com.github.persapiens</groupId>
-                    <artifactId>jsf-primefaces-spring-boot-autoconfigure</artifactId>
-                </exclusion>
-            </exclusions>
-        </dependency>
-        <dependency>
-            <groupId>com.github.persapiens</groupId>
-            <artifactId>jsf-primefaces53-spring-boot-autoconfigure</artifactId>
         </dependency>
         <dependency>
             <groupId>com.github.persapiens</groupId>
@@ -49,26 +34,6 @@
         <dependency>
             <groupId>de.beyondjava</groupId>
             <artifactId>angularFaces-core</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.primefaces</groupId>
-            <artifactId>primefaces</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.primefaces.extensions</groupId>
-            <artifactId>all-themes</artifactId>
-        </dependency>        
-        <dependency>
-            <groupId>org.primefaces.extensions</groupId>
-            <artifactId>primefaces-extensions</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.primefaces.extensions</groupId>
-            <artifactId>resources-ckeditor</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.primefaces.extensions</groupId>
-            <artifactId>resources-codemirror</artifactId>
         </dependency>
     </dependencies>
 </project>
