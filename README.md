@@ -18,6 +18,8 @@ It also aims to solve [JSF](http://www.oracle.com/technetwork/java/javaee/javase
 
 [Jsf Spring Boot Starter Example](https://github.com/persapiens/jsf-spring-boot-starter-example) shows JSF Spring Boot Starter usage. It may help you to choose the JSF Spring Boot Starter that fits your needs.
 
+You can find more examples [here.](https://github.com/persapiens/jsf-spring-boot-starter/wiki/Some-examples-of--JSF-Spring-Boot-Starter-usage)
+
 ## Key Features
 
 ### Twelve JSF Spring Boot Starters available
@@ -109,32 +111,4 @@ By default, JSF Spring Boot Starter requires [Java 7](http://java.com) and [Spri
 
 ## Structure
 
-This software is multi module [Maven](http://maven.apache.org) project and follows [Spring Boot Reference](http://docs.spring.io/spring-boot/docs/current/reference/html/boot-features-developing-auto-configuration.html) to create JSF Auto Configuration. See what's inside each submodule:
-
-Submodule | Description
------------- | -------------
-[jsf-spring-boot-integration](jsf-spring-boot-integration)	| Integration solutions for [JSF](http://www.oracle.com/technetwork/java/javaee/javaserverfaces-139869.html) and [Spring Boot](http://projects.spring.io/spring-boot/) like [JSF](http://www.oracle.com/technetwork/java/javaee/javaserverfaces-139869.html) and [CDI](http://www.cdi-spec.org/) annotations support and [Spring Security](http://projects.spring.io/spring-security/) JSF Facelet Tag support
-[jsf-spring-boot-autoconfigure](jsf-spring-boot-autoconfigure)	| Jsf Spring Boot Autoconfiguration for Standard JavaxFaces
-[jsf-mojarra-spring-boot-autoconfigure](jsf-spring-boot-autoconfigure)	| Jsf Spring Boot Autoconfiguration for [Mojarra](https://javaserverfaces.java.net/)
-[jsf-myfaces-spring-boot-autoconfigure](jsf-myfaces-spring-boot-autoconfigure)	| Jsf Spring Boot AutoConfiguration for [MyFaces](http://myfaces.apache.org/)
-[jsf-omnifaces-spring-boot-autoconfigure](jsf-spring-boot-autoconfigure)	| Jsf Spring Boot Autoconfiguration for [OmniFaces](http://omnifaces.org/)
-[jsf-primefaces-spring-boot-autoconfigure](jsf-spring-boot-autoconfigure)	| Jsf Spring Boot Autoconfiguration for  [PrimeFaces](http://primefaces.org/)
-[jsf-primefaces53-spring-boot-autoconfigure](jsf-spring-boot-autoconfigure)	| Jsf Spring Boot Autoconfiguration for  [PrimeFaces 5.3](http://primefaces.org/)
-[jsf-bootsfaces-spring-boot-autoconfigure](jsf-spring-boot-autoconfigure)	| Jsf Spring Boot Autoconfiguration for  [BootsFaces](http://bootsfaces.net/)
-[jsf-angularfaces-spring-boot-autoconfigure](jsf-spring-boot-autoconfigure)	| Jsf Spring Boot Autoconfiguration for  [AngularFaces](http://angularfaces.net/)
-[jsf-jetty-spring-boot-autoconfigure](jsf-jetty-spring-boot-autoconfigure)	| Jsf Spring Boot AutoConfiguration for [Jetty](http://www.eclipse.org/jetty)
-[jsf-jetty-myfaces-spring-boot-autoconfigure](jsf-jetty-myfaces-spring-boot-autoconfigure)	| Jsf Spring Boot AutoConfiguration for [Jetty](http://www.eclipse.org/jetty) and [MyFaces](http://myfaces.apache.org/)
-[jsf-undertow-spring-boot-autoconfigure](jsf-undertow-spring-boot-autoconfigure) | Jsf Spring Boot AutoConfiguration for [Undertow](http://undertow.io)
-[jsf-undertow-myfaces-spring-boot-autoconfigure](jsf-undertow-myfaces-spring-boot-autoconfigure) | Jsf Spring Boot AutoConfiguration for [Undertow](http://undertow.io) and [MyFaces](http://myfaces.apache.org/)
-[jsf-spring-boot-starter](jsf-spring-boot-starter)	| Jsf Spring Boot Starter for [Tomcat](http://tomcat.apache.org/) and [Mojarra](https://javaserverfaces.java.net/) and [PrimeFaces 6.0](http://primefaces.org)
-[jsf-bootsfaces-spring-boot-starter](jsf-bootsfaces-spring-boot-starter)	| Jsf Spring Boot Starter for [Tomcat](http://tomcat.apache.org/) and [Mojarra](https://javaserverfaces.java.net/) and [PrimeFaces 5.3](http://primefaces.org) and [BootsFaces](http://bootsfaces.net)
-[jsf-myfaces-spring-boot-starter](jsf-myfaces-spring-boot-starter)	| Jsf Spring Boot Starter for [Tomcat](http://tomcat.apache.org/) and [MyFaces](http://myfaces.apache.org/) and [PrimeFaces 6.0](http://primefaces.org)
-[jsf-myfaces-bootsfaces-spring-boot-starter](jsf-myfaces-bootsfaces-spring-boot-starter)	| Jsf Spring Boot Starter for [Tomcat](http://tomcat.apache.org/) and [MyFaces](http://myfaces.apache.org/) and [PrimeFaces 5.3](http://primefaces.org) and [BootsFaces](http://bootsfaces.net)
-[jsf-jetty-spring-boot-starter](jsf-jetty-spring-boot-starter)	| Jsf Spring Boot Starter for [Jetty](http://www.eclipse.org/jetty) and [Mojarra](https://javaserverfaces.java.net/) and [PrimeFaces 6.0](http://primefaces.org)
-[jsf-jetty-bootsfaces-spring-boot-starter](jsf-jetty-bootsfaces-spring-boot-starter)	| Jsf Spring Boot Starter for [Jetty](http://www.eclipse.org/jetty) and [Mojarra](https://javaserverfaces.java.net/) and [PrimeFaces 5.3](http://primefaces.org) and [BootsFaces](http://bootsfaces.net)
-[jsf-jetty-myfaces-spring-boot-starter](jsf-jetty-myfaces-spring-boot-starter)	| Jsf Spring Boot Starter for [Jetty](http://www.eclipse.org/jetty) and [MyFaces](http://myfaces.apache.org/) and [PrimeFaces 6.0](http://primefaces.org)
-[jsf-jetty-myfaces-bootsfaces-spring-boot-starter](jsf-jetty-myfaces-bootsfaces-spring-boot-starter)	| Jsf Spring Boot Starter for [Jetty](http://www.eclipse.org/jetty) and [MyFaces](http://myfaces.apache.org/) and [PrimeFaces 5.3](http://primefaces.org) and [BootsFaces](http://bootsfaces.net)
-[jsf-undertow-spring-boot-starter](jsf-undertow-spring-boot-starter) | Jsf Spring Boot Starter for [Undertow](http://undertow.io) and [Mojarra](https://javaserverfaces.java.net/) and [PrimeFaces 6.0](http://primefaces.org)
-[jsf-undertow-bootsfaces-spring-boot-starter](jsf-undertow-bootsfaces-spring-boot-starter) | Jsf Spring Boot Starter for [Undertow](http://undertow.io) and [Mojarra](https://javaserverfaces.java.net/) and [PrimeFaces 5.3](http://primefaces.org) and [BootsFaces](http://bootsfaces.net)
-[jsf-undertow-myfaces-spring-boot-starter](jsf-undertow-myfaces-spring-boot-starter) | Jsf Spring Boot Starter for [Undertow](http://undertow.io) and [MyFaces](http://myfaces.apache.org/) and [PrimeFaces 6.0](http://primefaces.org)
-[jsf-undertow-myfaces-bootsfaces-spring-boot-starter](jsf-undertow-myfaces-bootsfaces-spring-boot-starter) | Jsf Spring Boot Starter for [Undertow](http://undertow.io) and [MyFaces](http://myfaces.apache.org/) and [PrimeFaces 5.3](http://primefaces.org) and [BootsFaces](http://bootsfaces.net)
+This software is multi module [Maven](http://maven.apache.org) project and follows [Spring Boot Reference](http://docs.spring.io/spring-boot/docs/current/reference/html/boot-features-developing-auto-configuration.html) to create JSF Auto Configuration. [See what's inside each submodule.](https://github.com/persapiens/jsf-spring-boot-starter/wiki/Structure-of-the-software)
