@@ -5,13 +5,13 @@
     <parent>
         <groupId>com.github.persapiens</groupId>
         <artifactId>jsf-spring-boot-parent</artifactId>
-        <version>1.6.1</version>
+        <version>1.6.2-SNAPSHOT</version>
     </parent>
     
     <groupId>com.github.persapiens</groupId>
     <artifactId>jsf-spring-boot-integration</artifactId>
     <name>JSF Spring Boot Integration</name>
-    <version>1.6.1</version>
+    <version>1.6.2-SNAPSHOT</version>
     <description>Jsf Spring Boot Integration</description>
 
     <dependencies>

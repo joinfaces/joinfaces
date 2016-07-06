@@ -5,13 +5,13 @@
     <parent>
         <groupId>com.github.persapiens</groupId>
         <artifactId>jsf-spring-boot-parent</artifactId>
-        <version>1.6.1</version>
+        <version>1.6.2-SNAPSHOT</version>
     </parent>
     
     <groupId>com.github.persapiens</groupId>
     <artifactId>jsf-primefaces-spring-boot-autoconfigure</artifactId>
     <name>JSF PrimeFaces Spring Boot AutoConfigure</name>
-    <version>1.6.1</version>
+    <version>1.6.2-SNAPSHOT</version>
     <description>Jsf Spring Boot AutoConfigure for PrimeFaces</description>
 
     <dependencies>
