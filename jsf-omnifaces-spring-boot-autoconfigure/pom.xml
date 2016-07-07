@@ -5,13 +5,13 @@
     <parent>
         <groupId>com.github.persapiens</groupId>
         <artifactId>jsf-spring-boot-parent</artifactId>
-        <version>1.6.2-SNAPSHOT</version>
+        <version>1.7.0-SNAPSHOT</version>
     </parent>
     
     <groupId>com.github.persapiens</groupId>
     <artifactId>jsf-omnifaces-spring-boot-autoconfigure</artifactId>
     <name>JSF OmniFaces Spring Boot AutoConfigure</name>
-    <version>1.6.2-SNAPSHOT</version>
+    <version>1.7.0-SNAPSHOT</version>
     <description>Jsf Spring Boot AutoConfigure for OmniFaces</description>
 
     <dependencies>
