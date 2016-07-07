@@ -88,6 +88,7 @@
 
         <module>jsf-spring-boot-starter</module>
         <module>jsf-bootsfaces-spring-boot-starter</module>
+        <module>jsf-butterfaces-spring-boot-starter</module>
         <module>jsf-myfaces-spring-boot-starter</module>
         <module>jsf-myfaces-bootsfaces-spring-boot-starter</module>
         <module>jsf-jetty-spring-boot-starter</module>
@@ -281,6 +282,11 @@
             <dependency>
                 <groupId>com.github.persapiens</groupId>
                 <artifactId>jsf-bootsfaces-spring-boot-starter</artifactId>
+                <version>${jsf-spring-boot-starter.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.github.persapiens</groupId>
+                <artifactId>jsf-butterfaces-spring-boot-starter</artifactId>
                 <version>${jsf-spring-boot-starter.version}</version>
             </dependency>
             <dependency>
