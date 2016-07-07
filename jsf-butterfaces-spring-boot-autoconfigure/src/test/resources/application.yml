@@ -1,0 +1,28 @@
+jsf:
+  # butterfaces namespace
+  butterfaces:
+    ajaxDisableRenderRegionsOnRequest: yes
+    ajaxProcessingGlyphiconOnRequest: Processing
+    ajaxProcessingTextOnRequest: Processing
+    autoTrimInputFields: yes
+    provideBootstrap: yes    
+    provideJQuery: yes
+    maxLengthText: '{0} of {1} characters'
+    noEntriesText: No matching entries...
+    spinnerText: Fetching data...
+    useCompressedResources: yes
+    integration:
+      primefaces:
+        disableJQuery: true
+    glyphicon:
+      collapsing: o_collape
+      expansion: o_expand
+      options: glyphicon glyphicon-th
+      refresh: glyphicon glyphicon-refresh
+      order:
+        left: glyphicon glyphicon-chevron-left
+        right: glyphicon glyphicon-chevron-right
+      sort:
+        ascending: glyphicon glyphicon-chevron-down
+        descending: glyphicon glyphicon-chevron-up
+        none: glyphicon glyphicon-chevron-right

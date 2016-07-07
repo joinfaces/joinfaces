@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>com.github.persapiens</groupId>
+        <artifactId>jsf-spring-boot-parent</artifactId>
+        <version>1.6.2-SNAPSHOT</version>
+    </parent>
+    
+    <groupId>com.github.persapiens</groupId>
+    <artifactId>jsf-butterfaces-spring-boot-autoconfigure</artifactId>
+    <name>JSF ButterFaces Spring Boot AutoConfigure</name>
+    <version>1.6.2-SNAPSHOT</version>
+    <description>Jsf Spring Boot AutoConfigure for ButterFaces</description>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter</artifactId>
+            <optional>true</optional>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+            <optional>true</optional>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <optional>true</optional>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-configuration-processor</artifactId>
+            <optional>true</optional>
+        </dependency>
+        
+        <dependency>
+            <groupId>com.github.persapiens</groupId>
+            <artifactId>jsf-spring-boot-autoconfigure</artifactId>
+            <optional>true</optional>
+        </dependency>
+        <dependency>
+            <groupId>org.reflections</groupId>
+            <artifactId>reflections</artifactId>
+            <optional>true</optional>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>de.larmic.butterfaces</groupId>
+            <artifactId>components</artifactId>
+            <optional>true</optional>
+        </dependency>
+    </dependencies>
+</project>

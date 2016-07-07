@@ -36,7 +36,9 @@
 
         <bootsfaces.version>0.9.0</bootsfaces.version>
         <angularfaces.version>2.1.11</angularfaces.version>
-                        
+
+        <butterfaces.version>2.1.8</butterfaces.version>
+                                                                        
         <cdi.version>1.2</cdi.version>
         <reflections.version>0.9.10</reflections.version>
         
@@ -78,6 +80,7 @@
         <module>jsf-primefaces53-spring-boot-autoconfigure</module>
         <module>jsf-bootsfaces-spring-boot-autoconfigure</module>
         <module>jsf-angularfaces-spring-boot-autoconfigure</module>
+        <module>jsf-butterfaces-spring-boot-autoconfigure</module>
         <module>jsf-jetty-spring-boot-autoconfigure</module>
         <module>jsf-jetty-myfaces-spring-boot-autoconfigure</module>
         <module>jsf-undertow-spring-boot-autoconfigure</module>
@@ -193,6 +196,11 @@
                 <artifactId>angularFaces-core</artifactId>
                 <version>${angularfaces.version}</version>
             </dependency>
+            <dependency>
+                <groupId>de.larmic.butterfaces</groupId>
+                <artifactId>components</artifactId>
+                <version>${butterfaces.version}</version>
+            </dependency>
             
             <dependency>
                 <groupId>com.github.persapiens</groupId>
@@ -237,6 +245,11 @@
             <dependency>
                 <groupId>com.github.persapiens</groupId>
                 <artifactId>jsf-bootsfaces-spring-boot-autoconfigure</artifactId>
+                <version>${jsf-spring-boot-starter.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.github.persapiens</groupId>
+                <artifactId>jsf-butterfaces-spring-boot-autoconfigure</artifactId>
                 <version>${jsf-spring-boot-starter.version}</version>
             </dependency>
             <dependency>
