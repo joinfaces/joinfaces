@@ -31,3 +31,13 @@
 /jsf-butterfaces-spring-boot-autoconfigure/target/
 /jsf-bootsfaces-spring-boot-starter (copy)/target/
 /jsf-butterfaces-spring-boot-starter/target/
+/jsf-jetty-bootsfaces-spring-boot-starter (copy)/target/
+/jsf-jetty-myfaces-bootsfaces-spring-boot-starter (copy)/target/
+/jsf-myfaces-bootsfaces-spring-boot-starter (copy)/target/
+/jsf-undertow-bootsfaces-spring-boot-starter (copy)/target/
+/jsf-undertow-myfaces-bootsfaces-spring-boot-starter (copy)/target/
+/jsf-jetty-butterfaces-spring-boot-starter/target/
+/jsf-jetty-myfaces-butterfaces-spring-boot-starter/target/
+/jsf-myfaces-butterfaces-spring-boot-starter/target/
+/jsf-undertow-butterfaces-spring-boot-starter/target/
+/jsf-undertow-myfaces-butterfaces-spring-boot-starter/target/
