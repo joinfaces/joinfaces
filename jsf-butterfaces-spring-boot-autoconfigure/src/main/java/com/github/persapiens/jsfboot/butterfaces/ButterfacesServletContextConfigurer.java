@@ -9,8 +9,6 @@ public class ButterfacesServletContextConfigurer extends ServletContextConfigure
 
     private ButterfacesProperties butterfacesProperties;
 
-    public static final String PREFFIX = "org.butterfaces.";
-
     @Builder
     public ButterfacesServletContextConfigurer(ButterfacesProperties butterfacesProperties, ServletContext servletContext) {
         super(servletContext, "");
@@ -41,6 +39,8 @@ public class ButterfacesServletContextConfigurer extends ServletContextConfigure
         setInitParameter(WebXmlParameters.CTX_PARAM_SPINNER_TEXT, butterfacesProperties.getSpinnerText());
         setInitParameter(WebXmlParameters.CTX_PARAM_USE_COMPRESSED_RESOURCES, butterfacesProperties.getUseCompressedResources());
         
-        setInitParameter(PREFFIX + "get_jquery_from_cdn", "true");
+        // this bootsfaces parameters should be set to work with butterfaces
+        // https://github.com/ButterFaces/bootsfaces-integration
+        setInitParameter("net.bootsfaces.get_jquery_from_cdn", "true");
     }
 }
