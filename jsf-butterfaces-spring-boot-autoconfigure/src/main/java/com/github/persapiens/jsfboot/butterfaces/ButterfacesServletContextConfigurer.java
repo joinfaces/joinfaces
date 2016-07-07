@@ -40,5 +40,7 @@ public class ButterfacesServletContextConfigurer extends ServletContextConfigure
         setInitParameter(WebXmlParameters.CTX_PARAM_SORT_GLYPHICON, butterfacesProperties.getGlyphicon().getSort().getNone());
         setInitParameter(WebXmlParameters.CTX_PARAM_SPINNER_TEXT, butterfacesProperties.getSpinnerText());
         setInitParameter(WebXmlParameters.CTX_PARAM_USE_COMPRESSED_RESOURCES, butterfacesProperties.getUseCompressedResources());
+        
+        setInitParameter(PREFFIX + "get_jquery_from_cdn", "true");
     }
 }

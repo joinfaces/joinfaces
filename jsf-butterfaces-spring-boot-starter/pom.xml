@@ -21,6 +21,14 @@
         </dependency>
         <dependency>
             <groupId>com.github.persapiens</groupId>
+            <artifactId>jsf-bootsfaces-spring-boot-autoconfigure</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>net.bootsfaces</groupId>
+            <artifactId>bootsfaces</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.github.persapiens</groupId>
             <artifactId>jsf-butterfaces-spring-boot-autoconfigure</artifactId>
         </dependency>
         <dependency>
