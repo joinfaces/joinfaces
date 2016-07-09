@@ -1,114 +1,132 @@
+/*
+ * Copyright 2016-2016 the original author or authors.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 package com.github.persapiens.jsfboot.omnifaces;
 
 import org.testng.annotations.Test;
-import static org.assertj.core.api.Assertions.assertThat;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.SpringApplicationConfiguration;
 import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
 import org.springframework.test.context.web.WebAppConfiguration;
+
+import static org.assertj.core.api.Assertions.assertThat;
 
 @SpringApplicationConfiguration(classes = OmnifacesSpringBootAutoConfiguration.class)
 @WebAppConfiguration
 @Test
 public class OmnifacesPropertiesIT extends AbstractTestNGSpringContextTests {
 
-    @Autowired
-    private OmnifacesProperties omnifacesProperties;
+	@Autowired
+	private OmnifacesProperties omnifacesProperties;
 
 	public void testCacheProvider() {
-		assertThat(omnifacesProperties.getCacheProvider()).isEqualTo("myCacheProvider");
+		assertThat(this.omnifacesProperties.getCacheProvider()).isEqualTo("myCacheProvider");
 	}
-    
+
 	public void testDefaultcache() {
-		assertThat(omnifacesProperties.getDefaultcache()).isEqualTo("myCache");
+		assertThat(this.omnifacesProperties.getDefaultcache()).isEqualTo("myCache");
 	}
 
 	public void testExceptionTypesToUnwrap() {
-		assertThat(omnifacesProperties.getExceptionTypesToUnwrap()).isEqualTo("myException");
+		assertThat(this.omnifacesProperties.getExceptionTypesToUnwrap()).isEqualTo("myException");
 	}
 
 	public void testFacesViewsDispatchMethod() {
-		assertThat(omnifacesProperties.getFacesViewsDispatchMethod()).isEqualTo("myFacesMethod");
+		assertThat(this.omnifacesProperties.getFacesViewsDispatchMethod()).isEqualTo("myFacesMethod");
 	}
 
 	public void testFacesViewsEnabled() {
-		assertThat(omnifacesProperties.getFacesViewsEnabled()).isTrue();
+		assertThat(this.omnifacesProperties.getFacesViewsEnabled()).isTrue();
 	}
 
 	public void testFacesViewsExtensionAction() {
-		assertThat(omnifacesProperties.getFacesViewsExtensionAction()).isEqualTo("extensionAction");
+		assertThat(this.omnifacesProperties.getFacesViewsExtensionAction()).isEqualTo("extensionAction");
 	}
 
 	public void testFacesViewsFilterAfterDeclaredFilters() {
-		assertThat(omnifacesProperties.getFacesViewsFilterAfterDeclaredFilters()).isEqualTo("myView");
+		assertThat(this.omnifacesProperties.getFacesViewsFilterAfterDeclaredFilters()).isEqualTo("myView");
 	}
 
 	public void testFacesViewsPathAction() {
-		assertThat(omnifacesProperties.getFacesViewsPathAction()).isEqualTo("pathAction");
+		assertThat(this.omnifacesProperties.getFacesViewsPathAction()).isEqualTo("pathAction");
 	}
 
 	public void testFacesViewsScanPaths() {
-		assertThat(omnifacesProperties.getFacesViewsScanPaths()).isEqualTo("scanPath");
+		assertThat(this.omnifacesProperties.getFacesViewsScanPaths()).isEqualTo("scanPath");
 	}
 
 	public void testFacesViewsScannedViewsAlwaysExtensionless() {
-		assertThat(omnifacesProperties.getFacesViewsScannedViewsAlwaysExtensionless()).isTrue();
+		assertThat(this.omnifacesProperties.getFacesViewsScannedViewsAlwaysExtensionless()).isTrue();
 	}
 
 	public void testFacesViewsViewHandlerMode() {
-		assertThat(omnifacesProperties.getFacesViewsViewHandlerMode()).isEqualTo("myMode");
+		assertThat(this.omnifacesProperties.getFacesViewsViewHandlerMode()).isEqualTo("myMode");
 	}
 
 	public void testHtml5RenderKitPassthroughAttributes() {
-		assertThat(omnifacesProperties.getHtml5RenderKitPassthroughAttributes()).isEqualTo("myAttribute");
+		assertThat(this.omnifacesProperties.getHtml5RenderKitPassthroughAttributes()).isEqualTo("myAttribute");
 	}
 
 	public void testCdnResourceHandlerDisabled() {
-		assertThat(omnifacesProperties.getCdnResourceHandlerDisabled()).isTrue();
+		assertThat(this.omnifacesProperties.getCdnResourceHandlerDisabled()).isTrue();
 	}
 
 	public void testCdnResourceHandlerUrls() {
-		assertThat(omnifacesProperties.getCdnResourceHandlerUrls()).isEqualTo("myurl");
+		assertThat(this.omnifacesProperties.getCdnResourceHandlerUrls()).isEqualTo("myurl");
 	}
-        
+
 	public void testCombinedResourceHandlerCacheTtl() {
-		assertThat(omnifacesProperties.getCombinedResourceHandlerCacheTtl()).isEqualTo(15);
+		assertThat(this.omnifacesProperties.getCombinedResourceHandlerCacheTtl()).isEqualTo(15);
 	}
 
 	public void testCombinedResourceHandlerDisabled() {
-		assertThat(omnifacesProperties.getCombinedResourceHandlerDisabled()).isTrue();
+		assertThat(this.omnifacesProperties.getCombinedResourceHandlerDisabled()).isTrue();
 	}
 
 	public void testCombinedResourceHandlerExcludedResources() {
-		assertThat(omnifacesProperties.getCombinedResourceHandlerExcludedResources()).isEqualTo("excludedResource");
+		assertThat(this.omnifacesProperties.getCombinedResourceHandlerExcludedResources()).isEqualTo("excludedResource");
 	}
 
 	public void testCombinedResourceHandlerInlineCss() {
-		assertThat(omnifacesProperties.getCombinedResourceHandlerInlineCss()).isTrue();
+		assertThat(this.omnifacesProperties.getCombinedResourceHandlerInlineCss()).isTrue();
 	}
 
 	public void testCombinedResourceHandlerInlineJs() {
-		assertThat(omnifacesProperties.getCombinedResourceHandlerInlineJs()).isTrue();
+		assertThat(this.omnifacesProperties.getCombinedResourceHandlerInlineJs()).isTrue();
 	}
 
 	public void testCombinedResourceHandlerSuppressedResources() {
-		assertThat(omnifacesProperties.getCombinedResourceHandlerSuppressedResources()).isEqualTo("suppressedResource");
+		assertThat(this.omnifacesProperties.getCombinedResourceHandlerSuppressedResources()).isEqualTo("suppressedResource");
 	}
 
 	public void testCacheApplicationMaxCapacity() {
-		assertThat(omnifacesProperties.getCache().getApplicationMaxCapacity()).isEqualTo(10);
+		assertThat(this.omnifacesProperties.getCache().getApplicationMaxCapacity()).isEqualTo(10);
 	}
 
 	public void testCacheApplicationTtl() {
-		assertThat(omnifacesProperties.getCache().getApplicationTtl()).isEqualTo(11);
+		assertThat(this.omnifacesProperties.getCache().getApplicationTtl()).isEqualTo(11);
 	}
 
 	public void testCacheSessionMaxCapacity() {
-		assertThat(omnifacesProperties.getCache().getSessionMaxCapacity()).isEqualTo(12);
+		assertThat(this.omnifacesProperties.getCache().getSessionMaxCapacity()).isEqualTo(12);
 	}
 
 	public void testCacheSessionTtl() {
-		assertThat(omnifacesProperties.getCache().getSessionTtl()).isEqualTo(13);
+		assertThat(this.omnifacesProperties.getCache().getSessionTtl()).isEqualTo(13);
 	}
 
 }
