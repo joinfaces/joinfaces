@@ -24,7 +24,8 @@ import javax.servlet.ServletResponse;
 import org.springframework.security.taglibs.authz.AbstractAuthorizeTag;
 
 /**
- * Implement some abstract methods using jsf technology
+ * Implement some abstract methods using jsf technology.
+ * @author Marcelo Fernandes
  */
 public class AbstractFaceletsAuthorizeTag extends AbstractAuthorizeTag {
 

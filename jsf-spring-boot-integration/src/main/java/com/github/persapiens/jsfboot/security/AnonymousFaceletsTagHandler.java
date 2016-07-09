@@ -23,22 +23,16 @@ import javax.faces.view.facelets.FaceletContext;
 import javax.faces.view.facelets.TagConfig;
 import javax.faces.view.facelets.TagHandler;
 
-import org.springframework.security.taglibs.authz.AbstractAuthorizeTag;
-
+/**
+ * TagHandler of anonymous user.
+ * @author Marcelo Fernandes
+ */
 public class AnonymousFaceletsTagHandler extends TagHandler {
 
-	/**
-	 * A default constructor. Callers of this constructor are responsible for
-	 * setting one or more of the tag attributes in
-	 * {@link AbstractAuthorizeTag}.
-	 */
 	public AnonymousFaceletsTagHandler(TagConfig config) {
 		super(config);
 	}
 
-	/**
-	 * @see TagHandler#apply(FaceletContext, UIComponent)
-	 */
 	public void apply(FaceletContext faceletContext, UIComponent parent) throws IOException {
 		AnonymousFaceletsTag anonymousTag = new AnonymousFaceletsTag();
 

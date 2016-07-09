@@ -28,6 +28,7 @@ import org.springframework.util.StringUtils;
 /**
  * A concrete implementation of {@link AbstractAuthorizeTag} for use with
  * standard Facelets rendering technology.
+ * @author Marcelo Fernandes
  */
 public class AuthorizeFaceletsTag extends AbstractFaceletsAuthorizeTag {
 

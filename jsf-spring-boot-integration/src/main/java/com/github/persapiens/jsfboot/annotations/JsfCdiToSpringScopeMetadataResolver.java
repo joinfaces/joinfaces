@@ -25,7 +25,8 @@ import org.springframework.context.annotation.AnnotationScopeMetadataResolver;
 import org.springframework.context.annotation.ScopeMetadata;
 
 /**
- * Spring Metadata Resolver to support cdi and jsf annotations
+ * Spring Metadata Resolver to support cdi and jsf annotations.
+ * @author Marcelo Fernandes
  */
 public class JsfCdiToSpringScopeMetadataResolver
 	extends AnnotationScopeMetadataResolver {
@@ -34,7 +35,7 @@ public class JsfCdiToSpringScopeMetadataResolver
 		.getLogger(JsfCdiToSpringScopeMetadataResolver.class);
 
 	/**
-	 * Discover spring scope using bean definition
+	 * Discover spring scope using bean definition.
 	 *
 	 * @param definition bean definition
 	 * @return scope metadata

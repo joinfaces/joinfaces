@@ -21,7 +21,8 @@ import org.springframework.beans.factory.config.BeanFactoryPostProcessor;
 import org.springframework.beans.factory.config.ConfigurableListableBeanFactory;
 
 /**
- * Add custom jsf cdi scope implementations
+ * Add custom jsf cdi scope implementations.
+ * @author Marcelo Fernandes
  */
 public class JsfCdiToSpringBeanFactoryPostProcessor implements BeanFactoryPostProcessor {
 

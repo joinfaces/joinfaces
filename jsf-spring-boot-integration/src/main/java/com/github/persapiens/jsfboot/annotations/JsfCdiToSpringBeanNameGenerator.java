@@ -25,7 +25,8 @@ import org.springframework.beans.factory.support.BeanDefinitionRegistry;
 import org.springframework.context.annotation.AnnotationBeanNameGenerator;
 
 /**
- * Spring Bean Name Generator to support cdi and jsf annotations
+ * Spring Bean Name Generator to support cdi and jsf annotations.
+ * @author Marcelo Fernandes
  */
 public class JsfCdiToSpringBeanNameGenerator
 	extends AnnotationBeanNameGenerator {

@@ -35,6 +35,11 @@ import org.springframework.test.context.web.WebAppConfiguration;
 @WebAppConfiguration
 public class FaceletsTagUtilsIT extends JsfIT {
 
+	public void testConstructor() {
+		assertThat(new FaceletsTagUtils())
+			.isNotNull();
+	}
+
 	public void testAnonymous() throws IOException {
 		Authentication authentication = AuthenticationFactory.authentication(Roles.ROLE_A);
 		new SpringSecurityMock().init(authentication);

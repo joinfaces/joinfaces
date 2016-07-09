@@ -19,17 +19,33 @@ package com.github.persapiens.jsfboot.annotations;
 import java.util.Set;
 
 /**
- * Convert jsf and cdi enterprise annotation types to spring scope
+ * Convert jsf and cdi enterprise annotation types to spring scope.
+ * @author Marcelo Fernandes
  */
 public final class JsfCdiToSpring {
 
-	public final static String REQUEST = "request";
-	public final static String SESSION = "session";
-	public final static String SINGLETON = "singleton";
-	public final static String PROTOTYPE = "prototype";
-	public final static String VIEW = "view";
+	/**
+	 * Constant for request scope.
+	 */
+	public static final String REQUEST = "request";
+	/**
+	 * Constant for session scope.
+	 */
+	public static final String SESSION = "session";
+	/**
+	 * Constant for singleton scope.
+	 */
+	public static final String SINGLETON = "singleton";
+	/**
+	 * Constant for prototype scope.
+	 */
+	public static final String PROTOTYPE = "prototype";
+	/**
+	 * Constant for view scope.
+	 */
+	public static final String VIEW = "view";
 
-	private JsfCdiToSpring() {
+	protected JsfCdiToSpring() {
 	}
 
 	public static String scopeName(Set<String> annotationTypes) {

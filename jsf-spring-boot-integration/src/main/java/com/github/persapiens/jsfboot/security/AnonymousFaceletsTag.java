@@ -21,13 +21,14 @@ import org.springframework.security.taglibs.authz.AbstractAuthorizeTag;
 /**
  * A concrete implementation of {@link AbstractAuthorizeTag} for use with
  * standard Facelets rendering technology.
+ * @author Marcelo Fernandes
  */
 public class AnonymousFaceletsTag extends AbstractFaceletsAuthorizeTag {
 
 	/**
 	 * A default constructor. Callers of this constructor are responsible for
 	 * setting one or more of the tag attributes in
-	 * {@link AbstractAuthorizeTag}.
+	 * {@link AbstractFaceletsAuthorizeTag}.
 	 */
 	public AnonymousFaceletsTag() {
 		setAccess("isAnonymous()");

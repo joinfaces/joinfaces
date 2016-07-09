@@ -23,13 +23,14 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
 import org.springframework.web.context.support.AnnotationConfigWebApplicationContext;
 
 /**
- * Jsf Cdi to Spring application context initializer
+ * Jsf Cdi to Spring application context initializer.
+ * @author Marcelo Fernandes
  */
 public class JsfCdiToSpringApplicationContextInitializer implements ApplicationContextInitializer<ConfigurableApplicationContext> {
 
 	/**
 	 * Add scope metadata resolver, bean name generator and bean factory post
-	 * processor to enable jsf cdi annotations in spring
+	 * processor to enable jsf cdi annotations in spring.
 	 */
 	@Override
 	public void initialize(ConfigurableApplicationContext c) {

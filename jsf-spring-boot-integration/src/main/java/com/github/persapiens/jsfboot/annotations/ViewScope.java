@@ -24,7 +24,8 @@ import org.springframework.beans.factory.ObjectFactory;
 import org.springframework.beans.factory.config.Scope;
 
 /**
- * Implementation of view scope
+ * Implementation of view scope.
+ * @author Marcelo Fernandes
  */
 public class ViewScope implements Scope {
 

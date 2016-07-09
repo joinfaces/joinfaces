@@ -21,6 +21,7 @@ import org.springframework.security.taglibs.authz.AbstractAuthorizeTag;
 /**
  * A concrete implementation of {@link AbstractAuthorizeTag} for use with
  * standard Facelets rendering technology.
+ * @author Marcelo Fernandes
  */
 public class AuthenticatedFaceletsTag extends AbstractFaceletsAuthorizeTag {
 

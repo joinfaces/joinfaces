@@ -118,4 +118,8 @@ public class JsfCdiToSpringTest {
 			.isNull();
 	}
 
+	public void testConstructor() {
+		assertThat(new JsfCdiToSpring())
+			.isNotNull();
+	}
 }
