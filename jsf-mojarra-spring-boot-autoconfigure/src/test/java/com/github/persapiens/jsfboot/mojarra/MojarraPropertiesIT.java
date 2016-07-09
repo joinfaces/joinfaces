@@ -1,202 +1,220 @@
+/*
+ * Copyright 2016-2016 the original author or authors.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 package com.github.persapiens.jsfboot.mojarra;
 
 import org.testng.annotations.Test;
-import static org.assertj.core.api.Assertions.assertThat;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.SpringApplicationConfiguration;
 import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
 import org.springframework.test.context.web.WebAppConfiguration;
+
+import static org.assertj.core.api.Assertions.assertThat;
 
 @SpringApplicationConfiguration(classes = MojarraSpringBootAutoConfiguration.class)
 @WebAppConfiguration
 @Test
 public class MojarraPropertiesIT extends AbstractTestNGSpringContextTests {
 
-    @Autowired
-    private MojarraProperties mojarraProperties;
-        
+	@Autowired
+	private MojarraProperties mojarraProperties;
+
 	public void testClientStateTimeout() {
-		assertThat(mojarraProperties.getClientStateTimeout()).isEqualTo(10);
+		assertThat(this.mojarraProperties.getClientStateTimeout()).isEqualTo(10);
 	}
 
 	public void testClientStateWriteBufferSize() {
-		assertThat(mojarraProperties.getClientStateWriteBufferSize()).isEqualTo(11);
+		assertThat(this.mojarraProperties.getClientStateWriteBufferSize()).isEqualTo(11);
 	}
 
 	public void testCompressViewState() {
-		assertThat(mojarraProperties.getCompressViewState()).isTrue();
+		assertThat(this.mojarraProperties.getCompressViewState()).isTrue();
 	}
 
 	public void testDisableClientStateEncryption() {
-		assertThat(mojarraProperties.getDisableClientStateEncryption()).isTrue();
+		assertThat(this.mojarraProperties.getDisableClientStateEncryption()).isTrue();
 	}
 
 	public void testEnableClientStateDebugging() {
-		assertThat(mojarraProperties.getEnableClientStateDebugging()).isTrue();
+		assertThat(this.mojarraProperties.getEnableClientStateDebugging()).isTrue();
 	}
 
 	public void testGenerateUniqueServerStateIds() {
-		assertThat(mojarraProperties.getGenerateUniqueServerStateIds()).isTrue();
+		assertThat(this.mojarraProperties.getGenerateUniqueServerStateIds()).isTrue();
 	}
 
 	public void testNumberOfLogicalViews() {
-		assertThat(mojarraProperties.getNumberOfLogicalViews()).isEqualTo(15);
+		assertThat(this.mojarraProperties.getNumberOfLogicalViews()).isEqualTo(15);
 	}
 
 	public void testNumberOfViewsInSession() {
-		assertThat(mojarraProperties.getNumberOfViewsInSession()).isEqualTo(16);
+		assertThat(this.mojarraProperties.getNumberOfViewsInSession()).isEqualTo(16);
 	}
 
 	public void testSerializeServerState() {
-		assertThat(mojarraProperties.getSerializeServerState()).isTrue();
+		assertThat(this.mojarraProperties.getSerializeServerState()).isTrue();
 	}
 
 	public void testWriteStateAtFormEnd() {
-		assertThat(mojarraProperties.getWriteStateAtFormEnd()).isTrue();
+		assertThat(this.mojarraProperties.getWriteStateAtFormEnd()).isTrue();
 	}
 
 	public void testAllowTextChildren() {
-		assertThat(mojarraProperties.getAllowTextChildren()).isTrue();
+		assertThat(this.mojarraProperties.getAllowTextChildren()).isTrue();
 	}
 
 	public void testAutoCompleteOffOnViewState() {
-		assertThat(mojarraProperties.getAutoCompleteOffOnViewState()).isTrue();
+		assertThat(this.mojarraProperties.getAutoCompleteOffOnViewState()).isTrue();
 	}
 
 	public void testCompressJavaScript() {
-		assertThat(mojarraProperties.getCompressJavaScript()).isTrue();
+		assertThat(this.mojarraProperties.getCompressJavaScript()).isTrue();
 	}
 
 	public void testDisableUnicodeEscaping() {
-		assertThat(mojarraProperties.getDisableUnicodeEscaping()).isTrue();
+		assertThat(this.mojarraProperties.getDisableUnicodeEscaping()).isTrue();
 	}
 
 	public void testDisableIdUniquenessCheck() {
-		assertThat(mojarraProperties.getDisableIdUniquenessCheck()).isTrue();
+		assertThat(this.mojarraProperties.getDisableIdUniquenessCheck()).isTrue();
 	}
 
 	public void testEnabledJSStyleHiding() {
-		assertThat(mojarraProperties.getEnabledJSStyleHiding()).isTrue();
+		assertThat(this.mojarraProperties.getEnabledJSStyleHiding()).isTrue();
 	}
 
 	public void testEnableScriptsInAttributeValues() {
-		assertThat(mojarraProperties.getEnableScriptsInAttributeValues()).isTrue();
+		assertThat(this.mojarraProperties.getEnableScriptsInAttributeValues()).isTrue();
 	}
-        
+
 	public void testEnableViewStateIdRendering() {
-		assertThat(mojarraProperties.getEnableViewStateIdRendering()).isTrue();
+		assertThat(this.mojarraProperties.getEnableViewStateIdRendering()).isTrue();
 	}
 
 	public void testPreferXHTML() {
-		assertThat(mojarraProperties.getPreferXHTML()).isTrue();
+		assertThat(this.mojarraProperties.getPreferXHTML()).isTrue();
 	}
 
 	public void testResponseBufferSize() {
-		assertThat(mojarraProperties.getResponseBufferSize()).isEqualTo(20);
+		assertThat(this.mojarraProperties.getResponseBufferSize()).isEqualTo(20);
 	}
 
 	public void testCacheResourceModificationTimestamp() {
-		assertThat(mojarraProperties.getCacheResourceModificationTimestamp()).isTrue();
+		assertThat(this.mojarraProperties.getCacheResourceModificationTimestamp()).isTrue();
 	}
 
 	public void testCompressableMimeTypes() {
-		assertThat(mojarraProperties.getCompressableMimeTypes()).isEqualTo("txt");
+		assertThat(this.mojarraProperties.getCompressableMimeTypes()).isEqualTo("txt");
 	}
 
 	public void testDefaultResourceMaxAge() {
-		assertThat(mojarraProperties.getDefaultResourceMaxAge()).isEqualTo(30);
+		assertThat(this.mojarraProperties.getDefaultResourceMaxAge()).isEqualTo(30);
 	}
 
 	public void testEnableFaceletsResourceResolverCompositeComponents() {
-		assertThat(mojarraProperties.getEnableFaceletsResourceResolverCompositeComponents()).isTrue();
+		assertThat(this.mojarraProperties.getEnableFaceletsResourceResolverCompositeComponents()).isTrue();
 	}
 
 	public void testEnableMissingResourceLibraryDetection() {
-		assertThat(mojarraProperties.getEnableMissingResourceLibraryDetection()).isTrue();
+		assertThat(this.mojarraProperties.getEnableMissingResourceLibraryDetection()).isTrue();
 	}
 
 	public void testResourceUpdateCheckPeriod() {
-		assertThat(mojarraProperties.getResourceUpdateCheckPeriod()).isEqualTo(50);
+		assertThat(this.mojarraProperties.getResourceUpdateCheckPeriod()).isEqualTo(50);
 	}
 
 	public void testEnableAgressiveSessionDirtying() {
-		assertThat(mojarraProperties.getEnableAgressiveSessionDirtying()).isTrue();
+		assertThat(this.mojarraProperties.getEnableAgressiveSessionDirtying()).isTrue();
 	}
 
 	public void testEnableDistributable() {
-		assertThat(mojarraProperties.getEnableDistributable()).isTrue();
+		assertThat(this.mojarraProperties.getEnableDistributable()).isTrue();
 	}
 
 	public void testAnnotationScanPackages() {
-		assertThat(mojarraProperties.getAnnotationScanPackages()).isEqualTo("mypackage");
+		assertThat(this.mojarraProperties.getAnnotationScanPackages()).isEqualTo("mypackage");
 	}
 
 	public void testDisplayConfiguration() {
-		assertThat(mojarraProperties.getDisplayConfiguration()).isTrue();
+		assertThat(this.mojarraProperties.getDisplayConfiguration()).isTrue();
 	}
-        
+
 	public void testEnableCoreTagLibValidator() {
-		assertThat(mojarraProperties.getEnableCoreTagLibValidator()).isTrue();
+		assertThat(this.mojarraProperties.getEnableCoreTagLibValidator()).isTrue();
 	}
 
 	public void testEnableHtmlTagLibValidator() {
-		assertThat(mojarraProperties.getEnableHtmlTagLibValidator()).isTrue();
+		assertThat(this.mojarraProperties.getEnableHtmlTagLibValidator()).isTrue();
 	}
 
 	public void testEnableLazyBeanValidation() {
-		assertThat(mojarraProperties.getEnableLazyBeanValidation()).isTrue();
+		assertThat(this.mojarraProperties.getEnableLazyBeanValidation()).isTrue();
 	}
 
 	public void testEnableThreading() {
-		assertThat(mojarraProperties.getEnableThreading()).isTrue();
+		assertThat(this.mojarraProperties.getEnableThreading()).isTrue();
 	}
 
 	public void testForceLoadConfiguration() {
-		assertThat(mojarraProperties.getForceLoadConfiguration()).isTrue();
+		assertThat(this.mojarraProperties.getForceLoadConfiguration()).isTrue();
 	}
-        
+
 	public void testValidateXml() {
-		assertThat(mojarraProperties.getValidateXml()).isTrue();
+		assertThat(this.mojarraProperties.getValidateXml()).isTrue();
 	}
 
 	public void testVerifyObjects() {
-		assertThat(mojarraProperties.getVerifyObjects()).isTrue();
+		assertThat(this.mojarraProperties.getVerifyObjects()).isTrue();
 	}
 
 	public void testEnableTransitionTimeNoOpFlash() {
-		assertThat(mojarraProperties.getEnableTransitionTimeNoOpFlash()).isTrue();
+		assertThat(this.mojarraProperties.getEnableTransitionTimeNoOpFlash()).isTrue();
 	}
 
 	public void testExpressionFactory() {
-		assertThat(mojarraProperties.getExpressionFactory()).isEqualTo("myExpressionFactory");
+		assertThat(this.mojarraProperties.getExpressionFactory()).isEqualTo("myExpressionFactory");
 	}
 
 	public void testForceAlwaysWriteFlashCookie() {
-		assertThat(mojarraProperties.getForceAlwaysWriteFlashCookie()).isTrue();
+		assertThat(this.mojarraProperties.getForceAlwaysWriteFlashCookie()).isTrue();
 	}
-        
+
 	public void testInjectionProvider() {
-		assertThat(mojarraProperties.getInjectionProvider()).isEqualTo("myInjectionProvider");
+		assertThat(this.mojarraProperties.getInjectionProvider()).isEqualTo("myInjectionProvider");
 	}
 
 	public void testNamespaceParameters() {
-		assertThat(mojarraProperties.getNamespaceParameters()).isTrue();
+		assertThat(this.mojarraProperties.getNamespaceParameters()).isTrue();
 	}
 
 	public void testRegisterConverterPropertyEditors() {
-		assertThat(mojarraProperties.getRegisterConverterPropertyEditors()).isTrue();
+		assertThat(this.mojarraProperties.getRegisterConverterPropertyEditors()).isTrue();
 	}
 
 	public void testSendPoweredByHeader() {
-		assertThat(mojarraProperties.getSendPoweredByHeader()).isTrue();
+		assertThat(this.mojarraProperties.getSendPoweredByHeader()).isTrue();
 	}
 
 	public void testSerializationProvider() {
-		assertThat(mojarraProperties.getSerializationProvider()).isEqualTo("myProvider");
+		assertThat(this.mojarraProperties.getSerializationProvider()).isEqualTo("myProvider");
 	}
 
 	public void testFaceletFactory() {
-		assertThat(mojarraProperties.getFaceletFactory()).isEqualTo("myFactory");
+		assertThat(this.mojarraProperties.getFaceletFactory()).isEqualTo("myFactory");
 	}
 
 }
