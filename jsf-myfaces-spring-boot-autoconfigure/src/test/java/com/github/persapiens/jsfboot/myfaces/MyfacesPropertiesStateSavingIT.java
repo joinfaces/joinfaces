@@ -1,153 +1,171 @@
+/*
+ * Copyright 2016-2016 the original author or authors.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 package com.github.persapiens.jsfboot.myfaces;
 
 import org.testng.annotations.Test;
-import static org.assertj.core.api.Assertions.assertThat;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.SpringApplicationConfiguration;
 import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
 import org.springframework.test.context.web.WebAppConfiguration;
+
+import static org.assertj.core.api.Assertions.assertThat;
 
 @SpringApplicationConfiguration(classes = MyfacesSpringBootAutoConfiguration.class)
 @WebAppConfiguration
 @Test
 public class MyfacesPropertiesStateSavingIT extends AbstractTestNGSpringContextTests {
 
-    @Autowired
-    private MyfacesProperties myfacesProperties;
+	@Autowired
+	private MyfacesProperties myfacesProperties;
 
-    private static final String SHA1PRNG = "SHA1PRNG";
-    private static final String AUTO = "auto";
-    
+	private static final String SHA1PRNG = "SHA1PRNG";
+	private static final String AUTO = "auto";
+
 	public void testRenderViewstateId() {
-		assertThat(myfacesProperties.getRenderViewstateId()).isTrue();
+		assertThat(this.myfacesProperties.getRenderViewstateId()).isTrue();
 	}
 
 	public void testRefreshTransientBuildOnPss() {
-		assertThat(myfacesProperties.getRefreshTransientBuildOnPss()).isEqualTo(AUTO);
+		assertThat(this.myfacesProperties.getRefreshTransientBuildOnPss()).isEqualTo(AUTO);
 	}
 
 	public void testRefreshTransientBuildOnPssPreserveState() {
-		assertThat(myfacesProperties.getRefreshTransientBuildOnPssPreserveState()).isTrue();
+		assertThat(this.myfacesProperties.getRefreshTransientBuildOnPssPreserveState()).isTrue();
 	}
 
 	public void testNumberOfViewsInSession() {
-		assertThat(myfacesProperties.getNumberOfViewsInSession()).isEqualTo(20);
+		assertThat(this.myfacesProperties.getNumberOfViewsInSession()).isEqualTo(20);
 	}
 
 	public void testNumberOfSequentialViewsInSession() {
-		assertThat(myfacesProperties.getNumberOfSequentialViewsInSession()).isEqualTo(4);
+		assertThat(this.myfacesProperties.getNumberOfSequentialViewsInSession()).isEqualTo(4);
 	}
-                
+
 	public void testNumberOfFlashTokensInSession() {
-		assertThat(myfacesProperties.getNumberOfFlashTokensInSession()).isEqualTo(5);
+		assertThat(this.myfacesProperties.getNumberOfFlashTokensInSession()).isEqualTo(5);
 	}
 
 	public void testFacesFlowClientWindowIdsInSession() {
-		assertThat(myfacesProperties.getFacesFlowClientWindowIdsInSession()).isEqualTo(6);
+		assertThat(this.myfacesProperties.getFacesFlowClientWindowIdsInSession()).isEqualTo(6);
 	}
 
 	public void testUseEncryption() {
-		assertThat(myfacesProperties.getUseEncryption()).isTrue();
+		assertThat(this.myfacesProperties.getUseEncryption()).isTrue();
 	}
 
 	public void testSecret() {
-		assertThat(myfacesProperties.getSecret()).isEqualTo("mySecret");
+		assertThat(this.myfacesProperties.getSecret()).isEqualTo("mySecret");
 	}
 
 	public void testAlgorithm() {
-		assertThat(myfacesProperties.getAlgorithm()).isEqualTo("DES");
+		assertThat(this.myfacesProperties.getAlgorithm()).isEqualTo("DES");
 	}
 
 	public void testSecretCache() {
-		assertThat(myfacesProperties.getSecretCache()).isTrue();
+		assertThat(this.myfacesProperties.getSecretCache()).isTrue();
 	}
 
 	public void testAlgorithmIv() {
-		assertThat(myfacesProperties.getAlgorithmIv()).isEqualTo("iv");
+		assertThat(this.myfacesProperties.getAlgorithmIv()).isEqualTo("iv");
 	}
 
 	public void testAlgorithmParameters() {
-		assertThat(myfacesProperties.getAlgorithmParameters()).isEqualTo("ECB/PKCS5Padding");
+		assertThat(this.myfacesProperties.getAlgorithmParameters()).isEqualTo("ECB/PKCS5Padding");
 	}
 
 	public void testSerialFactory() {
-		assertThat(myfacesProperties.getSerialFactory()).isEqualTo("mySerialFactory");
+		assertThat(this.myfacesProperties.getSerialFactory()).isEqualTo("mySerialFactory");
 	}
 
 	public void testCompressStateInClient() {
-		assertThat(myfacesProperties.getCompressStateInClient()).isTrue();
+		assertThat(this.myfacesProperties.getCompressStateInClient()).isTrue();
 	}
 
 	public void testMacAlgorithm() {
-		assertThat(myfacesProperties.getMacAlgorithm()).isEqualTo("HmacSHA1");
+		assertThat(this.myfacesProperties.getMacAlgorithm()).isEqualTo("HmacSHA1");
 	}
 
 	public void testMacSecret() {
-		assertThat(myfacesProperties.getMacSecret()).isEqualTo("myMacSecret");
+		assertThat(this.myfacesProperties.getMacSecret()).isEqualTo("myMacSecret");
 	}
 
 	public void testMacSecretCache() {
-		assertThat(myfacesProperties.getMacSecretCache()).isTrue();
+		assertThat(this.myfacesProperties.getMacSecretCache()).isTrue();
 	}
 
 	public void testRandomKeyInCsrfSessionToken() {
-		assertThat(myfacesProperties.getRandomKeyInCsrfSessionToken()).isEqualTo("none");
+		assertThat(this.myfacesProperties.getRandomKeyInCsrfSessionToken()).isEqualTo("none");
 	}
 
 	public void testRandomKeyInCsrfSessionTokenLength() {
-		assertThat(myfacesProperties.getRandomKeyInCsrfSessionTokenLength()).isEqualTo(16);
+		assertThat(this.myfacesProperties.getRandomKeyInCsrfSessionTokenLength()).isEqualTo(16);
 	}
 
 	public void testRandomKeyInCsrfSessionTokenSecureRandomClass() {
-		assertThat(myfacesProperties.getRandomKeyInCsrfSessionTokenSecureRandomClass()).isEqualTo("mySecureRamdomClass");
+		assertThat(this.myfacesProperties.getRandomKeyInCsrfSessionTokenSecureRandomClass()).isEqualTo("mySecureRamdomClass");
 	}
-    
+
 	public void testRandomKeyInCsrfSessionTokenSecureRandomProvider() {
-		assertThat(myfacesProperties.getRandomKeyInCsrfSessionTokenSecureRandomProvider()).isEqualTo("mySecureRamdomProvider");
+		assertThat(this.myfacesProperties.getRandomKeyInCsrfSessionTokenSecureRandomProvider()).isEqualTo("mySecureRamdomProvider");
 	}
 
 	public void testRandomKeyInCsrfSessionTokenSecureRandomAlgoritm() {
-		assertThat(myfacesProperties.getRandomKeyInCsrfSessionTokenSecureRandomAlgoritm()).isEqualTo(SHA1PRNG);
+		assertThat(this.myfacesProperties.getRandomKeyInCsrfSessionTokenSecureRandomAlgoritm()).isEqualTo(SHA1PRNG);
 	}
 
 	public void testClientViewStateTimeout() {
-		assertThat(myfacesProperties.getClientViewStateTimeout()).isEqualTo(0);
+		assertThat(this.myfacesProperties.getClientViewStateTimeout()).isEqualTo(0);
 	}
 
 	public void testCompressStateInSession() {
-		assertThat(myfacesProperties.getCompressStateInSession()).isTrue();
+		assertThat(this.myfacesProperties.getCompressStateInSession()).isTrue();
 	}
 
 	public void testUseFlashScopePurgeViewsInSession() {
-		assertThat(myfacesProperties.getUseFlashScopePurgeViewsInSession()).isTrue();
+		assertThat(this.myfacesProperties.getUseFlashScopePurgeViewsInSession()).isTrue();
 	}
 
 	public void testRandomKeyInViewStateSessionToken() {
-		assertThat(myfacesProperties.getRandomKeyInViewStateSessionToken()).isEqualTo("myStateSessionToken");
+		assertThat(this.myfacesProperties.getRandomKeyInViewStateSessionToken()).isEqualTo("myStateSessionToken");
 	}
 
 	public void testRandomKeyInViewStateSessionTokenLength() {
-		assertThat(myfacesProperties.getRandomKeyInViewStateSessionTokenLength()).isEqualTo(8);
+		assertThat(this.myfacesProperties.getRandomKeyInViewStateSessionTokenLength()).isEqualTo(8);
 	}
 
 	public void testRandomKeyInViewStateSessionTokenSecureRandomClass() {
-		assertThat(myfacesProperties.getRandomKeyInViewStateSessionTokenSecureRandomClass()).isEqualTo("mySecureRandomClass");
+		assertThat(this.myfacesProperties.getRandomKeyInViewStateSessionTokenSecureRandomClass()).isEqualTo("mySecureRandomClass");
 	}
 
 	public void testRandomKeyInViewStateSessionTokenSecureRandomProvider() {
-		assertThat(myfacesProperties.getRandomKeyInViewStateSessionTokenSecureRandomProvider()).isEqualTo("mySecureRandomProvider");
+		assertThat(this.myfacesProperties.getRandomKeyInViewStateSessionTokenSecureRandomProvider()).isEqualTo("mySecureRandomProvider");
 	}
 
 	public void testRandomKeyInViewStateSessionTokenSecureRandomAlgorithm() {
-		assertThat(myfacesProperties.getRandomKeyInViewStateSessionTokenSecureRandomAlgorithm()).isEqualTo(SHA1PRNG);
+		assertThat(this.myfacesProperties.getRandomKeyInViewStateSessionTokenSecureRandomAlgorithm()).isEqualTo(SHA1PRNG);
 	}
 
 	public void testAutocompleteOffViewState() {
-		assertThat(myfacesProperties.getAutocompleteOffViewState()).isTrue();
+		assertThat(this.myfacesProperties.getAutocompleteOffViewState()).isTrue();
 	}
 
 	public void testCheckIdProductionMode() {
-		assertThat(myfacesProperties.getCheckIdProductionMode()).isEqualTo(AUTO);
+		assertThat(this.myfacesProperties.getCheckIdProductionMode()).isEqualTo(AUTO);
 	}
 
 }
