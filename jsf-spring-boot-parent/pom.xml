@@ -517,7 +517,7 @@
                 <configuration>
                     <autoVersionSubmodules>true</autoVersionSubmodules>
                     <useReleaseProfile>false</useReleaseProfile>
-                    <releaseProfiles>check-cycles,check-pmd-cpd,check-findbugs,attach-test-jar,attach-source,attach-javadoc,sign-artifacts,nexus-staging</releaseProfiles>
+                    <releaseProfiles>check-checkstyle,check-cycles,check-pmd-cpd,check-findbugs,attach-test-jar,attach-source,attach-javadoc,sign-artifacts,nexus-staging</releaseProfiles>
                     <goals>deploy</goals>
                 </configuration>
             </plugin>            

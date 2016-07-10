@@ -1,6 +1,6 @@
 language: java
 jdk:
   - oraclejdk8
-script: mvn -Pcheck-cycles,check-pmd-cpd,check-findbugs,attach-integration-test verify
+script: mvn -Pcheck-checkstyle,check-cycles,check-pmd-cpd,check-findbugs,attach-integration-test verify
 after_success:
   - mvn -Dlogging.level.root=WARN -Pattach-integration-test cobertura:cobertura-integration-test coveralls:report
