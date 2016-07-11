@@ -53,14 +53,21 @@
         <maven-compiler-plugin.version>3.5.1</maven-compiler-plugin.version>
         <maven-source-plugin.version>3.0.1</maven-source-plugin.version>
         <maven-javadoc-plugin.version>2.10.4</maven-javadoc-plugin.version>
-        
+
+        <check.dir>../jsf-spring-boot-parent/src/checkconfig</check.dir>        
         <findbugs-maven-plugin.version>3.0.3</findbugs-maven-plugin.version>
+        <findbugs.excludeFilterFile>${check.dir}/findbugs/findbugs-exclude.xml</findbugs.excludeFilterFile>
         <jdepend-maven-plugin.version>2.0</jdepend-maven-plugin.version>
         <maven-pmd-plugin.version>3.6</maven-pmd-plugin.version>
+        <pmd.ruleset>${check.dir}/pmd/pmd-ruleset.xml</pmd.ruleset>
+        <pmd.excludeFromFailureFile>${check.dir}/pmd/pmd-exclude.properties</pmd.excludeFromFailureFile>
         <maven-enforcer-plugin.version>1.4.1</maven-enforcer-plugin.version>
         <no-package-cycles-enforcer-rule.version>1.0.5</no-package-cycles-enforcer-rule.version>
         <maven-checkstyle-plugin.version>2.17</maven-checkstyle-plugin.version>
         <checkstyle.version>7.0</checkstyle.version>
+        <checkstyle.configLocation>${check.dir}/checkstyle/checkstyle.xml</checkstyle.configLocation>
+        <checkstyle.suppressionsLocation>${check.dir}/checkstyle/checkstyle-suppressions.xml</checkstyle.suppressionsLocation>
+        <checkstyle.headerLocation>${check.dir}/checkstyle/checkstyle-header.txt</checkstyle.headerLocation>
         
         <maven-failsafe-plugin.version>2.19.1</maven-failsafe-plugin.version>
         <maven-surefire-report-plugin.version>2.19.1</maven-surefire-report-plugin.version>
@@ -364,6 +371,11 @@
                     <groupId>org.sonatype.plugins</groupId>
                     <artifactId>nexus-staging-maven-plugin</artifactId>
                     <version>${nexus-staging-maven-plugin.version}</version>
+                    <configuration>
+                        <serverId>ossrh</serverId>
+                        <nexusUrl>https://oss.sonatype.org/</nexusUrl>
+                        <autoReleaseAfterClose>true</autoReleaseAfterClose>
+                    </configuration>
                 </plugin>            
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
@@ -374,11 +386,22 @@
                     <groupId>org.codehaus.mojo</groupId>
                     <artifactId>cobertura-maven-plugin</artifactId>
                     <version>${cobertura-maven-plugin.version}</version>
+                    <configuration>
+                        <formats>
+                            <format>html</format>
+                            <format>xml</format>
+                        </formats>
+                    </configuration>
                 </plugin>
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-compiler-plugin</artifactId>
                     <version>${maven-compiler-plugin.version}</version>
+                    <configuration>
+                        <source>${java.version}</source>
+                        <target>${java.version}</target>
+                        <showDeprecation>true</showDeprecation>
+                    </configuration>
                 </plugin>
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
@@ -389,11 +412,25 @@
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-pmd-plugin</artifactId>
                     <version>${maven-pmd-plugin.version}</version>
+                    <configuration>
+                        <targetJdk>${java.source}</targetJdk>
+                        <includeTests>true</includeTests>
+                        <rulesets>
+                            <ruleset>${pmd.ruleset}</ruleset>
+                        </rulesets>
+                        <excludeFromFailureFile>${pmd.excludeFromFailureFile}</excludeFromFailureFile>
+                    </configuration>
                 </plugin>
                 <plugin>
                     <groupId>org.codehaus.mojo</groupId>
                     <artifactId>findbugs-maven-plugin</artifactId>
                     <version>${findbugs-maven-plugin.version}</version>
+                    <configuration>
+                        <includeTests>true</includeTests>
+                        <xmlOutput>true</xmlOutput>
+                        <effort>Max</effort>
+                        <excludeFilterFile>${findbugs.excludeFilterFile}</excludeFilterFile>
+                    </configuration>
                 </plugin>
                 <plugin>
                     <groupId>org.codehaus.mojo</groupId>
@@ -457,10 +494,9 @@
                         </dependency>
                     </dependencies>
                     <configuration>
-                        <skip>false</skip>
-                        <configLocation>src/checkstyle/checkstyle.xml</configLocation>
-                        <suppressionsLocation>src/checkstyle/checkstyle-suppressions.xml</suppressionsLocation>
-                        <headerLocation>src/checkstyle/checkstyle-header.txt</headerLocation>
+                        <configLocation>${checkstyle.configLocation}</configLocation>
+                        <suppressionsLocation>${checkstyle.suppressionsLocation}</suppressionsLocation>
+                        <headerLocation>${checkstyle.headerLocation}</headerLocation>
                         <propertyExpansion>checkstyle.build.directory=${project.build.directory}</propertyExpansion>
                         <encoding>UTF-8</encoding>
                         <consoleOutput>true</consoleOutput>
@@ -474,21 +510,7 @@
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>cobertura-maven-plugin</artifactId>
-                <configuration>
-                    <formats>
-                        <format>html</format>
-                        <format>xml</format>
-                    </formats>
-                </configuration>
             </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <configuration>
-                    <source>${java.version}</source>
-                    <target>${java.version}</target>
-                </configuration>
-            </plugin>    
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-enforcer-plugin</artifactId>
@@ -538,23 +560,12 @@
                 <artifactId>maven-pmd-plugin</artifactId>
                 <configuration>
                     <linkXref>true</linkXref>
-                    <targetJdk>${java.source}</targetJdk>
                     <skipEmptyReport>false</skipEmptyReport>
-                    <includeTests>true</includeTests>
-                    <rulesets>
-                        <ruleset>../jsf-spring-boot-parent/src/pmd-ruleset.xml</ruleset>
-                    </rulesets>
                 </configuration>
             </plugin>
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>findbugs-maven-plugin</artifactId>
-                <configuration>
-                    <failOnError>true</failOnError>
-                    <xmlOutput>true</xmlOutput>
-                    <effort>Max</effort>
-                    <includeTests>true</includeTests>
-                </configuration>
             </plugin>
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
@@ -710,6 +721,7 @@
                                 <phase>validate</phase>
                                 <configuration>
                                     <failsOnError>true</failsOnError>
+                                    <failOnViolation>true</failOnViolation>
                                 </configuration>
                                 <goals>
                                     <goal>check</goal>
@@ -737,7 +749,6 @@
                         </executions>
                         <configuration>
                             <failOnError>true</failOnError>
-                            <includeTests>true</includeTests>
                         </configuration>
                     </plugin>                                               
                 </plugins>
@@ -755,10 +766,6 @@
                             <skip>false</skip>
                             <printFailingErrors>true</printFailingErrors>
                             <verbose>true</verbose>
-                            <includeTests>true</includeTests>
-                            <rulesets>
-                                <ruleset>../jsf-spring-boot-parent/src/pmd-ruleset.xml</ruleset>
-                            </rulesets>
                         </configuration>
                         <executions>
                             <execution>
@@ -868,11 +875,6 @@
                         <groupId>org.sonatype.plugins</groupId>
                         <artifactId>nexus-staging-maven-plugin</artifactId>
                         <extensions>true</extensions>
-                        <configuration>
-                            <serverId>ossrh</serverId>
-                            <nexusUrl>https://oss.sonatype.org/</nexusUrl>
-                            <autoReleaseAfterClose>true</autoReleaseAfterClose>
-                        </configuration>
                     </plugin>
                 </plugins>
             </build>
