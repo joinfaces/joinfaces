@@ -11,7 +11,7 @@
 
     <groupId>com.github.persapiens</groupId>
     <artifactId>jsf-spring-boot-parent</artifactId>
-    <version>1.7.2-SNAPSHOT</version>
+    <version>1.7.1-SNAPSHOT</version>
     <packaging>pom</packaging>
 
     <properties>
@@ -19,7 +19,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <java.version>1.7</java.version>
         
-        <jsf-spring-boot-starter.version>1.7.2-SNAPSHOT</jsf-spring-boot-starter.version>
+        <jsf-spring-boot-starter.version>1.7.1-SNAPSHOT</jsf-spring-boot-starter.version>
         
         <testng.version>6.9.10</testng.version>
         <assertj.version>3.5.1</assertj.version>

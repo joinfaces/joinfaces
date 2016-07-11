@@ -5,14 +5,14 @@
     <parent>
         <groupId>com.github.persapiens</groupId>
         <artifactId>jsf-spring-boot-parent</artifactId>
-        <version>1.7.2-SNAPSHOT</version>
+        <version>1.7.1-SNAPSHOT</version>
         <relativePath>../jsf-spring-boot-parent</relativePath>
     </parent>
     
     <groupId>com.github.persapiens</groupId>
     <artifactId>jsf-spring-boot-autoconfigure</artifactId>
     <name>JSF Spring Boot AutoConfigure</name>
-    <version>1.7.2-SNAPSHOT</version>
+    <version>1.7.1-SNAPSHOT</version>
     <description>Jsf Spring Boot Autoconfigure for JavaxFaces, PrimeFaces, OmniFaces and Mojarra</description>
 
     <dependencies>

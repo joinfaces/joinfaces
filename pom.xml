@@ -4,7 +4,7 @@
 
     <groupId>com.github.persapiens</groupId>
     <artifactId>jsf-spring-boot-build</artifactId>
-    <version>1.7.2-SNAPSHOT</version>
+    <version>1.7.1-SNAPSHOT</version>
     <packaging>pom</packaging>
 
     <properties>
