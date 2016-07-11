@@ -1,42 +1,63 @@
+/*
+ * Copyright 2016-2016 the original author or authors.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 package com.github.persapiens.jsfboot.undertow;
 
-import io.undertow.server.handlers.resource.ClassPathResourceManager;
-import io.undertow.servlet.api.DeploymentInfo;
 import java.net.URL;
 import java.net.URLClassLoader;
 import java.security.AccessController;
 import java.security.PrivilegedAction;
+
+import io.undertow.server.handlers.resource.ClassPathResourceManager;
+import io.undertow.servlet.api.DeploymentInfo;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
 import org.springframework.boot.context.embedded.undertow.UndertowDeploymentInfoCustomizer;
 
 /**
- * Configure undertow to load jsf resources from classpath
+ * Configure undertow to load jsf resources from classpath.
+ * @author Marcelo Fernandes
  */
 public class JsfUndertowDeploymentInfoCustomizer implements UndertowDeploymentInfoCustomizer {
-    
-    private final UndertowProperties undertowProperties;
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(JsfUndertowDeploymentInfoCustomizer.class);
+	private final UndertowProperties undertowProperties;
 
-    public JsfUndertowDeploymentInfoCustomizer(UndertowProperties undertowProperties) {
-        this.undertowProperties = undertowProperties;
-    }
-    
-    @Override
-    public void customize(final DeploymentInfo di) {
-        AccessController.doPrivileged(new PrivilegedAction<Void>() {
-            @Override
-            public Void run() {
-                ClassLoader jsfClassLoader = new URLClassLoader(new URL[0], this.getClass().getClassLoader());
-                di.setClassLoader(jsfClassLoader);
+	private static final Logger LOGGER = LoggerFactory.getLogger(JsfUndertowDeploymentInfoCustomizer.class);
 
-                di.setResourceManager(new ClassPathResourceManager(jsfClassLoader, undertowProperties.getClassPathResource()));
+	public JsfUndertowDeploymentInfoCustomizer(UndertowProperties undertowProperties) {
+		this.undertowProperties = undertowProperties;
+	}
 
-                return null;
-            }
-        });
+	@Override
+	public void customize(final DeploymentInfo di) {
+		AccessController.doPrivileged(new PrivilegedAction<Void>() {
+			@Override
+			public Void run() {
+				ClassLoader jsfClassLoader = new URLClassLoader(new URL[0], this.getClass().getClassLoader());
+				di.setClassLoader(jsfClassLoader);
 
-        LOGGER.info("Setting Undertow classLoader to " + undertowProperties.getClassPathResource() + " directory");
-    }
+				di.setResourceManager(new ClassPathResourceManager(
+					jsfClassLoader, undertowProperties.getClassPathResource()));
+
+				return null;
+			}
+		});
+
+		LOGGER.info("Setting Undertow classLoader to " + undertowProperties.getClassPathResource() + " directory");
+	}
 }

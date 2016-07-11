@@ -1,3 +1,19 @@
+/*
+ * Copyright 2016-2016 the original author or authors.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 package com.github.persapiens.jsfboot.security;
 
 import java.io.IOException;
@@ -11,16 +27,18 @@ import javax.faces.view.facelets.TagHandler;
 import org.springframework.security.core.context.SecurityContextHolder;
 
 /**
- * A standard Facelets {@link TagHandler} for performing Spring Security authorization decisions. The tag supports the
- * following combinations attributes for authorization:
+ * A standard Facelets {@link TagHandler} for performing Spring Security
+ * authorization decisions. The tag supports the following combinations
+ * attributes for authorization:
  * <ul>
  * <li>access</li>
  * <li>url, method</li>
  * <li>ifAllGranted, ifAnyGranted, ifNotGranted</li>
  * </ul>
- * The var attribute can be used to store the result of the authorization decision for later use in the view.
+ * The var attribute can be used to store the result of the authorization
+ * decision for later use in the view.
  *
- * @see AuthorizeFaceletsTag
+ * @author Marcelo Fernandes
  */
 public class AuthorizeFaceletsTagHandler extends TagHandler {
 
@@ -32,9 +50,6 @@ public class AuthorizeFaceletsTagHandler extends TagHandler {
 	private final TagAttribute ifNotGranted;
 	private final TagAttribute var;
 
-	/**
-	 * @see TagHandler#TagHandler(TagConfig)
-	 */
 	public AuthorizeFaceletsTagHandler(TagConfig config) {
 		super(config);
 		this.access = this.getAttribute("access");
@@ -46,18 +61,13 @@ public class AuthorizeFaceletsTagHandler extends TagHandler {
 		this.var = this.getAttribute("var");
 	}
 
-	/**
-	 * @see TagHandler#apply(FaceletContext, UIComponent)
-	 */
-    @Override
+	@Override
 	public void apply(FaceletContext faceletContext, UIComponent parent) throws IOException {
 		if (SecurityContextHolder.getContext().getAuthentication() == null) {
 			return;
 		}
 
-		AuthorizeFaceletsTag authorizeTag = new AuthorizeFaceletsTag(faceletContext
-            , this.access, this.url, this.method, this.ifAllGranted
-            , this.ifAnyGranted, this.ifNotGranted);
+		AuthorizeFaceletsTag authorizeTag = new AuthorizeFaceletsTag(faceletContext, this.access, this.url, this.method, this.ifAllGranted, this.ifAnyGranted, this.ifNotGranted);
 
 		boolean isAuthorized = authorizeTag.authorize();
 

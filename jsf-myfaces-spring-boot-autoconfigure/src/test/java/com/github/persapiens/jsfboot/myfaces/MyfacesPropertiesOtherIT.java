@@ -1,138 +1,156 @@
+/*
+ * Copyright 2016-2016 the original author or authors.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 package com.github.persapiens.jsfboot.myfaces;
 
 import org.testng.annotations.Test;
-import static org.assertj.core.api.Assertions.assertThat;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.SpringApplicationConfiguration;
 import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
 import org.springframework.test.context.web.WebAppConfiguration;
+
+import static org.assertj.core.api.Assertions.assertThat;
 
 @SpringApplicationConfiguration(classes = MyfacesSpringBootAutoConfiguration.class)
 @WebAppConfiguration
 @Test
 public class MyfacesPropertiesOtherIT extends AbstractTestNGSpringContextTests {
 
-    @Autowired
-    private MyfacesProperties myfacesProperties;
+	@Autowired
+	private MyfacesProperties myfacesProperties;
 
 	public void testConfigRefreshPeriod() {
-		assertThat(myfacesProperties.getConfigRefreshPeriod()).isEqualTo(2);
+		assertThat(this.myfacesProperties.getConfigRefreshPeriod()).isEqualTo(2);
 	}
 
 	public void testDelegateFacesServlet() {
-		assertThat(myfacesProperties.getDelegateFacesServlet()).isEqualTo("myFacesServlet");
+		assertThat(this.myfacesProperties.getDelegateFacesServlet()).isEqualTo("myFacesServlet");
 	}
 
 	public void testValidateXml() {
-		assertThat(myfacesProperties.getValidateXml()).isTrue();
+		assertThat(this.myfacesProperties.getValidateXml()).isTrue();
 	}
 
 	public void testDebugPhaseListener() {
-		assertThat(myfacesProperties.getDebugPhaseListener()).isTrue();
+		assertThat(this.myfacesProperties.getDebugPhaseListener()).isTrue();
 	}
 
 	public void testStrictJsf2RefreshTargetAjax() {
-		assertThat(myfacesProperties.getStrictJsf2RefreshTargetAjax()).isTrue();
+		assertThat(this.myfacesProperties.getStrictJsf2RefreshTargetAjax()).isTrue();
 	}
 
 	public void testGaeJsfJarFiles() {
-		assertThat(myfacesProperties.getGaeJsfJarFiles()).isEqualTo("myjar.jar");
+		assertThat(this.myfacesProperties.getGaeJsfJarFiles()).isEqualTo("myjar.jar");
 	}
 
 	public void testGaeJsfAnnotationsJarFiles() {
-		assertThat(myfacesProperties.getGaeJsfAnnotationsJarFiles()).isEqualTo("myAnnotationJar.jar");
+		assertThat(this.myfacesProperties.getGaeJsfAnnotationsJarFiles()).isEqualTo("myAnnotationJar.jar");
 	}
 
 	public void testFlashScopeDisabled() {
-		assertThat(myfacesProperties.getFlashScopeDisabled()).isTrue();
+		assertThat(this.myfacesProperties.getFlashScopeDisabled()).isTrue();
 	}
 
 	public void testLazyLoadConfigObjects() {
-		assertThat(myfacesProperties.getLazyLoadConfigObjects()).isTrue();
+		assertThat(this.myfacesProperties.getLazyLoadConfigObjects()).isTrue();
 	}
 
 	public void testValidate() {
-		assertThat(myfacesProperties.getValidate()).isTrue();
+		assertThat(this.myfacesProperties.getValidate()).isTrue();
 	}
 
 	public void testInitializeSkipJarFacesConfigScan() {
-		assertThat(myfacesProperties.getInitializeSkipJarFacesConfigScan()).isTrue();
+		assertThat(this.myfacesProperties.getInitializeSkipJarFacesConfigScan()).isTrue();
 	}
 
 	public void testDefaultWindowMode() {
-		assertThat(myfacesProperties.getDefaultWindowMode()).isEqualTo("url");
+		assertThat(this.myfacesProperties.getDefaultWindowMode()).isEqualTo("url");
 	}
 
 	public void testErrorTemplateResource() {
-		assertThat(myfacesProperties.getErrorTemplateResource()).isEqualTo("META-INF/rsc/myfaces-dev-error.xml");
+		assertThat(this.myfacesProperties.getErrorTemplateResource()).isEqualTo("META-INF/rsc/myfaces-dev-error.xml");
 	}
 
 	public void testDebugTemplateResource() {
-		assertThat(myfacesProperties.getDebugTemplateResource()).isEqualTo("META-INF/rsc/myfaces-dev-debug.xml");
+		assertThat(this.myfacesProperties.getDebugTemplateResource()).isEqualTo("META-INF/rsc/myfaces-dev-debug.xml");
 	}
 
 	public void testErrorHandling() {
-		assertThat(myfacesProperties.getErrorHandling()).isTrue();
+		assertThat(this.myfacesProperties.getErrorHandling()).isTrue();
 	}
 
 	public void testTemporalResourcehandlerCacheEnabled() {
-		assertThat(myfacesProperties.getTemporalResourcehandlerCacheEnabled()).isTrue();
+		assertThat(this.myfacesProperties.getTemporalResourcehandlerCacheEnabled()).isTrue();
 	}
 
 	public void testServiceProviderFinder() {
-		assertThat(myfacesProperties.getServiceProviderFinder()).isTrue();
+		assertThat(this.myfacesProperties.getServiceProviderFinder()).isTrue();
 	}
 
 	public void testSpiInjectionProvider() {
-		assertThat(myfacesProperties.getSpi().getInjectionProvider()).isEqualTo("myInjectionProvider");
+		assertThat(this.myfacesProperties.getSpi().getInjectionProvider()).isEqualTo("myInjectionProvider");
 	}
 
 	public void testMarkInitialStateWhenApplyBuildView() {
-		assertThat(myfacesProperties.getMarkInitialStateWhenApplyBuildView()).isTrue();
+		assertThat(this.myfacesProperties.getMarkInitialStateWhenApplyBuildView()).isTrue();
 	}
 
 	public void testWrapTagExceptionsAsContextAware() {
-		assertThat(myfacesProperties.getWrapTagExceptionsAsContextAware()).isTrue();
+		assertThat(this.myfacesProperties.getWrapTagExceptionsAsContextAware()).isTrue();
 	}
 
 	public void testViewPoolMaxPoolSize() {
-		assertThat(myfacesProperties.getViewPoolMaxPoolSize()).isEqualTo(5);
+		assertThat(this.myfacesProperties.getViewPoolMaxPoolSize()).isEqualTo(5);
 	}
 
 	public void testViewPoolMaxDynamicPartialLimit() {
-		assertThat(myfacesProperties.getViewPoolMaxDynamicPartialLimit()).isEqualTo(2);
+		assertThat(this.myfacesProperties.getViewPoolMaxDynamicPartialLimit()).isEqualTo(2);
 	}
 
 	public void testViewPoolEntryMode() {
-		assertThat(myfacesProperties.getViewPoolEntryMode()).isEqualTo("soft");
+		assertThat(this.myfacesProperties.getViewPoolEntryMode()).isEqualTo("soft");
 	}
 
 	public void testViewPoolDeferredNavigation() {
-		assertThat(myfacesProperties.getViewPoolDeferredNavigation()).isTrue();
+		assertThat(this.myfacesProperties.getViewPoolDeferredNavigation()).isTrue();
 	}
 
 	public void testLogWebContextParams() {
-		assertThat(myfacesProperties.getLogWebContextParams()).isEqualTo("auto");
+		assertThat(this.myfacesProperties.getLogWebContextParams()).isEqualTo("auto");
 	}
 
 	public void testFacesInitializer() {
-		assertThat(myfacesProperties.getFacesInitializer()).isEqualTo("myFacesInitializer");
+		assertThat(this.myfacesProperties.getFacesInitializer()).isEqualTo("myFacesInitializer");
 	}
 
 	public void testFacesInitPlugins() {
-		assertThat(myfacesProperties.getFacesInitPlugins()).isEqualTo("myInitPlugin");
+		assertThat(this.myfacesProperties.getFacesInitPlugins()).isEqualTo("myInitPlugin");
 	}
 
 	public void testAnnotationUseCdiForAnnotationScanning() {
-		assertThat(myfacesProperties.getAnnotation().getUseCdiForAnnotationScanning()).isTrue();
+		assertThat(this.myfacesProperties.getAnnotation().getUseCdiForAnnotationScanning()).isTrue();
 	}
 
 	public void testAnnotationScanPackages() {
-		assertThat(myfacesProperties.getAnnotation().getScanPackages()).isEqualTo("myScanPackages");
+		assertThat(this.myfacesProperties.getAnnotation().getScanPackages()).isEqualTo("myScanPackages");
 	}
 
 	public void testInitializeAlwaysStandalone() {
-		assertThat(myfacesProperties.getInitializeAlwaysStandalone()).isFalse();
+		assertThat(this.myfacesProperties.getInitializeAlwaysStandalone()).isFalse();
 	}
 
 }

@@ -16,20 +16,40 @@
             <goal>deploy</goal>
         </goals>
         <activatedProfiles>
-            <activatedProfile>check-pmd-cpd-jdepend-findbugs</activatedProfile>
-            <activatedProfile>attach-test-source-javadoc</activatedProfile>
+            <activatedProfile>check-cycles</activatedProfile>
+            <activatedProfile>check-pmd-cpd</activatedProfile>
+            <activatedProfile>check-findbugs</activatedProfile>
+            <activatedProfile>attach-test-jar</activatedProfile>
+            <activatedProfile>attach-source</activatedProfile>
+            <activatedProfile>attach-javadoc</activatedProfile>
             <activatedProfile>sign-artifacts</activatedProfile>
         </activatedProfiles>
     </action>
     <action>
-        <actionName>CUSTOM-pmd-cpd-jdepend-findbugs</actionName>
-        <displayName>pmd-cpd-jdepend-findbugs</displayName>
+        <actionName>CUSTOM-attach-test-source-javadoc</actionName>
+        <displayName>test-source-javadoc</displayName>
         <goals>
             <goal>clean</goal>
             <goal>verify</goal>
         </goals>
         <activatedProfiles>
-            <activatedProfile>check-pmd-cpd-jdepend-findbugs</activatedProfile>
+            <activatedProfile>attach-test-jar</activatedProfile>
+            <activatedProfile>attach-source</activatedProfile>
+            <activatedProfile>attach-javadoc</activatedProfile>
+        </activatedProfiles>
+    </action>
+    <action>
+        <actionName>CUSTOM-checkstyle-pmd-cpd-cycles-findbugs</actionName>
+        <displayName>checkstyle-pmd-cpd-cycles-findbugs</displayName>
+        <goals>
+            <goal>clean</goal>
+            <goal>verify</goal>
+        </goals>
+        <activatedProfiles>
+            <activatedProfile>check-checkstyle</activatedProfile>
+            <activatedProfile>check-cycles</activatedProfile>
+            <activatedProfile>check-pmd-cpd</activatedProfile>
+            <activatedProfile>check-findbugs</activatedProfile>
         </activatedProfiles>
     </action>
     <action>
