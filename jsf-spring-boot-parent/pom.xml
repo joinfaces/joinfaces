@@ -54,20 +54,24 @@
         <maven-source-plugin.version>3.0.1</maven-source-plugin.version>
         <maven-javadoc-plugin.version>2.10.4</maven-javadoc-plugin.version>
 
-        <check.dir>../jsf-spring-boot-parent/src/checkconfig</check.dir>        
+        <check.dir>../jsf-spring-boot-parent/src/checkconfig</check.dir>
+        <checkstyle.dir>${check.dir}/checkstyle</checkstyle.dir>
+        <pmd.dir>${check.dir}/pmd</pmd.dir>
+        <findbugs.dir>${check.dir}/findbugs</findbugs.dir>
+        
         <findbugs-maven-plugin.version>3.0.3</findbugs-maven-plugin.version>
-        <findbugs.excludeFilterFile>${check.dir}/findbugs/findbugs-exclude.xml</findbugs.excludeFilterFile>
+        <findbugs.excludeFilterFile>${findbugs.dir}/findbugs-exclude.xml</findbugs.excludeFilterFile>
         <jdepend-maven-plugin.version>2.0</jdepend-maven-plugin.version>
         <maven-pmd-plugin.version>3.6</maven-pmd-plugin.version>
-        <pmd.ruleset>${check.dir}/pmd/pmd-ruleset.xml</pmd.ruleset>
-        <pmd.excludeFromFailureFile>${check.dir}/pmd/pmd-exclude.properties</pmd.excludeFromFailureFile>
+        <pmd.ruleset>${pmd.dir}/pmd-ruleset.xml</pmd.ruleset>
+        <pmd.excludeFromFailureFile></pmd.excludeFromFailureFile>
         <maven-enforcer-plugin.version>1.4.1</maven-enforcer-plugin.version>
         <no-package-cycles-enforcer-rule.version>1.0.5</no-package-cycles-enforcer-rule.version>
         <maven-checkstyle-plugin.version>2.17</maven-checkstyle-plugin.version>
         <checkstyle.version>7.0</checkstyle.version>
-        <checkstyle.configLocation>${check.dir}/checkstyle/checkstyle.xml</checkstyle.configLocation>
-        <checkstyle.suppressionsLocation>${check.dir}/checkstyle/checkstyle-suppressions.xml</checkstyle.suppressionsLocation>
-        <checkstyle.headerLocation>${check.dir}/checkstyle/checkstyle-header.txt</checkstyle.headerLocation>
+        <checkstyle.configLocation>${checkstyle.dir}/checkstyle.xml</checkstyle.configLocation>
+        <checkstyle.suppressionsLocation>${checkstyle.dir}/checkstyle-suppressions.xml</checkstyle.suppressionsLocation>
+        <checkstyle.headerLocation>${checkstyle.dir}/checkstyle-header.txt</checkstyle.headerLocation>
         
         <maven-failsafe-plugin.version>2.19.1</maven-failsafe-plugin.version>
         <maven-surefire-report-plugin.version>2.19.1</maven-surefire-report-plugin.version>
@@ -418,7 +422,6 @@
                         <rulesets>
                             <ruleset>${pmd.ruleset}</ruleset>
                         </rulesets>
-                        <excludeFromFailureFile>${pmd.excludeFromFailureFile}</excludeFromFailureFile>
                     </configuration>
                 </plugin>
                 <plugin>
@@ -779,6 +782,9 @@
                                 <goals>
                                     <goal>check</goal>
                                 </goals>
+                                <configuration>
+                                    <excludeFromFailureFile>${pmd.excludeFromFailureFile}</excludeFromFailureFile>                                    
+                                </configuration>
                             </execution>
                         </executions>
                     </plugin>    
