@@ -5,14 +5,14 @@
     <parent>
         <groupId>com.github.persapiens</groupId>
         <artifactId>jsf-spring-boot-parent</artifactId>
-        <version>1.7.1-SNAPSHOT</version>
+        <version>1.7.1</version>
         <relativePath>../jsf-spring-boot-parent</relativePath>
     </parent>
     
     <groupId>com.github.persapiens</groupId>
     <artifactId>jsf-undertow-spring-boot-starter</artifactId>
     <name>JSF Undertow Spring Boot Starter</name>
-    <version>1.7.1-SNAPSHOT</version>
+    <version>1.7.1</version>
     <description>Jsf Spring Boot Starter for Undertow and Mojarra</description>
 
     <dependencies>
