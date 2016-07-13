@@ -1,7 +1,7 @@
 language: java
 jdk:
   - oraclejdk8
-script: mvn -Pcheck-checkstyle,check-cycles,check-pmd-cpd,check-findbugs,check-cobertura-integration-test,attach-integration-test cobertura:check-integration-test verify
+script: mvn -Pcheck-checkstyle,check-cycles,check-pmd-cpd,check-findbugs verify && mvn -Pcheck-cobertura-integration-test,attach-integration-test cobertura:check-integration-test
 after_success:
   - mvn -Pattach-integration-test cobertura:cobertura-integration-test org.eluder.coveralls:coveralls-maven-plugin:4.2.0:report
 cache:
