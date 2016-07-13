@@ -4,3 +4,6 @@ jdk:
 script: mvn -Pcheck-checkstyle,check-cycles,check-pmd-cpd,check-findbugs,check-cobertura-integration-test,attach-integration-test cobertura:check-integration-test verify
 after_success:
   - mvn -Pattach-integration-test cobertura:cobertura-integration-test org.eluder.coveralls:coveralls-maven-plugin:4.2.0:report
+cache:
+  directories:
+  - $HOME/.m2
