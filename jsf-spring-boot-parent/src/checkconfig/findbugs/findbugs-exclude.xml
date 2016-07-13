@@ -4,4 +4,12 @@
         <LocalType name="__cobertura_counters" />
         <Bug pattern="MS_PKGPROTECT" />
     </Match>
+    <Match>
+        <Method name="__cobertura_classmap" />
+        <Bug pattern="UMAC_UNCALLABLE_METHOD_OF_ANONYMOUS_CLASS" />
+    </Match>
+    <Match>
+        <Method name="__cobertura_get_and_reset_counters" />
+        <Bug pattern="UMAC_UNCALLABLE_METHOD_OF_ANONYMOUS_CLASS" />
+    </Match>
 </FindBugsFilter>
