@@ -21,6 +21,7 @@ import org.testng.annotations.Test;
 import org.springframework.beans.factory.annotation.AnnotatedBeanDefinition;
 import org.springframework.beans.factory.annotation.AnnotatedGenericBeanDefinition;
 import org.springframework.beans.factory.support.BeanDefinitionRegistry;
+import org.springframework.beans.factory.support.GenericBeanDefinition;
 import org.springframework.beans.factory.support.SimpleBeanDefinitionRegistry;
 import org.springframework.context.annotation.AnnotationBeanNameGenerator;
 import org.springframework.core.type.AnnotationMetadata;
@@ -64,6 +65,22 @@ public class JsfCdiToSpringBeanNameGeneratorIT {
 	public void testNoScope() {
 		AnnotationMetadata annotationMetadata = new StandardAnnotationMetadata(NoScopedClass.class);
 		AnnotatedBeanDefinition beanDefinition = new AnnotatedGenericBeanDefinition(annotationMetadata);
+
+		BeanDefinitionRegistry registry = new SimpleBeanDefinitionRegistry();
+
+		AnnotationBeanNameGenerator annotationBeanNameGeneratorannotationScopeMetadataResolver
+			= new JsfCdiToSpringBeanNameGenerator();
+
+		annotationBeanNameGeneratorannotationScopeMetadataResolver.generateBeanName(
+			beanDefinition, registry);
+
+		assertThat(beanDefinition.getScope()).isEmpty();
+	}
+
+	public void testGenericBeanDefinition() {
+		AnnotationMetadata annotationMetadata = new StandardAnnotationMetadata(SessionScopedClass.class);
+		AnnotatedBeanDefinition annotatedBeanDefinition = new AnnotatedGenericBeanDefinition(annotationMetadata);
+		GenericBeanDefinition beanDefinition = new GenericBeanDefinition(annotatedBeanDefinition);
 
 		BeanDefinitionRegistry registry = new SimpleBeanDefinitionRegistry();
 

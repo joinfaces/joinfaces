@@ -20,6 +20,7 @@ import org.testng.annotations.Test;
 
 import org.springframework.beans.factory.annotation.AnnotatedBeanDefinition;
 import org.springframework.beans.factory.annotation.AnnotatedGenericBeanDefinition;
+import org.springframework.beans.factory.support.GenericBeanDefinition;
 import org.springframework.context.annotation.AnnotationScopeMetadataResolver;
 import org.springframework.context.annotation.ScopeMetadata;
 import org.springframework.core.type.AnnotationMetadata;
@@ -55,6 +56,18 @@ public class JsfCdiToSpringScopeMetadadaResolverIT {
 	public void testNoScope() {
 		AnnotationMetadata annotationMetadata = new StandardAnnotationMetadata(NoScopedClass.class);
 		AnnotatedBeanDefinition beanDefinition = new AnnotatedGenericBeanDefinition(annotationMetadata);
+		AnnotationScopeMetadataResolver annotationScopeMetadataResolver = new JsfCdiToSpringScopeMetadataResolver();
+
+		ScopeMetadata scopeMetadata = annotationScopeMetadataResolver.resolveScopeMetadata(
+			beanDefinition);
+
+		assertThat(scopeMetadata.getScopeName()).isEqualTo(JsfCdiToSpring.SINGLETON);
+	}
+
+	public void testGenericBeanDefinition() {
+		AnnotationMetadata annotationMetadata = new StandardAnnotationMetadata(SessionScopedClass.class);
+		AnnotatedBeanDefinition annotatedBeanDefinition = new AnnotatedGenericBeanDefinition(annotationMetadata);
+		GenericBeanDefinition beanDefinition = new GenericBeanDefinition(annotatedBeanDefinition);
 		AnnotationScopeMetadataResolver annotationScopeMetadataResolver = new JsfCdiToSpringScopeMetadataResolver();
 
 		ScopeMetadata scopeMetadata = annotationScopeMetadataResolver.resolveScopeMetadata(

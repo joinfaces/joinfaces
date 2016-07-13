@@ -1,31 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <actions>
     <action>
-        <actionName>CUSTOM-site</actionName>
-        <displayName>site</displayName>
-        <goals>
-            <goal>clean</goal>
-            <goal>site</goal>
-        </goals>
-    </action>
-    <action>
-        <actionName>CUSTOM-deploySnapshot</actionName>
-        <displayName>deploySnapshot</displayName>
-        <goals>
-            <goal>clean</goal>
-            <goal>deploy</goal>
-        </goals>
-        <activatedProfiles>
-            <activatedProfile>check-cycles</activatedProfile>
-            <activatedProfile>check-pmd-cpd</activatedProfile>
-            <activatedProfile>check-findbugs</activatedProfile>
-            <activatedProfile>attach-test-jar</activatedProfile>
-            <activatedProfile>attach-source</activatedProfile>
-            <activatedProfile>attach-javadoc</activatedProfile>
-            <activatedProfile>sign-artifacts</activatedProfile>
-        </activatedProfiles>
-    </action>
-    <action>
         <actionName>CUSTOM-attach-test-source-javadoc</actionName>
         <displayName>test-source-javadoc</displayName>
         <goals>
@@ -57,13 +32,72 @@
         <displayName>cobertura</displayName>
         <goals>
             <goal>clean</goal>
-            <goal>cobertura:cobertura-integration-test</goal>
+            <goal>cobertura:check-integration-test</goal>
         </goals>
-        <properties>
-            <logging.level.root>WARN</logging.level.root>
-        </properties>
         <activatedProfiles>
             <activatedProfile>attach-integration-test</activatedProfile>
+            <activatedProfile>check-cobertura-integration-test</activatedProfile>
+        </activatedProfiles>
+    </action>
+    <action>
+        <actionName>CUSTOM-cobertura-site</actionName>
+        <displayName>cobertura-site</displayName>
+        <goals>
+            <goal>clean</goal>
+            <goal>cobertura:cobertura-integration-test</goal>
+        </goals>
+        <activatedProfiles>
+            <activatedProfile>attach-integration-test</activatedProfile>
+        </activatedProfiles>
+    </action>
+    <action>
+        <actionName>CUSTOM-site</actionName>
+        <displayName>site</displayName>
+        <goals>
+            <goal>clean</goal>
+            <goal>site</goal>
+        </goals>
+    </action>
+    <action>
+        <actionName>CUSTOM-buildAll</actionName>
+        <displayName>buildAll</displayName>
+        <goals>
+            <goal>clean</goal>
+            <goal>cobertura:check-integration-test</goal>
+            <goal>verify</goal>
+        </goals>
+        <activatedProfiles>
+            <activatedProfile>check-checkstyle</activatedProfile>
+            <activatedProfile>check-cycles</activatedProfile>
+            <activatedProfile>check-pmd-cpd</activatedProfile>
+            <activatedProfile>check-findbugs</activatedProfile>
+            <activatedProfile>check-cobertura-integration-test</activatedProfile>
+            <activatedProfile>attach-test-jar</activatedProfile>
+            <activatedProfile>attach-source</activatedProfile>
+            <activatedProfile>attach-javadoc</activatedProfile>
+            <activatedProfile>attach-integration-test</activatedProfile>
+            <activatedProfile>sign-artifacts</activatedProfile>
+        </activatedProfiles>
+    </action>
+    <action>
+        <actionName>CUSTOM-deploySnapshot</actionName>
+        <displayName>deploySnapshot</displayName>
+        <goals>
+            <goal>clean</goal>
+            <goal>cobertura:check-integration-test</goal>
+            <goal>deploy</goal>
+        </goals>
+        <activatedProfiles>
+            <activatedProfile>check-checkstyle</activatedProfile>
+            <activatedProfile>check-cycles</activatedProfile>
+            <activatedProfile>check-pmd-cpd</activatedProfile>
+            <activatedProfile>check-findbugs</activatedProfile>
+            <activatedProfile>check-cobertura-integration-test</activatedProfile>
+            <activatedProfile>attach-test-jar</activatedProfile>
+            <activatedProfile>attach-source</activatedProfile>
+            <activatedProfile>attach-javadoc</activatedProfile>
+            <activatedProfile>attach-integration-test</activatedProfile>
+            <activatedProfile>sign-artifacts</activatedProfile>
         </activatedProfiles>
     </action>
 </actions>

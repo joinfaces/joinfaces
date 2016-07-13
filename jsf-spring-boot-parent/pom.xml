@@ -75,6 +75,13 @@
         
         <maven-failsafe-plugin.version>2.19.1</maven-failsafe-plugin.version>
         <maven-surefire-report-plugin.version>2.19.1</maven-surefire-report-plugin.version>
+
+        <cobertura.branchRate>100</cobertura.branchRate>
+        <cobertura.lineRate>100</cobertura.lineRate>
+        <cobertura.totalBranchRate>100</cobertura.totalBranchRate>
+        <cobertura.totalLineRate>100</cobertura.totalLineRate>
+        <cobertura.packageLineRate>100</cobertura.packageLineRate>
+        <cobertura.packageBranchRate>100</cobertura.packageBranchRate>
         <cobertura-maven-plugin.version>2.7</cobertura-maven-plugin.version>
         
         <maven-project-info-reports-plugin.version>2.9</maven-project-info-reports-plugin.version>
@@ -823,6 +830,31 @@
                         </executions>
                     </plugin>                      
                 </plugins>
+            </build>
+        </profile>
+        
+        <profile>
+            <id>check-cobertura-integration-test</id>
+            <build>
+                <pluginManagement>
+                    <plugins>
+                        <plugin>
+                            <groupId>org.codehaus.mojo</groupId>
+                            <artifactId>cobertura-maven-plugin</artifactId>
+                            <configuration>
+                                <check>
+                                    <haltOnFailure>true</haltOnFailure>
+                                    <branchRate>${cobertura.branchRate}</branchRate>
+                                    <lineRate>${cobertura.lineRate}</lineRate>
+                                    <totalBranchRate>${cobertura.totalBranchRate}</totalBranchRate>
+                                    <totalLineRate>${cobertura.totalLineRate}</totalLineRate>
+                                    <packageLineRate>${cobertura.packageLineRate}</packageLineRate>
+                                    <packageBranchRate>${cobertura.packageBranchRate}</packageBranchRate>
+                                </check>
+                            </configuration>                        
+                        </plugin>        
+                    </plugins>
+                </pluginManagement>
             </build>
         </profile>
         

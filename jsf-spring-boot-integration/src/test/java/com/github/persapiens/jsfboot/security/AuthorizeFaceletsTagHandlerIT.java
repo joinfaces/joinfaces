@@ -50,6 +50,22 @@ public class AuthorizeFaceletsTagHandlerIT extends JsfIT {
 			.isFalse();
 	}
 
+	public void testApplyAccessFalse() throws IOException {
+		Authentication authentication = AuthenticationFactory.authentication(Roles.ROLE_A);
+		new SpringSecurityMock().init(authentication);
+
+		getJsfMock().getMockTagAttributes().getTagAttributes().put(
+			"access", new MockTagAttribute("hasAnyRole('ROLE_B')"));
+
+		AuthorizeFaceletsTagHandler tag = new AuthorizeFaceletsTagHandler(
+			getJsfMock().getMockTagConfig());
+
+		tag.apply(null, null);
+
+		assertThat(getJsfMock().getMockFaceletHandler().isApplied())
+			.isFalse();
+	}
+
 	public void testApplyAccess() throws IOException {
 		Authentication authentication = AuthenticationFactory.authentication(Roles.ROLE_A);
 		new SpringSecurityMock().init(authentication);

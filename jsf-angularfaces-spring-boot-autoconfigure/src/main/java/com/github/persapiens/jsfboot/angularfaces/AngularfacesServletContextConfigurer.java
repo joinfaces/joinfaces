@@ -46,16 +46,16 @@ public class AngularfacesServletContextConfigurer extends ServletContextConfigur
 
 	@Override
 	public void configure() {
-		setInitParameter(PREFFIX + "addLabels", this.angularfacesProperties.getAddLabels());
-		setInitParameter(PREFFIX + "addMessages", this.angularfacesProperties.getAddMessages());
-		setInitParameter(PREFFIX + "translation", this.angularfacesProperties.getTranslation());
-		setInitParameter(PREFFIX + "includeAngularJS", this.angularfacesProperties.getIncludeAngularJS());
-		setInitParameter(PREFFIX + "includeJQuery", this.angularfacesProperties.getIncludeJQuery());
-		setInitParameter(PREFFIX + "includeJQueryUI", this.angularfacesProperties.getIncludeJQueryUI());
-		setInitParameter(PREFFIX + "includeAngularMessages", this.angularfacesProperties.getIncludeAngularMessages());
-		setInitParameter(PREFFIX + "clientSideMessages", this.angularfacesProperties.getClientSideMessages());
-		setInitParameter(PREFFIX + "includeMainJS", this.angularfacesProperties.getIncludeMainJS());
+		setInitParameterBoolean(PREFFIX + "addLabels", this.angularfacesProperties.getAddLabels());
+		setInitParameterBoolean(PREFFIX + "addMessages", this.angularfacesProperties.getAddMessages());
+		setInitParameterBoolean(PREFFIX + "translation", this.angularfacesProperties.getTranslation());
+		setInitParameterBoolean(PREFFIX + "includeAngularJS", this.angularfacesProperties.getIncludeAngularJS());
+		setInitParameterBoolean(PREFFIX + "includeJQuery", this.angularfacesProperties.getIncludeJQuery());
+		setInitParameterBoolean(PREFFIX + "includeJQueryUI", this.angularfacesProperties.getIncludeJQueryUI());
+		setInitParameterBoolean(PREFFIX + "includeAngularMessages", this.angularfacesProperties.getIncludeAngularMessages());
+		setInitParameterBoolean(PREFFIX + "clientSideMessages", this.angularfacesProperties.getClientSideMessages());
+		setInitParameterBoolean(PREFFIX + "includeMainJS", this.angularfacesProperties.getIncludeMainJS());
 
-		setInitParameter(ViewHandler.FACELETS_DECORATORS_PARAM_NAME, AngularTagDecorator.class.getName());
+		setInitParameterString(ViewHandler.FACELETS_DECORATORS_PARAM_NAME, AngularTagDecorator.class.getName());
 	}
 }

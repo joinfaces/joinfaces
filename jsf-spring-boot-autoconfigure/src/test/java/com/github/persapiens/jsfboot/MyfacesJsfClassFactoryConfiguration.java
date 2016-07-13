@@ -20,7 +20,7 @@ import javax.servlet.ServletContainerInitializer;
 
 import org.apache.myfaces.ee6.MyFacesContainerInitializer;
 
-public class MyfacesServletContextInitializer implements JsfClassFactoryConfiguration {
+public class MyfacesJsfClassFactoryConfiguration implements JsfClassFactoryConfiguration {
 
 	public static final String ANOTHER_FACES_CONFIG = "META-INF/standard-faces-config.xml";
 

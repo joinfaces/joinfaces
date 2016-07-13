@@ -16,20 +16,25 @@
 
 package com.github.persapiens.jsfboot;
 
-import javax.servlet.ServletContext;
+import java.lang.annotation.Annotation;
+import java.util.HashSet;
+import java.util.Set;
 
-import lombok.Builder;
+import lombok.Getter;
 
-public class JsfServletContextConfigurer extends ServletContextConfigurer {
+/**
+ * Single type to store annotationTypes and otherTypes handled by
+ *  servlet context initializer.
+ *
+ * @author Marcelo Fernandes
+ */
+@Getter
+class TypesHandled {
 
-	@Builder
-	public JsfServletContextConfigurer(ServletContext servletContext) {
-		super(servletContext, "jsf");
-	}
+	private Set<Class<? extends Annotation>> annotationTypes = new HashSet<>();
+	private Set<Class> otherTypes = new HashSet<>();
 
-	@Override
-	public void configure() {
-		setInitParameterString("emptyString", "");
-		setInitParameterString("key", "value");
+	public boolean isEmpty() {
+		return this.annotationTypes.isEmpty() && this.otherTypes.isEmpty();
 	}
 }

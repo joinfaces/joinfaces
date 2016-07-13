@@ -59,6 +59,9 @@ public class ServletContextConfigurerIT {
 		servletContextConfigurer.configure();
 
 		assertThat(servletContext.getInitParameter(null)).isNull();
+		assertThat(servletContext.getInitParameter("string")).isNull();
+		assertThat(servletContext.getInitParameter("boolean")).isNull();
+		assertThat(servletContext.getInitParameter("integer")).isNull();
 	}
 
 }

@@ -52,51 +52,51 @@ public class JavaxFacesServletContextConfigurer extends ServletContextConfigurer
 
 	@Override
 	public void configure() {
-		setInitParameter(ProjectStage.PROJECT_STAGE_PARAM_NAME, this.javaxFacesProperties.getProjectStage());
+		setInitParameterString(ProjectStage.PROJECT_STAGE_PARAM_NAME, this.javaxFacesProperties.getProjectStage());
 
-		setInitParameter(ResourceHandler.RESOURCE_EXCLUDES_PARAM_NAME, this.javaxFacesProperties.getResourceExcludes());
-		setInitParameter(ResourceHandler.WEBAPP_CONTRACTS_DIRECTORY_PARAM_NAME, this.javaxFacesProperties.getWebappContractsDirectory());
-		setInitParameter(ResourceHandler.WEBAPP_RESOURCES_DIRECTORY_PARAM_NAME, this.javaxFacesProperties.getWebappResourcesDirectory());
+		setInitParameterString(ResourceHandler.RESOURCE_EXCLUDES_PARAM_NAME, this.javaxFacesProperties.getResourceExcludes());
+		setInitParameterString(ResourceHandler.WEBAPP_CONTRACTS_DIRECTORY_PARAM_NAME, this.javaxFacesProperties.getWebappContractsDirectory());
+		setInitParameterString(ResourceHandler.WEBAPP_RESOURCES_DIRECTORY_PARAM_NAME, this.javaxFacesProperties.getWebappResourcesDirectory());
 
-		setInitParameter(StateManager.FULL_STATE_SAVING_VIEW_IDS_PARAM_NAME, this.javaxFacesProperties.getFullStateSavingViewIds());
-		setInitParameter(StateManager.PARTIAL_STATE_SAVING_PARAM_NAME, this.javaxFacesProperties.getPartialStateSaving());
-		setInitParameter(StateManager.SERIALIZE_SERVER_STATE_PARAM_NAME, this.javaxFacesProperties.getSerializeServerState());
-		setInitParameter(StateManager.STATE_SAVING_METHOD_PARAM_NAME, this.javaxFacesProperties.getStateSavingMethod());
+		setInitParameterString(StateManager.FULL_STATE_SAVING_VIEW_IDS_PARAM_NAME, this.javaxFacesProperties.getFullStateSavingViewIds());
+		setInitParameterBoolean(StateManager.PARTIAL_STATE_SAVING_PARAM_NAME, this.javaxFacesProperties.getPartialStateSaving());
+		setInitParameterBoolean(StateManager.SERIALIZE_SERVER_STATE_PARAM_NAME, this.javaxFacesProperties.getSerializeServerState());
+		setInitParameterString(StateManager.STATE_SAVING_METHOD_PARAM_NAME, this.javaxFacesProperties.getStateSavingMethod());
 
-		setInitParameter(ViewHandler.DEFAULT_SUFFIX_PARAM_NAME, this.javaxFacesProperties.getDefaultSuffix());
-		setInitParameter(ViewHandler.DISABLE_FACELET_JSF_VIEWHANDLER_PARAM_NAME, this.javaxFacesProperties.getDisableFaceletJsfViewhandler());
-		setInitParameter(ViewHandler.FACELETS_BUFFER_SIZE_PARAM_NAME, this.javaxFacesProperties.getFaceletsBufferSize());
-		setInitParameter(ViewHandler.FACELETS_DECORATORS_PARAM_NAME, this.javaxFacesProperties.getFaceletsDecorators());
-		setInitParameter(ViewHandler.FACELETS_LIBRARIES_PARAM_NAME, this.javaxFacesProperties.getFaceletsLibraries());
-		setInitParameter(ViewHandler.FACELETS_REFRESH_PERIOD_PARAM_NAME, this.javaxFacesProperties.getFaceletsRefreshPeriod());
-		setInitParameter(ViewHandler.FACELETS_SKIP_COMMENTS_PARAM_NAME, this.javaxFacesProperties.getFaceletsSkipComments());
-		setInitParameter(ViewHandler.FACELETS_SUFFIX_PARAM_NAME, this.javaxFacesProperties.getFaceletsSuffix());
-		setInitParameter(ViewHandler.FACELETS_VIEW_MAPPINGS_PARAM_NAME, this.javaxFacesProperties.getFaceletsViewMappings());
+		setInitParameterString(ViewHandler.DEFAULT_SUFFIX_PARAM_NAME, this.javaxFacesProperties.getDefaultSuffix());
+		setInitParameterBoolean(ViewHandler.DISABLE_FACELET_JSF_VIEWHANDLER_PARAM_NAME, this.javaxFacesProperties.getDisableFaceletJsfViewhandler());
+		setInitParameterInteger(ViewHandler.FACELETS_BUFFER_SIZE_PARAM_NAME, this.javaxFacesProperties.getFaceletsBufferSize());
+		setInitParameterString(ViewHandler.FACELETS_DECORATORS_PARAM_NAME, this.javaxFacesProperties.getFaceletsDecorators());
+		setInitParameterString(ViewHandler.FACELETS_LIBRARIES_PARAM_NAME, this.javaxFacesProperties.getFaceletsLibraries());
+		setInitParameterInteger(ViewHandler.FACELETS_REFRESH_PERIOD_PARAM_NAME, this.javaxFacesProperties.getFaceletsRefreshPeriod());
+		setInitParameterBoolean(ViewHandler.FACELETS_SKIP_COMMENTS_PARAM_NAME, this.javaxFacesProperties.getFaceletsSkipComments());
+		setInitParameterString(ViewHandler.FACELETS_SUFFIX_PARAM_NAME, this.javaxFacesProperties.getFaceletsSuffix());
+		setInitParameterString(ViewHandler.FACELETS_VIEW_MAPPINGS_PARAM_NAME, this.javaxFacesProperties.getFaceletsViewMappings());
 
-		setInitParameter(UIComponent.HONOR_CURRENT_COMPONENT_ATTRIBUTES_PARAM_NAME, this.javaxFacesProperties.getHonorCurrentComponentAttributes());
+		setInitParameterBoolean(UIComponent.HONOR_CURRENT_COMPONENT_ATTRIBUTES_PARAM_NAME, this.javaxFacesProperties.getHonorCurrentComponentAttributes());
 
-		setInitParameter(UIInput.VALIDATE_EMPTY_FIELDS_PARAM_NAME, this.javaxFacesProperties.getValidateEmptyFields());
+		setInitParameterString(UIInput.VALIDATE_EMPTY_FIELDS_PARAM_NAME, this.javaxFacesProperties.getValidateEmptyFields());
 
-		setInitParameter(UINamingContainer.SEPARATOR_CHAR_PARAM_NAME, this.javaxFacesProperties.getSeparatorChar());
+		setInitParameterString(UINamingContainer.SEPARATOR_CHAR_PARAM_NAME, this.javaxFacesProperties.getSeparatorChar());
 
-		setInitParameter(PartialViewContext.PARTIAL_EXECUTE_PARAM_NAME, this.javaxFacesProperties.getPartial().getExecute());
-		setInitParameter(PartialViewContext.PARTIAL_RENDER_PARAM_NAME, this.javaxFacesProperties.getPartial().getRender());
-		setInitParameter(PartialViewContext.RESET_VALUES_PARAM_NAME, this.javaxFacesProperties.getPartial().getResetValues());
+		setInitParameterBoolean(PartialViewContext.PARTIAL_EXECUTE_PARAM_NAME, this.javaxFacesProperties.getPartial().getExecute());
+		setInitParameterBoolean(PartialViewContext.PARTIAL_RENDER_PARAM_NAME, this.javaxFacesProperties.getPartial().getRender());
+		setInitParameterBoolean(PartialViewContext.RESET_VALUES_PARAM_NAME, this.javaxFacesProperties.getPartial().getResetValues());
 
-		setInitParameter(Converter.DATETIMECONVERTER_DEFAULT_TIMEZONE_IS_SYSTEM_TIMEZONE_PARAM_NAME, this.javaxFacesProperties.getDatetimeconverterDefaultTimezoneIsSystemTimezone());
+		setInitParameterBoolean(Converter.DATETIMECONVERTER_DEFAULT_TIMEZONE_IS_SYSTEM_TIMEZONE_PARAM_NAME, this.javaxFacesProperties.getDatetimeconverterDefaultTimezoneIsSystemTimezone());
 
-		setInitParameter(FlowHandler.NULL_FLOW, this.javaxFacesProperties.getFlow().getNullFlow());
+		setInitParameterBoolean(FlowHandler.NULL_FLOW, this.javaxFacesProperties.getFlow().getNullFlow());
 
-		setInitParameter(BeanValidator.DISABLE_DEFAULT_BEAN_VALIDATOR_PARAM_NAME, this.javaxFacesProperties.getValidator().getDisableDefaultBeanValidator());
+		setInitParameterBoolean(BeanValidator.DISABLE_DEFAULT_BEAN_VALIDATOR_PARAM_NAME, this.javaxFacesProperties.getValidator().getDisableDefaultBeanValidator());
 
-		setInitParameter(ResourceResolver.FACELETS_RESOURCE_RESOLVER_PARAM_NAME, this.javaxFacesProperties.getFaceletsResourceResolver());
+		setInitParameterString(ResourceResolver.FACELETS_RESOURCE_RESOLVER_PARAM_NAME, this.javaxFacesProperties.getFaceletsResourceResolver());
 
-		setInitParameter(FacesServlet.CONFIG_FILES_ATTR, this.javaxFacesProperties.getConfigFiles());
-		setInitParameter(FacesServlet.LIFECYCLE_ID_ATTR, this.javaxFacesProperties.getLifecycleId());
+		setInitParameterString(FacesServlet.CONFIG_FILES_ATTR, this.javaxFacesProperties.getConfigFiles());
+		setInitParameterString(FacesServlet.LIFECYCLE_ID_ATTR, this.javaxFacesProperties.getLifecycleId());
 
-		setInitParameter(ClientWindow.CLIENT_WINDOW_MODE_PARAM_NAME, this.javaxFacesProperties.getClientWindowMode());
+		setInitParameterString(ClientWindow.CLIENT_WINDOW_MODE_PARAM_NAME, this.javaxFacesProperties.getClientWindowMode());
 
-		setInitParameter(JavaxFacesProperties.EMPTY_STRING_AS_NULL, this.javaxFacesProperties.getInterpretEmptyStringSubmittedValuesAsNull());
+		setInitParameterBoolean(JavaxFacesProperties.EMPTY_STRING_AS_NULL, this.javaxFacesProperties.getInterpretEmptyStringSubmittedValuesAsNull());
 
 	}
 }

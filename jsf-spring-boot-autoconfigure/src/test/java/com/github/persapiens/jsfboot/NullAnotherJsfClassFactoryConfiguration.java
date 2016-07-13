@@ -16,20 +16,29 @@
 
 package com.github.persapiens.jsfboot;
 
-import javax.servlet.ServletContext;
+import javax.servlet.ServletContainerInitializer;
 
-import lombok.Builder;
+import org.apache.myfaces.ee6.MyFacesContainerInitializer;
 
-public class JsfServletContextConfigurer extends ServletContextConfigurer {
+public class NullAnotherJsfClassFactoryConfiguration implements JsfClassFactoryConfiguration {
 
-	@Builder
-	public JsfServletContextConfigurer(ServletContext servletContext) {
-		super(servletContext, "jsf");
+	private ServletContainerInitializer servletContainerInitializer;
+
+	@Override
+	public ServletContainerInitializer getServletContainerInitializer() {
+		if (this.servletContainerInitializer == null) {
+			this.servletContainerInitializer = new MyFacesContainerInitializer();
+		}
+		return this.servletContainerInitializer;
 	}
 
 	@Override
-	public void configure() {
-		setInitParameterString("emptyString", "");
-		setInitParameterString("key", "value");
+	public String getAnotherFacesConfig() {
+		return null;
+	}
+
+	@Override
+	public boolean isExcludeScopedAnnotations() {
+		return true;
 	}
 }

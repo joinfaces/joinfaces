@@ -29,6 +29,11 @@ public class NullServletContextConfigurer extends ServletContextConfigurer {
 
 	@Override
 	public void configure() {
-		setInitParameter(null, "");
+		setInitParameterString(null, "");
+		setInitParameterString("string", null);
+		setInitParameterBoolean(null, Boolean.TRUE);
+		setInitParameterBoolean("boolean", null);
+		setInitParameterInteger(null, 10);
+		setInitParameterInteger("integer", null);
 	}
 }

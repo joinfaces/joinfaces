@@ -26,6 +26,7 @@ import org.testng.annotations.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.embedded.jetty.JettyEmbeddedServletContainer;
 import org.springframework.boot.context.embedded.jetty.JettyEmbeddedServletContainerFactory;
+import org.springframework.boot.context.embedded.tomcat.TomcatEmbeddedServletContainerFactory;
 import org.springframework.boot.test.SpringApplicationConfiguration;
 import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
 import org.springframework.test.context.web.WebAppConfiguration;
@@ -53,5 +54,15 @@ public class JettySpringBootAutoConfigurationIT extends AbstractTestNGSpringCont
 
 		assertThat(webAppContext.getBaseResource().getResource("test.txt").exists())
 			.isTrue();
+	}
+
+	@Test
+	public void customizeTomcat() throws MalformedURLException {
+		TomcatEmbeddedServletContainerFactory factory = new TomcatEmbeddedServletContainerFactory();
+
+		this.jettySpringBootAutoConfiguration.customize(factory);
+
+		assertThat(factory.getContextPath())
+			.isEqualTo("");
 	}
 }

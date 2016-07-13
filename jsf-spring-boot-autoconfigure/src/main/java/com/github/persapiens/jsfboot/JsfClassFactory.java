@@ -29,7 +29,6 @@ import javax.faces.bean.ViewScoped;
 import javax.servlet.annotation.HandlesTypes;
 
 import lombok.Builder;
-import lombok.Getter;
 import lombok.NonNull;
 
 import org.reflections.Reflections;
@@ -68,31 +67,29 @@ public class JsfClassFactory {
 	}
 
 	/**
-	 * Compute types to be handled: set of annotation classes to be handled by
-	 * servlet container initializer and set of other classes to be handled by
-	 * servlet container initializer.
+	 * Compute types handled ( set of annotation classes and set of other classes )
+	 * handled by servlet container initializer.
 	 * @return types to be handled by jsf implementation
 	 */
-	private TypesToBeHandled handlesTypes() {
-		TypesToBeHandled result = new TypesToBeHandled();
+	private TypesHandled handlesTypes() {
+		TypesHandled result = new TypesHandled();
 
-		HandlesTypes ht = this.jsfAnnotatedClassFactoryConfiguration.getServletContainerInitializer().getClass().getAnnotation(HandlesTypes.class);
+		HandlesTypes ht = null;
+		if (this.jsfAnnotatedClassFactoryConfiguration.getServletContainerInitializer() != null) {
+			ht = this.jsfAnnotatedClassFactoryConfiguration.getServletContainerInitializer().getClass().getAnnotation(HandlesTypes.class);
+		}
 		if (ht != null) {
-			Class<?>[] types = ht.value();
+			Set<Class<? extends Annotation>> annotationsToExclude = annotationsToExclude();
 
-			if (types != null) {
-				Set<Class<? extends Annotation>> annotationsToExclude = annotationsToExclude();
-
-				for (Class<?> type : types) {
-					if (type.isAnnotation()) {
-						Class<? extends Annotation> annotation = (Class<? extends Annotation>) type;
-						if (!annotationsToExclude.contains(annotation)) {
-							result.getAnnotationTypes().add(annotation);
-						}
+			for (Class<?> type : ht.value()) {
+				if (type.isAnnotation()) {
+					Class<? extends Annotation> annotation = (Class<? extends Annotation>) type;
+					if (!annotationsToExclude.contains(annotation)) {
+						result.getAnnotationTypes().add(annotation);
 					}
-					else {
-						result.getOtherTypes().add(type);
-					}
+				}
+				else {
+					result.getOtherTypes().add(type);
 				}
 			}
 		}
@@ -101,15 +98,18 @@ public class JsfClassFactory {
 	}
 
 	/**
+	 * Compute types to be handled: set of annotation classes to be handled by
+	 * servlet container initializer and set of other classes to be handled by
+	 * servlet container initializer.
 	 * Search libraries with anotherFacesConfig also.
 	 * @return classes annotated by types handled by servlet container initializer.
 	 */
 	public Set<Class<?>> find() {
 		Set<Class<?>> result = new HashSet<>();
 
-		TypesToBeHandled handlesTypes = handlesTypes();
-		// check if any annotation type is handled
-		if (!(handlesTypes.getAnnotationTypes().isEmpty() && handlesTypes.getOtherTypes().isEmpty())) {
+		TypesHandled handlesTypes = handlesTypes();
+		// check if any type is handled
+		if (!handlesTypes.isEmpty()) {
 			// get only urls of libraries that contains jsf types
 			Collection<URL> urls = new HashSet<>(ClasspathHelper.forResource("META-INF/faces-config.xml", this.getClass().getClassLoader()));
 			// add jsf library with anotherFacesConfig
@@ -132,12 +132,5 @@ public class JsfClassFactory {
 		}
 
 		return result;
-	}
-
-	@Getter
-	private static class TypesToBeHandled {
-
-		private Set<Class<? extends Annotation>> annotationTypes = new HashSet<>();
-		private Set<Class> otherTypes = new HashSet<>();
 	}
 }

@@ -18,25 +18,16 @@ package com.github.persapiens.jsfboot;
 
 import javax.servlet.ServletContainerInitializer;
 
-import com.sun.faces.config.FacesInitializer;
-
-public class MojarraServletContextInitializer implements JsfClassFactoryConfiguration {
-
-	public static final String ANOTHER_FACES_CONFIG = "com/sun/faces/jsf-ri-runtime.xml";
-
-	private ServletContainerInitializer servletContainerInitializer;
+public class NullJsfClassFactoryConfiguration implements JsfClassFactoryConfiguration {
 
 	@Override
 	public ServletContainerInitializer getServletContainerInitializer() {
-		if (this.servletContainerInitializer == null) {
-			this.servletContainerInitializer = new FacesInitializer();
-		}
-		return this.servletContainerInitializer;
+		return null;
 	}
 
 	@Override
 	public String getAnotherFacesConfig() {
-		return ANOTHER_FACES_CONFIG;
+		return null;
 	}
 
 	@Override

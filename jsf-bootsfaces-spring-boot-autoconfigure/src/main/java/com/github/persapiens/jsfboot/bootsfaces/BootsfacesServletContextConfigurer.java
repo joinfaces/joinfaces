@@ -45,14 +45,14 @@ public class BootsfacesServletContextConfigurer extends ServletContextConfigurer
 
 	@Override
 	public void configure() {
-		setInitParameter(C.P_THEME, this.bootsfacesProperties.getTheme());
-		setInitParameter(C.P_USETHEME, this.bootsfacesProperties.getUsetheme());
-		setInitParameter(C.P_VIEWPORT, this.bootsfacesProperties.getUseViewport());
-		setInitParameter(PREFFIX + "defaults.renderLabel", this.bootsfacesProperties.getDefaults().getRenderLabel());
-		setInitParameter(PREFFIX + "get_fontawesome_from_cdn", this.bootsfacesProperties.getGetFontawesomeFromCdn());
-		setInitParameter(PREFFIX + "get_jquery_from_cdn", this.bootsfacesProperties.getGetJqueryFromCdn());
-		setInitParameter(PREFFIX + "get_jqueryui_from_cdn", this.bootsfacesProperties.getGetJqueryuiFromCdn());
-		setInitParameter(PREFFIX + "get_bootstrap_from_cdn", this.bootsfacesProperties.getGetBootstrapFromCdn());
-		setInitParameter(PREFFIX + "blockUI", this.bootsfacesProperties.getBlockUI());
+		setInitParameterString(C.P_THEME, this.bootsfacesProperties.getTheme());
+		setInitParameterBoolean(C.P_USETHEME, this.bootsfacesProperties.getUsetheme());
+		setInitParameterBoolean(C.P_VIEWPORT, this.bootsfacesProperties.getUseViewport());
+		setInitParameterString(PREFFIX + "defaults.renderLabel", this.bootsfacesProperties.getDefaults().getRenderLabel());
+		setInitParameterBoolean(PREFFIX + "get_fontawesome_from_cdn", this.bootsfacesProperties.getGetFontawesomeFromCdn());
+		setInitParameterBoolean(PREFFIX + "get_jquery_from_cdn", this.bootsfacesProperties.getGetJqueryFromCdn());
+		setInitParameterBoolean(PREFFIX + "get_jqueryui_from_cdn", this.bootsfacesProperties.getGetJqueryuiFromCdn());
+		setInitParameterBoolean(PREFFIX + "get_bootstrap_from_cdn", this.bootsfacesProperties.getGetBootstrapFromCdn());
+		setInitParameterBoolean(PREFFIX + "blockUI", this.bootsfacesProperties.getBlockUI());
 	}
 }

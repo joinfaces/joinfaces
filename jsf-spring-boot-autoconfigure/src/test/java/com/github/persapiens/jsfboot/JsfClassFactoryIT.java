@@ -35,7 +35,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class JsfClassFactoryIT {
 
 	public void testJavaxFacesHtmlPanelGroupWithMojarra() {
-		MojarraServletContextInitializer configuration = new MojarraServletContextInitializer();
+		MojarraJsfClassFactoryConfiguration configuration = new MojarraJsfClassFactoryConfiguration();
 
 		Set<Class<?>> classes = JsfClassFactory.builder()
 			.jsfAnnotatedClassFactoryConfiguration(configuration)
@@ -44,7 +44,7 @@ public class JsfClassFactoryIT {
 	}
 
 	public void testMojarraUITextWithMojarra() {
-		MojarraServletContextInitializer configuration = new MojarraServletContextInitializer();
+		MojarraJsfClassFactoryConfiguration configuration = new MojarraJsfClassFactoryConfiguration();
 
 		Set<Class<?>> classes = JsfClassFactory.builder()
 			.jsfAnnotatedClassFactoryConfiguration(configuration)
@@ -53,7 +53,7 @@ public class JsfClassFactoryIT {
 	}
 
 	public void testJavaxFacesHtmlPanelGroupWithMyfaces() {
-		MyfacesServletContextInitializer configuration = new MyfacesServletContextInitializer();
+		MyfacesJsfClassFactoryConfiguration configuration = new MyfacesJsfClassFactoryConfiguration();
 
 		Set<Class<?>> classes = JsfClassFactory.builder()
 			.jsfAnnotatedClassFactoryConfiguration(configuration)
@@ -62,12 +62,30 @@ public class JsfClassFactoryIT {
 	}
 
 	public void testMyfacesHtmlGridRendererWithMyfaces() {
-		MyfacesServletContextInitializer configuration = new MyfacesServletContextInitializer();
+		MyfacesJsfClassFactoryConfiguration configuration = new MyfacesJsfClassFactoryConfiguration();
 
 		Set<Class<?>> classes = JsfClassFactory.builder()
 			.jsfAnnotatedClassFactoryConfiguration(configuration)
 			.build().find();
 		assertThat(classes).contains(HtmlGridRenderer.class);
+	}
+
+	public void testNullServletContextInitializer() {
+		NullJsfClassFactoryConfiguration configuration = new NullJsfClassFactoryConfiguration();
+
+		Set<Class<?>> classes = JsfClassFactory.builder()
+			.jsfAnnotatedClassFactoryConfiguration(configuration)
+			.build().find();
+		assertThat(classes).doesNotContain(HtmlGridRenderer.class);
+	}
+
+	public void testNullAnotherServletContextInitializer() {
+		NullAnotherJsfClassFactoryConfiguration configuration = new NullAnotherJsfClassFactoryConfiguration();
+
+		Set<Class<?>> classes = JsfClassFactory.builder()
+			.jsfAnnotatedClassFactoryConfiguration(configuration)
+			.build().find();
+		assertThat(classes).doesNotContain(HtmlGridRenderer.class);
 	}
 
 }

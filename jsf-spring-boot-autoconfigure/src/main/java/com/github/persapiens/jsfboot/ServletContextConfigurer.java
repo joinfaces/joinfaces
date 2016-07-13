@@ -50,26 +50,31 @@ public abstract class ServletContextConfigurer {
 	}
 
 	private void setInitParameterWithDebug(String name, String value) {
-		name = fullName(name);
+		if (!isNullOrEmpty(name)) {
+			name = fullName(name);
 
-		this.servletContext.setInitParameter(name, value);
+			this.servletContext.setInitParameter(name, value);
 
-		logger.debug(name + " = " + value);
+			logger.debug(name + " = " + value);
+		}
+		else {
+			logger.warn("name of init parameter is null! value = " + value);
+		}
 	}
 
-	protected void setInitParameter(String name, String value) {
+	protected void setInitParameterString(String name, String value) {
 		if (!isNullOrEmpty(value)) {
 			setInitParameterWithDebug(name, value);
 		}
 	}
 
-	protected void setInitParameter(String name, Boolean value) {
+	protected void setInitParameterBoolean(String name, Boolean value) {
 		if (value != null) {
 			setInitParameterWithDebug(name, Boolean.toString(value));
 		}
 	}
 
-	protected void setInitParameter(String name, Integer value) {
+	protected void setInitParameterInteger(String name, Integer value) {
 		if (value != null) {
 			setInitParameterWithDebug(name, Integer.toString(value));
 		}

@@ -46,30 +46,30 @@ public class OmnifacesServletContextConfigurer extends ServletContextConfigurer 
 
 	@Override
 	public void configure() {
-		setInitParameter(CacheInitializerListener.CACHE_PROVIDER_INIT_PARAM_NAME, this.omnifacesProperties.getCacheProvider());
-		setInitParameter(CacheInstancePerScopeProvider.DEFAULT_CACHE_PARAM_NAME, this.omnifacesProperties.getDefaultcache());
-		setInitParameter(FullAjaxExceptionHandler.PARAM_NAME_EXCEPTION_TYPES_TO_UNWRAP, this.omnifacesProperties.getExceptionTypesToUnwrap());
-		setInitParameter(FacesViews.FACES_VIEWS_DISPATCH_METHOD_PARAM_NAME, this.omnifacesProperties.getFacesViewsDispatchMethod());
-		setInitParameter(FacesViews.FACES_VIEWS_ENABLED_PARAM_NAME, this.omnifacesProperties.getFacesViewsEnabled());
-		setInitParameter(FacesViews.FACES_VIEWS_EXTENSION_ACTION_PARAM_NAME, this.omnifacesProperties.getFacesViewsExtensionAction());
-		setInitParameter(FacesViews.FACES_VIEWS_FILTER_AFTER_DECLARED_FILTERS_PARAM_NAME, this.omnifacesProperties.getFacesViewsFilterAfterDeclaredFilters());
-		setInitParameter(FacesViews.FACES_VIEWS_PATH_ACTION_PARAM_NAME, this.omnifacesProperties.getFacesViewsPathAction());
-		setInitParameter(FacesViews.FACES_VIEWS_SCAN_PATHS_PARAM_NAME, this.omnifacesProperties.getFacesViewsScanPaths());
-		setInitParameter(FacesViews.FACES_VIEWS_SCANNED_VIEWS_EXTENSIONLESS_PARAM_NAME, this.omnifacesProperties.getFacesViewsScannedViewsAlwaysExtensionless());
-		setInitParameter(FacesViews.FACES_VIEWS_VIEW_HANDLER_MODE_PARAM_NAME, this.omnifacesProperties.getFacesViewsViewHandlerMode());
-		setInitParameter(Html5RenderKit.PARAM_NAME_PASSTHROUGH_ATTRIBUTES, this.omnifacesProperties.getHtml5RenderKitPassthroughAttributes());
-		setInitParameter(CDNResourceHandler.PARAM_NAME_CDN_DISABLED, this.omnifacesProperties.getCdnResourceHandlerDisabled());
-		setInitParameter(CDNResourceHandler.PARAM_NAME_CDN_RESOURCES, this.omnifacesProperties.getCdnResourceHandlerUrls());
-		setInitParameter(CombinedResourceHandler.PARAM_NAME_CACHE_TTL, this.omnifacesProperties.getCombinedResourceHandlerCacheTtl());
-		setInitParameter(CombinedResourceHandler.PARAM_NAME_DISABLED, this.omnifacesProperties.getCombinedResourceHandlerDisabled());
-		setInitParameter(CombinedResourceHandler.PARAM_NAME_EXCLUDED_RESOURCES, this.omnifacesProperties.getCombinedResourceHandlerExcludedResources());
-		setInitParameter(CombinedResourceHandler.PARAM_NAME_INLINE_CSS, this.omnifacesProperties.getCombinedResourceHandlerInlineCss());
-		setInitParameter(CombinedResourceHandler.PARAM_NAME_INLINE_JS, this.omnifacesProperties.getCombinedResourceHandlerInlineJs());
-		setInitParameter(CombinedResourceHandler.PARAM_NAME_SUPPRESSED_RESOURCES, this.omnifacesProperties.getCombinedResourceHandlerSuppressedResources());
+		setInitParameterString(CacheInitializerListener.CACHE_PROVIDER_INIT_PARAM_NAME, this.omnifacesProperties.getCacheProvider());
+		setInitParameterString(CacheInstancePerScopeProvider.DEFAULT_CACHE_PARAM_NAME, this.omnifacesProperties.getDefaultcache());
+		setInitParameterString(FullAjaxExceptionHandler.PARAM_NAME_EXCEPTION_TYPES_TO_UNWRAP, this.omnifacesProperties.getExceptionTypesToUnwrap());
+		setInitParameterString(FacesViews.FACES_VIEWS_DISPATCH_METHOD_PARAM_NAME, this.omnifacesProperties.getFacesViewsDispatchMethod());
+		setInitParameterBoolean(FacesViews.FACES_VIEWS_ENABLED_PARAM_NAME, this.omnifacesProperties.getFacesViewsEnabled());
+		setInitParameterString(FacesViews.FACES_VIEWS_EXTENSION_ACTION_PARAM_NAME, this.omnifacesProperties.getFacesViewsExtensionAction());
+		setInitParameterString(FacesViews.FACES_VIEWS_FILTER_AFTER_DECLARED_FILTERS_PARAM_NAME, this.omnifacesProperties.getFacesViewsFilterAfterDeclaredFilters());
+		setInitParameterString(FacesViews.FACES_VIEWS_PATH_ACTION_PARAM_NAME, this.omnifacesProperties.getFacesViewsPathAction());
+		setInitParameterString(FacesViews.FACES_VIEWS_SCAN_PATHS_PARAM_NAME, this.omnifacesProperties.getFacesViewsScanPaths());
+		setInitParameterBoolean(FacesViews.FACES_VIEWS_SCANNED_VIEWS_EXTENSIONLESS_PARAM_NAME, this.omnifacesProperties.getFacesViewsScannedViewsAlwaysExtensionless());
+		setInitParameterString(FacesViews.FACES_VIEWS_VIEW_HANDLER_MODE_PARAM_NAME, this.omnifacesProperties.getFacesViewsViewHandlerMode());
+		setInitParameterString(Html5RenderKit.PARAM_NAME_PASSTHROUGH_ATTRIBUTES, this.omnifacesProperties.getHtml5RenderKitPassthroughAttributes());
+		setInitParameterBoolean(CDNResourceHandler.PARAM_NAME_CDN_DISABLED, this.omnifacesProperties.getCdnResourceHandlerDisabled());
+		setInitParameterString(CDNResourceHandler.PARAM_NAME_CDN_RESOURCES, this.omnifacesProperties.getCdnResourceHandlerUrls());
+		setInitParameterInteger(CombinedResourceHandler.PARAM_NAME_CACHE_TTL, this.omnifacesProperties.getCombinedResourceHandlerCacheTtl());
+		setInitParameterBoolean(CombinedResourceHandler.PARAM_NAME_DISABLED, this.omnifacesProperties.getCombinedResourceHandlerDisabled());
+		setInitParameterString(CombinedResourceHandler.PARAM_NAME_EXCLUDED_RESOURCES, this.omnifacesProperties.getCombinedResourceHandlerExcludedResources());
+		setInitParameterBoolean(CombinedResourceHandler.PARAM_NAME_INLINE_CSS, this.omnifacesProperties.getCombinedResourceHandlerInlineCss());
+		setInitParameterBoolean(CombinedResourceHandler.PARAM_NAME_INLINE_JS, this.omnifacesProperties.getCombinedResourceHandlerInlineJs());
+		setInitParameterString(CombinedResourceHandler.PARAM_NAME_SUPPRESSED_RESOURCES, this.omnifacesProperties.getCombinedResourceHandlerSuppressedResources());
 
-		setInitParameter(CacheInstancePerScopeProvider.APP_MAX_CAP_PARAM_NAME, this.omnifacesProperties.getCache().getApplicationMaxCapacity());
-		setInitParameter(CacheInstancePerScopeProvider.APP_TTL_PARAM_NAME, this.omnifacesProperties.getCache().getApplicationTtl());
-		setInitParameter(CacheInstancePerScopeProvider.SESSION_MAX_CAP_PARAM_NAME, this.omnifacesProperties.getCache().getSessionMaxCapacity());
-		setInitParameter(CacheInstancePerScopeProvider.SESSION_TTL_PARAM_NAME, this.omnifacesProperties.getCache().getSessionTtl());
+		setInitParameterInteger(CacheInstancePerScopeProvider.APP_MAX_CAP_PARAM_NAME, this.omnifacesProperties.getCache().getApplicationMaxCapacity());
+		setInitParameterInteger(CacheInstancePerScopeProvider.APP_TTL_PARAM_NAME, this.omnifacesProperties.getCache().getApplicationTtl());
+		setInitParameterInteger(CacheInstancePerScopeProvider.SESSION_MAX_CAP_PARAM_NAME, this.omnifacesProperties.getCache().getSessionMaxCapacity());
+		setInitParameterInteger(CacheInstancePerScopeProvider.SESSION_TTL_PARAM_NAME, this.omnifacesProperties.getCache().getSessionTtl());
 	}
 }

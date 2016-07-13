@@ -24,6 +24,7 @@ import io.undertow.servlet.api.DeploymentInfo;
 import org.testng.annotations.Test;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.context.embedded.tomcat.TomcatEmbeddedServletContainerFactory;
 import org.springframework.boot.context.embedded.undertow.UndertowDeploymentInfoCustomizer;
 import org.springframework.boot.context.embedded.undertow.UndertowEmbeddedServletContainerFactory;
 import org.springframework.boot.test.SpringApplicationConfiguration;
@@ -54,5 +55,14 @@ public class UndertowSpringBootAutoConfigurationIT extends AbstractTestNGSpringC
 
 		assertThat(deploymentInfo.getResourceManager().getResource("test.txt"))
 			.isNotNull();
+	}
+
+	public void customizeTomcat() throws MalformedURLException, IOException {
+		TomcatEmbeddedServletContainerFactory factory = new TomcatEmbeddedServletContainerFactory();
+
+		this.undertowSpringBootAutoConfiguration.customize(factory);
+
+		assertThat(factory.getContextPath())
+			.isEqualTo("");
 	}
 }

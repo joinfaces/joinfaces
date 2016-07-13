@@ -40,29 +40,29 @@ public class ButterfacesServletContextConfigurer extends ServletContextConfigure
 
 	@Override
 	public void configure() {
-		setInitParameter(WebXmlParameters.CTX_PARAM_AJAX_DISABLE_RENDER_REGIONS_ON_REQUEST, this.butterfacesProperties.getAjaxDisableRenderRegionsOnRequest());
-		setInitParameter(WebXmlParameters.CTX_PARAM_AJAX_PROCESSING_GLYPHICON, this.butterfacesProperties.getAjaxProcessingGlyphiconOnRequest());
-		setInitParameter(WebXmlParameters.CTX_PARAM_AJAX_PROCESSING_TEXT, this.butterfacesProperties.getAjaxProcessingTextOnRequest());
-		setInitParameter(WebXmlParameters.CTX_PARAM_AUTO_TRIM_INPUT_FIELDS, this.butterfacesProperties.getAutoTrimInputFields());
-		setInitParameter(WebXmlParameters.CTX_PARAM_BOOTSTRAP, this.butterfacesProperties.getProvideBootstrap());
-		setInitParameter(WebXmlParameters.CTX_PARAM_COLLAPSING_GLYPHICON, this.butterfacesProperties.getGlyphicon().getCollapsing());
-		setInitParameter(WebXmlParameters.CTX_PARAM_EXPANSION_GLYPHICON, this.butterfacesProperties.getGlyphicon().getExpansion());
-		setInitParameter(WebXmlParameters.CTX_PARAM_INTEGRATION_PRIMEFACES_DISABLEJQUERY, this.butterfacesProperties.getIntegration().getPrimefaces().getDisableJQuery());
-		setInitParameter(WebXmlParameters.CTX_PARAM_JQUERY, this.butterfacesProperties.getProvideJQuery());
-		setInitParameter(WebXmlParameters.CTX_PARAM_MAX_LENGTH_TEXT, this.butterfacesProperties.getMaxLengthText());
-		setInitParameter(WebXmlParameters.CTX_PARAM_NO_ENTRIES_TEXT, this.butterfacesProperties.getNoEntriesText());
-		setInitParameter(WebXmlParameters.CTX_PARAM_OPTIONS_GLYPHICON, this.butterfacesProperties.getGlyphicon().getOptions());
-		setInitParameter(WebXmlParameters.CTX_PARAM_ORDER_LEFT_GLYPHICON, this.butterfacesProperties.getGlyphicon().getOrder().getLeft());
-		setInitParameter(WebXmlParameters.CTX_PARAM_ORDER_RIGHT_GLYPHICON, this.butterfacesProperties.getGlyphicon().getOrder().getRight());
-		setInitParameter(WebXmlParameters.CTX_PARAM_REFRESH_GLYPHICON, this.butterfacesProperties.getGlyphicon().getRefresh());
-		setInitParameter(WebXmlParameters.CTX_PARAM_SORT_ASC_GLYPHICON, this.butterfacesProperties.getGlyphicon().getSort().getAscending());
-		setInitParameter(WebXmlParameters.CTX_PARAM_SORT_DESC_GLYPHICON, this.butterfacesProperties.getGlyphicon().getSort().getDescending());
-		setInitParameter(WebXmlParameters.CTX_PARAM_SORT_GLYPHICON, this.butterfacesProperties.getGlyphicon().getSort().getNone());
-		setInitParameter(WebXmlParameters.CTX_PARAM_SPINNER_TEXT, this.butterfacesProperties.getSpinnerText());
-		setInitParameter(WebXmlParameters.CTX_PARAM_USE_COMPRESSED_RESOURCES, this.butterfacesProperties.getUseCompressedResources());
+		setInitParameterBoolean(WebXmlParameters.CTX_PARAM_AJAX_DISABLE_RENDER_REGIONS_ON_REQUEST, this.butterfacesProperties.getAjaxDisableRenderRegionsOnRequest());
+		setInitParameterString(WebXmlParameters.CTX_PARAM_AJAX_PROCESSING_GLYPHICON, this.butterfacesProperties.getAjaxProcessingGlyphiconOnRequest());
+		setInitParameterString(WebXmlParameters.CTX_PARAM_AJAX_PROCESSING_TEXT, this.butterfacesProperties.getAjaxProcessingTextOnRequest());
+		setInitParameterBoolean(WebXmlParameters.CTX_PARAM_AUTO_TRIM_INPUT_FIELDS, this.butterfacesProperties.getAutoTrimInputFields());
+		setInitParameterBoolean(WebXmlParameters.CTX_PARAM_BOOTSTRAP, this.butterfacesProperties.getProvideBootstrap());
+		setInitParameterString(WebXmlParameters.CTX_PARAM_COLLAPSING_GLYPHICON, this.butterfacesProperties.getGlyphicon().getCollapsing());
+		setInitParameterString(WebXmlParameters.CTX_PARAM_EXPANSION_GLYPHICON, this.butterfacesProperties.getGlyphicon().getExpansion());
+		setInitParameterBoolean(WebXmlParameters.CTX_PARAM_INTEGRATION_PRIMEFACES_DISABLEJQUERY, this.butterfacesProperties.getIntegration().getPrimefaces().getDisableJQuery());
+		setInitParameterBoolean(WebXmlParameters.CTX_PARAM_JQUERY, this.butterfacesProperties.getProvideJQuery());
+		setInitParameterString(WebXmlParameters.CTX_PARAM_MAX_LENGTH_TEXT, this.butterfacesProperties.getMaxLengthText());
+		setInitParameterString(WebXmlParameters.CTX_PARAM_NO_ENTRIES_TEXT, this.butterfacesProperties.getNoEntriesText());
+		setInitParameterString(WebXmlParameters.CTX_PARAM_OPTIONS_GLYPHICON, this.butterfacesProperties.getGlyphicon().getOptions());
+		setInitParameterString(WebXmlParameters.CTX_PARAM_ORDER_LEFT_GLYPHICON, this.butterfacesProperties.getGlyphicon().getOrder().getLeft());
+		setInitParameterString(WebXmlParameters.CTX_PARAM_ORDER_RIGHT_GLYPHICON, this.butterfacesProperties.getGlyphicon().getOrder().getRight());
+		setInitParameterString(WebXmlParameters.CTX_PARAM_REFRESH_GLYPHICON, this.butterfacesProperties.getGlyphicon().getRefresh());
+		setInitParameterString(WebXmlParameters.CTX_PARAM_SORT_ASC_GLYPHICON, this.butterfacesProperties.getGlyphicon().getSort().getAscending());
+		setInitParameterString(WebXmlParameters.CTX_PARAM_SORT_DESC_GLYPHICON, this.butterfacesProperties.getGlyphicon().getSort().getDescending());
+		setInitParameterString(WebXmlParameters.CTX_PARAM_SORT_GLYPHICON, this.butterfacesProperties.getGlyphicon().getSort().getNone());
+		setInitParameterString(WebXmlParameters.CTX_PARAM_SPINNER_TEXT, this.butterfacesProperties.getSpinnerText());
+		setInitParameterBoolean(WebXmlParameters.CTX_PARAM_USE_COMPRESSED_RESOURCES, this.butterfacesProperties.getUseCompressedResources());
 
 		// this bootsfaces parameters should be set to work with butterfaces
 		// https://github.com/ButterFaces/bootsfaces-integration
-		setInitParameter("net.bootsfaces.get_jquery_from_cdn", "true");
+		setInitParameterString("net.bootsfaces.get_jquery_from_cdn", "true");
 	}
 }
