@@ -59,7 +59,7 @@
         <pmd.dir>${check.dir}/pmd</pmd.dir>
         <findbugs.dir>${check.dir}/findbugs</findbugs.dir>
         
-        <findbugs-maven-plugin.version>3.0.3</findbugs-maven-plugin.version>
+        <findbugs-maven-plugin.version>3.0.4</findbugs-maven-plugin.version>
         <findbugs.excludeFilterFile>${findbugs.dir}/findbugs-exclude.xml</findbugs.excludeFilterFile>
         <jdepend-maven-plugin.version>2.0</jdepend-maven-plugin.version>
         <maven-pmd-plugin.version>3.6</maven-pmd-plugin.version>
