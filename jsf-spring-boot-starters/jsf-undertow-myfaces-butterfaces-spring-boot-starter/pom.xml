@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>com.github.persapiens</groupId>
+        <artifactId>jsf-spring-boot-starters</artifactId>
+        <version>1.7.3-SNAPSHOT</version>
+    </parent>
+    
+    <groupId>com.github.persapiens</groupId>
+    <artifactId>jsf-undertow-myfaces-butterfaces-spring-boot-starter</artifactId>
+    <name>JSF Undertow MyFaces ButterFaces Spring Boot Starter</name>
+    <version>1.7.3-SNAPSHOT</version>
+    <description>Jsf Spring Boot Starter for Undertow and MyFaces and ButterFaces</description>
+    
+    <properties>
+        <main.basedir>${basedir}/../..</main.basedir>
+    </properties>
+
+    <dependencies>
+        <!-- undertow and butterfaces dependencies without mojarra -->
+        <dependency>
+            <groupId>com.github.persapiens</groupId>
+            <artifactId>jsf-undertow-butterfaces-spring-boot-starter</artifactId>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.glassfish</groupId>
+                    <artifactId>javax.faces</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>com.github.persapiens</groupId>
+                    <artifactId>mojarra-spring-boot-autoconfigure</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        <!-- myfaces dependencies -->
+        <dependency>
+            <groupId>com.github.persapiens</groupId>
+            <artifactId>jsf-myfaces-spring-boot-autoconfigure</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.github.persapiens</groupId>
+            <artifactId>jsf-undertow-myfaces-spring-boot-autoconfigure</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.myfaces.core</groupId>
+            <artifactId>myfaces-bundle</artifactId>
+        </dependency>        
+        <dependency>
+            <groupId>commons-digester</groupId>
+            <artifactId>commons-digester</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.tomcat.embed</groupId>
+            <artifactId>tomcat-embed-jasper</artifactId>
+        </dependency>
+    </dependencies>
+</project>

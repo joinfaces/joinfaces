@@ -54,7 +54,7 @@
         <maven-source-plugin.version>3.0.1</maven-source-plugin.version>
         <maven-javadoc-plugin.version>2.10.4</maven-javadoc-plugin.version>
 
-        <check.dir>../jsf-spring-boot-parent/src/checkconfig</check.dir>
+        <check.dir>src/checkconfig</check.dir>
         <checkstyle.dir>${check.dir}/checkstyle</checkstyle.dir>
         <pmd.dir>${check.dir}/pmd</pmd.dir>
         <findbugs.dir>${check.dir}/findbugs</findbugs.dir>
@@ -742,28 +742,6 @@
                 </plugins>
             </build>
         </profile>                    
-        
-        <profile>
-            <id>check-findbugs</id>
-            <build>
-                <plugins>
-                    <plugin>
-                        <groupId>org.codehaus.mojo</groupId>
-                        <artifactId>findbugs-maven-plugin</artifactId>                
-                        <executions>
-                            <execution>
-                                <goals>
-                                    <goal>check</goal>
-                                </goals>
-                            </execution>
-                        </executions>
-                        <configuration>
-                            <failOnError>true</failOnError>
-                        </configuration>
-                    </plugin>                                               
-                </plugins>
-            </build>
-        </profile>
 
         <profile>
             <id>check-pmd-cpd</id>
@@ -829,6 +807,28 @@
                             </execution>
                         </executions>
                     </plugin>                      
+                </plugins>
+            </build>
+        </profile>
+        
+        <profile>
+            <id>check-findbugs</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.codehaus.mojo</groupId>
+                        <artifactId>findbugs-maven-plugin</artifactId>                
+                        <executions>
+                            <execution>
+                                <goals>
+                                    <goal>check</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                        <configuration>
+                            <failOnError>true</failOnError>
+                        </configuration>
+                    </plugin>                                               
                 </plugins>
             </build>
         </profile>

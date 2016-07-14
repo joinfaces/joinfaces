@@ -27,38 +27,9 @@
 
         <module>jsf-spring-boot-integration</module>
 
-        <module>jsf-spring-boot-autoconfigure</module>
-        <module>jsf-mojarra-spring-boot-autoconfigure</module>
-        <module>jsf-myfaces-spring-boot-autoconfigure</module>
-        <module>jsf-omnifaces-spring-boot-autoconfigure</module>
-        <module>jsf-primefaces-spring-boot-autoconfigure</module>
-        <module>jsf-primefaces53-spring-boot-autoconfigure</module>
-        <module>jsf-bootsfaces-spring-boot-autoconfigure</module>
-        <module>jsf-angularfaces-spring-boot-autoconfigure</module>
-        <module>jsf-butterfaces-spring-boot-autoconfigure</module>
-        <module>jsf-jetty-spring-boot-autoconfigure</module>
-        <module>jsf-jetty-myfaces-spring-boot-autoconfigure</module>
-        <module>jsf-undertow-spring-boot-autoconfigure</module>
-        <module>jsf-undertow-myfaces-spring-boot-autoconfigure</module>
+        <module>jsf-spring-boot-autoconfigures</module>
 
-        <module>jsf-spring-boot-starter</module>
-        <module>jsf-bootsfaces-spring-boot-starter</module>
-        <module>jsf-butterfaces-spring-boot-starter</module>
-        <module>jsf-myfaces-spring-boot-starter</module>
-        <module>jsf-myfaces-bootsfaces-spring-boot-starter</module>
-        <module>jsf-myfaces-butterfaces-spring-boot-starter</module>
-        <module>jsf-jetty-spring-boot-starter</module>
-        <module>jsf-jetty-bootsfaces-spring-boot-starter</module>
-        <module>jsf-jetty-butterfaces-spring-boot-starter</module>
-        <module>jsf-jetty-myfaces-spring-boot-starter</module>
-        <module>jsf-jetty-myfaces-bootsfaces-spring-boot-starter</module>
-        <module>jsf-jetty-myfaces-butterfaces-spring-boot-starter</module>
-        <module>jsf-undertow-spring-boot-starter</module>
-        <module>jsf-undertow-bootsfaces-spring-boot-starter</module>
-        <module>jsf-undertow-butterfaces-spring-boot-starter</module>
-        <module>jsf-undertow-myfaces-spring-boot-starter</module>
-        <module>jsf-undertow-myfaces-bootsfaces-spring-boot-starter</module>
-        <module>jsf-undertow-myfaces-butterfaces-spring-boot-starter</module>
+        <module>jsf-spring-boot-starters</module>
     </modules>
 
     <build>

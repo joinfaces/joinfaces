@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>com.github.persapiens</groupId>
+        <artifactId>jsf-spring-boot-parent</artifactId>
+        <version>1.7.3-SNAPSHOT</version>
+        <relativePath>../jsf-spring-boot-parent</relativePath>
+    </parent>
+
+    <groupId>com.github.persapiens</groupId>
+    <artifactId>jsf-spring-boot-starters</artifactId>
+    <version>1.7.3-SNAPSHOT</version>
+    <packaging>pom</packaging>
+    <name>JSF Spring Boot Starters</name>
+    <description>Group of all JSF Spring Boot Starters</description>
+
+    <properties>
+        <main.basedir>${basedir}/..</main.basedir>
+        
+        <check.dir>../../jsf-spring-boot-parent/src/checkconfig</check.dir>
+        <checkstyle.dir>../jsf-spring-boot-parent/src/checkconfig/checkstyle</checkstyle.dir>
+    </properties>
+    
+    <modules>
+        <module>jsf-spring-boot-starter</module>
+        <module>jsf-bootsfaces-spring-boot-starter</module>
+        <module>jsf-butterfaces-spring-boot-starter</module>
+        <module>jsf-myfaces-spring-boot-starter</module>
+        <module>jsf-myfaces-bootsfaces-spring-boot-starter</module>
+        <module>jsf-myfaces-butterfaces-spring-boot-starter</module>
+        <module>jsf-jetty-spring-boot-starter</module>
+        <module>jsf-jetty-bootsfaces-spring-boot-starter</module>
+        <module>jsf-jetty-butterfaces-spring-boot-starter</module>
+        <module>jsf-jetty-myfaces-spring-boot-starter</module>
+        <module>jsf-jetty-myfaces-bootsfaces-spring-boot-starter</module>
+        <module>jsf-jetty-myfaces-butterfaces-spring-boot-starter</module>
+        <module>jsf-undertow-spring-boot-starter</module>
+        <module>jsf-undertow-bootsfaces-spring-boot-starter</module>
+        <module>jsf-undertow-butterfaces-spring-boot-starter</module>
+        <module>jsf-undertow-myfaces-spring-boot-starter</module>
+        <module>jsf-undertow-myfaces-bootsfaces-spring-boot-starter</module>
+        <module>jsf-undertow-myfaces-butterfaces-spring-boot-starter</module>
+    </modules>
+</project>
