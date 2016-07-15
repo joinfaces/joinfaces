@@ -5,13 +5,13 @@
     <parent>
         <groupId>com.github.persapiens</groupId>
         <artifactId>jsf-spring-boot-autoconfigures</artifactId>
-        <version>1.7.3-SNAPSHOT</version>
+        <version>1.7.3</version>
     </parent>
     
     <groupId>com.github.persapiens</groupId>
     <artifactId>jsf-butterfaces-spring-boot-autoconfigure</artifactId>
     <name>JSF ButterFaces Spring Boot AutoConfigure</name>
-    <version>1.7.3-SNAPSHOT</version>
+    <version>1.7.3</version>
     <description>Jsf Spring Boot AutoConfigure for ButterFaces</description>
 
     <properties>
