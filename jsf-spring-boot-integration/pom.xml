@@ -5,14 +5,14 @@
     <parent>
         <groupId>com.github.persapiens</groupId>
         <artifactId>jsf-spring-boot-parent</artifactId>
-        <version>1.7.3</version>
+        <version>1.7.4-SNAPSHOT</version>
         <relativePath>../jsf-spring-boot-parent</relativePath>
     </parent>
     
     <groupId>com.github.persapiens</groupId>
     <artifactId>jsf-spring-boot-integration</artifactId>
     <name>JSF Spring Boot Integration</name>
-    <version>1.7.3</version>
+    <version>1.7.4-SNAPSHOT</version>
     <description>Jsf Spring Boot Integration</description>
 
     <properties>

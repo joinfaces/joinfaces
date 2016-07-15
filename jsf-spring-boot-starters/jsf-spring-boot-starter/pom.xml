@@ -5,13 +5,13 @@
     <parent>
         <groupId>com.github.persapiens</groupId>
         <artifactId>jsf-spring-boot-starters</artifactId>
-        <version>1.7.3</version>
+        <version>1.7.4-SNAPSHOT</version>
     </parent>
     
     <groupId>com.github.persapiens</groupId>
     <artifactId>jsf-spring-boot-starter</artifactId>
     <name>JSF Spring Boot Starter</name>
-    <version>1.7.3</version>
+    <version>1.7.4-SNAPSHOT</version>
     <description>Jsf Spring Boot Starter for Tomcat and Mojarra</description>
     
     <properties>
