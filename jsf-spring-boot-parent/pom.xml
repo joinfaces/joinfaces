@@ -78,8 +78,8 @@
 
         <cobertura.totalBranchRate>100</cobertura.totalBranchRate>
         <cobertura.totalLineRate>100</cobertura.totalLineRate>
-        <cobertura.packageLineRate>100</cobertura.packageLineRate>
         <cobertura.packageBranchRate>100</cobertura.packageBranchRate>
+        <cobertura.packageLineRate>100</cobertura.packageLineRate>
         <cobertura.branchRate>100</cobertura.branchRate>
         <cobertura.lineRate>100</cobertura.lineRate>
         <cobertura-maven-plugin.version>2.7</cobertura-maven-plugin.version>
@@ -846,8 +846,8 @@
                                     <haltOnFailure>true</haltOnFailure>
                                     <totalBranchRate>${cobertura.totalBranchRate}</totalBranchRate>
                                     <totalLineRate>${cobertura.totalLineRate}</totalLineRate>
-                                    <packageLineRate>${cobertura.packageLineRate}</packageLineRate>
                                     <packageBranchRate>${cobertura.packageBranchRate}</packageBranchRate>
+                                    <packageLineRate>${cobertura.packageLineRate}</packageLineRate>
                                     <branchRate>${cobertura.branchRate}</branchRate>
                                     <lineRate>${cobertura.lineRate}</lineRate>
                                 </check>

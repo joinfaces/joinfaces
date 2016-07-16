@@ -29,7 +29,7 @@ import org.springframework.context.annotation.Configuration;
  * @author Marcelo Fernandes
  */
 @Configuration
-@ConditionalOnClass(Undertow.class)
+@ConditionalOnClass({Undertow.class, StartupServletContextListener.class})
 public class UndertowMyfacesSpringBootAutoConfiguration {
 
 	@Bean

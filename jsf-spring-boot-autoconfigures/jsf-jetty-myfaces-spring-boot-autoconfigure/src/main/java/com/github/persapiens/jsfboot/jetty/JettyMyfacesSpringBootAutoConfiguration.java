@@ -28,7 +28,7 @@ import org.springframework.context.annotation.Configuration;
  * @author Marcelo Fernandes
  */
 @Configuration
-@ConditionalOnClass(Server.class)
+@ConditionalOnClass({Server.class, StartupServletContextListener.class})
 public class JettyMyfacesSpringBootAutoConfiguration {
 
 	@Bean
