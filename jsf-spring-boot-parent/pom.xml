@@ -23,7 +23,7 @@
         
         <testng.version>6.9.10</testng.version>
         <assertj.version>3.5.2</assertj.version>
-        <lombok.version>1.16.8</lombok.version>
+        <lombok.version>1.16.10</lombok.version>
         <lombok-maven-plugin.version>1.16.8.0</lombok-maven-plugin.version>        
         
         <javax.faces.version>2.2.13</javax.faces.version>
