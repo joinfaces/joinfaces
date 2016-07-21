@@ -1,4 +1,4 @@
-JSF Spring Boot Starter
+JoinFaces
 =============================
 [![Maven Central](https://maven-badges.herokuapp.com/maven-central/org.joinfaces/jsf-spring-boot-starter/badge.svg)](https://maven-badges.herokuapp.com/maven-central/org.joinfaces/jsf-spring-boot-starter)
 [![Build Status](https://travis-ci.org/joinfaces/joinfaces.svg?branch=master)](https://travis-ci.org/joinfaces/joinfaces)
@@ -16,9 +16,9 @@ It also aims to solve [JSF](http://www.oracle.com/technetwork/java/javaee/javase
 
 ## How to use
 
-[Jsf Spring Boot Starter Example](https://github.com/joinfaces/jsf-spring-boot-starter-example) shows JSF Spring Boot Starter usage. It may help you to choose the JSF Spring Boot Starter that fits your needs.
+[JoinFaces Example](https://github.com/joinfaces/joinfaces-example) shows JSF Spring Boot Starter usage. It may help you to choose the JSF Spring Boot Starter that fits your needs.
 
-You can find more examples [here.](https://github.com/joinfaces/jsf-spring-boot-starter/wiki/Some-examples-of--JSF-Spring-Boot-Starter-usage)
+You can find more examples [here.](https://github.com/joinfaces/joinfaces/wiki/Some-examples-of--JSF-Spring-Boot-Starter-usage)
 
 ## Key Features
 
@@ -109,11 +109,11 @@ By default, JSF Spring Boot Starter requires [Java 7](http://java.com) and [Spri
 
 ## Getting Help
 
-* Report questions and bugs at [github.com/jsf-spring-boot-starter/issues](https://github.com/joinfaces/joinfaces/issues).
+* Report questions and bugs at [github.com/joinfaces/joinfaces/issues](https://github.com/joinfaces/joinfaces/issues).
 
 ## Contributing
 
-* Report documentation, features, enhancement and bugs at [github.com/jsf-spring-boot-starter/issues](https://github.com/joinfaces/joinfaces/issues).
+* Report documentation, features, enhancement and bugs at [github.com/joinfaces/joinfaces/issues](https://github.com/joinfaces/joinfaces/issues).
 * Pull requests are welcome.
 
 ## Structure
