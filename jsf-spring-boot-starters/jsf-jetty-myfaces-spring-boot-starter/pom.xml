@@ -3,12 +3,12 @@
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
-        <groupId>com.github.persapiens</groupId>
+        <groupId>org.joinfaces</groupId>
         <artifactId>jsf-spring-boot-starters</artifactId>
         <version>1.7.4-SNAPSHOT</version>
     </parent>
     
-    <groupId>com.github.persapiens</groupId>
+    <groupId>org.joinfaces</groupId>
     <artifactId>jsf-jetty-myfaces-spring-boot-starter</artifactId>
     <name>JSF Jetty MyFaces Spring Boot Starter</name>
     <version>1.7.4-SNAPSHOT</version>
@@ -21,7 +21,7 @@
     <dependencies>
         <!-- jetty dependencies without mojarra -->
         <dependency>
-            <groupId>com.github.persapiens</groupId>
+            <groupId>org.joinfaces</groupId>
             <artifactId>jsf-jetty-spring-boot-starter</artifactId>
             <exclusions>
                 <exclusion>
@@ -29,18 +29,18 @@
                     <artifactId>javax.faces</artifactId>
                 </exclusion>
                 <exclusion>
-                    <groupId>com.github.persapiens</groupId>
+                    <groupId>org.joinfaces</groupId>
                     <artifactId>jsf-mojarra-spring-boot-autoconfigure</artifactId>
                 </exclusion>
             </exclusions>
         </dependency>
         <!-- myfaces dependencies -->
         <dependency>
-            <groupId>com.github.persapiens</groupId>
+            <groupId>org.joinfaces</groupId>
             <artifactId>jsf-myfaces-spring-boot-starter</artifactId>
         </dependency>
         <dependency>
-            <groupId>com.github.persapiens</groupId>
+            <groupId>org.joinfaces</groupId>
             <artifactId>jsf-jetty-myfaces-spring-boot-autoconfigure</artifactId>
         </dependency>
     </dependencies>

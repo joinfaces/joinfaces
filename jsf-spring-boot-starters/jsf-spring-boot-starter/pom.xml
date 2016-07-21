@@ -3,12 +3,12 @@
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
-        <groupId>com.github.persapiens</groupId>
+        <groupId>org.joinfaces</groupId>
         <artifactId>jsf-spring-boot-starters</artifactId>
         <version>1.7.4-SNAPSHOT</version>
     </parent>
     
-    <groupId>com.github.persapiens</groupId>
+    <groupId>org.joinfaces</groupId>
     <artifactId>jsf-spring-boot-starter</artifactId>
     <name>JSF Spring Boot Starter</name>
     <version>1.7.4-SNAPSHOT</version>
@@ -36,23 +36,23 @@
             <artifactId>jstl</artifactId>
         </dependency>
         <dependency>
-            <groupId>com.github.persapiens</groupId>
+            <groupId>org.joinfaces</groupId>
             <artifactId>jsf-spring-boot-integration</artifactId>
         </dependency>
         <dependency>
-            <groupId>com.github.persapiens</groupId>
+            <groupId>org.joinfaces</groupId>
             <artifactId>jsf-spring-boot-autoconfigure</artifactId>
         </dependency>
         <dependency>
-            <groupId>com.github.persapiens</groupId>
+            <groupId>org.joinfaces</groupId>
             <artifactId>jsf-mojarra-spring-boot-autoconfigure</artifactId>
         </dependency>
         <dependency>
-            <groupId>com.github.persapiens</groupId>
+            <groupId>org.joinfaces</groupId>
             <artifactId>jsf-omnifaces-spring-boot-autoconfigure</artifactId>
         </dependency>
         <dependency>
-            <groupId>com.github.persapiens</groupId>
+            <groupId>org.joinfaces</groupId>
             <artifactId>jsf-primefaces-spring-boot-autoconfigure</artifactId>
         </dependency>
         <dependency>

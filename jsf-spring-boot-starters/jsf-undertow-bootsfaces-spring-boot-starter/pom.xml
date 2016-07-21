@@ -3,12 +3,12 @@
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
-        <groupId>com.github.persapiens</groupId>
+        <groupId>org.joinfaces</groupId>
         <artifactId>jsf-spring-boot-starters</artifactId>
         <version>1.7.4-SNAPSHOT</version>
     </parent>
     
-    <groupId>com.github.persapiens</groupId>
+    <groupId>org.joinfaces</groupId>
     <artifactId>jsf-undertow-bootsfaces-spring-boot-starter</artifactId>
     <name>JSF Undertow BootsFaces Spring Boot Starter</name>
     <version>1.7.4-SNAPSHOT</version>
@@ -21,7 +21,7 @@
     <dependencies>
         <!-- remove tomcat dependencies -->
         <dependency>
-            <groupId>com.github.persapiens</groupId>
+            <groupId>org.joinfaces</groupId>
             <artifactId>jsf-bootsfaces-spring-boot-starter</artifactId>
             <exclusions>
                 <exclusion>
@@ -40,7 +40,7 @@
         </dependency>
         <!-- undertow dependencies -->
         <dependency>
-            <groupId>com.github.persapiens</groupId>
+            <groupId>org.joinfaces</groupId>
             <artifactId>jsf-undertow-spring-boot-autoconfigure</artifactId>
         </dependency>
         <dependency>

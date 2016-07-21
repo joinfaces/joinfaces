@@ -3,12 +3,12 @@
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
-        <groupId>com.github.persapiens</groupId>
+        <groupId>org.joinfaces</groupId>
         <artifactId>jsf-spring-boot-autoconfigures</artifactId>
         <version>1.7.4-SNAPSHOT</version>
     </parent>
     
-    <groupId>com.github.persapiens</groupId>
+    <groupId>org.joinfaces</groupId>
     <artifactId>jsf-primefaces53-spring-boot-autoconfigure</artifactId>
     <name>JSF PrimeFaces 5.3 Spring Boot AutoConfigure</name>
     <version>1.7.4-SNAPSHOT</version>
@@ -44,7 +44,7 @@
         </dependency>
         
         <dependency>
-            <groupId>com.github.persapiens</groupId>
+            <groupId>org.joinfaces</groupId>
             <artifactId>jsf-spring-boot-autoconfigure</artifactId>
             <optional>true</optional>
         </dependency>

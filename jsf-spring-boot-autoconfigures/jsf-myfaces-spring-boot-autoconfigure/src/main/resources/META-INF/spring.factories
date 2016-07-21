@@ -1,1 +1,1 @@
-org.springframework.boot.autoconfigure.EnableAutoConfiguration=com.github.persapiens.jsfboot.myfaces.MyfacesSpringBootAutoConfiguration
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=org.joinfaces.myfaces.MyfacesSpringBootAutoConfiguration

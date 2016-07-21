@@ -9,7 +9,7 @@
         <relativePath /> <!-- lookup parent from repository -->
     </parent>
 
-    <groupId>com.github.persapiens</groupId>
+    <groupId>org.joinfaces</groupId>
     <artifactId>jsf-spring-boot-parent</artifactId>
     <version>1.7.4-SNAPSHOT</version>
     <packaging>pom</packaging>
@@ -192,163 +192,163 @@
             </dependency>
             
             <dependency>
-                <groupId>com.github.persapiens</groupId>
+                <groupId>org.joinfaces</groupId>
                 <artifactId>jsf-spring-boot-integration</artifactId>
                 <version>${jsf-spring-boot-starter.version}</version>
             </dependency>
             <dependency>
-                <groupId>com.github.persapiens</groupId>
+                <groupId>org.joinfaces</groupId>
                 <artifactId>jsf-spring-boot-autoconfigure</artifactId>
                 <version>${jsf-spring-boot-starter.version}</version>
             </dependency>
             <dependency>
-                <groupId>com.github.persapiens</groupId>
+                <groupId>org.joinfaces</groupId>
                 <artifactId>jsf-mojarra-spring-boot-autoconfigure</artifactId>
                 <version>${jsf-spring-boot-starter.version}</version>
             </dependency>
             <dependency>
-                <groupId>com.github.persapiens</groupId>
+                <groupId>org.joinfaces</groupId>
                 <artifactId>jsf-myfaces-spring-boot-autoconfigure</artifactId>
                 <version>${jsf-spring-boot-starter.version}</version>
             </dependency>
             <dependency>
-                <groupId>com.github.persapiens</groupId>
+                <groupId>org.joinfaces</groupId>
                 <artifactId>jsf-omnifaces-spring-boot-autoconfigure</artifactId>
                 <version>${jsf-spring-boot-starter.version}</version>
             </dependency>
             <dependency>
-                <groupId>com.github.persapiens</groupId>
+                <groupId>org.joinfaces</groupId>
                 <artifactId>jsf-primefaces-spring-boot-autoconfigure</artifactId>
                 <version>${jsf-spring-boot-starter.version}</version>
             </dependency>
             <dependency>
-                <groupId>com.github.persapiens</groupId>
+                <groupId>org.joinfaces</groupId>
                 <artifactId>jsf-primefaces53-spring-boot-autoconfigure</artifactId>
                 <version>${jsf-spring-boot-starter.version}</version>
             </dependency>
             <dependency>
-                <groupId>com.github.persapiens</groupId>
+                <groupId>org.joinfaces</groupId>
                 <artifactId>jsf-angularfaces-spring-boot-autoconfigure</artifactId>
                 <version>${jsf-spring-boot-starter.version}</version>
             </dependency>
             <dependency>
-                <groupId>com.github.persapiens</groupId>
+                <groupId>org.joinfaces</groupId>
                 <artifactId>jsf-bootsfaces-spring-boot-autoconfigure</artifactId>
                 <version>${jsf-spring-boot-starter.version}</version>
             </dependency>
             <dependency>
-                <groupId>com.github.persapiens</groupId>
+                <groupId>org.joinfaces</groupId>
                 <artifactId>jsf-butterfaces-spring-boot-autoconfigure</artifactId>
                 <version>${jsf-spring-boot-starter.version}</version>
             </dependency>
             <dependency>
-                <groupId>com.github.persapiens</groupId>
+                <groupId>org.joinfaces</groupId>
                 <artifactId>jsf-jetty-spring-boot-autoconfigure</artifactId>
                 <version>${jsf-spring-boot-starter.version}</version>
             </dependency>
             <dependency>
-                <groupId>com.github.persapiens</groupId>
+                <groupId>org.joinfaces</groupId>
                 <artifactId>jsf-jetty-myfaces-spring-boot-autoconfigure</artifactId>
                 <version>${jsf-spring-boot-starter.version}</version>
             </dependency>
             <dependency>
-                <groupId>com.github.persapiens</groupId>
+                <groupId>org.joinfaces</groupId>
                 <artifactId>jsf-undertow-spring-boot-autoconfigure</artifactId>
                 <version>${jsf-spring-boot-starter.version}</version>
             </dependency>
             <dependency>
-                <groupId>com.github.persapiens</groupId>
+                <groupId>org.joinfaces</groupId>
                 <artifactId>jsf-undertow-myfaces-spring-boot-autoconfigure</artifactId>
                 <version>${jsf-spring-boot-starter.version}</version>
             </dependency>
             
             <dependency>
-                <groupId>com.github.persapiens</groupId>
+                <groupId>org.joinfaces</groupId>
                 <artifactId>jsf-spring-boot-starter</artifactId>
                 <version>${jsf-spring-boot-starter.version}</version>
             </dependency>
             <dependency>
-                <groupId>com.github.persapiens</groupId>
+                <groupId>org.joinfaces</groupId>
                 <artifactId>jsf-bootsfaces-spring-boot-starter</artifactId>
                 <version>${jsf-spring-boot-starter.version}</version>
             </dependency>
             <dependency>
-                <groupId>com.github.persapiens</groupId>
+                <groupId>org.joinfaces</groupId>
                 <artifactId>jsf-butterfaces-spring-boot-starter</artifactId>
                 <version>${jsf-spring-boot-starter.version}</version>
             </dependency>
             <dependency>
-                <groupId>com.github.persapiens</groupId>
+                <groupId>org.joinfaces</groupId>
                 <artifactId>jsf-myfaces-spring-boot-starter</artifactId>
                 <version>${jsf-spring-boot-starter.version}</version>
             </dependency>
             <dependency>
-                <groupId>com.github.persapiens</groupId>
+                <groupId>org.joinfaces</groupId>
                 <artifactId>jsf-myfaces-bootsfaces-spring-boot-starter</artifactId>
                 <version>${jsf-spring-boot-starter.version}</version>
             </dependency>
             <dependency>
-                <groupId>com.github.persapiens</groupId>
+                <groupId>org.joinfaces</groupId>
                 <artifactId>jsf-myfaces-butterfaces-spring-boot-starter</artifactId>
                 <version>${jsf-spring-boot-starter.version}</version>
             </dependency>
             <dependency>
-                <groupId>com.github.persapiens</groupId>
+                <groupId>org.joinfaces</groupId>
                 <artifactId>jsf-jetty-spring-boot-starter</artifactId>
                 <version>${jsf-spring-boot-starter.version}</version>
             </dependency>
             <dependency>
-                <groupId>com.github.persapiens</groupId>
+                <groupId>org.joinfaces</groupId>
                 <artifactId>jsf-jetty-bootsfaces-spring-boot-starter</artifactId>
                 <version>${jsf-spring-boot-starter.version}</version>
             </dependency>
             <dependency>
-                <groupId>com.github.persapiens</groupId>
+                <groupId>org.joinfaces</groupId>
                 <artifactId>jsf-jetty-butterfaces-spring-boot-starter</artifactId>
                 <version>${jsf-spring-boot-starter.version}</version>
             </dependency>
             <dependency>
-                <groupId>com.github.persapiens</groupId>
+                <groupId>org.joinfaces</groupId>
                 <artifactId>jsf-jetty-myfaces-spring-boot-starter</artifactId>
                 <version>${jsf-spring-boot-starter.version}</version>
             </dependency>
             <dependency>
-                <groupId>com.github.persapiens</groupId>
+                <groupId>org.joinfaces</groupId>
                 <artifactId>jsf-jetty-myfaces-bootsfaces-spring-boot-starter</artifactId>
                 <version>${jsf-spring-boot-starter.version}</version>
             </dependency>
             <dependency>
-                <groupId>com.github.persapiens</groupId>
+                <groupId>org.joinfaces</groupId>
                 <artifactId>jsf-jetty-myfaces-butterfaces-spring-boot-starter</artifactId>
                 <version>${jsf-spring-boot-starter.version}</version>
             </dependency>
             <dependency>
-                <groupId>com.github.persapiens</groupId>
+                <groupId>org.joinfaces</groupId>
                 <artifactId>jsf-undertow-spring-boot-starter</artifactId>
                 <version>${jsf-spring-boot-starter.version}</version>
             </dependency>
             <dependency>
-                <groupId>com.github.persapiens</groupId>
+                <groupId>org.joinfaces</groupId>
                 <artifactId>jsf-undertow-bootsfaces-spring-boot-starter</artifactId>
                 <version>${jsf-spring-boot-starter.version}</version>
             </dependency>
             <dependency>
-                <groupId>com.github.persapiens</groupId>
+                <groupId>org.joinfaces</groupId>
                 <artifactId>jsf-undertow-butterfaces-spring-boot-starter</artifactId>
                 <version>${jsf-spring-boot-starter.version}</version>
             </dependency>
             <dependency>
-                <groupId>com.github.persapiens</groupId>
+                <groupId>org.joinfaces</groupId>
                 <artifactId>jsf-undertow-myfaces-spring-boot-starter</artifactId>
                 <version>${jsf-spring-boot-starter.version}</version>
             </dependency>
             <dependency>
-                <groupId>com.github.persapiens</groupId>
+                <groupId>org.joinfaces</groupId>
                 <artifactId>jsf-undertow-myfaces-bootsfaces-spring-boot-starter</artifactId>
                 <version>${jsf-spring-boot-starter.version}</version>
             </dependency>
             <dependency>
-                <groupId>com.github.persapiens</groupId>
+                <groupId>org.joinfaces</groupId>
                 <artifactId>jsf-undertow-myfaces-butterfaces-spring-boot-starter</artifactId>
                 <version>${jsf-spring-boot-starter.version}</version>
             </dependency>

@@ -3,12 +3,12 @@
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
-        <groupId>com.github.persapiens</groupId>
+        <groupId>org.joinfaces</groupId>
         <artifactId>jsf-spring-boot-autoconfigures</artifactId>
         <version>1.7.4-SNAPSHOT</version>
     </parent>
     
-    <groupId>com.github.persapiens</groupId>
+    <groupId>org.joinfaces</groupId>
     <artifactId>jsf-jetty-myfaces-spring-boot-autoconfigure</artifactId>
     <name>JSF Jetty MyFaces Spring Boot AutoConfigure</name>
     <version>1.7.4-SNAPSHOT</version>

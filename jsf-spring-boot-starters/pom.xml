@@ -3,13 +3,13 @@
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
-        <groupId>com.github.persapiens</groupId>
+        <groupId>org.joinfaces</groupId>
         <artifactId>jsf-spring-boot-parent</artifactId>
         <version>1.7.4-SNAPSHOT</version>
         <relativePath>../jsf-spring-boot-parent</relativePath>
     </parent>
 
-    <groupId>com.github.persapiens</groupId>
+    <groupId>org.joinfaces</groupId>
     <artifactId>jsf-spring-boot-starters</artifactId>
     <version>1.7.4-SNAPSHOT</version>
     <packaging>pom</packaging>

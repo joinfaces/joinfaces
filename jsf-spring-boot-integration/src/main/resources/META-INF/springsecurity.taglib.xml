@@ -13,7 +13,7 @@
             The var attribute can be used to store the result of the authorization decision for later use in the view.
         </description>
 		<tag-name>authorize</tag-name>
-		<handler-class>com.github.persapiens.jsfboot.security.AuthorizeFaceletsTagHandler</handler-class>
+		<handler-class>org.joinfaces.security.AuthorizeFaceletsTagHandler</handler-class>
         
         <attribute>
             <description>
@@ -82,54 +82,54 @@
 	<tag>
         <description>Verify if the user is anonymous.</description>
 		<tag-name>anonymous</tag-name>
-		<handler-class>com.github.persapiens.jsfboot.security.AnonymousFaceletsTagHandler</handler-class>
+		<handler-class>org.joinfaces.security.AnonymousFaceletsTagHandler</handler-class>
 	</tag>
         
 	<tag>
         <description>Verify if the user is not anonymous.</description>
 		<tag-name>authenticated</tag-name>
-		<handler-class>com.github.persapiens.jsfboot.security.AuthenticatedFaceletsTagHandler</handler-class>
+		<handler-class>org.joinfaces.security.AuthenticatedFaceletsTagHandler</handler-class>
 	</tag>
         
 	<tag>
         <description>Verify if the is not an anonymous or a remember-me user.</description>
 		<tag-name>fullyAuthenticated</tag-name>
-		<handler-class>com.github.persapiens.jsfboot.security.FullyAuthenticatedFaceletsTagHandler</handler-class>
+		<handler-class>org.joinfaces.security.FullyAuthenticatedFaceletsTagHandler</handler-class>
 	</tag>
     
 	<function>
 		<function-name>areAllGranted</function-name>
-		<function-class>com.github.persapiens.jsfboot.security.FaceletsTagUtils</function-class>
+		<function-class>org.joinfaces.security.FaceletsTagUtils</function-class>
 		<function-signature>boolean areAllGranted(java.lang.String)</function-signature>
 	</function>
 	<function>
 		<function-name>areAnyGranted</function-name>
-		<function-class>com.github.persapiens.jsfboot.security.FaceletsTagUtils</function-class>
+		<function-class>org.joinfaces.security.FaceletsTagUtils</function-class>
 		<function-signature>boolean areAnyGranted(java.lang.String)</function-signature>
 	</function>
 	<function>
 		<function-name>areNotGranted</function-name>
-		<function-class>com.github.persapiens.jsfboot.security.FaceletsTagUtils</function-class>
+		<function-class>org.joinfaces.security.FaceletsTagUtils</function-class>
 		<function-signature>boolean areNotGranted(java.lang.String)</function-signature>
 	</function>
 	<function>
 		<function-name>isAllowed</function-name>
-		<function-class>com.github.persapiens.jsfboot.security.FaceletsTagUtils</function-class>
+		<function-class>org.joinfaces.security.FaceletsTagUtils</function-class>
         <function-signature>boolean isAllowed(java.lang.String, java.lang.String)</function-signature>
 	</function>
 	<function>
 		<function-name>isAnonymous</function-name>
-		<function-class>com.github.persapiens.jsfboot.security.FaceletsTagUtils</function-class>
+		<function-class>org.joinfaces.security.FaceletsTagUtils</function-class>
         <function-signature>boolean isAnonymous()</function-signature>
 	</function>
 	<function>
 		<function-name>isAuthenticated</function-name>
-		<function-class>com.github.persapiens.jsfboot.security.FaceletsTagUtils</function-class>
+		<function-class>org.joinfaces.security.FaceletsTagUtils</function-class>
         <function-signature>boolean isAuthenticated()</function-signature>
 	</function>
 	<function>
 		<function-name>isFullyAuthenticated</function-name>
-		<function-class>com.github.persapiens.jsfboot.security.FaceletsTagUtils</function-class>
+		<function-class>org.joinfaces.security.FaceletsTagUtils</function-class>
         <function-signature>boolean isFullyAuthenticated()</function-signature>
 	</function>
 </facelet-taglib>

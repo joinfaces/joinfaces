@@ -3,12 +3,12 @@
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
-        <groupId>com.github.persapiens</groupId>
+        <groupId>org.joinfaces</groupId>
         <artifactId>jsf-spring-boot-starters</artifactId>
         <version>1.7.4-SNAPSHOT</version>
     </parent>
     
-    <groupId>com.github.persapiens</groupId>
+    <groupId>org.joinfaces</groupId>
     <artifactId>jsf-jetty-butterfaces-spring-boot-starter</artifactId>
     <name>JSF Jetty ButterFaces Spring Boot Starter</name>
     <version>1.7.4-SNAPSHOT</version>
@@ -21,7 +21,7 @@
     <dependencies>
         <!-- remove tomcat dependencies -->
         <dependency>
-            <groupId>com.github.persapiens</groupId>
+            <groupId>org.joinfaces</groupId>
             <artifactId>jsf-butterfaces-spring-boot-starter</artifactId>
             <exclusions>
                 <exclusion>
@@ -40,7 +40,7 @@
         </dependency>
         <!-- jetty dependencies -->
         <dependency>
-            <groupId>com.github.persapiens</groupId>
+            <groupId>org.joinfaces</groupId>
             <artifactId>jsf-jetty-spring-boot-autoconfigure</artifactId>
         </dependency>
         <dependency>

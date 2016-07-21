@@ -3,12 +3,12 @@
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
-        <groupId>com.github.persapiens</groupId>
+        <groupId>org.joinfaces</groupId>
         <artifactId>jsf-spring-boot-starters</artifactId>
         <version>1.7.4-SNAPSHOT</version>
     </parent>
     
-    <groupId>com.github.persapiens</groupId>
+    <groupId>org.joinfaces</groupId>
     <artifactId>jsf-myfaces-bootsfaces-spring-boot-starter</artifactId>
     <name>JSF MyFaces BootsFaces Spring Boot Starter</name>
     <version>1.7.4-SNAPSHOT</version>
@@ -21,7 +21,7 @@
     <dependencies>
         <!-- remove mojarra dependencies -->
         <dependency>
-            <groupId>com.github.persapiens</groupId>
+            <groupId>org.joinfaces</groupId>
             <artifactId>jsf-bootsfaces-spring-boot-starter</artifactId>
             <exclusions>
                 <exclusion>
@@ -29,14 +29,14 @@
                     <artifactId>javax.faces</artifactId>
                 </exclusion>
                 <exclusion>
-                    <groupId>com.github.persapiens</groupId>
+                    <groupId>org.joinfaces</groupId>
                     <artifactId>jsf-mojarra-spring-boot-autoconfigure</artifactId>
                 </exclusion>
             </exclusions>
         </dependency>
         <!-- myfaces dependencies -->
         <dependency>
-            <groupId>com.github.persapiens</groupId>
+            <groupId>org.joinfaces</groupId>
             <artifactId>jsf-myfaces-spring-boot-autoconfigure</artifactId>
         </dependency>
         <dependency>

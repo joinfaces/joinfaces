@@ -1,1 +1,1 @@
-org.springframework.boot.autoconfigure.EnableAutoConfiguration=com.github.persapiens.jsfboot.jetty.JettySpringBootAutoConfiguration
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=org.joinfaces.jetty.JettySpringBootAutoConfiguration
