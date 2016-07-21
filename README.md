@@ -1,7 +1,7 @@
 JSF Spring Boot Starter
 =============================
 [![Maven Central](https://maven-badges.herokuapp.com/maven-central/org.joinfaces/jsf-spring-boot-starter/badge.svg)](https://maven-badges.herokuapp.com/maven-central/org.joinfaces/jsf-spring-boot-starter)
-[![Build Status](https://travis-ci.org/persapiens/jsf-spring-boot-starter.svg?branch=master)](https://travis-ci.org/persapiens/jsf-spring-boot-starter)
+[![Build Status](https://travis-ci.org/joinfaces/joinfaces.svg?branch=master)](https://travis-ci.org/joinfaces/joinfaces)
 [![Coverage Status](https://coveralls.io/repos/github/persapiens/jsf-spring-boot-starter/badge.svg?branch=master)](https://coveralls.io/github/persapiens/jsf-spring-boot-starter?branch=master)
 [![Dependency Status](https://www.versioneye.com/user/projects/57830ef076ef40003fba7f05/badge.svg?style=flat)](https://www.versioneye.com/user/projects/57830ef076ef40003fba7f05)
 [![Javadocs](http://javadoc.io/badge/org.joinfaces/jsf-spring-boot-build.svg)](http://javadoc.io/doc/org.joinfaces/jsf-spring-boot-build)
