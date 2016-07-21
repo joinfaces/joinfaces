@@ -2,8 +2,8 @@ JSF Spring Boot Starter
 =============================
 [![Maven Central](https://maven-badges.herokuapp.com/maven-central/org.joinfaces/jsf-spring-boot-starter/badge.svg)](https://maven-badges.herokuapp.com/maven-central/org.joinfaces/jsf-spring-boot-starter)
 [![Build Status](https://travis-ci.org/joinfaces/joinfaces.svg?branch=master)](https://travis-ci.org/joinfaces/joinfaces)
-[![Coverage Status](https://coveralls.io/repos/github/persapiens/jsf-spring-boot-starter/badge.svg?branch=master)](https://coveralls.io/github/persapiens/jsf-spring-boot-starter?branch=master)
-[![Dependency Status](https://www.versioneye.com/user/projects/57830ef076ef40003fba7f05/badge.svg?style=flat)](https://www.versioneye.com/user/projects/57830ef076ef40003fba7f05)
+[![Coverage Status](https://coveralls.io/repos/github/joinfaces/joinfaces/badge.svg?branch=master)](https://coveralls.io/github/joinfaces/joinfaces?branch=master)
+[![Dependency Status](https://www.versioneye.com/user/projects/57914d6251500e0049408026/badge.svg?style=flat)](https://www.versioneye.com/user/projects/57914d6251500e0049408026)
 [![Javadocs](http://javadoc.io/badge/org.joinfaces/jsf-spring-boot-build.svg)](http://javadoc.io/doc/org.joinfaces/jsf-spring-boot-build)
 [![License](http://img.shields.io/:license-apache-blue.svg)](http://www.apache.org/licenses/LICENSE-2.0.html)
 
@@ -16,9 +16,9 @@ It also aims to solve [JSF](http://www.oracle.com/technetwork/java/javaee/javase
 
 ## How to use
 
-[Jsf Spring Boot Starter Example](https://github.com/persapiens/jsf-spring-boot-starter-example) shows JSF Spring Boot Starter usage. It may help you to choose the JSF Spring Boot Starter that fits your needs.
+[Jsf Spring Boot Starter Example](https://github.com/joinfaces/jsf-spring-boot-starter-example) shows JSF Spring Boot Starter usage. It may help you to choose the JSF Spring Boot Starter that fits your needs.
 
-You can find more examples [here.](https://github.com/persapiens/jsf-spring-boot-starter/wiki/Some-examples-of--JSF-Spring-Boot-Starter-usage)
+You can find more examples [here.](https://github.com/joinfaces/jsf-spring-boot-starter/wiki/Some-examples-of--JSF-Spring-Boot-Starter-usage)
 
 ## Key Features
 
@@ -57,18 +57,18 @@ Library | Dependency | Description
 
 Library | Namespace | Example | Full Example
 ------------ | ------------- | --------- | ---------
-standard (javax.faces) | jsf | jsf.PROJECT_STAGE: Development | [application.yml](https://github.com/persapiens/jsf-spring-boot-starter/blob/master/jsf-spring-boot-autoconfigures/jsf-spring-boot-autoconfigure/src/test/resources/application.yml)
-[primefaces](http://primefaces.org/) | jsf.primefaces | jsf.primefaces.theme: overcast | [application.yml](https://github.com/persapiens/jsf-spring-boot-starter/blob/master/jsf-spring-boot-autoconfigures/jsf-primefaces-spring-boot-autoconfigure/src/test/resources/application.yml)
-[bootsfaces](http://bootsfaces.net/) | jsf.bootsfaces | jsf.bootsfaces.USETHEME: true | [application.yml](https://github.com/persapiens/jsf-spring-boot-starter/blob/master/jsf-spring-boot-autoconfigures/jsf-bootsfaces-spring-boot-autoconfigure/src/test/resources/application.yml)
-[butterfaces](http://butterfaces.org/) | jsf.butterfaces | jsf.butterfaces.provideJQuery: true | [application.yml](https://github.com/persapiens/jsf-spring-boot-starter/blob/master/jsf-spring-boot-autoconfigures/jsf-butterfaces-spring-boot-autoconfigure/src/test/resources/application.yml)
-[omnifaces](http://omnifaces.org/) | jsf.omnifaces | jsf.omnifaces.FACES_VIEWS_ENABLED: true | [application.yml](https://github.com/persapiens/jsf-spring-boot-starter/blob/master/jsf-spring-boot-autoconfigures/jsf-omnifaces-spring-boot-autoconfigure/src/test/resources/application.yml)
-[angularfaces](http://angularfaces.net/) | jsf.angularfaces | jsf.angularfaces.addLabels: true | [application.yml](https://github.com/persapiens/jsf-spring-boot-starter/blob/master/jsf-spring-boot-autoconfigures/jsf-angularfaces-spring-boot-autoconfigure/src/test/resources/application.yml)
-[mojarra](https://javaserverfaces.java.net/) | jsf.mojarra | jsf.mojarra.preferXHTML: true | [application.yml](https://github.com/persapiens/jsf-spring-boot-starter/blob/master/jsf-spring-boot-autoconfigures/jsf-mojarra-spring-boot-autoconfigure/src/test/resources/application.yml)
-[myfaces](http://myfaces.apache.org/) | jsf.myfaces | jsf.myfaces.PRETTY_HTML: true | [application.yml](https://github.com/persapiens/jsf-spring-boot-starter/blob/master/jsf-spring-boot-autoconfigures/jsf-myfaces-spring-boot-autoconfigure/src/test/resources/application.yml)
-[jetty](http://www.eclipse.org/jetty) | jsf.jetty | jsf.jetty.classPathResource: META-INF/resources | [application.yml](https://github.com/persapiens/jsf-spring-boot-starter/blob/master/jsf-spring-boot-autoconfigures/jsf-jetty-spring-boot-autoconfigure/src/test/resources/application.yml)
-[undertow](http://undertow.io) | jsf.undertow | jsf.undertow.classPathResource: META-INF/resources | [application.yml](https://github.com/persapiens/jsf-spring-boot-starter/blob/master/jsf-spring-boot-autoconfigures/jsf-undertow-spring-boot-autoconfigure/src/test/resources/application.yml)
+standard (javax.faces) | jsf | jsf.PROJECT_STAGE: Development | [application.yml](https://github.com/joinfaces/joinfaces/blob/master/jsf-spring-boot-autoconfigures/jsf-spring-boot-autoconfigure/src/test/resources/application.yml)
+[primefaces](http://primefaces.org/) | jsf.primefaces | jsf.primefaces.theme: overcast | [application.yml](https://github.com/joinfaces/joinfaces/blob/master/jsf-spring-boot-autoconfigures/jsf-primefaces-spring-boot-autoconfigure/src/test/resources/application.yml)
+[bootsfaces](http://bootsfaces.net/) | jsf.bootsfaces | jsf.bootsfaces.USETHEME: true | [application.yml](https://github.com/joinfaces/joinfaces/blob/master/jsf-spring-boot-autoconfigures/jsf-bootsfaces-spring-boot-autoconfigure/src/test/resources/application.yml)
+[butterfaces](http://butterfaces.org/) | jsf.butterfaces | jsf.butterfaces.provideJQuery: true | [application.yml](https://github.com/joinfaces/joinfaces/blob/master/jsf-spring-boot-autoconfigures/jsf-butterfaces-spring-boot-autoconfigure/src/test/resources/application.yml)
+[omnifaces](http://omnifaces.org/) | jsf.omnifaces | jsf.omnifaces.FACES_VIEWS_ENABLED: true | [application.yml](https://github.com/joinfaces/joinfaces/blob/master/jsf-spring-boot-autoconfigures/jsf-omnifaces-spring-boot-autoconfigure/src/test/resources/application.yml)
+[angularfaces](http://angularfaces.net/) | jsf.angularfaces | jsf.angularfaces.addLabels: true | [application.yml](https://github.com/joinfaces/joinfaces/blob/master/jsf-spring-boot-autoconfigures/jsf-angularfaces-spring-boot-autoconfigure/src/test/resources/application.yml)
+[mojarra](https://javaserverfaces.java.net/) | jsf.mojarra | jsf.mojarra.preferXHTML: true | [application.yml](https://github.com/joinfaces/joinfaces/blob/master/jsf-spring-boot-autoconfigures/jsf-mojarra-spring-boot-autoconfigure/src/test/resources/application.yml)
+[myfaces](http://myfaces.apache.org/) | jsf.myfaces | jsf.myfaces.PRETTY_HTML: true | [application.yml](https://github.com/joinfaces/joinfaces/blob/master/jsf-spring-boot-autoconfigures/jsf-myfaces-spring-boot-autoconfigure/src/test/resources/application.yml)
+[jetty](http://www.eclipse.org/jetty) | jsf.jetty | jsf.jetty.classPathResource: META-INF/resources | [application.yml](https://github.com/joinfaces/joinfaces/blob/master/jsf-spring-boot-autoconfigures/jsf-jetty-spring-boot-autoconfigure/src/test/resources/application.yml)
+[undertow](http://undertow.io) | jsf.undertow | jsf.undertow.classPathResource: META-INF/resources | [application.yml](https://github.com/joinfaces/joinfaces/blob/master/jsf-spring-boot-autoconfigures/jsf-undertow-spring-boot-autoconfigure/src/test/resources/application.yml)
 
-Additional information in [#22](https://github.com/persapiens/jsf-spring-boot-starter/issues/22)
+Additional information in [#22](https://github.com/joinfaces/joinfaces/issues/22)
 
 ### JSF and CDI annotations support automatically
 
@@ -101,7 +101,7 @@ isAnonymous | returns true if user is anonymous.
 isAuthenticated | returns true if the user is not anonymous.
 isFullyAuthenticated | returns true if the is not an anonymous or a remember-me user.
 
-Additional information in [#29](https://github.com/persapiens/jsf-spring-boot-starter/issues/29)
+Additional information in [#29](https://github.com/joinfaces/joinfaces/issues/29)
 
 ## System Requirements
 
@@ -109,13 +109,13 @@ By default, JSF Spring Boot Starter requires [Java 7](http://java.com) and [Spri
 
 ## Getting Help
 
-* Report questions and bugs at [github.com/jsf-spring-boot-starter/issues](https://github.com/persapiens/jsf-spring-boot-starter/issues).
+* Report questions and bugs at [github.com/jsf-spring-boot-starter/issues](https://github.com/joinfaces/joinfaces/issues).
 
 ## Contributing
 
-* Report documentation, features, enhancement and bugs at [github.com/jsf-spring-boot-starter/issues](https://github.com/persapiens/jsf-spring-boot-starter/issues).
+* Report documentation, features, enhancement and bugs at [github.com/jsf-spring-boot-starter/issues](https://github.com/joinfaces/joinfaces/issues).
 * Pull requests are welcome.
 
 ## Structure
 
-This software is multi module [Maven](http://maven.apache.org) project and follows [Spring Boot Reference](http://docs.spring.io/spring-boot/docs/current/reference/html/boot-features-developing-auto-configuration.html) to create JSF Auto Configuration. [See what's inside each submodule.](https://github.com/persapiens/jsf-spring-boot-starter/wiki/Structure-of-the-software)
+This software is multi module [Maven](http://maven.apache.org) project and follows [Spring Boot Reference](http://docs.spring.io/spring-boot/docs/current/reference/html/boot-features-developing-auto-configuration.html) to create JSF Auto Configuration. [See what's inside each submodule.](https://github.com/joinfaces/joinfaces/wiki/Structure-of-the-software)
