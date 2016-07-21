@@ -32,9 +32,9 @@ import javax.faces.view.facelets.ResourceResolver;
 import javax.faces.webapp.FacesServlet;
 import javax.servlet.ServletContext;
 
-import org.joinfaces.ServletContextConfigurer;
-
 import lombok.Builder;
+
+import org.joinfaces.ServletContextConfigurer;
 
 /**
  * Servlet Context Configurer of Javax Faces properties.

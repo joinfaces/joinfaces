@@ -22,9 +22,10 @@ import javax.servlet.ServletContainerInitializer;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 
+import com.sun.faces.config.FacesInitializer;
+
 import org.joinfaces.JsfClassFactory;
 import org.joinfaces.JsfClassFactoryConfiguration;
-import com.sun.faces.config.FacesInitializer;
 
 import org.springframework.boot.context.embedded.ServletContextInitializer;
 

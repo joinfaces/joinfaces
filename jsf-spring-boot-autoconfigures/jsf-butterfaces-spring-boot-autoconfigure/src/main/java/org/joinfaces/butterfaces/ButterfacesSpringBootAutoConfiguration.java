@@ -16,9 +16,9 @@
 
 package org.joinfaces.butterfaces;
 
-import org.joinfaces.javaxfaces.JavaxFacesSpringBootAutoConfiguration;
-
 import de.larmic.butterfaces.util.ReflectionUtil;
+
+import org.joinfaces.javaxfaces.JavaxFacesSpringBootAutoConfiguration;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.AutoConfigureBefore;

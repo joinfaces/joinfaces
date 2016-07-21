@@ -16,9 +16,9 @@
 
 package org.joinfaces.myfaces;
 
-import org.joinfaces.javaxfaces.JavaxFacesSpringBootAutoConfiguration;
-
 import org.apache.myfaces.ee6.MyFacesContainerInitializer;
+
+import org.joinfaces.javaxfaces.JavaxFacesSpringBootAutoConfiguration;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.AutoConfigureAfter;

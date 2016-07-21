@@ -16,8 +16,9 @@
 
 package org.joinfaces.mojarra;
 
-import org.joinfaces.javaxfaces.JavaxFacesSpringBootAutoConfiguration;
 import com.sun.faces.config.FacesInitializer;
+
+import org.joinfaces.javaxfaces.JavaxFacesSpringBootAutoConfiguration;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.AutoConfigureAfter;

@@ -18,11 +18,11 @@ package org.joinfaces.bootsfaces;
 
 import javax.servlet.ServletContext;
 
-import org.joinfaces.ServletContextConfigurer;
-
 import lombok.Builder;
 
 import net.bootsfaces.C;
+
+import org.joinfaces.ServletContextConfigurer;
 
 /**
  * Servlet context configurer of BootsFaces.

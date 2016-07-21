@@ -18,9 +18,9 @@ package org.joinfaces.primefaces53;
 
 import javax.servlet.ServletContext;
 
-import org.joinfaces.ServletContextConfigurer;
-
 import lombok.Builder;
+
+import org.joinfaces.ServletContextConfigurer;
 
 import org.primefaces.component.captcha.Captcha;
 import org.primefaces.util.Constants.ContextParams;

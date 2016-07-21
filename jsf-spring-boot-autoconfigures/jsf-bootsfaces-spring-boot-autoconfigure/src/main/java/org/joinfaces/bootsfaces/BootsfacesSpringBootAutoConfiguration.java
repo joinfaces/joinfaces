@@ -16,9 +16,9 @@
 
 package org.joinfaces.bootsfaces;
 
-import org.joinfaces.javaxfaces.JavaxFacesSpringBootAutoConfiguration;
-
 import net.bootsfaces.C;
+
+import org.joinfaces.javaxfaces.JavaxFacesSpringBootAutoConfiguration;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.AutoConfigureBefore;

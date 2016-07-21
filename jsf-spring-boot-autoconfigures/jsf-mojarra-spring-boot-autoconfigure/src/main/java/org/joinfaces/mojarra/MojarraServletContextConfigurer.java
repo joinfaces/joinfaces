@@ -18,8 +18,9 @@ package org.joinfaces.mojarra;
 
 import javax.servlet.ServletContext;
 
-import org.joinfaces.ServletContextConfigurer;
 import lombok.Builder;
+
+import org.joinfaces.ServletContextConfigurer;
 
 /**
  * Servlet context configurer of Mojarra.

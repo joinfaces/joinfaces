@@ -22,11 +22,11 @@ import javax.faces.component.html.HtmlPanelGroup;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 
-import org.joinfaces.JsfClassFactory;
 import com.sun.faces.facelets.compiler.UIText;
 
 import net.bootsfaces.component.tree.TreeRenderer;
 
+import org.joinfaces.JsfClassFactory;
 import org.omnifaces.component.input.Form;
 import org.omnifaces.converter.SelectItemsIndexConverter;
 import org.omnifaces.validator.RequiredCheckboxValidator;

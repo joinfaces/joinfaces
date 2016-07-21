@@ -16,9 +16,9 @@
 
 package org.joinfaces.angularfaces;
 
-import org.joinfaces.javaxfaces.JavaxFacesSpringBootAutoConfiguration;
-
 import de.beyondjava.angularFaces.core.ELTools;
+
+import org.joinfaces.javaxfaces.JavaxFacesSpringBootAutoConfiguration;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.AutoConfigureBefore;

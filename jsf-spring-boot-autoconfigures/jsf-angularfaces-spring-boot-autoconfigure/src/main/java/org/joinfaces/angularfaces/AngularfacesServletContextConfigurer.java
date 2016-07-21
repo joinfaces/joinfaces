@@ -19,11 +19,11 @@ package org.joinfaces.angularfaces;
 import javax.faces.application.ViewHandler;
 import javax.servlet.ServletContext;
 
-import org.joinfaces.ServletContextConfigurer;
-
 import de.beyondjava.angularFaces.core.tagTransformer.AngularTagDecorator;
 
 import lombok.Builder;
+
+import org.joinfaces.ServletContextConfigurer;
 
 /**
  * Servlet context configurer of AngularFaces.
