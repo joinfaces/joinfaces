@@ -923,7 +923,7 @@
     <description>Spring Boot Starters to build MVC web applications using 
         JSF, PrimeFaces, Primefaces Extensions, BootsFaces, ButterFaces, OmniFaces
         , AngularFaces, Mojarra and MyFaces</description>
-    <url>https://github.com/persapiens/jsf-spring-boot-starter</url>
+    <url>http://persapiens.org</url>
     <inceptionYear>2016</inceptionYear>
 
     <licenses>
@@ -935,19 +935,19 @@
 
     <issueManagement>
         <system>Github</system>
-        <url>https://github.com/persapiens/jsf-spring-boot-starter/issues</url>
+        <url>https://github.com/joinfaces/joinfaces/issues</url>
     </issueManagement>
 
     <scm>
-        <connection>scm:git:https://github.com/persapiens/jsf-spring-boot-starter.git</connection>
-        <developerConnection>scm:git:https://github.com/persapiens/jsf-spring-boot-starter.git</developerConnection>
-        <url>scm:git:https://github.com/persapiens/jsf-spring-boot-starter.git</url>
+        <connection>scm:git:https://github.com/joinfaces/joinfaces.git</connection>
+        <developerConnection>scm:git:https://github.com/joinfaces/joinfaces.git</developerConnection>
+        <url>scm:git:https://github.com/joinfaces/joinfaces.git</url>
         <tag>HEAD</tag>
     </scm>
 
     <organization>
-        <name>Persapiens</name>
-        <url>https://github.com/persapiens</url>
+        <name>JoinFaces</name>
+        <url>http://joinfaces.org</url>
     </organization>
     
     <developers>
