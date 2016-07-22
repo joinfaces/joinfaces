@@ -5,13 +5,13 @@
     <parent>
         <groupId>org.joinfaces</groupId>
         <artifactId>jsf-spring-boot-autoconfigures</artifactId>
-        <version>2.0.0</version>
+        <version>2.0.1-SNAPSHOT</version>
     </parent>
     
     <groupId>org.joinfaces</groupId>
     <artifactId>jsf-angularfaces-spring-boot-autoconfigure</artifactId>
     <name>JSF AngularFaces Spring Boot AutoConfigure</name>
-    <version>2.0.0</version>
+    <version>2.0.1-SNAPSHOT</version>
     <description>Jsf Spring Boot AutoConfigure for AngularFaces</description>
 
     <properties>
