@@ -1,0 +1,1 @@
+provides: mojarra, omnifaces, primefaces, primefaces-extensions, cdi-api, spring-security-taglibs, reflections
