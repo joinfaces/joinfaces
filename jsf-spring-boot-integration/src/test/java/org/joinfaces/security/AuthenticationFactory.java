@@ -31,7 +31,7 @@ public final class AuthenticationFactory {
 	}
 
 	private static Collection<? extends GrantedAuthority> grantedAuthorities(String... authorities) {
-		Collection<SimpleGrantedAuthority> result = new HashSet<>();
+		Collection<SimpleGrantedAuthority> result = new HashSet<SimpleGrantedAuthority>();
 		for (String authority : authorities) {
 			result.add(new SimpleGrantedAuthority(authority));
 		}

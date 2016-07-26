@@ -56,7 +56,7 @@ public class JsfClassFactory {
 	 * @return set of annotations to exclude from handlesType
 	 */
 	private Set<Class<? extends Annotation>> annotationsToExclude() {
-		Set<Class<? extends Annotation>> result = new HashSet<>();
+		Set<Class<? extends Annotation>> result = new HashSet<Class<? extends Annotation>>();
 		if (this.jsfAnnotatedClassFactoryConfiguration.isExcludeScopedAnnotations()) {
 			result.add(ViewScoped.class);
 			result.add(SessionScoped.class);
@@ -105,13 +105,13 @@ public class JsfClassFactory {
 	 * @return classes annotated by types handled by servlet container initializer.
 	 */
 	public Set<Class<?>> find() {
-		Set<Class<?>> result = new HashSet<>();
+		Set<Class<?>> result = new HashSet<Class<?>>();
 
 		TypesHandled handlesTypes = handlesTypes();
 		// check if any type is handled
 		if (!handlesTypes.isEmpty()) {
 			// get only urls of libraries that contains jsf types
-			Collection<URL> urls = new HashSet<>(ClasspathHelper.forResource("META-INF/faces-config.xml", this.getClass().getClassLoader()));
+			Collection<URL> urls = new HashSet<URL>(ClasspathHelper.forResource("META-INF/faces-config.xml", this.getClass().getClassLoader()));
 			// add jsf library with anotherFacesConfig
 			String anotherFacesConfig = this.jsfAnnotatedClassFactoryConfiguration.getAnotherFacesConfig();
 			if (anotherFacesConfig != null) {

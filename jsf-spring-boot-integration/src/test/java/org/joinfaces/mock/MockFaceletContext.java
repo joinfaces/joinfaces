@@ -45,7 +45,7 @@ public class MockFaceletContext extends FaceletContext {
 	}
 
 	@Getter
-	private Map<String, Object> attributes = new HashMap<>();
+	private Map<String, Object> attributes = new HashMap<String, Object>();
 
 	@Override
 	public FacesContext getFacesContext() {

@@ -31,8 +31,8 @@ import lombok.Getter;
 @Getter
 class TypesHandled {
 
-	private Set<Class<? extends Annotation>> annotationTypes = new HashSet<>();
-	private Set<Class> otherTypes = new HashSet<>();
+	private Set<Class<? extends Annotation>> annotationTypes = new HashSet<Class<? extends Annotation>>();
+	private Set<Class> otherTypes = new HashSet<Class>();
 
 	public boolean isEmpty() {
 		return this.annotationTypes.isEmpty() && this.otherTypes.isEmpty();
