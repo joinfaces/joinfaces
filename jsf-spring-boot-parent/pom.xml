@@ -17,7 +17,7 @@
     <properties>
         <main.basedir>..</main.basedir>        
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <java.version>1.6</java.version>
+        <java.version>1.6</java.version>        
         
         <jsf-spring-boot-starter.version>2.0.1-SNAPSHOT</jsf-spring-boot-starter.version>
         
@@ -58,6 +58,9 @@
         <checkstyle.dir>${check.dir}/checkstyle</checkstyle.dir>
         <pmd.dir>${check.dir}/pmd</pmd.dir>
         <findbugs.dir>${check.dir}/findbugs</findbugs.dir>
+        
+        <requireMaven.version>3.1.1</requireMaven.version>
+        <requireJava.version>[1.8,)</requireJava.version>
         
         <findbugs-maven-plugin.version>3.0.4</findbugs-maven-plugin.version>
         <findbugs.excludeFilterFile>${findbugs.dir}/findbugs-exclude.xml</findbugs.excludeFilterFile>
@@ -533,10 +536,10 @@
                         <configuration>
                             <rules>
                                 <requireMavenVersion>
-                                    <version>3.1.1</version>
+                                    <version>${requireMaven.version}</version>
                                 </requireMavenVersion>
                                 <requireJavaVersion>
-                                    <version>1.7</version>
+                                    <version>${requireJava.version}</version>
                                 </requireJavaVersion>
                             </rules>
                         </configuration>
