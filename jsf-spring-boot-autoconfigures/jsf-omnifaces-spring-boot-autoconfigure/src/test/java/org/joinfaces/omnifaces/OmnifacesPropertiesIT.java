@@ -19,14 +19,12 @@ package org.joinfaces.omnifaces;
 import org.testng.annotations.Test;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.SpringApplicationConfiguration;
+import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
-import org.springframework.test.context.web.WebAppConfiguration;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-@SpringApplicationConfiguration(classes = OmnifacesSpringBootAutoConfiguration.class)
-@WebAppConfiguration
+@SpringBootTest(classes = OmnifacesSpringBootAutoConfiguration.class, webEnvironment = SpringBootTest.WebEnvironment.MOCK)
 @Test
 public class OmnifacesPropertiesIT extends AbstractTestNGSpringContextTests {
 

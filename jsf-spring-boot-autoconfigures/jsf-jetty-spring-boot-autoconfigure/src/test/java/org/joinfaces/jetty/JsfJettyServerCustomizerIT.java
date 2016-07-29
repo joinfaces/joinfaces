@@ -26,14 +26,12 @@ import org.testng.annotations.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.embedded.jetty.JettyEmbeddedServletContainer;
 import org.springframework.boot.context.embedded.jetty.JettyEmbeddedServletContainerFactory;
-import org.springframework.boot.test.SpringApplicationConfiguration;
+import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
-import org.springframework.test.context.web.WebAppConfiguration;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-@SpringApplicationConfiguration(classes = JettySpringBootAutoConfiguration.class)
-@WebAppConfiguration
+@SpringBootTest(classes = JettySpringBootAutoConfiguration.class, webEnvironment = SpringBootTest.WebEnvironment.MOCK)
 @Test
 public class JsfJettyServerCustomizerIT extends AbstractTestNGSpringContextTests {
 
