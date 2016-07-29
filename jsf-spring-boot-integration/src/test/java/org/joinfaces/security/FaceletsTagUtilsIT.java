@@ -21,18 +21,17 @@ import java.io.IOException;
 import org.joinfaces.mock.JsfIT;
 
 import org.testng.annotations.Test;
-import static org.assertj.core.api.Assertions.assertThat;
 
-import org.springframework.boot.test.SpringApplicationConfiguration;
+import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.security.core.Authentication;
-import org.springframework.test.context.web.WebAppConfiguration;
+
+import static org.assertj.core.api.Assertions.assertThat;
 
 /**
  * Unit tests for {@link FaceletsTagUtils}.
  */
-@SpringApplicationConfiguration(classes = SecurityConfiguration.class)
+@SpringBootTest(classes = SecurityConfiguration.class, webEnvironment = SpringBootTest.WebEnvironment.MOCK)
 @Test
-@WebAppConfiguration
 public class FaceletsTagUtilsIT extends JsfIT {
 
 	public void testConstructor() {

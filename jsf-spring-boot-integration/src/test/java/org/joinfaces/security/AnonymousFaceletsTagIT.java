@@ -22,17 +22,15 @@ import org.joinfaces.mock.JsfIT;
 
 import org.testng.annotations.Test;
 
-import org.springframework.boot.test.SpringApplicationConfiguration;
-import org.springframework.test.context.web.WebAppConfiguration;
-
 import static org.assertj.core.api.Assertions.assertThat;
+
+import org.springframework.boot.test.context.SpringBootTest;
 
 /**
  * Unit tests for {@link AnonymousFaceletsTag}.
  */
-@SpringApplicationConfiguration(classes = SecurityConfiguration.class)
+@SpringBootTest(classes = SecurityConfiguration.class, webEnvironment = SpringBootTest.WebEnvironment.MOCK)
 @Test
-@WebAppConfiguration
 public class AnonymousFaceletsTagIT extends JsfIT {
 
 	public void testAnonymous() {

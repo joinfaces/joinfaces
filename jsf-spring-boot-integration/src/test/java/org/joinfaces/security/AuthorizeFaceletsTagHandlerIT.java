@@ -24,18 +24,17 @@ import org.joinfaces.mock.JsfIT;
 import org.joinfaces.mock.MockTagAttribute;
 
 import org.testng.annotations.Test;
-import static org.assertj.core.api.Assertions.assertThat;
 
-import org.springframework.boot.test.SpringApplicationConfiguration;
+import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.security.core.Authentication;
-import org.springframework.test.context.web.WebAppConfiguration;
+
+import static org.assertj.core.api.Assertions.assertThat;
 
 /**
  * Unit tests for {@link AuthorizeFaceletsTagHandler}.
  */
-@SpringApplicationConfiguration(classes = SecurityConfiguration.class)
+@SpringBootTest(classes = SecurityConfiguration.class, webEnvironment = SpringBootTest.WebEnvironment.MOCK)
 @Test
-@WebAppConfiguration
 public class AuthorizeFaceletsTagHandlerIT extends JsfIT {
 
 	public void testApplyFalse() throws IOException {

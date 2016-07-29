@@ -20,14 +20,12 @@ import org.joinfaces.mock.JsfIT;
 
 import org.testng.annotations.Test;
 
-import org.springframework.boot.test.SpringApplicationConfiguration;
-import org.springframework.test.context.web.WebAppConfiguration;
+import org.springframework.boot.test.context.SpringBootTest;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-@SpringApplicationConfiguration(classes = AnnotationConfiguration.class)
+@SpringBootTest(classes = AnnotationConfiguration.class, webEnvironment = SpringBootTest.WebEnvironment.MOCK)
 @Test
-@WebAppConfiguration
 public class ViewScopeIT extends JsfIT {
 
 	private static final String KEY = "key";
