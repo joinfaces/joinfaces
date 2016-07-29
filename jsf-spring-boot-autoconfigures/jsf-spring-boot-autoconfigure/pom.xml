@@ -8,10 +8,8 @@
         <version>2.1.0-SNAPSHOT</version>
     </parent>
     
-    <groupId>org.joinfaces</groupId>
     <artifactId>jsf-spring-boot-autoconfigure</artifactId>
     <name>JSF JavaxFaces Spring Boot AutoConfigure</name>
-    <version>2.1.0-SNAPSHOT</version>
     <description>Jsf Spring Boot Autoconfigure for JavaxFaces</description>
 
     <properties>
