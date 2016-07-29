@@ -21,6 +21,14 @@
         <checkstyle.dir>../jsf-spring-boot-parent/src/checkconfig/checkstyle</checkstyle.dir>
     </properties>
     
+    <dependencies>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+    
     <modules>
         <module>jsf-spring-boot-starter</module>
         <module>jsf-bootsfaces-spring-boot-starter</module>
