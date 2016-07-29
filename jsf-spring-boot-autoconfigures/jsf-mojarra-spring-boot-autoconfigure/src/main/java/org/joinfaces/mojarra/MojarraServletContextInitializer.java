@@ -27,7 +27,7 @@ import com.sun.faces.config.FacesInitializer;
 import org.joinfaces.JsfClassFactory;
 import org.joinfaces.JsfClassFactoryConfiguration;
 
-import org.springframework.boot.context.embedded.ServletContextInitializer;
+import org.springframework.boot.web.servlet.ServletContextInitializer;
 
 /**
  * Servlet Context Initializer of Mojarra.

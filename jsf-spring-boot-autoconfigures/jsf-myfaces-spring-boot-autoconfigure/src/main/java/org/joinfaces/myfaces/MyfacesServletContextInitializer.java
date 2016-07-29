@@ -27,7 +27,7 @@ import org.apache.myfaces.ee6.MyFacesContainerInitializer;
 import org.joinfaces.JsfClassFactory;
 import org.joinfaces.JsfClassFactoryConfiguration;
 
-import org.springframework.boot.context.embedded.ServletContextInitializer;
+import org.springframework.boot.web.servlet.ServletContextInitializer;
 
 /**
  * Servlet context initializer of MyFaces.

@@ -19,7 +19,7 @@ package org.joinfaces.javaxfaces;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 
-import org.springframework.boot.context.embedded.ServletContextInitializer;
+import org.springframework.boot.web.servlet.ServletContextInitializer;
 
 /**
  * Servlet Context Initializer of Javax Faces Properties.

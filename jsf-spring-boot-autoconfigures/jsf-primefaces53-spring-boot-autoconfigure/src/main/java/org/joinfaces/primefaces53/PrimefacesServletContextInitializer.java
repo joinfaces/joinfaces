@@ -19,7 +19,7 @@ package org.joinfaces.primefaces53;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 
-import org.springframework.boot.context.embedded.ServletContextInitializer;
+import org.springframework.boot.web.servlet.ServletContextInitializer;
 
 /**
  * Servlet context initializer of PrimeFaces.

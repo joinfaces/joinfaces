@@ -27,7 +27,7 @@ import org.joinfaces.JsfClassFactoryConfiguration;
 
 import org.omnifaces.facesviews.FacesViewsInitializer;
 
-import org.springframework.boot.context.embedded.ServletContextInitializer;
+import org.springframework.boot.web.servlet.ServletContextInitializer;
 
 /**
  * Servlet context initializer of OmniFaces.
