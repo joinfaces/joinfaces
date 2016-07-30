@@ -20,25 +20,29 @@ import java.io.IOException;
 
 import org.joinfaces.mock.JsfIT;
 
-import org.testng.annotations.Test;
+import org.junit.Test;
+import org.junit.runner.RunWith;
 
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.security.core.Authentication;
+import org.springframework.test.context.junit4.SpringRunner;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 /**
  * Unit tests for {@link FaceletsTagUtils}.
  */
+@RunWith(SpringRunner.class)
 @SpringBootTest(classes = SecurityConfiguration.class, webEnvironment = SpringBootTest.WebEnvironment.MOCK)
-@Test
 public class FaceletsTagUtilsIT extends JsfIT {
 
+	@Test
 	public void testConstructor() {
 		assertThat(new FaceletsTagUtils())
 			.isNotNull();
 	}
 
+	@Test
 	public void testAnonymous() throws IOException {
 		Authentication authentication = AuthenticationFactory.authentication(Roles.ROLE_A);
 		new SpringSecurityMock().init(authentication);
@@ -47,6 +51,7 @@ public class FaceletsTagUtilsIT extends JsfIT {
 			.isFalse();
 	}
 
+	@Test
 	public void testAuthenticated() throws IOException {
 		Authentication authentication = AuthenticationFactory.authentication(Roles.ROLE_A);
 		new SpringSecurityMock().init(authentication);
@@ -55,6 +60,7 @@ public class FaceletsTagUtilsIT extends JsfIT {
 			.isTrue();
 	}
 
+	@Test
 	public void testFullyAuthenticated() throws IOException {
 		Authentication authentication = AuthenticationFactory.authentication(Roles.ROLE_A);
 		new SpringSecurityMock().init(authentication);
@@ -63,6 +69,7 @@ public class FaceletsTagUtilsIT extends JsfIT {
 			.isTrue();
 	}
 
+	@Test
 	public void testAreNotGranted() throws IOException {
 		Authentication authentication = AuthenticationFactory.authentication(Roles.ROLE_A);
 		new SpringSecurityMock().init(authentication);
@@ -71,6 +78,7 @@ public class FaceletsTagUtilsIT extends JsfIT {
 			.isTrue();
 	}
 
+	@Test
 	public void testAreAllGranted() throws IOException {
 		Authentication authentication = AuthenticationFactory.authentication(
 			Roles.ROLE_A, Roles.ROLE_B);
@@ -80,6 +88,7 @@ public class FaceletsTagUtilsIT extends JsfIT {
 			.isFalse();
 	}
 
+	@Test
 	public void testAreAnyGranted() throws IOException {
 		Authentication authentication = AuthenticationFactory.authentication(
 			Roles.ROLE_A, Roles.ROLE_B);
@@ -89,6 +98,7 @@ public class FaceletsTagUtilsIT extends JsfIT {
 			.isTrue();
 	}
 
+	@Test
 	public void testIsAllowed() throws IOException {
 		Authentication authentication = AuthenticationFactory.authentication(
 			Roles.ROLE_A, Roles.ROLE_B);
@@ -98,6 +108,7 @@ public class FaceletsTagUtilsIT extends JsfIT {
 			.isTrue();
 	}
 
+	@Test
 	public void testIsAllowedFalse() throws IOException {
 		new SpringSecurityMock().init(null);
 

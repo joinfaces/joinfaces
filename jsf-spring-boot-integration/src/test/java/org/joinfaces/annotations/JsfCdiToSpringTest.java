@@ -19,12 +19,12 @@ package org.joinfaces.annotations;
 import java.util.HashSet;
 import java.util.Set;
 
-import org.testng.annotations.Test;
+import org.junit.Test;
 import static org.assertj.core.api.Assertions.assertThat;
 
-@Test
 public class JsfCdiToSpringTest {
 
+	@Test
 	public void testCdiRequestScopedAnnotation() {
 		Set<String> annotationTypes = new HashSet<String>();
 		annotationTypes.add(javax.enterprise.context.RequestScoped.class.getName());
@@ -33,6 +33,7 @@ public class JsfCdiToSpringTest {
 			.isEqualTo(JsfCdiToSpring.REQUEST);
 	}
 
+	@Test
 	public void testJsfRequestScopedAnnotation() {
 		Set<String> annotationTypes = new HashSet<String>();
 		annotationTypes.add(javax.faces.bean.RequestScoped.class.getName());
@@ -41,6 +42,7 @@ public class JsfCdiToSpringTest {
 			.isEqualTo(JsfCdiToSpring.REQUEST);
 	}
 
+	@Test
 	public void testCdiSessionScopedAnnotation() {
 		Set<String> annotationTypes = new HashSet<String>();
 		annotationTypes.add(javax.enterprise.context.SessionScoped.class.getName());
@@ -49,6 +51,7 @@ public class JsfCdiToSpringTest {
 			.isEqualTo(JsfCdiToSpring.SESSION);
 	}
 
+	@Test
 	public void testJsfSessionScopedAnnotation() {
 		Set<String> annotationTypes = new HashSet<String>();
 		annotationTypes.add(javax.faces.bean.SessionScoped.class.getName());
@@ -57,6 +60,7 @@ public class JsfCdiToSpringTest {
 			.isEqualTo(JsfCdiToSpring.SESSION);
 	}
 
+	@Test
 	public void testCdiApplicationScopedAnnotation() {
 		Set<String> annotationTypes = new HashSet<String>();
 		annotationTypes.add(javax.enterprise.context.ApplicationScoped.class.getName());
@@ -65,6 +69,7 @@ public class JsfCdiToSpringTest {
 			.isEqualTo(JsfCdiToSpring.SINGLETON);
 	}
 
+	@Test
 	public void testJsfApplicationScopedAnnotation() {
 		Set<String> annotationTypes = new HashSet<String>();
 		annotationTypes.add(javax.faces.bean.ApplicationScoped.class.getName());
@@ -73,6 +78,7 @@ public class JsfCdiToSpringTest {
 			.isEqualTo(JsfCdiToSpring.SINGLETON);
 	}
 
+	@Test
 	public void testJsfNoneScopedAnnotation() {
 		Set<String> annotationTypes = new HashSet<String>();
 		annotationTypes.add(javax.faces.bean.NoneScoped.class.getName());
@@ -81,6 +87,7 @@ public class JsfCdiToSpringTest {
 			.isEqualTo(JsfCdiToSpring.PROTOTYPE);
 	}
 
+	@Test
 	public void testJsfViewViewScopedAnnotation() {
 		Set<String> annotationTypes = new HashSet<String>();
 		annotationTypes.add(javax.faces.view.ViewScoped.class.getName());
@@ -89,6 +96,7 @@ public class JsfCdiToSpringTest {
 			.isEqualTo(JsfCdiToSpring.VIEW);
 	}
 
+	@Test
 	public void testJsfBeanViewScopedAnnotation() {
 		Set<String> annotationTypes = new HashSet<String>();
 		annotationTypes.add(javax.faces.bean.ViewScoped.class.getName());
@@ -97,6 +105,7 @@ public class JsfCdiToSpringTest {
 			.isEqualTo(JsfCdiToSpring.VIEW);
 	}
 
+	@Test
 	public void testCdiConversationScopedAnnotation() {
 		Set<String> annotationTypes = new HashSet<String>();
 		annotationTypes.add(javax.enterprise.context.ConversationScoped.class.getName());
@@ -105,6 +114,7 @@ public class JsfCdiToSpringTest {
 			.isEqualTo(JsfCdiToSpring.SESSION);
 	}
 
+	@Test
 	public void testUnknownScopedAnnotation() {
 		Set<String> annotationTypes = new HashSet<String>();
 		annotationTypes.add("unkownScopedAnnotation");
@@ -113,11 +123,13 @@ public class JsfCdiToSpringTest {
 			.isNull();
 	}
 
+	@Test
 	public void testNull() {
 		assertThat(JsfCdiToSpring.scopeName(null))
 			.isNull();
 	}
 
+	@Test
 	public void testConstructor() {
 		assertThat(new JsfCdiToSpring())
 			.isNotNull();

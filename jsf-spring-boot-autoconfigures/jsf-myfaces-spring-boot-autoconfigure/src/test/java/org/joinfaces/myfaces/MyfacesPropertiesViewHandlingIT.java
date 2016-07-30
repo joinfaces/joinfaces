@@ -16,41 +16,48 @@
 
 package org.joinfaces.myfaces;
 
-import org.testng.annotations.Test;
+import org.junit.Test;
+import org.junit.runner.RunWith;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
+import org.springframework.test.context.junit4.SpringRunner;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+@RunWith(SpringRunner.class)
 @SpringBootTest(classes = MyfacesSpringBootAutoConfiguration.class, webEnvironment = SpringBootTest.WebEnvironment.MOCK)
-@Test
-public class MyfacesPropertiesViewHandlingIT extends AbstractTestNGSpringContextTests {
+public class MyfacesPropertiesViewHandlingIT {
 
 	@Autowired
 	private MyfacesProperties myfacesProperties;
 
+	@Test
 	public void testCheckedViewidCacheSize() {
 		assertThat(this.myfacesProperties.getCheckedViewidCacheSize()).isEqualTo(500);
 	}
 
+	@Test
 	public void testCheckedViewidCacheEnabled() {
 		assertThat(this.myfacesProperties.getCheckedViewidCacheEnabled()).isTrue();
 	}
 
+	@Test
 	public void testViewUniqueIdsCacheEnabled() {
 		assertThat(this.myfacesProperties.getViewUniqueIdsCacheEnabled()).isTrue();
 	}
 
+	@Test
 	public void testComponentUniqueIdsCacheSize() {
 		assertThat(this.myfacesProperties.getComponentUniqueIdsCacheSize()).isEqualTo(100);
 	}
 
+	@Test
 	public void testStrictJsf2ViewNotFound() {
 		assertThat(this.myfacesProperties.getStrictJsf2ViewNotFound()).isTrue();
 	}
 
+	@Test
 	public void testStrictJsf2FaceletsCompatibility() {
 		assertThat(this.myfacesProperties.getStrictJsf2FaceletsCompatibility()).isTrue();
 	}

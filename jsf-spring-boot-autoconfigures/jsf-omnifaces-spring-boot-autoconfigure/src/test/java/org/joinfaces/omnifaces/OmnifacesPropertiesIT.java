@@ -16,113 +16,138 @@
 
 package org.joinfaces.omnifaces;
 
-import org.testng.annotations.Test;
+import org.junit.Test;
+import org.junit.runner.RunWith;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
+import org.springframework.test.context.junit4.SpringRunner;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+@RunWith(SpringRunner.class)
 @SpringBootTest(classes = OmnifacesSpringBootAutoConfiguration.class, webEnvironment = SpringBootTest.WebEnvironment.MOCK)
-@Test
-public class OmnifacesPropertiesIT extends AbstractTestNGSpringContextTests {
+public class OmnifacesPropertiesIT {
 
 	@Autowired
 	private OmnifacesProperties omnifacesProperties;
 
+	@Test
 	public void testCacheProvider() {
 		assertThat(this.omnifacesProperties.getCacheProvider()).isEqualTo("myCacheProvider");
 	}
 
+	@Test
 	public void testDefaultcache() {
 		assertThat(this.omnifacesProperties.getDefaultcache()).isEqualTo("myCache");
 	}
 
+	@Test
 	public void testExceptionTypesToUnwrap() {
 		assertThat(this.omnifacesProperties.getExceptionTypesToUnwrap()).isEqualTo("myException");
 	}
 
+	@Test
 	public void testFacesViewsDispatchMethod() {
 		assertThat(this.omnifacesProperties.getFacesViewsDispatchMethod()).isEqualTo("myFacesMethod");
 	}
 
+	@Test
 	public void testFacesViewsEnabled() {
 		assertThat(this.omnifacesProperties.getFacesViewsEnabled()).isTrue();
 	}
 
+	@Test
 	public void testFacesViewsExtensionAction() {
 		assertThat(this.omnifacesProperties.getFacesViewsExtensionAction()).isEqualTo("extensionAction");
 	}
 
+	@Test
 	public void testFacesViewsFilterAfterDeclaredFilters() {
 		assertThat(this.omnifacesProperties.getFacesViewsFilterAfterDeclaredFilters()).isEqualTo("myView");
 	}
 
+	@Test
 	public void testFacesViewsPathAction() {
 		assertThat(this.omnifacesProperties.getFacesViewsPathAction()).isEqualTo("pathAction");
 	}
 
+	@Test
 	public void testFacesViewsScanPaths() {
 		assertThat(this.omnifacesProperties.getFacesViewsScanPaths()).isEqualTo("scanPath");
 	}
 
+	@Test
 	public void testFacesViewsScannedViewsAlwaysExtensionless() {
 		assertThat(this.omnifacesProperties.getFacesViewsScannedViewsAlwaysExtensionless()).isTrue();
 	}
 
+	@Test
 	public void testFacesViewsViewHandlerMode() {
 		assertThat(this.omnifacesProperties.getFacesViewsViewHandlerMode()).isEqualTo("myMode");
 	}
 
+	@Test
 	public void testHtml5RenderKitPassthroughAttributes() {
 		assertThat(this.omnifacesProperties.getHtml5RenderKitPassthroughAttributes()).isEqualTo("myAttribute");
 	}
 
+	@Test
 	public void testCdnResourceHandlerDisabled() {
 		assertThat(this.omnifacesProperties.getCdnResourceHandlerDisabled()).isTrue();
 	}
 
+	@Test
 	public void testCdnResourceHandlerUrls() {
 		assertThat(this.omnifacesProperties.getCdnResourceHandlerUrls()).isEqualTo("myurl");
 	}
 
+	@Test
 	public void testCombinedResourceHandlerCacheTtl() {
 		assertThat(this.omnifacesProperties.getCombinedResourceHandlerCacheTtl()).isEqualTo(15);
 	}
 
+	@Test
 	public void testCombinedResourceHandlerDisabled() {
 		assertThat(this.omnifacesProperties.getCombinedResourceHandlerDisabled()).isTrue();
 	}
 
+	@Test
 	public void testCombinedResourceHandlerExcludedResources() {
 		assertThat(this.omnifacesProperties.getCombinedResourceHandlerExcludedResources()).isEqualTo("excludedResource");
 	}
 
+	@Test
 	public void testCombinedResourceHandlerInlineCss() {
 		assertThat(this.omnifacesProperties.getCombinedResourceHandlerInlineCss()).isTrue();
 	}
 
+	@Test
 	public void testCombinedResourceHandlerInlineJs() {
 		assertThat(this.omnifacesProperties.getCombinedResourceHandlerInlineJs()).isTrue();
 	}
 
+	@Test
 	public void testCombinedResourceHandlerSuppressedResources() {
 		assertThat(this.omnifacesProperties.getCombinedResourceHandlerSuppressedResources()).isEqualTo("suppressedResource");
 	}
 
+	@Test
 	public void testCacheApplicationMaxCapacity() {
 		assertThat(this.omnifacesProperties.getCache().getApplicationMaxCapacity()).isEqualTo(10);
 	}
 
+	@Test
 	public void testCacheApplicationTtl() {
 		assertThat(this.omnifacesProperties.getCache().getApplicationTtl()).isEqualTo(11);
 	}
 
+	@Test
 	public void testCacheSessionMaxCapacity() {
 		assertThat(this.omnifacesProperties.getCache().getSessionMaxCapacity()).isEqualTo(12);
 	}
 
+	@Test
 	public void testCacheSessionTtl() {
 		assertThat(this.omnifacesProperties.getCache().getSessionTtl()).isEqualTo(13);
 	}

@@ -16,13 +16,13 @@
 
 package org.joinfaces.bootsfaces;
 
-import org.testng.annotations.Test;
+import org.junit.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-@Test
 public class MyfacesEmptyTest {
 
+	@Test
 	public void nothing() {
 		assertThat(new MyfacesEmpty()).isNotNull();
 	}

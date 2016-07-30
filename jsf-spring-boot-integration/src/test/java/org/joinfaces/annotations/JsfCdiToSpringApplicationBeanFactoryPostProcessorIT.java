@@ -16,7 +16,7 @@
 
 package org.joinfaces.annotations;
 
-import org.testng.annotations.Test;
+import org.junit.Test;
 
 import org.springframework.beans.factory.config.BeanFactoryPostProcessor;
 import org.springframework.beans.factory.config.ConfigurableListableBeanFactory;
@@ -24,9 +24,9 @@ import org.springframework.beans.factory.support.DefaultListableBeanFactory;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-@Test
 public class JsfCdiToSpringApplicationBeanFactoryPostProcessorIT {
 
+	@Test
 	public void testRegisteredScopeView() {
 		ConfigurableListableBeanFactory beanFactory = new DefaultListableBeanFactory();
 		BeanFactoryPostProcessor beanFactoryPostProcessor = new JsfCdiToSpringBeanFactoryPostProcessor();

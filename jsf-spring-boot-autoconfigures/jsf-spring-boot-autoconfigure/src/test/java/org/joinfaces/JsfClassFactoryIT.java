@@ -24,16 +24,16 @@ import com.sun.faces.facelets.compiler.UIText;
 
 import org.apache.myfaces.renderkit.html.HtmlGridRenderer;
 
-import org.testng.annotations.Test;
+import org.junit.Test;
 
 import org.springframework.test.context.web.WebAppConfiguration;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 @WebAppConfiguration
-@Test
 public class JsfClassFactoryIT {
 
+	@Test
 	public void testJavaxFacesHtmlPanelGroupWithMojarra() {
 		MojarraJsfClassFactoryConfiguration configuration = new MojarraJsfClassFactoryConfiguration();
 
@@ -43,6 +43,7 @@ public class JsfClassFactoryIT {
 		assertThat(classes).contains(HtmlPanelGroup.class);
 	}
 
+	@Test
 	public void testMojarraUITextWithMojarra() {
 		MojarraJsfClassFactoryConfiguration configuration = new MojarraJsfClassFactoryConfiguration();
 
@@ -52,6 +53,7 @@ public class JsfClassFactoryIT {
 		assertThat(classes).contains(UIText.class);
 	}
 
+	@Test
 	public void testJavaxFacesHtmlPanelGroupWithMyfaces() {
 		MyfacesJsfClassFactoryConfiguration configuration = new MyfacesJsfClassFactoryConfiguration();
 
@@ -61,6 +63,7 @@ public class JsfClassFactoryIT {
 		assertThat(classes).contains(HtmlPanelGroup.class);
 	}
 
+	@Test
 	public void testMyfacesHtmlGridRendererWithMyfaces() {
 		MyfacesJsfClassFactoryConfiguration configuration = new MyfacesJsfClassFactoryConfiguration();
 
@@ -70,6 +73,7 @@ public class JsfClassFactoryIT {
 		assertThat(classes).contains(HtmlGridRenderer.class);
 	}
 
+	@Test
 	public void testNullServletContextInitializer() {
 		NullJsfClassFactoryConfiguration configuration = new NullJsfClassFactoryConfiguration();
 
@@ -79,6 +83,7 @@ public class JsfClassFactoryIT {
 		assertThat(classes).doesNotContain(HtmlGridRenderer.class);
 	}
 
+	@Test
 	public void testNullAnotherServletContextInitializer() {
 		NullAnotherJsfClassFactoryConfiguration configuration = new NullAnotherJsfClassFactoryConfiguration();
 

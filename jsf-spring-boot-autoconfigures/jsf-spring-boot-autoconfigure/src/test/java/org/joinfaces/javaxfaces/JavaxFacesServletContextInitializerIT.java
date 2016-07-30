@@ -20,22 +20,24 @@ import javax.faces.application.ProjectStage;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 
-import org.testng.annotations.Test;
+import org.junit.Test;
+import org.junit.runner.RunWith;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.mock.web.MockServletContext;
-import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
+import org.springframework.test.context.junit4.SpringRunner;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+@RunWith(SpringRunner.class)
 @SpringBootTest(classes = JavaxFacesSpringBootAutoConfiguration.class, webEnvironment = SpringBootTest.WebEnvironment.MOCK)
-@Test
-public class JavaxFacesServletContextInitializerIT extends AbstractTestNGSpringContextTests {
+public class JavaxFacesServletContextInitializerIT {
 
 	@Autowired
 	private JavaxFacesProperties javaxFacesProperties;
 
+	@Test
 	public void testOnStartup() throws ServletException {
 		JavaxFacesServletContextInitializer javaxFacesServletContextInitializer
 			= new JavaxFacesServletContextInitializer(this.javaxFacesProperties);

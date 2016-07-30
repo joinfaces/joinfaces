@@ -20,16 +20,15 @@ import javax.inject.Inject;
 
 import lombok.Getter;
 
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeMethod;
+import org.junit.After;
+import org.junit.Before;
 
 import org.springframework.context.ApplicationContext;
-import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
 
 /**
  * Abstract integration test for jsf Activate JsfMock for each test execution
  */
-public class JsfIT extends AbstractTestNGSpringContextTests {
+public class JsfIT {
 
 	@Getter
 	private JsfMock jsfMock;
@@ -37,13 +36,13 @@ public class JsfIT extends AbstractTestNGSpringContextTests {
 	@Inject
 	private ApplicationContext applicationContext;
 
-	@BeforeMethod
+	@Before
 	public void init() {
 		this.jsfMock = new JsfMock();
 		this.jsfMock.init(this.applicationContext);
 	}
 
-	@AfterMethod
+	@After
 	public void release() {
 		this.jsfMock.release();
 	}

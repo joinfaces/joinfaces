@@ -16,21 +16,23 @@
 
 package org.joinfaces.jetty;
 
-import org.testng.annotations.Test;
+import org.junit.Test;
+import org.junit.runner.RunWith;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
+import org.springframework.test.context.junit4.SpringRunner;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+@RunWith(SpringRunner.class)
 @SpringBootTest(classes = JettySpringBootAutoConfiguration.class, webEnvironment = SpringBootTest.WebEnvironment.MOCK)
-@Test
-public class JettyPropertiesIT extends AbstractTestNGSpringContextTests {
+public class JettyPropertiesIT {
 
 	@Autowired
 	private JettyProperties jettyProperties;
 
+	@Test
 	public void testForceLoadConfiguration() {
 		assertThat(this.jettyProperties.getClassPathResource())
 			.isEqualTo("public");

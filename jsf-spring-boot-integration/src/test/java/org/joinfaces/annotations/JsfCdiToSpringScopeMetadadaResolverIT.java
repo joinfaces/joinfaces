@@ -16,7 +16,7 @@
 
 package org.joinfaces.annotations;
 
-import org.testng.annotations.Test;
+import org.junit.Test;
 
 import org.springframework.beans.factory.annotation.AnnotatedBeanDefinition;
 import org.springframework.beans.factory.annotation.AnnotatedGenericBeanDefinition;
@@ -28,9 +28,9 @@ import org.springframework.core.type.StandardAnnotationMetadata;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-@Test
 public class JsfCdiToSpringScopeMetadadaResolverIT {
 
+	@Test
 	public void testViewScope() {
 		AnnotationMetadata annotationMetadata = new StandardAnnotationMetadata(ViewScopedClass.class);
 		AnnotatedBeanDefinition beanDefinition = new AnnotatedGenericBeanDefinition(annotationMetadata);
@@ -42,6 +42,7 @@ public class JsfCdiToSpringScopeMetadadaResolverIT {
 		assertThat(scopeMetadata.getScopeName()).isEqualTo(JsfCdiToSpring.VIEW);
 	}
 
+	@Test
 	public void testSessionScope() {
 		AnnotationMetadata annotationMetadata = new StandardAnnotationMetadata(SessionScopedClass.class);
 		AnnotatedBeanDefinition beanDefinition = new AnnotatedGenericBeanDefinition(annotationMetadata);
@@ -53,6 +54,7 @@ public class JsfCdiToSpringScopeMetadadaResolverIT {
 		assertThat(scopeMetadata.getScopeName()).isEqualTo(JsfCdiToSpring.SESSION);
 	}
 
+	@Test
 	public void testNoScope() {
 		AnnotationMetadata annotationMetadata = new StandardAnnotationMetadata(NoScopedClass.class);
 		AnnotatedBeanDefinition beanDefinition = new AnnotatedGenericBeanDefinition(annotationMetadata);
@@ -64,6 +66,7 @@ public class JsfCdiToSpringScopeMetadadaResolverIT {
 		assertThat(scopeMetadata.getScopeName()).isEqualTo(JsfCdiToSpring.SINGLETON);
 	}
 
+	@Test
 	public void testGenericBeanDefinition() {
 		AnnotationMetadata annotationMetadata = new StandardAnnotationMetadata(SessionScopedClass.class);
 		AnnotatedBeanDefinition annotatedBeanDefinition = new AnnotatedGenericBeanDefinition(annotationMetadata);

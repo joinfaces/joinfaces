@@ -22,22 +22,24 @@ import javax.servlet.ServletException;
 
 import de.beyondjava.angularFaces.core.tagTransformer.AngularTagDecorator;
 
-import org.testng.annotations.Test;
+import org.junit.Test;
+import org.junit.runner.RunWith;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.mock.web.MockServletContext;
-import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
+import org.springframework.test.context.junit4.SpringRunner;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+@RunWith(SpringRunner.class)
 @SpringBootTest(classes = AngularfacesSpringBootAutoConfiguration.class, webEnvironment = SpringBootTest.WebEnvironment.MOCK)
-@Test
-public class AngularfacesServletContextInitializerIT extends AbstractTestNGSpringContextTests {
+public class AngularfacesServletContextInitializerIT {
 
 	@Autowired
 	private AngularfacesProperties angularfacesProperties;
 
+	@Test
 	public void testOnStartup() throws ServletException {
 		AngularfacesServletContextInitializer angularfacesServletContextInitializer
 			= new AngularfacesServletContextInitializer(this.angularfacesProperties);

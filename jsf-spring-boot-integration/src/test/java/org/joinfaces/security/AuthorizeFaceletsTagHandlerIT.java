@@ -23,20 +23,23 @@ import javax.faces.view.facelets.FaceletContext;
 import org.joinfaces.mock.JsfIT;
 import org.joinfaces.mock.MockTagAttribute;
 
-import org.testng.annotations.Test;
+import org.junit.Test;
+import org.junit.runner.RunWith;
 
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.security.core.Authentication;
+import org.springframework.test.context.junit4.SpringRunner;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 /**
  * Unit tests for {@link AuthorizeFaceletsTagHandler}.
  */
+@RunWith(SpringRunner.class)
 @SpringBootTest(classes = SecurityConfiguration.class, webEnvironment = SpringBootTest.WebEnvironment.MOCK)
-@Test
 public class AuthorizeFaceletsTagHandlerIT extends JsfIT {
 
+	@Test
 	public void testApplyFalse() throws IOException {
 		new SpringSecurityMock().init(null);
 
@@ -49,6 +52,7 @@ public class AuthorizeFaceletsTagHandlerIT extends JsfIT {
 			.isFalse();
 	}
 
+	@Test
 	public void testApplyAccessFalse() throws IOException {
 		Authentication authentication = AuthenticationFactory.authentication(Roles.ROLE_A);
 		new SpringSecurityMock().init(authentication);
@@ -65,6 +69,7 @@ public class AuthorizeFaceletsTagHandlerIT extends JsfIT {
 			.isFalse();
 	}
 
+	@Test
 	public void testApplyAccess() throws IOException {
 		Authentication authentication = AuthenticationFactory.authentication(Roles.ROLE_A);
 		new SpringSecurityMock().init(authentication);
@@ -81,6 +86,7 @@ public class AuthorizeFaceletsTagHandlerIT extends JsfIT {
 			.isTrue();
 	}
 
+	@Test
 	public void testApplyIfAllGranted() throws IOException {
 		Authentication authentication = AuthenticationFactory.authentication(Roles.ROLE_A);
 		new SpringSecurityMock().init(authentication);
@@ -97,6 +103,7 @@ public class AuthorizeFaceletsTagHandlerIT extends JsfIT {
 			.isTrue();
 	}
 
+	@Test
 	public void testApplyVar() throws IOException {
 		Authentication authentication = AuthenticationFactory.authentication(Roles.ROLE_A);
 		new SpringSecurityMock().init(authentication);

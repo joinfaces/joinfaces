@@ -21,24 +21,26 @@ import java.net.MalformedURLException;
 
 import io.undertow.servlet.api.DeploymentInfo;
 
-import org.testng.annotations.Test;
+import org.junit.Test;
+import org.junit.runner.RunWith;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.embedded.tomcat.TomcatEmbeddedServletContainerFactory;
 import org.springframework.boot.context.embedded.undertow.UndertowDeploymentInfoCustomizer;
 import org.springframework.boot.context.embedded.undertow.UndertowEmbeddedServletContainerFactory;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
+import org.springframework.test.context.junit4.SpringRunner;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+@RunWith(SpringRunner.class)
 @SpringBootTest(classes = UndertowSpringBootAutoConfiguration.class, webEnvironment = SpringBootTest.WebEnvironment.MOCK)
-@Test
-public class UndertowSpringBootAutoConfigurationIT extends AbstractTestNGSpringContextTests {
+public class UndertowSpringBootAutoConfigurationIT {
 
 	@Autowired
 	private UndertowSpringBootAutoConfiguration undertowSpringBootAutoConfiguration;
 
+	@Test
 	public void customize() throws MalformedURLException, IOException {
 		UndertowEmbeddedServletContainerFactory factory = new UndertowEmbeddedServletContainerFactory();
 
@@ -55,6 +57,7 @@ public class UndertowSpringBootAutoConfigurationIT extends AbstractTestNGSpringC
 			.isNotNull();
 	}
 
+	@Test
 	public void customizeTomcat() throws MalformedURLException, IOException {
 		TomcatEmbeddedServletContainerFactory factory = new TomcatEmbeddedServletContainerFactory();
 

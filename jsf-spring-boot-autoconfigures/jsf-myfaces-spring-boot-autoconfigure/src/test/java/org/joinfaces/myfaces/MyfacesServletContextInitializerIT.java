@@ -26,60 +26,68 @@ import net.bootsfaces.component.tree.TreeRenderer;
 
 import org.apache.myfaces.renderkit.html.HtmlGridRenderer;
 import org.joinfaces.JsfClassFactory;
+import org.junit.BeforeClass;
+import org.junit.Test;
+import org.junit.runner.RunWith;
 import org.omnifaces.component.input.Form;
 import org.omnifaces.converter.SelectItemsIndexConverter;
 import org.omnifaces.validator.RequiredCheckboxValidator;
-import org.testng.annotations.BeforeSuite;
-import org.testng.annotations.Test;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
+import org.springframework.test.context.junit4.SpringRunner;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+@RunWith(SpringRunner.class)
 @SpringBootTest(classes = MyfacesSpringBootAutoConfiguration.class, webEnvironment = SpringBootTest.WebEnvironment.MOCK)
-@Test
-public class MyfacesServletContextInitializerIT extends AbstractTestNGSpringContextTests {
+public class MyfacesServletContextInitializerIT {
 
 	@Autowired
 	private MyfacesProperties myfacesProperties;
 
-	private Set<Class<?>> classes;
+	private static Set<Class<?>> classes;
 
-	@BeforeSuite
-	public void setupClasses() {
+	@BeforeClass
+	public static void setupClasses() {
 		MyfacesServletContextInitializer configuration = new MyfacesServletContextInitializer(null);
 
-		this.classes = JsfClassFactory.builder()
+		classes = JsfClassFactory.builder()
 			.jsfAnnotatedClassFactoryConfiguration(configuration)
 			.build().find();
 	}
 
+	@Test
 	public void testJavaxFacesHtmlPanelGroup() {
 		assertThat(this.classes).contains(HtmlPanelGroup.class);
 	}
 
+	@Test
 	public void testMyacesHtmlGridRenderer() {
 		assertThat(this.classes).contains(HtmlGridRenderer.class);
 	}
 
+	@Test
 	public void testOmnifacesSelectItemsIndexConverter() {
 		assertThat(this.classes).contains(SelectItemsIndexConverter.class);
 	}
 
+	@Test
 	public void testOmnifacesRequiredCheckboxValidator() {
 		assertThat(this.classes).contains(RequiredCheckboxValidator.class);
 	}
 
+	@Test
 	public void testOmnifacesFormComponent() {
 		assertThat(this.classes).contains(Form.class);
 	}
 
+	@Test
 	public void testBootsfacesTreeRenderer() {
 		assertThat(this.classes).contains(TreeRenderer.class);
 	}
 
+	@Test
 	public void testAnotherFacesConfig() throws ServletException {
 		MyfacesServletContextInitializer myfacesServletContextInitializer
 			= new MyfacesServletContextInitializer(this.myfacesProperties);
@@ -88,6 +96,7 @@ public class MyfacesServletContextInitializerIT extends AbstractTestNGSpringCont
 			.isEqualTo(MyfacesServletContextInitializer.ANOTHER_FACES_CONFIG);
 	}
 
+	@Test
 	public void testExcludeScopedAnnotations() throws ServletException {
 		MyfacesServletContextInitializer myfacesServletContextInitializer
 			= new MyfacesServletContextInitializer(this.myfacesProperties);
@@ -95,6 +104,7 @@ public class MyfacesServletContextInitializerIT extends AbstractTestNGSpringCont
 		assertThat(myfacesServletContextInitializer.isExcludeScopedAnnotations()).isTrue();
 	}
 
+	@Test
 	public void testOnStartup() throws ServletException {
 		MyfacesServletContextInitializer myfacesServletContextInitializer
 			= new MyfacesServletContextInitializer(this.myfacesProperties);

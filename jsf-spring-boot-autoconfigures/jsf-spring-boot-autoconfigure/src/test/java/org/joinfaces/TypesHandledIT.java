@@ -19,13 +19,13 @@ package org.joinfaces;
 import javax.faces.component.FacesComponent;
 import javax.faces.component.UIComponent;
 
-import org.testng.annotations.Test;
+import org.junit.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-@Test
 public class TypesHandledIT {
 
+	@Test
 	public void testIsEmptyTrue() {
 		TypesHandled typesToBeHandled = new TypesHandled();
 
@@ -33,6 +33,7 @@ public class TypesHandledIT {
 			.isTrue();
 	}
 
+	@Test
 	public void testOneAnnotationType() {
 		TypesHandled typesToBeHandled = new TypesHandled();
 
@@ -41,6 +42,7 @@ public class TypesHandledIT {
 			.isFalse();
 	}
 
+	@Test
 	public void testOneOtherType() {
 		TypesHandled typesToBeHandled = new TypesHandled();
 
@@ -49,6 +51,7 @@ public class TypesHandledIT {
 			.isFalse();
 	}
 
+	@Test
 	public void testIsEmptyFalse() {
 		TypesHandled typesToBeHandled = new TypesHandled();
 

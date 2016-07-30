@@ -18,22 +18,24 @@ package org.joinfaces.mojarra;
 
 import javax.servlet.ServletContext;
 
-import org.testng.annotations.Test;
+import org.junit.Test;
+import org.junit.runner.RunWith;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.mock.web.MockServletContext;
-import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
+import org.springframework.test.context.junit4.SpringRunner;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+@RunWith(SpringRunner.class)
 @SpringBootTest(classes = MojarraSpringBootAutoConfiguration.class, webEnvironment = SpringBootTest.WebEnvironment.MOCK)
-@Test
-public class MojarraServletContextConfigurerIT extends AbstractTestNGSpringContextTests {
+public class MojarraServletContextConfigurerIT {
 
 	@Autowired
 	private MojarraProperties mojarraProperties;
 
+	@Test
 	public void testConfigure() {
 		ServletContext servletContext = new MockServletContext();
 

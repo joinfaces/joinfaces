@@ -21,23 +21,25 @@ import java.net.MalformedURLException;
 import org.eclipse.jetty.server.Handler;
 import org.eclipse.jetty.server.Server;
 import org.eclipse.jetty.webapp.WebAppContext;
-import org.testng.annotations.Test;
+import org.junit.Test;
+import org.junit.runner.RunWith;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.embedded.jetty.JettyEmbeddedServletContainer;
 import org.springframework.boot.context.embedded.jetty.JettyEmbeddedServletContainerFactory;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
+import org.springframework.test.context.junit4.SpringRunner;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+@RunWith(SpringRunner.class)
 @SpringBootTest(classes = JettySpringBootAutoConfiguration.class, webEnvironment = SpringBootTest.WebEnvironment.MOCK)
-@Test
-public class JsfJettyServerCustomizerIT extends AbstractTestNGSpringContextTests {
+public class JsfJettyServerCustomizerIT {
 
 	@Autowired
 	private JettyProperties jettyProperties;
 
+	@Test
 	public void customize() throws MalformedURLException {
 		JettyEmbeddedServletContainerFactory factory = new JettyEmbeddedServletContainerFactory();
 
@@ -54,7 +56,7 @@ public class JsfJettyServerCustomizerIT extends AbstractTestNGSpringContextTests
 			.isTrue();
 	}
 
-	@Test(expectedExceptions = RuntimeException.class)
+	@Test(expected = RuntimeException.class)
 	public void invalidClassPathResource() throws MalformedURLException {
 		JettyEmbeddedServletContainerFactory factory = new JettyEmbeddedServletContainerFactory();
 

@@ -19,23 +19,25 @@ package org.joinfaces.primefaces;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 
+import org.junit.Test;
+import org.junit.runner.RunWith;
 import org.primefaces.component.captcha.Captcha;
-import org.testng.annotations.Test;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.mock.web.MockServletContext;
-import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
+import org.springframework.test.context.junit4.SpringRunner;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+@RunWith(SpringRunner.class)
 @SpringBootTest(classes = PrimefacesSpringBootAutoConfiguration.class, webEnvironment = SpringBootTest.WebEnvironment.MOCK)
-@Test
-public class PrimefacesServletContextInitializerIT extends AbstractTestNGSpringContextTests {
+public class PrimefacesServletContextInitializerIT {
 
 	@Autowired
 	private PrimefacesProperties primefacesProperties;
 
+	@Test
 	public void testOnStartup() throws ServletException {
 		PrimefacesServletContextInitializer primefacesServletContextInitializer
 			= new PrimefacesServletContextInitializer(this.primefacesProperties);

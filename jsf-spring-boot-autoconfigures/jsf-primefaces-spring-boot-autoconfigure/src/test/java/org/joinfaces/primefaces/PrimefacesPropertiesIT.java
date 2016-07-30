@@ -16,97 +16,118 @@
 
 package org.joinfaces.primefaces;
 
-import org.testng.annotations.Test;
+import org.junit.Test;
+import org.junit.runner.RunWith;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
+import org.springframework.test.context.junit4.SpringRunner;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+@RunWith(SpringRunner.class)
 @SpringBootTest(classes = PrimefacesSpringBootAutoConfiguration.class, webEnvironment = SpringBootTest.WebEnvironment.MOCK)
-@Test
-public class PrimefacesPropertiesIT extends AbstractTestNGSpringContextTests {
+public class PrimefacesPropertiesIT {
 
 	@Autowired
 	private PrimefacesProperties primefacesProperties;
 
+	@Test
 	public void testPrivateCaptchaKey() {
 		assertThat(this.primefacesProperties.getPrivateCaptchaKey()).isEqualTo("myPrivateCaptchaKey");
 	}
 
+	@Test
 	public void testPublicCaptchaKey() {
 		assertThat(this.primefacesProperties.getPublicCaptchaKey()).isEqualTo("myKey");
 	}
 
+	@Test
 	public void testAutoUpdate() {
 		assertThat(this.primefacesProperties.getAutoUpdate()).isEqualTo("auto");
 	}
 
+	@Test
 	public void testBeanValidationDisabled() {
 		assertThat(this.primefacesProperties.getBeanValidationDisabled()).isTrue();
 	}
 
+	@Test
 	public void testCacheProvider() {
 		assertThat(this.primefacesProperties.getCacheProvider()).isEqualTo("myCacheProvider");
 	}
 
+	@Test
 	public void testDir() {
 		assertThat(this.primefacesProperties.getDir()).isEqualTo("left");
 	}
 
+	@Test
 	public void testEarlyPostParamEvaluation() {
 		assertThat(this.primefacesProperties.getEarlyPostParamEvaluation()).isTrue();
 	}
 
+	@Test
 	public void testFontAwesome() {
 		assertThat(this.primefacesProperties.getFontAwesome()).isTrue();
 	}
 
+	@Test
 	public void testInterpolateClientSideValidationMessages() {
 		assertThat(this.primefacesProperties.getInterpolateClientSideValidationMessages()).isTrue();
 	}
 
+	@Test
 	public void testLegacyWidgetNamespace() {
 		assertThat(this.primefacesProperties.getLegacyWidgetNamespace()).isTrue();
 	}
 
+	@Test
 	public void testMobileTheme() {
 		assertThat(this.primefacesProperties.getMobile().getTheme()).isEqualTo("cupertino");
 	}
 
+	@Test
 	public void testClientSideValidation() {
 		assertThat(this.primefacesProperties.getClientSideValidation()).isTrue();
 	}
 
+	@Test
 	public void testPushServerUrl() {
 		assertThat(this.primefacesProperties.getPushServerUrl()).isEqualTo("http://myhost.org");
 	}
 
+	@Test
 	public void testResetValues() {
 		assertThat(this.primefacesProperties.getResetValues()).isTrue();
 	}
 
+	@Test
 	public void testSecret() {
 		assertThat(this.primefacesProperties.getSecret()).isEqualTo("mySecret");
 	}
 
+	@Test
 	public void testSubmit() {
 		assertThat(this.primefacesProperties.getSubmit()).isEqualTo("partial");
 	}
 
+	@Test
 	public void testTheme() {
 		assertThat(this.primefacesProperties.getTheme()).isEqualTo("omega");
 	}
 
+	@Test
 	public void testTransformMetadata() {
 		assertThat(this.primefacesProperties.getTransformMetadata()).isTrue();
 	}
 
+	@Test
 	public void testUploader() {
 		assertThat(this.primefacesProperties.getUploader()).isEqualTo("myUploader");
 	}
 
+	@Test
 	public void testCaptchaPrivateKey() {
 		assertThat(this.primefacesProperties.getCaptcha().getPrivateKey()).isEqualTo("myPrivateKey");
 	}

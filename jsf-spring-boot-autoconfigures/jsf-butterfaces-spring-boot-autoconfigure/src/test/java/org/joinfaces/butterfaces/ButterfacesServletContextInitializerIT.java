@@ -21,22 +21,24 @@ import javax.servlet.ServletException;
 
 import de.larmic.butterfaces.resolver.WebXmlParameters;
 
-import org.testng.annotations.Test;
+import org.junit.Test;
+import org.junit.runner.RunWith;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.mock.web.MockServletContext;
-import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
+import org.springframework.test.context.junit4.SpringRunner;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+@RunWith(SpringRunner.class)
 @SpringBootTest(classes = ButterfacesSpringBootAutoConfiguration.class, webEnvironment = SpringBootTest.WebEnvironment.MOCK)
-@Test
-public class ButterfacesServletContextInitializerIT extends AbstractTestNGSpringContextTests {
+public class ButterfacesServletContextInitializerIT {
 
 	@Autowired
 	private ButterfacesProperties butterfacesProperties;
 
+	@Test
 	public void testOnStartup() throws ServletException {
 		ButterfacesServletContextInitializer butterfacesServletContextInitializer
 			= new ButterfacesServletContextInitializer(this.butterfacesProperties);

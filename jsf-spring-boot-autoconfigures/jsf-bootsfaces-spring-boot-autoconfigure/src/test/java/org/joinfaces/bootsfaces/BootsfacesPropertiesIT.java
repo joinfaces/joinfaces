@@ -16,53 +16,63 @@
 
 package org.joinfaces.bootsfaces;
 
-import org.testng.annotations.Test;
+import org.junit.Test;
+import org.junit.runner.RunWith;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
+import org.springframework.test.context.junit4.SpringRunner;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+@RunWith(SpringRunner.class)
 @SpringBootTest(classes = BootsfacesSpringBootAutoConfiguration.class, webEnvironment = SpringBootTest.WebEnvironment.MOCK)
-@Test
-public class BootsfacesPropertiesIT extends AbstractTestNGSpringContextTests {
+public class BootsfacesPropertiesIT {
 
 	@Autowired
 	private BootsfacesProperties bootsfacesProperties;
 
+	@Test
 	public void testTheme() {
 		assertThat(this.bootsfacesProperties.getTheme()).isEqualTo("bootstrap");
 	}
 
+	@Test
 	public void testUsetheme() {
 		assertThat(this.bootsfacesProperties.getUsetheme()).isTrue();
 	}
 
+	@Test
 	public void testUseViewport() {
 		assertThat(this.bootsfacesProperties.getUseViewport()).isTrue();
 	}
 
+	@Test
 	public void testDefaultsRenderLabel() {
 		assertThat(this.bootsfacesProperties.getDefaults().getRenderLabel()).isEqualTo("myRenderLabel");
 	}
 
+	@Test
 	public void testGetFontawesomeFromCdn() {
 		assertThat(this.bootsfacesProperties.getGetFontawesomeFromCdn()).isTrue();
 	}
 
+	@Test
 	public void testGetJqueryFromCdn() {
 		assertThat(this.bootsfacesProperties.getGetJqueryFromCdn()).isTrue();
 	}
 
+	@Test
 	public void testGetJqueryuiFromCdn() {
 		assertThat(this.bootsfacesProperties.getGetJqueryuiFromCdn()).isTrue();
 	}
 
+	@Test
 	public void testGetBootstrapFromCdn() {
 		assertThat(this.bootsfacesProperties.getGetBootstrapFromCdn()).isTrue();
 	}
 
+	@Test
 	public void testBlockUI() {
 		assertThat(this.bootsfacesProperties.getBlockUI()).isFalse();
 	}

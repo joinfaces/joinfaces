@@ -16,13 +16,13 @@
 
 package org.joinfaces.undertow;
 
-import org.testng.annotations.Test;
+import org.junit.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-@Test
 public class UndertowEmptyTest {
 
+	@Test
 	public void nothing() {
 		assertThat(new UndertowEmpty()).isNotNull();
 	}

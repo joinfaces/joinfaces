@@ -18,19 +18,22 @@ package org.joinfaces.security;
 
 import org.joinfaces.mock.JsfIT;
 
-import org.testng.annotations.Test;
+import org.junit.Test;
+import org.junit.runner.RunWith;
 
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.junit4.SpringRunner;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 /**
  * Unit tests for {@link AuthorizeFaceletsTag}.
  */
+@RunWith(SpringRunner.class)
 @SpringBootTest(classes = SecurityConfiguration.class, webEnvironment = SpringBootTest.WebEnvironment.MOCK)
-@Test
 public class AuthorizeFaceletsTagIT extends JsfIT {
 
+	@Test
 	public void testIfAllGrantedEmpty() {
 		AuthorizeFaceletsTag tag = new AuthorizeFaceletsTag();
 		tag.setIfAllGranted("");
@@ -38,6 +41,7 @@ public class AuthorizeFaceletsTagIT extends JsfIT {
 			.isNull();
 	}
 
+	@Test
 	public void testIfAnyGrantedEmpty() {
 		AuthorizeFaceletsTag tag = new AuthorizeFaceletsTag();
 		tag.setIfAnyGranted("");
@@ -45,6 +49,7 @@ public class AuthorizeFaceletsTagIT extends JsfIT {
 			.isNull();
 	}
 
+	@Test
 	public void testIfNotGrantedEmpty() {
 		AuthorizeFaceletsTag tag = new AuthorizeFaceletsTag();
 		tag.setIfNotGranted("");
@@ -52,6 +57,7 @@ public class AuthorizeFaceletsTagIT extends JsfIT {
 			.isNull();
 	}
 
+	@Test
 	public void testIfAllGrantedTwoRoles() {
 		AuthorizeFaceletsTag tag = new AuthorizeFaceletsTag();
 		tag.setIfAllGranted(Roles.ROLE_A);
@@ -60,6 +66,7 @@ public class AuthorizeFaceletsTagIT extends JsfIT {
 			.isEqualTo("hasRole('ROLE_A') and hasRole('ROLE_B')");
 	}
 
+	@Test
 	public void testIfAllGrantedWithMultipleRoles() {
 		AuthorizeFaceletsTag tag = new AuthorizeFaceletsTag();
 		tag.setIfAllGranted("ROLE_A, ROLE_B, ROLE_C");
@@ -67,6 +74,7 @@ public class AuthorizeFaceletsTagIT extends JsfIT {
 			.isEqualTo("hasRole('ROLE_A') and hasRole('ROLE_B') and hasRole('ROLE_C')");
 	}
 
+	@Test
 	public void testIfAnyGrantedWithOneRole() {
 		AuthorizeFaceletsTag tag = new AuthorizeFaceletsTag();
 		tag.setIfAnyGranted(Roles.ROLE_A);
@@ -74,6 +82,7 @@ public class AuthorizeFaceletsTagIT extends JsfIT {
 			.isEqualTo("hasAnyRole('ROLE_A')");
 	}
 
+	@Test
 	public void testIfAnyGrantedWithMultipleRole() {
 		AuthorizeFaceletsTag tag = new AuthorizeFaceletsTag();
 		tag.setIfAnyGranted("ROLE_A, ROLE_B, ROLE_C");
@@ -81,6 +90,7 @@ public class AuthorizeFaceletsTagIT extends JsfIT {
 			.isEqualTo("hasAnyRole('ROLE_A','ROLE_B','ROLE_C')");
 	}
 
+	@Test
 	public void testIfNoneGrantedWithOneRole() {
 		AuthorizeFaceletsTag tag = new AuthorizeFaceletsTag();
 		tag.setIfNotGranted(Roles.ROLE_A);
@@ -88,6 +98,7 @@ public class AuthorizeFaceletsTagIT extends JsfIT {
 			.isEqualTo("!hasAnyRole('ROLE_A')");
 	}
 
+	@Test
 	public void testIfNoneGrantedWithMultipleRole() {
 		AuthorizeFaceletsTag tag = new AuthorizeFaceletsTag();
 		tag.setIfNotGranted("ROLE_A, ROLE_B, ROLE_C");
@@ -95,6 +106,7 @@ public class AuthorizeFaceletsTagIT extends JsfIT {
 			.isEqualTo("!hasAnyRole('ROLE_A','ROLE_B','ROLE_C')");
 	}
 
+	@Test
 	public void testIfAllAnyNotGranted() {
 		AuthorizeFaceletsTag tag = new AuthorizeFaceletsTag();
 		tag.setIfAllGranted(Roles.ROLE_A);

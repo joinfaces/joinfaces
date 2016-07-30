@@ -20,25 +20,29 @@ import java.io.IOException;
 
 import org.joinfaces.mock.JsfIT;
 
-import org.testng.annotations.Test;
-
-import static org.assertj.core.api.Assertions.assertThat;
+import org.junit.Test;
+import org.junit.runner.RunWith;
 
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.junit4.SpringRunner;
+
+import static org.assertj.core.api.Assertions.assertThat;
 
 /**
  * Unit tests for {@link AnonymousFaceletsTag}.
  */
+@RunWith(SpringRunner.class)
 @SpringBootTest(classes = SecurityConfiguration.class, webEnvironment = SpringBootTest.WebEnvironment.MOCK)
-@Test
 public class AnonymousFaceletsTagIT extends JsfIT {
 
+	@Test
 	public void testAnonymous() {
 		AnonymousFaceletsTag tag = new AnonymousFaceletsTag();
 		assertThat(tag.getAccess())
 			.isEqualTo("isAnonymous()");
 	}
 
+	@Test
 	public void testNotAuthorize() throws IOException {
 		new SpringSecurityMock().init(null);
 
@@ -47,6 +51,7 @@ public class AnonymousFaceletsTagIT extends JsfIT {
 			.isFalse();
 	}
 
+	@Test
 	public void testAuthorize() throws IOException {
 		new SpringSecurityMock().init(AuthenticationFactory.anonymous(Roles.ROLE_A));
 

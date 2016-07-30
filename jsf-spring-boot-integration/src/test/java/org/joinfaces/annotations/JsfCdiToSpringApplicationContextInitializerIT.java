@@ -16,7 +16,7 @@
 
 package org.joinfaces.annotations;
 
-import org.testng.annotations.Test;
+import org.junit.Test;
 
 import org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
@@ -27,9 +27,9 @@ import static org.assertj.core.api.Assertions.assertThat;
 /**
  * Jsf Cdi to Spring application context initializer
  */
-@Test
 public class JsfCdiToSpringApplicationContextInitializerIT {
 
+	@Test
 	public void testAnnotationConfigEmbeddedWebApplicationContext() {
 		AnnotationConfigEmbeddedWebApplicationContext annotationConfigEmbeddedWebApplicationContext = new AnnotationConfigEmbeddedWebApplicationContext();
 		JsfCdiToSpringApplicationContextInitializer initializer = new JsfCdiToSpringApplicationContextInitializer();
@@ -39,6 +39,7 @@ public class JsfCdiToSpringApplicationContextInitializerIT {
 		assertThat(annotationConfigEmbeddedWebApplicationContext.getBeanFactoryPostProcessors().isEmpty()).isFalse();
 	}
 
+	@Test
 	public void testAnnotationConfigWebApplicationContext() {
 		AnnotationConfigWebApplicationContext annotationConfigWebApplicationContext = new AnnotationConfigWebApplicationContext();
 		JsfCdiToSpringApplicationContextInitializer initializer = new JsfCdiToSpringApplicationContextInitializer();
@@ -48,6 +49,7 @@ public class JsfCdiToSpringApplicationContextInitializerIT {
 		assertThat(annotationConfigWebApplicationContext.getBeanFactoryPostProcessors().isEmpty()).isFalse();
 	}
 
+	@Test
 	public void testAnnotationConfigApplicationContext() {
 		AnnotationConfigApplicationContext annotationConfigApplicationContext = new AnnotationConfigApplicationContext();
 		JsfCdiToSpringApplicationContextInitializer initializer = new JsfCdiToSpringApplicationContextInitializer();

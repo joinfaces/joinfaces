@@ -18,18 +18,18 @@ package org.joinfaces.annotations;
 
 import org.joinfaces.mock.JsfIT;
 
-import org.testng.annotations.Test;
+import org.junit.Test;
 
 import org.springframework.boot.test.context.SpringBootTest;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 @SpringBootTest(classes = AnnotationConfiguration.class, webEnvironment = SpringBootTest.WebEnvironment.MOCK)
-@Test
 public class ViewScopeIT extends JsfIT {
 
 	private static final String KEY = "key";
 
+	@Test
 	public void testViewScope() {
 		ViewScope viewScope = new ViewScope();
 
@@ -41,16 +41,19 @@ public class ViewScopeIT extends JsfIT {
 		assertThat(viewScope.remove(KEY)).isEqualTo(viewScopedClass);
 	}
 
+	@Test
 	public void testConversationId() {
 		ViewScope viewScope = new ViewScope();
 		assertThat(viewScope.getConversationId()).isNull();
 	}
 
+	@Test
 	public void testResolveContextualObject() {
 		ViewScope viewScope = new ViewScope();
 		assertThat(viewScope.resolveContextualObject(KEY)).isNull();
 	}
 
+	@Test
 	public void testRegisterDestructionCallback() {
 		ViewScope viewScope = new ViewScope();
 		viewScope.registerDestructionCallback(KEY, null);

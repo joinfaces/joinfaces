@@ -17,21 +17,23 @@
 package org.joinfaces.undertow;
 
 import org.apache.myfaces.webapp.StartupServletContextListener;
-import org.testng.annotations.Test;
+import org.junit.Test;
+import org.junit.runner.RunWith;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
+import org.springframework.test.context.junit4.SpringRunner;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+@RunWith(SpringRunner.class)
 @SpringBootTest(classes = UndertowMyfacesSpringBootAutoConfiguration.class, webEnvironment = SpringBootTest.WebEnvironment.MOCK)
-@Test
-public class UndertowMyfacesSpringBootAutoConfigurationIT extends AbstractTestNGSpringContextTests {
+public class UndertowMyfacesSpringBootAutoConfigurationIT {
 
 	@Autowired
 	private StartupServletContextListener startupServletContextListener;
 
+	@Test
 	public void startupServletContextListenerNotNull() {
 		assertThat(this.startupServletContextListener).isNotNull();
 	}

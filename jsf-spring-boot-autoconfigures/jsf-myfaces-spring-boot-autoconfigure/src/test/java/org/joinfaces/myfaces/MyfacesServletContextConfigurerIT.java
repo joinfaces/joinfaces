@@ -18,22 +18,24 @@ package org.joinfaces.myfaces;
 
 import javax.servlet.ServletContext;
 
-import org.testng.annotations.Test;
+import org.junit.Test;
+import org.junit.runner.RunWith;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.mock.web.MockServletContext;
-import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
+import org.springframework.test.context.junit4.SpringRunner;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+@RunWith(SpringRunner.class)
 @SpringBootTest(classes = MyfacesSpringBootAutoConfiguration.class, webEnvironment = SpringBootTest.WebEnvironment.MOCK)
-@Test
-public class MyfacesServletContextConfigurerIT extends AbstractTestNGSpringContextTests {
+public class MyfacesServletContextConfigurerIT {
 
 	@Autowired
 	private MyfacesProperties myfacesProperties;
 
+	@Test
 	public void testConfigure() {
 		ServletContext servletContext = new MockServletContext();
 

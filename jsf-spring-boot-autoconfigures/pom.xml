@@ -51,7 +51,6 @@
         <module>jsf-myfaces-spring-boot-autoconfigure</module>
         <module>jsf-omnifaces-spring-boot-autoconfigure</module>
         <module>jsf-primefaces-spring-boot-autoconfigure</module>
-        <module>jsf-primefaces53-spring-boot-autoconfigure</module>
         <module>jsf-bootsfaces-spring-boot-autoconfigure</module>
         <module>jsf-angularfaces-spring-boot-autoconfigure</module>
         <module>jsf-butterfaces-spring-boot-autoconfigure</module>

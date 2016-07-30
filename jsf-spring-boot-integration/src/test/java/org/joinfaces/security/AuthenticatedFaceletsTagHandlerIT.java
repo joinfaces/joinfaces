@@ -20,19 +20,23 @@ import java.io.IOException;
 
 import org.joinfaces.mock.JsfIT;
 
-import org.testng.annotations.Test;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+
 import static org.assertj.core.api.Assertions.assertThat;
 
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.security.core.Authentication;
+import org.springframework.test.context.junit4.SpringRunner;
 
 /**
  * Unit tests for {@link AuthenticatedFaceletsTagHandler}.
  */
+@RunWith(SpringRunner.class)
 @SpringBootTest(classes = SecurityConfiguration.class, webEnvironment = SpringBootTest.WebEnvironment.MOCK)
-@Test
 public class AuthenticatedFaceletsTagHandlerIT extends JsfIT {
 
+	@Test
 	public void testNotAuthorize() throws IOException {
 		new SpringSecurityMock().init(null);
 
@@ -45,6 +49,7 @@ public class AuthenticatedFaceletsTagHandlerIT extends JsfIT {
 			.isFalse();
 	}
 
+	@Test
 	public void testAuthorize() throws IOException {
 		Authentication authentication = AuthenticationFactory.authentication(Roles.ROLE_A);
 		new SpringSecurityMock().init(authentication);

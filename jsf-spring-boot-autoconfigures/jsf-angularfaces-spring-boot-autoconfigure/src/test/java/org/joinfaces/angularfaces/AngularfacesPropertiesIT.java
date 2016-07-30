@@ -16,53 +16,63 @@
 
 package org.joinfaces.angularfaces;
 
-import org.testng.annotations.Test;
+import org.junit.Test;
+import org.junit.runner.RunWith;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
+import org.springframework.test.context.junit4.SpringRunner;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+@RunWith(SpringRunner.class)
 @SpringBootTest(classes = AngularfacesSpringBootAutoConfiguration.class, webEnvironment = SpringBootTest.WebEnvironment.MOCK)
-@Test
-public class AngularfacesPropertiesIT extends AbstractTestNGSpringContextTests {
+public class AngularfacesPropertiesIT {
 
 	@Autowired
 	private AngularfacesProperties angularfacesProperties;
 
+	@Test
 	public void testAddLabels() {
 		assertThat(this.angularfacesProperties.getAddLabels()).isTrue();
 	}
 
+	@Test
 	public void testAddMessages() {
 		assertThat(this.angularfacesProperties.getAddMessages()).isTrue();
 	}
 
+	@Test
 	public void testTranslation() {
 		assertThat(this.angularfacesProperties.getTranslation()).isTrue();
 	}
 
+	@Test
 	public void testIncludeAngularJS() {
 		assertThat(this.angularfacesProperties.getIncludeAngularJS()).isTrue();
 	}
 
+	@Test
 	public void testIncludeJQuery() {
 		assertThat(this.angularfacesProperties.getIncludeJQuery()).isTrue();
 	}
 
+	@Test
 	public void testIncludeJQueryUI() {
 		assertThat(this.angularfacesProperties.getIncludeJQueryUI()).isTrue();
 	}
 
+	@Test
 	public void testIncludeAngularMessages() {
 		assertThat(this.angularfacesProperties.getIncludeAngularMessages()).isTrue();
 	}
 
+	@Test
 	public void testClientSideMessages() {
 		assertThat(this.angularfacesProperties.getClientSideMessages()).isTrue();
 	}
 
+	@Test
 	public void testIncludeMainJS() {
 		assertThat(this.angularfacesProperties.getIncludeMainJS()).isTrue();
 	}

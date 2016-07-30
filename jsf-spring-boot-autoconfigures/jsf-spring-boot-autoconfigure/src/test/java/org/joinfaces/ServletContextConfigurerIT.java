@@ -18,15 +18,15 @@ package org.joinfaces;
 
 import javax.servlet.ServletContext;
 
-import org.testng.annotations.Test;
+import org.junit.Test;
 
 import org.springframework.mock.web.MockServletContext;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-@Test
 public class ServletContextConfigurerIT {
 
+	@Test
 	public void testEmpty() {
 		ServletContext servletContext = new MockServletContext();
 
@@ -38,6 +38,7 @@ public class ServletContextConfigurerIT {
 		assertThat(servletContext.getInitParameter("jsf.empty")).isNull();
 	}
 
+	@Test
 	public void testKey() {
 		ServletContext servletContext = new MockServletContext();
 
@@ -49,7 +50,7 @@ public class ServletContextConfigurerIT {
 		assertThat(servletContext.getInitParameter("jsf.key")).isEqualTo("value");
 	}
 
-	@Test(expectedExceptions = IllegalArgumentException.class)
+	@Test(expected = IllegalArgumentException.class)
 	public void testNull() {
 		ServletContext servletContext = new MockServletContext();
 

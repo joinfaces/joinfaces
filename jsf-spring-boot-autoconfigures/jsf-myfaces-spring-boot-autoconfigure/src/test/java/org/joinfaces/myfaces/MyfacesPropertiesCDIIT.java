@@ -16,25 +16,28 @@
 
 package org.joinfaces.myfaces;
 
-import org.testng.annotations.Test;
+import org.junit.Test;
+import org.junit.runner.RunWith;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
+import org.springframework.test.context.junit4.SpringRunner;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+@RunWith(SpringRunner.class)
 @SpringBootTest(classes = MyfacesSpringBootAutoConfiguration.class, webEnvironment = SpringBootTest.WebEnvironment.MOCK)
-@Test
-public class MyfacesPropertiesCDIIT extends AbstractTestNGSpringContextTests {
+public class MyfacesPropertiesCDIIT {
 
 	@Autowired
 	private MyfacesProperties myfacesProperties;
 
+	@Test
 	public void testCdiManagedConvertersEnabled() {
 		assertThat(this.myfacesProperties.getCdiManagedConvertersEnabled()).isTrue();
 	}
 
+	@Test
 	public void testCdiManagedValidatorsEnabled() {
 		assertThat(this.myfacesProperties.getCdiManagedValidatorsEnabled()).isTrue();
 	}

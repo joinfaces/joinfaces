@@ -16,45 +16,53 @@
 
 package org.joinfaces.myfaces;
 
-import org.testng.annotations.Test;
+import org.junit.Test;
+import org.junit.runner.RunWith;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
+import org.springframework.test.context.junit4.SpringRunner;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+@RunWith(SpringRunner.class)
 @SpringBootTest(classes = MyfacesSpringBootAutoConfiguration.class, webEnvironment = SpringBootTest.WebEnvironment.MOCK)
-@Test
-public class MyfacesPropertiesExpressionLanguageIT extends AbstractTestNGSpringContextTests {
+public class MyfacesPropertiesExpressionLanguageIT {
 
 	@Autowired
 	private MyfacesProperties myfacesProperties;
 
+	@Test
 	public void testStrictJsf2CcElResolver() {
 		assertThat(this.myfacesProperties.getStrictJsf2CcElResolver()).isEqualTo("myElResolver");
 	}
 
+	@Test
 	public void testSupportJspAndFacesEl() {
 		assertThat(this.myfacesProperties.getSupportJspAndFacesEl()).isTrue();
 	}
 
+	@Test
 	public void testSupportEl3ImportHandler() {
 		assertThat(this.myfacesProperties.getSupportEl3ImportHandler()).isTrue();
 	}
 
+	@Test
 	public void testElResolverComparator() {
 		assertThat(this.myfacesProperties.getElResolverComparator()).isEqualTo("myResolverComparator");
 	}
 
+	@Test
 	public void testElResolverPredicate() {
 		assertThat(this.myfacesProperties.getElResolverPredicate()).isEqualTo("myResolverPredicate");
 	}
 
+	@Test
 	public void testCacheElExpressions() {
 		assertThat(this.myfacesProperties.getCacheElExpressions()).isTrue();
 	}
 
+	@Test
 	public void testExpressionFactory() {
 		assertThat(this.myfacesProperties.getExpressionFactory()).isEqualTo("myExpressionFactory");
 	}
