@@ -58,16 +58,6 @@ public class MyfacesServletContextInitializerIT {
 	}
 
 	@Test
-	public void testJavaxFacesHtmlPanelGroup() {
-		assertThat(this.classes).contains(HtmlPanelGroup.class);
-	}
-
-	@Test
-	public void testMyacesHtmlGridRenderer() {
-		assertThat(this.classes).contains(HtmlGridRenderer.class);
-	}
-
-	@Test
 	public void testOmnifacesSelectItemsIndexConverter() {
 		assertThat(this.classes).contains(SelectItemsIndexConverter.class);
 	}
@@ -80,6 +70,16 @@ public class MyfacesServletContextInitializerIT {
 	@Test
 	public void testOmnifacesFormComponent() {
 		assertThat(this.classes).contains(Form.class);
+	}
+
+	@Test
+	public void testJavaxFacesHtmlPanelGroup() {
+		assertThat(this.classes).contains(HtmlPanelGroup.class);
+	}
+
+	@Test
+	public void testMyfacesHtmlGridRenderer() {
+		assertThat(this.classes).contains(HtmlGridRenderer.class);
 	}
 
 	@Test
