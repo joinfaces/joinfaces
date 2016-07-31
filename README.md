@@ -55,18 +55,20 @@ Library | Dependency | Description
 
 ### JSF properties configuration via application.properties or application.yml
 
-Library | Namespace | Example | Full Example
------------- | ------------- | --------- | ---------
-standard (javax.faces) | jsf | jsf.PROJECT_STAGE: Development | [application.yml](https://github.com/joinfaces/joinfaces/blob/master/jsf-spring-boot-autoconfigures/jsf-spring-boot-autoconfigure/src/test/resources/application.yml)
-[primefaces](http://primefaces.org/) | jsf.primefaces | jsf.primefaces.theme: overcast | [application.yml](https://github.com/joinfaces/joinfaces/blob/master/jsf-spring-boot-autoconfigures/jsf-primefaces-spring-boot-autoconfigure/src/test/resources/application.yml)
-[bootsfaces](http://bootsfaces.net/) | jsf.bootsfaces | jsf.bootsfaces.USETHEME: true | [application.yml](https://github.com/joinfaces/joinfaces/blob/master/jsf-spring-boot-autoconfigures/jsf-bootsfaces-spring-boot-autoconfigure/src/test/resources/application.yml)
-[butterfaces](http://butterfaces.org/) | jsf.butterfaces | jsf.butterfaces.provideJQuery: true | [application.yml](https://github.com/joinfaces/joinfaces/blob/master/jsf-spring-boot-autoconfigures/jsf-butterfaces-spring-boot-autoconfigure/src/test/resources/application.yml)
-[omnifaces](http://omnifaces.org/) | jsf.omnifaces | jsf.omnifaces.FACES_VIEWS_ENABLED: true | [application.yml](https://github.com/joinfaces/joinfaces/blob/master/jsf-spring-boot-autoconfigures/jsf-omnifaces-spring-boot-autoconfigure/src/test/resources/application.yml)
-[angularfaces](http://angularfaces.net/) | jsf.angularfaces | jsf.angularfaces.addLabels: true | [application.yml](https://github.com/joinfaces/joinfaces/blob/master/jsf-spring-boot-autoconfigures/jsf-angularfaces-spring-boot-autoconfigure/src/test/resources/application.yml)
-[mojarra](https://javaserverfaces.java.net/) | jsf.mojarra | jsf.mojarra.preferXHTML: true | [application.yml](https://github.com/joinfaces/joinfaces/blob/master/jsf-spring-boot-autoconfigures/jsf-mojarra-spring-boot-autoconfigure/src/test/resources/application.yml)
-[myfaces](http://myfaces.apache.org/) | jsf.myfaces | jsf.myfaces.PRETTY_HTML: true | [application.yml](https://github.com/joinfaces/joinfaces/blob/master/jsf-spring-boot-autoconfigures/jsf-myfaces-spring-boot-autoconfigure/src/test/resources/application.yml)
-[jetty](http://www.eclipse.org/jetty) | jsf.jetty | jsf.jetty.classPathResource: META-INF/resources | [application.yml](https://github.com/joinfaces/joinfaces/blob/master/jsf-spring-boot-autoconfigures/jsf-jetty-spring-boot-autoconfigure/src/test/resources/application.yml)
-[undertow](http://undertow.io) | jsf.undertow | jsf.undertow.classPathResource: META-INF/resources | [application.yml](https://github.com/joinfaces/joinfaces/blob/master/jsf-spring-boot-autoconfigures/jsf-undertow-spring-boot-autoconfigure/src/test/resources/application.yml)
+Library | Namespace | Example
+------------ | ------------- | ---------
+standard (javax.faces) | jsf | jsf.PROJECT_STAGE: Development
+[primefaces](http://primefaces.org/) | jsf.primefaces | jsf.primefaces.theme: overcast
+[bootsfaces](http://bootsfaces.net/) | jsf.bootsfaces | jsf.bootsfaces.USETHEME: true
+[butterfaces](http://butterfaces.org/) | jsf.butterfaces | jsf.butterfaces.provideJQuery: true
+[omnifaces](http://omnifaces.org/) | jsf.omnifaces | jsf.omnifaces.FACES_VIEWS_ENABLED: true
+[angularfaces](http://angularfaces.net/) | jsf.angularfaces | jsf.angularfaces.addLabels: true
+[mojarra](https://javaserverfaces.java.net/) | jsf.mojarra | jsf.mojarra.preferXHTML: true
+[myfaces](http://myfaces.apache.org/) | jsf.myfaces | jsf.myfaces.PRETTY_HTML: true
+[jetty](http://www.eclipse.org/jetty) | jsf.jetty | jsf.jetty.classPathResource: META-INF/resources
+[undertow](http://undertow.io) | jsf.undertow | jsf.undertow.classPathResource: META-INF/resources
+
+Look full [application.yml](https://github.com/joinfaces/joinfaces/blob/master/jsf-spring-boot-autoconfigure/src/test/resources/application.yml) example.
 
 Additional information in [#22](https://github.com/joinfaces/joinfaces/issues/22)
 
