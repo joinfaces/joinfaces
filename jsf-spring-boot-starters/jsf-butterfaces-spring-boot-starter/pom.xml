@@ -22,16 +22,8 @@
             <artifactId>jsf-spring-boot-starter</artifactId>
         </dependency>
         <dependency>
-            <groupId>org.joinfaces</groupId>
-            <artifactId>jsf-bootsfaces-spring-boot-autoconfigure</artifactId>
-        </dependency>
-        <dependency>
             <groupId>net.bootsfaces</groupId>
             <artifactId>bootsfaces</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.joinfaces</groupId>
-            <artifactId>jsf-butterfaces-spring-boot-autoconfigure</artifactId>
         </dependency>
         <dependency>
             <groupId>de.larmic.butterfaces</groupId>

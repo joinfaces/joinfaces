@@ -1,0 +1,328 @@
+jsf:
+
+  # javax.faces namespace
+  projectStage: Development
+  resourceExcludes: myExcludes
+  webappContractsDirectory: myContractsDirectory
+  webappResourcesDirectory: myResourcesDirectory
+  fullStateSavingViewIds: myIds
+  partialStateSaving: true
+  serializeServerState: true
+  stateSavingMethod: server
+  defaultSuffix: .xhtml
+  disableFaceletJsfViewhandler: true
+  faceletsBufferSize: 33
+  faceletsDecorators: myDecorator
+  faceletsLibraries: myLibrary
+  faceletsRefreshPeriod: 35
+  faceletsSkipComments: true
+  faceletsSuffix: .html
+  faceletsViewMappings: newMapping
+  honorCurrentComponentAttributes: true
+  validateEmptyFields: auto
+  separatorChar: ;
+  faceletsResourceResolver: myResolver
+  configFiles: myConfig
+  lifecycleId: myId
+  clientWindowMode: url
+  interpretEmptyStringSubmittedValuesAsNull: true
+  datetimeconverterDefaultTimezoneIsSystemTimezone: true
+  partial:
+    execute: true
+    render: true
+    resetValues: true
+  flow:
+    nullFlow: true
+  validator:
+    disableDefaultBeanValidator: true
+
+  # mojarra namespace
+  mojarra:
+    clientStateTimeout: 10
+    clientStateWriteBufferSize: 11
+    compressViewState: true
+    disableClientStateEncryption: true
+    enableClientStateDebugging: true
+    generateUniqueServerStateIds: true
+    numberOfLogicalViews: 15
+    numberOfViewsInSession: 16
+    serializeServerState: true
+    writeStateAtFormEnd: true
+    allowTextChildren: true
+    autoCompleteOffOnViewState: true
+    compressJavaScript: true
+    disableUnicodeEscaping: true
+    disableIdUniquenessCheck: true
+    enabledJSStyleHiding: true
+    enableScriptsInAttributeValues: true
+    enableViewStateIdRendering: true
+    preferXHTML: true
+    responseBufferSize: 20
+    cacheResourceModificationTimestamp: true
+    compressableMimeTypes: txt
+    defaultResourceMaxAge: 30
+    enableFaceletsResourceResolverCompositeComponents: true
+    enableMissingResourceLibraryDetection: true
+    resourceUpdateCheckPeriod: 50
+    enableAgressiveSessionDirtying: true
+    enableDistributable: true
+    annotationScanPackages: mypackage
+    displayConfiguration: true
+    enableCoreTagLibValidator: true
+    enableHtmlTagLibValidator: true
+    enableLazyBeanValidation: true
+    enableThreading: true
+    forceLoadConfiguration: true
+    validateXml: true
+    verifyObjects: true
+    enableTransitionTimeNoOpFlash: true
+    expressionFactory: myExpressionFactory
+    forceAlwaysWriteFlashCookie: true
+    injectionProvider: myInjectionProvider
+    namespaceParameters: true
+    registerConverterPropertyEditors: true
+    sendPoweredByHeader: true
+    serializationProvider: myProvider
+    faceletFactory: myFactory
+
+  # myfaces namespace
+  myfaces:
+    
+    # view handling
+    checkedViewidCacheSize: 500
+    checkedViewidCacheEnabled: true
+    viewUniqueIdsCacheEnabled: true
+    componentUniqueIdsCacheSize: 100
+    strictJsf2ViewNotFound: true
+    strictJsf2FaceletsCompatibility: true
+    
+    # state saving
+    renderViewstateId: true
+    refreshTransientBuildOnPss: auto
+    refreshTransientBuildOnPssPreserveState: true
+    numberOfViewsInSession: 20
+    numberOfSequentialViewsInSession: 4
+    numberOfFlashTokensInSession: 5
+    facesFlowClientWindowIdsInSession: 6
+    useEncryption: true
+    secret: mySecret
+    algorithm: DES
+    secretCache: true
+    algorithmIv: iv
+    algorithmParameters: ECB/PKCS5Padding
+    serialFactory: mySerialFactory
+    compressStateInClient: true
+    macAlgorithm: HmacSHA1
+    macSecret: myMacSecret
+    macSecretCache: true
+    randomKeyInCsrfSessionToken: none
+    randomKeyInCsrfSessionTokenLength: 16
+    randomKeyInCsrfSessionTokenSecureRandomClass: mySecureRamdomClass
+    randomKeyInCsrfSessionTokenSecureRandomProvider: mySecureRamdomProvider
+    randomKeyInCsrfSessionTokenSecureRandomAlgoritm: SHA1PRNG
+    clientViewStateTimeout: 0
+    compressStateInSession: true
+    useFlashScopePurgeViewsInSession: true
+    randomKeyInViewStateSessionToken: myStateSessionToken
+    randomKeyInViewStateSessionTokenLength: 8
+    randomKeyInViewStateSessionTokenSecureRandomClass: mySecureRandomClass
+    randomKeyInViewStateSessionTokenSecureRandomProvider: mySecureRandomProvider
+    randomKeyInViewStateSessionTokenSecureRandomAlgorithm: SHA1PRNG
+    autocompleteOffViewState: true
+    checkIdProductionMode: auto
+    
+    # resources
+    resourceMaxTimeExpires: 604800000
+    resourceHandlerCacheSize: 500
+    resourceHandlerCacheEnabled: true
+    strictJsf2AllowSlashLibraryName: true
+    resourceBufferSize: 2048
+    
+    # rendering
+    prettyHtml: true
+    allowJavascript: true
+    strictXhtmlLinks: true
+    renderClearJavascriptForButton: true
+    renderHiddenFieldsForLinkParams: true
+    saveFormSubmitLinkIe: true
+    wrapScriptContentWithXmlCommentTag: true
+    renderFormSubmitScriptInline: true
+    defaultResponseWriterContentTypeMode: text/html
+    useMultipleJsFilesForJsfUncompressedJs: true
+    jsfJsMode: normal
+    earlyFlushEnabled: true
+    renderFormViewStateAtBegin: true
+    
+    # CDI
+    cdiManagedConvertersEnabled: true
+    cdiManagedValidatorsEnabled: true
+    
+    # conversion and validation
+    enumConverterAllowStringPasstrough: true
+    validator:
+      beanBeforeJsfValidation: true
+      
+    # expression language
+    strictJsf2CcElResolver: myElResolver
+    supportJspAndFacesEl: true
+    supportEl3ImportHandler: true
+    elResolverComparator: myResolverComparator
+    elResolverPredicate: myResolverPredicate
+    cacheElExpressions: true
+    expressionFactory: myExpressionFactory
+    
+    # other
+    configRefreshPeriod: 2
+    delegateFacesServlet: myFacesServlet
+    validateXml: true
+    debugPhaseListener: true
+    strictJsf2RefreshTargetAjax: true
+    gaeJsfJarFiles: myjar.jar
+    gaeJsfAnnotationsJarFiles: myAnnotationJar.jar
+    flashScopeDisabled: true
+    lazyLoadConfigObjects: true
+    validate: true
+    initializeSkipJarFacesConfigScan: true
+    defaultWindowMode: url
+    errorTemplateResource: META-INF/rsc/myfaces-dev-error.xml
+    debugTemplateResource: META-INF/rsc/myfaces-dev-debug.xml
+    errorHandling: true
+    temporalResourcehandlerCacheEnabled: true
+    serviceProviderFinder: true
+    markInitialStateWhenApplyBuildView: true
+    wrapTagExceptionsAsContextAware: true
+    viewPoolMaxPoolSize: 5
+    viewPoolMaxDynamicPartialLimit: 2
+    viewPoolEntryMode: soft
+    viewPoolDeferredNavigation: true
+    logWebContextParams: auto
+    facesInitializer: myFacesInitializer
+    facesInitPlugins: myInitPlugin
+    initializeAlwaysStandalone: false
+    annotation:
+      useCdiForAnnotationScanning: true
+      scanPackages: myScanPackages
+    spi:
+      injectionProvider: myInjectionProvider
+      
+    # deprecated
+    errorHandler: myHandler
+    viewstateJavascript: true
+    serializeStateInSession: true
+    cacheOldViewsInSessionMode: off
+    handleStateCachingMechanics: true
+    saveStateWithVisitTreeOnPass: true
+
+  # jetty namespace
+  jetty:
+    classPathResource: public
+
+  # undertow namespace
+  undertow:
+    classPathResource: public
+
+  # omnifaces namespace
+  omnifaces:
+    cacheProvider: myCacheProvider
+    defaultcache: myCache
+    exceptionTypesToUnwrap: myException
+    facesViewsDispatchMethod: myFacesMethod
+    facesViewsEnabled: true
+    facesViewsExtensionAction: extensionAction
+    facesViewsFilterAfterDeclaredFilters: myView
+    facesViewsPathAction: pathAction
+    facesViewsScanPaths: scanPath
+    facesViewsScannedViewsAlwaysExtensionless: true
+    facesViewsViewHandlerMode: myMode
+    html5RenderKitPassthroughAttributes: myAttribute
+    cdnResourceHandlerDisabled: true
+    cdnResourceHandlerUrls: myurl
+    combinedResourceHandlerCacheTtl: 15
+    combinedResourceHandlerDisabled: true
+    combinedResourceHandlerExcludedResources: excludedResource
+    combinedResourceHandlerInlineCss: true
+    combinedResourceHandlerInlineJs: true
+    combinedResourceHandlerSuppressedResources: suppressedResource
+    cache:
+      applicationMaxCapacity: 10
+      applicationTtl: 11
+      sessionMaxCapacity: 12
+      sessionTtl: 13
+
+  # primefaces namespace
+  primefaces:
+    privateCaptchaKey: myPrivateCaptchaKey
+    publicCaptchaKey: myKey
+    autoUpdate: auto
+    beanValidationDisabled: true
+    cacheProvider: myCacheProvider
+    dir: left
+    earlyPostParamEvaluation: true
+    fontAwesome: true
+    interpolateClientSideValidationMessages: true
+    legacyWidgetNamespace: true
+    clientSideValidation: true
+    pushServerUrl: http://myhost.org
+    resetValues: true
+    secret: mySecret
+    submit: partial
+    theme: omega
+    transformMetadata: true
+    uploader: myUploader
+    captcha:
+      privateKey: myPrivateKey
+    mobile:
+      theme: cupertino
+
+  # bootsfaces namespace
+  bootsfaces:
+    theme: bootstrap
+    usetheme: yes
+    useViewport: yes
+    getFontawesomeFromCdn: yes
+    getJqueryFromCdn: yes
+    getJqueryuiFromCdn: yes
+    getBootstrapFromCdn: yes
+    blockUI: no
+    defaults:
+      renderLabel: myRenderLabel
+
+  # angularfaces namespace
+  angularfaces:
+    addLabels: true
+    addMessages: true
+    translation: true
+    includeAngularJS: true
+    includeJQuery: true
+    includeJQueryUI: true
+    includeAngularMessages: true
+    clientSideMessages: true
+    includeMainJS: true
+
+  # butterfaces namespace
+  butterfaces:
+    ajaxDisableRenderRegionsOnRequest: yes
+    ajaxProcessingGlyphiconOnRequest: Processing
+    ajaxProcessingTextOnRequest: Processing
+    autoTrimInputFields: yes
+    provideBootstrap: yes    
+    provideJQuery: yes
+    maxLengthText: '{0} of {1} characters'
+    noEntriesText: No matching entries...
+    spinnerText: Fetching data...
+    useCompressedResources: yes
+    integration:
+      primefaces:
+        disableJQuery: true
+    glyphicon:
+      collapsing: o_collape
+      expansion: o_expand
+      options: glyphicon glyphicon-th
+      refresh: glyphicon glyphicon-refresh
+      order:
+        left: glyphicon glyphicon-chevron-left
+        right: glyphicon glyphicon-chevron-right
+      sort:
+        ascending: glyphicon glyphicon-chevron-down
+        descending: glyphicon glyphicon-chevron-up
+        none: glyphicon glyphicon-chevron-right

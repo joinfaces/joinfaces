@@ -1,3 +1,0 @@
-jsf:
-  undertow:
-    classPathResource: public

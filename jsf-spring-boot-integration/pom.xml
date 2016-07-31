@@ -37,8 +37,8 @@
             <scope>test</scope>
         </dependency>
         <dependency>
-            <groupId>org.glassfish</groupId>
-            <artifactId>javax.faces</artifactId>
+            <groupId>com.sun.faces</groupId>
+            <artifactId>jsf-api</artifactId>
             <optional>true</optional>
         </dependency>
         <dependency>

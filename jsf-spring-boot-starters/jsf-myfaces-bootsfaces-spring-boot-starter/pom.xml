@@ -26,17 +26,9 @@
                     <groupId>org.glassfish</groupId>
                     <artifactId>javax.faces</artifactId>
                 </exclusion>
-                <exclusion>
-                    <groupId>org.joinfaces</groupId>
-                    <artifactId>jsf-mojarra-spring-boot-autoconfigure</artifactId>
-                </exclusion>
             </exclusions>
         </dependency>
         <!-- myfaces dependencies -->
-        <dependency>
-            <groupId>org.joinfaces</groupId>
-            <artifactId>jsf-myfaces-spring-boot-autoconfigure</artifactId>
-        </dependency>
         <dependency>
             <groupId>org.apache.myfaces.core</groupId>
             <artifactId>myfaces-bundle</artifactId>

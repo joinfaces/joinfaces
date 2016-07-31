@@ -102,9 +102,24 @@
                 <version>${javax.faces.version}</version>
             </dependency>
             <dependency>
+                <groupId>com.sun.faces</groupId>
+                <artifactId>jsf-impl</artifactId>
+                <version>${javax.faces.version}</version>
+            </dependency>
+            <dependency>
                 <groupId>org.glassfish</groupId>
                 <artifactId>javax.faces</artifactId>
                 <version>${javax.faces.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.myfaces.core</groupId>
+                <artifactId>myfaces-api</artifactId>
+                <version>${myfaces.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.myfaces.core</groupId>
+                <artifactId>myfaces-impl</artifactId>
+                <version>${myfaces.version}</version>
             </dependency>
             <dependency>
                 <groupId>org.apache.myfaces.core</groupId>
@@ -158,7 +173,6 @@
                 <groupId>org.reflections</groupId>
                 <artifactId>reflections</artifactId>
                 <version>${reflections.version}</version>
-                <scope>runtime</scope>
             </dependency>
             <dependency>
                 <groupId>net.bootsfaces</groupId>
@@ -184,66 +198,6 @@
             <dependency>
                 <groupId>org.joinfaces</groupId>
                 <artifactId>jsf-spring-boot-autoconfigure</artifactId>
-                <version>2.1.2-SNAPSHOT</version>
-            </dependency>
-            <dependency>
-                <groupId>org.joinfaces</groupId>
-                <artifactId>jsf-mojarra-spring-boot-autoconfigure</artifactId>
-                <version>2.1.2-SNAPSHOT</version>
-            </dependency>
-            <dependency>
-                <groupId>org.joinfaces</groupId>
-                <artifactId>jsf-myfaces-spring-boot-autoconfigure</artifactId>
-                <version>2.1.2-SNAPSHOT</version>
-            </dependency>
-            <dependency>
-                <groupId>org.joinfaces</groupId>
-                <artifactId>jsf-omnifaces-spring-boot-autoconfigure</artifactId>
-                <version>2.1.2-SNAPSHOT</version>
-            </dependency>
-            <dependency>
-                <groupId>org.joinfaces</groupId>
-                <artifactId>jsf-primefaces-spring-boot-autoconfigure</artifactId>
-                <version>2.1.2-SNAPSHOT</version>
-            </dependency>
-            <dependency>
-                <groupId>org.joinfaces</groupId>
-                <artifactId>jsf-primefaces53-spring-boot-autoconfigure</artifactId>
-                <version>2.1.1-SNAPSHOT</version>
-            </dependency>
-            <dependency>
-                <groupId>org.joinfaces</groupId>
-                <artifactId>jsf-angularfaces-spring-boot-autoconfigure</artifactId>
-                <version>2.1.2-SNAPSHOT</version>
-            </dependency>
-            <dependency>
-                <groupId>org.joinfaces</groupId>
-                <artifactId>jsf-bootsfaces-spring-boot-autoconfigure</artifactId>
-                <version>2.1.2-SNAPSHOT</version>
-            </dependency>
-            <dependency>
-                <groupId>org.joinfaces</groupId>
-                <artifactId>jsf-butterfaces-spring-boot-autoconfigure</artifactId>
-                <version>2.1.2-SNAPSHOT</version>
-            </dependency>
-            <dependency>
-                <groupId>org.joinfaces</groupId>
-                <artifactId>jsf-jetty-spring-boot-autoconfigure</artifactId>
-                <version>2.1.2-SNAPSHOT</version>
-            </dependency>
-            <dependency>
-                <groupId>org.joinfaces</groupId>
-                <artifactId>jsf-jetty-myfaces-spring-boot-autoconfigure</artifactId>
-                <version>2.1.2-SNAPSHOT</version>
-            </dependency>
-            <dependency>
-                <groupId>org.joinfaces</groupId>
-                <artifactId>jsf-undertow-spring-boot-autoconfigure</artifactId>
-                <version>2.1.2-SNAPSHOT</version>
-            </dependency>
-            <dependency>
-                <groupId>org.joinfaces</groupId>
-                <artifactId>jsf-undertow-myfaces-spring-boot-autoconfigure</artifactId>
                 <version>2.1.2-SNAPSHOT</version>
             </dependency>
             

@@ -27,7 +27,7 @@
 
         <module>jsf-spring-boot-integration</module>
 
-        <module>jsf-spring-boot-autoconfigures</module>
+        <module>jsf-spring-boot-autoconfigure</module>
 
         <module>jsf-spring-boot-starters</module>
     </modules>
