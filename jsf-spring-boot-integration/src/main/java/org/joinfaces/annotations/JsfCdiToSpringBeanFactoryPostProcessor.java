@@ -16,7 +16,12 @@
 
 package org.joinfaces.annotations;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import org.springframework.beans.BeansException;
+import org.springframework.beans.factory.annotation.AnnotatedBeanDefinition;
+import org.springframework.beans.factory.config.BeanDefinition;
 import org.springframework.beans.factory.config.BeanFactoryPostProcessor;
 import org.springframework.beans.factory.config.ConfigurableListableBeanFactory;
 
@@ -26,8 +31,29 @@ import org.springframework.beans.factory.config.ConfigurableListableBeanFactory;
  */
 public class JsfCdiToSpringBeanFactoryPostProcessor implements BeanFactoryPostProcessor {
 
+	private static final Logger logger = LoggerFactory
+		.getLogger(JsfCdiToSpringBeanFactoryPostProcessor.class);
+
 	@Override
 	public void postProcessBeanFactory(ConfigurableListableBeanFactory clbf) throws BeansException {
 		clbf.registerScope("view", new ViewScope());
+		
+		for(String beanName : clbf.getBeanDefinitionNames())
+		{
+			BeanDefinition definition = clbf.getBeanDefinition(beanName);
+
+			if (definition instanceof AnnotatedBeanDefinition) {
+				AnnotatedBeanDefinition annDef = (AnnotatedBeanDefinition) definition;
+
+				String scopeName = JsfCdiToSpring.scopeName(annDef.getMetadata().getAnnotationTypes());
+				if (scopeName != null) {
+					definition.setScope(scopeName);
+
+					logger.debug(definition.getBeanClassName()
+						+ " - Scope(" + definition.getScope().toUpperCase()
+						+ ")");
+				}
+			}
+		}
 	}
 }

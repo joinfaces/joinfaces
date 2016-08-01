@@ -18,9 +18,11 @@ package org.joinfaces.annotations;
 
 import org.junit.Test;
 
+import org.springframework.beans.factory.annotation.AnnotatedGenericBeanDefinition;
 import org.springframework.beans.factory.config.BeanFactoryPostProcessor;
 import org.springframework.beans.factory.config.ConfigurableListableBeanFactory;
 import org.springframework.beans.factory.support.DefaultListableBeanFactory;
+import org.springframework.core.type.StandardAnnotationMetadata;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -33,7 +35,47 @@ public class JsfCdiToSpringApplicationBeanFactoryPostProcessorIT {
 
 		beanFactoryPostProcessor.postProcessBeanFactory(beanFactory);
 
-		assertThat(beanFactory.getRegisteredScope("view")).isInstanceOf(ViewScope.class);
+		assertThat(beanFactory.getRegisteredScope(JsfCdiToSpring.VIEW))
+			.isInstanceOf(ViewScope.class);
+	}
+
+	@Test
+	public void testViewScopedClass() {
+		DefaultListableBeanFactory beanFactory = new DefaultListableBeanFactory();
+		beanFactory.registerBeanDefinition("viewScopedClass", new AnnotatedGenericBeanDefinition(
+			new StandardAnnotationMetadata(ViewScopedClass.class)));
+		BeanFactoryPostProcessor beanFactoryPostProcessor = new JsfCdiToSpringBeanFactoryPostProcessor();
+
+		beanFactoryPostProcessor.postProcessBeanFactory(beanFactory);
+
+		assertThat(beanFactory.getBeanDefinition("viewScopedClass").getScope())
+			.isEqualTo(JsfCdiToSpring.VIEW);
+	}
+
+	@Test
+	public void testSessionScopedClass() {
+		DefaultListableBeanFactory beanFactory = new DefaultListableBeanFactory();
+		beanFactory.registerBeanDefinition("sessionScopedClass", new AnnotatedGenericBeanDefinition(
+			new StandardAnnotationMetadata(SessionScopedClass.class)));
+		BeanFactoryPostProcessor beanFactoryPostProcessor = new JsfCdiToSpringBeanFactoryPostProcessor();
+
+		beanFactoryPostProcessor.postProcessBeanFactory(beanFactory);
+
+		assertThat(beanFactory.getBeanDefinition("sessionScopedClass").getScope())
+			.isEqualTo(JsfCdiToSpring.SESSION);
+	}
+
+	@Test
+	public void testNoScopedClass() {
+		DefaultListableBeanFactory beanFactory = new DefaultListableBeanFactory();
+		beanFactory.registerBeanDefinition("noScopedClass", new AnnotatedGenericBeanDefinition(
+			new StandardAnnotationMetadata(NoScopedClass.class)));
+		BeanFactoryPostProcessor beanFactoryPostProcessor = new JsfCdiToSpringBeanFactoryPostProcessor();
+
+		beanFactoryPostProcessor.postProcessBeanFactory(beanFactory);
+
+		assertThat(beanFactory.getBeanDefinition("noScopedClass").getScope())
+			.isEqualTo("");
 	}
 
 }
