@@ -37,9 +37,8 @@ public class JsfCdiToSpringBeanFactoryPostProcessor implements BeanFactoryPostPr
 	@Override
 	public void postProcessBeanFactory(ConfigurableListableBeanFactory clbf) throws BeansException {
 		clbf.registerScope("view", new ViewScope());
-		
-		for(String beanName : clbf.getBeanDefinitionNames())
-		{
+
+		for (String beanName : clbf.getBeanDefinitionNames()) {
 			BeanDefinition definition = clbf.getBeanDefinition(beanName);
 
 			if (definition instanceof AnnotatedBeanDefinition) {
