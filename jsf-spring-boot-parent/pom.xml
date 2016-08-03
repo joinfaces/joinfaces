@@ -34,6 +34,8 @@
         <angularfaces.version>2.1.11</angularfaces.version>
 
         <butterfaces.version>2.1.9</butterfaces.version>
+
+        <richfaces.version>asd</richfaces.version>
                                                                         
         <cdi.version>1.2</cdi.version>
         <reflections.version>0.9.10</reflections.version>
@@ -274,6 +276,22 @@
                 <groupId>org.joinfaces</groupId>
                 <artifactId>jsf-undertow-myfaces-butterfaces-spring-boot-starter</artifactId>
                 <version>2.1.5-SNAPSHOT</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.richfaces.framework</groupId>
+                <artifactId>richfaces-api</artifactId>
+                <version>${richfaces.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.richfaces.framework</groupId>
+                <artifactId>richfaces-impl</artifactId>
+                <version>${richfaces.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.richfaces.ui</groupId>
+                <artifactId>richfaces-ui</artifactId>
+                <version>${richfaces.version}</version>
             </dependency>
         </dependencies>        
     </dependencyManagement>
