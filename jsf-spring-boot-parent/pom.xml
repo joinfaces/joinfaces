@@ -17,7 +17,7 @@
     <properties>
         <main.basedir>..</main.basedir>        
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <java.version>1.6</java.version>        
+        <java.version>1.6</java.version>
 
         <lombok-maven-plugin.version>1.16.10.0</lombok-maven-plugin.version>        
         
@@ -71,7 +71,6 @@
         <checkstyle.suppressionsLocation>${checkstyle.dir}/checkstyle-suppressions.xml</checkstyle.suppressionsLocation>
         <checkstyle.headerLocation>${checkstyle.dir}/checkstyle-header.txt</checkstyle.headerLocation>
         
-        <maven-failsafe-plugin.version>2.19.1</maven-failsafe-plugin.version>
         <maven-surefire-report-plugin.version>2.19.1</maven-surefire-report-plugin.version>
 
         <cobertura.totalBranchRate>100</cobertura.totalBranchRate>
@@ -396,11 +395,6 @@
                     <artifactId>maven-enforcer-plugin</artifactId>
                     <version>${maven-enforcer-plugin.version}</version>
                 </plugin>
-                <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-failsafe-plugin</artifactId>
-                    <version>${maven-failsafe-plugin.version}</version>
-                </plugin>                    
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-checkstyle-plugin</artifactId>
