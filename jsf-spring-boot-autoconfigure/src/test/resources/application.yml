@@ -326,3 +326,58 @@ jsf:
         ascending: glyphicon glyphicon-chevron-down
         descending: glyphicon glyphicon-chevron-up
         none: glyphicon glyphicon-chevron-right
+  richfaces:
+    longValueWithDefault: -100
+    intValue: -1
+    intValueWithDefault: -1
+    stringValue: "default name"
+    stringValueWithDefault: "default name 2"
+    enumValue: "Enum value"
+    enumValueWithDefault: "Enum value with default"
+    booleanValue: true
+    booleanValueWithDefault: true
+    multiValue1: "Multi1"
+    multiValue2: "Multi2"
+    facesContextReference: "Context reference"
+    dynamicValueWithDefault: "Dynamic value"
+    literalOnlyValue: "Literal only"
+    literalOnlyWithEl: "Literal only with el"
+    enableControlSkinning: true
+    enableControlSkinningClasses: true
+    skin: "This is a skin"
+    baseSkin: "This is a base skin"
+    resourceDefaultTTL: 86400
+    resourceCacheSize: 111
+    resourceDefaultVersion: "Resource default version"
+    cache:
+      lruMapCacheSize: 222
+    resourceMapping:
+      enabled: true
+      location: "Location"
+      mappingFile: "Mapping file"
+      compressedStages: "Compressed stages"
+      packedStages: "Packed stages"
+    resourceOptimization:
+      enabled: true
+      compressionStages: "Compression stages"
+      packedStages: "Packed stages"
+    executeAWTInitializer: true
+    push:
+      handlerMapping: "Handler mapping"
+      jms:
+        connectionFactory: "Connection factory"
+        enabled: true
+        topicsNamespace: "Topics namespace"
+        connectionUsername: "Connection username"
+        connectionPassword: "Connection password"
+      initializeOnStartup: true
+      session:
+        maxInactiveInterval: 3000
+    builtin:
+      sort:
+        enabled: true
+      filter:
+        enabled: true
+    queue:
+      enabled: true
+    datatableUsesViewLocale: "Data table uses view locale"
