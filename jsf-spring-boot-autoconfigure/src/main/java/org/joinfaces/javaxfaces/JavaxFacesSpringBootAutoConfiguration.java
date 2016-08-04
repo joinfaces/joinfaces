@@ -17,7 +17,6 @@
 package org.joinfaces.javaxfaces;
 
 import javax.faces.application.ProjectStage;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnWebApplication;
@@ -28,6 +27,7 @@ import org.springframework.context.annotation.Configuration;
 
 /**
  * Auto configuration for Standard Javax Faces Properties.
+ *
  * @author Marcelo Fernandes
  */
 @Configuration

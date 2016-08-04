@@ -194,6 +194,8 @@ public class JavaxFacesProperties {
 
 	private Validator validator = new Validator();
 
+	private Security security = new Security();
+
 	/**
 	 * An implementation of javax.faces .view.facelets .ResourceResolver. See
 	 * javadoc for details.
@@ -307,5 +309,18 @@ public class JavaxFacesProperties {
 		 * If "true", disable JSR-303 Bean Validation.
 		 */
 		private Boolean disableDefaultBeanValidator;
+	}
+
+	/**
+	 * Security class for ignoreResources parameter
+	 */
+	@Getter
+	@Setter
+	public static class Security {
+
+		/**
+		 * If "true" JSF resources are available through spring-security
+       */
+		private Boolean ignoreResources;
 	}
 }
