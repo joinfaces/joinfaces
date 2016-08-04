@@ -17,7 +17,6 @@
 package org.joinfaces.javaxfaces;
 
 import javax.faces.application.ProjectStage;
-import javax.faces.application.ResourceHandler;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnWebApplication;
@@ -25,18 +24,11 @@ import org.springframework.boot.context.properties.EnableConfigurationProperties
 import org.springframework.boot.web.servlet.ServletContextInitializer;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.core.Ordered;
-import org.springframework.core.annotation.Order;
-import org.springframework.security.config.annotation.web.WebSecurityConfigurer;
-import org.springframework.security.config.annotation.web.builders.WebSecurity;
-import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
-import org.springframework.security.web.AuthenticationEntryPoint;
 
 /**
  * Auto configuration for Standard Javax Faces Properties.
  *
  * @author Marcelo Fernandes
- * @author Nurettin Yilmaz
  */
 @Configuration
 @EnableConfigurationProperties({JavaxFacesProperties.class})
@@ -50,25 +42,5 @@ public class JavaxFacesSpringBootAutoConfiguration {
 	@Bean
 	public ServletContextInitializer javaxFacesServletContextInitializer() {
 		return new JavaxFacesServletContextInitializer(this.javaxFacesProperties);
-	}
-
-	/**
-	 * Allows JSF standard resource path through web security (ie in the case of using spring-security is enabled.)
-    */
-	@Configuration
-	@ConditionalOnClass({EnableWebSecurity.class, AuthenticationEntryPoint.class})
-	@Order(Ordered.HIGHEST_PRECEDENCE)
-	public static class JavaxFacesResourceIgnoringPathsSecurityConfiguration implements WebSecurityConfigurer<WebSecurity> {
-
-		@Override
-		public void init(WebSecurity builder) throws Exception { }
-
-		@Override
-		public void configure(WebSecurity builder) throws Exception {
-			builder
-				.ignoring()
-				.antMatchers(ResourceHandler.RESOURCE_IDENTIFIER + "/**");
-		}
-
 	}
 }
