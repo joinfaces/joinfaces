@@ -16,8 +16,6 @@
 
 package org.joinfaces.undertow;
 
-import io.undertow.Undertow;
-
 import org.apache.myfaces.webapp.StartupServletContextListener;
 
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
@@ -29,7 +27,7 @@ import org.springframework.context.annotation.Configuration;
  * @author Marcelo Fernandes
  */
 @Configuration
-@ConditionalOnClass({Undertow.class, StartupServletContextListener.class})
+@ConditionalOnClass(name = {"io.undertow.Undertow", "org.apache.myfaces.webapp.StartupServletContextListener"})
 public class UndertowMyfacesSpringBootAutoConfiguration {
 
 	@Bean

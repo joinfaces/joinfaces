@@ -16,8 +16,6 @@
 
 package org.joinfaces.undertow;
 
-import io.undertow.Undertow;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.boot.context.embedded.ConfigurableEmbeddedServletContainer;
@@ -34,7 +32,7 @@ import org.springframework.context.annotation.Configuration;
  */
 @Configuration
 @EnableConfigurationProperties({UndertowProperties.class})
-@ConditionalOnClass(Undertow.class)
+@ConditionalOnClass(name = "io.undertow.Undertow")
 public class UndertowSpringBootAutoConfiguration extends SpringBootServletInitializer implements EmbeddedServletContainerCustomizer {
 
 	@Autowired
