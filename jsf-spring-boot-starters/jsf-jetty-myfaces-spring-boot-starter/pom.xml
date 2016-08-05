@@ -30,8 +30,12 @@
         </dependency>
         <!-- myfaces dependencies -->
         <dependency>
-            <groupId>org.joinfaces</groupId>
-            <artifactId>jsf-myfaces-spring-boot-starter</artifactId>
+            <groupId>org.apache.myfaces.core</groupId>
+            <artifactId>myfaces-bundle</artifactId>
+        </dependency>        
+        <dependency>
+            <groupId>commons-digester</groupId>
+            <artifactId>commons-digester</artifactId>
         </dependency>
     </dependencies>
 </project>

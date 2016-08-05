@@ -17,29 +17,17 @@
     </properties>
 
     <dependencies>
-        <!-- undertow and bootsfaces dependencies without mojarra -->
         <dependency>
             <groupId>org.joinfaces</groupId>
-            <artifactId>jsf-undertow-bootsfaces-spring-boot-starter</artifactId>
-            <exclusions>
-                <exclusion>
-                    <groupId>org.glassfish</groupId>
-                    <artifactId>javax.faces</artifactId>
-                </exclusion>
-            </exclusions>
-        </dependency>
-        <!-- myfaces dependencies -->
-        <dependency>
-            <groupId>org.apache.myfaces.core</groupId>
-            <artifactId>myfaces-bundle</artifactId>
-        </dependency>        
-        <dependency>
-            <groupId>commons-digester</groupId>
-            <artifactId>commons-digester</artifactId>
+            <artifactId>jsf-undertow-myfaces-spring-boot-starter</artifactId>
         </dependency>
         <dependency>
-            <groupId>org.apache.tomcat.embed</groupId>
-            <artifactId>tomcat-embed-jasper</artifactId>
+            <groupId>net.bootsfaces</groupId>
+            <artifactId>bootsfaces</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>de.beyondjava</groupId>
+            <artifactId>angularFaces-core</artifactId>
         </dependency>
     </dependencies>
 </project>

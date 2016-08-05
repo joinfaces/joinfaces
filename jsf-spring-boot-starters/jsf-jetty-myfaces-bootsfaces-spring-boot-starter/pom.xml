@@ -17,25 +17,17 @@
     </properties>
 
     <dependencies>
-        <!-- jetty and bootsfaces dependencies without mojarra -->
         <dependency>
             <groupId>org.joinfaces</groupId>
-            <artifactId>jsf-jetty-bootsfaces-spring-boot-starter</artifactId>
-            <exclusions>
-                <exclusion>
-                    <groupId>org.glassfish</groupId>
-                    <artifactId>javax.faces</artifactId>
-                </exclusion>
-            </exclusions>
+            <artifactId>jsf-jetty-myfaces-spring-boot-starter</artifactId>
         </dependency>
-        <!-- myfaces dependencies -->
         <dependency>
-            <groupId>org.apache.myfaces.core</groupId>
-            <artifactId>myfaces-bundle</artifactId>
-        </dependency>        
+            <groupId>net.bootsfaces</groupId>
+            <artifactId>bootsfaces</artifactId>
+        </dependency>
         <dependency>
-            <groupId>commons-digester</groupId>
-            <artifactId>commons-digester</artifactId>
+            <groupId>de.beyondjava</groupId>
+            <artifactId>angularFaces-core</artifactId>
         </dependency>
     </dependencies>
 </project>

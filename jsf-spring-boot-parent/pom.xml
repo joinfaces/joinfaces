@@ -89,6 +89,42 @@
     <dependencyManagement>
         <dependencies>
             <dependency>
+                <groupId>org.apache.tomcat</groupId>
+                <artifactId>tomcat-jasper</artifactId>
+                <version>${tomcat.version}</version>
+                <scope>runtime</scope>
+                <exclusions>
+                    <exclusion>
+                        <groupId>org.apache.tomcat</groupId>
+                        <artifactId>tomcat-jsp-api</artifactId>
+                    </exclusion>
+                    <exclusion>
+                        <groupId>org.apache.tomcat</groupId>
+                        <artifactId>tomcat-el-api</artifactId>
+                    </exclusion>
+                    <exclusion>
+                        <groupId>org.apache.tomcat</groupId>
+                        <artifactId>tomcat-jasper-el</artifactId>
+                    </exclusion>
+                    <exclusion>
+                        <groupId>org.apache.tomcat</groupId>
+                        <artifactId>tomcat-servlet-api</artifactId>
+                    </exclusion>
+                    <exclusion>
+                        <groupId>org.apache.tomcat</groupId>
+                        <artifactId>tomcat-juli</artifactId>
+                    </exclusion>
+                    <exclusion>
+                        <groupId>org.apache.tomcat</groupId>
+                        <artifactId>tomcat-api</artifactId>
+                    </exclusion>
+                    <exclusion>
+                        <groupId>org.apache.tomcat</groupId>
+                        <artifactId>tomcat-util-scan</artifactId>
+                    </exclusion>
+                </exclusions>
+            </dependency>
+            <dependency>
                 <groupId>org.projectlombok</groupId>
                 <artifactId>lombok</artifactId>
                 <version>${lombok.version}</version>

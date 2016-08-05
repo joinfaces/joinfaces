@@ -17,25 +17,17 @@
     </properties>
 
     <dependencies>
-        <!-- remove mojarra dependencies -->
         <dependency>
             <groupId>org.joinfaces</groupId>
-            <artifactId>jsf-butterfaces-spring-boot-starter</artifactId>
-            <exclusions>
-                <exclusion>
-                    <groupId>org.glassfish</groupId>
-                    <artifactId>javax.faces</artifactId>
-                </exclusion>
-            </exclusions>
+            <artifactId>jsf-myfaces-spring-boot-starter</artifactId>
         </dependency>
-        <!-- myfaces dependencies -->
         <dependency>
-            <groupId>org.apache.myfaces.core</groupId>
-            <artifactId>myfaces-bundle</artifactId>
-        </dependency>        
+            <groupId>de.larmic.butterfaces</groupId>
+            <artifactId>components</artifactId>
+        </dependency>
         <dependency>
-            <groupId>commons-digester</groupId>
-            <artifactId>commons-digester</artifactId>
+            <groupId>net.bootsfaces</groupId>
+            <artifactId>bootsfaces</artifactId>
         </dependency>
     </dependencies>
 </project>
