@@ -70,6 +70,7 @@
         <checkstyle.configLocation>${checkstyle.dir}/checkstyle.xml</checkstyle.configLocation>
         <checkstyle.suppressionsLocation>${checkstyle.dir}/checkstyle-suppressions.xml</checkstyle.suppressionsLocation>
         <checkstyle.headerLocation>${checkstyle.dir}/checkstyle-header.txt</checkstyle.headerLocation>
+        <duplicate-finder-maven-plugin.version>1.2.1</duplicate-finder-maven-plugin.version>
         
         <maven-surefire-report-plugin.version>2.19.1</maven-surefire-report-plugin.version>
 
@@ -160,6 +161,12 @@
                 <groupId>javax.enterprise</groupId>
                 <artifactId>cdi-api</artifactId>
                 <version>${cdi.version}</version>
+                <exclusions>
+                    <exclusion>
+                        <groupId>javax.el</groupId>
+                        <artifactId>javax.el-api</artifactId>
+                    </exclusion>
+                </exclusions>
             </dependency>
             <dependency>
                 <groupId>org.jboss.spec.javax.servlet.jsp</groupId>
@@ -203,6 +210,12 @@
                 <groupId>de.beyondjava</groupId>
                 <artifactId>angularFaces-core</artifactId>
                 <version>${angularfaces.version}</version>
+                <exclusions>
+                    <exclusion>
+                        <groupId>commons-logging</groupId>
+                        <artifactId>commons-logging</artifactId>
+                    </exclusion>
+                </exclusions>
             </dependency>
             <dependency>
                 <groupId>de.larmic.butterfaces</groupId>
@@ -452,6 +465,37 @@
                         <includeTestSourceDirectory>true</includeTestSourceDirectory>
                     </configuration>
                 </plugin>                
+                <plugin>
+                    <groupId>org.basepom.maven</groupId>
+                    <artifactId>duplicate-finder-maven-plugin</artifactId>
+                    <version>${duplicate-finder-maven-plugin.version}</version>
+                    <configuration>
+                        <printEqualFiles>false</printEqualFiles>
+                        <failBuildInCaseOfDifferentContentConflict>true</failBuildInCaseOfDifferentContentConflict>
+                        <failBuildInCaseOfEqualContentConflict>false</failBuildInCaseOfEqualContentConflict>
+                        <failBuildInCaseOfConflict>false</failBuildInCaseOfConflict>
+                        <checkCompileClasspath>true</checkCompileClasspath>
+                        <checkRuntimeClasspath>true</checkRuntimeClasspath>
+                        <checkTestClasspath>true</checkTestClasspath>
+                        <ignoredResourcePatterns>
+                            <ignoredResourcePattern>about.html</ignoredResourcePattern>
+                        </ignoredResourcePatterns>
+                        <ignoredDependencies>
+                            <dependency>
+                                <groupId>org.apache.myfaces.core</groupId>
+                                <artifactId>myfaces-bundle</artifactId>
+                                <version>${myfaces.version}</version>
+                            </dependency>
+                            <dependency>
+                                <groupId>org.ow2.asm</groupId>
+                                <artifactId>asm</artifactId>
+                                <version>5.0.1</version>
+                            </dependency>
+                        </ignoredDependencies>
+                        <skip>false</skip>
+                        <quiet>false</quiet>
+                    </configuration>            
+                </plugin>        
             </plugins>
         </pluginManagement>
         
@@ -771,7 +815,29 @@
                 </plugins>
             </build>
         </profile>
-        
+
+        <profile>
+            <id>check-duplicate-classes</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.basepom.maven</groupId>
+                        <artifactId>duplicate-finder-maven-plugin</artifactId>
+                        <version>${duplicate-finder-maven-plugin.version}</version>
+                        <executions>
+                            <execution>
+                                <id>check-duplicate-classes</id>
+                                <phase>verify</phase>
+                                <goals>
+                                    <goal>check</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>            
+        </profile>
+                
         <profile>
             <id>check-cobertura-integration-test</id>
             <build>
