@@ -16,8 +16,6 @@
 
 package org.joinfaces.butterfaces;
 
-import de.larmic.butterfaces.util.ReflectionUtil;
-
 import org.joinfaces.javaxfaces.JavaxFacesSpringBootAutoConfiguration;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,7 +33,7 @@ import org.springframework.context.annotation.Configuration;
  */
 @Configuration
 @EnableConfigurationProperties(ButterfacesProperties.class)
-@ConditionalOnClass(ReflectionUtil.class)
+@ConditionalOnClass(name = "de.larmic.butterfaces.util.ReflectionUtil")
 @AutoConfigureBefore(JavaxFacesSpringBootAutoConfiguration.class)
 @ConditionalOnWebApplication
 public class ButterfacesSpringBootAutoConfiguration {

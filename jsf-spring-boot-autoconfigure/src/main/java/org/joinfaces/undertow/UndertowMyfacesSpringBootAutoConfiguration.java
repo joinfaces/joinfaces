@@ -27,7 +27,7 @@ import org.springframework.context.annotation.Configuration;
  * @author Marcelo Fernandes
  */
 @Configuration
-@ConditionalOnClass(name = {"io.undertow.Undertow", "org.apache.myfaces.webapp.StartupServletContextListener"})
+@ConditionalOnClass(value = StartupServletContextListener.class, name = {"io.undertow.Undertow"})
 public class UndertowMyfacesSpringBootAutoConfiguration {
 
 	@Bean

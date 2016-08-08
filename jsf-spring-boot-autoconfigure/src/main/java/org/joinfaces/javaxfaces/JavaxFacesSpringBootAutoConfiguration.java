@@ -16,8 +16,6 @@
 
 package org.joinfaces.javaxfaces;
 
-import javax.faces.application.ProjectStage;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnWebApplication;
@@ -32,7 +30,7 @@ import org.springframework.context.annotation.Configuration;
  */
 @Configuration
 @EnableConfigurationProperties({JavaxFacesProperties.class})
-@ConditionalOnClass(ProjectStage.class)
+@ConditionalOnClass(name = "javax.faces.application.ProjectStage")
 @ConditionalOnWebApplication
 public class JavaxFacesSpringBootAutoConfiguration {
 
