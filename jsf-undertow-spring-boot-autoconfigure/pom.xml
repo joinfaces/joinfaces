@@ -48,13 +48,6 @@
         </dependency>
         
         <dependency>
-            <groupId>org.apache.tomcat.embed</groupId>
-            <artifactId>tomcat-embed-jasper</artifactId>
-            <optional>true</optional>
-            <scope>test</scope>
-        </dependency>
-        
-        <dependency>
             <groupId>io.undertow</groupId>
             <artifactId>undertow-servlet</artifactId>
             <optional>true</optional>
