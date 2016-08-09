@@ -1,0 +1,4 @@
+jsf:
+  # jetty namespace
+  jetty:
+    classPathResource: public

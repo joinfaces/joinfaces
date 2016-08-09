@@ -9,18 +9,14 @@
         <relativePath>../jsf-spring-boot-parent</relativePath>
     </parent>
 
-    <artifactId>jsf-spring-boot-autoconfigure</artifactId>
-    <name>JSF Spring Boot AutoConfigure</name>
-    <description>JSF Spring Boot AutoConfigure</description>
+    <artifactId>jsf-jetty-spring-boot-autoconfigure</artifactId>
+    <name>JSF Jetty Spring Boot AutoConfigure</name>
+    <description>JSF Jetty Spring Boot AutoConfigure</description>
 
     <properties>
         <main.basedir>${basedir}/..</main.basedir>
         
         <check.dir>../jsf-spring-boot-parent/src/checkconfig</check.dir>
-        
-        <cobertura.branchRate>95</cobertura.branchRate>
-        <cobertura.totalBranchRate>97</cobertura.totalBranchRate>
-        <cobertura.packageBranchRate>100</cobertura.packageBranchRate>        
     </properties>
 
     <dependencies>
@@ -52,10 +48,15 @@
         </dependency>
         
         <dependency>
-            <groupId>org.apache.tomcat.embed</groupId>
-            <artifactId>tomcat-embed-jasper</artifactId>
+            <groupId>org.eclipse.jetty</groupId>
+            <artifactId>jetty-webapp</artifactId>
             <optional>true</optional>
-            <scope>test</scope>
+            <exclusions>
+                <exclusion>
+                    <groupId>javax.servlet</groupId>
+                    <artifactId>javax.servlet-api</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
         <dependency>
             <groupId>org.reflections</groupId>
@@ -70,31 +71,6 @@
         <dependency>
             <groupId>org.apache.myfaces.core</groupId>
             <artifactId>myfaces-bundle</artifactId>
-            <optional>true</optional>
-        </dependency>
-        <dependency>
-            <groupId>org.omnifaces</groupId>
-            <artifactId>omnifaces</artifactId>
-            <optional>true</optional>
-        </dependency>
-        <dependency>
-            <groupId>org.primefaces</groupId>
-            <artifactId>primefaces</artifactId>
-            <optional>true</optional>
-        </dependency>
-        <dependency>
-            <groupId>net.bootsfaces</groupId>
-            <artifactId>bootsfaces</artifactId>
-            <optional>true</optional>
-        </dependency>
-        <dependency>
-            <groupId>de.beyondjava</groupId>
-            <artifactId>angularFaces-core</artifactId>
-            <optional>true</optional>
-        </dependency>
-        <dependency>
-            <groupId>de.larmic.butterfaces</groupId>
-            <artifactId>components</artifactId>
             <optional>true</optional>
         </dependency>
     </dependencies>

@@ -213,14 +213,6 @@ jsf:
     handleStateCachingMechanics: true
     saveStateWithVisitTreeOnPass: true
 
-  # jetty namespace
-  jetty:
-    classPathResource: public
-
-  # undertow namespace
-  undertow:
-    classPathResource: public
-
   # omnifaces namespace
   omnifaces:
     cacheProvider: myCacheProvider
