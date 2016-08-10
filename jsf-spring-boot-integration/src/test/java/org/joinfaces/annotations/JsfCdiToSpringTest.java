@@ -18,8 +18,10 @@ package org.joinfaces.annotations;
 
 import java.util.HashSet;
 import java.util.Set;
+
 import org.joinfaces.mock.MockMethodMetadata;
 import org.junit.Test;
+
 import org.springframework.core.type.MethodMetadata;
 
 import static org.assertj.core.api.Assertions.assertThat;

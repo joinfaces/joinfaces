@@ -17,6 +17,7 @@
 package org.joinfaces.annotations;
 
 import java.util.Set;
+
 import org.springframework.beans.factory.config.ConfigurableBeanFactory;
 import org.springframework.core.type.MethodMetadata;
 import org.springframework.web.context.WebApplicationContext;
@@ -48,7 +49,7 @@ final class JsfCdiToSpring {
 	 */
 	static final String VIEW = "view";
 
-	JsfCdiToSpring() {
+	protected JsfCdiToSpring() {
 	}
 
 	static String deduceScopeName(Set<String> annotationTypes) {
@@ -96,18 +97,23 @@ final class JsfCdiToSpring {
 			if (methodMetadata.isAnnotated(javax.enterprise.context.RequestScoped.class.getName())
 				|| methodMetadata.isAnnotated(javax.faces.bean.RequestScoped.class.getName())) {
 				result = REQUEST;
-			} else if (methodMetadata.isAnnotated(javax.enterprise.context.SessionScoped.class.getName())
+			}
+			else if (methodMetadata.isAnnotated(javax.enterprise.context.SessionScoped.class.getName())
 				|| methodMetadata.isAnnotated(javax.faces.bean.SessionScoped.class.getName())) {
 				result = SESSION;
-			} else if (methodMetadata.isAnnotated(javax.enterprise.context.ApplicationScoped.class.getName())
+			}
+			else if (methodMetadata.isAnnotated(javax.enterprise.context.ApplicationScoped.class.getName())
 				|| methodMetadata.isAnnotated(javax.faces.bean.ApplicationScoped.class.getName())) {
 				result = SINGLETON;
-			} else if (methodMetadata.isAnnotated(javax.faces.bean.NoneScoped.class.getName())) {
+			}
+			else if (methodMetadata.isAnnotated(javax.faces.bean.NoneScoped.class.getName())) {
 				result = PROTOTYPE;
-			} else if (methodMetadata.isAnnotated(javax.faces.view.ViewScoped.class.getName())
+			}
+			else if (methodMetadata.isAnnotated(javax.faces.view.ViewScoped.class.getName())
 				|| methodMetadata.isAnnotated(javax.faces.bean.ViewScoped.class.getName())) {
 				result = VIEW;
-			} else if (methodMetadata.isAnnotated(javax.enterprise.context.ConversationScoped.class.getName())) {
+			}
+			else if (methodMetadata.isAnnotated(javax.enterprise.context.ConversationScoped.class.getName())) {
 				result = SESSION;
 			}
 		}

@@ -17,6 +17,7 @@
 package org.joinfaces.annotations;
 
 import org.junit.Test;
+
 import org.springframework.beans.factory.annotation.AnnotatedGenericBeanDefinition;
 import org.springframework.beans.factory.config.BeanFactoryPostProcessor;
 import org.springframework.beans.factory.config.ConfigurableListableBeanFactory;

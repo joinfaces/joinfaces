@@ -18,6 +18,7 @@ package org.joinfaces.annotations;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.annotation.AnnotatedBeanDefinition;
 import org.springframework.beans.factory.config.BeanDefinition;
@@ -47,7 +48,7 @@ public class JsfCdiToSpringBeanFactoryPostProcessor implements BeanFactoryPostPr
 	}
 
 	/**
-	 * Checks how is bean defined and deduces scope name from JSF CDI annotations
+	 * Checks how is bean defined and deduces scope name from JSF CDI annotations.
 	 *
 	 * @param definition beanDefinition
 	 */
@@ -60,7 +61,8 @@ public class JsfCdiToSpringBeanFactoryPostProcessor implements BeanFactoryPostPr
 			// firstly check whether bean is defined via configuration
 			if (annDef.getFactoryMethodMetadata() != null) {
 				scopeName = JsfCdiToSpring.deduceScopeName(annDef.getFactoryMethodMetadata());
-			} else {
+			}
+			else {
 				// fallback to type
 				scopeName = JsfCdiToSpring.deduceScopeName(annDef.getMetadata().getAnnotationTypes());
 			}
@@ -69,8 +71,8 @@ public class JsfCdiToSpringBeanFactoryPostProcessor implements BeanFactoryPostPr
 				definition.setScope(scopeName);
 
 				logger.debug(definition.getBeanClassName()
-								 + " - Scope(" + definition.getScope().toUpperCase()
-								 + ")");
+								+ " - Scope(" + definition.getScope().toUpperCase()
+								+ ")");
 			}
 		}
 	}
