@@ -17,38 +17,41 @@
 package org.joinfaces.annotations;
 
 import java.util.Set;
+import org.springframework.beans.factory.config.ConfigurableBeanFactory;
+import org.springframework.core.type.MethodMetadata;
+import org.springframework.web.context.WebApplicationContext;
 
 /**
  * Convert jsf and cdi enterprise annotation types to spring scope.
  * @author Marcelo Fernandes
  */
-public final class JsfCdiToSpring {
+final class JsfCdiToSpring {
 
 	/**
 	 * Constant for request scope.
 	 */
-	public static final String REQUEST = "request";
+	static final String REQUEST = WebApplicationContext.SCOPE_REQUEST;
 	/**
 	 * Constant for session scope.
 	 */
-	public static final String SESSION = "session";
+	static final String SESSION = WebApplicationContext.SCOPE_SESSION;
 	/**
 	 * Constant for singleton scope.
 	 */
-	public static final String SINGLETON = "singleton";
+	static final String SINGLETON = ConfigurableBeanFactory.SCOPE_SINGLETON;
 	/**
 	 * Constant for prototype scope.
 	 */
-	public static final String PROTOTYPE = "prototype";
+	static final String PROTOTYPE = ConfigurableBeanFactory.SCOPE_PROTOTYPE;
 	/**
 	 * Constant for view scope.
 	 */
-	public static final String VIEW = "view";
+	static final String VIEW = "view";
 
-	protected JsfCdiToSpring() {
+	JsfCdiToSpring() {
 	}
 
-	public static String scopeName(Set<String> annotationTypes) {
+	static String deduceScopeName(Set<String> annotationTypes) {
 		String result = null;
 		if (annotationTypes != null && !annotationTypes.isEmpty()) {
 			if (annotationTypes.contains(
@@ -85,5 +88,31 @@ public final class JsfCdiToSpring {
 			}
 		}
 		return result;
+	}
+
+	static String deduceScopeName(MethodMetadata methodMetadata) {
+		String result = null;
+		if (methodMetadata != null) {
+			if (methodMetadata.isAnnotated(javax.enterprise.context.RequestScoped.class.getName())
+				|| methodMetadata.isAnnotated(javax.faces.bean.RequestScoped.class.getName())) {
+				result = REQUEST;
+			} else if (methodMetadata.isAnnotated(javax.enterprise.context.SessionScoped.class.getName())
+				|| methodMetadata.isAnnotated(javax.faces.bean.SessionScoped.class.getName())) {
+				result = SESSION;
+			} else if (methodMetadata.isAnnotated(javax.enterprise.context.ApplicationScoped.class.getName())
+				|| methodMetadata.isAnnotated(javax.faces.bean.ApplicationScoped.class.getName())) {
+				result = SINGLETON;
+			} else if (methodMetadata.isAnnotated(javax.faces.bean.NoneScoped.class.getName())) {
+				result = PROTOTYPE;
+			} else if (methodMetadata.isAnnotated(javax.faces.view.ViewScoped.class.getName())
+				|| methodMetadata.isAnnotated(javax.faces.bean.ViewScoped.class.getName())) {
+				result = VIEW;
+			} else if (methodMetadata.isAnnotated(javax.enterprise.context.ConversationScoped.class.getName())) {
+				result = SESSION;
+			}
+		}
+
+		return result;
+
 	}
 }
