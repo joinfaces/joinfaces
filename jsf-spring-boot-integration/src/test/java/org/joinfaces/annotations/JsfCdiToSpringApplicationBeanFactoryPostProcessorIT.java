@@ -17,11 +17,13 @@
 package org.joinfaces.annotations;
 
 import org.junit.Test;
-
 import org.springframework.beans.factory.annotation.AnnotatedGenericBeanDefinition;
 import org.springframework.beans.factory.config.BeanFactoryPostProcessor;
 import org.springframework.beans.factory.config.ConfigurableListableBeanFactory;
 import org.springframework.beans.factory.support.DefaultListableBeanFactory;
+import org.springframework.beans.factory.support.RootBeanDefinition;
+import org.springframework.context.annotation.AnnotationConfigUtils;
+import org.springframework.context.support.GenericApplicationContext;
 import org.springframework.core.type.StandardAnnotationMetadata;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -41,41 +43,57 @@ public class JsfCdiToSpringApplicationBeanFactoryPostProcessorIT {
 
 	@Test
 	public void testViewScopedClass() {
-		DefaultListableBeanFactory beanFactory = new DefaultListableBeanFactory();
-		beanFactory.registerBeanDefinition("viewScopedClass", new AnnotatedGenericBeanDefinition(
+		GenericApplicationContext acx = new GenericApplicationContext();
+		AnnotationConfigUtils.registerAnnotationConfigProcessors(acx);
+
+		acx.registerBeanDefinition("viewScopedClass", new AnnotatedGenericBeanDefinition(
 			new StandardAnnotationMetadata(ViewScopedClass.class)));
-		BeanFactoryPostProcessor beanFactoryPostProcessor = new JsfCdiToSpringBeanFactoryPostProcessor();
+		acx.registerBeanDefinition("scopedBeansConfiguration", new RootBeanDefinition(
+			ScopedBeansConfiguration.class));
+		acx.addBeanFactoryPostProcessor(new JsfCdiToSpringBeanFactoryPostProcessor());
+		acx.refresh();
 
-		beanFactoryPostProcessor.postProcessBeanFactory(beanFactory);
-
-		assertThat(beanFactory.getBeanDefinition("viewScopedClass").getScope())
+		assertThat(acx.getBeanDefinition("viewScopedClass").getScope())
+			.isEqualTo(JsfCdiToSpring.VIEW);
+		assertThat(acx.getBeanDefinition("viewScopedBean").getScope())
 			.isEqualTo(JsfCdiToSpring.VIEW);
 	}
 
 	@Test
 	public void testSessionScopedClass() {
-		DefaultListableBeanFactory beanFactory = new DefaultListableBeanFactory();
-		beanFactory.registerBeanDefinition("sessionScopedClass", new AnnotatedGenericBeanDefinition(
+		GenericApplicationContext acx = new GenericApplicationContext();
+		AnnotationConfigUtils.registerAnnotationConfigProcessors(acx);
+
+		acx.registerBeanDefinition("sessionScopedClass", new AnnotatedGenericBeanDefinition(
 			new StandardAnnotationMetadata(SessionScopedClass.class)));
-		BeanFactoryPostProcessor beanFactoryPostProcessor = new JsfCdiToSpringBeanFactoryPostProcessor();
+		acx.registerBeanDefinition("scopedBeansConfiguration", new RootBeanDefinition(
+			ScopedBeansConfiguration.class));
+		acx.addBeanFactoryPostProcessor(new JsfCdiToSpringBeanFactoryPostProcessor());
+		acx.refresh();
 
-		beanFactoryPostProcessor.postProcessBeanFactory(beanFactory);
-
-		assertThat(beanFactory.getBeanDefinition("sessionScopedClass").getScope())
+		assertThat(acx.getBeanDefinition("sessionScopedClass").getScope())
+			.isEqualTo(JsfCdiToSpring.SESSION);
+		assertThat(acx.getBeanDefinition("sessionScopedBean").getScope())
 			.isEqualTo(JsfCdiToSpring.SESSION);
 	}
 
 	@Test
 	public void testNoScopedClass() {
-		DefaultListableBeanFactory beanFactory = new DefaultListableBeanFactory();
-		beanFactory.registerBeanDefinition("noScopedClass", new AnnotatedGenericBeanDefinition(
+		GenericApplicationContext acx = new GenericApplicationContext();
+		AnnotationConfigUtils.registerAnnotationConfigProcessors(acx);
+
+		acx.registerBeanDefinition("noScopedClass", new AnnotatedGenericBeanDefinition(
 			new StandardAnnotationMetadata(NoScopedClass.class)));
-		BeanFactoryPostProcessor beanFactoryPostProcessor = new JsfCdiToSpringBeanFactoryPostProcessor();
+		acx.registerBeanDefinition("scopedBeansConfiguration", new RootBeanDefinition(
+			ScopedBeansConfiguration.class));
+		acx.addBeanFactoryPostProcessor(new JsfCdiToSpringBeanFactoryPostProcessor());
+		acx.refresh();
 
-		beanFactoryPostProcessor.postProcessBeanFactory(beanFactory);
-
-		assertThat(beanFactory.getBeanDefinition("noScopedClass").getScope())
+		assertThat(acx.getBeanDefinition("noScopedClass").getScope())
 			.isEqualTo("");
+		assertThat(acx.getBeanDefinition("noScopedBean").getScope())
+			.isEqualTo("");
+
 	}
 
 }
