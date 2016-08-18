@@ -16,8 +16,6 @@
 
 package org.joinfaces.mojarra;
 
-import com.sun.faces.config.FacesInitializer;
-
 import org.joinfaces.javaxfaces.JavaxFacesSpringBootAutoConfiguration;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,7 +35,7 @@ import org.springframework.context.annotation.Configuration;
  */
 @Configuration
 @EnableConfigurationProperties({MojarraProperties.class})
-@ConditionalOnClass(FacesInitializer.class)
+@ConditionalOnClass(name = "com.sun.faces.config.FacesInitializer")
 @AutoConfigureBefore(WebMvcAutoConfiguration.class)
 @AutoConfigureAfter({JavaxFacesSpringBootAutoConfiguration.class})
 @ConditionalOnWebApplication

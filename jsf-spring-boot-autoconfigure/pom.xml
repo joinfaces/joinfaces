@@ -5,7 +5,7 @@
     <parent>
         <groupId>org.joinfaces</groupId>
         <artifactId>jsf-spring-boot-parent</artifactId>
-        <version>2.1.5-SNAPSHOT</version>
+        <version>2.1.7-SNAPSHOT</version>
         <relativePath>../jsf-spring-boot-parent</relativePath>
     </parent>
 
@@ -57,16 +57,6 @@
             <optional>true</optional>
             <scope>test</scope>
         </dependency>
-        <dependency>
-            <groupId>org.eclipse.jetty</groupId>
-            <artifactId>jetty-webapp</artifactId>
-            <optional>true</optional>
-        </dependency>
-		<dependency>
-			<groupId>io.undertow</groupId>
-			<artifactId>undertow-servlet</artifactId>
-			<optional>true</optional>
-		</dependency>        
         <dependency>
             <groupId>org.reflections</groupId>
             <artifactId>reflections</artifactId>

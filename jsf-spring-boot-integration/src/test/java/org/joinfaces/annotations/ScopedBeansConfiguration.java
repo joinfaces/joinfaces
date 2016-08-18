@@ -14,27 +14,44 @@
  * limitations under the License.
  */
 
-package org.joinfaces.undertow;
+package org.joinfaces.annotations;
 
-import io.undertow.Undertow;
+import javax.enterprise.context.SessionScoped;
+import javax.faces.view.ViewScoped;
 
-import org.apache.myfaces.webapp.StartupServletContextListener;
-
-import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 /**
- * Spring Boot Auto Configuration of Undertow with MyFaces.
- * @author Marcelo Fernandes
+ * @author Nurettin Yilmaz
  */
 @Configuration
-@ConditionalOnClass({Undertow.class, StartupServletContextListener.class})
-public class UndertowMyfacesSpringBootAutoConfiguration {
+public class ScopedBeansConfiguration {
 
 	@Bean
-	public StartupServletContextListener startupServletContextListener() {
-		return new StartupServletContextListener();
+	@ViewScoped
+	public ViewScopedBean viewScopedBean() {
+		return new ViewScopedBean();
+	}
+
+	@Bean
+	@SessionScoped
+	public SessionScopedBean sessionScopedBean() {
+		return new SessionScopedBean();
+	}
+
+	@Bean
+	public NoScopedBean noScopedBean() {
+		return new NoScopedBean();
+	}
+
+	static class ViewScopedBean {
+	}
+
+	static class SessionScopedBean {
+	}
+
+	static class NoScopedBean {
 	}
 
 }

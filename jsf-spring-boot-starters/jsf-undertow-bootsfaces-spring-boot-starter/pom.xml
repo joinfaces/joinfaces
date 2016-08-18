@@ -5,7 +5,7 @@
     <parent>
         <groupId>org.joinfaces</groupId>
         <artifactId>jsf-spring-boot-starters</artifactId>
-        <version>2.1.5-SNAPSHOT</version>
+        <version>2.1.7-SNAPSHOT</version>
     </parent>
     
     <artifactId>jsf-undertow-bootsfaces-spring-boot-starter</artifactId>
@@ -17,37 +17,17 @@
     </properties>
 
     <dependencies>
-        <!-- remove tomcat dependencies -->
         <dependency>
             <groupId>org.joinfaces</groupId>
-            <artifactId>jsf-bootsfaces-spring-boot-starter</artifactId>
-            <exclusions>
-                <exclusion>
-                    <groupId>org.springframework.boot</groupId>
-                    <artifactId>spring-boot-starter-tomcat</artifactId>
-                </exclusion>
-                <exclusion>
-                    <groupId>org.apache.tomcat.embed</groupId>
-                    <artifactId>tomcat-embed-jasper</artifactId>
-                </exclusion>
-                <exclusion>
-                    <groupId>org.apache.tomcat.embed</groupId>
-                    <artifactId>tomcat-embed-el</artifactId>
-                </exclusion>
-            </exclusions>
-        </dependency>
-        <!-- undertow dependencies -->
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-undertow</artifactId>
+            <artifactId>jsf-undertow-spring-boot-starter</artifactId>
         </dependency>
         <dependency>
-            <groupId>org.glassfish</groupId>
-            <artifactId>javax.el</artifactId>
-        </dependency>    
+            <groupId>net.bootsfaces</groupId>
+            <artifactId>bootsfaces</artifactId>
+        </dependency>
         <dependency>
-            <groupId>org.jboss.spec.javax.servlet.jsp</groupId>
-            <artifactId>jboss-jsp-api_2.3_spec</artifactId>
-        </dependency>    
+            <groupId>de.beyondjava</groupId>
+            <artifactId>angularFaces-core</artifactId>
+        </dependency>
     </dependencies>
 </project>

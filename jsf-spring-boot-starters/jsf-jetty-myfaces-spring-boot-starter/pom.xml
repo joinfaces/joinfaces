@@ -5,7 +5,7 @@
     <parent>
         <groupId>org.joinfaces</groupId>
         <artifactId>jsf-spring-boot-starters</artifactId>
-        <version>2.1.5-SNAPSHOT</version>
+        <version>2.1.7-SNAPSHOT</version>
     </parent>
     
     <artifactId>jsf-jetty-myfaces-spring-boot-starter</artifactId>
@@ -30,8 +30,12 @@
         </dependency>
         <!-- myfaces dependencies -->
         <dependency>
-            <groupId>org.joinfaces</groupId>
-            <artifactId>jsf-myfaces-spring-boot-starter</artifactId>
+            <groupId>org.apache.myfaces.core</groupId>
+            <artifactId>myfaces-bundle</artifactId>
+        </dependency>        
+        <dependency>
+            <groupId>commons-digester</groupId>
+            <artifactId>commons-digester</artifactId>
         </dependency>
     </dependencies>
 </project>

@@ -1,9 +1,5 @@
 # Auto Configure
 org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
-org.joinfaces.jetty.JettySpringBootAutoConfiguration,\
-org.joinfaces.jetty.JettyMyfacesSpringBootAutoConfiguration,\
-org.joinfaces.undertow.UndertowSpringBootAutoConfiguration,\
-org.joinfaces.undertow.UndertowMyfacesSpringBootAutoConfiguration,\
 org.joinfaces.javaxfaces.JavaxFacesSpringBootAutoConfiguration,\
 org.joinfaces.mojarra.MojarraSpringBootAutoConfiguration,\
 org.joinfaces.myfaces.MyfacesSpringBootAutoConfiguration,\
@@ -11,5 +7,5 @@ org.joinfaces.omnifaces.OmnifacesSpringBootAutoConfiguration,\
 org.joinfaces.primefaces.PrimefacesSpringBootAutoConfiguration,\
 org.joinfaces.bootsfaces.BootsfacesSpringBootAutoConfiguration,\
 org.joinfaces.angularfaces.AngularfacesSpringBootAutoConfiguration,\
-org.joinfaces.butterfaces.ButterfacesSpringBootAutoConfiguration,\
+org.joinfaces.butterfaces.ButterfacesSpringBootAutoConfiguration, \
 org.joinfaces.richfaces.RichfacesSpringBootAutoConfiguration

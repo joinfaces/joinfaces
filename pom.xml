@@ -4,7 +4,7 @@
 
     <groupId>org.joinfaces</groupId>
     <artifactId>jsf-spring-boot-build</artifactId>
-    <version>2.1.5-SNAPSHOT</version>
+    <version>2.1.7-SNAPSHOT</version>
     <packaging>pom</packaging>
 
     <properties>
@@ -28,6 +28,10 @@
         <module>jsf-spring-boot-integration</module>
 
         <module>jsf-spring-boot-autoconfigure</module>
+
+        <module>jsf-jetty-spring-boot-autoconfigure</module>
+
+        <module>jsf-undertow-spring-boot-autoconfigure</module>
 
         <module>jsf-spring-boot-starters</module>
     </modules>

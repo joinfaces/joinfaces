@@ -26,8 +26,11 @@ import org.springframework.beans.factory.config.BeanFactoryPostProcessor;
 import org.springframework.beans.factory.config.ConfigurableListableBeanFactory;
 
 /**
- * Add custom jsf cdi scope implementations.
+ * Add custom JSF CDI scope implementations. Picks up JSF and CDI annotations both on
+ * types and method bean declarations.
+ *
  * @author Marcelo Fernandes
+ * @author Nurettin Yilmaz
  */
 public class JsfCdiToSpringBeanFactoryPostProcessor implements BeanFactoryPostProcessor {
 
@@ -40,18 +43,36 @@ public class JsfCdiToSpringBeanFactoryPostProcessor implements BeanFactoryPostPr
 
 		for (String beanName : clbf.getBeanDefinitionNames()) {
 			BeanDefinition definition = clbf.getBeanDefinition(beanName);
+			registerJsfCdiToSpring(definition);
+		}
+	}
 
-			if (definition instanceof AnnotatedBeanDefinition) {
-				AnnotatedBeanDefinition annDef = (AnnotatedBeanDefinition) definition;
+	/**
+	 * Checks how is bean defined and deduces scope name from JSF CDI annotations.
+	 *
+	 * @param definition beanDefinition
+	 */
+	private void registerJsfCdiToSpring(BeanDefinition definition) {
 
-				String scopeName = JsfCdiToSpring.scopeName(annDef.getMetadata().getAnnotationTypes());
-				if (scopeName != null) {
-					definition.setScope(scopeName);
+		if (definition instanceof AnnotatedBeanDefinition) {
+			AnnotatedBeanDefinition annDef = (AnnotatedBeanDefinition) definition;
 
-					logger.debug(definition.getBeanClassName()
-						+ " - Scope(" + definition.getScope().toUpperCase()
-						+ ")");
-				}
+			String scopeName = null;
+			// firstly check whether bean is defined via configuration
+			if (annDef.getFactoryMethodMetadata() != null) {
+				scopeName = JsfCdiToSpring.deduceScopeName(annDef.getFactoryMethodMetadata());
+			}
+			else {
+				// fallback to type
+				scopeName = JsfCdiToSpring.deduceScopeName(annDef.getMetadata().getAnnotationTypes());
+			}
+
+			if (scopeName != null) {
+				definition.setScope(scopeName);
+
+				logger.debug(definition.getBeanClassName()
+								+ " - Scope(" + definition.getScope().toUpperCase()
+								+ ")");
 			}
 		}
 	}

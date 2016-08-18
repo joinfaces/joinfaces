@@ -16,8 +16,6 @@
 
 package org.joinfaces.angularfaces;
 
-import de.beyondjava.angularFaces.core.ELTools;
-
 import org.joinfaces.javaxfaces.JavaxFacesSpringBootAutoConfiguration;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,7 +33,7 @@ import org.springframework.context.annotation.Configuration;
  */
 @Configuration
 @EnableConfigurationProperties(AngularfacesProperties.class)
-@ConditionalOnClass(ELTools.class)
+@ConditionalOnClass(name = "de.beyondjava.angularFaces.core.ELTools")
 @AutoConfigureBefore(JavaxFacesSpringBootAutoConfiguration.class)
 @ConditionalOnWebApplication
 public class AngularfacesSpringBootAutoConfiguration {

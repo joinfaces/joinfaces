@@ -16,8 +16,6 @@
 
 package org.joinfaces.jetty;
 
-import org.eclipse.jetty.server.Server;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.boot.context.embedded.ConfigurableEmbeddedServletContainer;
@@ -37,7 +35,7 @@ import org.springframework.context.annotation.Configuration;
  */
 @Configuration
 @EnableConfigurationProperties({JettyProperties.class})
-@ConditionalOnClass(Server.class)
+@ConditionalOnClass(name = "org.eclipse.jetty.server.Server")
 public class JettySpringBootAutoConfiguration extends SpringBootServletInitializer implements EmbeddedServletContainerCustomizer {
 
 	@Autowired

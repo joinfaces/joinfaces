@@ -11,7 +11,7 @@
 
     <groupId>org.joinfaces</groupId>
     <artifactId>jsf-spring-boot-parent</artifactId>
-    <version>2.1.5-SNAPSHOT</version>
+    <version>2.1.7-SNAPSHOT</version>
     <packaging>pom</packaging>
 
     <properties>
@@ -72,6 +72,7 @@
         <checkstyle.configLocation>${checkstyle.dir}/checkstyle.xml</checkstyle.configLocation>
         <checkstyle.suppressionsLocation>${checkstyle.dir}/checkstyle-suppressions.xml</checkstyle.suppressionsLocation>
         <checkstyle.headerLocation>${checkstyle.dir}/checkstyle-header.txt</checkstyle.headerLocation>
+        <duplicate-finder-maven-plugin.version>1.2.1</duplicate-finder-maven-plugin.version>
         
         <maven-surefire-report-plugin.version>2.19.1</maven-surefire-report-plugin.version>
 
@@ -90,6 +91,42 @@
 
     <dependencyManagement>
         <dependencies>
+            <dependency>
+                <groupId>org.apache.tomcat</groupId>
+                <artifactId>tomcat-jasper</artifactId>
+                <version>${tomcat.version}</version>
+                <scope>runtime</scope>
+                <exclusions>
+                    <exclusion>
+                        <groupId>org.apache.tomcat</groupId>
+                        <artifactId>tomcat-jsp-api</artifactId>
+                    </exclusion>
+                    <exclusion>
+                        <groupId>org.apache.tomcat</groupId>
+                        <artifactId>tomcat-el-api</artifactId>
+                    </exclusion>
+                    <exclusion>
+                        <groupId>org.apache.tomcat</groupId>
+                        <artifactId>tomcat-jasper-el</artifactId>
+                    </exclusion>
+                    <exclusion>
+                        <groupId>org.apache.tomcat</groupId>
+                        <artifactId>tomcat-servlet-api</artifactId>
+                    </exclusion>
+                    <exclusion>
+                        <groupId>org.apache.tomcat</groupId>
+                        <artifactId>tomcat-juli</artifactId>
+                    </exclusion>
+                    <exclusion>
+                        <groupId>org.apache.tomcat</groupId>
+                        <artifactId>tomcat-api</artifactId>
+                    </exclusion>
+                    <exclusion>
+                        <groupId>org.apache.tomcat</groupId>
+                        <artifactId>tomcat-util-scan</artifactId>
+                    </exclusion>
+                </exclusions>
+            </dependency>
             <dependency>
                 <groupId>org.projectlombok</groupId>
                 <artifactId>lombok</artifactId>
@@ -126,6 +163,12 @@
                 <groupId>javax.enterprise</groupId>
                 <artifactId>cdi-api</artifactId>
                 <version>${cdi.version}</version>
+                <exclusions>
+                    <exclusion>
+                        <groupId>javax.el</groupId>
+                        <artifactId>javax.el-api</artifactId>
+                    </exclusion>
+                </exclusions>
             </dependency>
             <dependency>
                 <groupId>org.jboss.spec.javax.servlet.jsp</groupId>
@@ -169,6 +212,12 @@
                 <groupId>de.beyondjava</groupId>
                 <artifactId>angularFaces-core</artifactId>
                 <version>${angularfaces.version}</version>
+                <exclusions>
+                    <exclusion>
+                        <groupId>commons-logging</groupId>
+                        <artifactId>commons-logging</artifactId>
+                    </exclusion>
+                </exclusions>
             </dependency>
             <dependency>
                 <groupId>de.larmic.butterfaces</groupId>
@@ -179,103 +228,113 @@
             <dependency>
                 <groupId>org.joinfaces</groupId>
                 <artifactId>jsf-spring-boot-integration</artifactId>
-                <version>2.1.5-SNAPSHOT</version>
+                <version>2.1.7-SNAPSHOT</version>
             </dependency>
             <dependency>
                 <groupId>org.joinfaces</groupId>
                 <artifactId>jsf-spring-boot-autoconfigure</artifactId>
-                <version>2.1.5-SNAPSHOT</version>
+                <version>2.1.7-SNAPSHOT</version>
+            </dependency>
+            <dependency>
+                <groupId>org.joinfaces</groupId>
+                <artifactId>jsf-jetty-spring-boot-autoconfigure</artifactId>
+                <version>2.1.7-SNAPSHOT</version>
+            </dependency>
+            <dependency>
+                <groupId>org.joinfaces</groupId>
+                <artifactId>jsf-undertow-spring-boot-autoconfigure</artifactId>
+                <version>2.1.7-SNAPSHOT</version>
             </dependency>
             
             <dependency>
                 <groupId>org.joinfaces</groupId>
                 <artifactId>jsf-spring-boot-starter</artifactId>
-                <version>2.1.5-SNAPSHOT</version>
+                <version>2.1.7-SNAPSHOT</version>
             </dependency>
             <dependency>
                 <groupId>org.joinfaces</groupId>
                 <artifactId>jsf-bootsfaces-spring-boot-starter</artifactId>
-                <version>2.1.5-SNAPSHOT</version>
+                <version>2.1.7-SNAPSHOT</version>
             </dependency>
             <dependency>
                 <groupId>org.joinfaces</groupId>
                 <artifactId>jsf-butterfaces-spring-boot-starter</artifactId>
-                <version>2.1.5-SNAPSHOT</version>
+                <version>2.1.7-SNAPSHOT</version>
             </dependency>
             <dependency>
                 <groupId>org.joinfaces</groupId>
                 <artifactId>jsf-myfaces-spring-boot-starter</artifactId>
-                <version>2.1.5-SNAPSHOT</version>
+                <version>2.1.7-SNAPSHOT</version>
             </dependency>
             <dependency>
                 <groupId>org.joinfaces</groupId>
                 <artifactId>jsf-myfaces-bootsfaces-spring-boot-starter</artifactId>
-                <version>2.1.5-SNAPSHOT</version>
+                <version>2.1.7-SNAPSHOT</version>
             </dependency>
             <dependency>
                 <groupId>org.joinfaces</groupId>
                 <artifactId>jsf-myfaces-butterfaces-spring-boot-starter</artifactId>
-                <version>2.1.5-SNAPSHOT</version>
+                <version>2.1.7-SNAPSHOT</version>
             </dependency>
             <dependency>
                 <groupId>org.joinfaces</groupId>
                 <artifactId>jsf-jetty-spring-boot-starter</artifactId>
-                <version>2.1.5-SNAPSHOT</version>
+                <version>2.1.7-SNAPSHOT</version>
             </dependency>
             <dependency>
                 <groupId>org.joinfaces</groupId>
                 <artifactId>jsf-jetty-bootsfaces-spring-boot-starter</artifactId>
-                <version>2.1.5-SNAPSHOT</version>
+                <version>2.1.7-SNAPSHOT</version>
             </dependency>
             <dependency>
                 <groupId>org.joinfaces</groupId>
                 <artifactId>jsf-jetty-butterfaces-spring-boot-starter</artifactId>
-                <version>2.1.5-SNAPSHOT</version>
+                <version>2.1.7-SNAPSHOT</version>
             </dependency>
             <dependency>
                 <groupId>org.joinfaces</groupId>
                 <artifactId>jsf-jetty-myfaces-spring-boot-starter</artifactId>
-                <version>2.1.5-SNAPSHOT</version>
+                <version>2.1.7-SNAPSHOT</version>
             </dependency>
             <dependency>
                 <groupId>org.joinfaces</groupId>
                 <artifactId>jsf-jetty-myfaces-bootsfaces-spring-boot-starter</artifactId>
-                <version>2.1.5-SNAPSHOT</version>
+                <version>2.1.7-SNAPSHOT</version>
             </dependency>
             <dependency>
                 <groupId>org.joinfaces</groupId>
                 <artifactId>jsf-jetty-myfaces-butterfaces-spring-boot-starter</artifactId>
-                <version>2.1.5-SNAPSHOT</version>
+                <version>2.1.7-SNAPSHOT</version>
             </dependency>
             <dependency>
                 <groupId>org.joinfaces</groupId>
                 <artifactId>jsf-undertow-spring-boot-starter</artifactId>
-                <version>2.1.5-SNAPSHOT</version>
+                <version>2.1.7-SNAPSHOT</version>
             </dependency>
             <dependency>
                 <groupId>org.joinfaces</groupId>
                 <artifactId>jsf-undertow-bootsfaces-spring-boot-starter</artifactId>
-                <version>2.1.5-SNAPSHOT</version>
+                <version>2.1.7-SNAPSHOT</version>
             </dependency>
             <dependency>
                 <groupId>org.joinfaces</groupId>
                 <artifactId>jsf-undertow-butterfaces-spring-boot-starter</artifactId>
-                <version>2.1.5-SNAPSHOT</version>
+                <version>2.1.7-SNAPSHOT</version>
             </dependency>
             <dependency>
                 <groupId>org.joinfaces</groupId>
                 <artifactId>jsf-undertow-myfaces-spring-boot-starter</artifactId>
-                <version>2.1.5-SNAPSHOT</version>
+                <version>2.1.7-SNAPSHOT</version>
             </dependency>
             <dependency>
                 <groupId>org.joinfaces</groupId>
                 <artifactId>jsf-undertow-myfaces-bootsfaces-spring-boot-starter</artifactId>
-                <version>2.1.5-SNAPSHOT</version>
+                <version>2.1.7-SNAPSHOT</version>
             </dependency>
             <dependency>
                 <groupId>org.joinfaces</groupId>
                 <artifactId>jsf-undertow-myfaces-butterfaces-spring-boot-starter</artifactId>
-                <version>2.1.5-SNAPSHOT</version>
+                <version>2.1.7-SNAPSHOT</version>
             </dependency>
 <!--
             <dependency>
@@ -445,6 +504,37 @@
                         <includeTestSourceDirectory>true</includeTestSourceDirectory>
                     </configuration>
                 </plugin>                
+                <plugin>
+                    <groupId>org.basepom.maven</groupId>
+                    <artifactId>duplicate-finder-maven-plugin</artifactId>
+                    <version>${duplicate-finder-maven-plugin.version}</version>
+                    <configuration>
+                        <printEqualFiles>false</printEqualFiles>
+                        <failBuildInCaseOfDifferentContentConflict>true</failBuildInCaseOfDifferentContentConflict>
+                        <failBuildInCaseOfEqualContentConflict>false</failBuildInCaseOfEqualContentConflict>
+                        <failBuildInCaseOfConflict>false</failBuildInCaseOfConflict>
+                        <checkCompileClasspath>true</checkCompileClasspath>
+                        <checkRuntimeClasspath>true</checkRuntimeClasspath>
+                        <checkTestClasspath>true</checkTestClasspath>
+                        <ignoredResourcePatterns>
+                            <ignoredResourcePattern>about.html</ignoredResourcePattern>
+                        </ignoredResourcePatterns>
+                        <ignoredDependencies>
+                            <dependency>
+                                <groupId>org.apache.myfaces.core</groupId>
+                                <artifactId>myfaces-bundle</artifactId>
+                                <version>${myfaces.version}</version>
+                            </dependency>
+                            <dependency>
+                                <groupId>org.ow2.asm</groupId>
+                                <artifactId>asm</artifactId>
+                                <version>5.0.1</version>
+                            </dependency>
+                        </ignoredDependencies>
+                        <skip>false</skip>
+                        <quiet>false</quiet>
+                    </configuration>            
+                </plugin>        
             </plugins>
         </pluginManagement>
         
@@ -764,7 +854,29 @@
                 </plugins>
             </build>
         </profile>
-        
+
+        <profile>
+            <id>check-duplicate-classes</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.basepom.maven</groupId>
+                        <artifactId>duplicate-finder-maven-plugin</artifactId>
+                        <version>${duplicate-finder-maven-plugin.version}</version>
+                        <executions>
+                            <execution>
+                                <id>check-duplicate-classes</id>
+                                <phase>verify</phase>
+                                <goals>
+                                    <goal>check</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>            
+        </profile>
+                
         <profile>
             <id>check-cobertura-integration-test</id>
             <build>

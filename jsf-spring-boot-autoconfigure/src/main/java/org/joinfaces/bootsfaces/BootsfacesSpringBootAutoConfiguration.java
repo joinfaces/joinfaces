@@ -16,8 +16,6 @@
 
 package org.joinfaces.bootsfaces;
 
-import net.bootsfaces.C;
-
 import org.joinfaces.javaxfaces.JavaxFacesSpringBootAutoConfiguration;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,7 +33,7 @@ import org.springframework.context.annotation.Configuration;
  */
 @Configuration
 @EnableConfigurationProperties(BootsfacesProperties.class)
-@ConditionalOnClass(C.class)
+@ConditionalOnClass(name = "net.bootsfaces.C")
 @AutoConfigureBefore(JavaxFacesSpringBootAutoConfiguration.class)
 @ConditionalOnWebApplication
 public class BootsfacesSpringBootAutoConfiguration {

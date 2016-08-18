@@ -5,7 +5,7 @@
     <parent>
         <groupId>org.joinfaces</groupId>
         <artifactId>jsf-spring-boot-starters</artifactId>
-        <version>2.1.5-SNAPSHOT</version>
+        <version>2.1.7-SNAPSHOT</version>
     </parent>
     
     <artifactId>jsf-jetty-bootsfaces-spring-boot-starter</artifactId>
@@ -17,43 +17,17 @@
     </properties>
 
     <dependencies>
-        <!-- remove tomcat dependencies -->
         <dependency>
             <groupId>org.joinfaces</groupId>
-            <artifactId>jsf-bootsfaces-spring-boot-starter</artifactId>
-            <exclusions>
-                <exclusion>
-                    <groupId>org.springframework.boot</groupId>
-                    <artifactId>spring-boot-starter-tomcat</artifactId>
-                </exclusion>
-                <exclusion>
-                    <groupId>org.apache.tomcat.embed</groupId>
-                    <artifactId>tomcat-embed-jasper</artifactId>
-                </exclusion>
-                <exclusion>
-                    <groupId>org.apache.tomcat.embed</groupId>
-                    <artifactId>tomcat-embed-el</artifactId>
-                </exclusion>
-            </exclusions>
-        </dependency>
-        <!-- jetty dependencies -->
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-jetty</artifactId>
+            <artifactId>jsf-jetty-spring-boot-starter</artifactId>
         </dependency>
         <dependency>
-            <groupId>org.glassfish</groupId>
-            <artifactId>javax.el</artifactId>
+            <groupId>net.bootsfaces</groupId>
+            <artifactId>bootsfaces</artifactId>
         </dependency>
         <dependency>
-            <groupId>org.eclipse.jetty</groupId>
-            <artifactId>apache-jsp</artifactId>
-            <exclusions>
-                <exclusion>
-                    <groupId>org.eclipse.jetty.orbit</groupId>
-                    <artifactId>javax.servlet</artifactId>
-                </exclusion>
-            </exclusions>
+            <groupId>de.beyondjava</groupId>
+            <artifactId>angularFaces-core</artifactId>
         </dependency>
     </dependencies>
 </project>
