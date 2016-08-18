@@ -8,9 +8,9 @@
         <version>2.1.7-SNAPSHOT</version>
     </parent>
     
-    <artifactId>jsf-richfaces-spring-boot-starter</artifactId>
-    <name>JSF RichFaces Spring Boot Starter</name>
-    <description>Jsf Spring Boot Starter for Tomcat and Mojarra and RichFaces</description>
+    <artifactId>jsf-jetty-myfaces-richfaces-spring-boot-starter</artifactId>
+    <name>JSF Jetty MyFaces Richfaces Spring Boot Starter</name>
+    <description>Jsf Spring Boot Starter for Jetty and MyFaces and Richfaces</description>
     
     <properties>
         <main.basedir>${basedir}/../..</main.basedir>
@@ -19,7 +19,7 @@
     <dependencies>
         <dependency>
             <groupId>org.joinfaces</groupId>
-            <artifactId>jsf-spring-boot-starter</artifactId>
+            <artifactId>jsf-jetty-myfaces-spring-boot-starter</artifactId>
             <exclusions>
                 <exclusion>
                     <groupId>org.primefaces</groupId>
