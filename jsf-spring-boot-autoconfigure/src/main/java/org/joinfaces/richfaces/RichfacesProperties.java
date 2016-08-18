@@ -218,7 +218,7 @@ public class RichfacesProperties
 			private Boolean enabled;
 		}
 
-		private Filter filter;
+		private Filter filter = new Filter();
 	}
 
 	private Builtin builtin = new Builtin();

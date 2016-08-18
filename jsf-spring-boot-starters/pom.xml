@@ -56,5 +56,6 @@
         <module>jsf-undertow-myfaces-spring-boot-starter</module>
         <module>jsf-undertow-myfaces-bootsfaces-spring-boot-starter</module>
         <module>jsf-undertow-myfaces-butterfaces-spring-boot-starter</module>
+        <module>jsf-richfaces-spring-boot-starter</module>
     </modules>
 </project>
