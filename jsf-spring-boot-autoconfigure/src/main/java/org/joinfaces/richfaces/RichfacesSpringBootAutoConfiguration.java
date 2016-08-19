@@ -17,7 +17,6 @@
 package org.joinfaces.richfaces;
 
 import org.joinfaces.javaxfaces.JavaxFacesSpringBootAutoConfiguration;
-import org.richfaces.application.CoreConfiguration;
 import org.richfaces.webapp.ResourceServlet;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.AutoConfigureBefore;
@@ -37,7 +36,7 @@ import org.springframework.context.annotation.Configuration;
  */
 @Configuration
 @EnableConfigurationProperties(RichfacesProperties.class)
-@ConditionalOnClass(CoreConfiguration.class)
+@ConditionalOnClass(name = "org.richfaces.application.CoreConfiguration")
 @AutoConfigureBefore(JavaxFacesSpringBootAutoConfiguration.class)
 @ConditionalOnWebApplication
 public class RichfacesSpringBootAutoConfiguration
