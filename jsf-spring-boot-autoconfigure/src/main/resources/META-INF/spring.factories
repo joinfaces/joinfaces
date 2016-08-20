@@ -7,4 +7,5 @@ org.joinfaces.omnifaces.OmnifacesSpringBootAutoConfiguration,\
 org.joinfaces.primefaces.PrimefacesSpringBootAutoConfiguration,\
 org.joinfaces.bootsfaces.BootsfacesSpringBootAutoConfiguration,\
 org.joinfaces.angularfaces.AngularfacesSpringBootAutoConfiguration,\
-org.joinfaces.butterfaces.ButterfacesSpringBootAutoConfiguration
+org.joinfaces.butterfaces.ButterfacesSpringBootAutoConfiguration,\
+org.joinfaces.richfaces.RichfacesSpringBootAutoConfiguration
