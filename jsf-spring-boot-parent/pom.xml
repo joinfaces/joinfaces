@@ -33,7 +33,7 @@
         <bootsfaces.version>0.9.1</bootsfaces.version>
         <angularfaces.version>2.1.11</angularfaces.version>
 
-        <butterfaces.version>2.1.9</butterfaces.version>
+        <butterfaces.version>2.1.10</butterfaces.version>
                                                                         
         <cdi.version>1.2</cdi.version>
         <reflections.version>0.9.10</reflections.version>
