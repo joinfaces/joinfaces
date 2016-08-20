@@ -16,10 +16,10 @@
 
 package org.joinfaces.richfaces;
 
-import org.springframework.boot.web.servlet.ServletContextInitializer;
-
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
+
+import org.springframework.boot.web.servlet.ServletContextInitializer;
 
 /**
  * Servlet Context Initializer of RichFaces.

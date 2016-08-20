@@ -367,11 +367,6 @@
                 <version>2.1.7-SNAPSHOT</version>
             </dependency>
             <dependency>
-                <groupId>org.joinfaces</groupId>
-                <artifactId>jsf-undertow-myfaces-richfaces-spring-boot-starter</artifactId>
-                <version>2.1.7-SNAPSHOT</version>
-            </dependency>
-            <dependency>
                 <groupId>org.richfaces</groupId>
                 <artifactId>richfaces</artifactId>
                 <version>${richfaces.version}</version>

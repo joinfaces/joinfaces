@@ -14,13 +14,14 @@
         </activatedProfiles>
     </action>
     <action>
-        <actionName>CUSTOM-checkstyle-pmd-cpd-cycles-findbugs</actionName>
-        <displayName>checkstyle-pmd-cpd-cycles-findbugs</displayName>
+        <actionName>CUSTOM-duplicateClasses-checkstyle-pmd-cpd-cycles-findbugs</actionName>
+        <displayName>duplicateClasses-checkstyle-pmd-cpd-cycles-findbugs</displayName>
         <goals>
             <goal>clean</goal>
             <goal>verify</goal>
         </goals>
         <activatedProfiles>
+            <activatedProfile>check-duplicate-classes</activatedProfile>
             <activatedProfile>check-checkstyle</activatedProfile>
             <activatedProfile>check-cycles</activatedProfile>
             <activatedProfile>check-pmd-cpd</activatedProfile>
@@ -67,6 +68,7 @@
             <goal>verify</goal>
         </goals>
         <activatedProfiles>
+            <activatedProfile>check-duplicate-classes</activatedProfile>
             <activatedProfile>check-checkstyle</activatedProfile>
             <activatedProfile>check-cycles</activatedProfile>
             <activatedProfile>check-pmd-cpd</activatedProfile>
@@ -88,6 +90,7 @@
             <goal>deploy</goal>
         </goals>
         <activatedProfiles>
+            <activatedProfile>check-duplicate-classes</activatedProfile>
             <activatedProfile>check-checkstyle</activatedProfile>
             <activatedProfile>check-cycles</activatedProfile>
             <activatedProfile>check-pmd-cpd</activatedProfile>

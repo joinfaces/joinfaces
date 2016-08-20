@@ -35,5 +35,7 @@ public class NullServletContextConfigurer extends ServletContextConfigurer {
 		setInitParameterBoolean("boolean", null);
 		setInitParameterInteger(null, 10);
 		setInitParameterInteger("integer", null);
+		setInitParameterLong(null, 10L);
+		setInitParameterLong("long", null);
 	}
 }

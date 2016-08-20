@@ -16,10 +16,11 @@
 
 package org.joinfaces.richfaces;
 
-import lombok.Builder;
-import org.joinfaces.ServletContextConfigurer;
-
 import javax.servlet.ServletContext;
+
+import lombok.Builder;
+
+import org.joinfaces.ServletContextConfigurer;
 
 /**
  * Servlet context configurer of RichFaces.
@@ -35,69 +36,50 @@ public class RichfacesServletContextConfigurer extends ServletContextConfigurer 
 		this.richfacesProperties = richfacesProperties;
 	}
 
-	public void setInitParameter(String name, String value)
-	{
-		if (value != null)
-			this.setInitParameterString(name, value);
-	}
-
-	public void setInitParameter(String name, Integer value)
-	{
-		if (value != null)
-		this.setInitParameterInteger(name, value);
-	}
-
-	public void setInitParameter(String name, Boolean value)
-	{
-		if (value != null)
-			this.setInitParameterBoolean(name, value);
-	}
-
 	@Override
-	public void configure()
-	{
-		this.setInitParameter("org.richfaces.LongValueWithDefault", this.richfacesProperties.getLongValueWithDefault());
-		this.setInitParameter("org.richfaces.LongValueWithDefault", this.richfacesProperties.getIntValue());
-		this.setInitParameter("org.richfaces.IntValueWithDefault", this.richfacesProperties.getIntValueWithDefault());
-		this.setInitParameter("org.richfaces.StringValue", this.richfacesProperties.getStringValue());
-		this.setInitParameter("org.richfaces.StringValueWithDefault", this.richfacesProperties.getStringValueWithDefault());
-		this.setInitParameter("org.richfaces.EnumValue", this.richfacesProperties.getEnumValue());
-		this.setInitParameter("org.richfaces.EnumValue", this.richfacesProperties.getEnumValueWithDefault());
-		this.setInitParameter("org.richfaces.BooleanValue", this.richfacesProperties.getBooleanValue());
-		this.setInitParameter("org.richfaces.BooleanValue", this.richfacesProperties.getBooleanValueWithDefault());
-		this.setInitParameter("org.richfaces.MultiValue1", this.richfacesProperties.getMultiValue1());
-		this.setInitParameter("org.richfaces.MultiValue2", this.richfacesProperties.getMultiValue2());
-		this.setInitParameter("org.richfaces.FacesContextReference", this.richfacesProperties.getFacesContextReference());
-		this.setInitParameter("org.richfaces.DynamicValueWithDefault", this.richfacesProperties.getDynamicValueWithDefault());
-		this.setInitParameter("org.richfaces.LiteralOnlyValue", this.richfacesProperties.getLiteralOnlyValue());
-		this.setInitParameter("org.richfaces.LiteralOnlyWithEl", this.richfacesProperties.getLiteralOnlyWithEl());
-		this.setInitParameter("org.richfaces.enableControlSkinning", this.richfacesProperties.getEnableControlSkinning());
-		this.setInitParameter("org.richfaces.enableControlSkinningClasses", this.richfacesProperties.getEnableControlSkinningClasses());
-		this.setInitParameter("org.richfaces.skin", this.richfacesProperties.getSkin());
-		this.setInitParameter("org.richfaces.baseSkin", this.richfacesProperties.getBaseSkin());
-		this.setInitParameter("org.richfaces.resourceDefaultTTL", this.richfacesProperties.getResourceDefaultTTL());
-		this.setInitParameter("org.richfaces.resourceCacheSize", this.richfacesProperties.getResourceCacheSize());
-		this.setInitParameter("org.richfaces.resourceDefaultVersion", this.richfacesProperties.getResourceDefaultVersion());
-		this.setInitParameter("org.richfaces.cache.LRU_MAP_CACHE_SIZE", this.richfacesProperties.getCache().getLruMapCacheSize());
-		this.setInitParameter("org.richfaces.resourceMapping.enabled", this.richfacesProperties.getResourceMapping().getEnabled());
-		this.setInitParameter("org.richfaces.resourceMapping.location", this.richfacesProperties.getResourceMapping().getLocation());
-		this.setInitParameter("org.richfaces.resourceMapping.mappingFile", this.richfacesProperties.getResourceMapping().getMappingFile());
-		this.setInitParameter("org.richfaces.resourceMapping.compressedStages", this.richfacesProperties.getResourceMapping().getCompressedStages());
-		this.setInitParameter("org.richfaces.resourceMapping.packedStages", this.richfacesProperties.getResourceMapping().getPackedStages());
-		this.setInitParameter("org.richfaces.resourceOptimization.enabled", this.richfacesProperties.getResourceOptimization().getEnabled());
-		this.setInitParameter("org.richfaces.resourceOptimization.compressionStages", this.richfacesProperties.getResourceOptimization().getCompressionStages());
-		this.setInitParameter("org.richfaces.resourceOptimization.packagingStages", this.richfacesProperties.getResourceOptimization().getPackedStages());
-		this.setInitParameter("org.richfaces.executeAWTInitializer", this.richfacesProperties.getExecuteAWTInitializer());
-		this.setInitParameter("org.richfaces.push.handlerMapping", this.richfacesProperties.getPush().getHandlerMapping());
-		this.setInitParameter("org.richfaces.push.jms.connectionFactory", this.richfacesProperties.getPush().getJms().getConnectionFactory());
-		this.setInitParameter("org.richfaces.push.jms.enabled", this.richfacesProperties.getPush().getJms().getEnabled());
-		this.setInitParameter("org.richfaces.push.jms.topicsNamespace", this.richfacesProperties.getPush().getJms().getTopicsNamespace());
-		this.setInitParameter("org.richfaces.push.jms.connectionUsername", this.richfacesProperties.getPush().getJms().getConnectionUsername());
-		this.setInitParameter("org.richfaces.push.jms.connectionPassword", this.richfacesProperties.getPush().getJms().getConnectionPassword());
-		this.setInitParameter("org.richfaces.push.initializeOnStartup", this.richfacesProperties.getPush().getInitializeOnStartup());
-		this.setInitParameter("org.richfaces.push.session.maxInactiveInterval", this.richfacesProperties.getPush().getSession().getMaxInactiveInterval());
-		this.setInitParameter("org.richfaces.builtin.sort.enabled", this.richfacesProperties.getBuiltin().getSort().getEnabled());
-		this.setInitParameter("org.richfaces.builtin.filter.enabled", this.richfacesProperties.getBuiltin().getFilter().getEnabled());
-		this.setInitParameter("org.richfaces.queue.enabled", this.richfacesProperties.getQueue().getEnabled());
+	public void configure() {
+		this.setInitParameterLong("org.richfaces.LongValueWithDefault", this.richfacesProperties.getLongValueWithDefault());
+		this.setInitParameterInteger("org.richfaces.LongValueWithDefault", this.richfacesProperties.getIntValue());
+		this.setInitParameterInteger("org.richfaces.IntValueWithDefault", this.richfacesProperties.getIntValueWithDefault());
+		this.setInitParameterString("org.richfaces.StringValue", this.richfacesProperties.getStringValue());
+		this.setInitParameterString("org.richfaces.StringValueWithDefault", this.richfacesProperties.getStringValueWithDefault());
+		this.setInitParameterString("org.richfaces.EnumValue", this.richfacesProperties.getEnumValue());
+		this.setInitParameterString("org.richfaces.EnumValue", this.richfacesProperties.getEnumValueWithDefault());
+		this.setInitParameterBoolean("org.richfaces.BooleanValue", this.richfacesProperties.getBooleanValue());
+		this.setInitParameterBoolean("org.richfaces.BooleanValue", this.richfacesProperties.getBooleanValueWithDefault());
+		this.setInitParameterString("org.richfaces.MultiValue1", this.richfacesProperties.getMultiValue1());
+		this.setInitParameterString("org.richfaces.MultiValue2", this.richfacesProperties.getMultiValue2());
+		this.setInitParameterString("org.richfaces.FacesContextReference", this.richfacesProperties.getFacesContextReference());
+		this.setInitParameterString("org.richfaces.DynamicValueWithDefault", this.richfacesProperties.getDynamicValueWithDefault());
+		this.setInitParameterString("org.richfaces.LiteralOnlyValue", this.richfacesProperties.getLiteralOnlyValue());
+		this.setInitParameterString("org.richfaces.LiteralOnlyWithEl", this.richfacesProperties.getLiteralOnlyWithEl());
+		this.setInitParameterBoolean("org.richfaces.enableControlSkinning", this.richfacesProperties.getEnableControlSkinning());
+		this.setInitParameterBoolean("org.richfaces.enableControlSkinningClasses", this.richfacesProperties.getEnableControlSkinningClasses());
+		this.setInitParameterString("org.richfaces.skin", this.richfacesProperties.getSkin());
+		this.setInitParameterString("org.richfaces.baseSkin", this.richfacesProperties.getBaseSkin());
+		this.setInitParameterInteger("org.richfaces.resourceDefaultTTL", this.richfacesProperties.getResourceDefaultTTL());
+		this.setInitParameterInteger("org.richfaces.resourceCacheSize", this.richfacesProperties.getResourceCacheSize());
+		this.setInitParameterString("org.richfaces.resourceDefaultVersion", this.richfacesProperties.getResourceDefaultVersion());
+		this.setInitParameterInteger("org.richfaces.cache.LRU_MAP_CACHE_SIZE", this.richfacesProperties.getCache().getLruMapCacheSize());
+		this.setInitParameterBoolean("org.richfaces.resourceMapping.enabled", this.richfacesProperties.getResourceMapping().getEnabled());
+		this.setInitParameterString("org.richfaces.resourceMapping.location", this.richfacesProperties.getResourceMapping().getLocation());
+		this.setInitParameterString("org.richfaces.resourceMapping.mappingFile", this.richfacesProperties.getResourceMapping().getMappingFile());
+		this.setInitParameterString("org.richfaces.resourceMapping.compressedStages", this.richfacesProperties.getResourceMapping().getCompressedStages());
+		this.setInitParameterString("org.richfaces.resourceMapping.packedStages", this.richfacesProperties.getResourceMapping().getPackedStages());
+		this.setInitParameterBoolean("org.richfaces.resourceOptimization.enabled", this.richfacesProperties.getResourceOptimization().getEnabled());
+		this.setInitParameterString("org.richfaces.resourceOptimization.compressionStages", this.richfacesProperties.getResourceOptimization().getCompressionStages());
+		this.setInitParameterString("org.richfaces.resourceOptimization.packagingStages", this.richfacesProperties.getResourceOptimization().getPackedStages());
+		this.setInitParameterBoolean("org.richfaces.executeAWTInitializer", this.richfacesProperties.getExecuteAWTInitializer());
+		this.setInitParameterString("org.richfaces.push.handlerMapping", this.richfacesProperties.getPush().getHandlerMapping());
+		this.setInitParameterString("org.richfaces.push.jms.connectionFactory", this.richfacesProperties.getPush().getJms().getConnectionFactory());
+		this.setInitParameterBoolean("org.richfaces.push.jms.enabled", this.richfacesProperties.getPush().getJms().getEnabled());
+		this.setInitParameterString("org.richfaces.push.jms.topicsNamespace", this.richfacesProperties.getPush().getJms().getTopicsNamespace());
+		this.setInitParameterString("org.richfaces.push.jms.connectionUsername", this.richfacesProperties.getPush().getJms().getConnectionUsername());
+		this.setInitParameterString("org.richfaces.push.jms.connectionPassword", this.richfacesProperties.getPush().getJms().getConnectionPassword());
+		this.setInitParameterBoolean("org.richfaces.push.initializeOnStartup", this.richfacesProperties.getPush().getInitializeOnStartup());
+		this.setInitParameterInteger("org.richfaces.push.session.maxInactiveInterval", this.richfacesProperties.getPush().getSession().getMaxInactiveInterval());
+		this.setInitParameterBoolean("org.richfaces.builtin.sort.enabled", this.richfacesProperties.getBuiltin().getSort().getEnabled());
+		this.setInitParameterBoolean("org.richfaces.builtin.filter.enabled", this.richfacesProperties.getBuiltin().getFilter().getEnabled());
+		this.setInitParameterBoolean("org.richfaces.queue.enabled", this.richfacesProperties.getQueue().getEnabled());
 	}
 }

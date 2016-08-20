@@ -18,6 +18,7 @@ package org.joinfaces.richfaces;
 
 import lombok.Getter;
 import lombok.Setter;
+
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
 /**
@@ -33,10 +34,10 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 @Getter
 @Setter
 @ConfigurationProperties(prefix = "jsf.richfaces")
-public class RichfacesProperties
-{
+public class RichfacesProperties {
+
 	// names = "org.richfaces.LongValueWithDefault", defaultValue = "-100")
-	private Integer longValueWithDefault;
+	private Long longValueWithDefault;
 
 	// names = "org.richfaces.IntValue")
 	private Integer intValue;
@@ -99,20 +100,42 @@ public class RichfacesProperties
 	// (names = "org.richfaces.resourceDefaultVersion")
 	private String resourceDefaultVersion;
 
+	private Cache cache = new Cache();
+
+	private ResourceMapping resourceMapping = new ResourceMapping();
+
+	private ResourceOptimization resourceOptimization = new ResourceOptimization();
+
+	// (defaultValue = "true", names = "org.richfaces.executeAWTInitializer", literal = true)
+	private Boolean executeAWTInitializer;
+
+	private Push push = new Push();
+
+	private Builtin builtin = new Builtin();
+
+	private Queue queue = new Queue();
+
+	// (defaultValue = "false", names = "org.richfaces.datatableUsesViewLocale")
+	private String datatableUsesViewLocale;
+
+	/**
+	 * Cache namespace.
+	 */
 	@Getter
 	@Setter
-	public static class Cache
-	{
+	public static class Cache {
+
 		// (names = "org.richfaces.cache.LRU_MAP_CACHE_SIZE", literal = true)
 		private Integer lruMapCacheSize;
 	}
 
-	private Cache cache = new Cache();
-
+	/**
+	 * ResourceMapping namespace.
+	 */
 	@Getter
 	@Setter
-	public static class ResourceMapping
-	{
+	public static class ResourceMapping {
+
 		// (names = "org.richfaces.resourceMapping.enabled", literal = true)
 		private Boolean enabled;
 
@@ -129,12 +152,13 @@ public class RichfacesProperties
 		private String packedStages;
 	}
 
-	private ResourceMapping resourceMapping = new ResourceMapping();
-
+	/**
+	 * Resource optimization namespace.
+	 */
 	@Getter
 	@Setter
-	public static class ResourceOptimization
-	{
+	public static class ResourceOptimization {
+
 		// (defaultValue = "false", names = { "org.richfaces.resourceOptimization.enabled", "org.richfaces.resourceMapping.enabled" }, literal = true)
 		private Boolean enabled;
 
@@ -145,22 +169,30 @@ public class RichfacesProperties
 		private String packedStages;
 	}
 
-	private ResourceOptimization resourceOptimization = new ResourceOptimization();
-
-	// (defaultValue = "true", names = "org.richfaces.executeAWTInitializer", literal = true)
-	private Boolean executeAWTInitializer;
-
+	/**
+	 * Push namespace.
+	 */
 	@Getter
 	@Setter
-	public static class Push
-	{
+	public static class Push {
+
 		// (names = "org.richfaces.push.handlerMapping", literal = true)
 		private String handlerMapping;
 
+		private Jms jms = new Jms();
+
+		// (defaultValue = "false", names="org.richfaces.push.initializeOnStartup")
+		private Boolean initializeOnStartup;
+
+		private Session session = new Session();
+
+		/**
+		 * Jms namespace.
+		 */
 		@Getter
 		@Setter
-		public static class Jms
-		{
+		public static class Jms {
+
 			// (defaultValue = "/ConnectionFactory", names = "org.richfaces.push.jms.connectionFactory")
 			private String connectionFactory;
 
@@ -177,62 +209,60 @@ public class RichfacesProperties
 			private String connectionPassword;
 		}
 
-		private Jms jms = new Jms();
-
-		// (defaultValue = "false", names="org.richfaces.push.initializeOnStartup")
-		private Boolean initializeOnStartup;
-
+		/**
+		 * Session namespace.
+		 */
 		@Getter
 		@Setter
-		public static class Session
-		{
+		public static class Session {
+
 			// (defaultValue = "300000", names="org.richfaces.push.session.maxInactiveInterval")
 			private Integer maxInactiveInterval;
 		}
 
-		private Session session = new Session();
-
 	}
 
-	private Push push = new Push();
-
+	/**
+	 * Builtin namespace.
+	 */
 	@Getter
-	@Setter
-	public static class Builtin
-	{
+	public static class Builtin {
+
+		private Sort sort = new Sort();
+
+		private Filter filter = new Filter();
+
+		/**
+		 * Sort namespace.
+		 */
 		@Getter
 		@Setter
-		public static class Sort
-		{
+		public static class Sort {
+
 			// (defaultValue = "true", names = "org.richfaces.builtin.sort.enabled")
 			private Boolean enabled;
 		}
 
-		private Sort sort = new Sort();
-
+		/**
+		 * Filter namespace.
+		 */
 		@Getter
 		@Setter
-		public static class Filter
-		{
+		public static class Filter {
+
 			// (defaultValue = "true", names = "org.richfaces.builtin.filter.enabled")
 			private Boolean enabled;
 		}
-
-		private Filter filter = new Filter();
 	}
 
-	private Builtin builtin = new Builtin();
-
+	/**
+	 * Queue namespace.
+	 */
 	@Getter
 	@Setter
-	public static class Queue
-	{
+	public static class Queue {
+
 		// (defaultValue = "true", names = "org.richfaces.queue.enabled", literal = true)
 		private Boolean enabled;
 	}
-
-	private Queue queue = new Queue();
-
-	// (defaultValue = "false", names = "org.richfaces.datatableUsesViewLocale")
-	private String datatableUsesViewLocale;
 }

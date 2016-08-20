@@ -18,16 +18,16 @@ package org.joinfaces.richfaces;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
+
+import static org.assertj.core.api.Assertions.assertThat;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import static org.assertj.core.api.Assertions.assertThat;
-
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = RichfacesSpringBootAutoConfiguration.class, webEnvironment = SpringBootTest.WebEnvironment.MOCK)
-public class RichfacesPropertiesIT
-{
+public class RichfacesPropertiesIT {
 
 	@Autowired
 	private RichfacesProperties richfacesProperties;
@@ -233,14 +233,12 @@ public class RichfacesPropertiesIT
 	}
 
 	@Test
-	public void testBuiltinSortEnabled()
-	{
+	public void testBuiltinSortEnabled() {
 		assertThat(this.richfacesProperties.getBuiltin().getSort().getEnabled()).isTrue();
 	}
 
 	@Test
-	public void testBuiltinFilterEnabled()
-	{
+	public void testBuiltinFilterEnabled() {
 		assertThat(this.richfacesProperties.getBuiltin().getFilter().getEnabled()).isTrue();
 	}
 
