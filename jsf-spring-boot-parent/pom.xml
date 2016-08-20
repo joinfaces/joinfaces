@@ -34,6 +34,8 @@
         <angularfaces.version>2.1.11</angularfaces.version>
 
         <butterfaces.version>2.1.10</butterfaces.version>
+
+        <richfaces.version>4.5.17.Final</richfaces.version>
                                                                         
         <cdi.version>1.2</cdi.version>
         <reflections.version>0.9.10</reflections.version>
@@ -334,7 +336,52 @@
                 <artifactId>jsf-undertow-myfaces-butterfaces-spring-boot-starter</artifactId>
                 <version>2.1.7-SNAPSHOT</version>
             </dependency>
-        </dependencies>        
+            <dependency>
+                <groupId>org.joinfaces</groupId>
+                <artifactId>jsf-richfaces-spring-boot-starter</artifactId>
+                <version>2.1.7-SNAPSHOT</version>
+            </dependency>
+            <dependency>
+                <groupId>org.joinfaces</groupId>
+                <artifactId>jsf-jetty-richfaces-spring-boot-starter</artifactId>
+                <version>2.1.7-SNAPSHOT</version>
+            </dependency>
+            <dependency>
+                <groupId>org.joinfaces</groupId>
+                <artifactId>jsf-myfaces-richfaces-spring-boot-starter</artifactId>
+                <version>2.1.7-SNAPSHOT</version>
+            </dependency>
+            <dependency>
+                <groupId>org.joinfaces</groupId>
+                <artifactId>jsf-undertow-richfaces-spring-boot-starter</artifactId>
+                <version>2.1.7-SNAPSHOT</version>
+            </dependency>
+            <dependency>
+                <groupId>org.joinfaces</groupId>
+                <artifactId>jsf-jetty-myfaces-richfaces-spring-boot-starter</artifactId>
+                <version>2.1.7-SNAPSHOT</version>
+            </dependency>
+            <dependency>
+                <groupId>org.joinfaces</groupId>
+                <artifactId>jsf-undertow-myfaces-richfaces-spring-boot-starter</artifactId>
+                <version>2.1.7-SNAPSHOT</version>
+            </dependency>
+            <dependency>
+                <groupId>org.joinfaces</groupId>
+                <artifactId>jsf-undertow-myfaces-richfaces-spring-boot-starter</artifactId>
+                <version>2.1.7-SNAPSHOT</version>
+            </dependency>
+            <dependency>
+                <groupId>org.richfaces</groupId>
+                <artifactId>richfaces</artifactId>
+                <version>${richfaces.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.richfaces</groupId>
+                <artifactId>richfaces-a4j</artifactId>
+                <version>${richfaces.version}</version>
+            </dependency>
+        </dependencies>
     </dependencyManagement>
             
     <build>
