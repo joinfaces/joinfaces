@@ -100,10 +100,12 @@
         <dependency>
             <groupId>org.richfaces</groupId>
             <artifactId>richfaces-a4j</artifactId>
+            <optional>true</optional>
         </dependency>
         <dependency>
             <groupId>org.richfaces</groupId>
             <artifactId>richfaces</artifactId>
+            <optional>true</optional>
         </dependency>
     </dependencies>
 </project>
