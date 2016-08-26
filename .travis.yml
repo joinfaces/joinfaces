@@ -1,9 +1,9 @@
 language: java
 jdk:
   - oraclejdk8
-script: mvn -Pcheck-duplicate-classes,check-checkstyle,check-cycles,check-pmd-cpd,check-findbugs -Dmaven.test.skip=true verify && mvn -Pignore-snapshot-repositories,check-cobertura-integration-test,attach-integration-test cobertura:check-integration-test
+script: mvn -T 4 -Pcheck-duplicate-classes,check-checkstyle,check-cycles,check-pmd-cpd,check-findbugs -Dmaven.test.skip=true verify && mvn -T 4 -Pignore-snapshot-repositories,check-cobertura-integration-test,attach-integration-test cobertura:check-integration-test
 after_success:
-  - mvn -Pignore-snapshot-repositories,attach-integration-test cobertura:cobertura-integration-test org.eluder.coveralls:coveralls-maven-plugin:4.2.0:report
+  - mvn -T 4 -Pignore-snapshot-repositories,attach-integration-test cobertura:cobertura-integration-test org.eluder.coveralls:coveralls-maven-plugin:4.2.0:report
 cache:
   directories:
   - $HOME/.m2
