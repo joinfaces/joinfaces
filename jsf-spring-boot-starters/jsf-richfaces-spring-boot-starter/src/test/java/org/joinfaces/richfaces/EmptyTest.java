@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package org.joinfaces.bootsfaces;
+package org.joinfaces.richfaces;
 
 import org.junit.Test;
 

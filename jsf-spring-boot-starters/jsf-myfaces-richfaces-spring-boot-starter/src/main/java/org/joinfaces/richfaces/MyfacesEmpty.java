@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package org.joinfaces.butterfaces;
+package org.joinfaces.richfaces;
 
 /**
  * Empty class to force javadoc generation.
