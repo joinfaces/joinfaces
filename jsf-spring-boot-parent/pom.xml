@@ -73,6 +73,8 @@
         <checkstyle.suppressionsLocation>${checkstyle.dir}/checkstyle-suppressions.xml</checkstyle.suppressionsLocation>
         <checkstyle.headerLocation>${checkstyle.dir}/checkstyle-header.txt</checkstyle.headerLocation>
         <duplicate-finder-maven-plugin.version>1.2.1</duplicate-finder-maven-plugin.version>
+        <duplicate.ignoredResourcePattern>about.html</duplicate.ignoredResourcePattern>
+        <duplicate.ignoredClassPattern>none</duplicate.ignoredClassPattern>
         
         <maven-surefire-report-plugin.version>2.19.1</maven-surefire-report-plugin.version>
 
@@ -530,8 +532,11 @@
                         <checkRuntimeClasspath>true</checkRuntimeClasspath>
                         <checkTestClasspath>true</checkTestClasspath>
                         <ignoredResourcePatterns>
-                            <ignoredResourcePattern>about.html</ignoredResourcePattern>
+                            <ignoredResourcePattern>${duplicate.ignoredResourcePattern}</ignoredResourcePattern>
                         </ignoredResourcePatterns>
+                        <ignoredClassPatterns>
+                            <ignoredClassPattern>${duplicate.ignoredClassPattern}</ignoredClassPattern>
+                        </ignoredClassPatterns>
                         <ignoredDependencies>
                             <dependency>
                                 <groupId>org.apache.myfaces.core</groupId>
@@ -869,16 +874,15 @@
         </profile>
 
         <profile>
-            <id>check-duplicate-classes</id>
+            <id>check-duplicate</id>
             <build>
                 <plugins>
                     <plugin>
                         <groupId>org.basepom.maven</groupId>
                         <artifactId>duplicate-finder-maven-plugin</artifactId>
-                        <version>${duplicate-finder-maven-plugin.version}</version>
                         <executions>
                             <execution>
-                                <id>check-duplicate-classes</id>
+                                <id>check-duplicate</id>
                                 <phase>verify</phase>
                                 <goals>
                                     <goal>check</goal>
