@@ -89,7 +89,7 @@
                 <configuration>
                     <autoVersionSubmodules>true</autoVersionSubmodules>
                     <useReleaseProfile>false</useReleaseProfile>
-                    <releaseProfiles>check-checkstyle,check-cycles,check-pmd-cpd,check-findbugs,attach-test-jar,attach-source,attach-javadoc,sign-artifacts,nexus-staging</releaseProfiles>
+                    <releaseProfiles>check-duplicate,check-checkstyle,check-cycles,check-cpd,check-pmd,check-findbugs,attach-test-jar,attach-source,attach-javadoc,sign-artifacts,nexus-staging</releaseProfiles>
                     <goals>deploy</goals>
                 </configuration>
             </plugin>            

@@ -64,7 +64,8 @@
         <jdepend-maven-plugin.version>2.0</jdepend-maven-plugin.version>
         <maven-pmd-plugin.version>3.6</maven-pmd-plugin.version>
         <pmd.ruleset>${pmd.dir}/pmd-ruleset.xml</pmd.ruleset>
-        <pmd.excludeFromFailureFile />
+        <pmd.excludeFromFailureFile></pmd.excludeFromFailureFile>
+        <cpd.excludeFromFailureFile></cpd.excludeFromFailureFile>
         <maven-enforcer-plugin.version>1.4.1</maven-enforcer-plugin.version>
         <no-package-cycles-enforcer-rule.version>1.0.5</no-package-cycles-enforcer-rule.version>
         <maven-checkstyle-plugin.version>2.17</maven-checkstyle-plugin.version>
@@ -537,18 +538,6 @@
                         <ignoredClassPatterns>
                             <ignoredClassPattern>${duplicate.ignoredClassPattern}</ignoredClassPattern>
                         </ignoredClassPatterns>
-                        <ignoredDependencies>
-                            <dependency>
-                                <groupId>org.apache.myfaces.core</groupId>
-                                <artifactId>myfaces-bundle</artifactId>
-                                <version>${myfaces.version}</version>
-                            </dependency>
-                            <dependency>
-                                <groupId>org.ow2.asm</groupId>
-                                <artifactId>asm</artifactId>
-                                <version>5.0.1</version>
-                            </dependency>
-                        </ignoredDependencies>
                         <skip>false</skip>
                         <quiet>false</quiet>
                     </configuration>            
@@ -589,7 +578,7 @@
                 <configuration>
                     <autoVersionSubmodules>true</autoVersionSubmodules>
                     <useReleaseProfile>false</useReleaseProfile>
-                    <releaseProfiles>check-checkstyle,check-cycles,check-pmd-cpd,check-findbugs,attach-test-jar,attach-source,attach-javadoc,sign-artifacts,nexus-staging</releaseProfiles>
+                    <releaseProfiles>check-checkstyle,check-cycles,check-duplicate,check-pmd,check-cpd,check-findbugs,attach-test-jar,attach-source,attach-javadoc,sign-artifacts,nexus-staging</releaseProfiles>
                     <goals>deploy</goals>
                 </configuration>
             </plugin>            
@@ -784,7 +773,7 @@
         </profile>                    
 
         <profile>
-            <id>check-pmd-cpd</id>
+            <id>check-cpd</id>
             <build>
                 <plugins>
                     <plugin>
@@ -801,7 +790,29 @@
                                 <goals>
                                     <goal>cpd-check</goal>
                                 </goals>
+                                <configuration>
+                                    <excludeFromFailureFile>${cpd.excludeFromFailureFile}</excludeFromFailureFile>                                    
+                                </configuration>
                             </execution>
+                        </executions>
+                    </plugin>    
+                </plugins>
+            </build>
+        </profile>
+
+        <profile>
+            <id>check-pmd</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-pmd-plugin</artifactId>
+                        <configuration>
+                            <skip>false</skip>
+                            <printFailingErrors>true</printFailingErrors>
+                            <verbose>true</verbose>
+                        </configuration>
+                        <executions>
                             <execution>
                                 <id>pmd-check</id>
                                 <goals>

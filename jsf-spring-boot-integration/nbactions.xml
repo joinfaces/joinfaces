@@ -21,10 +21,11 @@
             <goal>verify</goal>
         </goals>
         <activatedProfiles>
-            <activatedProfile>check-duplicate-classes</activatedProfile>
+            <activatedProfile>check-duplicate</activatedProfile>
             <activatedProfile>check-checkstyle</activatedProfile>
             <activatedProfile>check-cycles</activatedProfile>
-            <activatedProfile>check-pmd-cpd</activatedProfile>
+            <activatedProfile>check-cpd</activatedProfile>
+            <activatedProfile>check-pmd</activatedProfile>
             <activatedProfile>check-findbugs</activatedProfile>
         </activatedProfiles>
     </action>

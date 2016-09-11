@@ -17,6 +17,8 @@
         <main.basedir>${basedir}/..</main.basedir>
         
         <check.dir>../jsf-spring-boot-parent/src/checkconfig</check.dir>
+        <duplicate.ignoredClassPattern>javax.faces.*$</duplicate.ignoredClassPattern>
+        <duplicate.ignoredResourcePattern>javax/faces/Messages.*\.properties</duplicate.ignoredResourcePattern>
     </properties>
 
     <dependencies>

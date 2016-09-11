@@ -14,6 +14,8 @@
     
     <properties>
         <main.basedir>${basedir}/../..</main.basedir>
+
+        <duplicate.ignoredClassPattern>org.objectweb.asm.(Frame|Item|Label)</duplicate.ignoredClassPattern>
     </properties>
 
     <dependencies>

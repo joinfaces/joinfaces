@@ -14,17 +14,18 @@
         </activatedProfiles>
     </action>
     <action>
-        <actionName>CUSTOM-duplicateClasses-checkstyle-pmd-cpd-cycles-findbugs</actionName>
-        <displayName>duplicateClasses-checkstyle-pmd-cpd-cycles-findbugs</displayName>
+        <actionName>CUSTOM-duplicate-checkstyle-pmd-cpd-cycles-findbugs</actionName>
+        <displayName>duplicate-checkstyle-pmd-cpd-cycles-findbugs</displayName>
         <goals>
             <goal>clean</goal>
             <goal>verify</goal>
         </goals>
         <activatedProfiles>
-            <activatedProfile>check-duplicate-classes</activatedProfile>
+            <activatedProfile>check-duplicate</activatedProfile>
             <activatedProfile>check-checkstyle</activatedProfile>
             <activatedProfile>check-cycles</activatedProfile>
-            <activatedProfile>check-pmd-cpd</activatedProfile>
+            <activatedProfile>check-cpd</activatedProfile>
+            <activatedProfile>check-pmd</activatedProfile>
             <activatedProfile>check-findbugs</activatedProfile>
         </activatedProfiles>
     </action>
@@ -68,10 +69,11 @@
             <goal>verify</goal>
         </goals>
         <activatedProfiles>
-            <activatedProfile>check-duplicate-classes</activatedProfile>
+            <activatedProfile>check-duplicate</activatedProfile>
             <activatedProfile>check-checkstyle</activatedProfile>
             <activatedProfile>check-cycles</activatedProfile>
-            <activatedProfile>check-pmd-cpd</activatedProfile>
+            <activatedProfile>check-cpd</activatedProfile>
+            <activatedProfile>check-pmd</activatedProfile>
             <activatedProfile>check-findbugs</activatedProfile>
             <activatedProfile>check-cobertura-integration-test</activatedProfile>
             <activatedProfile>attach-test-jar</activatedProfile>
@@ -90,10 +92,11 @@
             <goal>deploy</goal>
         </goals>
         <activatedProfiles>
-            <activatedProfile>check-duplicate-classes</activatedProfile>
+            <activatedProfile>check-duplicate</activatedProfile>
             <activatedProfile>check-checkstyle</activatedProfile>
             <activatedProfile>check-cycles</activatedProfile>
-            <activatedProfile>check-pmd-cpd</activatedProfile>
+            <activatedProfile>check-cpd</activatedProfile>
+            <activatedProfile>check-pmd</activatedProfile>
             <activatedProfile>check-findbugs</activatedProfile>
             <activatedProfile>check-cobertura-integration-test</activatedProfile>
             <activatedProfile>attach-test-jar</activatedProfile>
