@@ -757,7 +757,7 @@
                         <executions>
                             <execution>
                                 <id>checkstyle-validation</id>
-                                <phase>validate</phase>
+                                <phase>verify</phase>
                                 <configuration>
                                     <failsOnError>true</failsOnError>
                                     <failOnViolation>true</failOnViolation>
