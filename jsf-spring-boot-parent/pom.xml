@@ -518,6 +518,12 @@
                         <encoding>UTF-8</encoding>
                         <consoleOutput>true</consoleOutput>
                         <includeTestSourceDirectory>true</includeTestSourceDirectory>
+                        <sourceDirectories>
+                            ${project.build.sourceDirectory}
+                        </sourceDirectories>
+                        <testSourceDirectories>
+                            ${project.build.testSourceDirectory}                            
+                        </testSourceDirectories>
                     </configuration>
                 </plugin>                
                 <plugin>
