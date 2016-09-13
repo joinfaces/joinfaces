@@ -17,6 +17,7 @@
     <properties>
         <main.basedir>..</main.basedir>        
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>        
         <java.version>1.6</java.version>
 
         <lombok-maven-plugin.version>1.16.10.0</lombok-maven-plugin.version>        
@@ -515,7 +516,7 @@
                         <suppressionsLocation>${checkstyle.suppressionsLocation}</suppressionsLocation>
                         <headerLocation>${checkstyle.headerLocation}</headerLocation>
                         <propertyExpansion>checkstyle.build.directory=${project.build.directory}</propertyExpansion>
-                        <encoding>UTF-8</encoding>
+                        <encoding>${project.build.sourceEncoding}</encoding>
                         <consoleOutput>true</consoleOutput>
                         <includeTestSourceDirectory>true</includeTestSourceDirectory>
                         <sourceDirectories>
