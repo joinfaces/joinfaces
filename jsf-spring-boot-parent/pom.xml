@@ -74,6 +74,7 @@
         <checkstyle.configLocation>${checkstyle.dir}/checkstyle.xml</checkstyle.configLocation>
         <checkstyle.suppressionsLocation>${checkstyle.dir}/checkstyle-suppressions.xml</checkstyle.suppressionsLocation>
         <checkstyle.headerLocation>${checkstyle.dir}/checkstyle-header.txt</checkstyle.headerLocation>
+        <checkstyle.excludes></checkstyle.excludes>
         <duplicate-finder-maven-plugin.version>1.2.1</duplicate-finder-maven-plugin.version>
         <duplicate.ignoredResourcePattern>about.html</duplicate.ignoredResourcePattern>
         <duplicate.ignoredClassPattern>none</duplicate.ignoredClassPattern>
@@ -525,6 +526,7 @@
                         <testSourceDirectories>
                             <param>${project.build.testSourceDirectory}</param>
                         </testSourceDirectories>
+                        <excludes>${checkstyle.excludes}</excludes>
                     </configuration>
                 </plugin>                
                 <plugin>
