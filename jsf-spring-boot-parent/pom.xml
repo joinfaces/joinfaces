@@ -519,10 +519,10 @@
                         <consoleOutput>true</consoleOutput>
                         <includeTestSourceDirectory>true</includeTestSourceDirectory>
                         <sourceDirectories>
-                            ${project.build.sourceDirectory}
+                            <param>${project.build.sourceDirectory}</param>
                         </sourceDirectories>
                         <testSourceDirectories>
-                            ${project.build.testSourceDirectory}                            
+                            <param>${project.build.testSourceDirectory}</param>
                         </testSourceDirectories>
                     </configuration>
                 </plugin>                
