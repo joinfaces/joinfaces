@@ -39,8 +39,8 @@ public class JsfTomcatApplicationListener implements ApplicationListener<Applica
 
 	@Override
 	public void onApplicationEvent(ApplicationReadyEvent event) {
-		if (context != null) {
-			WebResourceRoot resources = context.getResources();
+		if (this.context != null) {
+			WebResourceRoot resources = this.context.getResources();
 
 			if (resources != null) {
 				String absolutePath = new File("").getAbsolutePath();

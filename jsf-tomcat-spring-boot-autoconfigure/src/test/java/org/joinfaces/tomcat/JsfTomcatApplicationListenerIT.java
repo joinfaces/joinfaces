@@ -54,21 +54,29 @@ public class JsfTomcatApplicationListenerIT {
 
 		String targetClassesBase = absolutePath + "/" + "target/classes";
 		File classesResources = new File(targetClassesBase + internalPath);
-		classesResources.mkdirs();
+		if (!classesResources.mkdirs()) {
+			throw new RuntimeException("Could not create dir: " + classesResources.toString());
+		}
 		jsfTomcatApplicationListener = JsfTomcatApplicationListener.builder().context(jsfTomcatContextCustomizer.getContext()).build();
 
 		jsfTomcatApplicationListener.onApplicationEvent(null);
-		classesResources.delete();
+		if (!classesResources.delete()) {
+			throw new RuntimeException("Could not delete dir: " + classesResources.toString());
+		}
 		assertThat(webResourceRoot.getPostResources().length)
 			.isEqualTo(1);
 
 		String targetTestClassesBase = absolutePath + "/" + "target/test-classes";
 		File testClassesResources = new File(targetTestClassesBase + internalPath);
-		testClassesResources.mkdirs();
+		if (!testClassesResources.mkdirs()) {
+			throw new RuntimeException("Could not create dir: " + testClassesResources.toString());
+		}
 		jsfTomcatApplicationListener = JsfTomcatApplicationListener.builder().context(jsfTomcatContextCustomizer.getContext()).build();
 
 		jsfTomcatApplicationListener.onApplicationEvent(null);
-		testClassesResources.delete();
+		if (!testClassesResources.delete()) {
+			throw new RuntimeException("Could not delete dir: " + testClassesResources.toString());
+		}
 		assertThat(webResourceRoot.getPostResources().length)
 			.isEqualTo(2);
 	}
@@ -125,7 +133,9 @@ public class JsfTomcatApplicationListenerIT {
 		Mockito.when(webResourceRoot.getState()).thenReturn(state);
 		Mockito.when(standardContext.getResources()).thenReturn(webResourceRoot);
 		Mockito.when(standardContext.getAddWebinfClassesResources()).thenReturn(Boolean.FALSE);
-		WebResourceSet[] array = {new DirResourceSet(webResourceRoot, "/", "/", "/"), new DirResourceSet(webResourceRoot, "/", "/", "/")};
+
+		String TEST = "/test";
+		WebResourceSet[] array = {new DirResourceSet(webResourceRoot, TEST, TEST, TEST), new DirResourceSet(webResourceRoot, TEST, TEST, TEST)};
 
 		Mockito.when(webResourceRoot.getJarResources()).thenReturn(array);
 

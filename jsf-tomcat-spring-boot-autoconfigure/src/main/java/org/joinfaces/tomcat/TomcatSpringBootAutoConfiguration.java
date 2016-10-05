@@ -39,7 +39,7 @@ public class TomcatSpringBootAutoConfiguration
 
 	@Bean
 	public JsfTomcatApplicationListener jsfTomcatApplicationListener() {
-		return JsfTomcatApplicationListener.builder().context(customizer.getContext()).build();
+		return JsfTomcatApplicationListener.builder().context(this.customizer.getContext()).build();
 	}
 
 	@Override
@@ -48,7 +48,7 @@ public class TomcatSpringBootAutoConfiguration
 			TomcatEmbeddedServletContainerFactory tomcatFactory
 				= (TomcatEmbeddedServletContainerFactory) container;
 
-			tomcatFactory.addContextCustomizers(customizer);
+			tomcatFactory.addContextCustomizers(this.customizer);
 		}
 	}
 }
