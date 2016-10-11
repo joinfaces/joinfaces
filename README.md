@@ -97,6 +97,7 @@ Additionnal information [here.](https://github.com/joinfaces/joinfaces/wiki/Syst
 
 ## Getting Help
 
+* Take a look at [wiki](https://github.com/joinfaces/joinfaces/wiki).
 * Report questions and bugs at [github.com/joinfaces/joinfaces/issues](https://github.com/joinfaces/joinfaces/issues).
 
 ## Contributing

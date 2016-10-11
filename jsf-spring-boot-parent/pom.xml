@@ -87,6 +87,8 @@
         <cobertura.packageLineRate>100</cobertura.packageLineRate>
         <cobertura.branchRate>100</cobertura.branchRate>
         <cobertura.lineRate>100</cobertura.lineRate>
+        <cobertura.ignore>none</cobertura.ignore>
+        <cobertura.exclude>none</cobertura.exclude>
         <cobertura-maven-plugin.version>2.7</cobertura-maven-plugin.version>
         
         <maven-project-info-reports-plugin.version>2.9</maven-project-info-reports-plugin.version>
@@ -421,6 +423,14 @@
                             <format>html</format>
                             <format>xml</format>
                         </formats>
+                        <instrumentation>
+                            <ignores>
+                                <ignore>${cobertura.ignore}</ignore>
+                            </ignores>
+                            <excludes>
+                                <exclude>${cobertura.exclude}</exclude>
+                            </excludes>
+                        </instrumentation>
                     </configuration>
                 </plugin>
                 <plugin>
@@ -935,7 +945,7 @@
                                     <packageBranchRate>${cobertura.packageBranchRate}</packageBranchRate>
                                     <packageLineRate>${cobertura.packageLineRate}</packageLineRate>
                                     <branchRate>${cobertura.branchRate}</branchRate>
-                                    <lineRate>${cobertura.lineRate}</lineRate>
+                                    <lineRate>${cobertura.lineRate}</lineRate>                                    
                                 </check>
                             </configuration>                        
                         </plugin>        
