@@ -47,38 +47,36 @@ public class JsfTomcatApplicationListenerIT {
 		JsfTomcatApplicationListener jsfTomcatApplicationListener = JsfTomcatApplicationListener.builder().context(jsfTomcatContextCustomizer.getContext()).build();
 		jsfTomcatApplicationListener.onApplicationEvent(null);
 		assertThat(webResourceRoot.getPostResources().length)
-			.isEqualTo(0);
+			.isEqualTo(2);
+	}
+
+	@Test
+	public void customizeTargetTestClasses() throws LifecycleException {
+		Context standardContext = Mockito.mock(Context.class);
+		StandardRoot webResourceRoot = new StandardRoot(standardContext);
+		Mockito.when(standardContext.getResources()).thenReturn(webResourceRoot);
+		Mockito.when(standardContext.getAddWebinfClassesResources()).thenReturn(Boolean.FALSE);
 
 		String absolutePath = new File("").getAbsolutePath();
 		String internalPath = "/META-INF/resources";
-
-		String targetClassesBase = absolutePath + "/" + "target/classes";
-		File classesResources = new File(targetClassesBase + internalPath);
-		if (!classesResources.mkdirs()) {
-			throw new RuntimeException("Could not create dir: " + classesResources.toString());
-		}
-		jsfTomcatApplicationListener = JsfTomcatApplicationListener.builder().context(jsfTomcatContextCustomizer.getContext()).build();
-
-		jsfTomcatApplicationListener.onApplicationEvent(null);
-		if (!classesResources.delete()) {
-			throw new RuntimeException("Could not delete dir: " + classesResources.toString());
-		}
-		assertThat(webResourceRoot.getPostResources().length)
-			.isEqualTo(1);
 
 		String targetTestClassesBase = absolutePath + "/" + "target/test-classes";
 		File testClassesResources = new File(targetTestClassesBase + internalPath);
 		if (!testClassesResources.mkdirs()) {
 			throw new RuntimeException("Could not create dir: " + testClassesResources.toString());
 		}
-		jsfTomcatApplicationListener = JsfTomcatApplicationListener.builder().context(jsfTomcatContextCustomizer.getContext()).build();
+
+		JsfTomcatContextCustomizer jsfTomcatContextCustomizer = new JsfTomcatContextCustomizer();
+		jsfTomcatContextCustomizer.customize(standardContext);
+
+		JsfTomcatApplicationListener jsfTomcatApplicationListener = JsfTomcatApplicationListener.builder().context(jsfTomcatContextCustomizer.getContext()).build();
 
 		jsfTomcatApplicationListener.onApplicationEvent(null);
 		if (!testClassesResources.delete()) {
 			throw new RuntimeException("Could not delete dir: " + testClassesResources.toString());
 		}
 		assertThat(webResourceRoot.getPostResources().length)
-			.isEqualTo(2);
+			.isEqualTo(3);
 	}
 
 	@Test

@@ -16,12 +16,13 @@
 
 package org.joinfaces.tomcat;
 
-import java.io.File;
+import java.net.URL;
 
 import lombok.Builder;
 
 import org.apache.catalina.Context;
 import org.apache.catalina.WebResourceRoot;
+import org.reflections.util.ClasspathHelper;
 
 import org.springframework.boot.context.event.ApplicationReadyEvent;
 import org.springframework.context.ApplicationListener;
@@ -37,25 +38,37 @@ public class JsfTomcatApplicationListener implements ApplicationListener<Applica
 
 	private Context context;
 
+	private boolean isEmbeddedTesting(WebResourceRoot resources) {
+		return resources != null
+			&& resources.getJarResources() != null
+			&& resources.getJarResources().length <= 1;
+	}
+
+	private String base(URL url) {
+		String result;
+		if (url.getProtocol().equals("jar")) {
+			result = url.getFile();
+			result = result.substring("file:".length());
+			result = result.substring(0, result.indexOf("!/"));
+		}
+		else {
+			result = url.getFile();
+		}
+		return result;
+	}
+
 	@Override
 	public void onApplicationEvent(ApplicationReadyEvent event) {
 		if (this.context != null) {
 			WebResourceRoot resources = this.context.getResources();
 
-			if (resources != null) {
-				String absolutePath = new File("").getAbsolutePath();
+			if (isEmbeddedTesting(resources)) {
 				String webAppMount = "/";
-				String targetClassesBase = absolutePath + "/" + "target/classes";
-				String targetTestClassesBase = absolutePath + "/" + "target/test-classes";
 				String archivePath = null;
 				String internalPath = "/META-INF/resources";
-				if (resources.getJarResources() != null && resources.getJarResources().length <= 1) {
-					if (new File(targetClassesBase + internalPath).exists()) {
-						resources.createWebResourceSet(WebResourceRoot.ResourceSetType.POST, webAppMount, targetClassesBase, archivePath, internalPath);
-					}
-					if (new File(targetTestClassesBase + internalPath).exists()) {
-						resources.createWebResourceSet(WebResourceRoot.ResourceSetType.POST, webAppMount, targetTestClassesBase, archivePath, internalPath);
-					}
+
+				for (URL url : ClasspathHelper.forResource("META-INF/resources/", this.getClass().getClassLoader())) {
+					resources.createWebResourceSet(WebResourceRoot.ResourceSetType.POST, webAppMount, base(url), archivePath, internalPath);
 				}
 			}
 		}
