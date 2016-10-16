@@ -16,8 +16,9 @@
 
 package org.joinfaces.primefaces;
 
+import javax.faces.webapp.FacesServlet;
 import org.joinfaces.javaxfaces.JavaxFacesSpringBootAutoConfiguration;
-
+import org.primefaces.webapp.filter.FileUploadFilter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.AutoConfigureBefore;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
@@ -26,10 +27,13 @@ import org.springframework.boot.context.properties.EnableConfigurationProperties
 import org.springframework.boot.web.servlet.ServletContextInitializer;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.web.multipart.support.StandardServletMultipartResolver;
+import org.springframework.web.servlet.DispatcherServlet;
 
 /**
  * Spring Boot Auto Configuration of PrimeFaces.
  * @author Marcelo Fernandes
+ * @author Nurettin Yilmaz
  */
 @Configuration
 @EnableConfigurationProperties(PrimefacesProperties.class)
@@ -45,4 +49,18 @@ public class PrimefacesSpringBootAutoConfiguration {
 	public ServletContextInitializer primefacesServletContextInitializer() {
 		return new PrimefacesServletContextInitializer(this.primefacesProperties);
 	}
+
+	/**
+	 * Additional config for embedded jetty in spring boot, since spring boot
+	 * does not pick up {@link FacesServlet} as a multipart servlet
+	 * as a result multipart requests are not processed without this filter.
+	 *
+	 * Spring's {@link DispatcherServlet} offers {@link StandardServletMultipartResolver}
+	 * But the request never reaches to this resolver.
+	 */
+	@Bean
+	public FileUploadFilter primefacesFileUploadFilter() {
+		return new FileUploadFilter();
+	}
+
 }
