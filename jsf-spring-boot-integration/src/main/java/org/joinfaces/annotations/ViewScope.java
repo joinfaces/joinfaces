@@ -22,6 +22,8 @@ import javax.faces.context.FacesContext;
 
 import org.springframework.beans.factory.ObjectFactory;
 import org.springframework.beans.factory.config.Scope;
+import org.springframework.web.context.request.RequestAttributes;
+import org.springframework.web.context.request.RequestContextHolder;
 
 /**
  * Implementation of view scope.
@@ -61,6 +63,7 @@ public class ViewScope implements Scope {
 
 	@Override
 	public Object resolveContextualObject(String key) {
-		return null;
+		RequestAttributes attributes = RequestContextHolder.currentRequestAttributes();
+		return attributes.resolveReference(key);
 	}
 }
