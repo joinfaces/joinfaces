@@ -17,6 +17,7 @@
 package org.joinfaces.primefaces;
 
 import org.joinfaces.javaxfaces.JavaxFacesSpringBootAutoConfiguration;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.AutoConfigureBefore;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;

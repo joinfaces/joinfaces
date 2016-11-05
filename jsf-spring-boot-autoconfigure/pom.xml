@@ -109,10 +109,5 @@
             <artifactId>richfaces</artifactId>
             <optional>true</optional>
         </dependency>
-        <dependency>
-            <groupId>org.eclipse.jetty</groupId>
-            <artifactId>jetty-servlet</artifactId>
-            <optional>true</optional>
-        </dependency>
     </dependencies>
 </project>
