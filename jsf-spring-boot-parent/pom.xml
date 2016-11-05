@@ -34,7 +34,7 @@
         <bootsfaces.version>0.9.1</bootsfaces.version>
         <angularfaces.version>2.1.11</angularfaces.version>
 
-        <butterfaces.version>2.1.13</butterfaces.version>
+        <butterfaces.version>2.1.14</butterfaces.version>
 
         <richfaces.version>4.5.17.Final</richfaces.version>
                                                                         
@@ -63,7 +63,7 @@
         <findbugs-maven-plugin.version>3.0.4</findbugs-maven-plugin.version>
         <findbugs.excludeFilterFile>${findbugs.dir}/findbugs-exclude.xml</findbugs.excludeFilterFile>
         <jdepend-maven-plugin.version>2.0</jdepend-maven-plugin.version>
-        <maven-pmd-plugin.version>3.6</maven-pmd-plugin.version>
+        <maven-pmd-plugin.version>3.7</maven-pmd-plugin.version>
         <pmd.ruleset>${pmd.dir}/pmd-ruleset.xml</pmd.ruleset>
         <pmd.excludeFromFailureFile />
         <cpd.excludeFromFailureFile />
