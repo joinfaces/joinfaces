@@ -42,6 +42,8 @@
         <reflections.version>0.9.10</reflections.version>
         
         <jboss-jsp-api_2.3_spec.version>1.0.1.Final</jboss-jsp-api_2.3_spec.version>
+
+        <commons.fileupload.version>1.3.2</commons.fileupload.version>
         
         <maven-gpg-plugin.version>1.6</maven-gpg-plugin.version>
         <nexus-staging-maven-plugin.version>1.6.7</nexus-staging-maven-plugin.version>
@@ -387,6 +389,11 @@
                 <groupId>org.richfaces</groupId>
                 <artifactId>richfaces-a4j</artifactId>
                 <version>${richfaces.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>commons-fileupload</groupId>
+                <artifactId>commons-fileupload</artifactId>
+                <version>${commons.fileupload.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
