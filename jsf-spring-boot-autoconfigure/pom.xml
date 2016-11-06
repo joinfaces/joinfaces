@@ -21,7 +21,7 @@
         <duplicate.ignoredResourcePattern>javax/faces/Messages.*\.properties</duplicate.ignoredResourcePattern>
         
         <cobertura.branchRate>95</cobertura.branchRate>
-        <cobertura.totalBranchRate>97</cobertura.totalBranchRate>
+        <cobertura.totalBranchRate>98</cobertura.totalBranchRate>
         <cobertura.packageBranchRate>100</cobertura.packageBranchRate>        
     </properties>
 
@@ -107,6 +107,11 @@
         <dependency>
             <groupId>org.richfaces</groupId>
             <artifactId>richfaces</artifactId>
+            <optional>true</optional>
+        </dependency>
+        <dependency>
+            <groupId>commons-fileupload</groupId>
+            <artifactId>commons-fileupload</artifactId>
             <optional>true</optional>
         </dependency>
     </dependencies>
