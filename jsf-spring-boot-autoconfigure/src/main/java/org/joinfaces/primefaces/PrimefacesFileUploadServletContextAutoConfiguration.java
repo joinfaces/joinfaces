@@ -19,8 +19,6 @@ package org.joinfaces.primefaces;
 import javax.faces.webapp.FacesServlet;
 import javax.servlet.Filter;
 import javax.servlet.MultipartConfigElement;
-import javax.servlet.ServletContext;
-import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
 
 import org.joinfaces.javaxfaces.JavaxFacesSpringBootAutoConfiguration;
@@ -31,6 +29,7 @@ import org.primefaces.webapp.filter.FileUploadFilter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.AutoConfigureAfter;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnExpression;
 import org.springframework.boot.autoconfigure.web.MultipartProperties;
 import org.springframework.boot.web.servlet.ServletContextInitializer;
 import org.springframework.context.annotation.Bean;
@@ -61,32 +60,24 @@ public class PrimefacesFileUploadServletContextAutoConfiguration {
 	@Autowired
 	private MultipartConfigElement multipartConfigElement;
 
-	@Autowired
-	private PrimefacesProperties primefacesProperties;
-
-	@Bean
-	public ServletContextInitializer primefacesFileUploadServletContextInitializer() {
-		String uploader = primefacesProperties.getUploader();
-		if (uploader != null && uploader.equals("commons")) {
-			return new NoOpServletContextInitializer();
-		}
-		return new PrimefacesFileUploadServletContextInitializer(multipartConfigElement);
-	}
-
-	@Bean
-	public Filter fileUploadFilter() {
-		return new FileUploadFilter();
-	}
-
 	/**
 	 * NoOP initializer for commons uploader, since {@link FileUploadFilter}
 	 * suffices for commons file uploader.
+	 * @return primefaces file upload servlet context initializer
 	 */
-	static class NoOpServletContextInitializer implements ServletContextInitializer {
+	@ConditionalOnExpression("'${jsf.primefaces.uploader}' != 'commons'")
+	@Bean
+	public ServletContextInitializer primefacesFileUploadServletContextInitializer() {
+		return new PrimefacesFileUploadServletContextInitializer(multipartConfigElement);
+	}
 
-		@Override
-		public void onStartup(ServletContext servletContext) throws ServletException {
-
-		}
+	/**
+	 * File upload filter is required only if commons fileupload is chosen.
+	 * @return file upload filter
+	 */
+	@ConditionalOnExpression("'${jsf.primefaces.uploader}' == 'commons'")
+	@Bean
+	public Filter fileUploadFilter() {
+		return new FileUploadFilter();
 	}
 }
