@@ -61,8 +61,8 @@ public class PrimefacesFileUploadServletContextAutoConfiguration {
 	private MultipartConfigElement multipartConfigElement;
 
 	/**
-	 * NoOP initializer for commons uploader, since {@link FileUploadFilter}
-	 * suffices for commons file uploader.
+	 * PrimefacesFileUploadServletContextInitializer for native uploader,
+	 * since {@link FileUploadFilter} suffices for commons file uploader.
 	 * @return primefaces file upload servlet context initializer
 	 */
 	@ConditionalOnExpression("'${jsf.primefaces.uploader}' != 'commons'")
