@@ -54,5 +54,6 @@ public class BootsfacesServletContextConfigurer extends ServletContextConfigurer
 		setInitParameterBoolean(PREFFIX + "get_jqueryui_from_cdn", this.bootsfacesProperties.getGetJqueryuiFromCdn());
 		setInitParameterBoolean(PREFFIX + "get_bootstrap_from_cdn", this.bootsfacesProperties.getGetBootstrapFromCdn());
 		setInitParameterBoolean(PREFFIX + "blockUI", this.bootsfacesProperties.getBlockUI());
+		setInitParameterBoolean(PREFFIX + "defaults.decorator", this.bootsfacesProperties.getDefaults().getDecorator());
 	}
 }

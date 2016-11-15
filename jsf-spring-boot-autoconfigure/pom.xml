@@ -22,7 +22,6 @@
         
         <cobertura.branchRate>90</cobertura.branchRate>
         <cobertura.totalBranchRate>95</cobertura.totalBranchRate>
-        <cobertura.packageBranchRate>100</cobertura.packageBranchRate>        
     </properties>
 
     <dependencies>

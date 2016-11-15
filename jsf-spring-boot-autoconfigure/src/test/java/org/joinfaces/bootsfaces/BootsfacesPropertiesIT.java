@@ -34,47 +34,62 @@ public class BootsfacesPropertiesIT {
 
 	@Test
 	public void testTheme() {
-		assertThat(this.bootsfacesProperties.getTheme()).isEqualTo("bootstrap");
+		assertThat(this.bootsfacesProperties.getTheme())
+			.isEqualTo("bootstrap");
 	}
 
 	@Test
 	public void testUsetheme() {
-		assertThat(this.bootsfacesProperties.getUsetheme()).isTrue();
+		assertThat(this.bootsfacesProperties.getUsetheme())
+			.isTrue();
 	}
 
 	@Test
 	public void testUseViewport() {
-		assertThat(this.bootsfacesProperties.getUseViewport()).isTrue();
+		assertThat(this.bootsfacesProperties.getUseViewport())
+			.isTrue();
 	}
 
 	@Test
 	public void testDefaultsRenderLabel() {
-		assertThat(this.bootsfacesProperties.getDefaults().getRenderLabel()).isEqualTo("myRenderLabel");
+		assertThat(this.bootsfacesProperties.getDefaults().getRenderLabel())
+			.isEqualTo("myRenderLabel");
 	}
 
 	@Test
 	public void testGetFontawesomeFromCdn() {
-		assertThat(this.bootsfacesProperties.getGetFontawesomeFromCdn()).isTrue();
+		assertThat(this.bootsfacesProperties.getGetFontawesomeFromCdn())
+			.isTrue();
 	}
 
 	@Test
 	public void testGetJqueryFromCdn() {
-		assertThat(this.bootsfacesProperties.getGetJqueryFromCdn()).isTrue();
+		assertThat(this.bootsfacesProperties.getGetJqueryFromCdn())
+			.isTrue();
 	}
 
 	@Test
 	public void testGetJqueryuiFromCdn() {
-		assertThat(this.bootsfacesProperties.getGetJqueryuiFromCdn()).isTrue();
+		assertThat(this.bootsfacesProperties.getGetJqueryuiFromCdn())
+			.isTrue();
 	}
 
 	@Test
 	public void testGetBootstrapFromCdn() {
-		assertThat(this.bootsfacesProperties.getGetBootstrapFromCdn()).isTrue();
+		assertThat(this.bootsfacesProperties.getGetBootstrapFromCdn())
+			.isTrue();
 	}
 
 	@Test
 	public void testBlockUI() {
-		assertThat(this.bootsfacesProperties.getBlockUI()).isFalse();
+		assertThat(this.bootsfacesProperties.getBlockUI())
+			.isFalse();
+	}
+
+	@Test
+	public void testDefaultsDecorator() {
+		assertThat(this.bootsfacesProperties.getDefaults().getDecorator())
+			.isFalse();
 	}
 
 }

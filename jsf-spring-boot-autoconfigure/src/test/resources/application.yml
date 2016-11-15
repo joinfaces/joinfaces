@@ -278,6 +278,7 @@ jsf:
     blockUI: no
     defaults:
       renderLabel: myRenderLabel
+      decorator: no
 
   # angularfaces namespace
   angularfaces:

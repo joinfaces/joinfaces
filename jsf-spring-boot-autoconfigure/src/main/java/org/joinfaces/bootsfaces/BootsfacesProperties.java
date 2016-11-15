@@ -74,5 +74,7 @@ public class BootsfacesProperties {
 	public static class Defaults {
 
 		private String renderLabel;
+
+		private Boolean decorator;
 	}
 }
