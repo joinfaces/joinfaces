@@ -18,6 +18,7 @@ package org.joinfaces;
 
 import java.lang.annotation.Annotation;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
@@ -97,11 +98,26 @@ public class JsfClassFactory {
 		return result;
 	}
 
+	private void add(Collection<URL> urls, Collection<String> strings, Collection<URL> newURLs) {
+		for (URL url: newURLs) {
+			add(urls, strings, url);
+		}
+	}
+
+	private void add(Collection<URL> urls, Collection<String> strings, URL url) {
+		String string = url.toString();
+		if (!strings.contains(string)) {
+			urls.add(url);
+			strings.add(string);
+		}
+	}
+
 	/**
 	 * Compute types to be handled: set of annotation classes to be handled by
 	 * servlet container initializer and set of other classes to be handled by
 	 * servlet container initializer.
-	 * Search libraries with anotherFacesConfig also.
+	 * Search libraries with anotherFacesConfig, project classes and resources
+	 * folder too.
 	 * @return classes annotated by types handled by servlet container initializer.
 	 */
 	public Set<Class<?>> find() {
@@ -110,12 +126,26 @@ public class JsfClassFactory {
 		TypesHandled handlesTypes = handlesTypes();
 		// check if any type is handled
 		if (!handlesTypes.isEmpty()) {
+			// stores collections of urls to be scanned
+			Collection<URL> urls = new ArrayList<URL>();
+			Collection<String> strings = new HashSet<String>();
+
 			// get only urls of libraries that contains jsf types
-			Collection<URL> urls = new HashSet<URL>(ClasspathHelper.forResource("META-INF/faces-config.xml", this.getClass().getClassLoader()));
+			add(urls, strings, ClasspathHelper.forResource("META-INF/faces-config.xml", this.getClass().getClassLoader()));
+
 			// add jsf library with anotherFacesConfig
 			String anotherFacesConfig = this.jsfAnnotatedClassFactoryConfiguration.getAnotherFacesConfig();
 			if (anotherFacesConfig != null) {
-				urls.addAll(ClasspathHelper.forResource(anotherFacesConfig, this.getClass().getClassLoader()));
+				add(urls, strings, ClasspathHelper.forResource(anotherFacesConfig, this.getClass().getClassLoader()));
+			}
+
+			// add project classes and resources folder
+			for (URL url : ClasspathHelper.forManifest()) {
+				String file = url.getFile();
+				// check if running debug/test or uber jar
+				if (!(file.endsWith(".jar") || file.endsWith(".jar!/"))) {
+					add(urls, strings, url);
+				}
 			}
 
 			// create reflections
