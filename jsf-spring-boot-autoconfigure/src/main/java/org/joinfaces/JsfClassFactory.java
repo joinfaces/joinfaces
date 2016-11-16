@@ -31,9 +31,6 @@ import javax.faces.bean.SessionScoped;
 import javax.faces.bean.ViewScoped;
 import javax.servlet.annotation.HandlesTypes;
 
-import lombok.Builder;
-import lombok.NonNull;
-
 import org.reflections.Reflections;
 import org.reflections.util.ClasspathHelper;
 import org.reflections.util.ConfigurationBuilder;
@@ -44,14 +41,22 @@ import org.slf4j.LoggerFactory;
  * Factory of classes with jsf types handled by servlet context initializer.
  * @author Marcelo Fernandes
  */
-@Builder
 public class JsfClassFactory {
 
 	private static final Logger log = LoggerFactory
 		.getLogger(JsfClassFactory.class);
 
-	@NonNull
 	private JsfClassFactoryConfiguration jsfAnnotatedClassFactoryConfiguration;
+
+	private Collection<URL> urls;
+
+	private Map<Class<? extends Annotation>, Set<Class<?>>> annotatedClassMap;
+
+	private Map<Class<?>, Set<Class<?>>> otherClassMap;
+
+	public JsfClassFactory(JsfClassFactoryConfiguration jsfAnnotatedClassFactoryConfiguration) {
+		this.jsfAnnotatedClassFactoryConfiguration = jsfAnnotatedClassFactoryConfiguration;
+	}
 
 	/**
 	 * Ignore ViewScoped, SessionScoped, RequestScoped and NoneScoped annotations
@@ -119,60 +124,115 @@ public class JsfClassFactory {
 	 * @return collection of urls
 	 */
 	public Collection<URL> getURLs() {
-		// stores collections of urls to be scanned
-		Collection<URL> urls = new ArrayList<URL>();
-		Collection<String> strings = new HashSet<String>();
+		if (urls == null) {
+			// stores collections of urls to be scanned
+			Collection<URL> result = new ArrayList<URL>();
+			Collection<String> strings = new HashSet<String>();
 
-		// get only urls of libraries that contains jsf types
-		add(urls, strings, ClasspathHelper.forResource("META-INF/faces-config.xml", this.getClass().getClassLoader()));
+			// get only urls of libraries that contains jsf types
+			add(result, strings, ClasspathHelper.forResource("META-INF/faces-config.xml", this.getClass().getClassLoader()));
 
-		// add jsf library with anotherFacesConfig
-		String anotherFacesConfig = this.jsfAnnotatedClassFactoryConfiguration.getAnotherFacesConfig();
-		if (anotherFacesConfig != null) {
-			add(urls, strings, ClasspathHelper.forResource(anotherFacesConfig, this.getClass().getClassLoader()));
-		}
-
-		// add project classes and resources folder
-		for (URL url : ClasspathHelper.forManifest()) {
-			String file = url.getFile();
-			// check if running debug/test or uber jar
-			if (!(file.endsWith(".jar") || file.endsWith(".jar!/"))) {
-				add(urls, strings, url);
+			// add jsf library with anotherFacesConfig
+			String anotherFacesConfig = this.jsfAnnotatedClassFactoryConfiguration.getAnotherFacesConfig();
+			if (anotherFacesConfig != null) {
+				add(result, strings, ClasspathHelper.forResource(anotherFacesConfig, this.getClass().getClassLoader()));
 			}
+
+			// add project classes and resources folder
+			for (URL url : ClasspathHelper.forManifest()) {
+				String file = url.getFile();
+				// check if running debug/test or uber jar
+				if (!(file.endsWith(".jar") || file.endsWith(".jar!/"))) {
+					add(result, strings, url);
+				}
+			}
+			urls = result;
 		}
 		return urls;
 	}
 
 	/**
-	 * Compute types to be handled: set of annotation classes to be handled by
-	 * servlet container initializer and set of other classes to be handled by
-	 * servlet container initializer.
+	 * Compute annotated types to be handled by servlet container initializer.
 	 * Search libraries with anotherFacesConfig, project classes and resources
 	 * folder too.
 	 * @return classes annotated by types handled by servlet container initializer.
 	 */
-	public Map<Class<?>, Set<Class<?>>> find() {
-		Map<Class<?>, Set<Class<?>>> result = new HashMap<Class<?>, Set<Class<?>>>();
+	public Map<Class<? extends Annotation>, Set<Class<?>>> getAnnotatedClassMap() {
+		if (annotatedClassMap == null) {
+			computeClasses();
+		}
+
+		return annotatedClassMap;
+	}
+
+	/**
+	 * Compute other types to be handled by servlet container initializer.
+	 * Search libraries with anotherFacesConfig, project classes and resources
+	 * folder too.
+	 * @return classes annotated by types handled by servlet container initializer.
+	 */
+	public Map<Class<?>, Set<Class<?>>> getOtherClassMap() {
+		if (otherClassMap == null) {
+			computeClasses();
+		}
+
+		return otherClassMap;
+	}
+
+	private void computeClasses() {
+		annotatedClassMap = new HashMap<Class<? extends Annotation>, Set<Class<?>>>();
+		otherClassMap = new HashMap<Class<?>, Set<Class<?>>>();
 
 		TypesHandled handlesTypes = handlesTypes();
 		// check if any type is handled
 		if (!handlesTypes.isEmpty()) {
-			// search urls to scan
-			Collection<URL> urls = getURLs();
-
 			// create reflections
-			Reflections reflections = new Reflections(new ConfigurationBuilder().setUrls(urls));
+			Reflections reflections = new Reflections(new ConfigurationBuilder().setUrls(getURLs()));
 
 			// add types annotated for each type to be handled
 			for (Class<? extends Annotation> annotationType : handlesTypes.getAnnotationTypes()) {
-				result.put(annotationType, reflections.getTypesAnnotatedWith(annotationType));
+				annotatedClassMap.put(annotationType, reflections.getTypesAnnotatedWith(annotationType));
 			}
 			// add subtype of other types to be handled
 			for (Class<?> otherType : handlesTypes.getOtherTypes()) {
-				result.put(otherType, (Set<Class<?>>) reflections.getSubTypesOf(otherType));
+				otherClassMap.put(otherType, (Set<Class<?>>) reflections.getSubTypesOf(otherType));
 			}
 		}
+	}
+
+	/**
+	 * Compute all classes to be handled by servlet container initializer.
+	 * @return set of classes.
+	 */
+	public Set<Class<?>> getAllClasses() {
+		Set<Class<?>> result = new HashSet<Class<?>>();
+		result.addAll(getAnnotatedClasses());
+		result.addAll(getOtherClasses());
 
 		return result;
+	}
+
+	/**
+	 * Compute all annotated classes to be handled by servlet container initializer.
+	 * @return set of annotated classes.
+	 */
+	public Set<Class<?>> getAnnotatedClasses() {
+		return collectValues(getAnnotatedClassMap().values());
+	}
+
+	/**
+	 * Compute all other classes to be handled by servlet container initializer.
+	 * @return set of other classes.
+	 */
+	public Set<Class<?>> getOtherClasses() {
+		return collectValues(getOtherClassMap().values());
+	}
+
+	private Set<Class<?>> collectValues(Collection<Set<Class<?>>> sets) {
+		Set<Class<?>> classes = new HashSet<Class<?>>();
+		for (Set<Class<?>> values : sets) {
+			classes.addAll(values);
+		}
+		return classes;
 	}
 }

@@ -16,9 +16,6 @@
 
 package org.joinfaces.myfaces;
 
-import java.util.Map;
-import java.util.Set;
-
 import javax.servlet.ServletContainerInitializer;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
@@ -27,7 +24,6 @@ import org.apache.myfaces.ee6.MyFacesContainerInitializer;
 
 import org.joinfaces.JsfClassFactory;
 import org.joinfaces.JsfClassFactoryConfiguration;
-import org.joinfaces.MapUtil;
 
 import org.springframework.boot.web.servlet.ServletContextInitializer;
 
@@ -77,9 +73,9 @@ public class MyfacesServletContextInitializer implements ServletContextInitializ
 			.configure();
 
 		ServletContainerInitializer servletContainerInitializer = getServletContainerInitializer();
-		Map<Class<?>, Set<Class<?>>> map = JsfClassFactory.builder()
-			.jsfAnnotatedClassFactoryConfiguration(this)
-			.build().find();
-		servletContainerInitializer.onStartup(new MapUtil().collectValues(map), sc);
+		JsfClassFactory jsfClassFactory = new JsfClassFactory(this);
+		JoinFacesAnnotationProvider.setAnnotatedClasses(jsfClassFactory.getAnnotatedClassMap());
+		JoinFacesAnnotationProvider.setUrls(jsfClassFactory.getURLs());
+		servletContainerInitializer.onStartup(jsfClassFactory.getAllClasses(), sc);
 	}
 }
