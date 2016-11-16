@@ -16,6 +16,7 @@
 
 package org.joinfaces.omnifaces;
 
+import java.util.Map;
 import java.util.Set;
 
 import javax.servlet.ServletContainerInitializer;
@@ -24,6 +25,7 @@ import javax.servlet.ServletException;
 
 import org.joinfaces.JsfClassFactory;
 import org.joinfaces.JsfClassFactoryConfiguration;
+import org.joinfaces.MapUtil;
 
 import org.omnifaces.facesviews.FacesViewsInitializer;
 
@@ -70,9 +72,9 @@ public class OmnifacesServletContextInitializer implements ServletContextInitial
 			.configure();
 
 		ServletContainerInitializer servletContainerInitializer = getServletContainerInitializer();
-		Set<Class<?>> classes = JsfClassFactory.builder()
+		Map<Class<?>, Set<Class<?>>> map = JsfClassFactory.builder()
 			.jsfAnnotatedClassFactoryConfiguration(this)
 			.build().find();
-		servletContainerInitializer.onStartup(classes, sc);
+		servletContainerInitializer.onStartup(new MapUtil().collectValues(map), sc);
 	}
 }

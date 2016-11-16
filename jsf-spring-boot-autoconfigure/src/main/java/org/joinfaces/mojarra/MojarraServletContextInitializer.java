@@ -16,6 +16,7 @@
 
 package org.joinfaces.mojarra;
 
+import java.util.Map;
 import java.util.Set;
 
 import javax.servlet.ServletContainerInitializer;
@@ -26,6 +27,7 @@ import com.sun.faces.config.FacesInitializer;
 
 import org.joinfaces.JsfClassFactory;
 import org.joinfaces.JsfClassFactoryConfiguration;
+import org.joinfaces.MapUtil;
 
 import org.springframework.boot.web.servlet.ServletContextInitializer;
 
@@ -75,9 +77,9 @@ public class MojarraServletContextInitializer implements ServletContextInitializ
 			.configure();
 
 		ServletContainerInitializer servletContainerInitializer = getServletContainerInitializer();
-		Set<Class<?>> classes = JsfClassFactory.builder()
+		Map<Class<?>, Set<Class<?>>> map = JsfClassFactory.builder()
 			.jsfAnnotatedClassFactoryConfiguration(this)
 			.build().find();
-		servletContainerInitializer.onStartup(classes, sc);
+		servletContainerInitializer.onStartup(new MapUtil().collectValues(map), sc);
 	}
 }

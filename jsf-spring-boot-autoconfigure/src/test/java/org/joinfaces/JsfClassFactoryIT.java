@@ -37,9 +37,9 @@ public class JsfClassFactoryIT {
 	public void testJavaxFacesHtmlPanelGroupWithMojarra() {
 		MojarraJsfClassFactoryConfiguration configuration = new MojarraJsfClassFactoryConfiguration();
 
-		Set<Class<?>> classes = JsfClassFactory.builder()
+		Set<Class<?>> classes = new MapUtil().collectValues(JsfClassFactory.builder()
 			.jsfAnnotatedClassFactoryConfiguration(configuration)
-			.build().find();
+			.build().find());
 		assertThat(classes).contains(HtmlPanelGroup.class);
 	}
 
@@ -47,9 +47,9 @@ public class JsfClassFactoryIT {
 	public void testMojarraUITextWithMojarra() {
 		MojarraJsfClassFactoryConfiguration configuration = new MojarraJsfClassFactoryConfiguration();
 
-		Set<Class<?>> classes = JsfClassFactory.builder()
+		Set<Class<?>> classes = new MapUtil().collectValues(JsfClassFactory.builder()
 			.jsfAnnotatedClassFactoryConfiguration(configuration)
-			.build().find();
+			.build().find());
 		assertThat(classes).contains(UIText.class);
 	}
 
@@ -57,9 +57,9 @@ public class JsfClassFactoryIT {
 	public void testJavaxFacesHtmlPanelGroupWithMyfaces() {
 		MyfacesJsfClassFactoryConfiguration configuration = new MyfacesJsfClassFactoryConfiguration();
 
-		Set<Class<?>> classes = JsfClassFactory.builder()
+		Set<Class<?>> classes = new MapUtil().collectValues(JsfClassFactory.builder()
 			.jsfAnnotatedClassFactoryConfiguration(configuration)
-			.build().find();
+			.build().find());
 		assertThat(classes).contains(HtmlPanelGroup.class);
 	}
 
@@ -67,9 +67,9 @@ public class JsfClassFactoryIT {
 	public void testMyfacesHtmlGridRendererWithMyfaces() {
 		MyfacesJsfClassFactoryConfiguration configuration = new MyfacesJsfClassFactoryConfiguration();
 
-		Set<Class<?>> classes = JsfClassFactory.builder()
+		Set<Class<?>> classes = new MapUtil().collectValues(JsfClassFactory.builder()
 			.jsfAnnotatedClassFactoryConfiguration(configuration)
-			.build().find();
+			.build().find());
 		assertThat(classes).contains(HtmlGridRenderer.class);
 	}
 
@@ -77,9 +77,9 @@ public class JsfClassFactoryIT {
 	public void testNullServletContextInitializer() {
 		NullJsfClassFactoryConfiguration configuration = new NullJsfClassFactoryConfiguration();
 
-		Set<Class<?>> classes = JsfClassFactory.builder()
+		Set<Class<?>> classes = new MapUtil().collectValues(JsfClassFactory.builder()
 			.jsfAnnotatedClassFactoryConfiguration(configuration)
-			.build().find();
+			.build().find());
 		assertThat(classes).doesNotContain(HtmlGridRenderer.class);
 	}
 
@@ -87,9 +87,9 @@ public class JsfClassFactoryIT {
 	public void testNullAnotherServletContextInitializer() {
 		NullAnotherJsfClassFactoryConfiguration configuration = new NullAnotherJsfClassFactoryConfiguration();
 
-		Set<Class<?>> classes = JsfClassFactory.builder()
+		Set<Class<?>> classes = new MapUtil().collectValues(JsfClassFactory.builder()
 			.jsfAnnotatedClassFactoryConfiguration(configuration)
-			.build().find();
+			.build().find());
 		assertThat(classes).doesNotContain(HtmlGridRenderer.class);
 	}
 

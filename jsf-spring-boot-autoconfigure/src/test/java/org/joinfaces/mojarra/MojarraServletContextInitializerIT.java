@@ -27,6 +27,7 @@ import com.sun.faces.facelets.compiler.UIText;
 import net.bootsfaces.component.tree.TreeRenderer;
 
 import org.joinfaces.JsfClassFactory;
+import org.joinfaces.MapUtil;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -53,9 +54,9 @@ public class MojarraServletContextInitializerIT {
 	public static void setupClasses() {
 		MojarraServletContextInitializer configuration = new MojarraServletContextInitializer(null);
 
-		classes = JsfClassFactory.builder()
+		classes = new MapUtil().collectValues(JsfClassFactory.builder()
 			.jsfAnnotatedClassFactoryConfiguration(configuration)
-			.build().find();
+			.build().find());
 	}
 
 	@Test

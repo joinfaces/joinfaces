@@ -22,6 +22,7 @@ import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 
 import org.joinfaces.JsfClassFactory;
+import org.joinfaces.MapUtil;
 
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -48,9 +49,9 @@ public class OmnifacesServletContextInitializerIT {
 	public static void setupClasses() {
 		OmnifacesServletContextInitializer configuration = new OmnifacesServletContextInitializer(null);
 
-		classes = JsfClassFactory.builder()
+		classes = new MapUtil().collectValues(JsfClassFactory.builder()
 			.jsfAnnotatedClassFactoryConfiguration(configuration)
-			.build().find();
+			.build().find());
 	}
 
 	@Test

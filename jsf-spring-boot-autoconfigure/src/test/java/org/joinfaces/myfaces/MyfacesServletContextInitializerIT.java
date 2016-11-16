@@ -26,6 +26,7 @@ import net.bootsfaces.component.tree.TreeRenderer;
 
 import org.apache.myfaces.renderkit.html.HtmlGridRenderer;
 import org.joinfaces.JsfClassFactory;
+import org.joinfaces.MapUtil;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -52,9 +53,9 @@ public class MyfacesServletContextInitializerIT {
 	public static void setupClasses() {
 		MyfacesServletContextInitializer configuration = new MyfacesServletContextInitializer(null);
 
-		classes = JsfClassFactory.builder()
+		classes = new MapUtil().collectValues(JsfClassFactory.builder()
 			.jsfAnnotatedClassFactoryConfiguration(configuration)
-			.build().find();
+			.build().find());
 	}
 
 	@Test

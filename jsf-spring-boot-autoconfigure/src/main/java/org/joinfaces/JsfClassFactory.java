@@ -20,7 +20,9 @@ import java.lang.annotation.Annotation;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Map;
 import java.util.Set;
 
 import javax.faces.bean.NoneScoped;
@@ -113,6 +115,35 @@ public class JsfClassFactory {
 	}
 
 	/**
+	 * Compute urls to scan for annotations.
+	 * @return collection of urls
+	 */
+	public Collection<URL> getURLs() {
+		// stores collections of urls to be scanned
+		Collection<URL> urls = new ArrayList<URL>();
+		Collection<String> strings = new HashSet<String>();
+
+		// get only urls of libraries that contains jsf types
+		add(urls, strings, ClasspathHelper.forResource("META-INF/faces-config.xml", this.getClass().getClassLoader()));
+
+		// add jsf library with anotherFacesConfig
+		String anotherFacesConfig = this.jsfAnnotatedClassFactoryConfiguration.getAnotherFacesConfig();
+		if (anotherFacesConfig != null) {
+			add(urls, strings, ClasspathHelper.forResource(anotherFacesConfig, this.getClass().getClassLoader()));
+		}
+
+		// add project classes and resources folder
+		for (URL url : ClasspathHelper.forManifest()) {
+			String file = url.getFile();
+			// check if running debug/test or uber jar
+			if (!(file.endsWith(".jar") || file.endsWith(".jar!/"))) {
+				add(urls, strings, url);
+			}
+		}
+		return urls;
+	}
+
+	/**
 	 * Compute types to be handled: set of annotation classes to be handled by
 	 * servlet container initializer and set of other classes to be handled by
 	 * servlet container initializer.
@@ -120,44 +151,25 @@ public class JsfClassFactory {
 	 * folder too.
 	 * @return classes annotated by types handled by servlet container initializer.
 	 */
-	public Set<Class<?>> find() {
-		Set<Class<?>> result = new HashSet<Class<?>>();
+	public Map<Class<?>, Set<Class<?>>> find() {
+		Map<Class<?>, Set<Class<?>>> result = new HashMap<Class<?>, Set<Class<?>>>();
 
 		TypesHandled handlesTypes = handlesTypes();
 		// check if any type is handled
 		if (!handlesTypes.isEmpty()) {
-			// stores collections of urls to be scanned
-			Collection<URL> urls = new ArrayList<URL>();
-			Collection<String> strings = new HashSet<String>();
-
-			// get only urls of libraries that contains jsf types
-			add(urls, strings, ClasspathHelper.forResource("META-INF/faces-config.xml", this.getClass().getClassLoader()));
-
-			// add jsf library with anotherFacesConfig
-			String anotherFacesConfig = this.jsfAnnotatedClassFactoryConfiguration.getAnotherFacesConfig();
-			if (anotherFacesConfig != null) {
-				add(urls, strings, ClasspathHelper.forResource(anotherFacesConfig, this.getClass().getClassLoader()));
-			}
-
-			// add project classes and resources folder
-			for (URL url : ClasspathHelper.forManifest()) {
-				String file = url.getFile();
-				// check if running debug/test or uber jar
-				if (!(file.endsWith(".jar") || file.endsWith(".jar!/"))) {
-					add(urls, strings, url);
-				}
-			}
+			// search urls to scan
+			Collection<URL> urls = getURLs();
 
 			// create reflections
 			Reflections reflections = new Reflections(new ConfigurationBuilder().setUrls(urls));
 
 			// add types annotated for each type to be handled
 			for (Class<? extends Annotation> annotationType : handlesTypes.getAnnotationTypes()) {
-				result.addAll(reflections.getTypesAnnotatedWith(annotationType));
+				result.put(annotationType, reflections.getTypesAnnotatedWith(annotationType));
 			}
 			// add subtype of other types to be handled
 			for (Class<?> otherType : handlesTypes.getOtherTypes()) {
-				result.addAll(reflections.getSubTypesOf(otherType));
+				result.put(otherType, (Set<Class<?>>) reflections.getSubTypesOf(otherType));
 			}
 		}
 
