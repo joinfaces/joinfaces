@@ -51,10 +51,6 @@
         </dependency>
         <dependency>
             <groupId>org.primefaces.extensions</groupId>
-            <artifactId>all-themes</artifactId>
-        </dependency>        
-        <dependency>
-            <groupId>org.primefaces.extensions</groupId>
             <artifactId>primefaces-extensions</artifactId>
         </dependency>
         <dependency>

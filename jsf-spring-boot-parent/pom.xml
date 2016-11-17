@@ -28,7 +28,6 @@
         <omnifaces.version>1.14</omnifaces.version>
         
         <primefaces.version>6.0</primefaces.version>        
-        <all-themes.version>1.0.8</all-themes.version>
         <primefaces-extensions.version>6.0.0</primefaces-extensions.version>
 
         <bootsfaces.version>1.0.0</bootsfaces.version>
@@ -184,12 +183,6 @@
                 <artifactId>jboss-jsp-api_2.3_spec</artifactId>
                 <version>${jboss-jsp-api_2.3_spec.version}</version>
             </dependency>    
-            <dependency>
-                <groupId>org.primefaces.extensions</groupId>
-                <artifactId>all-themes</artifactId>
-                <version>${all-themes.version}</version>
-                <scope>runtime</scope>
-            </dependency>        
             <dependency>
                 <groupId>org.primefaces.extensions</groupId>
                 <artifactId>primefaces-extensions</artifactId>
