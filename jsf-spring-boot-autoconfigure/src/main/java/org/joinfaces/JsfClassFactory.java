@@ -142,7 +142,7 @@ public class JsfClassFactory {
 			for (URL url : ClasspathHelper.forManifest()) {
 				String file = url.getFile();
 				// check if running debug/test or uber jar
-				if (!(file.endsWith(".jar") || file.endsWith(".jar!/"))) {
+				if (!(file.endsWith(".jar") || file.endsWith(".jar!/") || file.endsWith(".war"))) {
 					add(result, strings, url);
 				}
 			}
