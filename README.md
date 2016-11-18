@@ -32,7 +32,6 @@ Note that all starters include the following libraries
 
 Library | Dependency | Description
 ------------ | ------------- | -------------
-[primefaces-all-themes](http://primefaces.org/) | [1.0.8](http://search.maven.org/#artifactdetails\|org.primefaces.extensions\|all-themes\|1.0.8\|jar) | Themes for primefaces
 [omnifaces](http://omnifaces.org/) | [1.14](http://search.maven.org/#artifactdetails\|org.omnifaces\|omnifaces\|1.14\|jar) | Utility library for JSF 2
 [cdi-api](http://www.cdi-spec.org/) | [1.2](http://search.maven.org/#artifactdetails\|javax.enterprise\|cdi-api\|1.2\|jar) | Api of CDI (Contexts and Dependency Injection)
 
