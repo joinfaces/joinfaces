@@ -22,7 +22,7 @@
 
         <lombok-maven-plugin.version>1.16.10.0</lombok-maven-plugin.version>        
         
-        <javax.faces.version>2.2.13</javax.faces.version>
+        <javax.faces.version>2.2.14</javax.faces.version>
         <myfaces.version>2.2.11</myfaces.version>
 
         <omnifaces.version>1.14</omnifaces.version>
