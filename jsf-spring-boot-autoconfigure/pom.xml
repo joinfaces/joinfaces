@@ -21,8 +21,8 @@
         <duplicate.ignoredClassPattern>javax.faces.*$</duplicate.ignoredClassPattern>
         <duplicate.ignoredResourcePattern>javax/faces/Messages.*\.properties</duplicate.ignoredResourcePattern>
         
-        <cobertura.branchRate>94</cobertura.branchRate>
-        <cobertura.totalBranchRate>96</cobertura.totalBranchRate>
+        <cobertura.branchRate>92</cobertura.branchRate>
+        <cobertura.totalBranchRate>95</cobertura.totalBranchRate>
     </properties>
 
     <dependencies>
