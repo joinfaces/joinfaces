@@ -420,4 +420,12 @@ public class MojarraProperties {
 	 */
 	private String faceletFactory;
 
+	/**
+	 * When this context param is set to true, this would set a feature on the SAX
+	 * parser to disallow DOCTYPE declarations. When set to false, this would set
+	 * a feature on the SAX parser to allow DOCTYPE declarations. When this context
+	 * param is not specified, whether or not DOCTYPE declarations are allowed would
+	 * just depend on the SAXParserFactory implementation in use, as is the case today.
+	 */
+	private Boolean disallowDoctypeDecl;
 }

@@ -84,6 +84,7 @@ jsf:
     sendPoweredByHeader: true
     serializationProvider: myProvider
     faceletFactory: myFactory
+    disallowDoctypeDecl: true
 
   # myfaces namespace
   myfaces:

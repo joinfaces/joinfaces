@@ -89,5 +89,6 @@ public class MojarraServletContextConfigurer extends ServletContextConfigurer {
 		setInitParameterBoolean("sendPoweredByHeader", this.mojarraProperties.getSendPoweredByHeader());
 		setInitParameterString("serializationProvider", this.mojarraProperties.getSerializationProvider());
 		setInitParameterString("faceletFactory", this.mojarraProperties.getFaceletFactory());
+		setInitParameterBoolean("disallowDoctypeDecl", this.mojarraProperties.getDisallowDoctypeDecl());
 	}
 }
