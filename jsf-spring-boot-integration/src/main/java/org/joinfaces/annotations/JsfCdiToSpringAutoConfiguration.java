@@ -29,13 +29,16 @@ import org.springframework.core.env.Environment;
 @Configuration
 public class JsfCdiToSpringAutoConfiguration {
 
+	/**
+	 * Property key to customize the order for JsfCdiToSpringBeanFactoryPostProcessor
+	 */
 	public static final String JSF_CDI_INITIALIZER_ORDER = "jsf.cdi.initializerOrder";
 
-        /**
-         * BeanFactoryPostProcessor to enable jsf cdi annotations in spring.
-         * @param environment environment to load de property to set the order
-         * @return 
-         */
+	/**
+	 * BeanFactoryPostProcessor to enable jsf cdi annotations in spring.
+	 * @param environment environment to load de property to set the order
+	 * @return beanFactoryPostProcessor to enable jsf-cdi annotations
+	 */
 	@Bean
 	public static BeanFactoryPostProcessor beanFactoryPostProcessor(Environment environment) {
 		JsfCdiToSpringBeanFactoryPostProcessor bfpp = new JsfCdiToSpringBeanFactoryPostProcessor();
