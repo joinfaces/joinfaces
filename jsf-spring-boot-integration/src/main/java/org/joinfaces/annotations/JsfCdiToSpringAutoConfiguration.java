@@ -30,7 +30,7 @@ import org.springframework.core.env.Environment;
 public class JsfCdiToSpringAutoConfiguration {
 
 	/**
-	 * Property key to customize the order for JsfCdiToSpringBeanFactoryPostProcessor
+	 * Property key to customize the order for JsfCdiToSpringBeanFactoryPostProcessor.
 	 */
 	public static final String JSF_CDI_INITIALIZER_ORDER = "jsf.cdi.initializerOrder";
 
