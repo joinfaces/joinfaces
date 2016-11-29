@@ -32,7 +32,7 @@ public class JsfCdiToSpringAutoConfiguration {
 	/**
 	 * Property key to customize the order for JsfCdiToSpringBeanFactoryPostProcessor.
 	 */
-	public static final String JSF_CDI_INITIALIZER_ORDER = "jsf.cdi.initializerOrder";
+	public static final String JSF_CDI_CONFIGURATION_ORDER = "jsf.cdi.configurationOrder";
 
 	/**
 	 * BeanFactoryPostProcessor to enable jsf cdi annotations in spring.
@@ -42,7 +42,7 @@ public class JsfCdiToSpringAutoConfiguration {
 	@Bean
 	public static BeanFactoryPostProcessor beanFactoryPostProcessor(Environment environment) {
 		JsfCdiToSpringBeanFactoryPostProcessor bfpp = new JsfCdiToSpringBeanFactoryPostProcessor();
-		bfpp.setOrder(environment.getProperty(JSF_CDI_INITIALIZER_ORDER, Integer.class, Ordered.LOWEST_PRECEDENCE));
+		bfpp.setOrder(environment.getProperty(JSF_CDI_CONFIGURATION_ORDER, Integer.class, Ordered.LOWEST_PRECEDENCE));
 		return bfpp;
 	}
 
