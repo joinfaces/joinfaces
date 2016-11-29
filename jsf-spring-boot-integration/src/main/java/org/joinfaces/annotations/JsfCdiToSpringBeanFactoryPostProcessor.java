@@ -24,6 +24,7 @@ import org.springframework.beans.factory.annotation.AnnotatedBeanDefinition;
 import org.springframework.beans.factory.config.BeanDefinition;
 import org.springframework.beans.factory.config.BeanFactoryPostProcessor;
 import org.springframework.beans.factory.config.ConfigurableListableBeanFactory;
+import org.springframework.core.Ordered;
 
 /**
  * Add custom JSF CDI scope implementations. Picks up JSF and CDI annotations both on
@@ -32,10 +33,12 @@ import org.springframework.beans.factory.config.ConfigurableListableBeanFactory;
  * @author Marcelo Fernandes
  * @author Nurettin Yilmaz
  */
-public class JsfCdiToSpringBeanFactoryPostProcessor implements BeanFactoryPostProcessor {
+public class JsfCdiToSpringBeanFactoryPostProcessor implements BeanFactoryPostProcessor, Ordered {
 
 	private static final Logger logger = LoggerFactory
 		.getLogger(JsfCdiToSpringBeanFactoryPostProcessor.class);
+
+	private int order = Ordered.LOWEST_PRECEDENCE;
 
 	@Override
 	public void postProcessBeanFactory(ConfigurableListableBeanFactory clbf) throws BeansException {
@@ -71,9 +74,18 @@ public class JsfCdiToSpringBeanFactoryPostProcessor implements BeanFactoryPostPr
 				definition.setScope(scopeName);
 
 				logger.debug(definition.getBeanClassName()
-								+ " - Scope(" + definition.getScope().toUpperCase()
-								+ ")");
+					+ " - Scope(" + definition.getScope().toUpperCase()
+					+ ")");
 			}
 		}
+	}
+
+	@Override
+	public int getOrder() {
+		return this.order;
+	}
+
+	public void setOrder(int order) {
+		this.order = order;
 	}
 }
