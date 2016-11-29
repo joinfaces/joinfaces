@@ -1,1 +1,1 @@
-org.springframework.context.ApplicationContextInitializer=org.joinfaces.annotations.JsfCdiToSpringApplicationContextInitializer
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=org.joinfaces.annotations.JsfCdiToSpringAutoConfiguration
