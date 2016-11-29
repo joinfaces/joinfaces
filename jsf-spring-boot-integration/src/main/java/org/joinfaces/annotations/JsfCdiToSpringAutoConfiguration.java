@@ -16,7 +16,6 @@
 
 package org.joinfaces.annotations;
 
-import org.springframework.beans.factory.config.BeanFactoryPostProcessor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.Ordered;
@@ -40,7 +39,7 @@ public class JsfCdiToSpringAutoConfiguration {
 	 * @return beanFactoryPostProcessor to enable jsf-cdi annotations
 	 */
 	@Bean
-	public static BeanFactoryPostProcessor beanFactoryPostProcessor(Environment environment) {
+	public static JsfCdiToSpringBeanFactoryPostProcessor jsfCdiToSpringBeanFactoryPostProcessor(Environment environment) {
 		JsfCdiToSpringBeanFactoryPostProcessor bfpp = new JsfCdiToSpringBeanFactoryPostProcessor();
 		bfpp.setOrder(environment.getProperty(JSF_CDI_CONFIGURATION_ORDER, Integer.class, Ordered.LOWEST_PRECEDENCE));
 		return bfpp;
