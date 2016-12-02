@@ -17,6 +17,6 @@
 /**
  * Classes to support automatically JSF and CDI annotations.
  *
- * @see org.joinfaces.annotations.JsfCdiToSpringApplicationContextInitializer
+ * @see org.joinfaces.annotations.JsfCdiToSpringAutoConfiguration
  */
 package org.joinfaces.annotations;
