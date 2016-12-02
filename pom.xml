@@ -4,7 +4,7 @@
 
     <groupId>org.joinfaces</groupId>
     <artifactId>jsf-spring-boot-build</artifactId>
-    <version>2.3.2-SNAPSHOT</version>
+    <version>2.3.2</version>
     <packaging>pom</packaging>
 
     <properties>
@@ -223,7 +223,7 @@
         <connection>scm:git:https://github.com/joinfaces/joinfaces.git</connection>
         <developerConnection>scm:git:https://github.com/joinfaces/joinfaces.git</developerConnection>
         <url>scm:git:https://github.com/joinfaces/joinfaces.git</url>
-        <tag>HEAD</tag>
+        <tag>jsf-spring-boot-build-2.3.2</tag>
     </scm>
 
     <organization>
