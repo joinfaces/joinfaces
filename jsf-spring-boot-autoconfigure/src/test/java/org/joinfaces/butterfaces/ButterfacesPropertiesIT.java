@@ -152,4 +152,10 @@ public class ButterfacesPropertiesIT {
 			.isTrue();
 	}
 
+	@Test
+	public void testTreeBoxShowClearButton() {
+		assertThat(this.butterfacesProperties.getTreebox().getShowClearButton())
+			.isTrue();
+	}
+
 }
