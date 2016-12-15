@@ -60,6 +60,7 @@ public class ButterfacesServletContextConfigurer extends ServletContextConfigure
 		setInitParameterString(WebXmlParameters.CTX_PARAM_SORT_GLYPHICON, this.butterfacesProperties.getGlyphicon().getSort().getNone());
 		setInitParameterString(WebXmlParameters.CTX_PARAM_SPINNER_TEXT, this.butterfacesProperties.getSpinnerText());
 		setInitParameterBoolean(WebXmlParameters.CTX_PARAM_USE_COMPRESSED_RESOURCES, this.butterfacesProperties.getUseCompressedResources());
+		setInitParameterBoolean(WebXmlParameters.CTX_PARAM_TREEBOX_SHOW_CLEAR_BUTTON, this.butterfacesProperties.getTreebox().getShowClearButton());
 
 		// this bootsfaces parameters should be set to work with butterfaces
 		// https://github.com/ButterFaces/bootsfaces-integration

@@ -308,6 +308,8 @@ jsf:
     integration:
       primefaces:
         disableJQuery: true
+    treebox:
+      showClearButton: true
     glyphicon:
       collapsing: o_collape
       expansion: o_expand

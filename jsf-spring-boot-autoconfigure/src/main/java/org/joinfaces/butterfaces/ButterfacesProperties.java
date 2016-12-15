@@ -58,6 +58,8 @@ public class ButterfacesProperties {
 
 	private Glyphicon glyphicon = new Glyphicon();
 
+	private Treebox treebox = new Treebox();
+
 	/**
 	 * As default ButterFaces comes with an actual version of jQuery 2.x. To
 	 * disable ButterFaces jQuery version because of using your own version you
@@ -94,6 +96,15 @@ public class ButterfacesProperties {
 	private Boolean useCompressedResources;
 
 	private Integration integration = new Integration();
+
+	/**
+	 * Treebox class of specific tree box properties.
+	 */
+	@Getter
+	@Setter
+	public static class Treebox {
+		private Boolean showClearButton;
+	}
 
 	/**
 	 * Glyphicon class of collapsing, expansion, options, refresh and order properties.
