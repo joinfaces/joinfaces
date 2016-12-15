@@ -103,7 +103,7 @@ public class ButterfacesProperties {
 	@Getter
 	@Setter
 	public static class Treebox {
-		private Boolean showClearButton = true;
+		private Boolean showClearButton;
 	}
 
 	/**
