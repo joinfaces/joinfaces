@@ -24,6 +24,8 @@ import org.apache.catalina.LifecycleState;
 import org.apache.catalina.WebResourceRoot;
 import org.apache.catalina.WebResourceSet;
 import org.apache.catalina.webresources.DirResourceSet;
+import org.apache.catalina.webresources.JarResourceSet;
+import org.apache.catalina.webresources.JarWarResourceSet;
 import org.apache.catalina.webresources.StandardRoot;
 
 import org.junit.Test;
@@ -123,7 +125,7 @@ public class JsfTomcatApplicationListenerIT {
 	}
 
 	@Test
-	public void jarResourcesBiggerThan1() throws LifecycleException {
+	public void jarResourcesTesting() throws LifecycleException {
 		Context standardContext = Mockito.mock(Context.class);
 		WebResourceRoot webResourceRoot = Mockito.mock(WebResourceRoot.class);
 		LifecycleState state = LifecycleState.NEW;
@@ -134,6 +136,67 @@ public class JsfTomcatApplicationListenerIT {
 
 		String TEST = "/test";
 		WebResourceSet[] array = {new DirResourceSet(webResourceRoot, TEST, TEST, TEST), new DirResourceSet(webResourceRoot, TEST, TEST, TEST)};
+
+		Mockito.when(webResourceRoot.getJarResources()).thenReturn(array);
+
+		JsfTomcatContextCustomizer jsfTomcatContextCustomizer = new JsfTomcatContextCustomizer();
+		jsfTomcatContextCustomizer.customize(standardContext);
+
+		JsfTomcatApplicationListener jsfTomcatApplicationListener = JsfTomcatApplicationListener.builder().context(jsfTomcatContextCustomizer.getContext()).build();
+		jsfTomcatApplicationListener.onApplicationEvent(null);
+
+		assertThat(jsfTomcatApplicationListener)
+			.isNotNull();
+	}
+
+	@Test
+	public void jarResourcesEmbeddedJarWithoutAppResources() throws LifecycleException {
+		Context standardContext = Mockito.mock(Context.class);
+		WebResourceRoot webResourceRoot = Mockito.mock(WebResourceRoot.class);
+		LifecycleState state = LifecycleState.NEW;
+		Mockito.when(webResourceRoot.getContext()).thenReturn(standardContext);
+		Mockito.when(webResourceRoot.getState()).thenReturn(state);
+		Mockito.when(standardContext.getResources()).thenReturn(webResourceRoot);
+		Mockito.when(standardContext.getAddWebinfClassesResources()).thenReturn(Boolean.FALSE);
+
+		File file = new File("target" + File.separator + "test-classes" + File.separator + "test.jar");
+		JarWarResourceSet jarWarResourceSet = new JarWarResourceSet(webResourceRoot, "/", file.getAbsolutePath(), "internal.jar", "/META-INF/resources");
+		jarWarResourceSet.init();
+		
+		String TEST = "/test";
+		DirResourceSet dirResourceSet = new DirResourceSet(webResourceRoot, TEST, TEST, TEST);
+		
+		WebResourceSet[] array = {jarWarResourceSet, dirResourceSet};
+
+		Mockito.when(webResourceRoot.getJarResources()).thenReturn(array);
+
+		JsfTomcatContextCustomizer jsfTomcatContextCustomizer = new JsfTomcatContextCustomizer();
+		jsfTomcatContextCustomizer.customize(standardContext);
+
+		JsfTomcatApplicationListener jsfTomcatApplicationListener = JsfTomcatApplicationListener.builder().context(jsfTomcatContextCustomizer.getContext()).build();
+		jsfTomcatApplicationListener.onApplicationEvent(null);
+
+		assertThat(jsfTomcatApplicationListener)
+			.isNotNull();
+	}
+
+	@Test
+	public void jarResourcesEmbeddedJarWithAppResources() throws LifecycleException {
+		Context standardContext = Mockito.mock(Context.class);
+		WebResourceRoot webResourceRoot = Mockito.mock(WebResourceRoot.class);
+		LifecycleState state = LifecycleState.NEW;
+		Mockito.when(webResourceRoot.getContext()).thenReturn(standardContext);
+		Mockito.when(webResourceRoot.getState()).thenReturn(state);
+		Mockito.when(standardContext.getResources()).thenReturn(webResourceRoot);
+		Mockito.when(standardContext.getAddWebinfClassesResources()).thenReturn(Boolean.FALSE);
+
+		File file = new File("target" + File.separator + "test-classes" + File.separator + "test.jar");
+		JarWarResourceSet jarWarResourceSet = new JarWarResourceSet(webResourceRoot, "/", file.getAbsolutePath(), "internal.jar", "/META-INF/resources");
+		jarWarResourceSet.init();
+		
+		JarResourceSet jarResourceSet = new JarResourceSet(webResourceRoot, "/", file.getAbsolutePath(), "/META-INF/resources");
+		
+		WebResourceSet[] array = {jarWarResourceSet, jarResourceSet};
 
 		Mockito.when(webResourceRoot.getJarResources()).thenReturn(array);
 

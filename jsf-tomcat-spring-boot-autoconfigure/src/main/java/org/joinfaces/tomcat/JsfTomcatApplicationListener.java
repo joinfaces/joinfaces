@@ -22,6 +22,9 @@ import lombok.Builder;
 
 import org.apache.catalina.Context;
 import org.apache.catalina.WebResourceRoot;
+import org.apache.catalina.WebResourceSet;
+import org.apache.catalina.webresources.JarResourceSet;
+import org.apache.catalina.webresources.JarWarResourceSet;
 import org.reflections.util.ClasspathHelper;
 
 import org.springframework.boot.context.event.ApplicationReadyEvent;
@@ -38,10 +41,50 @@ public class JsfTomcatApplicationListener implements ApplicationListener<Applica
 
 	private Context context;
 
-	private boolean isEmbeddedTesting(WebResourceRoot resources) {
+	private boolean isRunningTesting(WebResourceRoot resources) {
 		return resources != null
 			&& resources.getJarResources() != null
 			&& resources.getJarResources().length <= 1;
+	}
+
+	private boolean isRunningEmbeddedJar(WebResourceRoot resources) {
+		boolean result = false;
+		if (resources != null && resources.getJarResources() != null) {
+			for (WebResourceSet resourceSet :resources.getJarResources()) {
+				if (resourceSet instanceof JarWarResourceSet
+					&& resourceSet.getBaseUrl().getFile().endsWith(".jar")) {
+					result = true;
+					break;
+				}
+			}
+		}
+		return result;
+	}
+
+	private boolean containsAppResources(WebResourceRoot resources) {
+		boolean result = false;
+		if (resources != null && resources.getJarResources() != null) {
+			for (WebResourceSet resourceSet :resources.getJarResources()) {
+				if (resourceSet instanceof JarResourceSet) {
+					result = true;
+					break;
+				}
+			}
+		}
+		return result;
+	}
+
+	private URL mainFile(WebResourceRoot resources) {
+		URL result = null;
+		if (resources != null && resources.getJarResources() != null) {
+			for (WebResourceSet resourceSet :resources.getJarResources()) {
+				if (resourceSet instanceof JarWarResourceSet) {
+					result = resourceSet.getBaseUrl();
+					break;
+				}
+			}
+		}
+		return result;
 	}
 
 	private String base(URL url) {
@@ -62,13 +105,22 @@ public class JsfTomcatApplicationListener implements ApplicationListener<Applica
 		if (this.context != null) {
 			WebResourceRoot resources = this.context.getResources();
 
-			if (isEmbeddedTesting(resources)) {
+			if (isRunningEmbeddedJar(resources) && !containsAppResources(resources)) {
+				String webAppMount = "/";
+				String archivePath = null;
+				String internalPath = "/META-INF/resources";
+
+				resources.createWebResourceSet(WebResourceRoot.ResourceSetType.POST,
+					webAppMount, base(mainFile(resources)), archivePath, internalPath);
+			}
+			else if (isRunningTesting(resources)) {
 				String webAppMount = "/";
 				String archivePath = null;
 				String internalPath = "/META-INF/resources";
 
 				for (URL url : ClasspathHelper.forResource("META-INF/resources/", this.getClass().getClassLoader())) {
-					resources.createWebResourceSet(WebResourceRoot.ResourceSetType.POST, webAppMount, base(url), archivePath, internalPath);
+					resources.createWebResourceSet(WebResourceRoot.ResourceSetType.POST,
+						webAppMount, base(url), archivePath, internalPath);
 				}
 			}
 		}
