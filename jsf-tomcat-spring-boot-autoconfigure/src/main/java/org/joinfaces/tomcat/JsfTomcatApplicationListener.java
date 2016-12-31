@@ -32,7 +32,7 @@ import org.springframework.context.ApplicationListener;
 
 /**
  * Jsf Tomcat application listener to add resources to jsf access resources at
- * integration tests.
+ * integration tests or embedded jar.
  *
  * @author Marcelo Fernandes
  */
@@ -42,20 +42,16 @@ public class JsfTomcatApplicationListener implements ApplicationListener<Applica
 	private Context context;
 
 	private boolean isRunningTesting(WebResourceRoot resources) {
-		return resources != null
-			&& resources.getJarResources() != null
-			&& resources.getJarResources().length <= 1;
+		return resources.getJarResources().length <= 1;
 	}
 
 	private boolean isRunningEmbeddedJar(WebResourceRoot resources) {
 		boolean result = false;
-		if (resources != null && resources.getJarResources() != null) {
-			for (WebResourceSet resourceSet :resources.getJarResources()) {
-				if (resourceSet instanceof JarWarResourceSet
-					&& resourceSet.getBaseUrl().getFile().endsWith(".jar")) {
-					result = true;
-					break;
-				}
+		for (WebResourceSet resourceSet :resources.getJarResources()) {
+			if (resourceSet instanceof JarWarResourceSet
+				&& resourceSet.getBaseUrl().getFile().endsWith(".jar")) {
+				result = true;
+				break;
 			}
 		}
 		return result;
@@ -63,12 +59,10 @@ public class JsfTomcatApplicationListener implements ApplicationListener<Applica
 
 	private boolean containsAppResources(WebResourceRoot resources) {
 		boolean result = false;
-		if (resources != null && resources.getJarResources() != null) {
-			for (WebResourceSet resourceSet :resources.getJarResources()) {
-				if (resourceSet instanceof JarResourceSet) {
-					result = true;
-					break;
-				}
+		for (WebResourceSet resourceSet :resources.getJarResources()) {
+			if (resourceSet instanceof JarResourceSet) {
+				result = true;
+				break;
 			}
 		}
 		return result;
@@ -76,12 +70,10 @@ public class JsfTomcatApplicationListener implements ApplicationListener<Applica
 
 	private URL mainFile(WebResourceRoot resources) {
 		URL result = null;
-		if (resources != null && resources.getJarResources() != null) {
-			for (WebResourceSet resourceSet :resources.getJarResources()) {
-				if (resourceSet instanceof JarWarResourceSet) {
-					result = resourceSet.getBaseUrl();
-					break;
-				}
+		for (WebResourceSet resourceSet :resources.getJarResources()) {
+			if (resourceSet instanceof JarWarResourceSet) {
+				result = resourceSet.getBaseUrl();
+				break;
 			}
 		}
 		return result;
@@ -105,22 +97,24 @@ public class JsfTomcatApplicationListener implements ApplicationListener<Applica
 		if (this.context != null) {
 			WebResourceRoot resources = this.context.getResources();
 
-			if (isRunningEmbeddedJar(resources) && !containsAppResources(resources)) {
-				String webAppMount = "/";
-				String archivePath = null;
-				String internalPath = "/META-INF/resources";
+			if (resources != null && resources.getJarResources() != null) {
+				if (isRunningEmbeddedJar(resources) && !containsAppResources(resources)) {
+					String webAppMount = "/";
+					String archivePath = null;
+					String internalPath = "/META-INF/resources";
 
-				resources.createWebResourceSet(WebResourceRoot.ResourceSetType.POST,
-					webAppMount, base(mainFile(resources)), archivePath, internalPath);
-			}
-			else if (isRunningTesting(resources)) {
-				String webAppMount = "/";
-				String archivePath = null;
-				String internalPath = "/META-INF/resources";
-
-				for (URL url : ClasspathHelper.forResource("META-INF/resources/", this.getClass().getClassLoader())) {
 					resources.createWebResourceSet(WebResourceRoot.ResourceSetType.POST,
-						webAppMount, base(url), archivePath, internalPath);
+						webAppMount, base(mainFile(resources)), archivePath, internalPath);
+				}
+				else if (isRunningTesting(resources)) {
+					String webAppMount = "/";
+					String archivePath = null;
+					String internalPath = "/META-INF/resources";
+
+					for (URL url : ClasspathHelper.forResource("META-INF/resources/", this.getClass().getClassLoader())) {
+						resources.createWebResourceSet(WebResourceRoot.ResourceSetType.POST,
+							webAppMount, base(url), archivePath, internalPath);
+					}
 				}
 			}
 		}

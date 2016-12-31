@@ -20,9 +20,7 @@ import java.io.File;
 
 import org.apache.catalina.Context;
 import org.apache.catalina.LifecycleException;
-import org.apache.catalina.LifecycleState;
 import org.apache.catalina.WebResourceRoot;
-import org.apache.catalina.WebResourceSet;
 import org.apache.catalina.webresources.DirResourceSet;
 import org.apache.catalina.webresources.JarResourceSet;
 import org.apache.catalina.webresources.JarWarResourceSet;
@@ -36,6 +34,12 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 public class JsfTomcatApplicationListenerIT {
 
+	private static final String METAINF_RESOURCES = "/META-INF/resources";
+	private static final String TARGET = "target";
+	private static final String TEST_CLASSES = "test-classes";
+	private static final String INTERNAL_JAR = "internal.jar";
+	private static final String TEST = "/test";
+
 	@Test
 	public void customize() throws LifecycleException {
 		Context standardContext = Mockito.mock(Context.class);
@@ -46,7 +50,8 @@ public class JsfTomcatApplicationListenerIT {
 		JsfTomcatContextCustomizer jsfTomcatContextCustomizer = new JsfTomcatContextCustomizer();
 		jsfTomcatContextCustomizer.customize(standardContext);
 
-		JsfTomcatApplicationListener jsfTomcatApplicationListener = JsfTomcatApplicationListener.builder().context(jsfTomcatContextCustomizer.getContext()).build();
+		JsfTomcatApplicationListener jsfTomcatApplicationListener = JsfTomcatApplicationListener
+			.builder().context(jsfTomcatContextCustomizer.getContext()).build();
 		jsfTomcatApplicationListener.onApplicationEvent(null);
 		assertThat(webResourceRoot.getPostResources().length)
 			.isEqualTo(2);
@@ -60,7 +65,7 @@ public class JsfTomcatApplicationListenerIT {
 		Mockito.when(standardContext.getAddWebinfClassesResources()).thenReturn(Boolean.FALSE);
 
 		String absolutePath = new File("").getAbsolutePath();
-		String internalPath = "/META-INF/resources";
+		String internalPath = METAINF_RESOURCES;
 
 		String targetTestClassesBase = absolutePath + "/" + "target/test-classes";
 		File testClassesResources = new File(targetTestClassesBase + internalPath);
@@ -71,7 +76,8 @@ public class JsfTomcatApplicationListenerIT {
 		JsfTomcatContextCustomizer jsfTomcatContextCustomizer = new JsfTomcatContextCustomizer();
 		jsfTomcatContextCustomizer.customize(standardContext);
 
-		JsfTomcatApplicationListener jsfTomcatApplicationListener = JsfTomcatApplicationListener.builder().context(jsfTomcatContextCustomizer.getContext()).build();
+		JsfTomcatApplicationListener jsfTomcatApplicationListener = JsfTomcatApplicationListener
+			.builder().context(jsfTomcatContextCustomizer.getContext()).build();
 
 		jsfTomcatApplicationListener.onApplicationEvent(null);
 		if (!testClassesResources.delete()) {
@@ -83,7 +89,8 @@ public class JsfTomcatApplicationListenerIT {
 
 	@Test
 	public void contextNull() {
-		JsfTomcatApplicationListener jsfTomcatApplicationListener = JsfTomcatApplicationListener.builder().build();
+		JsfTomcatApplicationListener jsfTomcatApplicationListener = JsfTomcatApplicationListener
+			.builder().build();
 		jsfTomcatApplicationListener.onApplicationEvent(null);
 
 		assertThat(jsfTomcatApplicationListener)
@@ -99,7 +106,8 @@ public class JsfTomcatApplicationListenerIT {
 		JsfTomcatContextCustomizer jsfTomcatContextCustomizer = new JsfTomcatContextCustomizer();
 		jsfTomcatContextCustomizer.customize(standardContext);
 
-		JsfTomcatApplicationListener jsfTomcatApplicationListener = JsfTomcatApplicationListener.builder().context(jsfTomcatContextCustomizer.getContext()).build();
+		JsfTomcatApplicationListener jsfTomcatApplicationListener = JsfTomcatApplicationListener
+			.builder().context(jsfTomcatContextCustomizer.getContext()).build();
 		jsfTomcatApplicationListener.onApplicationEvent(null);
 
 		assertThat(jsfTomcatApplicationListener)
@@ -117,7 +125,8 @@ public class JsfTomcatApplicationListenerIT {
 		JsfTomcatContextCustomizer jsfTomcatContextCustomizer = new JsfTomcatContextCustomizer();
 		jsfTomcatContextCustomizer.customize(standardContext);
 
-		JsfTomcatApplicationListener jsfTomcatApplicationListener = JsfTomcatApplicationListener.builder().context(jsfTomcatContextCustomizer.getContext()).build();
+		JsfTomcatApplicationListener jsfTomcatApplicationListener = JsfTomcatApplicationListener
+			.builder().context(jsfTomcatContextCustomizer.getContext()).build();
 		jsfTomcatApplicationListener.onApplicationEvent(null);
 
 		assertThat(jsfTomcatApplicationListener)
@@ -125,88 +134,126 @@ public class JsfTomcatApplicationListenerIT {
 	}
 
 	@Test
-	public void jarResourcesTesting() throws LifecycleException {
-		Context standardContext = Mockito.mock(Context.class);
-		WebResourceRoot webResourceRoot = Mockito.mock(WebResourceRoot.class);
-		LifecycleState state = LifecycleState.NEW;
-		Mockito.when(webResourceRoot.getContext()).thenReturn(standardContext);
-		Mockito.when(webResourceRoot.getState()).thenReturn(state);
-		Mockito.when(standardContext.getResources()).thenReturn(webResourceRoot);
-		Mockito.when(standardContext.getAddWebinfClassesResources()).thenReturn(Boolean.FALSE);
+	public void testingResources() throws LifecycleException {
+		ContextMock contextMock = new ContextMock();
 
-		String TEST = "/test";
-		WebResourceSet[] array = {new DirResourceSet(webResourceRoot, TEST, TEST, TEST), new DirResourceSet(webResourceRoot, TEST, TEST, TEST)};
+		DirResourceSet dirResourceSet = new DirResourceSet(contextMock.getWebResourceRoot(),
+			TEST, TEST, TEST);
 
-		Mockito.when(webResourceRoot.getJarResources()).thenReturn(array);
+		contextMock.init(dirResourceSet);
 
-		JsfTomcatContextCustomizer jsfTomcatContextCustomizer = new JsfTomcatContextCustomizer();
-		jsfTomcatContextCustomizer.customize(standardContext);
+		callApplicationEvent(contextMock);
 
-		JsfTomcatApplicationListener jsfTomcatApplicationListener = JsfTomcatApplicationListener.builder().context(jsfTomcatContextCustomizer.getContext()).build();
-		jsfTomcatApplicationListener.onApplicationEvent(null);
-
-		assertThat(jsfTomcatApplicationListener)
-			.isNotNull();
+		assertThat(contextMock.getCalledAnswer().getCalls())
+			.isGreaterThan(1);
 	}
 
 	@Test
-	public void jarResourcesEmbeddedJarWithoutAppResources() throws LifecycleException {
-		Context standardContext = Mockito.mock(Context.class);
-		WebResourceRoot webResourceRoot = Mockito.mock(WebResourceRoot.class);
-		LifecycleState state = LifecycleState.NEW;
-		Mockito.when(webResourceRoot.getContext()).thenReturn(standardContext);
-		Mockito.when(webResourceRoot.getState()).thenReturn(state);
-		Mockito.when(standardContext.getResources()).thenReturn(webResourceRoot);
-		Mockito.when(standardContext.getAddWebinfClassesResources()).thenReturn(Boolean.FALSE);
+	public void embeddedJarWithoutAppResources() throws LifecycleException {
+		ContextMock contextMock = new ContextMock();
 
-		File file = new File("target" + File.separator + "test-classes" + File.separator + "test.jar");
-		JarWarResourceSet jarWarResourceSet = new JarWarResourceSet(webResourceRoot, "/", file.getAbsolutePath(), "internal.jar", "/META-INF/resources");
+		File file = new File(TARGET + File.separator + TEST_CLASSES + File.separator + "test.jar");
+		JarWarResourceSet jarWarResourceSet = new JarWarResourceSet(contextMock.getWebResourceRoot(),
+			"/", file.getAbsolutePath(), INTERNAL_JAR, METAINF_RESOURCES);
 		jarWarResourceSet.init();
-		
-		String TEST = "/test";
-		DirResourceSet dirResourceSet = new DirResourceSet(webResourceRoot, TEST, TEST, TEST);
-		
-		WebResourceSet[] array = {jarWarResourceSet, dirResourceSet};
 
-		Mockito.when(webResourceRoot.getJarResources()).thenReturn(array);
+		DirResourceSet dirResourceSet = new DirResourceSet(contextMock.getWebResourceRoot(),
+			TEST, TEST, TEST);
 
-		JsfTomcatContextCustomizer jsfTomcatContextCustomizer = new JsfTomcatContextCustomizer();
-		jsfTomcatContextCustomizer.customize(standardContext);
+		contextMock.init(jarWarResourceSet, dirResourceSet);
 
-		JsfTomcatApplicationListener jsfTomcatApplicationListener = JsfTomcatApplicationListener.builder().context(jsfTomcatContextCustomizer.getContext()).build();
-		jsfTomcatApplicationListener.onApplicationEvent(null);
+		callApplicationEvent(contextMock);
 
-		assertThat(jsfTomcatApplicationListener)
-			.isNotNull();
+		assertThat(contextMock.getCalledAnswer().getCalls())
+			.isEqualTo(1);
 	}
 
 	@Test
-	public void jarResourcesEmbeddedJarWithAppResources() throws LifecycleException {
-		Context standardContext = Mockito.mock(Context.class);
-		WebResourceRoot webResourceRoot = Mockito.mock(WebResourceRoot.class);
-		LifecycleState state = LifecycleState.NEW;
-		Mockito.when(webResourceRoot.getContext()).thenReturn(standardContext);
-		Mockito.when(webResourceRoot.getState()).thenReturn(state);
-		Mockito.when(standardContext.getResources()).thenReturn(webResourceRoot);
-		Mockito.when(standardContext.getAddWebinfClassesResources()).thenReturn(Boolean.FALSE);
+	public void embeddedJarWithoutAppResources2() throws LifecycleException {
+		ContextMock contextMock = new ContextMock();
 
-		File file = new File("target" + File.separator + "test-classes" + File.separator + "test.jar");
-		JarWarResourceSet jarWarResourceSet = new JarWarResourceSet(webResourceRoot, "/", file.getAbsolutePath(), "internal.jar", "/META-INF/resources");
+		File file = new File(TARGET + File.separator + TEST_CLASSES + File.separator + "test.jar");
+		JarWarResourceSet jarWarResourceSet = new JarWarResourceSet(contextMock.getWebResourceRoot(),
+			"/", file.getAbsolutePath(), INTERNAL_JAR, METAINF_RESOURCES);
 		jarWarResourceSet.init();
-		
-		JarResourceSet jarResourceSet = new JarResourceSet(webResourceRoot, "/", file.getAbsolutePath(), "/META-INF/resources");
-		
-		WebResourceSet[] array = {jarWarResourceSet, jarResourceSet};
 
-		Mockito.when(webResourceRoot.getJarResources()).thenReturn(array);
+		DirResourceSet dirResourceSet = new DirResourceSet(contextMock.getWebResourceRoot(),
+			TEST, TEST, TEST);
 
+		contextMock.init(dirResourceSet, jarWarResourceSet);
+
+		callApplicationEvent(contextMock);
+
+		assertThat(contextMock.getCalledAnswer().getCalls())
+			.isEqualTo(1);
+	}
+
+	@Test
+	public void embeddedJarWithAppResources() throws LifecycleException {
+		ContextMock contextMock = new ContextMock();
+
+		File file = new File(TARGET + File.separator + TEST_CLASSES + File.separator + "test.jar");
+		JarWarResourceSet jarWarResourceSet = new JarWarResourceSet(contextMock.getWebResourceRoot(),
+			"/", file.getAbsolutePath(), INTERNAL_JAR, METAINF_RESOURCES);
+		jarWarResourceSet.init();
+
+		JarResourceSet jarResourceSet = new JarResourceSet(contextMock.getWebResourceRoot(),
+			"/", file.getAbsolutePath(), METAINF_RESOURCES);
+
+		contextMock.init(jarWarResourceSet, jarResourceSet);
+
+		callApplicationEvent(contextMock);
+
+		assertThat(contextMock.getCalledAnswer().getCalls())
+			.isEqualTo(0);
+	}
+
+	@Test
+	public void embeddedWarWithAppResources() throws LifecycleException {
+		ContextMock contextMock = new ContextMock();
+
+		File file = new File(TARGET + File.separator + TEST_CLASSES + File.separator + "test.war");
+		JarWarResourceSet jarWarResourceSet = new JarWarResourceSet(contextMock.getWebResourceRoot(),
+			"/", file.getAbsolutePath(), INTERNAL_JAR, METAINF_RESOURCES);
+		jarWarResourceSet.init();
+
+		JarResourceSet jarResourceSet = new JarResourceSet(contextMock.getWebResourceRoot(),
+			"/", file.getAbsolutePath(), METAINF_RESOURCES);
+
+		contextMock.init(jarWarResourceSet, jarResourceSet);
+
+		callApplicationEvent(contextMock);
+
+		assertThat(contextMock.getCalledAnswer().getCalls())
+			.isEqualTo(0);
+	}
+
+	@Test
+	public void embeddedWarWithoutAppResources() throws LifecycleException {
+		ContextMock contextMock = new ContextMock();
+
+		File file = new File(TARGET + File.separator + TEST_CLASSES + File.separator + "test.war");
+		JarWarResourceSet jarWarResourceSet = new JarWarResourceSet(contextMock.getWebResourceRoot(),
+			"/", file.getAbsolutePath(), INTERNAL_JAR, METAINF_RESOURCES);
+		jarWarResourceSet.init();
+
+		DirResourceSet dirResourceSet = new DirResourceSet(contextMock.getWebResourceRoot(),
+			TEST, TEST, TEST);
+
+		contextMock.init(jarWarResourceSet, dirResourceSet);
+
+		callApplicationEvent(contextMock);
+
+		assertThat(contextMock.getCalledAnswer().getCalls())
+			.isEqualTo(0);
+	}
+
+	private void callApplicationEvent(ContextMock contextMock) {
 		JsfTomcatContextCustomizer jsfTomcatContextCustomizer = new JsfTomcatContextCustomizer();
-		jsfTomcatContextCustomizer.customize(standardContext);
+		jsfTomcatContextCustomizer.customize(contextMock.getStandardContext());
 
-		JsfTomcatApplicationListener jsfTomcatApplicationListener = JsfTomcatApplicationListener.builder().context(jsfTomcatContextCustomizer.getContext()).build();
+		JsfTomcatApplicationListener jsfTomcatApplicationListener = JsfTomcatApplicationListener
+			.builder().context(jsfTomcatContextCustomizer.getContext()).build();
 		jsfTomcatApplicationListener.onApplicationEvent(null);
-
-		assertThat(jsfTomcatApplicationListener)
-			.isNotNull();
 	}
 }

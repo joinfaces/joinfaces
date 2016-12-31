@@ -13,7 +13,19 @@
         <Bug pattern="UMAC_UNCALLABLE_METHOD_OF_ANONYMOUS_CLASS" />
     </Match>
     <Match>
-        <Method name="jarResourcesBiggerThan1" />
+        <Method name="embeddedJarWithoutAppResources" />
+        <Bug pattern="DMI_HARDCODED_ABSOLUTE_FILENAME" />
+    </Match>
+    <Match>
+        <Method name="embeddedJarWithoutAppResources2" />
+        <Bug pattern="DMI_HARDCODED_ABSOLUTE_FILENAME" />
+    </Match>
+    <Match>
+        <Method name="embeddedWarWithoutAppResources" />
+        <Bug pattern="DMI_HARDCODED_ABSOLUTE_FILENAME" />
+    </Match>
+    <Match>
+        <Method name="testingResources" />
         <Bug pattern="DMI_HARDCODED_ABSOLUTE_FILENAME" />
     </Match>
 </FindBugsFilter>
