@@ -18,7 +18,6 @@ package org.joinfaces.tomcat;
 
 import lombok.Getter;
 import lombok.Setter;
-
 import org.mockito.invocation.InvocationOnMock;
 import org.mockito.stubbing.Answer;
 

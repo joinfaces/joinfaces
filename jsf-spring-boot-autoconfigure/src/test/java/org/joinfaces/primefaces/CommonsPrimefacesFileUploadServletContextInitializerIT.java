@@ -20,7 +20,6 @@ import javax.servlet.ServletException;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
-
 import org.primefaces.webapp.filter.FileUploadFilter;
 
 import org.springframework.beans.factory.annotation.Autowired;

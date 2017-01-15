@@ -21,7 +21,6 @@ import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 
 import de.beyondjava.angularFaces.core.tagTransformer.AngularTagDecorator;
-
 import org.junit.Test;
 import org.junit.runner.RunWith;
 

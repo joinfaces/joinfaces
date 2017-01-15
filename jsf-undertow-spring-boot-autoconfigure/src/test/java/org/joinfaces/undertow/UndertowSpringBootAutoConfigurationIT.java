@@ -20,7 +20,6 @@ import java.io.IOException;
 import java.net.MalformedURLException;
 
 import io.undertow.servlet.api.DeploymentInfo;
-
 import org.junit.Test;
 import org.junit.runner.RunWith;
 

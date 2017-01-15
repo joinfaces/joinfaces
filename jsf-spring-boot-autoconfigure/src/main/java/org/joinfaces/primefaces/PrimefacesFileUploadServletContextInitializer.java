@@ -17,7 +17,6 @@
 package org.joinfaces.primefaces;
 
 import javax.faces.webapp.FacesServlet;
-
 import javax.servlet.MultipartConfigElement;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;

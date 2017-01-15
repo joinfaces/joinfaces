@@ -19,7 +19,6 @@ package org.joinfaces.mojarra;
 import javax.servlet.ServletContext;
 
 import lombok.Builder;
-
 import org.joinfaces.ServletContextConfigurer;
 
 /**

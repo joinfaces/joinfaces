@@ -19,7 +19,6 @@ package org.joinfaces.myfaces;
 import javax.servlet.ServletContext;
 
 import lombok.Builder;
-
 import org.apache.myfaces.application.ResourceHandlerImpl;
 import org.apache.myfaces.application.StateCache;
 import org.apache.myfaces.config.FacesConfigValidator;
@@ -36,7 +35,6 @@ import org.apache.myfaces.view.facelets.el.ContextAwareUtils;
 import org.apache.myfaces.view.facelets.impl.FaceletCompositionContextImpl;
 import org.apache.myfaces.view.facelets.pool.ViewPool;
 import org.apache.myfaces.webapp.AbstractFacesInitializer;
-
 import org.joinfaces.ServletContextConfigurer;
 
 /**

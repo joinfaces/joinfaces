@@ -23,9 +23,7 @@ import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 
 import com.sun.faces.facelets.compiler.UIText;
-
 import net.bootsfaces.component.tree.TreeRenderer;
-
 import org.joinfaces.JsfClassFactory;
 import org.junit.BeforeClass;
 import org.junit.Test;

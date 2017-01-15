@@ -22,7 +22,6 @@ import javax.servlet.ServletException;
 
 import org.joinfaces.JsfClassFactory;
 import org.joinfaces.JsfClassFactoryConfiguration;
-
 import org.omnifaces.facesviews.FacesViewsInitializer;
 
 import org.springframework.boot.web.servlet.ServletContextInitializer;

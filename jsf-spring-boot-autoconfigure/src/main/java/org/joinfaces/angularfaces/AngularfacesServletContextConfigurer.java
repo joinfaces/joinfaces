@@ -20,9 +20,7 @@ import javax.faces.application.ViewHandler;
 import javax.servlet.ServletContext;
 
 import de.beyondjava.angularFaces.core.tagTransformer.AngularTagDecorator;
-
 import lombok.Builder;
-
 import org.joinfaces.ServletContextConfigurer;
 
 /**

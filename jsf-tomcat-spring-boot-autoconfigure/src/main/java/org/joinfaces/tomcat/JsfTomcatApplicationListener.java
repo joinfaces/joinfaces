@@ -19,7 +19,6 @@ package org.joinfaces.tomcat;
 import java.net.URL;
 
 import lombok.Builder;
-
 import org.apache.catalina.Context;
 import org.apache.catalina.WebResourceRoot;
 import org.apache.catalina.WebResourceSet;

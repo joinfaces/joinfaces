@@ -23,7 +23,6 @@ import java.security.PrivilegedAction;
 
 import io.undertow.server.handlers.resource.ClassPathResourceManager;
 import io.undertow.servlet.api.DeploymentInfo;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

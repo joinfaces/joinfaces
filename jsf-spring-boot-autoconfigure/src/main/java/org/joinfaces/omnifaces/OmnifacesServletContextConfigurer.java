@@ -19,9 +19,7 @@ package org.joinfaces.omnifaces;
 import javax.servlet.ServletContext;
 
 import lombok.Builder;
-
 import org.joinfaces.ServletContextConfigurer;
-
 import org.omnifaces.component.output.cache.CacheInitializerListener;
 import org.omnifaces.component.output.cache.CacheInstancePerScopeProvider;
 import org.omnifaces.exceptionhandler.FullAjaxExceptionHandler;

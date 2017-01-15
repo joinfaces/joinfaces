@@ -20,7 +20,6 @@ import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 
 import de.larmic.butterfaces.resolver.WebXmlParameters;
-
 import org.junit.Test;
 import org.junit.runner.RunWith;
 

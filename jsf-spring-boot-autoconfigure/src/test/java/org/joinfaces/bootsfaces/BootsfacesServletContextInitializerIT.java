@@ -20,7 +20,6 @@ import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 
 import net.bootsfaces.C;
-
 import org.junit.Test;
 import org.junit.runner.RunWith;
 

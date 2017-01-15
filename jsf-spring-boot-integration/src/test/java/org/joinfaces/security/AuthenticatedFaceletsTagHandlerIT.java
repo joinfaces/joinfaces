@@ -19,7 +19,6 @@ package org.joinfaces.security;
 import java.io.IOException;
 
 import org.joinfaces.mock.JsfIT;
-
 import org.junit.Test;
 import org.junit.runner.RunWith;
 

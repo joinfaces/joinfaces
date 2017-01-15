@@ -19,9 +19,7 @@ package org.joinfaces.bootsfaces;
 import javax.servlet.ServletContext;
 
 import lombok.Builder;
-
 import net.bootsfaces.C;
-
 import org.joinfaces.ServletContextConfigurer;
 
 /**

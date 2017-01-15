@@ -33,7 +33,6 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import lombok.Getter;
-
 import org.mockito.Mockito;
 
 import org.springframework.context.ApplicationContext;

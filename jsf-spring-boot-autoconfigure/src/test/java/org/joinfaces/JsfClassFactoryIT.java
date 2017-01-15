@@ -21,9 +21,7 @@ import java.util.Set;
 import javax.faces.component.html.HtmlPanelGroup;
 
 import com.sun.faces.facelets.compiler.UIText;
-
 import org.apache.myfaces.renderkit.html.HtmlGridRenderer;
-
 import org.junit.Test;
 
 import org.springframework.test.context.web.WebAppConfiguration;

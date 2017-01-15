@@ -19,9 +19,7 @@ package org.joinfaces.butterfaces;
 import javax.servlet.ServletContext;
 
 import de.larmic.butterfaces.resolver.WebXmlParameters;
-
 import lombok.Builder;
-
 import org.joinfaces.ServletContextConfigurer;
 
 /**

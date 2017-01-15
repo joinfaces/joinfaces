@@ -19,7 +19,6 @@ package org.joinfaces;
 import javax.servlet.ServletContext;
 
 import lombok.AllArgsConstructor;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

@@ -22,7 +22,6 @@ import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 
 import org.joinfaces.JsfClassFactory;
-
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.junit.runner.RunWith;

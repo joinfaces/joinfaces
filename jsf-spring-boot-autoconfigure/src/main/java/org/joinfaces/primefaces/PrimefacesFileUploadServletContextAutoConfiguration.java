@@ -22,7 +22,6 @@ import javax.servlet.MultipartConfigElement;
 import javax.servlet.annotation.MultipartConfig;
 
 import org.joinfaces.javaxfaces.JavaxFacesSpringBootAutoConfiguration;
-
 import org.primefaces.webapp.MultipartRequest;
 import org.primefaces.webapp.filter.FileUploadFilter;
 

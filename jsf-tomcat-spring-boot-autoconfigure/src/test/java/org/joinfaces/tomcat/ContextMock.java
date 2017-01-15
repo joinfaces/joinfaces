@@ -17,13 +17,11 @@
 package org.joinfaces.tomcat;
 
 import lombok.Getter;
-
 import org.apache.catalina.Context;
 import org.apache.catalina.LifecycleException;
 import org.apache.catalina.LifecycleState;
 import org.apache.catalina.WebResourceRoot;
 import org.apache.catalina.WebResourceSet;
-
 import org.mockito.Matchers;
 import org.mockito.Mockito;
 

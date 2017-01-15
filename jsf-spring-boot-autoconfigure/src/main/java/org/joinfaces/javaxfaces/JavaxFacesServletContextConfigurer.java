@@ -33,7 +33,6 @@ import javax.faces.webapp.FacesServlet;
 import javax.servlet.ServletContext;
 
 import lombok.Builder;
-
 import org.joinfaces.ServletContextConfigurer;
 
 /**

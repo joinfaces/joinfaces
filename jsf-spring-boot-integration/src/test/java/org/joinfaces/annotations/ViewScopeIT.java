@@ -17,7 +17,6 @@
 package org.joinfaces.annotations;
 
 import org.joinfaces.mock.JsfIT;
-
 import org.junit.Test;
 
 import org.springframework.boot.test.context.SpringBootTest;

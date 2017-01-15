@@ -23,7 +23,6 @@ import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 
 import net.bootsfaces.component.tree.TreeRenderer;
-
 import org.apache.myfaces.renderkit.html.HtmlGridRenderer;
 import org.joinfaces.JsfClassFactory;
 import org.junit.BeforeClass;

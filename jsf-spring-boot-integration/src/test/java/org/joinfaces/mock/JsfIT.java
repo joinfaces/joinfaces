@@ -19,7 +19,6 @@ package org.joinfaces.mock;
 import javax.inject.Inject;
 
 import lombok.Getter;
-
 import org.junit.After;
 import org.junit.Before;
 

@@ -19,7 +19,6 @@ package org.joinfaces.undertow;
 import java.io.IOException;
 
 import io.undertow.servlet.api.DeploymentInfo;
-
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
