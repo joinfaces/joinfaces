@@ -51,7 +51,8 @@ public class JavaxFacesServletContextConfigurer extends ServletContextConfigurer
 
 	@Override
 	public void configure() {
-		setInitParameterString(ProjectStage.PROJECT_STAGE_PARAM_NAME, this.javaxFacesProperties.getProjectStage());
+		ProjectStage projectStage = this.javaxFacesProperties.getProjectStage();
+		setInitParameterString(ProjectStage.PROJECT_STAGE_PARAM_NAME, projectStage == null ? null : projectStage.toString());
 
 		setInitParameterString(ResourceHandler.RESOURCE_EXCLUDES_PARAM_NAME, this.javaxFacesProperties.getResourceExcludes());
 		setInitParameterString(ResourceHandler.WEBAPP_CONTRACTS_DIRECTORY_PARAM_NAME, this.javaxFacesProperties.getWebappContractsDirectory());

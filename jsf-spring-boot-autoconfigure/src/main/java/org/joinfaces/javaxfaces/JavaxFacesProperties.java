@@ -21,6 +21,8 @@ import lombok.Setter;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
+import javax.faces.application.ProjectStage;
+
 /**
  * JavaxFaces standard properties.
  * Taken from
@@ -36,7 +38,7 @@ public class JavaxFacesProperties {
 	 * Set the project stage to "Development", "UnitTest", "SystemTest", or
 	 * "Production".
 	 */
-	private String projectStage;
+	private ProjectStage projectStage;
 
 	/**
 	 * A space separated list of resource extensions for types that shouldn't be
