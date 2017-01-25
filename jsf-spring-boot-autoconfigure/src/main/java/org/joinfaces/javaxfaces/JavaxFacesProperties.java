@@ -16,12 +16,12 @@
 
 package org.joinfaces.javaxfaces;
 
+import javax.faces.application.ProjectStage;
+
 import lombok.Getter;
 import lombok.Setter;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
-
-import javax.faces.application.ProjectStage;
 
 /**
  * JavaxFaces standard properties.
