@@ -62,10 +62,10 @@ public class JsfJettyServerCustomizer implements JettyServerCustomizer {
 				}
 			});
 
-			log.info("Setting Jetty classLoader to " + this.jettyProperties.getClassPathResource() + " directory");
+			log.info("Setting Jetty classLoader to {} directory", this.jettyProperties.getClassPathResource());
 		}
 		catch (IOException exception) {
-			log.error("Unable to configure Jetty classLoader to " + this.jettyProperties.getClassPathResource() + " directory " + exception.getMessage());
+			log.error("Unable to configure Jetty classLoader to {} directory {}", this.jettyProperties.getClassPathResource(), exception.getMessage());
 
 			throw new RuntimeException(exception);
 		}

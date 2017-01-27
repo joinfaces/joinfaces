@@ -51,10 +51,10 @@ public abstract class ServletContextConfigurer {
 
 			this.servletContext.setInitParameter(name, value);
 
-			log.debug(name + " = " + value);
+			log.debug("{} = {}", name, value);
 		}
 		else {
-			log.warn("name of init parameter is null! value = " + value);
+			log.warn("name of init parameter is null! value = {}", value);
 		}
 	}
 

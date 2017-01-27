@@ -70,9 +70,7 @@ public class JsfCdiToSpringBeanFactoryPostProcessor implements BeanFactoryPostPr
 			if (scopeName != null) {
 				definition.setScope(scopeName);
 
-				log.debug(definition.getBeanClassName()
-					+ " - Scope(" + definition.getScope().toUpperCase()
-					+ ")");
+				log.debug("{} - Scope({})", definition.getBeanClassName(), definition.getScope().toUpperCase());
 			}
 		}
 	}
