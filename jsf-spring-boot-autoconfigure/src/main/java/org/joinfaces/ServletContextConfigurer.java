@@ -34,7 +34,7 @@ public abstract class ServletContextConfigurer {
 
 	private ServletContext servletContext;
 
-	private String preffix;
+	private String prefix;
 
 	private boolean isNullOrEmpty(String s) {
 		return s == null || s.trim().isEmpty();
@@ -42,8 +42,8 @@ public abstract class ServletContextConfigurer {
 
 	private String fullName(String name) {
 		String result = name;
-		if (!isNullOrEmpty(this.preffix)) {
-			result = this.preffix + "." + result;
+		if (!isNullOrEmpty(this.prefix)) {
+			result = this.prefix + "." + result;
 		}
 		return result;
 	}
