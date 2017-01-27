@@ -19,18 +19,15 @@ package org.joinfaces;
 import javax.servlet.ServletContext;
 
 import lombok.AllArgsConstructor;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * Abstract class to configure servlet context from auto configuration properties.
  * @author Marcelo Fernandes
  */
 @AllArgsConstructor
+@Slf4j
 public abstract class ServletContextConfigurer {
-
-	private static final Logger logger = LoggerFactory
-		.getLogger(ServletContextConfigurer.class);
 
 	private ServletContext servletContext;
 
@@ -54,10 +51,10 @@ public abstract class ServletContextConfigurer {
 
 			this.servletContext.setInitParameter(name, value);
 
-			logger.debug(name + " = " + value);
+			log.debug(name + " = " + value);
 		}
 		else {
-			logger.warn("name of init parameter is null! value = " + value);
+			log.warn("name of init parameter is null! value = " + value);
 		}
 	}
 

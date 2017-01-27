@@ -34,17 +34,12 @@ import javax.servlet.annotation.HandlesTypes;
 import org.reflections.Reflections;
 import org.reflections.util.ClasspathHelper;
 import org.reflections.util.ConfigurationBuilder;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 /**
  * Factory of classes with jsf types handled by servlet context initializer.
  * @author Marcelo Fernandes
  */
 public class JsfClassFactory {
-
-	private static final Logger log = LoggerFactory
-		.getLogger(JsfClassFactory.class);
 
 	private JsfClassFactoryConfiguration jsfAnnotatedClassFactoryConfiguration;
 
