@@ -23,8 +23,7 @@ import java.security.PrivilegedAction;
 
 import io.undertow.server.handlers.resource.ClassPathResourceManager;
 import io.undertow.servlet.api.DeploymentInfo;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 
 import org.springframework.boot.context.embedded.undertow.UndertowDeploymentInfoCustomizer;
 
@@ -32,11 +31,10 @@ import org.springframework.boot.context.embedded.undertow.UndertowDeploymentInfo
  * Configure undertow to load jsf resources from classpath.
  * @author Marcelo Fernandes
  */
+@Slf4j
 public class JsfUndertowDeploymentInfoCustomizer implements UndertowDeploymentInfoCustomizer {
 
 	private final UndertowProperties undertowProperties;
-
-	private static final Logger LOGGER = LoggerFactory.getLogger(JsfUndertowDeploymentInfoCustomizer.class);
 
 	public JsfUndertowDeploymentInfoCustomizer(UndertowProperties undertowProperties) {
 		this.undertowProperties = undertowProperties;
@@ -57,6 +55,6 @@ public class JsfUndertowDeploymentInfoCustomizer implements UndertowDeploymentIn
 			}
 		});
 
-		LOGGER.info("Setting Undertow classLoader to " + undertowProperties.getClassPathResource() + " directory");
+		log.info("Setting Undertow classLoader to {} directory", undertowProperties.getClassPathResource());
 	}
 }

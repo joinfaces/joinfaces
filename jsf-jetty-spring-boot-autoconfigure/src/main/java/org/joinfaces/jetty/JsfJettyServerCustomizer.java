@@ -22,12 +22,11 @@ import java.net.URLClassLoader;
 import java.security.AccessController;
 import java.security.PrivilegedAction;
 
+import lombok.extern.slf4j.Slf4j;
 import org.eclipse.jetty.server.Handler;
 import org.eclipse.jetty.server.Server;
 import org.eclipse.jetty.util.resource.ResourceCollection;
 import org.eclipse.jetty.webapp.WebAppContext;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import org.springframework.boot.context.embedded.jetty.JettyServerCustomizer;
 import org.springframework.core.io.ClassPathResource;
@@ -37,11 +36,10 @@ import org.springframework.core.io.ClassPathResource;
  *
  * @author Marcelo Fernandes
  */
+@Slf4j
 public class JsfJettyServerCustomizer implements JettyServerCustomizer {
 
 	private final JettyProperties jettyProperties;
-
-	private static final Logger LOGGER = LoggerFactory.getLogger(JsfJettyServerCustomizer.class);
 
 	public JsfJettyServerCustomizer(JettyProperties jettyProperties) {
 		this.jettyProperties = jettyProperties;
@@ -64,10 +62,10 @@ public class JsfJettyServerCustomizer implements JettyServerCustomizer {
 				}
 			});
 
-			LOGGER.info("Setting Jetty classLoader to " + this.jettyProperties.getClassPathResource() + " directory");
+			log.info("Setting Jetty classLoader to {} directory", this.jettyProperties.getClassPathResource());
 		}
 		catch (IOException exception) {
-			LOGGER.error("Unable to configure Jetty classLoader to " + this.jettyProperties.getClassPathResource() + " directory " + exception.getMessage());
+			log.error("Unable to configure Jetty classLoader to {} directory {}", this.jettyProperties.getClassPathResource(), exception.getMessage());
 
 			throw new RuntimeException(exception);
 		}
