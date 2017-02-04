@@ -1,0 +1,45 @@
+{
+  "hints": [
+    {
+      "name": "jsf.state-saving-method",
+      "values": [
+        {
+          "value": "client",
+          "description": "Typically saved as a hidden field in the subsequent form submit."
+        },
+        {
+          "value": "server",
+          "description": "Typically saved in HttpSession."
+        }
+      ]
+    },
+    {
+      "name": "jsf.client-window-mode",
+      "values": [
+        {
+          "value": "none"
+        },
+        {
+          "value": "url"
+        }
+      ],
+      "providers": [
+        {
+          "name": "any"
+        }
+      ]
+    },
+    {
+      "name": "jsf.facelets-resource-resolver",
+      "providers": [
+        {
+          "name": "class-reference",
+          "parameters": {
+            "target": "javax.faces.view.facelets.ResourceResolver",
+            "concrete": true
+          }
+        }
+      ]
+    }
+  ]
+}

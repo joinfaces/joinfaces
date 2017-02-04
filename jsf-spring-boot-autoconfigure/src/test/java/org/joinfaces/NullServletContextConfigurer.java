@@ -16,6 +16,7 @@
 
 package org.joinfaces;
 
+import javax.faces.application.ProjectStage;
 import javax.servlet.ServletContext;
 
 import lombok.Builder;
@@ -37,5 +38,7 @@ public class NullServletContextConfigurer extends ServletContextConfigurer {
 		setInitParameterInteger("integer", null);
 		setInitParameterLong(null, 10L);
 		setInitParameterLong("long", null);
+		setInitParameterEnum(null, ProjectStage.Development);
+		setInitParameterEnum("enum", null);
 	}
 }
