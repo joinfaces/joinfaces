@@ -16,6 +16,8 @@
 
 package org.joinfaces.javaxfaces;
 
+import javax.faces.application.ProjectStage;
+
 import lombok.Getter;
 import lombok.Setter;
 
@@ -36,7 +38,7 @@ public class JavaxFacesProperties {
 	 * Set the project stage to "Development", "UnitTest", "SystemTest", or
 	 * "Production".
 	 */
-	private String projectStage;
+	private ProjectStage projectStage;
 
 	/**
 	 * A space separated list of resource extensions for types that shouldn't be

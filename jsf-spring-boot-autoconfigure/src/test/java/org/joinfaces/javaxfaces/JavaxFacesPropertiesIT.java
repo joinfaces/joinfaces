@@ -16,6 +16,8 @@
 
 package org.joinfaces.javaxfaces;
 
+import javax.faces.application.ProjectStage;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
@@ -34,7 +36,7 @@ public class JavaxFacesPropertiesIT {
 
 	@Test
 	public void testProjectState() {
-		assertThat(this.javaxFacesProperties.getProjectStage()).isEqualTo("Development");
+		assertThat(this.javaxFacesProperties.getProjectStage()).isEqualTo(ProjectStage.Development);
 	}
 
 	@Test
