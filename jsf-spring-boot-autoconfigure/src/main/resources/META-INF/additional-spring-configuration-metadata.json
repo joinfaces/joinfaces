@@ -40,6 +40,139 @@
           }
         }
       ]
+    },
+    {
+      "name": "jsf.primefaces.theme",
+      "values": [
+        {
+          "value": "afterdark"
+        },
+        {
+          "value": "afternoon"
+        },
+        {
+          "value": "afterwork"
+        },
+        {
+          "value": "aristo"
+        },
+        {
+          "value": "black-tie"
+        },
+        {
+          "value": "blitzer"
+        },
+        {
+          "value": "bluesky"
+        },
+        {
+          "value": "bootstrap"
+        },
+        {
+          "value": "casablanca"
+        },
+        {
+          "value": "cruze"
+        },
+        {
+          "value": "cupertino"
+        },
+        {
+          "value": "dark-hive"
+        },
+        {
+          "value": "delta"
+        },
+        {
+          "value": "dot-luv"
+        },
+        {
+          "value": "eggplant"
+        },
+        {
+          "value": "excite-bike"
+        },
+        {
+          "value": "flick"
+        },
+        {
+          "value": "glass-x"
+        },
+        {
+          "value": "home"
+        },
+        {
+          "value": "hot-sneaks"
+        },
+        {
+          "value": "humanity"
+        },
+        {
+          "value": "le-frog"
+        },
+        {
+          "value": "midnight"
+        },
+        {
+          "value": "mint-choc"
+        },
+        {
+          "value": "omega"
+        },
+        {
+          "value": "overcast"
+        },
+        {
+          "value": "pepper-grinder"
+        },
+        {
+          "value": "redmond"
+        },
+        {
+          "value": "rocket"
+        },
+        {
+          "value": "sam"
+        },
+        {
+          "value": "smoothness"
+        },
+        {
+          "value": "south-street"
+        },
+        {
+          "value": "start"
+        },
+        {
+          "value": "sunny"
+        },
+        {
+          "value": "swanky-purse"
+        },
+        {
+          "value": "trontastic"
+        },
+        {
+          "value": "twitter"
+        },
+        {
+          "value": "bootstrap"
+        },
+        {
+          "value": "ui-darkness"
+        },
+        {
+          "value": "ui-lightness"
+        },
+        {
+          "value": "vader"
+        }
+      ],
+      "providers": [
+        {
+          "name": "any"
+        }
+      ]
     }
   ]
 }
