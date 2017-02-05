@@ -16,8 +16,7 @@
 
 package org.joinfaces.annotations;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.annotation.AnnotatedBeanDefinition;
@@ -33,10 +32,8 @@ import org.springframework.core.Ordered;
  * @author Marcelo Fernandes
  * @author Nurettin Yilmaz
  */
+@Slf4j
 public class JsfCdiToSpringBeanFactoryPostProcessor implements BeanFactoryPostProcessor, Ordered {
-
-	private static final Logger logger = LoggerFactory
-		.getLogger(JsfCdiToSpringBeanFactoryPostProcessor.class);
 
 	private int order = Ordered.LOWEST_PRECEDENCE;
 
@@ -73,9 +70,7 @@ public class JsfCdiToSpringBeanFactoryPostProcessor implements BeanFactoryPostPr
 			if (scopeName != null) {
 				definition.setScope(scopeName);
 
-				logger.debug(definition.getBeanClassName()
-					+ " - Scope(" + definition.getScope().toUpperCase()
-					+ ")");
+				log.debug("{} - Scope({})", definition.getBeanClassName(), definition.getScope().toUpperCase());
 			}
 		}
 	}

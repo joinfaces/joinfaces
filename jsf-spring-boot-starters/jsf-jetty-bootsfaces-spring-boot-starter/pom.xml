@@ -5,7 +5,7 @@
     <parent>
         <groupId>org.joinfaces</groupId>
         <artifactId>jsf-spring-boot-starters</artifactId>
-        <version>2.3.5-SNAPSHOT</version>
+        <version>2.3.6-SNAPSHOT</version>
     </parent>
     
     <artifactId>jsf-jetty-bootsfaces-spring-boot-starter</artifactId>
@@ -15,7 +15,8 @@
     <properties>
         <main.basedir>${basedir}/../..</main.basedir>
 
-        <duplicate.ignoredClassPattern>org.objectweb.asm.(Frame|Item|Label)</duplicate.ignoredClassPattern>
+        <!-- asm classes are bundled at net.minidev:accessors-smart and org.ow2.asm:asm -->
+        <duplicate.ignoredClassPattern>org.objectweb.asm.(Frame|Item|Label|ByteVector|ClassReader|ClassWriter|Handle|MethodWriter|TypePath|signature.SignatureReader)</duplicate.ignoredClassPattern>
     </properties>
 
     <dependencies>

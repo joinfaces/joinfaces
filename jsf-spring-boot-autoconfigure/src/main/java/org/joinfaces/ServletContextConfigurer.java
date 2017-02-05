@@ -19,22 +19,19 @@ package org.joinfaces;
 import javax.servlet.ServletContext;
 
 import lombok.AllArgsConstructor;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * Abstract class to configure servlet context from auto configuration properties.
  * @author Marcelo Fernandes
  */
 @AllArgsConstructor
+@Slf4j
 public abstract class ServletContextConfigurer {
-
-	private static final Logger logger = LoggerFactory
-		.getLogger(ServletContextConfigurer.class);
 
 	private ServletContext servletContext;
 
-	private String preffix;
+	private String prefix;
 
 	private boolean isNullOrEmpty(String s) {
 		return s == null || s.trim().isEmpty();
@@ -42,8 +39,8 @@ public abstract class ServletContextConfigurer {
 
 	private String fullName(String name) {
 		String result = name;
-		if (!isNullOrEmpty(this.preffix)) {
-			result = this.preffix + "." + result;
+		if (!isNullOrEmpty(this.prefix)) {
+			result = this.prefix + "." + result;
 		}
 		return result;
 	}
@@ -54,10 +51,10 @@ public abstract class ServletContextConfigurer {
 
 			this.servletContext.setInitParameter(name, value);
 
-			logger.debug(name + " = " + value);
+			log.debug("{} = {}", name, value);
 		}
 		else {
-			logger.warn("name of init parameter is null! value = " + value);
+			log.warn("name of init parameter is null! value = {}", value);
 		}
 	}
 
@@ -82,6 +79,12 @@ public abstract class ServletContextConfigurer {
 	protected void setInitParameterLong(String name, Long value) {
 		if (value != null) {
 			setInitParameterWithDebug(name, Long.toString(value));
+		}
+	}
+
+	protected void setInitParameterEnum(String name, Enum<?> value) {
+		if (value != null) {
+			setInitParameterWithDebug(name, value.toString());
 		}
 	}
 
