@@ -90,7 +90,7 @@ Additional information in [#29](https://github.com/joinfaces/joinfaces/issues/29
 
 ## System Requirements
 
-By default, JSF Spring Boot Starter requires [Java 7](http://java.com) and [Spring Boot 1.4.3](http://projects.spring.io/spring-boot/) or above. 
+By default, JSF Spring Boot Starter requires [Java 7](http://java.com) and [Spring Boot 1.5.1](http://projects.spring.io/spring-boot/) or above. 
 
 Additionnal information [here.](https://github.com/joinfaces/joinfaces/wiki/System-Requirements)
 
