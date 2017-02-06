@@ -41,16 +41,16 @@ import org.springframework.orm.jpa.support.OpenEntityManagerInViewFilter;
 @Configuration
 @ConditionalOnWebApplication
 @ConditionalOnClass(name = {
-        "javax.persistence.EntityManager",
-        "org.springframework.orm.jpa.support.OpenEntityManagerInViewFilter"
+		"javax.persistence.EntityManager",
+		"org.springframework.orm.jpa.support.OpenEntityManagerInViewFilter"
 })
 @ConditionalOnProperty(prefix = "spring.jpa", name = "open-in-view", havingValue = "true", matchIfMissing = true)
 @AutoConfigureBefore(HibernateJpaAutoConfiguration.class)
 public class JpaWebConfiguration {
 
-    @Bean
-    @ConditionalOnMissingBean
-    public OpenEntityManagerInViewFilter openEntityManagerInViewFilter() {
-        return new OpenEntityManagerInViewFilter();
-    }
+	@Bean
+	@ConditionalOnMissingBean
+	public OpenEntityManagerInViewFilter openEntityManagerInViewFilter() {
+		return new OpenEntityManagerInViewFilter();
+	}
 }
