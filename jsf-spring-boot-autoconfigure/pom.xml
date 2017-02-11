@@ -18,7 +18,8 @@
         
         <check.dir>../jsf-spring-boot-parent/src/checkconfig</check.dir>
         <findbugs.dir>src/checkconfig/findbugs</findbugs.dir>
-        <duplicate.ignoredClassPattern>javax.faces.*$</duplicate.ignoredClassPattern>
+        <!-- ignore javax.persistence classes that exists at tomcat-embed-core -->
+        <duplicate.ignoredClassPattern>(javax.faces.*$|javax.persistence.(PersistenceContext|PersistenceContextType|PersistenceContexts|PersistenceProperty|PersistenceUnit|PersistenceUnits|SynchronizationType))</duplicate.ignoredClassPattern>
         <duplicate.ignoredResourcePattern>javax/faces/Messages.*\.properties</duplicate.ignoredResourcePattern>
         
         <cobertura.branchRate>92</cobertura.branchRate>
