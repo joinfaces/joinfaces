@@ -46,7 +46,7 @@ import org.springframework.orm.jpa.support.OpenEntityManagerInViewFilter;
 })
 @ConditionalOnProperty(prefix = "spring.jpa", name = "open-in-view", havingValue = "true", matchIfMissing = true)
 @AutoConfigureBefore(HibernateJpaAutoConfiguration.class)
-public class JpaWebConfiguration {
+public class JpaWebAutoConfiguration {
 
 	@Bean
 	@ConditionalOnMissingBean

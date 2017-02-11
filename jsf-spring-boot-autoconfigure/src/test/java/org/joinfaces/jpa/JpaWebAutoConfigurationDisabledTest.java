@@ -18,6 +18,7 @@ package org.joinfaces.jpa;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
+
 import org.springframework.beans.factory.NoSuchBeanDefinitionException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -26,30 +27,27 @@ import org.springframework.orm.jpa.support.OpenEntityManagerInViewFilter;
 import org.springframework.orm.jpa.support.OpenEntityManagerInViewInterceptor;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import static org.junit.Assert.assertNotNull;
-
 /**
  * @author Lars Grefer
  */
 @RunWith(SpringRunner.class)
 @SpringBootTest(
-		classes = JpaWebConfiguration.class,
+		properties = "spring.jpa.open-in-view=false",
+		classes = JpaWebAutoConfiguration.class,
 		webEnvironment = SpringBootTest.WebEnvironment.MOCK
 )
-public class JpaWebConfigurationTest {
+public class JpaWebAutoConfigurationDisabledTest {
 
 	@Autowired
 	private ApplicationContext applicationContext;
 
-	@Test
-	public void filterEnabled() {
-		OpenEntityManagerInViewFilter filter = applicationContext.getBean(OpenEntityManagerInViewFilter.class);
-
-		assertNotNull(filter);
+	@Test(expected = NoSuchBeanDefinitionException.class)
+	public void testFilterDisabled() {
+		applicationContext.getBean(OpenEntityManagerInViewFilter.class);
 	}
 
 	@Test(expected = NoSuchBeanDefinitionException.class)
-	public void interceptorDisabled() {
+	public void testInterceptorDisabled() {
 		applicationContext.getBean(OpenEntityManagerInViewInterceptor.class);
 	}
 }

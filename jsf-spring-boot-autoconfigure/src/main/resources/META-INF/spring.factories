@@ -10,4 +10,4 @@ org.joinfaces.bootsfaces.BootsfacesSpringBootAutoConfiguration,\
 org.joinfaces.angularfaces.AngularfacesSpringBootAutoConfiguration,\
 org.joinfaces.butterfaces.ButterfacesSpringBootAutoConfiguration,\
 org.joinfaces.richfaces.RichfacesSpringBootAutoConfiguration,\
-org.joinfaces.jpa.JpaWebConfiguration
+org.joinfaces.jpa.JpaWebAutoConfiguration
