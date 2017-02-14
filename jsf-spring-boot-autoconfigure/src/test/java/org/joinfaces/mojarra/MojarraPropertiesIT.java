@@ -113,7 +113,7 @@ public class MojarraPropertiesIT {
 	@Test
 	public void testDisableUnicodeEscaping() {
 		assertThat(this.mojarraProperties.getDisableUnicodeEscaping())
-			.isTrue();
+			.isEqualTo("true");
 	}
 
 	@Test

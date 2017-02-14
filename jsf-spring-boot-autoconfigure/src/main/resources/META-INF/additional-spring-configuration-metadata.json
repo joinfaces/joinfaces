@@ -1,4 +1,10 @@
 {
+  "properties": [
+    {
+      "name": "jsf.mojarra.disable-unicode-escaping",
+      "defaultValue": "false"
+    }
+  ],
   "hints": [
     {
       "name": "jsf.state-saving-method",
@@ -38,6 +44,23 @@
             "target": "javax.faces.view.facelets.ResourceResolver",
             "concrete": true
           }
+        }
+      ]
+    },
+    {
+      "name": "jsf.mojarra.disable-unicode-escaping",
+      "values": [
+        {
+          "value": "auto",
+          "description": "The response encoding will be checked: If the encoding is of the UTF family of encodings no unicode or html entity encoding will occur, however, if the response stream encoding is ISO-8859-1 then the ISO characters above a certain range will be encoded as HTML entities and any characters above that range will be written as decimal references."
+        },
+        {
+          "value": "true",
+          "description": "No escaping will occur assuming that the response encoding can properly handle all characters."
+        },
+        {
+          "value": "false",
+          "description": "Any characters above a certain range will be escaped as either an HTML entity or a decimal reference."
         }
       ]
     },
