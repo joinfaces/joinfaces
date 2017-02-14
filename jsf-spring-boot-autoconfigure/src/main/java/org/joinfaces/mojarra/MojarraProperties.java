@@ -165,7 +165,7 @@ public class MojarraProperties {
 	 * as HTML entities and any characters above that range will be written as
 	 * decimal references.
 	 */
-	private Boolean disableUnicodeEscaping;
+	private String disableUnicodeEscaping;
 
 	/**
 	 * If true, then component ID uniqueness won't be checked if ProjectStage is

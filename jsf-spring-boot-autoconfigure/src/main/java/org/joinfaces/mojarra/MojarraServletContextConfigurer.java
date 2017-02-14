@@ -55,7 +55,7 @@ public class MojarraServletContextConfigurer extends ServletContextConfigurer {
 		setInitParameterBoolean("allowTextChildren", this.mojarraProperties.getAllowTextChildren());
 		setInitParameterBoolean("autoCompleteOffOnViewState", this.mojarraProperties.getAutoCompleteOffOnViewState());
 		setInitParameterBoolean("compressJavaScript", this.mojarraProperties.getCompressJavaScript());
-		setInitParameterBoolean("disableUnicodeEscaping", this.mojarraProperties.getDisableUnicodeEscaping());
+		setInitParameterString("disableUnicodeEscaping", this.mojarraProperties.getDisableUnicodeEscaping());
 		setInitParameterBoolean("disableIdUniquenessCheck", this.mojarraProperties.getDisableIdUniquenessCheck());
 		setInitParameterBoolean("enabledJSStyleHiding", this.mojarraProperties.getEnabledJSStyleHiding());
 		setInitParameterBoolean("enableScriptsInAttributeValues", this.mojarraProperties.getEnableScriptsInAttributeValues());
