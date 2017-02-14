@@ -16,6 +16,8 @@
 
 package org.joinfaces.myfaces;
 
+import java.util.List;
+
 import lombok.Getter;
 import lombok.Setter;
 
@@ -621,7 +623,7 @@ public class MyfacesProperties {
 	/**
 	 * comma delimited list of plugin classes which can be hooked into myfaces.
 	 */
-	private String facesInitPlugins;
+	private List<String> facesInitPlugins;
 
 	/**
 	 * Annotation class of useCdiForAnnotationScanning and scanPackages properties.

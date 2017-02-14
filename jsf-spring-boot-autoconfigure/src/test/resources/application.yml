@@ -377,3 +377,8 @@ jsf:
     queue:
       enabled: true
     datatableUsesViewLocale: "Data table uses view locale"
+
+joinfaces.test.list-c: foo, bar
+joinfaces.test.list-d:
+  - foo
+  - bar

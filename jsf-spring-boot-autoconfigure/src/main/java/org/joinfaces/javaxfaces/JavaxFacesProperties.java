@@ -16,6 +16,8 @@
 
 package org.joinfaces.javaxfaces;
 
+import java.util.List;
+
 import javax.faces.application.ProjectStage;
 
 import lombok.Getter;
@@ -45,7 +47,7 @@ public class JavaxFacesProperties {
 	 * served by the ResourceHandler implementation. See the specification for
 	 * further details.
 	 */
-	private String resourceExcludes;
+	private List<String> resourceExcludes;
 
 	/**
 	 * <p class="changed_added_2_2">If a <code>&lt;context-param&gt;</code> with
@@ -81,7 +83,7 @@ public class JavaxFacesProperties {
 	 * Semicolon-separated list of view IDs that must save state using the JSF
 	 * 1.2-style state saving.
 	 */
-	private String fullStateSavingViewIds;
+	private List<String> fullStateSavingViewIds;
 
 	/**
 	 * If true, use the JSF2 partial state saving for views.
@@ -130,7 +132,7 @@ public class JavaxFacesProperties {
 	/**
 	 * Semicolon-separated list of paths to Facelet tag libraries.
 	 */
-	private String faceletsLibraries;
+	private List<String> faceletsLibraries;
 
 	/**
 	 * Time in seconds that facelets should be checked for changes since last
@@ -153,7 +155,7 @@ public class JavaxFacesProperties {
 	 * Semicolon-separated list of Facelet files that don't use the default
 	 * facelets suffix.
 	 */
-	private String faceletsViewMappings;
+	private List<String> faceletsViewMappings;
 
 	/**
 	 * <p class="changed_added_2_1">The <code>ServletContext</code> init
@@ -205,7 +207,7 @@ public class JavaxFacesProperties {
 	/**
 	 * Comma-delimited list of faces config files.
 	 */
-	private String configFiles;
+	private List<String> configFiles;
 
 	/**
 	 * ID for alternate Lifecycle implementations.
