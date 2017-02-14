@@ -41,7 +41,7 @@ public class JavaxFacesPropertiesIT {
 
 	@Test
 	public void testResourceExcludes() {
-		assertThat(this.javaxFacesProperties.getResourceExcludes()).isEqualTo("myExcludes");
+		assertThat(this.javaxFacesProperties.getResourceExcludes()).containsExactly("myExcludes");
 	}
 
 	@Test
@@ -56,7 +56,7 @@ public class JavaxFacesPropertiesIT {
 
 	@Test
 	public void testFullStateSavingViewIds() {
-		assertThat(this.javaxFacesProperties.getFullStateSavingViewIds()).isEqualTo("myIds");
+		assertThat(this.javaxFacesProperties.getFullStateSavingViewIds()).containsExactly("myIds");
 	}
 
 	@Test
@@ -96,7 +96,7 @@ public class JavaxFacesPropertiesIT {
 
 	@Test
 	public void testFaceletsLibraries() {
-		assertThat(this.javaxFacesProperties.getFaceletsLibraries()).isEqualTo("myLibrary");
+		assertThat(this.javaxFacesProperties.getFaceletsLibraries()).containsExactly("myLibrary");
 	}
 
 	@Test
@@ -116,7 +116,7 @@ public class JavaxFacesPropertiesIT {
 
 	@Test
 	public void testFaceletsViewMappings() {
-		assertThat(this.javaxFacesProperties.getFaceletsViewMappings()).isEqualTo("newMapping");
+		assertThat(this.javaxFacesProperties.getFaceletsViewMappings()).containsExactly("newMapping");
 	}
 
 	@Test
@@ -171,7 +171,7 @@ public class JavaxFacesPropertiesIT {
 
 	@Test
 	public void testConfigFiles() {
-		assertThat(this.javaxFacesProperties.getConfigFiles()).isEqualTo("myConfig");
+		assertThat(this.javaxFacesProperties.getConfigFiles()).containsExactly("myConfig");
 	}
 
 	@Test
