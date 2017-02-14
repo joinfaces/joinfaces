@@ -16,6 +16,8 @@
 
 package org.joinfaces.omnifaces;
 
+import java.util.List;
+
 import lombok.Getter;
 import lombok.Setter;
 
@@ -48,7 +50,10 @@ public class OmnifacesProperties {
 
 	private String facesViewsPathAction;
 
-	private String facesViewsScanPaths;
+	/**
+	 * List of paths that are to be scanned by faces views.
+	 */
+	private List<String> facesViewsScanPaths;
 
 	private Boolean facesViewsScannedViewsAlwaysExtensionless;
 
@@ -60,17 +65,38 @@ public class OmnifacesProperties {
 
 	private String cdnResourceHandlerUrls;
 
+	/**
+	 * Set with a value greater than 0 to activate server-side caching of the combined resource files. The value is
+	 * interpreted as cache TTL (time to live) in seconds and is only effective when the JSF project stage is
+	 * <strong>not</strong> set to <code>Development</code>.
+	 */
 	private Integer combinedResourceHandlerCacheTtl;
 
 	private Boolean combinedResourceHandlerDisabled;
 
-	private String combinedResourceHandlerExcludedResources;
+	/**
+	 * List of resource identifiers of <code>&lt;h:head&gt;</code> resources which needs to be excluded
+	 * from combining.
+	 */
+	private List<String> combinedResourceHandlerExcludedResources;
 
+	/**
+	 * Set to <code>true</code> if you want to render the combined CSS resources inline (embedded in HTML) instead of as a
+	 * resource.
+	 */
 	private Boolean combinedResourceHandlerInlineCss;
 
+	/**
+	 * Set to <code>true</code> if you want to render the combined JS resources inline (embedded in HTML) instead of as a
+	 * resource.
+	 */
 	private Boolean combinedResourceHandlerInlineJs;
 
-	private String combinedResourceHandlerSuppressedResources;
+	/**
+	 * List of resource identifiers of <code>&lt;h:head&gt;</code> resources which needs to be suppressed
+	 * and removed.
+	 */
+	private List<String> combinedResourceHandlerSuppressedResources;
 
 	private Cache cache = new Cache();
 

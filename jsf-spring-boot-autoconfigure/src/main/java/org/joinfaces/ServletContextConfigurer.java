@@ -16,9 +16,13 @@
 
 package org.joinfaces;
 
+import java.util.Collection;
+import java.util.Iterator;
+
 import javax.servlet.ServletContext;
 
 import lombok.AllArgsConstructor;
+import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
 
 /**
@@ -88,6 +92,37 @@ public abstract class ServletContextConfigurer {
 		}
 	}
 
+	protected void setInitParameterCollection(String name, Collection<String> value, Separator separator) {
+		if (value != null) {
+			if (value.isEmpty()) {
+				setInitParameterWithDebug(name, "");
+			}
+			else {
+				Iterator<String> iterator = value.iterator();
+				StringBuilder sb = new StringBuilder(iterator.next());
+				while (iterator.hasNext()) {
+					sb.append(separator.getString()).append(iterator.next());
+				}
+				setInitParameterWithDebug(name, sb.toString());
+			}
+		}
+	}
+
 	public abstract void configure();
+
+	/**
+	 * Possible separators for lists used as init-parameter.
+	 *
+	 * @author Lars Grefer
+	 */
+	@Getter
+	@AllArgsConstructor
+	protected enum Separator {
+		SPACE(" "),
+		COMMA(","),
+		SEMICOLON(";");
+
+		private String string;
+	}
 
 }

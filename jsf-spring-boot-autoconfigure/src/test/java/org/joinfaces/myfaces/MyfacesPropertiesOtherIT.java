@@ -164,7 +164,7 @@ public class MyfacesPropertiesOtherIT {
 
 	@Test
 	public void testFacesInitPlugins() {
-		assertThat(this.myfacesProperties.getFacesInitPlugins()).isEqualTo("myInitPlugin");
+		assertThat(this.myfacesProperties.getFacesInitPlugins()).containsExactly("myInitPlugin");
 	}
 
 	@Test
