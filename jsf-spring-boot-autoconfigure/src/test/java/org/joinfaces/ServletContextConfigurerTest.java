@@ -16,14 +16,15 @@
 
 package org.joinfaces;
 
-import org.junit.Before;
-import org.junit.Test;
-import org.springframework.mock.web.MockServletContext;
+import java.util.Arrays;
+import java.util.Collections;
 
 import javax.servlet.ServletContext;
 
-import java.util.Arrays;
-import java.util.Collections;
+import org.junit.Before;
+import org.junit.Test;
+
+import org.springframework.mock.web.MockServletContext;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -33,11 +34,14 @@ import static org.assertj.core.api.Assertions.assertThat;
  */
 public class ServletContextConfigurerTest {
 
+	private static final String FOO = "foo";
+	private static final String BAR = "bar";
+
 	private ServletContextConfigurer servletContextConfigurer;
 	private ServletContext servletContext;
 
 	@Before
-	public void setUp() throws Exception {
+	public void setUp() {
 		servletContext = new MockServletContext();
 
 		servletContextConfigurer = new ServletContextConfigurer(servletContext, "") {
@@ -48,47 +52,47 @@ public class ServletContextConfigurerTest {
 	}
 
 	@Test
-	public void setInitParameterString() throws Exception {
-		servletContextConfigurer.setInitParameterString("foo", "bar");
+	public void setInitParameterString() {
+		servletContextConfigurer.setInitParameterString(FOO, BAR);
 
-		assertThat(servletContext.getInitParameter("foo")).isEqualTo("bar");
+		assertThat(servletContext.getInitParameter(FOO)).isEqualTo(BAR);
 	}
 
 	@Test
-	public void setInitParameterBoolean() throws Exception {
-		servletContextConfigurer.setInitParameterBoolean("foo", true);
-		servletContextConfigurer.setInitParameterBoolean("bar", false);
+	public void setInitParameterBoolean() {
+		servletContextConfigurer.setInitParameterBoolean(FOO, true);
+		servletContextConfigurer.setInitParameterBoolean(BAR, false);
 
-		assertThat(servletContext.getInitParameter("foo")).isEqualTo("true");
-		assertThat(servletContext.getInitParameter("bar")).isEqualTo("false");
+		assertThat(servletContext.getInitParameter(FOO)).isEqualTo("true");
+		assertThat(servletContext.getInitParameter(BAR)).isEqualTo("false");
 	}
 
 	@Test
-	public void setInitParameterCollection() throws Exception {
-		servletContextConfigurer.setInitParameterCollection("foo", Arrays.asList("foo", "bar"), ServletContextConfigurer.Separator.COMMA);
+	public void setInitParameterCollection() {
+		servletContextConfigurer.setInitParameterCollection(FOO, Arrays.asList(FOO, BAR), ServletContextConfigurer.Separator.COMMA);
 
-		assertThat(servletContext.getInitParameter("foo")).isEqualTo("foo,bar");
+		assertThat(servletContext.getInitParameter(FOO)).isEqualTo("foo,bar");
 	}
 
 	@Test
-	public void setInitParameterCollectionNull() throws Exception {
-		servletContextConfigurer.setInitParameterCollection("foo", null, ServletContextConfigurer.Separator.COMMA);
+	public void setInitParameterCollectionNull() {
+		servletContextConfigurer.setInitParameterCollection(FOO, null, ServletContextConfigurer.Separator.COMMA);
 
-		assertThat(servletContext.getInitParameter("foo")).isNull();
+		assertThat(servletContext.getInitParameter(FOO)).isNull();
 	}
 
 	@Test
-	public void setInitParameterCollectionEmpty() throws Exception {
-		servletContextConfigurer.setInitParameterCollection("foo", Collections.<String>emptyList(), ServletContextConfigurer.Separator.COMMA);
+	public void setInitParameterCollectionEmpty() {
+		servletContextConfigurer.setInitParameterCollection(FOO, Collections.<String>emptyList(), ServletContextConfigurer.Separator.COMMA);
 
-		assertThat(servletContext.getInitParameter("foo")).isEmpty();
+		assertThat(servletContext.getInitParameter(FOO)).isEmpty();
 	}
 
 	@Test
-	public void setInitParameterCollectionSingle() throws Exception {
-		servletContextConfigurer.setInitParameterCollection("foo", Collections.singletonList("bar"), ServletContextConfigurer.Separator.COMMA);
+	public void setInitParameterCollectionSingle() {
+		servletContextConfigurer.setInitParameterCollection(FOO, Collections.singletonList(BAR), ServletContextConfigurer.Separator.COMMA);
 
-		assertThat(servletContext.getInitParameter("foo")).isEqualTo("bar");
+		assertThat(servletContext.getInitParameter(FOO)).isEqualTo(BAR);
 	}
 
 }

@@ -32,26 +32,29 @@ import static org.assertj.core.api.Assertions.assertThat;
 @SpringBootTest(classes = ListPropertiesAutoConfiguration.class)
 public class ListPropertiesTest {
 
+	private static final String FOO = "foo";
+	private static final String BAR = "bar";
+
 	@Autowired
 	private ListProperties listProperties;
 
 	@Test
 	public void testPropertiesListAProperties() {
-		assertThat(listProperties.getListA()).containsExactly("foo", "bar");
+		assertThat(listProperties.getListA()).containsExactly(FOO, BAR);
 	}
 
 	@Test
 	public void testPropertiesListBProperties() {
-		assertThat(listProperties.getListB()).containsExactly("foo", "bar");
+		assertThat(listProperties.getListB()).containsExactly(FOO, BAR);
 	}
 
 	@Test
 	public void testYamlListCProperties() {
-		assertThat(listProperties.getListC()).containsExactly("foo", "bar");
+		assertThat(listProperties.getListC()).containsExactly(FOO, BAR);
 	}
 
 	@Test
 	public void testYamlListDProperties() {
-		assertThat(listProperties.getListD()).containsExactly("foo", "bar");
+		assertThat(listProperties.getListD()).containsExactly(FOO, BAR);
 	}
 }
