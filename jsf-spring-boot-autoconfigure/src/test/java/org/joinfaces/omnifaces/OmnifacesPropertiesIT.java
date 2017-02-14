@@ -74,7 +74,7 @@ public class OmnifacesPropertiesIT {
 
 	@Test
 	public void testFacesViewsScanPaths() {
-		assertThat(this.omnifacesProperties.getFacesViewsScanPaths()).isEqualTo("scanPath");
+		assertThat(this.omnifacesProperties.getFacesViewsScanPaths()).containsExactly("scanPath");
 	}
 
 	@Test
@@ -114,7 +114,7 @@ public class OmnifacesPropertiesIT {
 
 	@Test
 	public void testCombinedResourceHandlerExcludedResources() {
-		assertThat(this.omnifacesProperties.getCombinedResourceHandlerExcludedResources()).isEqualTo("excludedResource");
+		assertThat(this.omnifacesProperties.getCombinedResourceHandlerExcludedResources()).containsExactly("excludedResource");
 	}
 
 	@Test
@@ -129,7 +129,7 @@ public class OmnifacesPropertiesIT {
 
 	@Test
 	public void testCombinedResourceHandlerSuppressedResources() {
-		assertThat(this.omnifacesProperties.getCombinedResourceHandlerSuppressedResources()).isEqualTo("suppressedResource");
+		assertThat(this.omnifacesProperties.getCombinedResourceHandlerSuppressedResources()).containsExactly("suppressedResource");
 	}
 
 	@Test
