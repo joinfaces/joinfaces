@@ -19,6 +19,8 @@ package org.joinfaces.javaxfaces;
 import java.util.List;
 
 import javax.faces.application.ProjectStage;
+import javax.faces.view.facelets.ResourceResolver;
+import javax.faces.view.facelets.TagDecorator;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -124,10 +126,9 @@ public class JavaxFacesProperties {
 	private Integer faceletsBufferSize;
 
 	/**
-	 * TagDecorator implementations. See javadoc for javax.faces.view
-	 * .facelets.TagDecorator.
+	 * TagDecorator implementations. See javadoc for javax.faces.view.facelets.TagDecorator.
 	 */
-	private String faceletsDecorators;
+	private List<Class<? extends TagDecorator>> faceletsDecorators;
 
 	/**
 	 * Semicolon-separated list of paths to Facelet tag libraries.
@@ -199,10 +200,10 @@ public class JavaxFacesProperties {
 	private Validator validator = new Validator();
 
 	/**
-	 * An implementation of javax.faces .view.facelets .ResourceResolver. See
+	 * An implementation of javax.faces.view.facelets.ResourceResolver. See
 	 * javadoc for details.
 	 */
-	private String faceletsResourceResolver;
+	private Class<? extends ResourceResolver> faceletsResourceResolver;
 
 	/**
 	 * Comma-delimited list of faces config files.

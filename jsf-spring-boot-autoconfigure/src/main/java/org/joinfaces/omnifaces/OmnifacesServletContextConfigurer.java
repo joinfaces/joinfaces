@@ -52,7 +52,7 @@ public class OmnifacesServletContextConfigurer extends ServletContextConfigurer 
 		setInitParameterString(FacesViews.FACES_VIEWS_EXTENSION_ACTION_PARAM_NAME, this.omnifacesProperties.getFacesViewsExtensionAction());
 		setInitParameterString(FacesViews.FACES_VIEWS_FILTER_AFTER_DECLARED_FILTERS_PARAM_NAME, this.omnifacesProperties.getFacesViewsFilterAfterDeclaredFilters());
 		setInitParameterString(FacesViews.FACES_VIEWS_PATH_ACTION_PARAM_NAME, this.omnifacesProperties.getFacesViewsPathAction());
-		setInitParameterCollection(FacesViews.FACES_VIEWS_SCAN_PATHS_PARAM_NAME, this.omnifacesProperties.getFacesViewsScanPaths(), Separator.COMMA);
+		setInitParameterStringCollection(FacesViews.FACES_VIEWS_SCAN_PATHS_PARAM_NAME, this.omnifacesProperties.getFacesViewsScanPaths(), Separator.COMMA);
 		setInitParameterBoolean(FacesViews.FACES_VIEWS_SCANNED_VIEWS_EXTENSIONLESS_PARAM_NAME, this.omnifacesProperties.getFacesViewsScannedViewsAlwaysExtensionless());
 		setInitParameterString(FacesViews.FACES_VIEWS_VIEW_HANDLER_MODE_PARAM_NAME, this.omnifacesProperties.getFacesViewsViewHandlerMode());
 		setInitParameterString(Html5RenderKit.PARAM_NAME_PASSTHROUGH_ATTRIBUTES, this.omnifacesProperties.getHtml5RenderKitPassthroughAttributes());
@@ -60,10 +60,10 @@ public class OmnifacesServletContextConfigurer extends ServletContextConfigurer 
 		setInitParameterString(CDNResourceHandler.PARAM_NAME_CDN_RESOURCES, this.omnifacesProperties.getCdnResourceHandlerUrls());
 		setInitParameterInteger(CombinedResourceHandler.PARAM_NAME_CACHE_TTL, this.omnifacesProperties.getCombinedResourceHandlerCacheTtl());
 		setInitParameterBoolean(CombinedResourceHandler.PARAM_NAME_DISABLED, this.omnifacesProperties.getCombinedResourceHandlerDisabled());
-		setInitParameterCollection(CombinedResourceHandler.PARAM_NAME_EXCLUDED_RESOURCES, this.omnifacesProperties.getCombinedResourceHandlerExcludedResources(), Separator.COMMA);
+		setInitParameterStringCollection(CombinedResourceHandler.PARAM_NAME_EXCLUDED_RESOURCES, this.omnifacesProperties.getCombinedResourceHandlerExcludedResources(), Separator.COMMA);
 		setInitParameterBoolean(CombinedResourceHandler.PARAM_NAME_INLINE_CSS, this.omnifacesProperties.getCombinedResourceHandlerInlineCss());
 		setInitParameterBoolean(CombinedResourceHandler.PARAM_NAME_INLINE_JS, this.omnifacesProperties.getCombinedResourceHandlerInlineJs());
-		setInitParameterCollection(CombinedResourceHandler.PARAM_NAME_SUPPRESSED_RESOURCES, this.omnifacesProperties.getCombinedResourceHandlerSuppressedResources(), Separator.COMMA);
+		setInitParameterStringCollection(CombinedResourceHandler.PARAM_NAME_SUPPRESSED_RESOURCES, this.omnifacesProperties.getCombinedResourceHandlerSuppressedResources(), Separator.COMMA);
 
 		setInitParameterInteger(CacheInstancePerScopeProvider.APP_MAX_CAP_PARAM_NAME, this.omnifacesProperties.getCache().getApplicationMaxCapacity());
 		setInitParameterInteger(CacheInstancePerScopeProvider.APP_TTL_PARAM_NAME, this.omnifacesProperties.getCache().getApplicationTtl());

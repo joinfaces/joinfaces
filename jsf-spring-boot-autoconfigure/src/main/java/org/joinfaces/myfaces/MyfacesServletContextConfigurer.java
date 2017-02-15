@@ -172,7 +172,7 @@ public class MyfacesServletContextConfigurer extends ServletContextConfigurer {
 		setInitParameterBoolean(ViewPool.INIT_PARAM_VIEW_POOL_DEFERRED_NAVIGATION, this.myfacesProperties.getViewPoolDeferredNavigation());
 		setInitParameterString(AbstractFacesInitializer.INIT_PARAM_LOG_WEB_CONTEXT_PARAMS, this.myfacesProperties.getLogWebContextParams());
 		setInitParameterString(PREFFIX + "FACES_INITIALIZER", this.myfacesProperties.getFacesInitializer());
-		setInitParameterCollection(PREFFIX + "FACES_INIT_PLUGINS", this.myfacesProperties.getFacesInitPlugins(), Separator.COMMA);
+		setInitParameterStringCollection(PREFFIX + "FACES_INIT_PLUGINS", this.myfacesProperties.getFacesInitPlugins(), Separator.COMMA);
 		setInitParameterBoolean(CdiAnnotationProviderExtension.USE_CDI_FOR_ANNOTATION_SCANNING, this.myfacesProperties.getAnnotation().getUseCdiForAnnotationScanning());
 		setInitParameterString(DefaultAnnotationProvider.SCAN_PACKAGES, this.myfacesProperties.getAnnotation().getScanPackages());
 		setInitParameterBoolean(PREFFIX + "INITIALIZE_ALWAYS_STANDALONE", this.myfacesProperties.getInitializeAlwaysStandalone());

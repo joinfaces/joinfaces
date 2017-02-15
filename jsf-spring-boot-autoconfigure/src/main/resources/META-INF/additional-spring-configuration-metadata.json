@@ -36,14 +36,18 @@
       ]
     },
     {
-      "name": "jsf.facelets-resource-resolver",
+      "name": "jsf.validate-empty-fields",
+      "values": [
+        {
+          "value": "true"
+        },
+        {
+          "value": "auto"
+        }
+      ],
       "providers": [
         {
-          "name": "class-reference",
-          "parameters": {
-            "target": "javax.faces.view.facelets.ResourceResolver",
-            "concrete": true
-          }
+          "name": "any"
         }
       ]
     },
