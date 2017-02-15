@@ -80,14 +80,14 @@ public class MojarraServletContextConfigurer extends ServletContextConfigurer {
 		setInitParameterBoolean("validateXml", this.mojarraProperties.getValidateXml());
 		setInitParameterBoolean("verifyObjects", this.mojarraProperties.getVerifyObjects());
 		setInitParameterBoolean("enableTransitionTimeNoOpFlash", this.mojarraProperties.getEnableTransitionTimeNoOpFlash());
-		setInitParameterString("expressionFactory", this.mojarraProperties.getExpressionFactory());
+		setInitParameterClass("expressionFactory", this.mojarraProperties.getExpressionFactory());
 		setInitParameterBoolean("forceAlwaysWriteFlashCookie", this.mojarraProperties.getForceAlwaysWriteFlashCookie());
-		setInitParameterString("injectionProvider", this.mojarraProperties.getInjectionProvider());
+		setInitParameterClass("injectionProvider", this.mojarraProperties.getInjectionProvider());
 		setInitParameterBoolean("namespaceParameters", this.mojarraProperties.getNamespaceParameters());
 		setInitParameterBoolean("registerConverterPropertyEditors", this.mojarraProperties.getRegisterConverterPropertyEditors());
 		setInitParameterBoolean("sendPoweredByHeader", this.mojarraProperties.getSendPoweredByHeader());
-		setInitParameterString("serializationProvider", this.mojarraProperties.getSerializationProvider());
-		setInitParameterString("faceletFactory", this.mojarraProperties.getFaceletFactory());
+		setInitParameterClass("serializationProvider", this.mojarraProperties.getSerializationProvider());
+		setInitParameterClass("faceletFactory", this.mojarraProperties.getFaceletFactory());
 		setInitParameterBoolean("disallowDoctypeDecl", this.mojarraProperties.getDisallowDoctypeDecl());
 	}
 }

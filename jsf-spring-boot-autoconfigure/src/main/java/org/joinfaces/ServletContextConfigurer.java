@@ -92,7 +92,13 @@ public abstract class ServletContextConfigurer {
 		}
 	}
 
-	protected void setInitParameterCollection(String name, Collection<String> value, Separator separator) {
+	protected void setInitParameterClass(String name, Class<?> value) {
+		if (value != null) {
+			setInitParameterWithDebug(name, value.getName());
+		}
+	}
+
+	protected void setInitParameterStringCollection(String name, Collection<String> value, Separator separator) {
 		if (value != null) {
 			if (value.isEmpty()) {
 				setInitParameterWithDebug(name, "");
@@ -102,6 +108,22 @@ public abstract class ServletContextConfigurer {
 				StringBuilder sb = new StringBuilder(iterator.next());
 				while (iterator.hasNext()) {
 					sb.append(separator.getString()).append(iterator.next());
+				}
+				setInitParameterWithDebug(name, sb.toString());
+			}
+		}
+	}
+
+	protected void setInitParameterClassCollection(String name, Collection<Class<?>> value, Separator separator) {
+		if (value != null) {
+			if (value.isEmpty()) {
+				setInitParameterWithDebug(name, "");
+			}
+			else {
+				Iterator<Class<?>> iterator = value.iterator();
+				StringBuilder sb = new StringBuilder(iterator.next().getName());
+				while (iterator.hasNext()) {
+					sb.append(separator.getString()).append(iterator.next().getName());
 				}
 				setInitParameterWithDebug(name, sb.toString());
 			}
