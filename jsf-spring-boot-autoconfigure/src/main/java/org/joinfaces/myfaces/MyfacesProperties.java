@@ -16,10 +16,18 @@
 
 package org.joinfaces.myfaces;
 
+import java.util.Comparator;
 import java.util.List;
+
+import javax.el.ELResolver;
+import javax.el.ExpressionFactory;
 
 import lombok.Getter;
 import lombok.Setter;
+import org.apache.commons.collections.Predicate;
+import org.apache.myfaces.shared.util.serial.SerialFactory;
+import org.apache.myfaces.spi.ServiceProviderFinder;
+import org.apache.myfaces.webapp.FacesInitializer;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
@@ -120,7 +128,7 @@ public class MyfacesProperties {
 	 * Define an alternate class name that will be used to initialize MyFaces,
 	 * instead the default javax.
 	 */
-	private String delegateFacesServlet;
+	private Class<?> delegateFacesServlet;
 
 	/**
 	 * Indicate if the facelet associated to the view should be reapplied when
@@ -338,7 +346,7 @@ public class MyfacesProperties {
 	 * Defines the factory class name using for serialize/deserialize the view
 	 * state returned by state manager into a byte array.
 	 */
-	private String serialFactory;
+	private Class<? extends SerialFactory> serialFactory;
 
 	/**
 	 * Indicate if the view state should be compressed before
@@ -477,7 +485,7 @@ public class MyfacesProperties {
 	/**
 	 * The Class of an Comparator<ELResolver/> implementation.
 	 */
-	private String elResolverComparator;
+	private Class<? extends Comparator<ELResolver>> elResolverComparator;
 
 	/**
 	 * The Class of an org.apache.commons.collections.Predicate<ELResolver/>
@@ -486,7 +494,7 @@ public class MyfacesProperties {
 	 * caution - can break functionality defined in JSF specification " +
 	 * "'ELResolver Instances Provided by Faces'.
 	 */
-	private String elResolverPredicate;
+	private Class<? extends Predicate> elResolverPredicate;
 
 	/**
 	 * no description.
@@ -544,7 +552,7 @@ public class MyfacesProperties {
 	/**
 	 * Class name of a custom ServiceProviderFinder implementation.
 	 */
-	private Boolean serviceProviderFinder;
+	private Class<? extends ServiceProviderFinder> serviceProviderFinder;
 
 	private Spi spi = new Spi();
 
@@ -607,7 +615,7 @@ public class MyfacesProperties {
 	/**
 	 * This parameter specifies the ExpressionFactory implementation to use.
 	 */
-	private String expressionFactory;
+	private Class<? extends ExpressionFactory> expressionFactory;
 
 	/**
 	 * If this param is set to true, the check for faces servlet mapping is not
@@ -618,12 +626,12 @@ public class MyfacesProperties {
 	/**
 	 * Class name of a custom FacesInitializer implementation.
 	 */
-	private String facesInitializer;
+	private Class<? extends FacesInitializer> facesInitializer;
 
 	/**
 	 * comma delimited list of plugin classes which can be hooked into myfaces.
 	 */
-	private List<String> facesInitPlugins;
+	private List<Class<?>> facesInitPlugins;
 
 	/**
 	 * Annotation class of useCdiForAnnotationScanning and scanPackages properties.
