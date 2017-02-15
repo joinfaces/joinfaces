@@ -16,10 +16,14 @@
 
 package org.joinfaces.mojarra;
 
+import com.sun.faces.spi.InjectionProvider;
+import com.sun.faces.spi.SerializationProvider;
 import lombok.Getter;
 import lombok.Setter;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
+
+import javax.el.ExpressionFactory;
 
 /**
  * Configuration properties of Mojarra.
@@ -365,7 +369,7 @@ public class MojarraProperties {
 	/**
 	 * This parameter specifies a class that implements the ExpressionFactory.
 	 */
-	private String expressionFactory;
+	private Class<? extends ExpressionFactory> expressionFactory;
 
 	/**
 	 * If true, then the flash cookie will always be written, regardless of
@@ -377,7 +381,7 @@ public class MojarraProperties {
 	/**
 	 * This parameter specifies a class that implements the InjectionProvider.
 	 */
-	private String injectionProvider;
+	private Class<? extends InjectionProvider> injectionProvider;
 
 	/**
 	 * If true, then view state hidden field is namespaced according to
@@ -404,7 +408,7 @@ public class MojarraProperties {
 	 * implementation will use in order to allow the use of alternate
 	 * Serialization implementations.
 	 */
-	private String serializationProvider;
+	private Class<? extends SerializationProvider> serializationProvider;
 
 	/**
 	 * The value of this option is a fully qualfified class that extends the
@@ -418,7 +422,7 @@ public class MojarraProperties {
 	 * constructor is not present, the custom implementation will be constructed
 	 * by invoking a public no-argument constructor.
 	 */
-	private String faceletFactory;
+	private Class<?> faceletFactory;
 
 	/**
 	 * When this context param is set to true, this would set a feature on the SAX

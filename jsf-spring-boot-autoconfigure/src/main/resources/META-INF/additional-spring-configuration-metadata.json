@@ -69,6 +69,18 @@
       ]
     },
     {
+      "name": "jsf.mojarra.facelet-factory",
+      "providers": [
+        {
+          "name": "class-reference",
+          "parameters": {
+            "target": "com.sun.faces.facelets.FaceletFactory",
+            "concrete": true
+          }
+        }
+      ]
+    },
+    {
       "name": "jsf.primefaces.theme",
       "values": [
         {
