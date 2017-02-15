@@ -21,6 +21,7 @@ import java.util.List;
 import lombok.Getter;
 import lombok.Setter;
 
+import org.omnifaces.component.output.cache.CacheProvider;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
 /**
@@ -34,7 +35,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 @ConfigurationProperties(prefix = "jsf.omnifaces")
 public class OmnifacesProperties {
 
-	private String cacheProvider;
+	private Class<? extends CacheProvider> cacheProvider;
 
 	private String defaultcache;
 
