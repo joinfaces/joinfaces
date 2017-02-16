@@ -53,11 +53,11 @@ public class JavaxFacesServletContextConfigurer extends ServletContextConfigurer
 	public void configure() {
 		setInitParameterEnum(ProjectStage.PROJECT_STAGE_PARAM_NAME, this.javaxFacesProperties.getProjectStage());
 
-		setInitParameterCollection(ResourceHandler.RESOURCE_EXCLUDES_PARAM_NAME, this.javaxFacesProperties.getResourceExcludes(), Separator.SPACE);
+		setInitParameterStringCollection(ResourceHandler.RESOURCE_EXCLUDES_PARAM_NAME, this.javaxFacesProperties.getResourceExcludes(), Separator.SPACE);
 		setInitParameterString(ResourceHandler.WEBAPP_CONTRACTS_DIRECTORY_PARAM_NAME, this.javaxFacesProperties.getWebappContractsDirectory());
 		setInitParameterString(ResourceHandler.WEBAPP_RESOURCES_DIRECTORY_PARAM_NAME, this.javaxFacesProperties.getWebappResourcesDirectory());
 
-		setInitParameterCollection(StateManager.FULL_STATE_SAVING_VIEW_IDS_PARAM_NAME, this.javaxFacesProperties.getFullStateSavingViewIds(), Separator.SEMICOLON);
+		setInitParameterStringCollection(StateManager.FULL_STATE_SAVING_VIEW_IDS_PARAM_NAME, this.javaxFacesProperties.getFullStateSavingViewIds(), Separator.SEMICOLON);
 		setInitParameterBoolean(StateManager.PARTIAL_STATE_SAVING_PARAM_NAME, this.javaxFacesProperties.getPartialStateSaving());
 		setInitParameterBoolean(StateManager.SERIALIZE_SERVER_STATE_PARAM_NAME, this.javaxFacesProperties.getSerializeServerState());
 		setInitParameterString(StateManager.STATE_SAVING_METHOD_PARAM_NAME, this.javaxFacesProperties.getStateSavingMethod());
@@ -65,12 +65,12 @@ public class JavaxFacesServletContextConfigurer extends ServletContextConfigurer
 		setInitParameterString(ViewHandler.DEFAULT_SUFFIX_PARAM_NAME, this.javaxFacesProperties.getDefaultSuffix());
 		setInitParameterBoolean(ViewHandler.DISABLE_FACELET_JSF_VIEWHANDLER_PARAM_NAME, this.javaxFacesProperties.getDisableFaceletJsfViewhandler());
 		setInitParameterInteger(ViewHandler.FACELETS_BUFFER_SIZE_PARAM_NAME, this.javaxFacesProperties.getFaceletsBufferSize());
-		setInitParameterString(ViewHandler.FACELETS_DECORATORS_PARAM_NAME, this.javaxFacesProperties.getFaceletsDecorators());
-		setInitParameterCollection(ViewHandler.FACELETS_LIBRARIES_PARAM_NAME, this.javaxFacesProperties.getFaceletsLibraries(), Separator.SEMICOLON);
+		setInitParameterClassCollection(ViewHandler.FACELETS_DECORATORS_PARAM_NAME, this.javaxFacesProperties.getFaceletsDecorators(), Separator.SEMICOLON);
+		setInitParameterStringCollection(ViewHandler.FACELETS_LIBRARIES_PARAM_NAME, this.javaxFacesProperties.getFaceletsLibraries(), Separator.SEMICOLON);
 		setInitParameterInteger(ViewHandler.FACELETS_REFRESH_PERIOD_PARAM_NAME, this.javaxFacesProperties.getFaceletsRefreshPeriod());
 		setInitParameterBoolean(ViewHandler.FACELETS_SKIP_COMMENTS_PARAM_NAME, this.javaxFacesProperties.getFaceletsSkipComments());
 		setInitParameterString(ViewHandler.FACELETS_SUFFIX_PARAM_NAME, this.javaxFacesProperties.getFaceletsSuffix());
-		setInitParameterCollection(ViewHandler.FACELETS_VIEW_MAPPINGS_PARAM_NAME, this.javaxFacesProperties.getFaceletsViewMappings(), Separator.SEMICOLON);
+		setInitParameterStringCollection(ViewHandler.FACELETS_VIEW_MAPPINGS_PARAM_NAME, this.javaxFacesProperties.getFaceletsViewMappings(), Separator.SEMICOLON);
 
 		setInitParameterBoolean(UIComponent.HONOR_CURRENT_COMPONENT_ATTRIBUTES_PARAM_NAME, this.javaxFacesProperties.getHonorCurrentComponentAttributes());
 
@@ -88,9 +88,9 @@ public class JavaxFacesServletContextConfigurer extends ServletContextConfigurer
 
 		setInitParameterBoolean(BeanValidator.DISABLE_DEFAULT_BEAN_VALIDATOR_PARAM_NAME, this.javaxFacesProperties.getValidator().getDisableDefaultBeanValidator());
 
-		setInitParameterString(ResourceResolver.FACELETS_RESOURCE_RESOLVER_PARAM_NAME, this.javaxFacesProperties.getFaceletsResourceResolver());
+		setInitParameterClass(ResourceResolver.FACELETS_RESOURCE_RESOLVER_PARAM_NAME, this.javaxFacesProperties.getFaceletsResourceResolver());
 
-		setInitParameterCollection(FacesServlet.CONFIG_FILES_ATTR, this.javaxFacesProperties.getConfigFiles(), Separator.COMMA);
+		setInitParameterStringCollection(FacesServlet.CONFIG_FILES_ATTR, this.javaxFacesProperties.getConfigFiles(), Separator.COMMA);
 		setInitParameterString(FacesServlet.LIFECYCLE_ID_ATTR, this.javaxFacesProperties.getLifecycleId());
 
 		setInitParameterString(ClientWindow.CLIENT_WINDOW_MODE_PARAM_NAME, this.javaxFacesProperties.getClientWindowMode());

@@ -114,7 +114,7 @@ public class MyfacesPropertiesOtherIT {
 
 	@Test
 	public void testServiceProviderFinder() {
-		assertThat(this.myfacesProperties.getServiceProviderFinder()).isTrue();
+		assertThat(this.myfacesProperties.getServiceProviderFinder()).isNotNull();
 	}
 
 	@Test
@@ -164,7 +164,7 @@ public class MyfacesPropertiesOtherIT {
 
 	@Test
 	public void testFacesInitPlugins() {
-		assertThat(this.myfacesProperties.getFacesInitPlugins()).containsExactly("myInitPlugin");
+		assertThat(this.myfacesProperties.getFacesInitPlugins()).size().isEqualTo(1);
 	}
 
 	@Test

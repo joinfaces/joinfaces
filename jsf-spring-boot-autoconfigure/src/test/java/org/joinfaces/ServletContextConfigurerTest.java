@@ -69,28 +69,28 @@ public class ServletContextConfigurerTest {
 
 	@Test
 	public void setInitParameterCollection() {
-		servletContextConfigurer.setInitParameterCollection(FOO, Arrays.asList(FOO, BAR), ServletContextConfigurer.Separator.COMMA);
+		servletContextConfigurer.setInitParameterStringCollection(FOO, Arrays.asList(FOO, BAR), ServletContextConfigurer.Separator.COMMA);
 
 		assertThat(servletContext.getInitParameter(FOO)).isEqualTo("foo,bar");
 	}
 
 	@Test
 	public void setInitParameterCollectionNull() {
-		servletContextConfigurer.setInitParameterCollection(FOO, null, ServletContextConfigurer.Separator.COMMA);
+		servletContextConfigurer.setInitParameterStringCollection(FOO, null, ServletContextConfigurer.Separator.COMMA);
 
 		assertThat(servletContext.getInitParameter(FOO)).isNull();
 	}
 
 	@Test
 	public void setInitParameterCollectionEmpty() {
-		servletContextConfigurer.setInitParameterCollection(FOO, Collections.<String>emptyList(), ServletContextConfigurer.Separator.COMMA);
+		servletContextConfigurer.setInitParameterStringCollection(FOO, Collections.<String>emptyList(), ServletContextConfigurer.Separator.COMMA);
 
 		assertThat(servletContext.getInitParameter(FOO)).isEmpty();
 	}
 
 	@Test
 	public void setInitParameterCollectionSingle() {
-		servletContextConfigurer.setInitParameterCollection(FOO, Collections.singletonList(BAR), ServletContextConfigurer.Separator.COMMA);
+		servletContextConfigurer.setInitParameterStringCollection(FOO, Collections.singletonList(BAR), ServletContextConfigurer.Separator.COMMA);
 
 		assertThat(servletContext.getInitParameter(FOO)).isEqualTo(BAR);
 	}
