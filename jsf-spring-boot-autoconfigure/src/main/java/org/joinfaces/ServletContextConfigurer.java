@@ -114,13 +114,13 @@ public abstract class ServletContextConfigurer {
 		}
 	}
 
-	protected void setInitParameterClassCollection(String name, Collection<Class<?>> value, Separator separator) {
+	protected <T> void setInitParameterClassCollection(String name, Collection<Class<? extends T>> value, Separator separator) {
 		if (value != null) {
 			if (value.isEmpty()) {
 				setInitParameterWithDebug(name, "");
 			}
 			else {
-				Iterator<Class<?>> iterator = value.iterator();
+				Iterator<Class<? extends T>> iterator = value.iterator();
 				StringBuilder sb = new StringBuilder(iterator.next().getName());
 				while (iterator.hasNext()) {
 					sb.append(separator.getString()).append(iterator.next().getName());
