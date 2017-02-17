@@ -374,3 +374,7 @@ joinfaces.test.list-d:
 joinfaces.test:
   charSequenceClass: java.lang.String
   randomClass: java.lang.Void
+  classList:
+   - java.lang.String
+   - java.lang.Void
+   - java.util.List

@@ -23,6 +23,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import java.util.List;
+
 import static org.assertj.core.api.Assertions.assertThat;
 
 /**
@@ -64,8 +66,14 @@ public class PropertyTypesTest {
 		assertThat(testProperties.getCharSequenceClass()).isEqualTo(String.class);
 	}
 
+	@Test
 	public void testClassProperty() {
 		assertThat(testProperties.getRandomClass()).isNotNull();
 		assertThat(testProperties.getRandomClass()).isEqualTo(Void.class);
+	}
+
+	@Test
+	public void testClassListProperty() {
+		assertThat(testProperties.getClassList()).containsExactly(String.class, Void.class, List.class);
 	}
 }

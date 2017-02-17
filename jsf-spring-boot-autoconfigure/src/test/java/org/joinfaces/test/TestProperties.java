@@ -37,7 +37,9 @@ public class TestProperties {
 	private List<String> listC = new ArrayList<String>();
 	private List<String> listD = new ArrayList<String>();
 
-	Class<? extends CharSequence> charSequenceClass;
-	Class<?> randomClass;
+	private Class<? extends CharSequence> charSequenceClass;
+	private Class<?> randomClass;
+
+	private List<Class<?>> classList;
 
 }
