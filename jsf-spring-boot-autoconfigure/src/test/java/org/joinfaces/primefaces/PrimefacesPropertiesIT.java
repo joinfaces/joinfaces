@@ -124,7 +124,7 @@ public class PrimefacesPropertiesIT {
 
 	@Test
 	public void testUploader() {
-		assertThat(this.primefacesProperties.getUploader()).isEqualTo("myUploader");
+		assertThat(this.primefacesProperties.getUploader()).isEqualTo("auto");
 	}
 
 	@Test

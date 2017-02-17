@@ -153,11 +153,6 @@ public class MyfacesPropertiesOtherIT {
 	}
 
 	@Test
-	public void testFacesInitPlugins() {
-		assertThat(this.myfacesProperties.getFacesInitPlugins()).size().isEqualTo(1);
-	}
-
-	@Test
 	public void testAnnotationUseCdiForAnnotationScanning() {
 		assertThat(this.myfacesProperties.getAnnotation().getUseCdiForAnnotationScanning()).isTrue();
 	}
