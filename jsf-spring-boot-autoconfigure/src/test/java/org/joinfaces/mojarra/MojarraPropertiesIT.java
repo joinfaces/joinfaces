@@ -261,21 +261,9 @@ public class MojarraPropertiesIT {
 	}
 
 	@Test
-	public void testExpressionFactory() {
-		assertThat(this.mojarraProperties.getExpressionFactory())
-			.isEqualTo("myExpressionFactory");
-	}
-
-	@Test
 	public void testForceAlwaysWriteFlashCookie() {
 		assertThat(this.mojarraProperties.getForceAlwaysWriteFlashCookie())
 			.isTrue();
-	}
-
-	@Test
-	public void testInjectionProvider() {
-		assertThat(this.mojarraProperties.getInjectionProvider())
-			.isEqualTo("myInjectionProvider");
 	}
 
 	@Test
@@ -294,18 +282,6 @@ public class MojarraPropertiesIT {
 	public void testSendPoweredByHeader() {
 		assertThat(this.mojarraProperties.getSendPoweredByHeader())
 			.isTrue();
-	}
-
-	@Test
-	public void testSerializationProvider() {
-		assertThat(this.mojarraProperties.getSerializationProvider())
-			.isEqualTo("myProvider");
-	}
-
-	@Test
-	public void testFaceletFactory() {
-		assertThat(this.mojarraProperties.getFaceletFactory())
-			.isEqualTo("myFactory");
 	}
 
 	@Test

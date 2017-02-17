@@ -35,8 +35,6 @@ import javax.servlet.ServletContext;
 import lombok.Builder;
 import org.joinfaces.ServletContextConfigurer;
 
-import java.util.Collection;
-
 /**
  * Servlet Context Configurer of Javax Faces properties.
  * @author Marcelo Fernandes
@@ -67,7 +65,7 @@ public class JavaxFacesServletContextConfigurer extends ServletContextConfigurer
 		setInitParameterString(ViewHandler.DEFAULT_SUFFIX_PARAM_NAME, this.javaxFacesProperties.getDefaultSuffix());
 		setInitParameterBoolean(ViewHandler.DISABLE_FACELET_JSF_VIEWHANDLER_PARAM_NAME, this.javaxFacesProperties.getDisableFaceletJsfViewhandler());
 		setInitParameterInteger(ViewHandler.FACELETS_BUFFER_SIZE_PARAM_NAME, this.javaxFacesProperties.getFaceletsBufferSize());
-		setInitParameterClassCollection(ViewHandler.FACELETS_DECORATORS_PARAM_NAME, (Collection<Class<?>>) this.javaxFacesProperties.getFaceletsDecorators(), Separator.SEMICOLON);
+		setInitParameterClassCollection(ViewHandler.FACELETS_DECORATORS_PARAM_NAME, this.javaxFacesProperties.getFaceletsDecorators(), Separator.SEMICOLON);
 		setInitParameterStringCollection(ViewHandler.FACELETS_LIBRARIES_PARAM_NAME, this.javaxFacesProperties.getFaceletsLibraries(), Separator.SEMICOLON);
 		setInitParameterInteger(ViewHandler.FACELETS_REFRESH_PERIOD_PARAM_NAME, this.javaxFacesProperties.getFaceletsRefreshPeriod());
 		setInitParameterBoolean(ViewHandler.FACELETS_SKIP_COMMENTS_PARAM_NAME, this.javaxFacesProperties.getFaceletsSkipComments());

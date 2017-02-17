@@ -16,14 +16,14 @@
 
 package org.joinfaces.mojarra;
 
+import javax.el.ExpressionFactory;
+
 import com.sun.faces.spi.InjectionProvider;
 import com.sun.faces.spi.SerializationProvider;
 import lombok.Getter;
 import lombok.Setter;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
-
-import javax.el.ExpressionFactory;
 
 /**
  * Configuration properties of Mojarra.

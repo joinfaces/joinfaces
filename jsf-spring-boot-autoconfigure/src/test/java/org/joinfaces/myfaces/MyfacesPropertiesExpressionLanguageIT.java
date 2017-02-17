@@ -16,6 +16,7 @@
 
 package org.joinfaces.myfaces;
 
+import org.apache.el.ExpressionFactoryImpl;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
@@ -48,23 +49,13 @@ public class MyfacesPropertiesExpressionLanguageIT {
 	}
 
 	@Test
-	public void testElResolverComparator() {
-		assertThat(this.myfacesProperties.getElResolverComparator()).isEqualTo("myResolverComparator");
-	}
-
-	@Test
-	public void testElResolverPredicate() {
-		assertThat(this.myfacesProperties.getElResolverPredicate()).isEqualTo("myResolverPredicate");
-	}
-
-	@Test
 	public void testCacheElExpressions() {
 		assertThat(this.myfacesProperties.getCacheElExpressions()).isTrue();
 	}
 
 	@Test
 	public void testExpressionFactory() {
-		assertThat(this.myfacesProperties.getExpressionFactory()).isEqualTo("myExpressionFactory");
+		assertThat(this.myfacesProperties.getExpressionFactory()).isEqualTo(ExpressionFactoryImpl.class);
 	}
 
 }
