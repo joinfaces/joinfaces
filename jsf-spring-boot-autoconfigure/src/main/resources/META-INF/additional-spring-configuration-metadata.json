@@ -36,14 +36,18 @@
       ]
     },
     {
-      "name": "jsf.facelets-resource-resolver",
+      "name": "jsf.validate-empty-fields",
+      "values": [
+        {
+          "value": "true"
+        },
+        {
+          "value": "auto"
+        }
+      ],
       "providers": [
         {
-          "name": "class-reference",
-          "parameters": {
-            "target": "javax.faces.view.facelets.ResourceResolver",
-            "concrete": true
-          }
+          "name": "any"
         }
       ]
     },
@@ -61,6 +65,32 @@
         {
           "value": "false",
           "description": "Any characters above a certain range will be escaped as either an HTML entity or a decimal reference."
+        }
+      ]
+    },
+    {
+      "name": "jsf.mojarra.facelet-factory",
+      "providers": [
+        {
+          "name": "class-reference",
+          "parameters": {
+            "target": "com.sun.faces.facelets.FaceletFactory",
+            "concrete": true
+          }
+        }
+      ]
+    },
+    {
+      "name": "jsf.primefaces.uploader",
+      "values": [
+        {
+          "value": "auto"
+        },
+        {
+          "value": "native"
+        },
+        {
+          "value": "commons"
         }
       ]
     },

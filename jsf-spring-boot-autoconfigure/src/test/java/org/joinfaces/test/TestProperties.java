@@ -16,13 +16,30 @@
 
 package org.joinfaces.test;
 
-import org.springframework.boot.context.properties.EnableConfigurationProperties;
-import org.springframework.context.annotation.Configuration;
+import java.util.ArrayList;
+import java.util.List;
+
+import lombok.Getter;
+import lombok.Setter;
+
+import org.springframework.boot.context.properties.ConfigurationProperties;
 
 /**
  * @author Lars Grefer
  */
-@Configuration
-@EnableConfigurationProperties(ListProperties.class)
-public class ListPropertiesAutoConfiguration {
+@ConfigurationProperties("joinfaces.test")
+@Getter
+@Setter
+public class TestProperties {
+
+	private List<String> listA = new ArrayList<String>();
+	private List<String> listB = new ArrayList<String>();
+	private List<String> listC = new ArrayList<String>();
+	private List<String> listD = new ArrayList<String>();
+
+	private Class<? extends CharSequence> charSequenceClass;
+	private Class<?> randomClass;
+
+	private List<Class<?>> classList;
+
 }

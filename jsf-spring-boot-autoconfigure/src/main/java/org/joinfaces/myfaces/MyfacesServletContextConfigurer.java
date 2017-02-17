@@ -60,10 +60,10 @@ public class MyfacesServletContextConfigurer extends ServletContextConfigurer {
 		setInitParameterString(PREFFIX + "STRICT_JSF_2_CC_EL_RESOLVER", this.myfacesProperties.getStrictJsf2CcElResolver());
 		setInitParameterBoolean(PREFFIX + "SUPPORT_JSP_AND_FACES_EL", this.myfacesProperties.getSupportJspAndFacesEl());
 		setInitParameterBoolean(PREFFIX + "SUPPORT_EL_3_IMPORT_HANDLER", this.myfacesProperties.getSupportEl3ImportHandler());
-		setInitParameterString(ResolverBuilderBase.EL_RESOLVER_COMPARATOR, this.myfacesProperties.getElResolverComparator());
-		setInitParameterString(ResolverBuilderBase.EL_RESOLVER_PREDICATE, this.myfacesProperties.getElResolverPredicate());
+		setInitParameterClass(ResolverBuilderBase.EL_RESOLVER_COMPARATOR, this.myfacesProperties.getElResolverComparator());
+		setInitParameterClass(ResolverBuilderBase.EL_RESOLVER_PREDICATE, this.myfacesProperties.getElResolverPredicate());
 		setInitParameterBoolean(FaceletCompositionContextImpl.INIT_PARAM_CACHE_EL_EXPRESSIONS, this.myfacesProperties.getCacheElExpressions());
-		setInitParameterString(PREFFIX + "EXPRESSION_FACTORY", this.myfacesProperties.getExpressionFactory());
+		setInitParameterClass(PREFFIX + "EXPRESSION_FACTORY", this.myfacesProperties.getExpressionFactory());
 	}
 
 	private void configureCDI() {
@@ -109,7 +109,7 @@ public class MyfacesServletContextConfigurer extends ServletContextConfigurer {
 		setInitParameterBoolean(PREFFIX + "SECRET.CACHE", this.myfacesProperties.getSecretCache());
 		setInitParameterString(PREFFIX + "ALGORITHM.IV", this.myfacesProperties.getAlgorithmIv());
 		setInitParameterString(PREFFIX + "ALGORITHM.PARAMETERS", this.myfacesProperties.getAlgorithmParameters());
-		setInitParameterString(PREFFIX + "SERIAL_FACTORY", this.myfacesProperties.getSerialFactory());
+		setInitParameterClass(PREFFIX + "SERIAL_FACTORY", this.myfacesProperties.getSerialFactory());
 		setInitParameterBoolean(PREFFIX + "COMPRESS_STATE_IN_CLIENT", this.myfacesProperties.getCompressStateInClient());
 		setInitParameterString(PREFFIX + "MAC_ALGORITHM", this.myfacesProperties.getMacAlgorithm());
 		setInitParameterString(PREFFIX + "MAC_SECRET", this.myfacesProperties.getMacSecret());
@@ -147,7 +147,7 @@ public class MyfacesServletContextConfigurer extends ServletContextConfigurer {
 
 	private void configureOther() {
 		setInitParameterInteger(PREFFIX + "CONFIG_REFRESH_PERIOD", this.myfacesProperties.getConfigRefreshPeriod());
-		setInitParameterString(PREFFIX + "DELEGATE_FACES_SERVLET", this.myfacesProperties.getDelegateFacesServlet());
+		setInitParameterClass(PREFFIX + "DELEGATE_FACES_SERVLET", this.myfacesProperties.getDelegateFacesServlet());
 		setInitParameterBoolean(PREFFIX + "VALIDATE_XML", this.myfacesProperties.getValidateXml());
 		setInitParameterBoolean(PREFFIX + "DEBUG_PHASE_LISTENER", this.myfacesProperties.getDebugPhaseListener());
 		setInitParameterBoolean(PREFFIX + "STRICT_JSF_2_REFRESH_TARGET_AJAX", this.myfacesProperties.getStrictJsf2RefreshTargetAjax());
@@ -162,7 +162,7 @@ public class MyfacesServletContextConfigurer extends ServletContextConfigurer {
 		setInitParameterString(PREFFIX + "DEBUG_TEMPLATE_RESOURCE", this.myfacesProperties.getDebugTemplateResource());
 		setInitParameterBoolean(ErrorPageWriter.ERROR_HANDLING_PARAMETER, this.myfacesProperties.getErrorHandling());
 		setInitParameterBoolean(PREFFIX + "TEMPORAL_RESOURCEHANDLER_CACHE_ENABLED", this.myfacesProperties.getTemporalResourcehandlerCacheEnabled());
-		setInitParameterBoolean(PREFFIX + "SERVICE_PROVIDER_FINDER", this.myfacesProperties.getServiceProviderFinder());
+		setInitParameterClass(PREFFIX + "SERVICE_PROVIDER_FINDER", this.myfacesProperties.getServiceProviderFinder());
 		setInitParameterString(PREFFIX + "spi.InjectionProvider", this.myfacesProperties.getSpi().getInjectionProvider());
 		setInitParameterBoolean(PREFFIX + "MARK_INITIAL_STATE_WHEN_APPLY_BUILD_VIEW", this.myfacesProperties.getMarkInitialStateWhenApplyBuildView());
 		setInitParameterBoolean(ContextAwareUtils.INIT_PARAM_WRAP_TAG_EXCEPTIONS_AS_CONTEXT_AWARE, this.myfacesProperties.getWrapTagExceptionsAsContextAware());
@@ -171,8 +171,8 @@ public class MyfacesServletContextConfigurer extends ServletContextConfigurer {
 		setInitParameterString(ViewPool.INIT_PARAM_VIEW_POOL_ENTRY_MODE, this.myfacesProperties.getViewPoolEntryMode());
 		setInitParameterBoolean(ViewPool.INIT_PARAM_VIEW_POOL_DEFERRED_NAVIGATION, this.myfacesProperties.getViewPoolDeferredNavigation());
 		setInitParameterString(AbstractFacesInitializer.INIT_PARAM_LOG_WEB_CONTEXT_PARAMS, this.myfacesProperties.getLogWebContextParams());
-		setInitParameterString(PREFFIX + "FACES_INITIALIZER", this.myfacesProperties.getFacesInitializer());
-		setInitParameterCollection(PREFFIX + "FACES_INIT_PLUGINS", this.myfacesProperties.getFacesInitPlugins(), Separator.COMMA);
+		setInitParameterClass(PREFFIX + "FACES_INITIALIZER", this.myfacesProperties.getFacesInitializer());
+		setInitParameterClassCollection(PREFFIX + "FACES_INIT_PLUGINS", this.myfacesProperties.getFacesInitPlugins(), Separator.COMMA);
 		setInitParameterBoolean(CdiAnnotationProviderExtension.USE_CDI_FOR_ANNOTATION_SCANNING, this.myfacesProperties.getAnnotation().getUseCdiForAnnotationScanning());
 		setInitParameterString(DefaultAnnotationProvider.SCAN_PACKAGES, this.myfacesProperties.getAnnotation().getScanPackages());
 		setInitParameterBoolean(PREFFIX + "INITIALIZE_ALWAYS_STANDALONE", this.myfacesProperties.getInitializeAlwaysStandalone());

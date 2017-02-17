@@ -90,11 +90,6 @@ public class JavaxFacesPropertiesIT {
 	}
 
 	@Test
-	public void testFaceletsDecorators() {
-		assertThat(this.javaxFacesProperties.getFaceletsDecorators()).isEqualTo("myDecorator");
-	}
-
-	@Test
 	public void testFaceletsLibraries() {
 		assertThat(this.javaxFacesProperties.getFaceletsLibraries()).containsExactly("myLibrary");
 	}
@@ -162,11 +157,6 @@ public class JavaxFacesPropertiesIT {
 	@Test
 	public void testValidatorDisableDefaultBeanValidator() {
 		assertThat(this.javaxFacesProperties.getValidator().getDisableDefaultBeanValidator()).isTrue();
-	}
-
-	@Test
-	public void testFaceletsResourceResolver() {
-		assertThat(this.javaxFacesProperties.getFaceletsResourceResolver()).isEqualTo("myResolver");
 	}
 
 	@Test

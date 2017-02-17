@@ -18,6 +18,7 @@ package org.joinfaces;
 
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.List;
 
 import javax.servlet.ServletContext;
 
@@ -69,30 +70,61 @@ public class ServletContextConfigurerTest {
 
 	@Test
 	public void setInitParameterCollection() {
-		servletContextConfigurer.setInitParameterCollection(FOO, Arrays.asList(FOO, BAR), ServletContextConfigurer.Separator.COMMA);
+		servletContextConfigurer.setInitParameterStringCollection(FOO, Arrays.asList(FOO, BAR), ServletContextConfigurer.Separator.COMMA);
 
 		assertThat(servletContext.getInitParameter(FOO)).isEqualTo("foo,bar");
 	}
 
 	@Test
 	public void setInitParameterCollectionNull() {
-		servletContextConfigurer.setInitParameterCollection(FOO, null, ServletContextConfigurer.Separator.COMMA);
+		servletContextConfigurer.setInitParameterStringCollection(FOO, null, ServletContextConfigurer.Separator.COMMA);
 
 		assertThat(servletContext.getInitParameter(FOO)).isNull();
 	}
 
 	@Test
 	public void setInitParameterCollectionEmpty() {
-		servletContextConfigurer.setInitParameterCollection(FOO, Collections.<String>emptyList(), ServletContextConfigurer.Separator.COMMA);
+		servletContextConfigurer.setInitParameterStringCollection(FOO, Collections.<String>emptyList(), ServletContextConfigurer.Separator.COMMA);
 
 		assertThat(servletContext.getInitParameter(FOO)).isEmpty();
 	}
 
 	@Test
 	public void setInitParameterCollectionSingle() {
-		servletContextConfigurer.setInitParameterCollection(FOO, Collections.singletonList(BAR), ServletContextConfigurer.Separator.COMMA);
+		servletContextConfigurer.setInitParameterStringCollection(FOO, Collections.singletonList(BAR), ServletContextConfigurer.Separator.COMMA);
 
 		assertThat(servletContext.getInitParameter(FOO)).isEqualTo(BAR);
+	}
+
+	@Test
+	public void testInitParameterClassCollection() {
+		List<Class<?>> list = Arrays.asList(Void.class, String.class);
+		servletContextConfigurer.setInitParameterClassCollection(FOO, list, ServletContextConfigurer.Separator.COMMA);
+		servletContextConfigurer.setInitParameterClassCollection(BAR, list, ServletContextConfigurer.Separator.SEMICOLON);
+
+		assertThat(servletContext.getInitParameter(FOO)).isEqualTo("java.lang.Void,java.lang.String");
+		assertThat(servletContext.getInitParameter(BAR)).isEqualTo("java.lang.Void;java.lang.String");
+	}
+
+	@Test
+	public void testInitParameterClassCollectionNull() {
+		servletContextConfigurer.setInitParameterClassCollection(FOO, null, ServletContextConfigurer.Separator.COMMA);
+
+		assertThat(servletContext.getInitParameter(FOO)).isNull();
+	}
+
+	@Test
+	public void testInitParameterClassCollectionEmpty() {
+		servletContextConfigurer.setInitParameterClassCollection(FOO, Collections.<Class<?>>emptyList(), ServletContextConfigurer.Separator.COMMA);
+
+		assertThat(servletContext.getInitParameter(FOO)).isEmpty();
+	}
+
+	@Test
+	public void testInitParameterClassCollectionSingle() {
+		servletContextConfigurer.setInitParameterClassCollection(FOO, Collections.<Class<? extends Void>>singletonList(Void.class), ServletContextConfigurer.Separator.COMMA);
+
+		assertThat(servletContext.getInitParameter(FOO)).isEqualTo("java.lang.Void");
 	}
 
 }
