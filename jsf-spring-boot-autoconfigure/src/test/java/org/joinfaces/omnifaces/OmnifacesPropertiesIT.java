@@ -19,6 +19,7 @@ package org.joinfaces.omnifaces;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
+import org.omnifaces.component.output.cache.DefaultCacheProvider;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
@@ -34,7 +35,7 @@ public class OmnifacesPropertiesIT {
 
 	@Test
 	public void testCacheProvider() {
-		assertThat(this.omnifacesProperties.getCacheProvider()).isEqualTo("myCacheProvider");
+		assertThat(this.omnifacesProperties.getCacheProvider()).isEqualTo(DefaultCacheProvider.class);
 	}
 
 	@Test

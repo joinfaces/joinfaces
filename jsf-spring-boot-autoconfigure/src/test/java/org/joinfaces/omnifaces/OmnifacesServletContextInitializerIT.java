@@ -65,7 +65,7 @@ public class OmnifacesServletContextInitializerIT {
 		omnifacesServletContextInitializer.onStartup(servletContext);
 
 		assertThat(servletContext.getInitParameter(CacheInitializerListener.CACHE_PROVIDER_INIT_PARAM_NAME))
-			.isEqualTo("myCacheProvider");
+			.isEqualTo("org.omnifaces.component.output.cache.DefaultCacheProvider");
 	}
 
 	@Test

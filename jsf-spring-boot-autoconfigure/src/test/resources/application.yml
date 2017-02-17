@@ -12,7 +12,6 @@ jsf:
   defaultSuffix: .xhtml
   disableFaceletJsfViewhandler: true
   faceletsBufferSize: 33
-  faceletsDecorators: myDecorator
   faceletsLibraries: myLibrary
   faceletsRefreshPeriod: 35
   faceletsSkipComments: true
@@ -21,7 +20,6 @@ jsf:
   honorCurrentComponentAttributes: true
   validateEmptyFields: auto
   separatorChar: ;
-  faceletsResourceResolver: myResolver
   configFiles: myConfig
   lifecycleId: myId
   clientWindowMode: url
@@ -76,14 +74,10 @@ jsf:
     validateXml: true
     verifyObjects: true
     enableTransitionTimeNoOpFlash: true
-    expressionFactory: myExpressionFactory
     forceAlwaysWriteFlashCookie: true
-    injectionProvider: myInjectionProvider
     namespaceParameters: true
     registerConverterPropertyEditors: true
     sendPoweredByHeader: true
-    serializationProvider: myProvider
-    faceletFactory: myFactory
     disallowDoctypeDecl: true
 
   # myfaces namespace
@@ -111,7 +105,7 @@ jsf:
     secretCache: true
     algorithmIv: iv
     algorithmParameters: ECB/PKCS5Padding
-    serialFactory: mySerialFactory
+    serialFactory: org.apache.myfaces.shared.util.serial.DefaultSerialFactory
     compressStateInClient: true
     macAlgorithm: HmacSHA1
     macSecret: myMacSecret
@@ -167,14 +161,11 @@ jsf:
     strictJsf2CcElResolver: myElResolver
     supportJspAndFacesEl: true
     supportEl3ImportHandler: true
-    elResolverComparator: myResolverComparator
-    elResolverPredicate: myResolverPredicate
     cacheElExpressions: true
-    expressionFactory: myExpressionFactory
+    expressionFactory: org.apache.el.ExpressionFactoryImpl
     
     # other
     configRefreshPeriod: 2
-    delegateFacesServlet: myFacesServlet
     validateXml: true
     debugPhaseListener: true
     strictJsf2RefreshTargetAjax: true
@@ -189,7 +180,7 @@ jsf:
     debugTemplateResource: META-INF/rsc/myfaces-dev-debug.xml
     errorHandling: true
     temporalResourcehandlerCacheEnabled: true
-    serviceProviderFinder: true
+    serviceProviderFinder: org.apache.myfaces.spi.impl.DefaultServiceProviderFinder
     markInitialStateWhenApplyBuildView: true
     wrapTagExceptionsAsContextAware: true
     viewPoolMaxPoolSize: 5
@@ -197,8 +188,6 @@ jsf:
     viewPoolEntryMode: soft
     viewPoolDeferredNavigation: true
     logWebContextParams: auto
-    facesInitializer: myFacesInitializer
-    facesInitPlugins: myInitPlugin
     initializeAlwaysStandalone: false
     annotation:
       useCdiForAnnotationScanning: true
@@ -210,13 +199,13 @@ jsf:
     errorHandler: myHandler
     viewstateJavascript: true
     serializeStateInSession: true
-    cacheOldViewsInSessionMode: off
+    cacheOldViewsInSessionMode: false
     handleStateCachingMechanics: true
     saveStateWithVisitTreeOnPass: true
 
   # omnifaces namespace
   omnifaces:
-    cacheProvider: myCacheProvider
+    cacheProvider: org.omnifaces.component.output.cache.DefaultCacheProvider
     defaultcache: myCache
     exceptionTypesToUnwrap: myException
     facesViewsDispatchMethod: myFacesMethod
@@ -261,7 +250,7 @@ jsf:
     submit: partial
     theme: omega
     transformMetadata: true
-    uploader: myUploader
+    uploader: auto
     captcha:
       privateKey: myPrivateKey
     mobile:
@@ -270,16 +259,16 @@ jsf:
   # bootsfaces namespace
   bootsfaces:
     theme: bootstrap
-    usetheme: yes
-    useViewport: yes
-    getFontawesomeFromCdn: yes
-    getJqueryFromCdn: yes
-    getJqueryuiFromCdn: yes
-    getBootstrapFromCdn: yes
-    blockUI: no
+    usetheme: true
+    useViewport: true
+    getFontawesomeFromCdn: true
+    getJqueryFromCdn: true
+    getJqueryuiFromCdn: true
+    getBootstrapFromCdn: true
+    blockUI: false
     defaults:
       renderLabel: myRenderLabel
-      decorator: no
+      decorator: false
 
   # angularfaces namespace
   angularfaces:
@@ -295,16 +284,16 @@ jsf:
 
   # butterfaces namespace
   butterfaces:
-    ajaxDisableRenderRegionsOnRequest: yes
+    ajaxDisableRenderRegionsOnRequest: true
     ajaxProcessingGlyphiconOnRequest: Processing
     ajaxProcessingTextOnRequest: Processing
-    autoTrimInputFields: yes
-    provideBootstrap: yes    
-    provideJQuery: yes
+    autoTrimInputFields: true
+    provideBootstrap: true
+    provideJQuery: true
     maxLengthText: '{0} of {1} characters'
     noEntriesText: No matching entries...
     spinnerText: Fetching data...
-    useCompressedResources: yes
+    useCompressedResources: true
     integration:
       primefaces:
         disableJQuery: true
@@ -382,3 +371,6 @@ joinfaces.test.list-c: foo, bar
 joinfaces.test.list-d:
   - foo
   - bar
+joinfaces.test:
+  charSequenceClass: java.lang.String
+  randomClass: java.lang.Void
