@@ -16,6 +16,7 @@
 
 package org.joinfaces.configuration;
 
+import java.lang.annotation.RetentionPolicy;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
@@ -96,6 +97,34 @@ public class ReflectiveServletContextConfigurerTest {
 		assertThat(this.servletContext.getInitParameter("test.inner.STRING")).isEqualTo("bar");
 	}
 
+	@Test
+	public void testClassList() {
+		this.servletContextConfigurer.configure();
+
+		assertThat(this.servletContext.getInitParameter("test.CLASS_LIST")).isEqualTo("java.lang.String;java.lang.Void");
+	}
+
+	@Test
+	public void testEnum() {
+		this.servletContextConfigurer.configure();
+
+		assertThat(this.servletContext.getInitParameter("test.ENUM")).isEqualTo("SOURCE");
+	}
+
+	@Test
+	public void testBoolean() {
+		this.servletContextConfigurer.configure();
+
+		assertThat(this.servletContext.getInitParameter("test.BOOLEAN")).isEqualTo("false");
+	}
+
+	@Test
+	public void testInt() {
+		this.servletContextConfigurer.configure();
+
+		assertThat(this.servletContext.getInitParameter("test.INT")).isEqualTo("42");
+	}
+
 	@Getter
 	@Setter
 	@NoArgsConstructor
@@ -118,6 +147,26 @@ public class ReflectiveServletContextConfigurerTest {
 
 		@NestedProperty
 		private InnerProperties innerProperties = new InnerProperties();
+
+		@NestedProperty
+		private InnerProperties nullInnerProperties = null;
+
+		@InitParameter(value = "test.CLASS_LIST", listSeparator = ";")
+		private List<Class<?>> classList = Arrays.asList(
+				String.class,
+				Void.class
+		);
+
+		private String notAnnotatedField;
+
+		@InitParameter("test.ENUM")
+		private RetentionPolicy testEnum = RetentionPolicy.SOURCE;
+
+		@InitParameter("test.BOOLEAN")
+		private boolean testBoolean = false;
+
+		@InitParameter("test.INT")
+		private int testInt = 42;
 
 		@Getter
 		@Setter

@@ -37,13 +37,6 @@ public class ReflectiveServletContextInitializer<PC> implements ServletContextIn
 	@Override
 	public void onStartup(ServletContext servletContext) throws ServletException {
 
-		ReflectiveServletContextConfigurer<PC> reflectiveServletContextConfigurer;
-
-		reflectiveServletContextConfigurer = new ReflectiveServletContextConfigurer<PC>(
-				servletContext,
-				this.properties
-		);
-
-		reflectiveServletContextConfigurer.configure();
+		new ReflectiveServletContextConfigurer<PC>(servletContext, this.properties).configure();
 	}
 }

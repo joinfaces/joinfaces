@@ -18,6 +18,7 @@ package org.joinfaces.configuration;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.ParameterizedType;
+import java.lang.reflect.Type;
 import java.util.Collection;
 import java.util.Iterator;
 
@@ -88,7 +89,7 @@ public class ReflectiveServletContextConfigurer<PC> extends ServletContextConfig
 		InitParameter initParameter = field.getAnnotation(InitParameter.class);
 
 		if (initParameter == null) {
-			log.warn("Field {} not annotated with @InitParameter or @NestedProperty", field);
+			log.info("Field {} not annotated with @InitParameter or @NestedProperty", field);
 			return;
 		}
 
@@ -116,16 +117,24 @@ public class ReflectiveServletContextConfigurer<PC> extends ServletContextConfig
 		Class<?> targetType = field.getType();
 
 		if (Collection.class.isAssignableFrom(field.getType())) {
-			targetType = (Class<?>) ((ParameterizedType) field.getGenericType()).getActualTypeArguments()[0];
+			Type actualType = ((ParameterizedType) field.getGenericType()).getActualTypeArguments()[0];
+			if (actualType instanceof Class) {
+				targetType = (Class<?>) actualType;
+			}
+			else if (actualType instanceof ParameterizedType) {
+				targetType = (Class<?>) ((ParameterizedType) actualType).getRawType();
+			}
 
 			if (((Collection) value).isEmpty()) {
 				return "";
 			}
 			else {
 				Iterator iterator = ((Collection) value).iterator();
-				StringBuilder sb = new StringBuilder(convertToString(targetType, iterator.next()));
+				String firstValue = convertToString(targetType, iterator.next());
+				StringBuilder sb = new StringBuilder(firstValue);
 				while (iterator.hasNext()) {
-					sb.append(annotation.listSeparator()).append(iterator.next());
+					String nextValue = convertToString(targetType, iterator.next());
+					sb.append(annotation.listSeparator()).append(nextValue);
 				}
 				return sb.toString();
 			}
@@ -136,9 +145,6 @@ public class ReflectiveServletContextConfigurer<PC> extends ServletContextConfig
 	}
 
 	private String convertToString(Class<?> targetType, Object value) {
-		if (value == null) {
-			return null;
-		}
 
 		if (String.class.isAssignableFrom(targetType)) {
 			return (String) value;

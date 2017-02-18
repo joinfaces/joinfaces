@@ -18,6 +18,7 @@ package org.joinfaces.primefaces;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.primefaces.cache.DefaultCacheProvider;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -49,12 +50,12 @@ public class Primefaces6_0PropertiesIT {
 
 	@Test
 	public void testCacheProvider() {
-		assertThat(this.primefacesProperties.getCacheProvider()).isEqualTo("myCacheProvider");
+		assertThat(this.primefacesProperties.getCacheProvider()).isEqualTo(DefaultCacheProvider.class);
 	}
 
 	@Test
 	public void testDir() {
-		assertThat(this.primefacesProperties.getDir()).isEqualTo("left");
+		assertThat(this.primefacesProperties.getDir()).isEqualTo("ltr");
 	}
 
 	@Test
