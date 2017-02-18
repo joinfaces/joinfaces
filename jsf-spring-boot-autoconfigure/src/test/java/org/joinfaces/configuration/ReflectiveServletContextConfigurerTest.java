@@ -22,7 +22,6 @@ import java.util.List;
 
 import javax.servlet.ServletContext;
 
-import javassist.runtime.Inner;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -114,7 +113,7 @@ public class ReflectiveServletContextConfigurerTest {
 		@InitParameter(value = "test.SINGLETON_LIST", listSeparator = "...")
 		private List<String> singletonList = Collections.singletonList("foo");
 
-		@InitParameter(value = "test.NULL")
+		@InitParameter("test.NULL")
 		private Object nullObject = null;
 
 		@NestedProperty

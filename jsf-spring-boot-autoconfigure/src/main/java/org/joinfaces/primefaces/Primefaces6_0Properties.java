@@ -20,6 +20,7 @@ import lombok.Getter;
 import lombok.Setter;
 import org.joinfaces.configuration.InitParameter;
 import org.primefaces.util.Constants;
+
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
 /**

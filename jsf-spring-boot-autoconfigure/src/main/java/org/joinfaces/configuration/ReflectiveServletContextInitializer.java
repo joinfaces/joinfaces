@@ -24,6 +24,9 @@ import lombok.AllArgsConstructor;
 import org.springframework.boot.web.servlet.ServletContextInitializer;
 
 /**
+ * {@link ServletContextInitializer} which runs an {@link ReflectiveServletContextConfigurer} {@link #onStartup(ServletContext) on startup}.
+ *
+ * @param <PC> Type of the properties object
  * @author Lars Grefer
  */
 @AllArgsConstructor

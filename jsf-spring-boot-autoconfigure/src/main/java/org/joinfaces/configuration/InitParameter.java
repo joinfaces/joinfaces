@@ -34,9 +34,6 @@ import java.lang.annotation.Target;
 @Documented
 public @interface InitParameter {
 
-	/**
-	 * @return The param-name used in web.xml
-	 */
 	String value();
 
 	String listSeparator() default ",";

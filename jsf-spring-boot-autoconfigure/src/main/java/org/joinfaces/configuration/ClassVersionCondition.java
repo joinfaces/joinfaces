@@ -25,6 +25,8 @@ import org.springframework.context.annotation.ConditionContext;
 import org.springframework.core.type.AnnotatedTypeMetadata;
 
 /**
+ * This condition checks the Specification-Version and Implementation-Version of a class.
+ *
  * @author Lars Grefer
  * @see ConditionalOnClassVersion
  */
@@ -36,7 +38,7 @@ public class ClassVersionCondition extends SpringBootCondition {
 		Map<String, Object> annotationAttributes = metadata.getAnnotationAttributes(ConditionalOnClassVersion.class.getName(), false);
 
 		Class<?> clazz = (Class<?>) annotationAttributes.get("value");
-		String version = (String) annotationAttributes.get("version");
+		String version = (String) annotationAttributes.get("versionRegex");
 
 		String specificationVersion = clazz.getPackage().getSpecificationVersion();
 

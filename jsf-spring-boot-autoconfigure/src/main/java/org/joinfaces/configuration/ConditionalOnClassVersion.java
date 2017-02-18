@@ -25,6 +25,8 @@ import java.lang.annotation.Target;
 import org.springframework.context.annotation.Conditional;
 
 /**
+ * {@link Conditional} that only matches when the version of the specified class matches against the specified regex.
+ *
  * @author Lars Grefer
  * @see ClassVersionCondition
  */
@@ -36,5 +38,5 @@ public @interface ConditionalOnClassVersion {
 
 	Class<?> value();
 
-	String version();
+	String versionRegex();
 }

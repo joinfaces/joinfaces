@@ -42,9 +42,12 @@ import org.springframework.context.annotation.Configuration;
 @AutoConfigureBefore(JavaxFacesSpringBootAutoConfiguration.class)
 public class PrimefacesAutoConfiguration {
 
+	/**
+	 * Auto Configuration for Primefaces 5.0.
+	 */
 	@Configuration
 	@EnableConfigurationProperties(Primefaces5_0Properties.class)
-	@ConditionalOnClassVersion(value = Constants.ContextParams.class, version = "5\\.0.*")
+	@ConditionalOnClassVersion(value = Constants.ContextParams.class, versionRegex = "5\\.0.*")
 	public static class Primefaces5_0AutoConfiguration {
 
 		@Autowired
@@ -58,9 +61,12 @@ public class PrimefacesAutoConfiguration {
 		}
 	}
 
+	/**
+	 * Auto Configuration for Primefaces 5.1.
+	 */
 	@Configuration
 	@EnableConfigurationProperties(Primefaces5_1Properties.class)
-	@ConditionalOnClassVersion(value = Constants.ContextParams.class, version = "5\\.1.*")
+	@ConditionalOnClassVersion(value = Constants.ContextParams.class, versionRegex = "5\\.1.*")
 	public static class Primefaces5_1AutoConfiguration {
 
 		@Autowired
@@ -74,9 +80,12 @@ public class PrimefacesAutoConfiguration {
 		}
 	}
 
+	/**
+	 * Auto Configuration for Primefaces 5.2+.
+	 */
 	@Configuration
 	@EnableConfigurationProperties(Primefaces5_2Properties.class)
-	@ConditionalOnClassVersion(value = Constants.ContextParams.class, version = "5\\.[2-9].*")
+	@ConditionalOnClassVersion(value = Constants.ContextParams.class, versionRegex = "5\\.[2-9].*")
 	public static class Primefaces5_2AutoConfiguration {
 
 		@Autowired
@@ -90,9 +99,12 @@ public class PrimefacesAutoConfiguration {
 		}
 	}
 
+	/**
+	 * Auto Configuration for Primefaces 6+.
+	 */
 	@Configuration
 	@EnableConfigurationProperties(Primefaces6_0Properties.class)
-	@ConditionalOnClassVersion(value = Constants.ContextParams.class, version = "[6-9].*")
+	@ConditionalOnClassVersion(value = Constants.ContextParams.class, versionRegex = "[6-9].*")
 	public static class Primefaces6_0AutoConfiguration {
 
 		@Autowired

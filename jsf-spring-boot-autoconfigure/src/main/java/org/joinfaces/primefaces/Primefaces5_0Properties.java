@@ -120,6 +120,11 @@ public class Primefaces5_0Properties {
 	@InitParameter(Captcha.PUBLIC_KEY)
 	private String publicCaptchaKey = null;
 
+	/**
+	 * Nested property class for {@literal primefaces.mobile}.
+	 *
+	 * @author Lars Grefer
+	 */
 	@Getter
 	@Setter
 	@NoArgsConstructor
