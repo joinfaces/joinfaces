@@ -29,7 +29,7 @@ public class CalledAnswer implements Answer<Void> {
 
 	@Override
 	public Void answer(InvocationOnMock invocation) throws Throwable {
-		calls++;
+		this.calls++;
 		return null;
 	}
 }

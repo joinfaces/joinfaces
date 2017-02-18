@@ -35,22 +35,26 @@ public class ContextMock {
 	private CalledAnswer calledAnswer;
 
 	public ContextMock()  {
-		standardContext = Mockito.mock(Context.class);
-		webResourceRoot = Mockito.mock(WebResourceRoot.class);
+		this.standardContext = Mockito.mock(Context.class);
+		this.webResourceRoot = Mockito.mock(WebResourceRoot.class);
 		LifecycleState state = LifecycleState.NEW;
-		Mockito.when(webResourceRoot.getContext()).thenReturn(standardContext);
-		Mockito.when(webResourceRoot.getState()).thenReturn(state);
-		Mockito.when(standardContext.getResources()).thenReturn(webResourceRoot);
-		Mockito.when(standardContext.getAddWebinfClassesResources()).thenReturn(Boolean.FALSE);
+		Mockito.when(this.webResourceRoot.getContext())
+			.thenReturn(this.standardContext);
+		Mockito.when(this.webResourceRoot.getState())
+			.thenReturn(state);
+		Mockito.when(this.standardContext.getResources())
+			.thenReturn(this.webResourceRoot);
+		Mockito.when(this.standardContext.getAddWebinfClassesResources())
+			.thenReturn(Boolean.FALSE);
 	}
 
 	public void init(WebResourceSet... array) throws LifecycleException {
-		Mockito.when(webResourceRoot.getJarResources()).thenReturn(array);
+		Mockito.when(this.webResourceRoot.getJarResources()).thenReturn(array);
 
-		calledAnswer = new CalledAnswer();
+		this.calledAnswer = new CalledAnswer();
 
-		Mockito.doAnswer(calledAnswer)
-			.when(webResourceRoot)
+		Mockito.doAnswer(this.calledAnswer)
+			.when(this.webResourceRoot)
 			.createWebResourceSet(Matchers.any(WebResourceRoot.ResourceSetType.class),
 				Matchers.any(String.class), Matchers.any(String.class),
 				Matchers.any(String.class), Matchers.any(String.class));

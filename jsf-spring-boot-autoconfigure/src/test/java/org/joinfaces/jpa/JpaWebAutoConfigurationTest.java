@@ -44,13 +44,13 @@ public class JpaWebAutoConfigurationTest {
 
 	@Test
 	public void testFilterEnabled() {
-		OpenEntityManagerInViewFilter filter = applicationContext.getBean(OpenEntityManagerInViewFilter.class);
+		OpenEntityManagerInViewFilter filter = this.applicationContext.getBean(OpenEntityManagerInViewFilter.class);
 
 		assertThat(filter).isNotNull();
 	}
 
 	@Test(expected = NoSuchBeanDefinitionException.class)
 	public void testInterceptorDisabled() {
-		applicationContext.getBean(OpenEntityManagerInViewInterceptor.class);
+		this.applicationContext.getBean(OpenEntityManagerInViewInterceptor.class);
 	}
 }

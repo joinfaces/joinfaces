@@ -42,38 +42,38 @@ public class PropertyTypesTest {
 
 	@Test
 	public void testPropertiesListAProperties() {
-		assertThat(testProperties.getListA()).containsExactly(FOO, BAR);
+		assertThat(this.testProperties.getListA()).containsExactly(FOO, BAR);
 	}
 
 	@Test
 	public void testPropertiesListBProperties() {
-		assertThat(testProperties.getListB()).containsExactly(FOO, BAR);
+		assertThat(this.testProperties.getListB()).containsExactly(FOO, BAR);
 	}
 
 	@Test
 	public void testYamlListCProperties() {
-		assertThat(testProperties.getListC()).containsExactly(FOO, BAR);
+		assertThat(this.testProperties.getListC()).containsExactly(FOO, BAR);
 	}
 
 	@Test
 	public void testYamlListDProperties() {
-		assertThat(testProperties.getListD()).containsExactly(FOO, BAR);
+		assertThat(this.testProperties.getListD()).containsExactly(FOO, BAR);
 	}
 
 	@Test
 	public void textCharSequenceClassProperty() {
-		assertThat(testProperties.getCharSequenceClass()).isNotNull();
-		assertThat(testProperties.getCharSequenceClass()).isEqualTo(String.class);
+		assertThat(this.testProperties.getCharSequenceClass()).isNotNull();
+		assertThat(this.testProperties.getCharSequenceClass()).isEqualTo(String.class);
 	}
 
 	@Test
 	public void testClassProperty() {
-		assertThat(testProperties.getRandomClass()).isNotNull();
-		assertThat(testProperties.getRandomClass()).isEqualTo(Void.class);
+		assertThat(this.testProperties.getRandomClass()).isNotNull();
+		assertThat(this.testProperties.getRandomClass()).isEqualTo(Void.class);
 	}
 
 	@Test
 	public void testClassListProperty() {
-		assertThat(testProperties.getClassList()).containsExactly(String.class, Void.class, List.class);
+		assertThat(this.testProperties.getClassList()).containsExactly(String.class, Void.class, List.class);
 	}
 }

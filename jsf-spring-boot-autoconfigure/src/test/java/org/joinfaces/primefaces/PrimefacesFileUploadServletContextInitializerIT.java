@@ -48,7 +48,7 @@ public class PrimefacesFileUploadServletContextInitializerIT {
 	@Test
 	public void testOnStartup() throws ServletException {
 		PrimefacesFileUploadServletContextInitializer primefacesServletContextInitializer
-			= new PrimefacesFileUploadServletContextInitializer(multipartConfigElement);
+			= new PrimefacesFileUploadServletContextInitializer(this.multipartConfigElement);
 
 		MockServletRegistrationDynamic servletRegistration = new MockServletRegistrationDynamic();
 		ServletContext servletContext = Mockito.mock(ServletContext.class);
@@ -57,13 +57,13 @@ public class PrimefacesFileUploadServletContextInitializerIT {
 		primefacesServletContextInitializer.onStartup(servletContext);
 
 		assertThat(servletRegistration.getMultipartConfig())
-			.isEqualTo(multipartConfigElement);
+			.isEqualTo(this.multipartConfigElement);
 	}
 
 	@Test
 	public void testOnStartup2() throws ServletException {
 		PrimefacesFileUploadServletContextInitializer primefacesServletContextInitializer
-			= new PrimefacesFileUploadServletContextInitializer(multipartConfigElement);
+			= new PrimefacesFileUploadServletContextInitializer(this.multipartConfigElement);
 
 		MockServletRegistration servletRegistration = new MockServletRegistration();
 		ServletContext servletContext = Mockito.mock(ServletContext.class);
@@ -72,18 +72,18 @@ public class PrimefacesFileUploadServletContextInitializerIT {
 		primefacesServletContextInitializer.onStartup(servletContext);
 
 		assertThat(servletRegistration.getMultipartConfig())
-			.isNotEqualTo(multipartConfigElement);
+			.isNotEqualTo(this.multipartConfigElement);
 	}
 
 	@Test
 	public void testFileUploadFilterNull() {
-		assertThat(fileUploadFilter)
+		assertThat(this.fileUploadFilter)
 			.isNull();
 	}
 
 	@Test(expected = NoSuchBeanDefinitionException.class)
 	public void testFileUploadFilter() throws ServletException {
-		assertThat(primefacesFileUploadServletContextAutoConfiguration.fileUploadFilter())
+		assertThat(this.primefacesFileUploadServletContextAutoConfiguration.fileUploadFilter())
 			.isNotNull();
 	}
 

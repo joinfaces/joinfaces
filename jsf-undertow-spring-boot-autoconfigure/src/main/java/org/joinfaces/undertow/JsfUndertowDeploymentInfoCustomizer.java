@@ -49,12 +49,12 @@ public class JsfUndertowDeploymentInfoCustomizer implements UndertowDeploymentIn
 				di.setClassLoader(jsfClassLoader);
 
 				di.setResourceManager(new ClassPathResourceManager(
-					jsfClassLoader, undertowProperties.getClassPathResource()));
+					jsfClassLoader, JsfUndertowDeploymentInfoCustomizer.this.undertowProperties.getClassPathResource()));
 
 				return null;
 			}
 		});
 
-		log.info("Setting Undertow classLoader to {} directory", undertowProperties.getClassPathResource());
+		log.info("Setting Undertow classLoader to {} directory", this.undertowProperties.getClassPathResource());
 	}
 }

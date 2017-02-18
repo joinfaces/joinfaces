@@ -33,7 +33,7 @@ public class MockServletRegistration implements ServletRegistration {
 	}
 
 	public MultipartConfigElement getMultipartConfig() {
-		return multipartConfig;
+		return this.multipartConfig;
 	}
 
 	@Override

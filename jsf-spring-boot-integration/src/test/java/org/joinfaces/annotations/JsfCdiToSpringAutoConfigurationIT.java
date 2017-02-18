@@ -38,7 +38,7 @@ public class JsfCdiToSpringAutoConfigurationIT {
 
 	@Test
 	public void testInitializerOrder() {
-		assertThat(jsfCdiToSpringBeanFactoryPostProcessor.getOrder())
+		assertThat(this.jsfCdiToSpringBeanFactoryPostProcessor.getOrder())
 			.isEqualTo(100);
 	}
 }
