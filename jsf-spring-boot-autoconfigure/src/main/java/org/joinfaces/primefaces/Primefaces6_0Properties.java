@@ -18,10 +18,13 @@ package org.joinfaces.primefaces;
 
 import lombok.Getter;
 import lombok.Setter;
-import org.primefaces.cache.CacheProvider;
+import org.joinfaces.configuration.InitParameter;
+import org.primefaces.util.Constants;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
 /**
+ * Configuration properties for Primefaces 6+.
+ *
  * Values taken from http://www.primefaces.org/docs/guide/primefaces_user_guide_6_0.pdf page 13.
  *
  * @author Lars Grefer
@@ -29,10 +32,12 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 @Getter
 @Setter
 @ConfigurationProperties("jsf.primefaces")
-public class Primefaces6_0Properties extends Primefaces5_3Properties {
+public class Primefaces6_0Properties extends Primefaces5_2Properties {
 
+	@InitParameter(Constants.ContextParams.EARLY_POST_PARAM_EVALUATION)
 	private boolean earlyPostParamEvaluation = false;
 
+	@InitParameter(Constants.ContextParams.INTERPOLATE_CLIENT_SIDE_VALIDATION_MESSAGES)
 	private boolean interpolateClientSideValidationMessages = false;
 
 }

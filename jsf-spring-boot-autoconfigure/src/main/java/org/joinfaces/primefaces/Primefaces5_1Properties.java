@@ -19,9 +19,13 @@ package org.joinfaces.primefaces;
 import lombok.Getter;
 import lombok.Setter;
 
+import org.joinfaces.configuration.InitParameter;
+import org.primefaces.util.Constants;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
 /**
+ * Configuration properties for Primefaces 5.1.
+ *
  * Values taken from http://www.primefaces.org/docs/guide/primefaces_user_guide_5_1.pdf page 13.
  *
  * @author Lars Grefer
@@ -34,5 +38,6 @@ public class Primefaces5_1Properties extends Primefaces5_0Properties {
 	/**
 	 * Enables window scope so that widgets can be accessed using widgetVar.method() in addition to default PF namespace approach like PF('widgetVar').method().
 	 */
+	@InitParameter(Constants.ContextParams.LEGACY_WIDGET_NAMESPACE)
 	private boolean legacyWidgetNamespace = false;
 }

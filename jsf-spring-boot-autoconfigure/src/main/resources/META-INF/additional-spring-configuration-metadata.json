@@ -81,20 +81,6 @@
       ]
     },
     {
-      "name": "jsf.primefaces.uploader",
-      "values": [
-        {
-          "value": "auto"
-        },
-        {
-          "value": "native"
-        },
-        {
-          "value": "commons"
-        }
-      ]
-    },
-    {
       "name": "jsf.primefaces.theme",
       "values": [
         {

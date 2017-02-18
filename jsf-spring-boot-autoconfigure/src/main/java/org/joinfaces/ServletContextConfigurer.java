@@ -27,7 +27,9 @@ import lombok.extern.slf4j.Slf4j;
 
 /**
  * Abstract class to configure servlet context from auto configuration properties.
+ *
  * @author Marcelo Fernandes
+ * @author Lars Grefer
  */
 @AllArgsConstructor
 @Slf4j
@@ -60,6 +62,10 @@ public abstract class ServletContextConfigurer {
 		else {
 			log.warn("name of init parameter is null! value = {}", value);
 		}
+	}
+
+	protected void setInitParameterRaw(String name, String value) {
+		setInitParameterWithDebug(name, value);
 	}
 
 	protected void setInitParameterString(String name, String value) {

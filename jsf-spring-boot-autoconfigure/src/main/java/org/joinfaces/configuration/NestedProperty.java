@@ -1,5 +1,5 @@
 /*
- * Copyright 2016-2016 the original author or authors.
+ * Copyright 2016-2017 the original author or authors.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,19 +14,23 @@
  * limitations under the License.
  */
 
-package org.joinfaces.primefaces;
+package org.joinfaces.configuration;
 
-import lombok.Getter;
-import lombok.Setter;
-import org.springframework.boot.context.properties.ConfigurationProperties;
+import java.lang.annotation.Documented;
+import java.lang.annotation.ElementType;
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
+import java.lang.annotation.Target;
 
 /**
- * Values taken from http://www.primefaces.org/docs/guide/primefaces_user_guide_5_3.pdf page 13.
+ * Annotation to mark fields for nested properties in
+ * {@link org.springframework.boot.context.properties.ConfigurationProperties properties classes}.
  *
  * @author Lars Grefer
+ * @see ReflectiveServletContextConfigurer
  */
-@Getter
-@Setter
-@ConfigurationProperties("jsf.primefaces")
-public class Primefaces5_3Properties extends Primefaces5_2Properties {
+@Retention(RetentionPolicy.RUNTIME)
+@Target(ElementType.FIELD)
+@Documented
+public @interface NestedProperty {
 }

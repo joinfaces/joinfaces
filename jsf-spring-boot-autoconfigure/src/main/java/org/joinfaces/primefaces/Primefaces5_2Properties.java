@@ -18,9 +18,13 @@ package org.joinfaces.primefaces;
 
 import lombok.Getter;
 import lombok.Setter;
+import org.joinfaces.configuration.InitParameter;
+import org.primefaces.util.Constants;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
 /**
+ * Configuration properties for Primefaces 5.2+.
+ *
  * Values taken from http://www.primefaces.org/docs/guide/primefaces_user_guide_5_2.pdf page 13.
  *
  * @author Lars Grefer
@@ -33,5 +37,6 @@ public class Primefaces5_2Properties extends Primefaces5_1Properties {
 	/**
 	 * Enabled font-awesome icons.
 	 */
+	@InitParameter(Constants.ContextParams.FONT_AWESOME)
 	private boolean fontAwesome = false;
 }

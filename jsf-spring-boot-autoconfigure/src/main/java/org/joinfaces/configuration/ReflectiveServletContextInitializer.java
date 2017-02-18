@@ -1,5 +1,5 @@
 /*
- * Copyright 2016-2016 the original author or authors.
+ * Copyright 2016-2017 the original author or authors.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,31 +14,33 @@
  * limitations under the License.
  */
 
-package org.joinfaces.primefaces;
+package org.joinfaces.configuration;
 
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 
+import lombok.AllArgsConstructor;
+
 import org.springframework.boot.web.servlet.ServletContextInitializer;
 
 /**
- * Servlet context initializer of PrimeFaces.
- * @author Marcelo Fernandes
+ * @author Lars Grefer
  */
-public class Primefaces6_0ServletContextInitializer implements ServletContextInitializer {
+@AllArgsConstructor
+public class ReflectiveServletContextInitializer<PC> implements ServletContextInitializer {
 
-	private final Primefaces6_0Properties primefacesProperties;
-
-	public Primefaces6_0ServletContextInitializer(Primefaces6_0Properties primefacesProperties) {
-		this.primefacesProperties = primefacesProperties;
-	}
+	private PC properties;
 
 	@Override
-	public void onStartup(ServletContext sc) throws ServletException {
-		Primefaces6_0ServletContextConfigurer.builder()
-			.primefacesProperties(this.primefacesProperties)
-			.servletContext(sc)
-			.build()
-			.configure();
+	public void onStartup(ServletContext servletContext) throws ServletException {
+
+		ReflectiveServletContextConfigurer<PC> reflectiveServletContextConfigurer;
+
+		reflectiveServletContextConfigurer = new ReflectiveServletContextConfigurer<PC>(
+				servletContext,
+				this.properties
+		);
+
+		reflectiveServletContextConfigurer.configure();
 	}
 }
