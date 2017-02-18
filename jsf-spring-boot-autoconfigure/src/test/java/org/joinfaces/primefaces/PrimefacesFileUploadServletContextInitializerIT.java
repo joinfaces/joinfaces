@@ -33,7 +33,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 import static org.assertj.core.api.Assertions.assertThat;
 
 @RunWith(SpringRunner.class)
-@SpringBootTest(classes = {MockPrimefacesFileUploadAutoConfiguration.class, PrimefacesFileUploadServletContextAutoConfiguration.class, PrimefacesSpringBootAutoConfiguration.class}, webEnvironment = SpringBootTest.WebEnvironment.MOCK)
+@SpringBootTest(classes = {MockPrimefacesFileUploadAutoConfiguration.class, PrimefacesFileUploadServletContextAutoConfiguration.class, Primefaces6_0AutoConfiguration.class}, webEnvironment = SpringBootTest.WebEnvironment.MOCK)
 public class PrimefacesFileUploadServletContextInitializerIT {
 
 	@Autowired

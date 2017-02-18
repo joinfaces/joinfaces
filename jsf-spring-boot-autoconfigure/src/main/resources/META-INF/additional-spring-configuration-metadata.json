@@ -226,6 +226,47 @@
           "name": "any"
         }
       ]
+    },
+    {
+      "name": "jsf.primefaces.submit",
+      "values": [
+        {
+          "value": "full"
+        },
+        {
+          "value": "partial"
+        }
+      ]
+    },
+    {
+      "name": "jsf.primefaces.dir",
+      "values": [
+        {
+          "value": "ltr",
+          "description": "Left to right."
+        },
+        {
+          "value": "rtl",
+          "description": "Right to left."
+        }
+      ]
+    },
+    {
+      "name": "jsf.primefaces.uploader",
+      "values": [
+        {
+          "value": "auto",
+          "description": "This is the default mode and PrimeFaces tries to detect the best method by checking the runtime environment, if JSF runtime is at least 2.2 native uploader is selected, otherwise commons."
+        },
+        {
+          "value": "native",
+          "description": "Native mode uses servlet 3.x Part API to upload the files and if JSF runtime is less than 2.2 and exception is being thrown."
+        },
+        {
+          "value": "commons",
+          "description": "This option chooses commons fileupload regardless of the environment, advantage of this option is that it works even on a Servlet 2.5 environment."
+        }
+      ]
     }
   ]
 }

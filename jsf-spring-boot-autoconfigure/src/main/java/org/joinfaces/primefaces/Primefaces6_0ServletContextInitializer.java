@@ -25,17 +25,17 @@ import org.springframework.boot.web.servlet.ServletContextInitializer;
  * Servlet context initializer of PrimeFaces.
  * @author Marcelo Fernandes
  */
-public class PrimefacesServletContextInitializer implements ServletContextInitializer {
+public class Primefaces6_0ServletContextInitializer implements ServletContextInitializer {
 
-	private final PrimefacesProperties primefacesProperties;
+	private final Primefaces6_0Properties primefacesProperties;
 
-	public PrimefacesServletContextInitializer(PrimefacesProperties primefacesProperties) {
+	public Primefaces6_0ServletContextInitializer(Primefaces6_0Properties primefacesProperties) {
 		this.primefacesProperties = primefacesProperties;
 	}
 
 	@Override
 	public void onStartup(ServletContext sc) throws ServletException {
-		PrimefacesServletContextConfigurer.builder()
+		Primefaces6_0ServletContextConfigurer.builder()
 			.primefacesProperties(this.primefacesProperties)
 			.servletContext(sc)
 			.build()

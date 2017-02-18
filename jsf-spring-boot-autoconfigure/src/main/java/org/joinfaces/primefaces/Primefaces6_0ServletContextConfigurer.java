@@ -27,12 +27,12 @@ import org.primefaces.util.Constants.ContextParams;
  * Servlet context configurer of PrimeFaces.
  * @author Marcelo Fernandes
  */
-public class PrimefacesServletContextConfigurer extends ServletContextConfigurer {
+public class Primefaces6_0ServletContextConfigurer extends ServletContextConfigurer {
 
-	private PrimefacesProperties primefacesProperties;
+	private Primefaces6_0Properties primefacesProperties;
 
 	@Builder
-	public PrimefacesServletContextConfigurer(PrimefacesProperties primefacesProperties, ServletContext servletContext) {
+	public Primefaces6_0ServletContextConfigurer(Primefaces6_0Properties primefacesProperties, ServletContext servletContext) {
 		super(servletContext, "");
 		this.primefacesProperties = primefacesProperties;
 	}
@@ -42,23 +42,20 @@ public class PrimefacesServletContextConfigurer extends ServletContextConfigurer
 		setInitParameterString(Captcha.PRIVATE_KEY, this.primefacesProperties.getPrivateCaptchaKey());
 		setInitParameterString(Captcha.PUBLIC_KEY, this.primefacesProperties.getPublicCaptchaKey());
 		setInitParameterString(ContextParams.AUTO_UPDATE, this.primefacesProperties.getAutoUpdate());
-		setInitParameterBoolean(ContextParams.BEAN_VALIDATION_DISABLED, this.primefacesProperties.getBeanValidationDisabled());
-		setInitParameterString(ContextParams.CACHE_PROVIDER, this.primefacesProperties.getCacheProvider());
+		setInitParameterClass(ContextParams.CACHE_PROVIDER, this.primefacesProperties.getCacheProvider());
 		setInitParameterString(ContextParams.DIRECTION, this.primefacesProperties.getDir());
-		setInitParameterBoolean(ContextParams.EARLY_POST_PARAM_EVALUATION, this.primefacesProperties.getEarlyPostParamEvaluation());
-		setInitParameterBoolean(ContextParams.FONT_AWESOME, this.primefacesProperties.getFontAwesome());
-		setInitParameterBoolean(ContextParams.INTERPOLATE_CLIENT_SIDE_VALIDATION_MESSAGES, this.primefacesProperties.getInterpolateClientSideValidationMessages());
-		setInitParameterBoolean(ContextParams.LEGACY_WIDGET_NAMESPACE, this.primefacesProperties.getLegacyWidgetNamespace());
+		setInitParameterBoolean(ContextParams.EARLY_POST_PARAM_EVALUATION, this.primefacesProperties.isEarlyPostParamEvaluation());
+		setInitParameterBoolean(ContextParams.FONT_AWESOME, this.primefacesProperties.isFontAwesome());
+		setInitParameterBoolean(ContextParams.INTERPOLATE_CLIENT_SIDE_VALIDATION_MESSAGES, this.primefacesProperties.isInterpolateClientSideValidationMessages());
+		setInitParameterBoolean(ContextParams.LEGACY_WIDGET_NAMESPACE, this.primefacesProperties.isLegacyWidgetNamespace());
 		setInitParameterString(ContextParams.MOBILE_THEME, this.primefacesProperties.getMobile().getTheme());
-		setInitParameterBoolean(ContextParams.PFV_KEY, this.primefacesProperties.getClientSideValidation());
+		setInitParameterBoolean(ContextParams.PFV_KEY, this.primefacesProperties.isClientSideValidation());
 		setInitParameterString(ContextParams.PUSH_SERVER_URL, this.primefacesProperties.getPushServerUrl());
-		setInitParameterBoolean(ContextParams.RESET_VALUES, this.primefacesProperties.getResetValues());
+		setInitParameterBoolean(ContextParams.RESET_VALUES, this.primefacesProperties.isResetValues());
 		setInitParameterString(ContextParams.SECRET_KEY, this.primefacesProperties.getSecret());
 		setInitParameterString(ContextParams.SUBMIT, this.primefacesProperties.getSubmit());
 		setInitParameterString(ContextParams.THEME, this.primefacesProperties.getTheme());
-		setInitParameterBoolean(ContextParams.TRANSFORM_METADATA, this.primefacesProperties.getTransformMetadata());
+		setInitParameterBoolean(ContextParams.TRANSFORM_METADATA, this.primefacesProperties.isTransformMetadata());
 		setInitParameterString(ContextParams.UPLOADER, this.primefacesProperties.getUploader());
-
-		setInitParameterString("org.primefaces.component.captcha.PRIVATE_KEY", this.primefacesProperties.getCaptcha().getPrivateKey());
 	}
 }

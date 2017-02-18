@@ -4,7 +4,7 @@ org.joinfaces.javaxfaces.JavaxFacesSpringBootAutoConfiguration,\
 org.joinfaces.mojarra.MojarraSpringBootAutoConfiguration,\
 org.joinfaces.myfaces.MyfacesSpringBootAutoConfiguration,\
 org.joinfaces.omnifaces.OmnifacesSpringBootAutoConfiguration,\
-org.joinfaces.primefaces.PrimefacesSpringBootAutoConfiguration,\
+org.joinfaces.primefaces.Primefaces6_0AutoConfiguration,\
 org.joinfaces.primefaces.PrimefacesFileUploadServletContextAutoConfiguration,\
 org.joinfaces.bootsfaces.BootsfacesSpringBootAutoConfiguration,\
 org.joinfaces.angularfaces.AngularfacesSpringBootAutoConfiguration,\

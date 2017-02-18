@@ -14,9 +14,25 @@
  * limitations under the License.
  */
 
-/**
- * PrimeFaces Spring Boot Auto Configuration classes.
- *
- * @see org.joinfaces.primefaces.Primefaces6_0AutoConfiguration
- */
 package org.joinfaces.primefaces;
+
+import lombok.Getter;
+import lombok.Setter;
+import org.primefaces.cache.CacheProvider;
+import org.springframework.boot.context.properties.ConfigurationProperties;
+
+/**
+ * Values taken from http://www.primefaces.org/docs/guide/primefaces_user_guide_6_0.pdf page 13.
+ *
+ * @author Lars Grefer
+ */
+@Getter
+@Setter
+@ConfigurationProperties("jsf.primefaces")
+public class Primefaces6_0Properties extends Primefaces5_3Properties {
+
+	private boolean earlyPostParamEvaluation = false;
+
+	private boolean interpolateClientSideValidationMessages = false;
+
+}

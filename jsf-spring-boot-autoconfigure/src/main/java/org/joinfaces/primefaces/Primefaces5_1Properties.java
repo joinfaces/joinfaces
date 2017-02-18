@@ -14,9 +14,25 @@
  * limitations under the License.
  */
 
-/**
- * PrimeFaces Spring Boot Auto Configuration classes.
- *
- * @see org.joinfaces.primefaces.Primefaces6_0AutoConfiguration
- */
 package org.joinfaces.primefaces;
+
+import lombok.Getter;
+import lombok.Setter;
+
+import org.springframework.boot.context.properties.ConfigurationProperties;
+
+/**
+ * Values taken from http://www.primefaces.org/docs/guide/primefaces_user_guide_5_1.pdf page 13.
+ *
+ * @author Lars Grefer
+ */
+@Getter
+@Setter
+@ConfigurationProperties("jsf.primefaces")
+public class Primefaces5_1Properties extends Primefaces5_0Properties {
+
+	/**
+	 * Enables window scope so that widgets can be accessed using widgetVar.method() in addition to default PF namespace approach like PF('widgetVar').method().
+	 */
+	private boolean legacyWidgetNamespace = false;
+}

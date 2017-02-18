@@ -31,7 +31,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 import static org.assertj.core.api.Assertions.assertThat;
 
 @RunWith(SpringRunner.class)
-@SpringBootTest(classes = PrimefacesSpringBootAutoConfiguration.class, webEnvironment = SpringBootTest.WebEnvironment.MOCK)
+@SpringBootTest(classes = Primefaces6_0AutoConfiguration.class, webEnvironment = SpringBootTest.WebEnvironment.MOCK)
 public class PrimefacesServletContextInitializerIT {
 
 	@Autowired
@@ -39,8 +39,8 @@ public class PrimefacesServletContextInitializerIT {
 
 	@Test
 	public void testOnStartup() throws ServletException {
-		PrimefacesServletContextInitializer primefacesServletContextInitializer
-			= new PrimefacesServletContextInitializer(this.primefacesProperties);
+		Primefaces6_0ServletContextInitializer primefacesServletContextInitializer
+			= new Primefaces6_0ServletContextInitializer(this.primefacesProperties);
 
 		ServletContext servletContext = new MockServletContext();
 

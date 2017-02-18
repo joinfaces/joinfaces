@@ -18,6 +18,7 @@ package org.joinfaces.primefaces;
 
 import org.joinfaces.javaxfaces.JavaxFacesSpringBootAutoConfiguration;
 
+import org.primefaces.util.Constants;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.AutoConfigureBefore;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
@@ -32,17 +33,18 @@ import org.springframework.context.annotation.Configuration;
  * @author Marcelo Fernandes
  */
 @Configuration
-@EnableConfigurationProperties(PrimefacesProperties.class)
-@ConditionalOnClass(name = "org.primefaces.application.DialogViewHandler")
+@EnableConfigurationProperties(Primefaces6_0Properties.class)
+@ConditionalOnClass(Constants.ContextParams.class)
+@ConditionalOnClassVersion(value = Constants.ContextParams.class, version = "[6-9].*")
 @AutoConfigureBefore(JavaxFacesSpringBootAutoConfiguration.class)
 @ConditionalOnWebApplication
-public class PrimefacesSpringBootAutoConfiguration {
+public class Primefaces6_0AutoConfiguration {
 
 	@Autowired
-	private PrimefacesProperties primefacesProperties;
+	private Primefaces6_0Properties primefacesProperties;
 
 	@Bean
 	public ServletContextInitializer primefacesServletContextInitializer() {
-		return new PrimefacesServletContextInitializer(this.primefacesProperties);
+		return new Primefaces6_0ServletContextInitializer(this.primefacesProperties);
 	}
 }
