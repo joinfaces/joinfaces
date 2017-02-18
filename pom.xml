@@ -203,7 +203,8 @@
                 </plugins>
             </build>
         </profile>        
-        
+
+        <!--
         <profile>
             <id>ignore-snapshot-repositories</id>
             <repositories>
@@ -235,6 +236,7 @@
                 </pluginRepository>
             </pluginRepositories>
         </profile>
+        -->
     </profiles>                
 
     <name>JSF Spring Boot Build</name>
