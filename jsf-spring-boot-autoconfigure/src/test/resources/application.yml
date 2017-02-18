@@ -236,9 +236,8 @@ jsf:
     privateCaptchaKey: myPrivateCaptchaKey
     publicCaptchaKey: myKey
     autoUpdate: auto
-    beanValidationDisabled: true
-    cacheProvider: myCacheProvider
-    dir: left
+    cacheProvider: org.primefaces.cache.DefaultCacheProvider
+    dir: ltr
     earlyPostParamEvaluation: true
     fontAwesome: true
     interpolateClientSideValidationMessages: true
@@ -251,8 +250,6 @@ jsf:
     theme: omega
     transformMetadata: true
     uploader: auto
-    captcha:
-      privateKey: myPrivateKey
     mobile:
       theme: cupertino
 
