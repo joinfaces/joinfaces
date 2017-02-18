@@ -1,3 +1,9 @@
+.idea/*
+
+!.idea/checkstyle-idea.xml
+!.idea/codeStyleSettings.xml
+!.idea/externalDependencies.xml
+!.idea/copyright
+
 target
 *.iml
-.idea
