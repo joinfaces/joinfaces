@@ -23,6 +23,8 @@ import org.springframework.boot.web.servlet.ServletContextInitializer;
 import static org.assertj.core.api.Assertions.assertThat;
 
 /**
+ * Some more or less pointless unit tests in order to reach the desired line coverage
+ *
  * @author Lars Grefer
  */
 public class PrimefacesAutoConfigurationTest {

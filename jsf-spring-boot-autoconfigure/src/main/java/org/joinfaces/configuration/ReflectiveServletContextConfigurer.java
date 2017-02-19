@@ -28,6 +28,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.joinfaces.ServletContextConfigurer;
 
 import org.springframework.aop.support.AopUtils;
+import org.springframework.core.annotation.AnnotatedElementUtils;
+import org.springframework.util.ReflectionUtils;
 
 /**
  * A {@link ServletContextConfigurer} which looks for all {@link InitParameter init parameters}
@@ -53,77 +55,64 @@ public class ReflectiveServletContextConfigurer<PC> extends ServletContextConfig
 		handlePropertiesObject(this.properties);
 	}
 
-	private void handlePropertiesObject(Object properties) {
+	private void handlePropertiesObject(final Object properties) {
 
 		Class<?> type = AopUtils.getTargetClass(properties);
 
-		while (!type.equals(Object.class)) {
-
-			for (Field field : type.getDeclaredFields()) {
-				handlePropertiesField(properties, field);
-			}
-
-			type = type.getSuperclass();
-		}
+		ReflectionUtils.doWithFields(
+				type,
+				new ReflectionUtils.FieldCallback() {
+					@Override
+					public void doWith(Field field) throws IllegalArgumentException, IllegalAccessException {
+						handlePropertiesField(properties, field);
+					}
+				},
+				new ReflectionUtils.FieldFilter() {
+					@Override
+					public boolean matches(Field field) {
+						return AnnotatedElementUtils.isAnnotated(field, InitParameter.class) || AnnotatedElementUtils.isAnnotated(field, NestedProperty.class);
+					}
+				});
 
 	}
 
 	private void handlePropertiesField(Object properties, Field field) {
 		if (field.isAnnotationPresent(NestedProperty.class)) {
-			try {
-				field.setAccessible(true);
-				Object nestedProperties = field.get(properties);
-				if (nestedProperties != null) {
-					handlePropertiesObject(nestedProperties);
-				}
-				else {
-					log.debug("Not visiting nested property {} because its null", field);
-				}
+
+			ReflectionUtils.makeAccessible(field);
+			Object nestedProperties = ReflectionUtils.getField(field, properties);
+
+			if (nestedProperties != null) {
+				handlePropertiesObject(nestedProperties);
 			}
-			catch (Exception e) {
-				log.error("Cannot visit nested property {}", field, e);
+			else {
+				log.debug("Not visiting nested property {} because its null", field);
 			}
-			return;
 		}
+		else if (field.isAnnotationPresent(InitParameter.class)) {
+			InitParameter initParameter = field.getAnnotation(InitParameter.class);
 
-		InitParameter initParameter = field.getAnnotation(InitParameter.class);
+			ReflectionUtils.makeAccessible(field);
+			Object value = ReflectionUtils.getField(field, properties);
 
-		if (initParameter == null) {
-			log.info("Field {} not annotated with @InitParameter or @NestedProperty", field);
-			return;
+			if (value == null) {
+				log.debug("Not setting '{}' because the value is null", initParameter.value());
+				return;
+			}
+
+			String paramValue = convertToString(field, value);
+
+			setInitParameterRaw(initParameter.value(), paramValue);
 		}
-
-		Object value;
-		try {
-			field.setAccessible(true);
-			value = field.get(properties);
-		}
-		catch (Exception e) {
-			log.error("Cannot read field {}", field, e);
-			return;
-		}
-
-		if (value == null) {
-			log.debug("Not setting '{}' because the value is null", initParameter.value());
-			return;
-		}
-
-		String paramValue = convertToString(field, initParameter, value);
-
-		setInitParameterRaw(initParameter.value(), paramValue);
 	}
 
-	private String convertToString(Field field, InitParameter annotation, Object value) {
+	private String convertToString(Field field, Object value) {
 		Class<?> targetType = field.getType();
 
 		if (Collection.class.isAssignableFrom(field.getType())) {
-			Type actualType = ((ParameterizedType) field.getGenericType()).getActualTypeArguments()[0];
-			if (actualType instanceof Class) {
-				targetType = (Class<?>) actualType;
-			}
-			else if (actualType instanceof ParameterizedType) {
-				targetType = (Class<?>) ((ParameterizedType) actualType).getRawType();
-			}
+			targetType = resolveCollectionItemType(field);
+
+			InitParameter initParameter = field.getAnnotation(InitParameter.class);
 
 			if (((Collection) value).isEmpty()) {
 				return "";
@@ -131,10 +120,11 @@ public class ReflectiveServletContextConfigurer<PC> extends ServletContextConfig
 			else {
 				Iterator iterator = ((Collection) value).iterator();
 				String firstValue = convertToString(targetType, iterator.next());
+
 				StringBuilder sb = new StringBuilder(firstValue);
 				while (iterator.hasNext()) {
 					String nextValue = convertToString(targetType, iterator.next());
-					sb.append(annotation.listSeparator()).append(nextValue);
+					sb.append(initParameter.listSeparator()).append(nextValue);
 				}
 				return sb.toString();
 			}
@@ -159,5 +149,21 @@ public class ReflectiveServletContextConfigurer<PC> extends ServletContextConfig
 		}
 
 		return value.toString();
+	}
+
+	static Class<?> resolveCollectionItemType(Field field) {
+
+		Type genericFieldType = field.getGenericType();
+		if (genericFieldType instanceof Class) {
+			log.warn("Field {} uses a raw collection type. Assuming Object as item type", field);
+			return Object.class;
+		}
+
+		Type actualType = ((ParameterizedType) genericFieldType).getActualTypeArguments()[0];
+		if (actualType instanceof Class) {
+			return (Class<?>) actualType;
+		}
+
+		return (Class<?>) ((ParameterizedType) actualType).getRawType();
 	}
 }

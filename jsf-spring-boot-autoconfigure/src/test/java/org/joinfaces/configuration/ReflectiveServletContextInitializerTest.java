@@ -16,27 +16,29 @@
 
 package org.joinfaces.configuration;
 
-import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 
-import lombok.AllArgsConstructor;
+import org.junit.Before;
+import org.junit.Test;
 
-import org.springframework.boot.web.servlet.ServletContextInitializer;
+import org.springframework.mock.web.MockServletContext;
 
 /**
- * {@link ServletContextInitializer} which runs an {@link ReflectiveServletContextConfigurer} {@link #onStartup(ServletContext) on startup}.
- *
- * @param <PC> Type of the properties object
  * @author Lars Grefer
  */
-@AllArgsConstructor
-public class ReflectiveServletContextInitializer<PC> implements ServletContextInitializer {
+public class ReflectiveServletContextInitializerTest {
 
-	private PC properties;
+	private ReflectiveServletContextInitializer<Object> servletContextInitializer;
 
-	@Override
-	public void onStartup(ServletContext servletContext) throws ServletException {
-		new ReflectiveServletContextConfigurer<PC>(servletContext, this.properties)
-				.configure();
+	@Before
+	public void setUp() {
+		this.servletContextInitializer = new ReflectiveServletContextInitializer<Object>(new Object());
 	}
+
+	@Test
+	public void onStartup() throws ServletException {
+		MockServletContext servletContext = new MockServletContext();
+		this.servletContextInitializer.onStartup(servletContext);
+	}
+
 }
