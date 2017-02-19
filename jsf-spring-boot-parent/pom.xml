@@ -239,11 +239,6 @@
             </dependency>
             <dependency>
                 <groupId>org.joinfaces</groupId>
-                <artifactId>jsf-tomcat-spring-boot-autoconfigure</artifactId>
-                <version>2.3.7-SNAPSHOT</version>
-            </dependency>
-            <dependency>
-                <groupId>org.joinfaces</groupId>
                 <artifactId>jsf-spring-boot-starter</artifactId>
                 <version>2.3.7-SNAPSHOT</version>
             </dependency>

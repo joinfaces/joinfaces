@@ -29,8 +29,6 @@
 
         <module>jsf-spring-boot-autoconfigure</module>
 
-        <module>jsf-tomcat-spring-boot-autoconfigure</module>
-
         <module>jsf-spring-boot-starters</module>
     </modules>
 

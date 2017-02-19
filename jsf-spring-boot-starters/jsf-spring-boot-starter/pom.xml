@@ -31,7 +31,7 @@
         </dependency>
         <dependency>
             <groupId>org.joinfaces</groupId>
-            <artifactId>jsf-tomcat-spring-boot-autoconfigure</artifactId>
+            <artifactId>jsf-spring-boot-autoconfigure</artifactId>
         </dependency>
         <dependency>
             <groupId>javax.servlet</groupId>
