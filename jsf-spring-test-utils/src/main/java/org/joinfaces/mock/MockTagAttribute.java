@@ -16,68 +16,92 @@
 
 package org.joinfaces.mock;
 
-import javax.el.ELContext;
+import javax.el.MethodExpression;
 import javax.el.ValueExpression;
+import javax.faces.view.Location;
+import javax.faces.view.facelets.FaceletContext;
+import javax.faces.view.facelets.TagAttribute;
 
 /**
- * Value Expression Mock
+ * Tag Attribute Mock.
+ *
+ * @author Marcelo Fernandes
  */
-public class MockValueExpression extends ValueExpression {
+public class MockTagAttribute extends TagAttribute {
 
 	private static final String NOT_SUPPORTED_YET = "Not supported yet.";
 
-	public MockValueExpression(String value) {
+	private String value;
+
+	public MockTagAttribute() {
+	}
+
+	public MockTagAttribute(String value) {
 		this.value = value;
 	}
 
-	private String value;
+	@Override
+	public boolean getBoolean(FaceletContext ctx) {
+		throw new UnsupportedOperationException(NOT_SUPPORTED_YET);
+	}
 
 	@Override
-	public Object getValue(ELContext elc) {
+	public int getInt(FaceletContext ctx) {
+		throw new UnsupportedOperationException(NOT_SUPPORTED_YET);
+	}
+
+	@Override
+	public String getLocalName() {
+		throw new UnsupportedOperationException(NOT_SUPPORTED_YET);
+	}
+
+	@Override
+	public Location getLocation() {
+		throw new UnsupportedOperationException(NOT_SUPPORTED_YET);
+	}
+
+	@Override
+	public MethodExpression getMethodExpression(FaceletContext ctx, Class type, Class[] paramTypes) {
+		throw new UnsupportedOperationException(NOT_SUPPORTED_YET);
+	}
+
+	@Override
+	public String getNamespace() {
+		throw new UnsupportedOperationException(NOT_SUPPORTED_YET);
+	}
+
+	@Override
+	public Object getObject(FaceletContext ctx) {
+		throw new UnsupportedOperationException(NOT_SUPPORTED_YET);
+	}
+
+	@Override
+	public String getQName() {
+		throw new UnsupportedOperationException(NOT_SUPPORTED_YET);
+	}
+
+	@Override
+	public String getValue() {
 		return this.value;
 	}
 
 	@Override
-	public void setValue(ELContext elc, Object o) {
+	public String getValue(FaceletContext ctx) {
+		return this.value;
+	}
+
+	@Override
+	public Object getObject(FaceletContext ctx, Class type) {
 		throw new UnsupportedOperationException(NOT_SUPPORTED_YET);
 	}
 
 	@Override
-	public boolean isReadOnly(ELContext elc) {
-		throw new UnsupportedOperationException(NOT_SUPPORTED_YET);
+	public ValueExpression getValueExpression(FaceletContext ctx, Class type) {
+		return new MockValueExpression(this.value);
 	}
 
 	@Override
-	public Class<?> getType(ELContext elc) {
-		throw new UnsupportedOperationException(NOT_SUPPORTED_YET);
-	}
-
-	@Override
-	public Class<?> getExpectedType() {
-		throw new UnsupportedOperationException(NOT_SUPPORTED_YET);
-	}
-
-	@Override
-	public String getExpressionString() {
-		throw new UnsupportedOperationException(NOT_SUPPORTED_YET);
-	}
-
-	@Override
-	public boolean equals(Object o) {
-		boolean result = false;
-		if (o instanceof MockValueExpression) {
-			result = this.value.equals(((MockValueExpression) o).value);
-		}
-		return result;
-	}
-
-	@Override
-	public int hashCode() {
-		throw new UnsupportedOperationException(NOT_SUPPORTED_YET);
-	}
-
-	@Override
-	public boolean isLiteralText() {
+	public boolean isLiteral() {
 		throw new UnsupportedOperationException(NOT_SUPPORTED_YET);
 	}
 }

@@ -1,4 +1,0 @@
-jsf:
-  # cdi namespace
-  cdi:
-    configurationOrder: 100

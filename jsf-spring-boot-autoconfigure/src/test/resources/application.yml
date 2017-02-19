@@ -375,6 +375,10 @@ jsf:
   undertow:
     classPathResource: public
 
+  # cdi namespace
+  cdi:
+    configurationOrder: 100
+
 joinfaces.test.list-c: foo, bar
 joinfaces.test.list-d:
   - foo

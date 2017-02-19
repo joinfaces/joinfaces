@@ -8,14 +8,14 @@
         <version>2.3.7-SNAPSHOT</version>
         <relativePath>../jsf-spring-boot-parent</relativePath>
     </parent>
-    
-    <artifactId>jsf-spring-boot-integration</artifactId>
-    <name>JSF Spring Boot Integration</name>
-    <description>Jsf Spring Boot Integration</description>
+
+    <artifactId>jsf-spring-test-utils</artifactId>
+    <name>JSF Spring Test Utils</name>
+    <description>Jsf Spring Test Utils</description>
 
     <properties>
         <main.basedir>${basedir}/..</main.basedir>
-        
+
         <check.dir>../jsf-spring-boot-parent/src/checkconfig</check.dir>
     </properties>
 
@@ -33,8 +33,7 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
-            <optional>true</optional>
-            <scope>test</scope>
+            <scope>compile</scope>
         </dependency>
         <dependency>
             <groupId>com.sun.faces</groupId>
@@ -44,24 +43,6 @@
         <dependency>
             <groupId>javax.enterprise</groupId>
             <artifactId>cdi-api</artifactId>
-            <optional>true</optional>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.security</groupId>
-            <artifactId>spring-security-taglibs</artifactId>
-            <optional>true</optional>
-            <exclusions>
-                <exclusion>
-                    <groupId>aopalliance</groupId>
-                    <artifactId>aopalliance</artifactId>
-                </exclusion>
-            </exclusions>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-security</artifactId>
-            <optional>true</optional>
-            <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>org.projectlombok</groupId>

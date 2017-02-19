@@ -24,7 +24,9 @@ import org.mockito.stubbing.Answer;
 
 /**
  * Taken from
- * http://ovaraksin.blogspot.com.br/2014/03/set-up-jsf-environment-for-junit-tests.html
+ * http://ovaraksin.blogspot.com.br/2014/03/set-up-jsf-environment-for-junit-tests.html.
+ *
+ * @author Oleg Varaksin
  */
 public abstract class FacesContextMocker extends FacesContext {
 

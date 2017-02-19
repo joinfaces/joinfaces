@@ -16,24 +16,36 @@
 
 package org.joinfaces.mock;
 
-import java.io.IOException;
-
-import javax.faces.component.UIComponent;
-import javax.faces.view.facelets.FaceletContext;
-import javax.faces.view.facelets.FaceletHandler;
+import javax.inject.Inject;
 
 import lombok.Getter;
+import org.junit.After;
+import org.junit.Before;
+
+import org.springframework.context.ApplicationContext;
 
 /**
- * Facelet Handler Mock
+ * Abstract integration test for jsf Activate JsfMock for each test execution.
+ *
+ * @author Marcelo Fernandes
  */
-public class MockFaceletHandler implements FaceletHandler {
+public class JsfIT {
 
 	@Getter
-	private boolean applied = false;
+	private JsfMock jsfMock;
 
-	@Override
-	public void apply(FaceletContext ctx, UIComponent parent) throws IOException {
-		this.applied = true;
+	@Inject
+	private ApplicationContext applicationContext;
+
+	@Before
+	public void init() {
+		this.jsfMock = new JsfMock();
+		this.jsfMock.init(this.applicationContext);
 	}
+
+	@After
+	public void release() {
+		this.jsfMock.release();
+	}
+
 }

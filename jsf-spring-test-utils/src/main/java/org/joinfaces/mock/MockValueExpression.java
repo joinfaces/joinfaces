@@ -16,46 +16,70 @@
 
 package org.joinfaces.mock;
 
-import java.util.HashMap;
-import java.util.Map;
-
-import javax.faces.view.facelets.TagAttribute;
-import javax.faces.view.facelets.TagAttributes;
-
-import lombok.Getter;
+import javax.el.ELContext;
+import javax.el.ValueExpression;
 
 /**
- * Tag Attributes Mock
+ * Value Expression Mock.
+ *
+ * @author Marcelo Fernandes
  */
-public class MockTagAttributes extends TagAttributes {
+public class MockValueExpression extends ValueExpression {
 
 	private static final String NOT_SUPPORTED_YET = "Not supported yet.";
 
-	@Getter
-	private Map<String, TagAttribute> tagAttributes = new HashMap<String, TagAttribute>();
+	public MockValueExpression(String value) {
+		this.value = value;
+	}
+
+	private String value;
 
 	@Override
-	public TagAttribute[] getAll() {
+	public Object getValue(ELContext elc) {
+		return this.value;
+	}
+
+	@Override
+	public void setValue(ELContext elc, Object o) {
 		throw new UnsupportedOperationException(NOT_SUPPORTED_YET);
 	}
 
 	@Override
-	public TagAttribute get(String localName) {
-		return this.tagAttributes.get(localName);
-	}
-
-	@Override
-	public TagAttribute get(String ns, String localName) {
+	public boolean isReadOnly(ELContext elc) {
 		throw new UnsupportedOperationException(NOT_SUPPORTED_YET);
 	}
 
 	@Override
-	public TagAttribute[] getAll(String namespace) {
+	public Class<?> getType(ELContext elc) {
 		throw new UnsupportedOperationException(NOT_SUPPORTED_YET);
 	}
 
 	@Override
-	public String[] getNamespaces() {
+	public Class<?> getExpectedType() {
+		throw new UnsupportedOperationException(NOT_SUPPORTED_YET);
+	}
+
+	@Override
+	public String getExpressionString() {
+		throw new UnsupportedOperationException(NOT_SUPPORTED_YET);
+	}
+
+	@Override
+	public boolean equals(Object o) {
+		boolean result = false;
+		if (o instanceof MockValueExpression) {
+			result = this.value.equals(((MockValueExpression) o).value);
+		}
+		return result;
+	}
+
+	@Override
+	public int hashCode() {
+		throw new UnsupportedOperationException(NOT_SUPPORTED_YET);
+	}
+
+	@Override
+	public boolean isLiteralText() {
 		throw new UnsupportedOperationException(NOT_SUPPORTED_YET);
 	}
 }
