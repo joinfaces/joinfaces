@@ -52,7 +52,7 @@ public class JsfTomcatApplicationListenerIT {
 			.builder().context(jsfTomcatContextCustomizer.getContext()).build();
 		jsfTomcatApplicationListener.onApplicationEvent(null);
 		assertThat(webResourceRoot.getPostResources().length)
-			.isEqualTo(2);
+			.isEqualTo(10);
 	}
 
 	@Test
@@ -82,7 +82,7 @@ public class JsfTomcatApplicationListenerIT {
 			throw new RuntimeException("Could not delete dir: " + testClassesResources.toString());
 		}
 		assertThat(webResourceRoot.getPostResources().length)
-			.isEqualTo(3);
+			.isEqualTo(11);
 	}
 
 	@Test
