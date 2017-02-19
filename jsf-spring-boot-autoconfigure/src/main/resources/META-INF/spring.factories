@@ -1,5 +1,7 @@
 # Auto Configure
 org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+org.joinfaces.jetty.JettySpringBootAutoConfiguration,\
+org.joinfaces.jetty.JettyMyfacesSpringBootAutoConfiguration,\
 org.joinfaces.javaxfaces.JavaxFacesSpringBootAutoConfiguration,\
 org.joinfaces.mojarra.MojarraSpringBootAutoConfiguration,\
 org.joinfaces.myfaces.MyfacesSpringBootAutoConfiguration,\

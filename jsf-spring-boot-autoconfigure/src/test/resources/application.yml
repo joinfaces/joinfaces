@@ -367,6 +367,10 @@ jsf:
       enabled: true
     datatableUsesViewLocale: "Data table uses view locale"
 
+  # jetty namespace
+  jetty:
+    classPathResource: public
+
 joinfaces.test.list-c: foo, bar
 joinfaces.test.list-d:
   - foo

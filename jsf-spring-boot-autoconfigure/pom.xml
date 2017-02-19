@@ -20,7 +20,7 @@
         <findbugs.dir>src/checkconfig/findbugs</findbugs.dir>
         <!-- ignore javax.persistence classes that exists at tomcat-embed-core -->
         <duplicate.ignoredClassPattern>(javax.faces.*$|javax.persistence.(PersistenceContext|PersistenceContextType|PersistenceContexts|PersistenceProperty|PersistenceUnit|PersistenceUnits|SynchronizationType))</duplicate.ignoredClassPattern>
-        <duplicate.ignoredResourcePattern>javax/faces/Messages.*\.properties</duplicate.ignoredResourcePattern>
+        <duplicate.ignoredResourcePattern>javax/faces/Messages.*\.properties|about.html</duplicate.ignoredResourcePattern>
         
         <cobertura.branchRate>92</cobertura.branchRate>
         <cobertura.totalBranchRate>95</cobertura.totalBranchRate>
@@ -52,6 +52,18 @@
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
             <optional>true</optional>
+        </dependency>
+
+        <dependency>
+            <groupId>org.eclipse.jetty</groupId>
+            <artifactId>jetty-webapp</artifactId>
+            <optional>true</optional>
+            <exclusions>
+                <exclusion>
+                    <groupId>javax.servlet</groupId>
+                    <artifactId>javax.servlet-api</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
 
         <dependency>
