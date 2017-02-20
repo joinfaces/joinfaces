@@ -19,11 +19,11 @@ package org.joinfaces.richfaces;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
-import static org.assertj.core.api.Assertions.assertThat;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
+
+import static org.assertj.core.api.Assertions.assertThat;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = RichfacesSpringBootAutoConfiguration.class, webEnvironment = SpringBootTest.WebEnvironment.MOCK)
@@ -31,81 +31,6 @@ public class RichfacesPropertiesIT {
 
 	@Autowired
 	private RichfacesProperties richfacesProperties;
-
-	@Test
-	public void testLongValueWithDefault() {
-		assertThat(this.richfacesProperties.getLongValueWithDefault()).isEqualTo(-100);
-	}
-
-	@Test
-	public void testIntValue() {
-		assertThat(this.richfacesProperties.getIntValue()).isEqualTo(-1);
-	}
-
-	@Test
-	public void testIntValueWithDefault() {
-		assertThat(this.richfacesProperties.getIntValueWithDefault()).isEqualTo(-1);
-	}
-
-	@Test
-	public void testStringValue() {
-		assertThat(this.richfacesProperties.getStringValue()).isEqualTo("default name");
-	}
-
-	@Test
-	public void testStringValueWithDefault() {
-		assertThat(this.richfacesProperties.getStringValueWithDefault()).isEqualTo("default name 2");
-	}
-
-	@Test
-	public void testEnumValue() {
-		assertThat(this.richfacesProperties.getEnumValue()).isEqualTo("Enum value");
-	}
-
-	@Test
-	public void testEnumValueWithDefault() {
-		assertThat(this.richfacesProperties.getEnumValueWithDefault()).isEqualTo("Enum value with default");
-	}
-
-	@Test
-	public void testBooleanValue() {
-		assertThat(this.richfacesProperties.getBooleanValue()).isTrue();
-	}
-
-	@Test
-	public void testBooleanValueWithDefault() {
-		assertThat(this.richfacesProperties.getBooleanValueWithDefault()).isTrue();
-	}
-
-	@Test
-	public void testMultiValue1() {
-		assertThat(this.richfacesProperties.getMultiValue1()).isEqualTo("Multi1");
-	}
-
-	@Test
-	public void testMultiValue2() {
-		assertThat(this.richfacesProperties.getMultiValue2()).isEqualTo("Multi2");
-	}
-
-	@Test
-	public void testFacesContextReference() {
-		assertThat(this.richfacesProperties.getFacesContextReference()).isEqualTo("Context reference");
-	}
-
-	@Test
-	public void testDynamicValueWithDefault() {
-		assertThat(this.richfacesProperties.getDynamicValueWithDefault()).isEqualTo("Dynamic value");
-	}
-
-	@Test
-	public void testLiteralOnlyValue() {
-		assertThat(this.richfacesProperties.getLiteralOnlyValue()).isEqualTo("Literal only");
-	}
-
-	@Test
-	public void testLiteralOnlyWithEl() {
-		assertThat(this.richfacesProperties.getLiteralOnlyWithEl()).isEqualTo("Literal only with el");
-	}
 
 	@Test
 	public void testEnableControlSkinning() {

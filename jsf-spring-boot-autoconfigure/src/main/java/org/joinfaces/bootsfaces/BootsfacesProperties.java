@@ -36,7 +36,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 @ConfigurationProperties(prefix = "jsf.bootsfaces")
 public class BootsfacesProperties {
 
-	public static final String PREFFIX = "net.bootsfaces.";
+	private static final String PREFFIX = "net.bootsfaces.";
 
 	@NestedProperty
 	private Defaults defaults = new Defaults();

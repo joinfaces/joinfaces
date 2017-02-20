@@ -45,7 +45,7 @@ public class BootsfacesSpringBootAutoConfiguration {
 	@Bean
 	public ServletContextInitializer bootsfacesServletContextInitializer() {
 		return new ReflectiveServletContextInitializer<BootsfacesProperties>(
-				bootsfacesProperties
+				this.bootsfacesProperties
 		);
 	}
 }

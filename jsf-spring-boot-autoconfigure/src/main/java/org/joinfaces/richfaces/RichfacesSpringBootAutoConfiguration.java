@@ -16,6 +16,7 @@
 
 package org.joinfaces.richfaces;
 
+import org.joinfaces.configuration.ReflectiveServletContextInitializer;
 import org.joinfaces.javaxfaces.JavaxFacesSpringBootAutoConfiguration;
 import org.richfaces.webapp.ResourceServlet;
 
@@ -47,7 +48,7 @@ public class RichfacesSpringBootAutoConfiguration {
 
 	@Bean
 	public ServletContextInitializer richfacesServletContextInitializer() {
-		return new RichfacesServletContextInitializer(this.richfacesProperties);
+		return new ReflectiveServletContextInitializer<RichfacesProperties>(this.richfacesProperties);
 	}
 
 	@Bean
