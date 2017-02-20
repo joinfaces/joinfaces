@@ -23,6 +23,7 @@ import javax.servlet.ServletException;
 import com.sun.faces.config.FacesInitializer;
 import org.joinfaces.JsfClassFactory;
 import org.joinfaces.JsfClassFactoryConfiguration;
+import org.joinfaces.configuration.ReflectiveServletContextConfigurer;
 
 import org.springframework.boot.web.servlet.ServletContextInitializer;
 
@@ -65,11 +66,7 @@ public class MojarraServletContextInitializer implements ServletContextInitializ
 
 	@Override
 	public void onStartup(ServletContext sc) throws ServletException {
-		MojarraServletContextConfigurer.builder()
-			.mojarraProperties(this.mojarraProperties)
-			.servletContext(sc)
-			.build()
-			.configure();
+		new ReflectiveServletContextConfigurer<MojarraProperties>(sc, mojarraProperties).configure();
 
 		ServletContainerInitializer servletContainerInitializer = getServletContainerInitializer();
 		JsfClassFactory jsfClassFactory = new JsfClassFactory(this);

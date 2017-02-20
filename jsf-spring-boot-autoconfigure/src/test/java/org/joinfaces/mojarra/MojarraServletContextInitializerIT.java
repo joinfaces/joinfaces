@@ -110,7 +110,7 @@ public class MojarraServletContextInitializerIT {
 
 		mojarraServletContextInitializer.onStartup(servletContext);
 
-		assertThat(servletContext.getInitParameter(MojarraServletContextConfigurer.PREFFIX + ".clientStateTimeout"))
+		assertThat(servletContext.getInitParameter(MojarraServletContextConfigurer.PREFIX + ".clientStateTimeout"))
 			.isEqualTo("10");
 	}
 

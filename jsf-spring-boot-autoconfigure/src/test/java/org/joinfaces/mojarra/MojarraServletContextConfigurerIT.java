@@ -46,7 +46,7 @@ public class MojarraServletContextConfigurerIT {
 
 		mojarraServletContextConfigurer.configure();
 
-		assertThat(servletContext.getInitParameter(MojarraServletContextConfigurer.PREFFIX + ".clientStateTimeout")).isEqualTo("10");
+		assertThat(servletContext.getInitParameter(MojarraServletContextConfigurer.PREFIX + ".clientStateTimeout")).isEqualTo("10");
 	}
 
 }
