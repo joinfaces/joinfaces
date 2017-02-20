@@ -27,14 +27,13 @@ import java.util.Set;
 import javax.servlet.ServletContext;
 
 import lombok.extern.slf4j.Slf4j;
-import org.joinfaces.ServletContextConfigurer;
 
 import org.springframework.aop.support.AopUtils;
 import org.springframework.core.annotation.AnnotatedElementUtils;
 import org.springframework.util.ReflectionUtils;
 
 /**
- * A {@link ServletContextConfigurer} which looks for all {@link InitParameter init parameters}
+ * A ServletContextConfigurer which looks for all {@link InitParameter init parameters}
  * in an object by reflection.
  *
  * @param <PC> Type of the properties object
@@ -43,20 +42,18 @@ import org.springframework.util.ReflectionUtils;
  * @see NestedProperty
  */
 @Slf4j
-public class ReflectiveServletContextConfigurer<PC> extends ServletContextConfigurer {
+public class ReflectiveServletContextConfigurer<PC>  {
 
 	private final PC properties;
 	private final Set<String> visitedProperties;
 	private final ServletContext servletContext;
 
 	public ReflectiveServletContextConfigurer(ServletContext servletContext, PC properties) {
-		super(servletContext, null);
 		this.servletContext = servletContext;
 		this.properties = properties;
 		visitedProperties = new HashSet<String>();
 	}
 
-	@Override
 	public void configure() {
 		handlePropertiesObject(this.properties);
 	}
@@ -117,7 +114,8 @@ public class ReflectiveServletContextConfigurer<PC> extends ServletContextConfig
 			else {
 				String paramValue = convertToString(field, value);
 
-				setInitParameterRaw(paramName, paramValue);
+				log.debug("{} = {}", paramName, paramValue);
+				servletContext.setInitParameter(paramName, paramValue);
 			}
 			visitedProperties.add(paramName);
 		}

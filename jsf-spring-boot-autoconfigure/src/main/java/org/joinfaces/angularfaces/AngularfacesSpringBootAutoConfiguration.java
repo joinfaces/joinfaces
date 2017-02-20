@@ -21,16 +21,15 @@ import java.util.ArrayList;
 import javax.faces.view.facelets.TagDecorator;
 
 import de.beyondjava.angularFaces.core.tagTransformer.AngularTagDecorator;
+import org.joinfaces.configuration.PropertiesAutoConfiguration;
 import org.joinfaces.configuration.PropertiesCustomizer;
 import org.joinfaces.javaxfaces.JavaxFaces2_0Properties;
 import org.joinfaces.javaxfaces.JavaxFacesSpringBootAutoConfiguration;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.AutoConfigureBefore;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnWebApplication;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
-import org.springframework.boot.web.servlet.ServletContextInitializer;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -43,15 +42,7 @@ import org.springframework.context.annotation.Configuration;
 @ConditionalOnClass(name = "de.beyondjava.angularFaces.core.ELTools")
 @AutoConfigureBefore(JavaxFacesSpringBootAutoConfiguration.class)
 @ConditionalOnWebApplication
-public class AngularfacesSpringBootAutoConfiguration {
-
-	@Autowired
-	private AngularfacesProperties angularfacesProperties;
-
-	@Bean
-	public ServletContextInitializer angularfacesServletContextInitializer() {
-		return new AngularfacesServletContextInitializer(this.angularfacesProperties);
-	}
+public class AngularfacesSpringBootAutoConfiguration extends PropertiesAutoConfiguration<AngularfacesProperties> {
 
 	@Bean
 	public PropertiesCustomizer<JavaxFaces2_0Properties> propertiesCustomizer() {

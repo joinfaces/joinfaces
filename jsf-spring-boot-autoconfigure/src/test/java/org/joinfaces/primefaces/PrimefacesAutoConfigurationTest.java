@@ -40,7 +40,7 @@ public class PrimefacesAutoConfigurationTest {
 		PrimefacesAutoConfiguration.Primefaces5_0AutoConfiguration primefaces5_0AutoConfiguration = new PrimefacesAutoConfiguration.Primefaces5_0AutoConfiguration();
 		assertThat(primefaces5_0AutoConfiguration).isNotNull();
 
-		ServletContextInitializer servletContextInitializer = primefaces5_0AutoConfiguration.primefacesServletContextInitializer();
+		ServletContextInitializer servletContextInitializer = primefaces5_0AutoConfiguration.propertiesServletContextInitializer();
 		assertThat(servletContextInitializer).isNotNull();
 	}
 
@@ -49,7 +49,7 @@ public class PrimefacesAutoConfigurationTest {
 		PrimefacesAutoConfiguration.Primefaces5_1AutoConfiguration primefaces5_1AutoConfiguration = new PrimefacesAutoConfiguration.Primefaces5_1AutoConfiguration();
 		assertThat(primefaces5_1AutoConfiguration).isNotNull();
 
-		ServletContextInitializer servletContextInitializer = primefaces5_1AutoConfiguration.primefacesServletContextInitializer();
+		ServletContextInitializer servletContextInitializer = primefaces5_1AutoConfiguration.propertiesServletContextInitializer();
 		assertThat(servletContextInitializer).isNotNull();
 	}
 
@@ -58,7 +58,7 @@ public class PrimefacesAutoConfigurationTest {
 		PrimefacesAutoConfiguration.Primefaces5_2AutoConfiguration primefaces5_2AutoConfiguration = new PrimefacesAutoConfiguration.Primefaces5_2AutoConfiguration();
 		assertThat(primefaces5_2AutoConfiguration).isNotNull();
 
-		ServletContextInitializer servletContextInitializer = primefaces5_2AutoConfiguration.primefacesServletContextInitializer();
+		ServletContextInitializer servletContextInitializer = primefaces5_2AutoConfiguration.propertiesServletContextInitializer();
 		assertThat(servletContextInitializer).isNotNull();
 	}
 
@@ -67,7 +67,7 @@ public class PrimefacesAutoConfigurationTest {
 		PrimefacesAutoConfiguration.Primefaces6_0AutoConfiguration primefaces6_0AutoConfiguration = new PrimefacesAutoConfiguration.Primefaces6_0AutoConfiguration();
 		assertThat(primefaces6_0AutoConfiguration).isNotNull();
 
-		ServletContextInitializer servletContextInitializer = primefaces6_0AutoConfiguration.primefacesServletContextInitializer();
+		ServletContextInitializer servletContextInitializer = primefaces6_0AutoConfiguration.propertiesServletContextInitializer();
 		assertThat(servletContextInitializer).isNotNull();
 	}
 

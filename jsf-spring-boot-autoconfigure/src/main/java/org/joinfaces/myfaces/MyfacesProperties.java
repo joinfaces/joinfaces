@@ -61,7 +61,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 @ConfigurationProperties(prefix = "jsf.myfaces")
 public class MyfacesProperties {
 
-	private static final String PREFFIX = "org.apache.myfaces.";
+	static final String PREFFIX = "org.apache.myfaces.";
 
 	/**
 	 * Indicate if log all web config params should be done before initialize

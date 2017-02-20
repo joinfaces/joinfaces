@@ -18,6 +18,7 @@ package org.joinfaces.angularfaces;
 
 import lombok.Getter;
 import lombok.Setter;
+import org.joinfaces.configuration.InitParameter;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
@@ -31,21 +32,32 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 @ConfigurationProperties(prefix = "jsf.angularfaces")
 public class AngularfacesProperties {
 
+	static final String PREFIX = "AngularFaces.";
+
+	@InitParameter(PREFIX + "addLabels")
 	private Boolean addLabels;
 
+	@InitParameter(PREFIX + "addMessages")
 	private Boolean addMessages;
 
+	@InitParameter(PREFIX + "translation")
 	private Boolean translation;
 
+	@InitParameter(PREFIX + "includeAngularJS")
 	private Boolean includeAngularJS;
 
+	@InitParameter(PREFIX + "includeJQuery")
 	private Boolean includeJQuery;
 
+	@InitParameter(PREFIX + "includeJQueryUI")
 	private Boolean includeJQueryUI;
 
+	@InitParameter(PREFIX + "includeAngularMessages")
 	private Boolean includeAngularMessages;
 
+	@InitParameter(PREFIX + "clientSideMessages")
 	private Boolean clientSideMessages;
 
+	@InitParameter(PREFIX + "includeMainJS")
 	private Boolean includeMainJS;
 }

@@ -25,9 +25,7 @@ import org.joinfaces.JsfClassFactory;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.omnifaces.component.output.cache.CacheInitializerListener;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.mock.web.MockServletContext;
 import org.springframework.test.context.junit4.SpringRunner;
@@ -38,14 +36,11 @@ import static org.assertj.core.api.Assertions.assertThat;
 @SpringBootTest(classes = OmnifacesSpringBootAutoConfiguration.class, webEnvironment = SpringBootTest.WebEnvironment.MOCK)
 public class OmnifacesServletContextInitializerIT {
 
-	@Autowired
-	private OmnifacesProperties omnifacesProperties;
-
 	private static Set<Class<?>> classes;
 
 	@BeforeClass
 	public static void setupClasses() {
-		OmnifacesServletContextInitializer configuration = new OmnifacesServletContextInitializer(null);
+		OmnifacesServletContextInitializer configuration = new OmnifacesServletContextInitializer();
 
 		classes = new JsfClassFactory(configuration).getAllClasses();
 	}
@@ -58,20 +53,17 @@ public class OmnifacesServletContextInitializerIT {
 	@Test
 	public void testOnStartup() throws ServletException {
 		OmnifacesServletContextInitializer omnifacesServletContextInitializer
-			= new OmnifacesServletContextInitializer(this.omnifacesProperties);
+			= new OmnifacesServletContextInitializer();
 
 		ServletContext servletContext = new MockServletContext();
 
 		omnifacesServletContextInitializer.onStartup(servletContext);
-
-		assertThat(servletContext.getInitParameter(CacheInitializerListener.CACHE_PROVIDER_INIT_PARAM_NAME))
-			.isEqualTo("org.omnifaces.component.output.cache.DefaultCacheProvider");
 	}
 
 	@Test
 	public void testAnotherFacesConfig() throws ServletException {
 		OmnifacesServletContextInitializer omnifacesServletContextInitializer
-			= new OmnifacesServletContextInitializer(this.omnifacesProperties);
+			= new OmnifacesServletContextInitializer();
 
 		assertThat(omnifacesServletContextInitializer.getAnotherFacesConfig()).isNull();
 	}
@@ -79,7 +71,7 @@ public class OmnifacesServletContextInitializerIT {
 	@Test
 	public void testExcludeScopedAnnotations() throws ServletException {
 		OmnifacesServletContextInitializer omnifacesServletContextInitializer
-			= new OmnifacesServletContextInitializer(this.omnifacesProperties);
+			= new OmnifacesServletContextInitializer();
 
 		assertThat(omnifacesServletContextInitializer.isExcludeScopedAnnotations()).isTrue();
 	}

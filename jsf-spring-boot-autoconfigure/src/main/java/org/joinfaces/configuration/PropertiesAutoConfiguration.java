@@ -7,6 +7,13 @@ import org.springframework.boot.autoconfigure.condition.ConditionalOnWebApplicat
 import org.springframework.boot.web.servlet.ServletContextInitializer;
 import org.springframework.context.annotation.Bean;
 
+/**
+ * Common base class for all auto-configuration classes which provide properties
+ * as {@link javax.servlet.ServletContext} init parameters.
+ *
+ * @param <PC> Actual type of the properties class
+ * @author Lars Grefer
+ */
 public abstract class PropertiesAutoConfiguration<PC> {
 
 	@Autowired
@@ -19,7 +26,7 @@ public abstract class PropertiesAutoConfiguration<PC> {
 	@ConditionalOnWebApplication
 	public ServletContextInitializer propertiesServletContextInitializer() {
 
-		if(propertiesCustomizers != null) {
+		if (propertiesCustomizers != null) {
 			for (PropertiesCustomizer<? super PC> propertiesCustomizer : this.propertiesCustomizers) {
 				propertiesCustomizer.process(properties);
 			}

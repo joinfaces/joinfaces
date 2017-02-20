@@ -32,7 +32,6 @@ import org.omnifaces.component.input.Form;
 import org.omnifaces.converter.SelectItemsIndexConverter;
 import org.omnifaces.validator.RequiredCheckboxValidator;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
@@ -42,14 +41,11 @@ import static org.assertj.core.api.Assertions.assertThat;
 @SpringBootTest(classes = MojarraSpringBootAutoConfiguration.class, webEnvironment = SpringBootTest.WebEnvironment.MOCK)
 public class MojarraServletContextInitializerIT {
 
-	@Autowired
-	private MojarraProperties mojarraProperties;
-
 	private static Set<Class<?>> classes;
 
 	@BeforeClass
 	public static void setupClasses() {
-		MojarraServletContextInitializer configuration = new MojarraServletContextInitializer(null);
+		MojarraServletContextInitializer configuration = new MojarraServletContextInitializer();
 
 		classes = new JsfClassFactory(configuration).getAllClasses();
 	}
@@ -87,7 +83,7 @@ public class MojarraServletContextInitializerIT {
 	@Test
 	public void testAnotherFacesConfig() throws ServletException {
 		MojarraServletContextInitializer mojarraServletContextInitializer
-			= new MojarraServletContextInitializer(this.mojarraProperties);
+			= new MojarraServletContextInitializer();
 
 		assertThat(mojarraServletContextInitializer.getAnotherFacesConfig())
 			.isEqualTo(MojarraServletContextInitializer.ANOTHER_FACES_CONFIG);
@@ -96,7 +92,7 @@ public class MojarraServletContextInitializerIT {
 	@Test
 	public void testExcludeScopedAnnotations() throws ServletException {
 		MojarraServletContextInitializer mojarraServletContextInitializer
-			= new MojarraServletContextInitializer(this.mojarraProperties);
+			= new MojarraServletContextInitializer();
 
 		assertThat(mojarraServletContextInitializer.isExcludeScopedAnnotations()).isTrue();
 	}
@@ -104,14 +100,11 @@ public class MojarraServletContextInitializerIT {
 	@Test
 	public void testOnStartup() throws ServletException {
 		MojarraServletContextInitializer mojarraServletContextInitializer
-			= new MojarraServletContextInitializer(this.mojarraProperties);
+			= new MojarraServletContextInitializer();
 
 		ServletContext servletContext = new MojarraMockServletContext();
 
 		mojarraServletContextInitializer.onStartup(servletContext);
-
-		assertThat(servletContext.getInitParameter(MojarraProperties.PREFIX + ".clientStateTimeout"))
-			.isEqualTo("10");
 	}
 
 }
