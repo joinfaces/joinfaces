@@ -20,7 +20,9 @@ import java.lang.reflect.Field;
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
 import java.util.Collection;
+import java.util.HashSet;
 import java.util.Iterator;
+import java.util.Set;
 
 import javax.servlet.ServletContext;
 
@@ -43,11 +45,13 @@ import org.springframework.util.ReflectionUtils;
 @Slf4j
 public class ReflectiveServletContextConfigurer<PC> extends ServletContextConfigurer {
 
-	private PC properties;
+	private final PC properties;
+	private final Set<String> visitedProperties;
 
 	public ReflectiveServletContextConfigurer(ServletContext servletContext, PC properties) {
 		super(servletContext, null);
 		this.properties = properties;
+		visitedProperties = new HashSet<String>();
 	}
 
 	@Override
@@ -95,14 +99,21 @@ public class ReflectiveServletContextConfigurer<PC> extends ServletContextConfig
 			ReflectionUtils.makeAccessible(field);
 			Object value = ReflectionUtils.getField(field, properties);
 
-			if (value == null) {
-				log.debug("Not setting '{}' because the value is null", initParameter.value());
+			String paramName = initParameter.value();
+			if (visitedProperties.contains(paramName)) {
+				log.debug("Not setting '{}' because it was already processed", paramName);
 				return;
 			}
 
-			String paramValue = convertToString(field, value);
+			if (value == null) {
+				log.debug("Not setting '{}' because the value is null", paramName);
+			}
+			else {
+				String paramValue = convertToString(field, value);
 
-			setInitParameterRaw(initParameter.value(), paramValue);
+				setInitParameterRaw(paramName, paramValue);
+			}
+			visitedProperties.add(paramName);
 		}
 	}
 

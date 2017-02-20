@@ -171,7 +171,7 @@ public class ReflectiveServletContextConfigurerIT {
 		@Getter
 		@Setter
 		@NoArgsConstructor
-		public static class InnerProperties {
+		public static class InnerProperties extends SuperProperties.InnerProperties {
 
 			@InitParameter("test.inner.STRING")
 			private String innerString = "bar";
@@ -185,5 +185,17 @@ public class ReflectiveServletContextConfigurerIT {
 
 		@InitParameter("test.superString")
 		private String superString = "barFoo";
+
+		@NestedProperty
+		private TestProperties.InnerProperties innerProperties = new TestProperties.InnerProperties();
+
+		@Getter
+		@Setter
+		@NoArgsConstructor
+		public static class InnerProperties {
+
+			@InitParameter("test.inner.STRING")
+			private String innerString = "foo";
+		}
 	}
 }
