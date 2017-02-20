@@ -16,6 +16,8 @@
 
 package org.joinfaces.javaxfaces;
 
+import org.joinfaces.configuration.ReflectiveServletContextInitializer;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnWebApplication;
@@ -39,6 +41,6 @@ public class JavaxFacesSpringBootAutoConfiguration {
 
 	@Bean
 	public ServletContextInitializer javaxFacesServletContextInitializer() {
-		return new JavaxFacesServletContextInitializer(this.javaxFacesProperties);
+		return new ReflectiveServletContextInitializer<JavaxFacesProperties>(this.javaxFacesProperties);
 	}
 }

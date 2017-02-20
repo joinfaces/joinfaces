@@ -19,11 +19,25 @@ package org.joinfaces.javaxfaces;
 import java.util.List;
 
 import javax.faces.application.ProjectStage;
+import javax.faces.application.ResourceHandler;
+import javax.faces.application.StateManager;
+import javax.faces.application.ViewHandler;
+import javax.faces.component.UIComponent;
+import javax.faces.component.UIInput;
+import javax.faces.component.UINamingContainer;
+import javax.faces.context.PartialViewContext;
+import javax.faces.convert.Converter;
+import javax.faces.flow.FlowHandler;
+import javax.faces.lifecycle.ClientWindow;
+import javax.faces.validator.BeanValidator;
 import javax.faces.view.facelets.ResourceResolver;
 import javax.faces.view.facelets.TagDecorator;
+import javax.faces.webapp.FacesServlet;
 
 import lombok.Getter;
 import lombok.Setter;
+import org.joinfaces.configuration.InitParameter;
+import org.joinfaces.configuration.NestedProperty;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
@@ -42,6 +56,7 @@ public class JavaxFacesProperties {
 	 * Set the project stage to "Development", "UnitTest", "SystemTest", or
 	 * "Production".
 	 */
+	@InitParameter(ProjectStage.PROJECT_STAGE_PARAM_NAME)
 	private ProjectStage projectStage;
 
 	/**
@@ -49,6 +64,7 @@ public class JavaxFacesProperties {
 	 * served by the ResourceHandler implementation. See the specification for
 	 * further details.
 	 */
+	@InitParameter(value = ResourceHandler.RESOURCE_EXCLUDES_PARAM_NAME, listSeparator = ",")
 	private List<String> resourceExcludes;
 
 	/**
@@ -64,6 +80,7 @@ public class JavaxFacesProperties {
 	 *
 	 * @since 2.2
 	 */
+	@InitParameter(ResourceHandler.WEBAPP_CONTRACTS_DIRECTORY_PARAM_NAME)
 	private String webappContractsDirectory;
 
 	/**
@@ -79,17 +96,20 @@ public class JavaxFacesProperties {
 	 *
 	 * @since 2.2
 	 */
+	@InitParameter(ResourceHandler.WEBAPP_RESOURCES_DIRECTORY_PARAM_NAME)
 	private String webappResourcesDirectory;
 
 	/**
 	 * Semicolon-separated list of view IDs that must save state using the JSF
 	 * 1.2-style state saving.
 	 */
+	@InitParameter(value = StateManager.FULL_STATE_SAVING_VIEW_IDS_PARAM_NAME, listSeparator = ";")
 	private List<String> fullStateSavingViewIds;
 
 	/**
 	 * If true, use the JSF2 partial state saving for views.
 	 */
+	@InitParameter(StateManager.PARTIAL_STATE_SAVING_PARAM_NAME)
 	private Boolean partialStateSaving;
 
 	/**
@@ -102,60 +122,71 @@ public class JavaxFacesProperties {
 	 * ObjectOutputStream would not throw a NotSerializableException, but the
 	 * runtime is not required verify this before saving the state.
 	 */
+	@InitParameter(StateManager.SERIALIZE_SERVER_STATE_PARAM_NAME)
 	private Boolean serializeServerState;
 
 	/**
 	 * "server" or "client".
 	 */
+	@InitParameter(StateManager.STATE_SAVING_METHOD_PARAM_NAME)
 	private String stateSavingMethod;
 
 	/**
 	 * Change the default suffix for JSP views.
 	 */
+	@InitParameter(ViewHandler.DEFAULT_SUFFIX_PARAM_NAME)
 	private String defaultSuffix;
 
 	/**
 	 * ViewHandler. Useful for applications that use legacy Facelets
 	 * implementation.
 	 */
+	@InitParameter(ViewHandler.DISABLE_FACELET_JSF_VIEWHANDLER_PARAM_NAME)
 	private Boolean disableFaceletJsfViewhandler;
 
 	/**
 	 * The buffer size set on the response.
 	 */
+	@InitParameter(ViewHandler.FACELETS_BUFFER_SIZE_PARAM_NAME)
 	private Integer faceletsBufferSize;
 
 	/**
 	 * TagDecorator implementations. See javadoc for javax.faces.view.facelets.TagDecorator.
 	 */
+	@InitParameter(value = ViewHandler.FACELETS_DECORATORS_PARAM_NAME, listSeparator = ";")
 	private List<Class<? extends TagDecorator>> faceletsDecorators;
 
 	/**
 	 * Semicolon-separated list of paths to Facelet tag libraries.
 	 */
+	@InitParameter(value = ViewHandler.FACELETS_LIBRARIES_PARAM_NAME, listSeparator = ";")
 	private List<String> faceletsLibraries;
 
 	/**
 	 * Time in seconds that facelets should be checked for changes since last
 	 * request. A value of -1 disables refresh checking.
 	 */
+	@InitParameter(ViewHandler.FACELETS_REFRESH_PERIOD_PARAM_NAME)
 	private Integer faceletsRefreshPeriod;
 
 	/**
 	 * If true, strip XML comments out of Facelets before delivering to the
 	 * client.
 	 */
+	@InitParameter(ViewHandler.FACELETS_SKIP_COMMENTS_PARAM_NAME)
 	private Boolean faceletsSkipComments;
 
 	/**
 	 * Set the suffix for Facelet xhtml files.
 	 */
+	@InitParameter(ViewHandler.FACELETS_SUFFIX_PARAM_NAME)
 	private String faceletsSuffix;
 
 	/**
 	 * Semicolon-separated list of Facelet files that don't use the default
 	 * facelets suffix.
 	 */
+	@InitParameter(value = ViewHandler.FACELETS_VIEW_MAPPINGS_PARAM_NAME, listSeparator = ";")
 	private List<String> faceletsViewMappings;
 
 	/**
@@ -171,12 +202,14 @@ public class JavaxFacesProperties {
 	 * {@link #CURRENT_COMPOSITE_COMPONENT} method is not honored. If this
 	 * parameter is set to true, the contract is honored.</p>
 	 */
+	@InitParameter(UIComponent.HONOR_CURRENT_COMPONENT_ATTRIBUTES_PARAM_NAME)
 	private Boolean honorCurrentComponentAttributes;
 
 	/**
 	 * If "true", validate null and empty values. If "auto" validate when
 	 * JSR-303 Bean Validation is enabled (in AS6 it is enabled by default).
 	 */
+	@InitParameter(UIInput.VALIDATE_EMPTY_FIELDS_PARAM_NAME)
 	private String validateEmptyFields;
 
 	/**
@@ -185,34 +218,42 @@ public class JavaxFacesProperties {
 	 *
 	 * @since 2.0
 	 */
+	@InitParameter(UINamingContainer.SEPARATOR_CHAR_PARAM_NAME)
 	private String separatorChar;
 
+	@NestedProperty
 	private Partial partial = new Partial();
 
 	/**
 	 * Controls if DateTimeConverter instances use the system timezone (if true)
 	 * or GMT (if false).
 	 */
+	@InitParameter(Converter.DATETIMECONVERTER_DEFAULT_TIMEZONE_IS_SYSTEM_TIMEZONE_PARAM_NAME)
 	private Boolean datetimeconverterDefaultTimezoneIsSystemTimezone;
 
+	@NestedProperty
 	private Flow flow = new Flow();
 
+	@NestedProperty
 	private Validator validator = new Validator();
 
 	/**
 	 * An implementation of javax.faces.view.facelets.ResourceResolver. See
 	 * javadoc for details.
 	 */
+	@InitParameter(ResourceResolver.FACELETS_RESOURCE_RESOLVER_PARAM_NAME)
 	private Class<? extends ResourceResolver> faceletsResourceResolver;
 
 	/**
 	 * Comma-delimited list of faces config files.
 	 */
+	@InitParameter(value = FacesServlet.CONFIG_FILES_ATTR, listSeparator = ",")
 	private List<String> configFiles;
 
 	/**
 	 * ID for alternate Lifecycle implementations.
 	 */
+	@InitParameter(FacesServlet.LIFECYCLE_ID_ATTR)
 	private String lifecycleId;
 
 	/**
@@ -224,12 +265,14 @@ public class JavaxFacesProperties {
 	 *
 	 * @since 2.2
 	 */
+	@InitParameter(ClientWindow.CLIENT_WINDOW_MODE_PARAM_NAME)
 	private String clientWindowMode;
 
 	/**
 	 * If true, consider empty UIInput values to be null instead of empty
 	 * string.
 	 */
+	@InitParameter(JavaxFacesProperties.EMPTY_STRING_AS_NULL)
 	private Boolean interpretEmptyStringSubmittedValuesAsNull;
 
 	/**
@@ -256,6 +299,7 @@ public class JavaxFacesProperties {
 		 *
 		 * @since 2.0
 		 */
+		@InitParameter(PartialViewContext.PARTIAL_EXECUTE_PARAM_NAME)
 		private Boolean execute;
 
 		/**
@@ -268,6 +312,7 @@ public class JavaxFacesProperties {
 		 *
 		 * @since 2.0
 		 */
+		@InitParameter(PartialViewContext.PARTIAL_RENDER_PARAM_NAME)
 		private Boolean render;
 
 		/**
@@ -278,6 +323,7 @@ public class JavaxFacesProperties {
 		 *
 		 * @since 2.2
 		 */
+		@InitParameter(PartialViewContext.RESET_VALUES_PARAM_NAME)
 		private Boolean resetValues;
 	}
 
@@ -298,6 +344,7 @@ public class JavaxFacesProperties {
 		 *
 		 * @since 2.2
 		 */
+		@InitParameter(FlowHandler.NULL_FLOW)
 		private Boolean nullFlow;
 	}
 
@@ -311,6 +358,7 @@ public class JavaxFacesProperties {
 		/**
 		 * If "true", disable JSR-303 Bean Validation.
 		 */
+		@InitParameter(BeanValidator.DISABLE_DEFAULT_BEAN_VALIDATOR_PARAM_NAME)
 		private Boolean disableDefaultBeanValidator;
 	}
 }
