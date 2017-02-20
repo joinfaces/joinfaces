@@ -23,6 +23,7 @@ import javax.servlet.ServletException;
 import org.apache.myfaces.ee6.MyFacesContainerInitializer;
 import org.joinfaces.JsfClassFactory;
 import org.joinfaces.JsfClassFactoryConfiguration;
+import org.joinfaces.configuration.ReflectiveServletContextConfigurer;
 
 import org.springframework.boot.web.servlet.ServletContextInitializer;
 
@@ -65,11 +66,7 @@ public class MyfacesServletContextInitializer implements ServletContextInitializ
 
 	@Override
 	public void onStartup(ServletContext sc) throws ServletException {
-		MyfacesServletContextConfigurer.builder()
-			.myfacesProperties(this.myfacesProperties)
-			.servletContext(sc)
-			.build()
-			.configure();
+		new ReflectiveServletContextConfigurer<MyfacesProperties>(sc, this.myfacesProperties).configure();
 
 		ServletContainerInitializer servletContainerInitializer = getServletContainerInitializer();
 		JsfClassFactory jsfClassFactory = new JsfClassFactory(this);
