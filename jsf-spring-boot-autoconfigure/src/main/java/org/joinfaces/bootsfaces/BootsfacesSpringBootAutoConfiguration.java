@@ -16,6 +16,7 @@
 
 package org.joinfaces.bootsfaces;
 
+import org.joinfaces.configuration.ReflectiveServletContextInitializer;
 import org.joinfaces.javaxfaces.JavaxFacesSpringBootAutoConfiguration;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -43,6 +44,8 @@ public class BootsfacesSpringBootAutoConfiguration {
 
 	@Bean
 	public ServletContextInitializer bootsfacesServletContextInitializer() {
-		return new BootsfacesServletContextInitializer(this.bootsfacesProperties);
+		return new ReflectiveServletContextInitializer<BootsfacesProperties>(
+				bootsfacesProperties
+		);
 	}
 }
