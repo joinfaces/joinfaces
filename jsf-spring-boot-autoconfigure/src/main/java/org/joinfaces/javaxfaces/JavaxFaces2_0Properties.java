@@ -22,13 +22,10 @@ import javax.faces.application.ProjectStage;
 import javax.faces.application.ResourceHandler;
 import javax.faces.application.StateManager;
 import javax.faces.application.ViewHandler;
-import javax.faces.component.UIComponent;
 import javax.faces.component.UIInput;
 import javax.faces.component.UINamingContainer;
 import javax.faces.context.PartialViewContext;
 import javax.faces.convert.Converter;
-import javax.faces.flow.FlowHandler;
-import javax.faces.lifecycle.ClientWindow;
 import javax.faces.validator.BeanValidator;
 import javax.faces.view.facelets.ResourceResolver;
 import javax.faces.view.facelets.TagDecorator;
@@ -42,15 +39,17 @@ import org.joinfaces.configuration.NestedProperty;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
 /**
- * JavaxFaces standard properties.
- * Taken from
- * https://javaserverfaces.java.net/docs/2.2/javadocs/constant-values.html
+ * {@link ConfigurationProperties Configuration properties} for JSF 2.0.
+ *
  * @author Marcelo Fernandes
+ * @author Lars Grefer
+ * @see <a href="https://www.jcp.org/en/jsr/detail?id=314">JSR-314</a>
+ * @see <a href="http://stackoverflow.com/a/17341945/3574494">http://stackoverflow.com/a/17341945/3574494</a>
  */
 @Getter
 @Setter
 @ConfigurationProperties(prefix = "jsf")
-public class JavaxFacesProperties {
+public class JavaxFaces2_0Properties {
 
 	/**
 	 * Set the project stage to "Development", "UnitTest", "SystemTest", or
@@ -68,38 +67,6 @@ public class JavaxFacesProperties {
 	private List<String> resourceExcludes;
 
 	/**
-	 * <p class="changed_added_2_2">If a <code>&lt;context-param&gt;</code> with
-	 * the param name equal to the value of
-	 * {@link #WEBAPP_CONTRACTS_DIRECTORY_PARAM_NAME} exists, the runtime must
-	 * interpret its value as a path, relative to the web app root, where
-	 * resource library contracts are to be located. This param value must not
-	 * start with a "/", though it may contain "/" characters. If no such
-	 * <code>&lt;context-param&gt;</code> exists, or its value is invalid, the
-	 * value "contracts", without the quotes, must be used by the runtime as the
-	 * value.</p>
-	 *
-	 * @since 2.2
-	 */
-	@InitParameter(ResourceHandler.WEBAPP_CONTRACTS_DIRECTORY_PARAM_NAME)
-	private String webappContractsDirectory;
-
-	/**
-	 * <p class="changed_added_2_2">If a <code>&lt;context-param&gt;</code> with
-	 * the param name equal to the value of
-	 * {@link #WEBAPP_RESOURCES_DIRECTORY_PARAM_NAME} exists, the runtime must
-	 * interpret its value as a path, relative to the web app root, where
-	 * resources are to be located. This param value must not start with a "/",
-	 * though it may contain "/" characters. If no such
-	 * <code>&lt;context-param&gt;</code> exists, or its value is invalid, the
-	 * value "resources", without the quotes, must be used by the runtime as the
-	 * value.</p>
-	 *
-	 * @since 2.2
-	 */
-	@InitParameter(ResourceHandler.WEBAPP_RESOURCES_DIRECTORY_PARAM_NAME)
-	private String webappResourcesDirectory;
-
-	/**
 	 * Semicolon-separated list of view IDs that must save state using the JSF
 	 * 1.2-style state saving.
 	 */
@@ -111,19 +78,6 @@ public class JavaxFacesProperties {
 	 */
 	@InitParameter(StateManager.PARTIAL_STATE_SAVING_PARAM_NAME)
 	private Boolean partialStateSaving;
-
-	/**
-	 * If this param is set, and calling toLowerCase().equals("true") on a
-	 * String representation of its value returns true, and the
-	 * javax.faces.STATE_SAVING_METHOD is set to "server" (as indicated below),
-	 * the server state must be guaranteed to be Serializable such that the
-	 * aggregate state implements java.io.Serializable. The intent of this
-	 * parameter is to ensure that the act of writing out the state to an
-	 * ObjectOutputStream would not throw a NotSerializableException, but the
-	 * runtime is not required verify this before saving the state.
-	 */
-	@InitParameter(StateManager.SERIALIZE_SERVER_STATE_PARAM_NAME)
-	private Boolean serializeServerState;
 
 	/**
 	 * "server" or "client".
@@ -190,22 +144,6 @@ public class JavaxFacesProperties {
 	private List<String> faceletsViewMappings;
 
 	/**
-	 * <p class="changed_added_2_1">The <code>ServletContext</code> init
-	 * parameter consulted by the <code>UIComponent</code> to tell whether or
-	 * not the {@link #CURRENT_COMPONENT} and
-	 * {@link #CURRENT_COMPOSITE_COMPONENT} attribute keys should be honored as
-	 * specified.</p>
-	 *
-	 * <p>
-	 * If this parameter is not specified, or is set to false, the contract
-	 * specified by the {@link #CURRENT_COMPONENT} and
-	 * {@link #CURRENT_COMPOSITE_COMPONENT} method is not honored. If this
-	 * parameter is set to true, the contract is honored.</p>
-	 */
-	@InitParameter(UIComponent.HONOR_CURRENT_COMPONENT_ATTRIBUTES_PARAM_NAME)
-	private Boolean honorCurrentComponentAttributes;
-
-	/**
 	 * If "true", validate null and empty values. If "auto" validate when
 	 * JSR-303 Bean Validation is enabled (in AS6 it is enabled by default).
 	 */
@@ -222,7 +160,7 @@ public class JavaxFacesProperties {
 	private String separatorChar;
 
 	@NestedProperty
-	private Partial partial = new Partial();
+	Partial partial = new Partial();
 
 	/**
 	 * Controls if DateTimeConverter instances use the system timezone (if true)
@@ -230,9 +168,6 @@ public class JavaxFacesProperties {
 	 */
 	@InitParameter(Converter.DATETIMECONVERTER_DEFAULT_TIMEZONE_IS_SYSTEM_TIMEZONE_PARAM_NAME)
 	private Boolean datetimeconverterDefaultTimezoneIsSystemTimezone;
-
-	@NestedProperty
-	private Flow flow = new Flow();
 
 	@NestedProperty
 	private Validator validator = new Validator();
@@ -257,29 +192,17 @@ public class JavaxFacesProperties {
 	private String lifecycleId;
 
 	/**
-	 * <p class="changed_added_2_2">The context-param that controls the
-	 * operation of the <code>ClientWindow</code> feature. The runtime must
-	 * support the values "none" and "url", without the quotes, but other values
-	 * are possible. If not specified, or the value is not understood by the
-	 * implementation, "none" is assumed.</p>
-	 *
-	 * @since 2.2
-	 */
-	@InitParameter(ClientWindow.CLIENT_WINDOW_MODE_PARAM_NAME)
-	private String clientWindowMode;
-
-	/**
 	 * If true, consider empty UIInput values to be null instead of empty
 	 * string.
 	 */
-	@InitParameter(JavaxFacesProperties.EMPTY_STRING_AS_NULL)
+	@InitParameter(EMPTY_STRING_AS_NULL)
 	private Boolean interpretEmptyStringSubmittedValuesAsNull;
 
 	/**
 	 * Interpret empty string submitted values as null constant.
 	 */
 	public static final String EMPTY_STRING_AS_NULL
-		= "javax.faces.INTERPRET_EMPTY_STRING_SUBMITTED_VALUES_AS_NULL";
+			= "javax.faces.INTERPRET_EMPTY_STRING_SUBMITTED_VALUES_AS_NULL";
 
 	/**
 	 * Partial class for execute, render and resetValues parameters.
@@ -314,38 +237,6 @@ public class JavaxFacesProperties {
 		 */
 		@InitParameter(PartialViewContext.PARTIAL_RENDER_PARAM_NAME)
 		private Boolean render;
-
-		/**
-		 * <p class="changed_added_2_2">
-		 * If the request parameter named by the value of this constant has a
-		 * parameter value of <code>true</code>, the implementation must return
-		 * <code>true</code> from {@link #isResetValues}.</p>
-		 *
-		 * @since 2.2
-		 */
-		@InitParameter(PartialViewContext.RESET_VALUES_PARAM_NAME)
-		private Boolean resetValues;
-	}
-
-	/**
-	 * Flow class for nullFlow parameter.
-	 */
-	@Getter
-	@Setter
-	public static class Flow {
-
-		/**
-		 * <p class="changed_added_2_2">Components that are rendered by
-		 * <code>Renderers</code> of component-family
-		 * <code>javax.faces.OutcomeTarget</code> must use this constant as the
-		 * value of the parameter named by
-		 * {@link #TO_FLOW_DOCUMENT_ID_REQUEST_PARAM_NAME} when returning from a
-		 * flow (without entering another flow) using such a component. </p>
-		 *
-		 * @since 2.2
-		 */
-		@InitParameter(FlowHandler.NULL_FLOW)
-		private Boolean nullFlow;
 	}
 
 	/**
