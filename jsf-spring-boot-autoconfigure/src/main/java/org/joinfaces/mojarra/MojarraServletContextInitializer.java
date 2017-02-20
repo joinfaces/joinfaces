@@ -23,7 +23,6 @@ import javax.servlet.ServletException;
 import com.sun.faces.config.FacesInitializer;
 import org.joinfaces.JsfClassFactory;
 import org.joinfaces.JsfClassFactoryConfiguration;
-import org.joinfaces.configuration.ReflectiveServletContextConfigurer;
 
 import org.springframework.boot.web.servlet.ServletContextInitializer;
 
@@ -37,12 +36,6 @@ public class MojarraServletContextInitializer implements ServletContextInitializ
 	 * Constant of another faces config of mojarra.
 	 */
 	public static final String ANOTHER_FACES_CONFIG = "com/sun/faces/jsf-ri-runtime.xml";
-
-	private final MojarraProperties mojarraProperties;
-
-	public MojarraServletContextInitializer(MojarraProperties mojarraProperties) {
-		this.mojarraProperties = mojarraProperties;
-	}
 
 	private ServletContainerInitializer servletContainerInitializer;
 
@@ -66,8 +59,6 @@ public class MojarraServletContextInitializer implements ServletContextInitializ
 
 	@Override
 	public void onStartup(ServletContext sc) throws ServletException {
-		new ReflectiveServletContextConfigurer<MojarraProperties>(sc, mojarraProperties).configure();
-
 		ServletContainerInitializer servletContainerInitializer = getServletContainerInitializer();
 		JsfClassFactory jsfClassFactory = new JsfClassFactory(this);
 		servletContainerInitializer.onStartup(jsfClassFactory.getAllClasses(), sc);

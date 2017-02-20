@@ -16,6 +16,13 @@
 
 package org.joinfaces.angularfaces;
 
+import java.util.ArrayList;
+
+import javax.faces.view.facelets.TagDecorator;
+
+import de.beyondjava.angularFaces.core.tagTransformer.AngularTagDecorator;
+import org.joinfaces.configuration.PropertiesCustomizer;
+import org.joinfaces.javaxfaces.JavaxFaces2_0Properties;
 import org.joinfaces.javaxfaces.JavaxFacesSpringBootAutoConfiguration;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -44,5 +51,19 @@ public class AngularfacesSpringBootAutoConfiguration {
 	@Bean
 	public ServletContextInitializer angularfacesServletContextInitializer() {
 		return new AngularfacesServletContextInitializer(this.angularfacesProperties);
+	}
+
+	@Bean
+	public PropertiesCustomizer<JavaxFaces2_0Properties> propertiesCustomizer() {
+		return new PropertiesCustomizer<JavaxFaces2_0Properties>() {
+			@Override
+			public void process(JavaxFaces2_0Properties properties) {
+				if(properties.getFaceletsDecorators() == null) {
+					properties.setFaceletsDecorators(new ArrayList<Class<? extends TagDecorator>>());
+				}
+
+				properties.getFaceletsDecorators().add(AngularTagDecorator.class);
+			}
+		};
 	}
 }

@@ -16,24 +16,20 @@
 
 package org.joinfaces.butterfaces;
 
-import javax.servlet.ServletContext;
-import javax.servlet.ServletException;
-
 import lombok.extern.slf4j.Slf4j;
 import net.bootsfaces.C;
 import org.joinfaces.bootsfaces.BootsfacesProperties;
-import org.joinfaces.configuration.ReflectiveServletContextInitializer;
+import org.joinfaces.bootsfaces.BootsfacesSpringBootAutoConfiguration;
+import org.joinfaces.configuration.PropertiesAutoConfiguration;
+import org.joinfaces.configuration.PropertiesCustomizer;
 import org.joinfaces.javaxfaces.JavaxFacesSpringBootAutoConfiguration;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.AutoConfigureBefore;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnWebApplication;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
-import org.springframework.boot.web.servlet.ServletContextInitializer;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.core.Ordered;
 
 /**
  * Spring Boot Auto Configuration of ButterFaces.
@@ -45,15 +41,7 @@ import org.springframework.core.Ordered;
 @AutoConfigureBefore(JavaxFacesSpringBootAutoConfiguration.class)
 @ConditionalOnWebApplication
 @Slf4j
-public class ButterfacesSpringBootAutoConfiguration {
-
-	@Autowired
-	private ButterfacesProperties butterfacesProperties;
-
-	@Bean
-	public ServletContextInitializer butterfacesServletContextInitializer() {
-		return new ReflectiveServletContextInitializer<ButterfacesProperties>(this.butterfacesProperties);
-	}
+public class ButterfacesSpringBootAutoConfiguration extends PropertiesAutoConfiguration<ButterfacesProperties> {
 
 	/**
 	 * Special auto configuration for butterfaces and bootsfaces in combination
@@ -63,35 +51,25 @@ public class ButterfacesSpringBootAutoConfiguration {
 	 */
 	@Configuration
 	@ConditionalOnClass(C.class)
-	@EnableConfigurationProperties(BootsfacesProperties.class)
+	@AutoConfigureBefore(BootsfacesSpringBootAutoConfiguration.class)
 	public static class ButterfacesBootsfacesAutoConfiguration {
 
 		@Bean
-		public ServletContextInitializer butterfacesBootsfacesServletContextInitializer() {
-			return new ButterfacesBootsfacesServletContextInitializer();
-		}
+		public PropertiesCustomizer<BootsfacesProperties> bootsfacesPropertiesCustomizer() {
+			return new PropertiesCustomizer<BootsfacesProperties>() {
+				@Override
+				public void process(BootsfacesProperties properties) {
+					if (properties.getGetJqueryFromCdn() == null) {
+						log.debug("Setting 'net.bootsfaces.get_jquery_from_cdn' to 'true'");
+					}
+					else if (!properties.getGetJqueryFromCdn()) {
+						log.info("Setting 'net.bootsfaces.get_jquery_from_cdn' to 'true'");
+						log.info("See: https://github.com/ButterFaces/bootsfaces-integration/blob/6e9d45978590fa72361cf3c98bec77d863f02aea/README.md");
+					}
 
-		public static class ButterfacesBootsfacesServletContextInitializer implements ServletContextInitializer, Ordered {
-
-			@Override
-			public void onStartup(ServletContext servletContext) throws ServletException {
-				String initParameter = servletContext.getInitParameter("net.bootsfaces.get_jquery_from_cdn");
-
-				if (initParameter == null) {
-					log.debug("Setting 'net.bootsfaces.get_jquery_from_cdn' to 'true'");
+					properties.setGetJqueryFromCdn(true);
 				}
-				else if (!initParameter.equalsIgnoreCase("true")) {
-					log.info("Setting 'net.bootsfaces.get_jquery_from_cdn' from '{}' to 'true'", initParameter);
-					log.info("See: https://github.com/ButterFaces/bootsfaces-integration/blob/6e9d45978590fa72361cf3c98bec77d863f02aea/README.md");
-				}
-
-				servletContext.setInitParameter("net.bootsfaces.get_jquery_from_cdn", Boolean.TRUE.toString());
-			}
-
-			@Override
-			public int getOrder() {
-				return Ordered.HIGHEST_PRECEDENCE;
-			}
+			};
 		}
 	}
 }

@@ -37,7 +37,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 @ConfigurationProperties(prefix = "jsf.mojarra")
 public class MojarraProperties {
 
-	private static final String PREFIX = "com.sun.faces.";
+	static final String PREFIX = "com.sun.faces.";
 
 	/**
 	 * Maximum time, in seconds, that client state will be considered valid by

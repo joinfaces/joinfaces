@@ -16,9 +16,9 @@
 
 package org.joinfaces.omnifaces;
 
+import org.joinfaces.configuration.PropertiesAutoConfiguration;
 import org.joinfaces.javaxfaces.JavaxFacesSpringBootAutoConfiguration;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.AutoConfigureBefore;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnWebApplication;
@@ -36,13 +36,10 @@ import org.springframework.context.annotation.Configuration;
 @ConditionalOnClass(name = "org.omnifaces.facesviews.FacesViewsInitializer")
 @AutoConfigureBefore(JavaxFacesSpringBootAutoConfiguration.class)
 @ConditionalOnWebApplication
-public class OmnifacesSpringBootAutoConfiguration {
-
-	@Autowired
-	private OmnifacesProperties omnifacesProperties;
+public class OmnifacesSpringBootAutoConfiguration extends PropertiesAutoConfiguration<OmnifacesProperties> {
 
 	@Bean
 	public ServletContextInitializer omnifacesServletContextInitializer() {
-		return new OmnifacesServletContextInitializer(this.omnifacesProperties);
+		return new OmnifacesServletContextInitializer();
 	}
 }

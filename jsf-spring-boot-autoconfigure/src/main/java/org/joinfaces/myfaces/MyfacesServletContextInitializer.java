@@ -23,7 +23,6 @@ import javax.servlet.ServletException;
 import org.apache.myfaces.ee6.MyFacesContainerInitializer;
 import org.joinfaces.JsfClassFactory;
 import org.joinfaces.JsfClassFactoryConfiguration;
-import org.joinfaces.configuration.ReflectiveServletContextConfigurer;
 
 import org.springframework.boot.web.servlet.ServletContextInitializer;
 
@@ -37,12 +36,6 @@ public class MyfacesServletContextInitializer implements ServletContextInitializ
 	 * Constant of another faces config name of MyFaces.
 	 */
 	public static final String ANOTHER_FACES_CONFIG = "META-INF/standard-faces-config.xml";
-
-	private final MyfacesProperties myfacesProperties;
-
-	public MyfacesServletContextInitializer(MyfacesProperties myfacesProperties) {
-		this.myfacesProperties = myfacesProperties;
-	}
 
 	private ServletContainerInitializer servletContainerInitializer;
 
@@ -66,8 +59,6 @@ public class MyfacesServletContextInitializer implements ServletContextInitializ
 
 	@Override
 	public void onStartup(ServletContext sc) throws ServletException {
-		new ReflectiveServletContextConfigurer<MyfacesProperties>(sc, this.myfacesProperties).configure();
-
 		ServletContainerInitializer servletContainerInitializer = getServletContainerInitializer();
 		JsfClassFactory jsfClassFactory = new JsfClassFactory(this);
 		JoinFacesAnnotationProvider.setAnnotatedClasses(jsfClassFactory.getAnnotatedClassMap());

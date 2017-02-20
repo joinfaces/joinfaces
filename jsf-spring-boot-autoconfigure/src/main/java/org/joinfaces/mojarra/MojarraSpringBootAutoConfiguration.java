@@ -16,6 +16,7 @@
 
 package org.joinfaces.mojarra;
 
+import org.joinfaces.configuration.PropertiesAutoConfiguration;
 import org.joinfaces.javaxfaces.JavaxFacesSpringBootAutoConfiguration;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,13 +40,10 @@ import org.springframework.context.annotation.Configuration;
 @AutoConfigureBefore(WebMvcAutoConfiguration.class)
 @AutoConfigureAfter({JavaxFacesSpringBootAutoConfiguration.class})
 @ConditionalOnWebApplication
-public class MojarraSpringBootAutoConfiguration {
-
-	@Autowired
-	private MojarraProperties mojarraProperties;
+public class MojarraSpringBootAutoConfiguration extends PropertiesAutoConfiguration<MojarraProperties> {
 
 	@Bean
 	public ServletContextInitializer mojarraServletContextInitializer() {
-		return new MojarraServletContextInitializer(this.mojarraProperties);
+		return new MojarraServletContextInitializer();
 	}
 }
