@@ -47,9 +47,11 @@ public class ReflectiveServletContextConfigurer<PC> extends ServletContextConfig
 
 	private final PC properties;
 	private final Set<String> visitedProperties;
+	private final ServletContext servletContext;
 
 	public ReflectiveServletContextConfigurer(ServletContext servletContext, PC properties) {
 		super(servletContext, null);
+		this.servletContext = servletContext;
 		this.properties = properties;
 		visitedProperties = new HashSet<String>();
 	}
@@ -102,6 +104,10 @@ public class ReflectiveServletContextConfigurer<PC> extends ServletContextConfig
 			String paramName = initParameter.value();
 			if (visitedProperties.contains(paramName)) {
 				log.debug("Not setting '{}' because it was already processed", paramName);
+				return;
+			}
+			if(servletContext.getInitParameter(paramName) != null) {
+				log.info("{} already set in the ServletContext", paramName);
 				return;
 			}
 

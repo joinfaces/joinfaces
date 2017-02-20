@@ -16,10 +16,15 @@
 
 package org.joinfaces.butterfaces;
 
+import de.larmic.butterfaces.resolver.WebXmlParameters;
 import lombok.Getter;
 import lombok.Setter;
+import org.joinfaces.configuration.InitParameter;
+import org.joinfaces.configuration.NestedProperty;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
+
+import static de.larmic.butterfaces.resolver.WebXmlParameters.CTX_PARAM_INTEGRATION_PRIMEFACES_DISABLEJQUERY;
 
 /**
  * Configuration properties of ButterFaces.
@@ -38,15 +43,19 @@ public class ButterfacesProperties {
 	 * crossfade render regions while ajax request is running. To configure this
 	 * for global usage add following parameter
 	 */
+	@InitParameter(WebXmlParameters.CTX_PARAM_AJAX_DISABLE_RENDER_REGIONS_ON_REQUEST)
 	private Boolean ajaxDisableRenderRegionsOnRequest;
 
+	@InitParameter(WebXmlParameters.CTX_PARAM_AJAX_PROCESSING_GLYPHICON)
 	private String ajaxProcessingGlyphiconOnRequest;
 
+	@InitParameter(WebXmlParameters.CTX_PARAM_AJAX_PROCESSING_TEXT)
 	private String ajaxProcessingTextOnRequest;
 
 	/**
 	 * By default all input fields will be trimed after submit.
 	 */
+	@InitParameter(WebXmlParameters.CTX_PARAM_AUTO_TRIM_INPUT_FIELDS)
 	private Boolean autoTrimInputFields;
 
 	/**
@@ -54,10 +63,13 @@ public class ButterfacesProperties {
 	 * disable ButterFaces Boostrap version because of using your own version
 	 * you have to change following parameter
 	 */
+	@InitParameter(WebXmlParameters.CTX_PARAM_BOOTSTRAP)
 	private Boolean provideBootstrap;
 
+	@NestedProperty
 	private Glyphicon glyphicon = new Glyphicon();
 
+	@NestedProperty
 	private Treebox treebox = new Treebox();
 
 	/**
@@ -65,24 +77,28 @@ public class ButterfacesProperties {
 	 * disable ButterFaces jQuery version because of using your own version you
 	 * have to change following parameter
 	 */
+	@InitParameter(WebXmlParameters.CTX_PARAM_JQUERY)
 	private Boolean provideJQuery;
 
 	/**
 	 * When using maxlength parameter counting text will be {0} of {1}
 	 * characters.
 	 */
+	@InitParameter(WebXmlParameters.CTX_PARAM_MAX_LENGTH_TEXT)
 	private String maxLengthText;
 
 	/**
 	 * b:tree and b:treeBox are trivial components and can be configured by
 	 * components attribute or by changeing following parameters.
 	 */
+	@InitParameter(WebXmlParameters.CTX_PARAM_NO_ENTRIES_TEXT)
 	private String noEntriesText;
 
 	/**
 	 * b:tree and b:treeBox are trivial components and can be configured by
 	 * components attribute or by changeing following parameters.
 	 */
+	@InitParameter(WebXmlParameters.CTX_PARAM_SPINNER_TEXT)
 	private String spinnerText;
 
 	/**
@@ -93,8 +109,10 @@ public class ButterfacesProperties {
 	 * components. In addition to that you may activate compression by web.xml
 	 * This only works if you are using PROJECT_STAGE = Production
 	 */
+	@InitParameter(WebXmlParameters.CTX_PARAM_USE_COMPRESSED_RESOURCES)
 	private Boolean useCompressedResources;
 
+	@NestedProperty
 	private Integration integration = new Integration();
 
 	/**
@@ -103,6 +121,7 @@ public class ButterfacesProperties {
 	@Getter
 	@Setter
 	public static class Treebox {
+		@InitParameter(WebXmlParameters.CTX_PARAM_TREEBOX_SHOW_CLEAR_BUTTON)
 		private Boolean showClearButton;
 	}
 
@@ -113,16 +132,22 @@ public class ButterfacesProperties {
 	@Setter
 	public static class Glyphicon {
 
+		@InitParameter(WebXmlParameters.CTX_PARAM_COLLAPSING_GLYPHICON)
 		private String collapsing;
 
+		@InitParameter(WebXmlParameters.CTX_PARAM_EXPANSION_GLYPHICON)
 		private String expansion;
 
+		@InitParameter(WebXmlParameters.CTX_PARAM_OPTIONS_GLYPHICON)
 		private String options;
 
+		@InitParameter(WebXmlParameters.CTX_PARAM_REFRESH_GLYPHICON)
 		private String refresh;
 
+		@NestedProperty
 		private Order order = new Order();
 
+		@NestedProperty
 		private Sort sort = new Sort();
 
 		/**
@@ -132,7 +157,9 @@ public class ButterfacesProperties {
 		@Setter
 		public static class Order {
 
+			@InitParameter(WebXmlParameters.CTX_PARAM_ORDER_LEFT_GLYPHICON)
 			private String left;
+			@InitParameter(WebXmlParameters.CTX_PARAM_ORDER_RIGHT_GLYPHICON)
 			private String right;
 		}
 
@@ -143,8 +170,11 @@ public class ButterfacesProperties {
 		@Setter
 		public static class Sort {
 
+			@InitParameter(WebXmlParameters.CTX_PARAM_SORT_ASC_GLYPHICON)
 			private String ascending;
+			@InitParameter(WebXmlParameters.CTX_PARAM_SORT_DESC_GLYPHICON)
 			private String descending;
+			@InitParameter(WebXmlParameters.CTX_PARAM_SORT_GLYPHICON)
 			private String none;
 		}
 	}
@@ -155,6 +185,7 @@ public class ButterfacesProperties {
 	@Getter
 	public static class Integration {
 
+		@NestedProperty
 		private Primefaces primefaces = new Primefaces();
 
 		/**
@@ -169,6 +200,7 @@ public class ButterfacesProperties {
 			 * PrimeFaces JQuery will be removed from resources. You can change
 			 * this behaviour by changeing following parameter
 			 */
+			@InitParameter(CTX_PARAM_INTEGRATION_PRIMEFACES_DISABLEJQUERY)
 			private Boolean disableJQuery;
 		}
 	}
