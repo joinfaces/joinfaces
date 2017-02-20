@@ -20,9 +20,19 @@ import java.util.List;
 
 import lombok.Getter;
 import lombok.Setter;
+import org.joinfaces.configuration.InitParameter;
+import org.omnifaces.component.output.cache.CacheInitializerListener;
+import org.omnifaces.component.output.cache.CacheInstancePerScopeProvider;
 import org.omnifaces.component.output.cache.CacheProvider;
+import org.omnifaces.exceptionhandler.FullAjaxExceptionHandler;
+import org.omnifaces.facesviews.FacesViews;
+import org.omnifaces.renderkit.Html5RenderKit;
+import org.omnifaces.resourcehandler.CDNResourceHandler;
+import org.omnifaces.resourcehandler.CombinedResourceHandler;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
+
+import static org.omnifaces.component.output.cache.CacheInitializerListener.CACHE_PROVIDER_SETTING_INIT_PARAM_PREFIX;
 
 /**
  * Configuration properties of OmniFaces.
@@ -35,35 +45,49 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 @ConfigurationProperties(prefix = "jsf.omnifaces")
 public class OmnifacesProperties {
 
+	@InitParameter(CacheInitializerListener.CACHE_PROVIDER_INIT_PARAM_NAME)
 	private Class<? extends CacheProvider> cacheProvider;
 
+	@InitParameter(CacheInstancePerScopeProvider.DEFAULT_CACHE_PARAM_NAME)
 	private String defaultcache;
 
-	private String exceptionTypesToUnwrap;
+	@InitParameter(value = FullAjaxExceptionHandler.PARAM_NAME_EXCEPTION_TYPES_TO_UNWRAP, listSeparator = ",")
+	private List<Class<? extends Throwable>> exceptionTypesToUnwrap;
 
+	@InitParameter(FacesViews.FACES_VIEWS_DISPATCH_METHOD_PARAM_NAME)
 	private String facesViewsDispatchMethod;
 
+	@InitParameter(FacesViews.FACES_VIEWS_ENABLED_PARAM_NAME)
 	private Boolean facesViewsEnabled;
 
+	@InitParameter(FacesViews.FACES_VIEWS_EXTENSION_ACTION_PARAM_NAME)
 	private String facesViewsExtensionAction;
 
+	@InitParameter(FacesViews.FACES_VIEWS_FILTER_AFTER_DECLARED_FILTERS_PARAM_NAME)
 	private String facesViewsFilterAfterDeclaredFilters;
 
+	@InitParameter(FacesViews.FACES_VIEWS_PATH_ACTION_PARAM_NAME)
 	private String facesViewsPathAction;
 
 	/**
 	 * List of paths that are to be scanned by faces views.
 	 */
+	@InitParameter(value = FacesViews.FACES_VIEWS_SCAN_PATHS_PARAM_NAME, listSeparator = ",")
 	private List<String> facesViewsScanPaths;
 
+	@InitParameter(FacesViews.FACES_VIEWS_SCANNED_VIEWS_EXTENSIONLESS_PARAM_NAME)
 	private Boolean facesViewsScannedViewsAlwaysExtensionless;
 
+	@InitParameter(FacesViews.FACES_VIEWS_VIEW_HANDLER_MODE_PARAM_NAME)
 	private String facesViewsViewHandlerMode;
 
+	@InitParameter(Html5RenderKit.PARAM_NAME_PASSTHROUGH_ATTRIBUTES)
 	private String html5RenderKitPassthroughAttributes;
 
+	@InitParameter(CDNResourceHandler.PARAM_NAME_CDN_DISABLED)
 	private Boolean cdnResourceHandlerDisabled;
 
+	@InitParameter(CDNResourceHandler.PARAM_NAME_CDN_RESOURCES)
 	private String cdnResourceHandlerUrls;
 
 	/**
@@ -71,50 +95,50 @@ public class OmnifacesProperties {
 	 * interpreted as cache TTL (time to live) in seconds and is only effective when the JSF project stage is
 	 * <strong>not</strong> set to <code>Development</code>.
 	 */
+	@InitParameter(CombinedResourceHandler.PARAM_NAME_CACHE_TTL)
 	private Integer combinedResourceHandlerCacheTtl;
 
+	@InitParameter(CombinedResourceHandler.PARAM_NAME_DISABLED)
 	private Boolean combinedResourceHandlerDisabled;
 
 	/**
 	 * List of resource identifiers of <code>&lt;h:head&gt;</code> resources which needs to be excluded
 	 * from combining.
 	 */
+	@InitParameter(value = CombinedResourceHandler.PARAM_NAME_EXCLUDED_RESOURCES, listSeparator = ",")
 	private List<String> combinedResourceHandlerExcludedResources;
 
 	/**
 	 * Set to <code>true</code> if you want to render the combined CSS resources inline (embedded in HTML) instead of as a
 	 * resource.
 	 */
+	@InitParameter(CombinedResourceHandler.PARAM_NAME_INLINE_CSS)
 	private Boolean combinedResourceHandlerInlineCss;
 
 	/**
 	 * Set to <code>true</code> if you want to render the combined JS resources inline (embedded in HTML) instead of as a
 	 * resource.
 	 */
+	@InitParameter(CombinedResourceHandler.PARAM_NAME_INLINE_JS)
 	private Boolean combinedResourceHandlerInlineJs;
 
 	/**
 	 * List of resource identifiers of <code>&lt;h:head&gt;</code> resources which needs to be suppressed
 	 * and removed.
 	 */
+	@InitParameter(value = CombinedResourceHandler.PARAM_NAME_SUPPRESSED_RESOURCES, listSeparator = ",")
 	private List<String> combinedResourceHandlerSuppressedResources;
 
-	private Cache cache = new Cache();
+	@InitParameter(CACHE_PROVIDER_SETTING_INIT_PARAM_PREFIX + CacheInstancePerScopeProvider.APP_MAX_CAP_PARAM_NAME)
+	private Integer cacheSettingApplicationMaxCapacity;
 
-	/**
-	 * Cache class of applicationMaxCapacity, applicationTtl, sessionMaxCapacity
-	 * and sessionTtl properties.
-	 */
-	@Getter
-	@Setter
-	public static class Cache {
+	@InitParameter(CACHE_PROVIDER_SETTING_INIT_PARAM_PREFIX + CacheInstancePerScopeProvider.APP_TTL_PARAM_NAME)
+	private Integer cacheSettingApplicationTtl;
 
-		private Integer applicationMaxCapacity;
+	@InitParameter(CACHE_PROVIDER_SETTING_INIT_PARAM_PREFIX + CacheInstancePerScopeProvider.SESSION_MAX_CAP_PARAM_NAME)
+	private Integer cacheSettingSessionMaxCapacity;
 
-		private Integer applicationTtl;
+	@InitParameter(CACHE_PROVIDER_SETTING_INIT_PARAM_PREFIX + CacheInstancePerScopeProvider.SESSION_TTL_PARAM_NAME)
+	private Integer cacheSettingSessionTtl;
 
-		private Integer sessionMaxCapacity;
-
-		private Integer sessionTtl;
-	}
 }
