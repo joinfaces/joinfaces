@@ -101,10 +101,6 @@ public class InitParameterConfigurationPropertiesServletContextConfigurer<PC ext
 				log.debug("Not setting '{}' because it was already processed", paramName);
 				return;
 			}
-			if (this.servletContext.getInitParameter(paramName) != null) {
-				log.info("{} already set in the ServletContext", paramName);
-				return;
-			}
 
 			ReflectionUtils.makeAccessible(field);
 			Object value = ReflectionUtils.getField(field, properties);

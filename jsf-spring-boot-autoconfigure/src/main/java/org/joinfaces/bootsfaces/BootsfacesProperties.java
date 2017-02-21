@@ -19,8 +19,8 @@ package org.joinfaces.bootsfaces;
 import lombok.Getter;
 import lombok.Setter;
 import net.bootsfaces.C;
-import org.joinfaces.configuration.ServletContextInitParameter;
 import org.joinfaces.configuration.NestedProperty;
+import org.joinfaces.configuration.ServletContextInitParameter;
 import org.joinfaces.configuration.ServletContextInitParameterConfigurationProperties;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;

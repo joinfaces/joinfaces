@@ -44,8 +44,8 @@ import org.apache.myfaces.view.facelets.impl.FaceletCompositionContextImpl;
 import org.apache.myfaces.view.facelets.pool.ViewPool;
 import org.apache.myfaces.webapp.AbstractFacesInitializer;
 import org.apache.myfaces.webapp.FacesInitializer;
-import org.joinfaces.configuration.ServletContextInitParameter;
 import org.joinfaces.configuration.NestedProperty;
+import org.joinfaces.configuration.ServletContextInitParameter;
 import org.joinfaces.configuration.ServletContextInitParameterConfigurationProperties;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;

@@ -33,8 +33,8 @@ import javax.faces.webapp.FacesServlet;
 
 import lombok.Getter;
 import lombok.Setter;
-import org.joinfaces.configuration.ServletContextInitParameter;
 import org.joinfaces.configuration.NestedProperty;
+import org.joinfaces.configuration.ServletContextInitParameter;
 import org.joinfaces.configuration.ServletContextInitParameterConfigurationProperties;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
