@@ -27,6 +27,8 @@ package org.joinfaces.configuration;
  * </ul>
  *
  * @author Lars Grefer
+ * @see ServletContextInitParameter
+ * @see NestedProperty
  */
 public interface ServletContextInitParameterConfigurationProperties {
 }

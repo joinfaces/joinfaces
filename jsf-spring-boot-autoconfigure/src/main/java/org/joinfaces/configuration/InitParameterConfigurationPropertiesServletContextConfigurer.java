@@ -80,7 +80,7 @@ public class InitParameterConfigurationPropertiesServletContextConfigurer<PC ext
 	}
 
 	private void handlePropertiesField(Object properties, Field field) {
-		if (field.isAnnotationPresent(NestedProperty.class)) {
+		if (AnnotatedElementUtils.isAnnotated(field, NestedProperty.class)) {
 
 			ReflectionUtils.makeAccessible(field);
 			Object nestedProperties = ReflectionUtils.getField(field, properties);
@@ -92,13 +92,11 @@ public class InitParameterConfigurationPropertiesServletContextConfigurer<PC ext
 				log.debug("Not visiting nested property {} because its null", field);
 			}
 		}
-		else if (field.isAnnotationPresent(ServletContextInitParameter.class)) {
-			ServletContextInitParameter servletContextInitParameter = field.getAnnotation(ServletContextInitParameter.class);
-
-			ReflectionUtils.makeAccessible(field);
-			Object value = ReflectionUtils.getField(field, properties);
+		else if (AnnotatedElementUtils.isAnnotated(field, ServletContextInitParameter.class)) {
+			ServletContextInitParameter servletContextInitParameter = AnnotatedElementUtils.getMergedAnnotation(field, ServletContextInitParameter.class);
 
 			String paramName = servletContextInitParameter.value();
+
 			if (this.visitiedInitParameters.contains(paramName)) {
 				log.debug("Not setting '{}' because it was already processed", paramName);
 				return;
@@ -107,6 +105,9 @@ public class InitParameterConfigurationPropertiesServletContextConfigurer<PC ext
 				log.info("{} already set in the ServletContext", paramName);
 				return;
 			}
+
+			ReflectionUtils.makeAccessible(field);
+			Object value = ReflectionUtils.getField(field, properties);
 
 			if (value == null) {
 				log.debug("Not setting '{}' because the value is null", paramName);
@@ -127,12 +128,12 @@ public class InitParameterConfigurationPropertiesServletContextConfigurer<PC ext
 		if (Collection.class.isAssignableFrom(field.getType())) {
 			targetType = resolveCollectionItemType(field);
 
-			ServletContextInitParameter servletContextInitParameter = field.getAnnotation(ServletContextInitParameter.class);
 
 			if (((Collection) value).isEmpty()) {
 				return "";
 			}
 			else {
+				ServletContextInitParameter servletContextInitParameter = AnnotatedElementUtils.getMergedAnnotation(field, ServletContextInitParameter.class);
 				Iterator iterator = ((Collection) value).iterator();
 				String firstValue = convertToString(targetType, iterator.next());
 

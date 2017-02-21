@@ -24,7 +24,7 @@ import java.lang.annotation.Target;
 
 /**
  * Marks a field of a {@link org.springframework.boot.context.properties.ConfigurationProperties Properties class}
- * as {@link javax.servlet.ServletContext#setInitParameter(String, String) init parameter}.
+ * as {@link javax.servlet.ServletContext#setInitParameter(String, String) servlet context init parameter}.
  *
  * @author Lars Grefer
  * @see InitParameterConfigurationPropertiesServletContextConfigurer
@@ -34,7 +34,7 @@ import java.lang.annotation.Target;
 @Documented
 public @interface ServletContextInitParameter {
 
-	String value();
+	String value() default "";
 
 	String listSeparator() default ",";
 
