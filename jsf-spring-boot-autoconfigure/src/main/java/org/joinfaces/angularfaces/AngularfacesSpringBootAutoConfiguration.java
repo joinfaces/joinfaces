@@ -21,8 +21,8 @@ import java.util.ArrayList;
 import javax.faces.view.facelets.TagDecorator;
 
 import de.beyondjava.angularFaces.core.tagTransformer.AngularTagDecorator;
-import org.joinfaces.configuration.PropertiesAutoConfiguration;
-import org.joinfaces.configuration.PropertiesCustomizer;
+import org.joinfaces.configuration.ServletContextInitParameterConfigurationPropertiesAutoConfiguration;
+import org.joinfaces.configuration.ServletContextInitParameterConfigurationPropertiesCustomizer;
 import org.joinfaces.javaxfaces.JavaxFaces2_0Properties;
 import org.joinfaces.javaxfaces.JavaxFacesSpringBootAutoConfiguration;
 
@@ -43,11 +43,11 @@ import org.springframework.context.annotation.Configuration;
 @ConditionalOnClass(name = "de.beyondjava.angularFaces.core.ELTools")
 @AutoConfigureBefore(JavaxFacesSpringBootAutoConfiguration.class)
 @ConditionalOnWebApplication
-public class AngularfacesSpringBootAutoConfiguration extends PropertiesAutoConfiguration<AngularfacesProperties> {
+public class AngularfacesSpringBootAutoConfiguration extends ServletContextInitParameterConfigurationPropertiesAutoConfiguration<AngularfacesProperties> {
 
 	@Bean
-	public PropertiesCustomizer<JavaxFaces2_0Properties> propertiesCustomizer() {
-		return new PropertiesCustomizer<JavaxFaces2_0Properties>() {
+	public ServletContextInitParameterConfigurationPropertiesCustomizer<JavaxFaces2_0Properties> propertiesCustomizer() {
+		return new ServletContextInitParameterConfigurationPropertiesCustomizer<JavaxFaces2_0Properties>() {
 			@Override
 			public void process(JavaxFaces2_0Properties properties) {
 				if (properties.getFaceletsDecorators() == null) {

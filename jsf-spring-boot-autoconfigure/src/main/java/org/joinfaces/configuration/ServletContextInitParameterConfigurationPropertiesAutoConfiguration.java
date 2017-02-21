@@ -30,24 +30,24 @@ import org.springframework.context.annotation.Bean;
  * @param <PC> Actual type of the properties class
  * @author Lars Grefer
  */
-public abstract class PropertiesAutoConfiguration<PC> {
+public abstract class ServletContextInitParameterConfigurationPropertiesAutoConfiguration<PC extends ServletContextInitParameterConfigurationProperties> {
 
 	@Autowired
-	protected PC properties;
+	protected PC servletContextInitParameterConfigurationProperties;
 
 	@Autowired(required = false)
-	protected List<PropertiesCustomizer<? super PC>> propertiesCustomizers;
+	protected List<ServletContextInitParameterConfigurationPropertiesCustomizer<? super PC>> servletContextInitParameterConfigurationPropertiesCustomizers;
 
 	@Bean
 	@ConditionalOnWebApplication
 	public ServletContextInitializer propertiesServletContextInitializer() {
 
-		if (this.propertiesCustomizers != null) {
-			for (PropertiesCustomizer<? super PC> propertiesCustomizer : this.propertiesCustomizers) {
-				propertiesCustomizer.process(this.properties);
+		if (this.servletContextInitParameterConfigurationPropertiesCustomizers != null) {
+			for (ServletContextInitParameterConfigurationPropertiesCustomizer<? super PC> servletContextInitParameterConfigurationPropertiesCustomizer : this.servletContextInitParameterConfigurationPropertiesCustomizers) {
+				servletContextInitParameterConfigurationPropertiesCustomizer.process(this.servletContextInitParameterConfigurationProperties);
 			}
 		}
 
-		return new ReflectiveServletContextInitializer<PC>(this.properties);
+		return new InitParameterConfigurationPropertiesServletContextInitializer<PC>(this.servletContextInitParameterConfigurationProperties);
 	}
 }

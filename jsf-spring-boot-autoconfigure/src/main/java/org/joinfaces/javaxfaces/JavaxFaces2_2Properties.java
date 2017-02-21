@@ -24,7 +24,7 @@ import javax.faces.lifecycle.ClientWindow;
 
 import lombok.Getter;
 import lombok.Setter;
-import org.joinfaces.configuration.InitParameter;
+import org.joinfaces.configuration.ServletContextInitParameter;
 import org.joinfaces.configuration.NestedProperty;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
@@ -56,7 +56,7 @@ public class JavaxFaces2_2Properties extends JavaxFaces2_1Properties {
 	 *
 	 * @since 2.2
 	 */
-	@InitParameter(ResourceHandler.WEBAPP_CONTRACTS_DIRECTORY_PARAM_NAME)
+	@ServletContextInitParameter(ResourceHandler.WEBAPP_CONTRACTS_DIRECTORY_PARAM_NAME)
 	private String webappContractsDirectory;
 
 	/**
@@ -72,7 +72,7 @@ public class JavaxFaces2_2Properties extends JavaxFaces2_1Properties {
 	 *
 	 * @since 2.2
 	 */
-	@InitParameter(ResourceHandler.WEBAPP_RESOURCES_DIRECTORY_PARAM_NAME)
+	@ServletContextInitParameter(ResourceHandler.WEBAPP_RESOURCES_DIRECTORY_PARAM_NAME)
 	private String webappResourcesDirectory;
 
 	/**
@@ -85,7 +85,7 @@ public class JavaxFaces2_2Properties extends JavaxFaces2_1Properties {
 	 * ObjectOutputStream would not throw a NotSerializableException, but the
 	 * runtime is not required verify this before saving the state.
 	 */
-	@InitParameter(StateManager.SERIALIZE_SERVER_STATE_PARAM_NAME)
+	@ServletContextInitParameter(StateManager.SERIALIZE_SERVER_STATE_PARAM_NAME)
 	private Boolean serializeServerState;
 
 	@NestedProperty
@@ -103,7 +103,7 @@ public class JavaxFaces2_2Properties extends JavaxFaces2_1Properties {
 	 *
 	 * @since 2.2
 	 */
-	@InitParameter(ClientWindow.CLIENT_WINDOW_MODE_PARAM_NAME)
+	@ServletContextInitParameter(ClientWindow.CLIENT_WINDOW_MODE_PARAM_NAME)
 	private String clientWindowMode;
 
 	/**
@@ -121,7 +121,7 @@ public class JavaxFaces2_2Properties extends JavaxFaces2_1Properties {
 		 *
 		 * @since 2.2
 		 */
-		@InitParameter(PartialViewContext.RESET_VALUES_PARAM_NAME)
+		@ServletContextInitParameter(PartialViewContext.RESET_VALUES_PARAM_NAME)
 		private Boolean resetValues;
 	}
 
@@ -142,7 +142,7 @@ public class JavaxFaces2_2Properties extends JavaxFaces2_1Properties {
 		 *
 		 * @since 2.2
 		 */
-		@InitParameter(FlowHandler.NULL_FLOW)
+		@ServletContextInitParameter(FlowHandler.NULL_FLOW)
 		private Boolean nullFlow;
 	}
 }

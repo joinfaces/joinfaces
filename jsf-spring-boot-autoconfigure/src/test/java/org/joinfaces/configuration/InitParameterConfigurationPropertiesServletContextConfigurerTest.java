@@ -26,31 +26,31 @@ import static org.assertj.core.api.Assertions.assertThat;
 /**
  * @author Lars Grefer
  */
-public class ReflectiveServletContextConfigurerTest {
+public class InitParameterConfigurationPropertiesServletContextConfigurerTest {
 
 	@Test
 	public void testResolveCollectionTypeRaw() throws NoSuchFieldException {
-		Field listRawClass = ReflectiveServletContextConfigurerTest.class.getDeclaredField("listRawClass");
+		Field listRawClass = InitParameterConfigurationPropertiesServletContextConfigurerTest.class.getDeclaredField("listRawClass");
 
-		Class<?> type = ReflectiveServletContextConfigurer.resolveCollectionItemType(listRawClass);
+		Class<?> type = InitParameterConfigurationPropertiesServletContextConfigurer.resolveCollectionItemType(listRawClass);
 
 		assertThat(type).isEqualTo(Class.class);
 	}
 
 	@Test
 	public void testResolveCollectionTypeGeneric() throws NoSuchFieldException {
-		Field listGenericClass = ReflectiveServletContextConfigurerTest.class.getDeclaredField("listGenericClass");
+		Field listGenericClass = InitParameterConfigurationPropertiesServletContextConfigurerTest.class.getDeclaredField("listGenericClass");
 
-		Class<?> type = ReflectiveServletContextConfigurer.resolveCollectionItemType(listGenericClass);
+		Class<?> type = InitParameterConfigurationPropertiesServletContextConfigurer.resolveCollectionItemType(listGenericClass);
 
 		assertThat(type).isEqualTo(Class.class);
 	}
 
 	@Test
 	public void testRawList() throws NoSuchFieldException {
-		Field listRaw = ReflectiveServletContextConfigurerTest.class.getDeclaredField("listRaw");
+		Field listRaw = InitParameterConfigurationPropertiesServletContextConfigurerTest.class.getDeclaredField("listRaw");
 
-		Class<?> type = ReflectiveServletContextConfigurer.resolveCollectionItemType(listRaw);
+		Class<?> type = InitParameterConfigurationPropertiesServletContextConfigurer.resolveCollectionItemType(listRaw);
 
 		assertThat(type).isEqualTo(Object.class);
 	}

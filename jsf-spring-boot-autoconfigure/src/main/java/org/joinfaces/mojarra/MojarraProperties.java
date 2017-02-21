@@ -22,7 +22,8 @@ import com.sun.faces.spi.InjectionProvider;
 import com.sun.faces.spi.SerializationProvider;
 import lombok.Getter;
 import lombok.Setter;
-import org.joinfaces.configuration.InitParameter;
+import org.joinfaces.configuration.ServletContextInitParameter;
+import org.joinfaces.configuration.ServletContextInitParameterConfigurationProperties;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
@@ -35,7 +36,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 @Getter
 @Setter
 @ConfigurationProperties(prefix = "jsf.mojarra")
-public class MojarraProperties {
+public class MojarraProperties implements ServletContextInitParameterConfigurationProperties {
 
 	static final String PREFIX = "com.sun.faces.";
 
@@ -48,7 +49,7 @@ public class MojarraProperties {
 	 * are recieved with view state produced from a previous version, the
 	 * ViewExpiredException will be thrown immediately.
 	 */
-	@InitParameter(PREFIX + "clientStateTimeout")
+	@ServletContextInitParameter(PREFIX + "clientStateTimeout")
 	private Integer clientStateTimeout;
 
 	/**
@@ -58,7 +59,7 @@ public class MojarraProperties {
 	 * for example, if the default, 8192, is used, then 4096 of that is used for
 	 * the bytes, and the other 4096 is used for the Base64 encoded characters.
 	 */
-	@InitParameter(PREFIX + "clientStateWriteBufferSize")
+	@ServletContextInitParameter(PREFIX + "clientStateWriteBufferSize")
 	private Integer clientStateWriteBufferSize;
 
 	/**
@@ -69,7 +70,7 @@ public class MojarraProperties {
 	 * impact of the size of the state in the session when using this option, at
 	 * the expense of more CPU of course).
 	 */
-	@InitParameter(PREFIX + "compressViewState")
+	@ServletContextInitParameter(PREFIX + "compressViewState")
 	private Boolean compressViewState;
 
 	/**
@@ -78,7 +79,7 @@ public class MojarraProperties {
 	 * See also com.sun.faces.ClientStateSavingPassword - recommendations for actual
 	 * password?
 	 */
-	@InitParameter(PREFIX + "disableClientStateEncryption")
+	@ServletContextInitParameter(PREFIX + "disableClientStateEncryption")
 	private Boolean disableClientStateEncryption;
 
 	/**
@@ -86,7 +87,7 @@ public class MojarraProperties {
 	 * and any serialization exceptions will be logged aInteger with a debug
 	 * path to the cause of the serialization error.
 	 */
-	@InitParameter(PREFIX + "enableClientStateDebugging")
+	@ServletContextInitParameter(PREFIX + "enableClientStateDebugging")
 	private Boolean enableClientStateDebugging;
 
 	/**
@@ -94,7 +95,7 @@ public class MojarraProperties {
 	 * view state ids sequentially. This resembles closely the JSF 1.x behavior,
 	 * but this is more sensitive to CSRF.
 	 */
-	@InitParameter(PREFIX + "generateUniqueServerStateIds")
+	@ServletContextInitParameter(PREFIX + "generateUniqueServerStateIds")
 	private Boolean generateUniqueServerStateIds;
 
 	/**
@@ -105,7 +106,7 @@ public class MojarraProperties {
 	 * com.sun.faces.numberOfViewsInSession vs
 	 * com.sun.faces.numberOfLogicalViews for detail.
 	 */
-	@InitParameter(PREFIX + "numberOfLogicalViews")
+	@ServletContextInitParameter(PREFIX + "numberOfLogicalViews")
 	private Integer numberOfLogicalViews;
 
 	/**
@@ -116,7 +117,7 @@ public class MojarraProperties {
 	 * com.sun.faces.numberOfViewsInSession vs
 	 * com.sun.faces.numberOfLogicalViews for detail.
 	 */
-	@InitParameter(PREFIX + "numberOfViewsInSession")
+	@ServletContextInitParameter(PREFIX + "numberOfViewsInSession")
 	private Integer numberOfViewsInSession;
 
 	/**
@@ -126,7 +127,7 @@ public class MojarraProperties {
 	 * state saving which are reflected back in view state. This has since JSF
 	 * 2.2 been replaced by javax.faces.SERIALIZE_SERVER_STATE.
 	 */
-	@InitParameter(PREFIX + "serializeServerState")
+	@ServletContextInitParameter(PREFIX + "serializeServerState")
 	private Boolean serializeServerState;
 
 	/**
@@ -136,7 +137,7 @@ public class MojarraProperties {
 	 * form tag. If this is the case, specifiy this parameter in the web.xml
 	 * with a value of false.
 	 */
-	@InitParameter(PREFIX + "writeStateAtFormEnd")
+	@ServletContextInitParameter(PREFIX + "writeStateAtFormEnd")
 	private Boolean writeStateAtFormEnd;
 
 	/**
@@ -147,7 +148,7 @@ public class MojarraProperties {
 	 * behavior is required, but note that doing so may cause issues when using
 	 * Ajax. See issue 1154 for details.
 	 */
-	@InitParameter(PREFIX + "allowTextChildren")
+	@ServletContextInitParameter(PREFIX + "allowTextChildren")
 	private Boolean allowTextChildren;
 
 	/**
@@ -157,7 +158,7 @@ public class MojarraProperties {
 	 * validator. So, when false, then beware of the Firefox bug which may
 	 * trigger "unexpected" ViewExpiredException. See issue 1129 for details.
 	 */
-	@InitParameter(PREFIX + "autoCompleteOffOnViewState")
+	@ServletContextInitParameter(PREFIX + "autoCompleteOffOnViewState")
 	private Boolean autoCompleteOffOnViewState;
 
 	/**
@@ -166,7 +167,7 @@ public class MojarraProperties {
 	 * then the JavaScript will be rendered to the client in a well formatted
 	 * manner.
 	 */
-	@InitParameter(PREFIX + "compressJavaScript")
+	@ServletContextInitParameter(PREFIX + "compressJavaScript")
 	private Boolean compressJavaScript;
 
 	/**
@@ -185,14 +186,14 @@ public class MojarraProperties {
 	 * as HTML entities and any characters above that range will be written as
 	 * decimal references.
 	 */
-	@InitParameter(PREFIX + "disableUnicodeEscaping")
+	@ServletContextInitParameter(PREFIX + "disableUnicodeEscaping")
 	private String disableUnicodeEscaping;
 
 	/**
 	 * If true, then component ID uniqueness won't be checked if ProjectStage is
 	 * Production to enhance performance. See issue 2414 for details.
 	 */
-	@InitParameter(PREFIX + "disableIdUniquenessCheck")
+	@ServletContextInitParameter(PREFIX + "disableIdUniquenessCheck")
 	private Boolean disableIdUniquenessCheck;
 
 	/**
@@ -200,14 +201,14 @@ public class MojarraProperties {
 	 * implementation will be rendered so that the script is hidden from older
 	 * browser implementations which does not recognize <script/> elements.
 	 */
-	@InitParameter(PREFIX + "enabledJSStyleHiding")
+	@ServletContextInitParameter(PREFIX + "enabledJSStyleHiding")
 	private Boolean enabledJSStyleHiding;
 
 	/**
 	 * If false, attribute values with javascript: or script: will not be
 	 * rendered within attribute values to prevent potential XSS attacks.
 	 */
-	@InitParameter(PREFIX + "enableScriptsInAttributeValues")
+	@ServletContextInitParameter(PREFIX + "enableScriptsInAttributeValues")
 	private Boolean enableScriptsInAttributeValues;
 
 	/**
@@ -221,7 +222,7 @@ public class MojarraProperties {
 	 * this may break integration with AJAX frameworks that get the state field
 	 * via ID. See issue 433 for details.
 	 */
-	@InitParameter(PREFIX + "enableViewStateIdRendering")
+	@ServletContextInitParameter(PREFIX + "enableViewStateIdRendering")
 	private Boolean enableViewStateIdRendering;
 
 	/**
@@ -231,7 +232,7 @@ public class MojarraProperties {
 	 * broken applications designed with XHTML output in mind instead of HTML(5)
 	 * output.
 	 */
-	@InitParameter(PREFIX + "preferXHTML")
+	@ServletContextInitParameter(PREFIX + "preferXHTML")
 	private Boolean preferXHTML;
 
 	/**
@@ -240,14 +241,14 @@ public class MojarraProperties {
 	 * ignored when Facelets is used. For Facelets, use
 	 * javax.faces.FACELETS_BUFFER_SIZE instead.
 	 */
-	@InitParameter(PREFIX + "responseBufferSize")
+	@ServletContextInitParameter(PREFIX + "responseBufferSize")
 	private Integer responseBufferSize;
 
 	/**
 	 * If true, cache the modification time of the resource and use the cached
 	 * time to tell if the resource needs to be refreshed.
 	 */
-	@InitParameter(PREFIX + "cacheResourceModificationTimestamp")
+	@ServletContextInitParameter(PREFIX + "cacheResourceModificationTimestamp")
 	private Boolean cacheResourceModificationTimestamp;
 
 	/**
@@ -258,7 +259,7 @@ public class MojarraProperties {
 	 * compressed to a temporary directory and those bytes will be served
 	 * instead.
 	 */
-	@InitParameter(PREFIX + "compressableMimeTypes")
+	@ServletContextInitParameter(PREFIX + "compressableMimeTypes")
 	private String compressableMimeTypes;
 
 	/**
@@ -268,13 +269,13 @@ public class MojarraProperties {
 	 * amount of time that a Resource is valid. The value is in milliseconds (so
 	 * the default value of 604800000 is 7 days).
 	 */
-	@InitParameter(PREFIX + "defaultResourceMaxAge")
+	@ServletContextInitParameter(PREFIX + "defaultResourceMaxAge")
 	private Integer defaultResourceMaxAge;
 
 	/**
 	 * See issue 3684 for details.
 	 */
-	@InitParameter(PREFIX + "enableFaceletsResourceResolverCompositeComponents")
+	@ServletContextInitParameter(PREFIX + "enableFaceletsResourceResolverCompositeComponents")
 	private Boolean enableFaceletsResourceResolverCompositeComponents;
 
 	/**
@@ -283,7 +284,7 @@ public class MojarraProperties {
 	 * appropriate error message will be included in the log and in the view if
 	 * ProjectStage is Development.
 	 */
-	@InitParameter(PREFIX + "enableMissingResourceLibraryDetection")
+	@ServletContextInitParameter(PREFIX + "enableMissingResourceLibraryDetection")
 	private Boolean enableMissingResourceLibraryDetection;
 
 	/**
@@ -295,7 +296,7 @@ public class MojarraProperties {
 	 * option is -1, the cache will never be cleared and new resources will not
 	 * be picked up. The value is in minutes.
 	 */
-	@InitParameter(PREFIX + "resourceUpdateCheckPeriod")
+	@ServletContextInitParameter(PREFIX + "resourceUpdateCheckPeriod")
 	private Integer resourceUpdateCheckPeriod;
 
 	/**
@@ -303,7 +304,7 @@ public class MojarraProperties {
 	 * request through the lifecycle. This makes it much harder to make mistakes
 	 * that cause session replication to fail.
 	 */
-	@InitParameter(PREFIX + "enableAgressiveSessionDirtying")
+	@ServletContextInitParameter(PREFIX + "enableAgressiveSessionDirtying")
 	private Boolean enableAgressiveSessionDirtying;
 
 	/**
@@ -312,7 +313,7 @@ public class MojarraProperties {
 	 * hereby forcing session replication. This is automatically true when
 	 * <distributable /> entry is present in web.xml.
 	 */
-	@InitParameter(PREFIX + "enableDistributable")
+	@ServletContextInitParameter(PREFIX + "enableDistributable")
 	private Boolean enableDistributable;
 
 	/**
@@ -322,7 +323,7 @@ public class MojarraProperties {
 	 * following entry format: jar:'jar name':'comma separated list of packages'
 	 * So an example would be: jar:a.jar:com.acme.package1,com.acme.package2.
 	 */
-	@InitParameter(PREFIX + "annotationScanPackages")
+	@ServletContextInitParameter(PREFIX + "annotationScanPackages")
 	private String annotationScanPackages;
 
 	/**
@@ -331,21 +332,21 @@ public class MojarraProperties {
 	 * useful during development to confirm your application is configured as
 	 * expected.
 	 */
-	@InitParameter(PREFIX + "displayConfiguration")
+	@ServletContextInitParameter(PREFIX + "displayConfiguration")
 	private Boolean displayConfiguration;
 
 	/**
 	 * When true, enable validation of standard Core TagLibs, at the expense of
 	 * a slightly slower start time.
 	 */
-	@InitParameter(PREFIX + "enableCoreTagLibValidator")
+	@ServletContextInitParameter(PREFIX + "enableCoreTagLibValidator")
 	private Boolean enableCoreTagLibValidator;
 
 	/**
 	 * When true, enable validation of standard Html TagLibs, at the expense of
 	 * a slightly slower start time.
 	 */
-	@InitParameter(PREFIX + "enableHtmlTagLibValidator")
+	@ServletContextInitParameter(PREFIX + "enableHtmlTagLibValidator")
 	private Boolean enableHtmlTagLibValidator;
 
 	/**
@@ -353,7 +354,7 @@ public class MojarraProperties {
 	 * managed beans will be validated when the application is started, at the
 	 * expense of a slightly slower start time.
 	 */
-	@InitParameter(PREFIX + "enableLazyBeanValidation")
+	@ServletContextInitParameter(PREFIX + "enableLazyBeanValidation")
 	private Boolean enableLazyBeanValidation;
 
 	/**
@@ -364,7 +365,7 @@ public class MojarraProperties {
 	 * disabled, the ResourceHandler will not pick up new versions of resources
 	 * when ProjectStage is development. See issue 2385 for details.
 	 */
-	@InitParameter(PREFIX + "enableThreading")
+	@ServletContextInitParameter(PREFIX + "enableThreading")
 	private Boolean enableThreading;
 
 	/**
@@ -379,14 +380,14 @@ public class MojarraProperties {
 	 * com.sun.faces.forceLoadConfiguration, with a value of true. See issue 670
 	 * for details.
 	 */
-	@InitParameter(PREFIX + "forceLoadConfiguration")
+	@ServletContextInitParameter(PREFIX + "forceLoadConfiguration")
 	private Boolean forceLoadConfiguration;
 
 	/**
 	 * When true, enable validation of faces-config.xml files, at the expense of
 	 * a slightly slower start time.
 	 */
-	@InitParameter(PREFIX + "validateXml")
+	@ServletContextInitParameter(PREFIX + "validateXml")
 	private Boolean validateXml;
 
 	/**
@@ -394,7 +395,7 @@ public class MojarraProperties {
 	 * beans components, validators, etc can be instantiated by the runtime, at
 	 * the expense of a slightly slower start time.
 	 */
-	@InitParameter(PREFIX + "verifyObjects")
+	@ServletContextInitParameter(PREFIX + "verifyObjects")
 	private Boolean verifyObjects;
 
 	/**
@@ -404,13 +405,13 @@ public class MojarraProperties {
 	 * startup/shutdown exceptions caused by invalid/stale flash cookies. See
 	 * "bugdb 17024459" for details.
 	 */
-	@InitParameter(PREFIX + "enableTransitionTimeNoOpFlash")
+	@ServletContextInitParameter(PREFIX + "enableTransitionTimeNoOpFlash")
 	private Boolean enableTransitionTimeNoOpFlash;
 
 	/**
 	 * This parameter specifies a class that implements the ExpressionFactory.
 	 */
-	@InitParameter(PREFIX + "expressionFactory")
+	@ServletContextInitParameter(PREFIX + "expressionFactory")
 	private Class<? extends ExpressionFactory> expressionFactory;
 
 	/**
@@ -418,26 +419,26 @@ public class MojarraProperties {
 	 * whether or not the flash has data. This should prevent problems on
 	 * multiple successive redirects. See issue 3735 for details.
 	 */
-	@InitParameter(PREFIX + "forceAlwaysWriteFlashCookie")
+	@ServletContextInitParameter(PREFIX + "forceAlwaysWriteFlashCookie")
 	private Boolean forceAlwaysWriteFlashCookie;
 
 	/**
 	 * This parameter specifies a class that implements the InjectionProvider.
 	 */
-	@InitParameter(PREFIX + "injectionProvider")
+	@ServletContextInitParameter(PREFIX + "injectionProvider")
 	private Class<? extends InjectionProvider> injectionProvider;
 
 	/**
 	 * If true, then view state hidden field is namespaced according to
 	 * NamingContainer rules. See issue 3031 for details.
 	 */
-	@InitParameter(PREFIX + "namespaceParameters")
+	@ServletContextInitParameter(PREFIX + "namespaceParameters")
 	private Boolean namespaceParameters;
 
 	/**
 	 * If true, allow EL Coercion to use JSF Custom converters.
 	 */
-	@InitParameter(PREFIX + "registerConverterPropertyEditors")
+	@ServletContextInitParameter(PREFIX + "registerConverterPropertyEditors")
 	private Boolean registerConverterPropertyEditors;
 
 	/**
@@ -446,7 +447,7 @@ public class MojarraProperties {
 	 * was generated by. If this is enabled, then X-Powered-By=JSF/2.2 header is
 	 * included in all responses.
 	 */
-	@InitParameter(PREFIX + "sendPoweredByHeader")
+	@ServletContextInitParameter(PREFIX + "sendPoweredByHeader")
 	private Boolean sendPoweredByHeader;
 
 	/**
@@ -455,7 +456,7 @@ public class MojarraProperties {
 	 * implementation will use in order to allow the use of alternate
 	 * Serialization implementations.
 	 */
-	@InitParameter(PREFIX + "serializationProvider")
+	@ServletContextInitParameter(PREFIX + "serializationProvider")
 	private Class<? extends SerializationProvider> serializationProvider;
 
 	/**
@@ -470,7 +471,7 @@ public class MojarraProperties {
 	 * constructor is not present, the custom implementation will be constructed
 	 * by invoking a public no-argument constructor.
 	 */
-	@InitParameter(PREFIX + "faceletFactory")
+	@ServletContextInitParameter(PREFIX + "faceletFactory")
 	private Class<?> faceletFactory;
 
 	/**
@@ -480,6 +481,6 @@ public class MojarraProperties {
 	 * param is not specified, whether or not DOCTYPE declarations are allowed would
 	 * just depend on the SAXParserFactory implementation in use, as is the case today.
 	 */
-	@InitParameter(PREFIX + "disallowDoctypeDecl")
+	@ServletContextInitParameter(PREFIX + "disallowDoctypeDecl")
 	private Boolean disallowDoctypeDecl;
 }

@@ -16,7 +16,7 @@
 
 package org.joinfaces.bootsfaces;
 
-import org.joinfaces.configuration.PropertiesAutoConfiguration;
+import org.joinfaces.configuration.ServletContextInitParameterConfigurationPropertiesAutoConfiguration;
 import org.joinfaces.javaxfaces.JavaxFacesSpringBootAutoConfiguration;
 
 import org.springframework.boot.autoconfigure.AutoConfigureBefore;
@@ -34,5 +34,5 @@ import org.springframework.context.annotation.Configuration;
 @ConditionalOnClass(name = "net.bootsfaces.C")
 @AutoConfigureBefore(JavaxFacesSpringBootAutoConfiguration.class)
 @ConditionalOnWebApplication
-public class BootsfacesSpringBootAutoConfiguration extends PropertiesAutoConfiguration<BootsfacesProperties> {
+public class BootsfacesSpringBootAutoConfiguration extends ServletContextInitParameterConfigurationPropertiesAutoConfiguration<BootsfacesProperties> {
 }

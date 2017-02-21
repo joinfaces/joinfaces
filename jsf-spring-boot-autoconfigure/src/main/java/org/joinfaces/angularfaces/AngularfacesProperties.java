@@ -18,7 +18,8 @@ package org.joinfaces.angularfaces;
 
 import lombok.Getter;
 import lombok.Setter;
-import org.joinfaces.configuration.InitParameter;
+import org.joinfaces.configuration.ServletContextInitParameter;
+import org.joinfaces.configuration.ServletContextInitParameterConfigurationProperties;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
@@ -30,34 +31,34 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 @Getter
 @Setter
 @ConfigurationProperties(prefix = "jsf.angularfaces")
-public class AngularfacesProperties {
+public class AngularfacesProperties implements ServletContextInitParameterConfigurationProperties {
 
 	static final String PREFIX = "AngularFaces.";
 
-	@InitParameter(PREFIX + "addLabels")
+	@ServletContextInitParameter(PREFIX + "addLabels")
 	private Boolean addLabels;
 
-	@InitParameter(PREFIX + "addMessages")
+	@ServletContextInitParameter(PREFIX + "addMessages")
 	private Boolean addMessages;
 
-	@InitParameter(PREFIX + "translation")
+	@ServletContextInitParameter(PREFIX + "translation")
 	private Boolean translation;
 
-	@InitParameter(PREFIX + "includeAngularJS")
+	@ServletContextInitParameter(PREFIX + "includeAngularJS")
 	private Boolean includeAngularJS;
 
-	@InitParameter(PREFIX + "includeJQuery")
+	@ServletContextInitParameter(PREFIX + "includeJQuery")
 	private Boolean includeJQuery;
 
-	@InitParameter(PREFIX + "includeJQueryUI")
+	@ServletContextInitParameter(PREFIX + "includeJQueryUI")
 	private Boolean includeJQueryUI;
 
-	@InitParameter(PREFIX + "includeAngularMessages")
+	@ServletContextInitParameter(PREFIX + "includeAngularMessages")
 	private Boolean includeAngularMessages;
 
-	@InitParameter(PREFIX + "clientSideMessages")
+	@ServletContextInitParameter(PREFIX + "clientSideMessages")
 	private Boolean clientSideMessages;
 
-	@InitParameter(PREFIX + "includeMainJS")
+	@ServletContextInitParameter(PREFIX + "includeMainJS")
 	private Boolean includeMainJS;
 }

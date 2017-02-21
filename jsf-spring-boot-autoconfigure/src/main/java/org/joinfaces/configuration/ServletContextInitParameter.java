@@ -16,13 +16,26 @@
 
 package org.joinfaces.configuration;
 
-/**
- * Interface for beans which want to customize properties.
- *
- * @param <PC> Actual type of the properties object
- * @author Lars Grefer
- */
-public interface PropertiesCustomizer<PC> {
+import java.lang.annotation.Documented;
+import java.lang.annotation.ElementType;
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
+import java.lang.annotation.Target;
 
-	void process(PC properties);
+/**
+ * Marks a field of a {@link org.springframework.boot.context.properties.ConfigurationProperties Properties class}
+ * as {@link javax.servlet.ServletContext#setInitParameter(String, String) init parameter}.
+ *
+ * @author Lars Grefer
+ * @see InitParameterConfigurationPropertiesServletContextConfigurer
+ */
+@Retention(RetentionPolicy.RUNTIME)
+@Target(ElementType.FIELD)
+@Documented
+public @interface ServletContextInitParameter {
+
+	String value();
+
+	String listSeparator() default ",";
+
 }

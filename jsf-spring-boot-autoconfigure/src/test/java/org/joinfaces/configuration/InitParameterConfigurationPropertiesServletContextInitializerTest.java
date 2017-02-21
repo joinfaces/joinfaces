@@ -26,13 +26,16 @@ import org.springframework.mock.web.MockServletContext;
 /**
  * @author Lars Grefer
  */
-public class ReflectiveServletContextInitializerTest {
+public class InitParameterConfigurationPropertiesServletContextInitializerTest {
 
-	private ReflectiveServletContextInitializer<Object> servletContextInitializer;
+	private InitParameterConfigurationPropertiesServletContextInitializer<? extends ServletContextInitParameterConfigurationProperties> servletContextInitializer;
 
 	@Before
 	public void setUp() {
-		this.servletContextInitializer = new ReflectiveServletContextInitializer<Object>(new Object());
+		this.servletContextInitializer = new InitParameterConfigurationPropertiesServletContextInitializer<ServletContextInitParameterConfigurationProperties>(
+				new ServletContextInitParameterConfigurationProperties() {
+				}
+		);
 	}
 
 	@Test

@@ -16,7 +16,7 @@
 
 package org.joinfaces.myfaces;
 
-import org.joinfaces.configuration.PropertiesAutoConfiguration;
+import org.joinfaces.configuration.ServletContextInitParameterConfigurationPropertiesAutoConfiguration;
 import org.joinfaces.javaxfaces.JavaxFacesSpringBootAutoConfiguration;
 
 import org.springframework.boot.autoconfigure.AutoConfigureAfter;
@@ -39,7 +39,7 @@ import org.springframework.context.annotation.Configuration;
 @AutoConfigureBefore(WebMvcAutoConfiguration.class)
 @AutoConfigureAfter({JavaxFacesSpringBootAutoConfiguration.class})
 @ConditionalOnWebApplication
-public class MyfacesSpringBootAutoConfiguration extends PropertiesAutoConfiguration<MyfacesProperties> {
+public class MyfacesSpringBootAutoConfiguration extends ServletContextInitParameterConfigurationPropertiesAutoConfiguration<MyfacesProperties> {
 
 	@Bean
 	public ServletContextInitializer myfacesServletContextInitializer() {

@@ -33,29 +33,29 @@ import org.springframework.core.annotation.AnnotatedElementUtils;
 import org.springframework.util.ReflectionUtils;
 
 /**
- * A ServletContextConfigurer which looks for all {@link InitParameter init parameters}
- * in an object by reflection.
+ * A ServletContextConfigurer which looks for all {@link ServletContextInitParameter init parameters}
+ * in an {@link ServletContextInitParameterConfigurationProperties} object by reflection.
  *
  * @param <PC> Type of the properties object
  * @author Lars Grefer
- * @see InitParameter
+ * @see ServletContextInitParameter
  * @see NestedProperty
  */
 @Slf4j
-public class ReflectiveServletContextConfigurer<PC> {
+public class InitParameterConfigurationPropertiesServletContextConfigurer<PC extends ServletContextInitParameterConfigurationProperties> {
 
-	private final PC properties;
-	private final Set<String> visitedProperties;
+	private final PC servletContextInitParameterConfigurationProperties;
+	private final Set<String> visitiedInitParameters;
 	private final ServletContext servletContext;
 
-	public ReflectiveServletContextConfigurer(ServletContext servletContext, PC properties) {
+	public InitParameterConfigurationPropertiesServletContextConfigurer(ServletContext servletContext, PC servletContextInitParameterConfigurationProperties) {
 		this.servletContext = servletContext;
-		this.properties = properties;
-		this.visitedProperties = new HashSet<String>();
+		this.servletContextInitParameterConfigurationProperties = servletContextInitParameterConfigurationProperties;
+		this.visitiedInitParameters = new HashSet<String>();
 	}
 
 	public void configure() {
-		handlePropertiesObject(this.properties);
+		handlePropertiesObject(this.servletContextInitParameterConfigurationProperties);
 	}
 
 	private void handlePropertiesObject(final Object properties) {
@@ -73,7 +73,7 @@ public class ReflectiveServletContextConfigurer<PC> {
 				new ReflectionUtils.FieldFilter() {
 					@Override
 					public boolean matches(Field field) {
-						return AnnotatedElementUtils.isAnnotated(field, InitParameter.class) || AnnotatedElementUtils.isAnnotated(field, NestedProperty.class);
+						return AnnotatedElementUtils.isAnnotated(field, ServletContextInitParameter.class) || AnnotatedElementUtils.isAnnotated(field, NestedProperty.class);
 					}
 				});
 
@@ -92,14 +92,14 @@ public class ReflectiveServletContextConfigurer<PC> {
 				log.debug("Not visiting nested property {} because its null", field);
 			}
 		}
-		else if (field.isAnnotationPresent(InitParameter.class)) {
-			InitParameter initParameter = field.getAnnotation(InitParameter.class);
+		else if (field.isAnnotationPresent(ServletContextInitParameter.class)) {
+			ServletContextInitParameter servletContextInitParameter = field.getAnnotation(ServletContextInitParameter.class);
 
 			ReflectionUtils.makeAccessible(field);
 			Object value = ReflectionUtils.getField(field, properties);
 
-			String paramName = initParameter.value();
-			if (this.visitedProperties.contains(paramName)) {
+			String paramName = servletContextInitParameter.value();
+			if (this.visitiedInitParameters.contains(paramName)) {
 				log.debug("Not setting '{}' because it was already processed", paramName);
 				return;
 			}
@@ -117,7 +117,7 @@ public class ReflectiveServletContextConfigurer<PC> {
 				log.debug("{} = {}", paramName, paramValue);
 				this.servletContext.setInitParameter(paramName, paramValue);
 			}
-			this.visitedProperties.add(paramName);
+			this.visitiedInitParameters.add(paramName);
 		}
 	}
 
@@ -127,7 +127,7 @@ public class ReflectiveServletContextConfigurer<PC> {
 		if (Collection.class.isAssignableFrom(field.getType())) {
 			targetType = resolveCollectionItemType(field);
 
-			InitParameter initParameter = field.getAnnotation(InitParameter.class);
+			ServletContextInitParameter servletContextInitParameter = field.getAnnotation(ServletContextInitParameter.class);
 
 			if (((Collection) value).isEmpty()) {
 				return "";
@@ -139,7 +139,7 @@ public class ReflectiveServletContextConfigurer<PC> {
 				StringBuilder sb = new StringBuilder(firstValue);
 				while (iterator.hasNext()) {
 					String nextValue = convertToString(targetType, iterator.next());
-					sb.append(initParameter.listSeparator()).append(nextValue);
+					sb.append(servletContextInitParameter.listSeparator()).append(nextValue);
 				}
 				return sb.toString();
 			}

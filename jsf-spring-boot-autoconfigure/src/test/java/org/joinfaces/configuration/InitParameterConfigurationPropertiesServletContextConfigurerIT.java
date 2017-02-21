@@ -36,17 +36,17 @@ import static org.assertj.core.api.Assertions.assertThat;
 /**
  * @author Lars Grefer
  */
-public class ReflectiveServletContextConfigurerIT {
+public class InitParameterConfigurationPropertiesServletContextConfigurerIT {
 
 	static final String FOO = "foo";
-	private ReflectiveServletContextConfigurer servletContextConfigurer;
+	private InitParameterConfigurationPropertiesServletContextConfigurer<?> servletContextConfigurer;
 	private ServletContext servletContext;
 
 	@Before
 	public void setUp() {
 		this.servletContext = new MockServletContext();
 
-		this.servletContextConfigurer = new ReflectiveServletContextConfigurer<TestProperties>(this.servletContext, new TestProperties());
+		this.servletContextConfigurer = new InitParameterConfigurationPropertiesServletContextConfigurer<TestProperties>(this.servletContext, new TestProperties());
 	}
 
 	@Test
@@ -131,19 +131,19 @@ public class ReflectiveServletContextConfigurerIT {
 	@NoArgsConstructor
 	public static class TestProperties extends SuperProperties {
 
-		@InitParameter("test.STRING")
+		@ServletContextInitParameter("test.STRING")
 		private String testString = "fooBar";
 
-		@InitParameter(value = "test.EMPTY_LIST", listSeparator = "...")
+		@ServletContextInitParameter(value = "test.EMPTY_LIST", listSeparator = "...")
 		private List<String> testEmptyList = Collections.emptyList();
 
-		@InitParameter(value = "test.LIST", listSeparator = "...")
+		@ServletContextInitParameter(value = "test.LIST", listSeparator = "...")
 		private List<String> testStringList = Arrays.asList(FOO, "bar");
 
-		@InitParameter(value = "test.SINGLETON_LIST", listSeparator = "...")
+		@ServletContextInitParameter(value = "test.SINGLETON_LIST", listSeparator = "...")
 		private List<String> singletonList = Collections.singletonList(FOO);
 
-		@InitParameter("test.NULL")
+		@ServletContextInitParameter("test.NULL")
 		private Object nullObject = null;
 
 		@NestedProperty
@@ -152,7 +152,7 @@ public class ReflectiveServletContextConfigurerIT {
 		@NestedProperty
 		private InnerProperties nullInnerProperties = null;
 
-		@InitParameter(value = "test.CLASS_LIST", listSeparator = ";")
+		@ServletContextInitParameter(value = "test.CLASS_LIST", listSeparator = ";")
 		private List<Class<?>> classList = Arrays.asList(
 				String.class,
 				Void.class
@@ -160,13 +160,13 @@ public class ReflectiveServletContextConfigurerIT {
 
 		private String notAnnotatedField;
 
-		@InitParameter("test.ENUM")
+		@ServletContextInitParameter("test.ENUM")
 		private RetentionPolicy testEnum = RetentionPolicy.SOURCE;
 
-		@InitParameter("test.BOOLEAN")
+		@ServletContextInitParameter("test.BOOLEAN")
 		private boolean testBoolean = false;
 
-		@InitParameter("test.INT")
+		@ServletContextInitParameter("test.INT")
 		private int testInt = 42;
 
 		@Getter
@@ -174,7 +174,7 @@ public class ReflectiveServletContextConfigurerIT {
 		@NoArgsConstructor
 		public static class InnerProperties extends SuperProperties.InnerProperties {
 
-			@InitParameter("test.inner.STRING")
+			@ServletContextInitParameter("test.inner.STRING")
 			private String innerString = "bar";
 		}
 	}
@@ -182,9 +182,9 @@ public class ReflectiveServletContextConfigurerIT {
 	@Getter
 	@Setter
 	@NoArgsConstructor
-	public static class SuperProperties {
+	public static class SuperProperties implements ServletContextInitParameterConfigurationProperties {
 
-		@InitParameter("test.superString")
+		@ServletContextInitParameter("test.superString")
 		private String superString = "barFoo";
 
 		@NestedProperty
@@ -195,7 +195,7 @@ public class ReflectiveServletContextConfigurerIT {
 		@NoArgsConstructor
 		public static class InnerProperties {
 
-			@InitParameter("test.inner.STRING")
+			@ServletContextInitParameter("test.inner.STRING")
 			private String innerString = FOO;
 		}
 	}

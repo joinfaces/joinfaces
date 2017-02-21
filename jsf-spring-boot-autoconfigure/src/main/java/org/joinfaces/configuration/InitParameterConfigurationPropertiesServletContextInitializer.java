@@ -26,30 +26,30 @@ import org.springframework.boot.web.servlet.ServletContextInitializer;
 import org.springframework.core.Ordered;
 
 /**
- * {@link ServletContextInitializer} which runs an {@link ReflectiveServletContextConfigurer} {@link #onStartup(ServletContext) on startup}.
+ * {@link ServletContextInitializer} which runs an {@link InitParameterConfigurationPropertiesServletContextConfigurer} {@link #onStartup(ServletContext) on startup}.
  *
  * @param <PC> Type of the properties object
  * @author Lars Grefer
  */
 @Getter
 @Setter
-public class ReflectiveServletContextInitializer<PC> implements ServletContextInitializer, Ordered {
+public class InitParameterConfigurationPropertiesServletContextInitializer<PC extends ServletContextInitParameterConfigurationProperties> implements ServletContextInitializer, Ordered {
 
 	private final PC properties;
 	private int order;
 
-	public ReflectiveServletContextInitializer(PC properties) {
+	public InitParameterConfigurationPropertiesServletContextInitializer(PC properties) {
 		this(properties, Ordered.LOWEST_PRECEDENCE);
 	}
 
-	public ReflectiveServletContextInitializer(PC properties, int order) {
+	public InitParameterConfigurationPropertiesServletContextInitializer(PC properties, int order) {
 		this.properties = properties;
 		this.order = order;
 	}
 
 	@Override
 	public void onStartup(ServletContext servletContext) throws ServletException {
-		new ReflectiveServletContextConfigurer<PC>(servletContext, this.properties)
+		new InitParameterConfigurationPropertiesServletContextConfigurer<PC>(servletContext, this.properties)
 				.configure();
 	}
 }

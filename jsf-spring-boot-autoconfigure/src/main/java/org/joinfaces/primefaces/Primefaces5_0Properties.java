@@ -19,8 +19,9 @@ package org.joinfaces.primefaces;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.joinfaces.configuration.InitParameter;
+import org.joinfaces.configuration.ServletContextInitParameter;
 import org.joinfaces.configuration.NestedProperty;
+import org.joinfaces.configuration.ServletContextInitParameterConfigurationProperties;
 import org.primefaces.cache.CacheProvider;
 import org.primefaces.component.captcha.Captcha;
 import org.primefaces.util.Constants;
@@ -39,85 +40,85 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 @Setter
 @NoArgsConstructor
 @ConfigurationProperties("jsf.primefaces")
-public class Primefaces5_0Properties {
+public class Primefaces5_0Properties implements ServletContextInitParameterConfigurationProperties {
 
 	/**
 	 * Theme of the application.
 	 */
-	@InitParameter(Constants.ContextParams.THEME)
+	@ServletContextInitParameter(Constants.ContextParams.THEME)
 	private String theme = "aristo";
 
 	@NestedProperty
 	private Mobile mobile = new Mobile();
 
-	@InitParameter(Constants.ContextParams.AUTO_UPDATE)
+	@ServletContextInitParameter(Constants.ContextParams.AUTO_UPDATE)
 	private String autoUpdate;
 
 	/**
 	 * Custom server url for PrimeFaces Push.
 	 */
-	@InitParameter(Constants.ContextParams.PUSH_SERVER_URL)
+	@ServletContextInitParameter(Constants.ContextParams.PUSH_SERVER_URL)
 	private String pushServerUrl;
 
 	/**
 	 * Defines ajax submit mode, full or partial.
 	 */
-	@InitParameter(Constants.ContextParams.SUBMIT)
+	@ServletContextInitParameter(Constants.ContextParams.SUBMIT)
 	private String submit = "full";
 
 	/**
 	 * Defines orientation, ltr or rtl.
 	 */
-	@InitParameter(Constants.ContextParams.DIRECTION)
+	@ServletContextInitParameter(Constants.ContextParams.DIRECTION)
 	private String dir = "ltr";
 
 	/**
 	 * When enabled, ajax updated inputs are reset first.
 	 */
-	@InitParameter(Constants.ContextParams.RESET_VALUES)
+	@ServletContextInitParameter(Constants.ContextParams.RESET_VALUES)
 	private boolean resetValues = false;
 
 	/**
 	 * Secret key to encrypt-decrypt value expressions exposed in rendering StreamedContents.
 	 */
-	@InitParameter(Constants.ContextParams.SECRET_KEY)
+	@ServletContextInitParameter(Constants.ContextParams.SECRET_KEY)
 	private String secret = "primefaces";
 
 	/**
 	 * Controls client side validatation.
 	 */
-	@InitParameter(Constants.ContextParams.PFV_KEY)
+	@ServletContextInitParameter(Constants.ContextParams.PFV_KEY)
 	private boolean clientSideValidation = false;
 
 	/**
 	 * Defines uploader mode; auto, native or commons.
 	 */
-	@InitParameter(Constants.ContextParams.UPLOADER)
+	@ServletContextInitParameter(Constants.ContextParams.UPLOADER)
 	private String uploader = "auto";
 
 	/**
 	 * Transforms bean validation metadata to html attributes.
 	 */
-	@InitParameter(Constants.ContextParams.TRANSFORM_METADATA)
+	@ServletContextInitParameter(Constants.ContextParams.TRANSFORM_METADATA)
 	private boolean transformMetadata = false;
 
 	/**
 	 * A cache store is required to use the cache component, two different providers are supported as cache implementation;
 	 * EHCache and Hazelcast.
 	 */
-	@InitParameter(Constants.ContextParams.CACHE_PROVIDER)
+	@ServletContextInitParameter(Constants.ContextParams.CACHE_PROVIDER)
 	private Class<? extends CacheProvider> cacheProvider;
 
 	/**
 	 * Private reCaptcha key.
 	 */
-	@InitParameter(Captcha.PRIVATE_KEY)
+	@ServletContextInitParameter(Captcha.PRIVATE_KEY)
 	private String privateCaptchaKey = null;
 
 	/**
 	 * Public reCaptcha key.
 	 */
-	@InitParameter(Captcha.PUBLIC_KEY)
+	@ServletContextInitParameter(Captcha.PUBLIC_KEY)
 	private String publicCaptchaKey = null;
 
 	/**
@@ -132,7 +133,7 @@ public class Primefaces5_0Properties {
 		/**
 		 * Theme of the mobile application.
 		 */
-		@InitParameter(Constants.ContextParams.MOBILE_THEME)
+		@ServletContextInitParameter(Constants.ContextParams.MOBILE_THEME)
 		private String theme;
 	}
 }

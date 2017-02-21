@@ -27,7 +27,7 @@ import java.lang.annotation.Target;
  * {@link org.springframework.boot.context.properties.ConfigurationProperties properties classes}.
  *
  * @author Lars Grefer
- * @see ReflectiveServletContextConfigurer
+ * @see InitParameterConfigurationPropertiesServletContextConfigurer
  */
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.FIELD)

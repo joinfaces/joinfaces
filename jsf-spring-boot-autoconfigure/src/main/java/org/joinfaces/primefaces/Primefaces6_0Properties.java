@@ -18,7 +18,7 @@ package org.joinfaces.primefaces;
 
 import lombok.Getter;
 import lombok.Setter;
-import org.joinfaces.configuration.InitParameter;
+import org.joinfaces.configuration.ServletContextInitParameter;
 import org.primefaces.util.Constants;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
@@ -35,10 +35,10 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 @ConfigurationProperties("jsf.primefaces")
 public class Primefaces6_0Properties extends Primefaces5_2Properties {
 
-	@InitParameter(Constants.ContextParams.EARLY_POST_PARAM_EVALUATION)
+	@ServletContextInitParameter(Constants.ContextParams.EARLY_POST_PARAM_EVALUATION)
 	private boolean earlyPostParamEvaluation = false;
 
-	@InitParameter(Constants.ContextParams.INTERPOLATE_CLIENT_SIDE_VALIDATION_MESSAGES)
+	@ServletContextInitParameter(Constants.ContextParams.INTERPOLATE_CLIENT_SIDE_VALIDATION_MESSAGES)
 	private boolean interpolateClientSideValidationMessages = false;
 
 }

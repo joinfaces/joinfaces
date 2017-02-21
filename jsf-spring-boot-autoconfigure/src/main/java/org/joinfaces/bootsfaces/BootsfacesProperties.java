@@ -19,8 +19,9 @@ package org.joinfaces.bootsfaces;
 import lombok.Getter;
 import lombok.Setter;
 import net.bootsfaces.C;
-import org.joinfaces.configuration.InitParameter;
+import org.joinfaces.configuration.ServletContextInitParameter;
 import org.joinfaces.configuration.NestedProperty;
+import org.joinfaces.configuration.ServletContextInitParameterConfigurationProperties;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
@@ -34,7 +35,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 @Getter
 @Setter
 @ConfigurationProperties(prefix = "jsf.bootsfaces")
-public class BootsfacesProperties {
+public class BootsfacesProperties implements ServletContextInitParameterConfigurationProperties {
 
 	private static final String PREFFIX = "net.bootsfaces.";
 
@@ -45,10 +46,10 @@ public class BootsfacesProperties {
 	 * deactivate FontAwesome support if the no-fa facet is found in the h:head
 	 * tag.
 	 */
-	@InitParameter(PREFFIX + "get_fontawesome_from_cdn")
+	@ServletContextInitParameter(PREFFIX + "get_fontawesome_from_cdn")
 	private Boolean getFontawesomeFromCdn;
 
-	@InitParameter(PREFFIX + "blockUI")
+	@ServletContextInitParameter(PREFFIX + "blockUI")
 	private Boolean blockUI;
 
 	/**
@@ -57,7 +58,7 @@ public class BootsfacesProperties {
 	 * or "custom". If custom is chosen, you will have to provide your custom
 	 * CSS in the "other" folder.
 	 */
-	@InitParameter(C.P_THEME)
+	@ServletContextInitParameter(C.P_THEME)
 	private String theme;
 
 	/**
@@ -65,19 +66,19 @@ public class BootsfacesProperties {
 	 * theme is to be rendered in the Flat variant (default) or in its Enhanced
 	 * variant, with shadows and decorations turned on.
 	 */
-	@InitParameter(C.P_USETHEME)
+	@ServletContextInitParameter(C.P_USETHEME)
 	private Boolean usetheme;
 
-	@InitParameter(C.P_VIEWPORT)
+	@ServletContextInitParameter(C.P_VIEWPORT)
 	private Boolean useViewport;
 
-	@InitParameter(PREFFIX + "get_jquery_from_cdn")
+	@ServletContextInitParameter(PREFFIX + "get_jquery_from_cdn")
 	private Boolean getJqueryFromCdn;
 
-	@InitParameter(PREFFIX + "get_jqueryui_from_cdn")
+	@ServletContextInitParameter(PREFFIX + "get_jqueryui_from_cdn")
 	private Boolean getJqueryuiFromCdn;
 
-	@InitParameter(PREFFIX + "get_bootstrap_from_cdn")
+	@ServletContextInitParameter(PREFFIX + "get_bootstrap_from_cdn")
 	private Boolean getBootstrapFromCdn;
 
 	/**
@@ -87,10 +88,10 @@ public class BootsfacesProperties {
 	@Setter
 	public static class Defaults {
 
-		@InitParameter(PREFFIX + "defaults.renderLabel")
+		@ServletContextInitParameter(PREFFIX + "defaults.renderLabel")
 		private String renderLabel;
 
-		@InitParameter(PREFFIX + "defaults.decorator")
+		@ServletContextInitParameter(PREFFIX + "defaults.decorator")
 		private Boolean decorator;
 	}
 }

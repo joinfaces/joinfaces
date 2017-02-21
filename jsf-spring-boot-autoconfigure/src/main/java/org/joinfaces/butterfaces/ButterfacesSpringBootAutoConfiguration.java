@@ -20,8 +20,8 @@ import lombok.extern.slf4j.Slf4j;
 import net.bootsfaces.C;
 import org.joinfaces.bootsfaces.BootsfacesProperties;
 import org.joinfaces.bootsfaces.BootsfacesSpringBootAutoConfiguration;
-import org.joinfaces.configuration.PropertiesAutoConfiguration;
-import org.joinfaces.configuration.PropertiesCustomizer;
+import org.joinfaces.configuration.ServletContextInitParameterConfigurationPropertiesAutoConfiguration;
+import org.joinfaces.configuration.ServletContextInitParameterConfigurationPropertiesCustomizer;
 import org.joinfaces.javaxfaces.JavaxFacesSpringBootAutoConfiguration;
 
 import org.springframework.boot.autoconfigure.AutoConfigureBefore;
@@ -41,7 +41,7 @@ import org.springframework.context.annotation.Configuration;
 @AutoConfigureBefore(JavaxFacesSpringBootAutoConfiguration.class)
 @ConditionalOnWebApplication
 @Slf4j
-public class ButterfacesSpringBootAutoConfiguration extends PropertiesAutoConfiguration<ButterfacesProperties> {
+public class ButterfacesSpringBootAutoConfiguration extends ServletContextInitParameterConfigurationPropertiesAutoConfiguration<ButterfacesProperties> {
 
 	/**
 	 * Special auto configuration for butterfaces and bootsfaces in combination.
@@ -55,8 +55,8 @@ public class ButterfacesSpringBootAutoConfiguration extends PropertiesAutoConfig
 	public static class ButterfacesBootsfacesAutoConfiguration {
 
 		@Bean
-		public PropertiesCustomizer<BootsfacesProperties> bootsfacesPropertiesCustomizer() {
-			return new PropertiesCustomizer<BootsfacesProperties>() {
+		public ServletContextInitParameterConfigurationPropertiesCustomizer<BootsfacesProperties> bootsfacesPropertiesCustomizer() {
+			return new ServletContextInitParameterConfigurationPropertiesCustomizer<BootsfacesProperties>() {
 				@Override
 				public void process(BootsfacesProperties properties) {
 					if (properties.getGetJqueryFromCdn() == null) {

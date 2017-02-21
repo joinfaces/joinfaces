@@ -20,7 +20,7 @@ import javax.faces.component.UIComponent;
 
 import lombok.Getter;
 import lombok.Setter;
-import org.joinfaces.configuration.InitParameter;
+import org.joinfaces.configuration.ServletContextInitParameter;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
@@ -48,6 +48,6 @@ public class JavaxFaces2_1Properties extends JavaxFaces2_0Properties {
 	 * {@link #CURRENT_COMPOSITE_COMPONENT} method is not honored. If this
 	 * parameter is set to true, the contract is honored.</p>
 	 */
-	@InitParameter(UIComponent.HONOR_CURRENT_COMPONENT_ATTRIBUTES_PARAM_NAME)
+	@ServletContextInitParameter(UIComponent.HONOR_CURRENT_COMPONENT_ATTRIBUTES_PARAM_NAME)
 	private Boolean honorCurrentComponentAttributes;
 }
