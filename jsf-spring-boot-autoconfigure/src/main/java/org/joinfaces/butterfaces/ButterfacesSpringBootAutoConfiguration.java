@@ -44,7 +44,7 @@ import org.springframework.context.annotation.Configuration;
 public class ButterfacesSpringBootAutoConfiguration extends PropertiesAutoConfiguration<ButterfacesProperties> {
 
 	/**
-	 * Special auto configuration for butterfaces and bootsfaces in combination
+	 * Special auto configuration for butterfaces and bootsfaces in combination.
 	 *
 	 * @author Lars Grefer
 	 * @see <a href="https://github.com/ButterFaces/bootsfaces-integration/blob/6e9d45978590fa72361cf3c98bec77d863f02aea/README.md">ButterFaces/bootsfaces-integration</a>

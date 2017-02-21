@@ -42,7 +42,7 @@ import org.springframework.util.ReflectionUtils;
  * @see NestedProperty
  */
 @Slf4j
-public class ReflectiveServletContextConfigurer<PC>  {
+public class ReflectiveServletContextConfigurer<PC> {
 
 	private final PC properties;
 	private final Set<String> visitedProperties;
@@ -51,7 +51,7 @@ public class ReflectiveServletContextConfigurer<PC>  {
 	public ReflectiveServletContextConfigurer(ServletContext servletContext, PC properties) {
 		this.servletContext = servletContext;
 		this.properties = properties;
-		visitedProperties = new HashSet<String>();
+		this.visitedProperties = new HashSet<String>();
 	}
 
 	public void configure() {
@@ -99,11 +99,11 @@ public class ReflectiveServletContextConfigurer<PC>  {
 			Object value = ReflectionUtils.getField(field, properties);
 
 			String paramName = initParameter.value();
-			if (visitedProperties.contains(paramName)) {
+			if (this.visitedProperties.contains(paramName)) {
 				log.debug("Not setting '{}' because it was already processed", paramName);
 				return;
 			}
-			if(servletContext.getInitParameter(paramName) != null) {
+			if (this.servletContext.getInitParameter(paramName) != null) {
 				log.info("{} already set in the ServletContext", paramName);
 				return;
 			}
@@ -115,9 +115,9 @@ public class ReflectiveServletContextConfigurer<PC>  {
 				String paramValue = convertToString(field, value);
 
 				log.debug("{} = {}", paramName, paramValue);
-				servletContext.setInitParameter(paramName, paramValue);
+				this.servletContext.setInitParameter(paramName, paramValue);
 			}
-			visitedProperties.add(paramName);
+			this.visitedProperties.add(paramName);
 		}
 	}
 

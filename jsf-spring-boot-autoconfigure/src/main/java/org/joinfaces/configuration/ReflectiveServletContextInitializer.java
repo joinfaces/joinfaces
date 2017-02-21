@@ -19,6 +19,9 @@ package org.joinfaces.configuration;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import org.springframework.boot.web.servlet.ServletContextInitializer;
 import org.springframework.core.Ordered;
 
@@ -28,9 +31,11 @@ import org.springframework.core.Ordered;
  * @param <PC> Type of the properties object
  * @author Lars Grefer
  */
+@Getter
+@Setter
 public class ReflectiveServletContextInitializer<PC> implements ServletContextInitializer, Ordered {
 
-	private PC properties;
+	private final PC properties;
 	private int order;
 
 	public ReflectiveServletContextInitializer(PC properties) {
@@ -46,10 +51,5 @@ public class ReflectiveServletContextInitializer<PC> implements ServletContextIn
 	public void onStartup(ServletContext servletContext) throws ServletException {
 		new ReflectiveServletContextConfigurer<PC>(servletContext, this.properties)
 				.configure();
-	}
-
-	@Override
-	public int getOrder() {
-		return order;
 	}
 }

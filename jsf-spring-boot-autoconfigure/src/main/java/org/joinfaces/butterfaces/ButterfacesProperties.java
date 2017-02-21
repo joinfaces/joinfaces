@@ -24,8 +24,6 @@ import org.joinfaces.configuration.NestedProperty;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
-import static de.larmic.butterfaces.resolver.WebXmlParameters.CTX_PARAM_INTEGRATION_PRIMEFACES_DISABLEJQUERY;
-
 /**
  * Configuration properties of ButterFaces.
  * Taken from
@@ -200,7 +198,7 @@ public class ButterfacesProperties {
 			 * PrimeFaces JQuery will be removed from resources. You can change
 			 * this behaviour by changeing following parameter
 			 */
-			@InitParameter(CTX_PARAM_INTEGRATION_PRIMEFACES_DISABLEJQUERY)
+			@InitParameter(WebXmlParameters.CTX_PARAM_INTEGRATION_PRIMEFACES_DISABLEJQUERY)
 			private Boolean disableJQuery;
 		}
 	}

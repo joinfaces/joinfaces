@@ -35,6 +35,7 @@ import org.springframework.context.annotation.Configuration;
 
 /**
  * Spring Boot Auto Configuration of AngularFaces.
+ *
  * @author Marcelo Fernandes
  */
 @Configuration
@@ -49,7 +50,7 @@ public class AngularfacesSpringBootAutoConfiguration extends PropertiesAutoConfi
 		return new PropertiesCustomizer<JavaxFaces2_0Properties>() {
 			@Override
 			public void process(JavaxFaces2_0Properties properties) {
-				if(properties.getFaceletsDecorators() == null) {
+				if (properties.getFaceletsDecorators() == null) {
 					properties.setFaceletsDecorators(new ArrayList<Class<? extends TagDecorator>>());
 				}
 

@@ -32,8 +32,6 @@ import org.omnifaces.resourcehandler.CombinedResourceHandler;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
-import static org.omnifaces.component.output.cache.CacheInitializerListener.CACHE_PROVIDER_SETTING_INIT_PARAM_PREFIX;
-
 /**
  * Configuration properties of OmniFaces.
  * Taken from
@@ -129,16 +127,16 @@ public class OmnifacesProperties {
 	@InitParameter(value = CombinedResourceHandler.PARAM_NAME_SUPPRESSED_RESOURCES, listSeparator = ",")
 	private List<String> combinedResourceHandlerSuppressedResources;
 
-	@InitParameter(CACHE_PROVIDER_SETTING_INIT_PARAM_PREFIX + CacheInstancePerScopeProvider.APP_MAX_CAP_PARAM_NAME)
+	@InitParameter(CacheInitializerListener.CACHE_PROVIDER_SETTING_INIT_PARAM_PREFIX + CacheInstancePerScopeProvider.APP_MAX_CAP_PARAM_NAME)
 	private Integer cacheSettingApplicationMaxCapacity;
 
-	@InitParameter(CACHE_PROVIDER_SETTING_INIT_PARAM_PREFIX + CacheInstancePerScopeProvider.APP_TTL_PARAM_NAME)
+	@InitParameter(CacheInitializerListener.CACHE_PROVIDER_SETTING_INIT_PARAM_PREFIX + CacheInstancePerScopeProvider.APP_TTL_PARAM_NAME)
 	private Integer cacheSettingApplicationTtl;
 
-	@InitParameter(CACHE_PROVIDER_SETTING_INIT_PARAM_PREFIX + CacheInstancePerScopeProvider.SESSION_MAX_CAP_PARAM_NAME)
+	@InitParameter(CacheInitializerListener.CACHE_PROVIDER_SETTING_INIT_PARAM_PREFIX + CacheInstancePerScopeProvider.SESSION_MAX_CAP_PARAM_NAME)
 	private Integer cacheSettingSessionMaxCapacity;
 
-	@InitParameter(CACHE_PROVIDER_SETTING_INIT_PARAM_PREFIX + CacheInstancePerScopeProvider.SESSION_TTL_PARAM_NAME)
+	@InitParameter(CacheInitializerListener.CACHE_PROVIDER_SETTING_INIT_PARAM_PREFIX + CacheInstancePerScopeProvider.SESSION_TTL_PARAM_NAME)
 	private Integer cacheSettingSessionTtl;
 
 }

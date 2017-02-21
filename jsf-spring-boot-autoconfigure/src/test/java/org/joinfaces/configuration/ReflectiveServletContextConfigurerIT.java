@@ -38,6 +38,7 @@ import static org.assertj.core.api.Assertions.assertThat;
  */
 public class ReflectiveServletContextConfigurerIT {
 
+	static final String FOO = "foo";
 	private ReflectiveServletContextConfigurer servletContextConfigurer;
 	private ServletContext servletContext;
 
@@ -80,7 +81,7 @@ public class ReflectiveServletContextConfigurerIT {
 	public void testSingletonList() {
 		this.servletContextConfigurer.configure();
 
-		assertThat(this.servletContext.getInitParameter("test.SINGLETON_LIST")).isEqualTo("foo");
+		assertThat(this.servletContext.getInitParameter("test.SINGLETON_LIST")).isEqualTo(FOO);
 	}
 
 	@Test
@@ -137,10 +138,10 @@ public class ReflectiveServletContextConfigurerIT {
 		private List<String> testEmptyList = Collections.emptyList();
 
 		@InitParameter(value = "test.LIST", listSeparator = "...")
-		private List<String> testStringList = Arrays.asList("foo", "bar");
+		private List<String> testStringList = Arrays.asList(FOO, "bar");
 
 		@InitParameter(value = "test.SINGLETON_LIST", listSeparator = "...")
-		private List<String> singletonList = Collections.singletonList("foo");
+		private List<String> singletonList = Collections.singletonList(FOO);
 
 		@InitParameter("test.NULL")
 		private Object nullObject = null;
@@ -195,7 +196,7 @@ public class ReflectiveServletContextConfigurerIT {
 		public static class InnerProperties {
 
 			@InitParameter("test.inner.STRING")
-			private String innerString = "foo";
+			private String innerString = FOO;
 		}
 	}
 }
