@@ -27,44 +27,46 @@ import static org.assertj.core.api.Assertions.assertThat;
  */
 public class BootsfacesPropertiesCustomizerTest {
 
+	private static final String TRUE = "true";
+
 	private ButterfacesSpringBootAutoConfiguration.ButterfacesBootsfacesAutoConfiguration.BootsfacesPropertiesCustomizer bootsfacesPropertiesCustomizer;
 	private BootsfacesProperties bootsfacesProperties;
 
 	@Before
-	public void setUp() throws Exception {
+	public void setUp() {
 		this.bootsfacesPropertiesCustomizer = new ButterfacesSpringBootAutoConfiguration.ButterfacesBootsfacesAutoConfiguration.BootsfacesPropertiesCustomizer();
 		this.bootsfacesProperties = new BootsfacesProperties();
 	}
 
 	@Test
-	public void processNull() throws Exception {
+	public void processNull() {
 		this.bootsfacesProperties.setGetJqueryFromCdn(null);
 
 		this.bootsfacesPropertiesCustomizer.process(this.bootsfacesProperties);
 
-		assertThat(this.bootsfacesProperties.getGetJqueryFromCdn()).isEqualTo("true");
+		assertThat(this.bootsfacesProperties.getGetJqueryFromCdn()).isEqualTo(TRUE);
 	}
 
 	@Test
-	public void processFalse() throws Exception {
+	public void processFalse() {
 		this.bootsfacesProperties.setGetJqueryFromCdn("false");
 
 		this.bootsfacesPropertiesCustomizer.process(this.bootsfacesProperties);
 
-		assertThat(this.bootsfacesProperties.getGetJqueryFromCdn()).isEqualTo("true");
+		assertThat(this.bootsfacesProperties.getGetJqueryFromCdn()).isEqualTo(TRUE);
 	}
 
 	@Test
-	public void processTrue() throws Exception {
-		this.bootsfacesProperties.setGetJqueryFromCdn("true");
+	public void processTrue() {
+		this.bootsfacesProperties.setGetJqueryFromCdn(TRUE);
 
 		this.bootsfacesPropertiesCustomizer.process(this.bootsfacesProperties);
 
-		assertThat(this.bootsfacesProperties.getGetJqueryFromCdn()).isEqualTo("true");
+		assertThat(this.bootsfacesProperties.getGetJqueryFromCdn()).isEqualTo(TRUE);
 	}
 
 	@Test
-	public void processEl() throws Exception {
+	public void processEl() {
 		this.bootsfacesProperties.setGetJqueryFromCdn("#{foo}");
 
 		this.bootsfacesPropertiesCustomizer.process(this.bootsfacesProperties);

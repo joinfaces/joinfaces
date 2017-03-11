@@ -35,12 +35,12 @@ public class JavaxFacesPropertiesCustomizerTest {
 	private AngularfacesSpringBootAutoConfiguration.JavaxFacesPropertiesCustomizer javaxFacesPropertiesCustomizer;
 
 	@Before
-	public void setUp() throws Exception {
+	public void setUp() {
 		this.javaxFacesPropertiesCustomizer = new AngularfacesSpringBootAutoConfiguration.JavaxFacesPropertiesCustomizer();
 	}
 
 	@Test
-	public void testProcessNull() throws Exception {
+	public void testProcessNull() {
 		JavaxFaces2_0Properties properties = new JavaxFaces2_0Properties();
 		properties.setFaceletsDecorators(null);
 
@@ -50,7 +50,7 @@ public class JavaxFacesPropertiesCustomizerTest {
 	}
 
 	@Test
-	public void testProcess() throws Exception {
+	public void testProcess() {
 		JavaxFaces2_0Properties properties = new JavaxFaces2_0Properties();
 		properties.setFaceletsDecorators(new ArrayList<Class<? extends TagDecorator>>());
 
@@ -60,7 +60,7 @@ public class JavaxFacesPropertiesCustomizerTest {
 	}
 
 	@Test
-	public void testProcessDouble() throws Exception {
+	public void testProcessDouble() {
 		JavaxFaces2_0Properties properties = new JavaxFaces2_0Properties();
 
 		this.javaxFacesPropertiesCustomizer.process(properties);
