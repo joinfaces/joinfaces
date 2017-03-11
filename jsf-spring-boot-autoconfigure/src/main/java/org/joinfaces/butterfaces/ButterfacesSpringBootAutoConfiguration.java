@@ -76,12 +76,6 @@ public class ButterfacesSpringBootAutoConfiguration extends ServletContextInitPa
 
 					properties.setGetJqueryFromCdn("true");
 				}
-				else if (getJqueryFromCdn.equalsIgnoreCase("true")) {
-					log.debug("Doing nothing because it's already true");
-				}
-				else if (getJqueryFromCdn.startsWith("#{")) {
-					log.debug("Doing nothing because it contains EL");
-				}
 			}
 		}
 	}

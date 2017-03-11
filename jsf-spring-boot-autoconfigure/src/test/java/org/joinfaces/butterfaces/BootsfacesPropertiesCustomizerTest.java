@@ -33,13 +33,13 @@ public class BootsfacesPropertiesCustomizerTest {
 	private BootsfacesProperties bootsfacesProperties;
 
 	@Before
-	public void setUp() {
+	public void init() {
 		this.bootsfacesPropertiesCustomizer = new ButterfacesSpringBootAutoConfiguration.ButterfacesBootsfacesAutoConfiguration.BootsfacesPropertiesCustomizer();
 		this.bootsfacesProperties = new BootsfacesProperties();
 	}
 
 	@Test
-	public void processNull() {
+	public void testProcessNull() {
 		this.bootsfacesProperties.setGetJqueryFromCdn(null);
 
 		this.bootsfacesPropertiesCustomizer.process(this.bootsfacesProperties);
@@ -48,7 +48,7 @@ public class BootsfacesPropertiesCustomizerTest {
 	}
 
 	@Test
-	public void processFalse() {
+	public void testProcessFalse() {
 		this.bootsfacesProperties.setGetJqueryFromCdn("false");
 
 		this.bootsfacesPropertiesCustomizer.process(this.bootsfacesProperties);
@@ -57,7 +57,7 @@ public class BootsfacesPropertiesCustomizerTest {
 	}
 
 	@Test
-	public void processTrue() {
+	public void testProcessTrue() {
 		this.bootsfacesProperties.setGetJqueryFromCdn(TRUE);
 
 		this.bootsfacesPropertiesCustomizer.process(this.bootsfacesProperties);
@@ -66,7 +66,7 @@ public class BootsfacesPropertiesCustomizerTest {
 	}
 
 	@Test
-	public void processEl() {
+	public void testProcessEl() {
 		this.bootsfacesProperties.setGetJqueryFromCdn("#{foo}");
 
 		this.bootsfacesPropertiesCustomizer.process(this.bootsfacesProperties);
