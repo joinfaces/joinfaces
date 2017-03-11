@@ -81,6 +81,140 @@
       ]
     },
     {
+      "name": "jsf.bootsfaces.get-bootstrap-from-cdn",
+      "values": [
+        {
+          "value": "true",
+          "description": "Bootsfaces will not add Bootstrap."
+        },
+        {
+          "value": "false",
+          "description": "Bootsfaces will add Bootstrap."
+        }
+      ],
+      "providers": [
+        {
+          "name": "any"
+        }
+      ]
+    },
+    {
+      "name": "jsf.bootsfaces.get-fontawesome-from-cdn",
+      "values": [
+        {
+          "value": "true",
+          "description": "Bootsfaces will not add FontAwesome."
+        },
+        {
+          "value": "false",
+          "description": "Bootsfaces will add FontAwesome."
+        }
+      ],
+      "providers": [
+        {
+          "name": "any"
+        }
+      ]
+    },
+    {
+      "name": "jsf.bootsfaces.get-jquery-from-cdn",
+      "values": [
+        {
+          "value": "true",
+          "description": "Bootsfaces will not add jQuery."
+        },
+        {
+          "value": "false",
+          "description": "Bootsfaces will add jQuery."
+        }
+      ],
+      "providers": [
+        {
+          "name": "any"
+        }
+      ]
+    },
+    {
+      "name": "jsf.bootsfaces.get-jqueryui-from-cdn",
+      "values": [
+        {
+          "value": "true",
+          "description": "Bootsfaces will not add jQueryUI."
+        },
+        {
+          "value": "false",
+          "description": "Bootsfaces will add jQueryUI."
+        }
+      ],
+      "providers": [
+        {
+          "name": "any"
+        }
+      ]
+    },
+    {
+      "name": "jsf.bootsfaces.block-ui",
+      "values": [
+        {
+          "value": "true"
+        },
+        {
+          "value": "false"
+        }
+      ],
+      "providers": [
+        {
+          "name": "any"
+        }
+      ]
+    },
+    {
+      "name": "jsf.bootsfaces.defaults.render-label",
+      "values": [
+        {
+          "value": "true"
+        },
+        {
+          "value": "false"
+        }
+      ],
+      "providers": [
+        {
+          "name": "any"
+        }
+      ]
+    },
+    {
+      "name": "jsf.bootsfaces.usetheme",
+      "values": [
+        {
+          "value": "true",
+          "description": "The bootstrap-theme.css will be loaded."
+        },
+        {
+          "value": "false"
+        }
+      ],
+      "providers": [
+        {
+          "name": "any"
+        }
+      ]
+    },
+    {
+      "name": "jsf.bootsfaces.theme",
+      "values": [
+        {
+          "value": "custom"
+        }
+      ],
+      "providers": [
+        {
+          "name": "any"
+        }
+      ]
+    },
+    {
       "name": "jsf.primefaces.theme",
       "values": [
         {

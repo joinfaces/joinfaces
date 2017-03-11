@@ -41,7 +41,7 @@ public class BootsfacesPropertiesIT {
 	@Test
 	public void testUsetheme() {
 		assertThat(this.bootsfacesProperties.getUsetheme())
-			.isTrue();
+				.isEqualTo("true");
 	}
 
 	@Test
@@ -59,31 +59,31 @@ public class BootsfacesPropertiesIT {
 	@Test
 	public void testGetFontawesomeFromCdn() {
 		assertThat(this.bootsfacesProperties.getGetFontawesomeFromCdn())
-			.isTrue();
+			.isEqualTo("true");
 	}
 
 	@Test
 	public void testGetJqueryFromCdn() {
 		assertThat(this.bootsfacesProperties.getGetJqueryFromCdn())
-			.isTrue();
+				.isEqualTo("true");
 	}
 
 	@Test
 	public void testGetJqueryuiFromCdn() {
 		assertThat(this.bootsfacesProperties.getGetJqueryuiFromCdn())
-			.isTrue();
+				.isEqualTo("true");
 	}
 
 	@Test
 	public void testGetBootstrapFromCdn() {
 		assertThat(this.bootsfacesProperties.getGetBootstrapFromCdn())
-			.isTrue();
+				.isEqualTo("true");
 	}
 
 	@Test
 	public void testBlockUI() {
-		assertThat(this.bootsfacesProperties.getBlockUI())
-			.isFalse();
+		assertThat(this.bootsfacesProperties.getBlockUi())
+			.isEqualTo("true");
 	}
 
 	@Test

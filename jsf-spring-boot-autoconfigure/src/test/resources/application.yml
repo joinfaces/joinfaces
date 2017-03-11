@@ -261,7 +261,7 @@ jsf:
     getJqueryFromCdn: true
     getJqueryuiFromCdn: true
     getBootstrapFromCdn: true
-    blockUI: false
+    block-ui: false
     defaults:
       renderLabel: myRenderLabel
       decorator: false

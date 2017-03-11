@@ -59,15 +59,13 @@ public class ButterfacesSpringBootAutoConfiguration extends ServletContextInitPa
 			return new ServletContextInitParameterConfigurationPropertiesCustomizer<BootsfacesProperties>() {
 				@Override
 				public void process(BootsfacesProperties properties) {
-					if (properties.getGetJqueryFromCdn() == null) {
-						log.debug("Setting 'net.bootsfaces.get_jquery_from_cdn' to 'true'");
-					}
-					else if (!properties.getGetJqueryFromCdn()) {
+					String getJqueryFromCdn = properties.getGetJqueryFromCdn();
+					if (getJqueryFromCdn == null || getJqueryFromCdn.equalsIgnoreCase("false")) {
 						log.info("Setting 'net.bootsfaces.get_jquery_from_cdn' to 'true'");
 						log.info("See: https://github.com/ButterFaces/bootsfaces-integration/blob/6e9d45978590fa72361cf3c98bec77d863f02aea/README.md");
-					}
 
-					properties.setGetJqueryFromCdn(true);
+						properties.setGetJqueryFromCdn("true");
+					}
 				}
 			};
 		}
