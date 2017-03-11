@@ -29,6 +29,8 @@ import static org.assertj.core.api.Assertions.assertThat;
 @SpringBootTest(classes = BootsfacesSpringBootAutoConfiguration.class, webEnvironment = SpringBootTest.WebEnvironment.MOCK)
 public class BootsfacesPropertiesIT {
 
+	private static final String TRUE = "true";
+
 	@Autowired
 	private BootsfacesProperties bootsfacesProperties;
 
@@ -41,7 +43,7 @@ public class BootsfacesPropertiesIT {
 	@Test
 	public void testUsetheme() {
 		assertThat(this.bootsfacesProperties.getUsetheme())
-				.isEqualTo("true");
+				.isEqualTo(TRUE);
 	}
 
 	@Test
@@ -59,31 +61,31 @@ public class BootsfacesPropertiesIT {
 	@Test
 	public void testGetFontawesomeFromCdn() {
 		assertThat(this.bootsfacesProperties.getGetFontawesomeFromCdn())
-			.isEqualTo("true");
+			.isEqualTo(TRUE);
 	}
 
 	@Test
 	public void testGetJqueryFromCdn() {
 		assertThat(this.bootsfacesProperties.getGetJqueryFromCdn())
-				.isEqualTo("true");
+				.isEqualTo(TRUE);
 	}
 
 	@Test
 	public void testGetJqueryuiFromCdn() {
 		assertThat(this.bootsfacesProperties.getGetJqueryuiFromCdn())
-				.isEqualTo("true");
+				.isEqualTo(TRUE);
 	}
 
 	@Test
 	public void testGetBootstrapFromCdn() {
 		assertThat(this.bootsfacesProperties.getGetBootstrapFromCdn())
-				.isEqualTo("true");
+				.isEqualTo(TRUE);
 	}
 
 	@Test
 	public void testBlockUI() {
 		assertThat(this.bootsfacesProperties.getBlockUi())
-			.isEqualTo("true");
+			.isEqualTo("false");
 	}
 
 	@Test
