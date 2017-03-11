@@ -161,7 +161,7 @@ public class JavaxFaces2_0Properties implements ServletContextInitParameterConfi
 	private String separatorChar;
 
 	@NestedProperty
-	Partial partial = new Partial();
+	private Partial partial = new Partial();
 
 	/**
 	 * Controls if DateTimeConverter instances use the system timezone (if true)
