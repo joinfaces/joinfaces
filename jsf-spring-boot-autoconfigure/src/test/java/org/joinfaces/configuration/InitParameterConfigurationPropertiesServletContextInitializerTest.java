@@ -21,7 +21,10 @@ import javax.servlet.ServletException;
 import org.junit.Before;
 import org.junit.Test;
 
+import org.springframework.core.Ordered;
 import org.springframework.mock.web.MockServletContext;
+
+import static org.assertj.core.api.Assertions.assertThat;
 
 /**
  * @author Lars Grefer
@@ -42,6 +45,21 @@ public class InitParameterConfigurationPropertiesServletContextInitializerTest {
 	public void onStartup() throws ServletException {
 		MockServletContext servletContext = new MockServletContext();
 		this.servletContextInitializer.onStartup(servletContext);
+	}
+
+	@Test
+	public void testDefaultOrder() {
+		assertThat(this.servletContextInitializer.getOrder()).isEqualTo(Ordered.LOWEST_PRECEDENCE);
+	}
+
+	@Test
+	public void testExplicitOrder() {
+		this.servletContextInitializer = new InitParameterConfigurationPropertiesServletContextInitializer<ServletContextInitParameterConfigurationProperties>(
+				new ServletContextInitParameterConfigurationProperties() {
+				}, 42
+		);
+
+		assertThat(this.servletContextInitializer.getOrder()).isEqualTo(42);
 	}
 
 }
