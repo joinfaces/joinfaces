@@ -430,6 +430,7 @@
                             <excludes>
                                 <exclude>${cobertura.exclude}</exclude>
                             </excludes>
+                            <ignoreTrivial>true</ignoreTrivial>
                         </instrumentation>
                     </configuration>
                 </plugin>
