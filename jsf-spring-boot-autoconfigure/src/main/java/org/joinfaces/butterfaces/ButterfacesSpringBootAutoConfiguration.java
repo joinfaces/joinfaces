@@ -33,6 +33,7 @@ import org.springframework.context.annotation.Configuration;
 
 /**
  * Spring Boot Auto Configuration of ButterFaces.
+ *
  * @author Marcelo Fernandes
  */
 @Configuration
@@ -56,18 +57,32 @@ public class ButterfacesSpringBootAutoConfiguration extends ServletContextInitPa
 
 		@Bean
 		public ServletContextInitParameterConfigurationPropertiesCustomizer<BootsfacesProperties> bootsfacesPropertiesCustomizer() {
-			return new ServletContextInitParameterConfigurationPropertiesCustomizer<BootsfacesProperties>() {
-				@Override
-				public void process(BootsfacesProperties properties) {
-					String getJqueryFromCdn = properties.getGetJqueryFromCdn();
-					if (getJqueryFromCdn == null || getJqueryFromCdn.equalsIgnoreCase("false")) {
-						log.info("Setting 'net.bootsfaces.get_jquery_from_cdn' to 'true'");
-						log.info("See: https://github.com/ButterFaces/bootsfaces-integration/blob/6e9d45978590fa72361cf3c98bec77d863f02aea/README.md");
+			return new BootsfacesPropertiesCustomizer();
+		}
 
-						properties.setGetJqueryFromCdn("true");
-					}
+		/**
+		 * Configures Bootsfaces to work with Butterfaces.
+		 *
+		 * @author Lars Grefer
+		 * @see https://github.com/ButterFaces/bootsfaces-integration/blob/6e9d45978590fa72361cf3c98bec77d863f02aea/README.md
+		 */
+		static class BootsfacesPropertiesCustomizer implements ServletContextInitParameterConfigurationPropertiesCustomizer<BootsfacesProperties> {
+			@Override
+			public void process(BootsfacesProperties properties) {
+				String getJqueryFromCdn = properties.getGetJqueryFromCdn();
+				if (getJqueryFromCdn == null || getJqueryFromCdn.equalsIgnoreCase("false")) {
+					log.info("Setting 'net.bootsfaces.get_jquery_from_cdn' to 'true'");
+					log.info("See: https://github.com/ButterFaces/bootsfaces-integration/blob/6e9d45978590fa72361cf3c98bec77d863f02aea/README.md");
+
+					properties.setGetJqueryFromCdn("true");
 				}
-			};
+				else if (getJqueryFromCdn.equalsIgnoreCase("true")) {
+					log.debug("Doing nothing because it's already true");
+				}
+				else if (getJqueryFromCdn.startsWith("#{")) {
+					log.debug("Doing nothing because it contains EL");
+				}
+			}
 		}
 	}
 }

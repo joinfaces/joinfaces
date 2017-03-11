@@ -46,16 +46,29 @@ import org.springframework.context.annotation.Configuration;
 public class AngularfacesSpringBootAutoConfiguration extends ServletContextInitParameterConfigurationPropertiesAutoConfiguration<AngularfacesProperties> {
 
 	@Bean
-	public ServletContextInitParameterConfigurationPropertiesCustomizer<JavaxFaces2_0Properties> propertiesCustomizer() {
-		return new ServletContextInitParameterConfigurationPropertiesCustomizer<JavaxFaces2_0Properties>() {
-			@Override
-			public void process(JavaxFaces2_0Properties properties) {
-				if (properties.getFaceletsDecorators() == null) {
-					properties.setFaceletsDecorators(new ArrayList<Class<? extends TagDecorator>>());
-				}
+	public JavaxFacesPropertiesCustomizer javaxFacesPropertiesCustomizer() {
+		return new JavaxFacesPropertiesCustomizer();
+	}
 
-				properties.getFaceletsDecorators().add(AngularTagDecorator.class);
+	/**
+	 * Adds the {@link AngularTagDecorator} to {@link JavaxFaces2_0Properties#faceletsDecorators}.
+	 *
+	 * @author Lars Grefer
+	 */
+	static class JavaxFacesPropertiesCustomizer implements ServletContextInitParameterConfigurationPropertiesCustomizer<JavaxFaces2_0Properties> {
+		@Override
+		public void process(JavaxFaces2_0Properties properties) {
+			if (properties.getFaceletsDecorators() == null) {
+				ArrayList<Class<? extends TagDecorator>> faceletsDecorators = new ArrayList<Class<? extends TagDecorator>>();
+				faceletsDecorators.add(AngularTagDecorator.class);
+				properties.setFaceletsDecorators(faceletsDecorators);
 			}
-		};
+			else {
+				if (!properties.getFaceletsDecorators().contains(AngularTagDecorator.class)) {
+					properties.getFaceletsDecorators().add(AngularTagDecorator.class);
+
+				}
+			}
+		}
 	}
 }
