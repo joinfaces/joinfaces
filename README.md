@@ -39,17 +39,17 @@ Library | Dependency | Description
 
 Library | Namespace | Example
 ------------ | ------------- | ---------
-standard (javax.faces) | jsf | jsf.PROJECT_STAGE: Development
-[primefaces](http://primefaces.org/) | jsf.primefaces | jsf.primefaces.theme: overcast
-[bootsfaces](http://bootsfaces.net/) | jsf.bootsfaces | jsf.bootsfaces.USETHEME: true
-[butterfaces](http://butterfaces.org/) | jsf.butterfaces | jsf.butterfaces.provideJQuery: true
-[richfaces](https://github.com/richfaces/richfaces) | jsf.richfaces | jsf.richfaces.resourceDefaultTTL: 86400
-[omnifaces](http://omnifaces.org/) | jsf.omnifaces | jsf.omnifaces.FACES_VIEWS_ENABLED: true
-[angularfaces](http://angularfaces.net/) | jsf.angularfaces | jsf.angularfaces.addLabels: true
-[mojarra](https://javaserverfaces.java.net/) | jsf.mojarra | jsf.mojarra.preferXHTML: true
-[myfaces](http://myfaces.apache.org/) | jsf.myfaces | jsf.myfaces.PRETTY_HTML: true
-[jetty](http://www.eclipse.org/jetty) | jsf.jetty | jsf.jetty.classPathResource: META-INF/resources
-[undertow](http://undertow.io) | jsf.undertow | jsf.undertow.classPathResource: META-INF/resources
+standard (javax.faces) | jsf | `jsf.PROJECT_STAGE: Development`
+[primefaces](http://primefaces.org/) | jsf.primefaces | `jsf.primefaces.theme: overcast`
+[bootsfaces](http://bootsfaces.net/) | jsf.bootsfaces | `jsf.bootsfaces.USETHEME: true`
+[butterfaces](http://butterfaces.org/) | jsf.butterfaces | `jsf.butterfaces.provideJQuery: true`
+[richfaces](https://github.com/richfaces/richfaces) | jsf.richfaces | `jsf.richfaces.resourceDefaultTTL: 86400`
+[omnifaces](http://omnifaces.org/) | jsf.omnifaces | `jsf.omnifaces.FACES_VIEWS_ENABLED: true`
+[angularfaces](http://angularfaces.net/) | jsf.angularfaces | `jsf.angularfaces.addLabels: true`
+[mojarra](https://javaserverfaces.java.net/) | jsf.mojarra | `jsf.mojarra.preferXHTML: true`
+[myfaces](http://myfaces.apache.org/) | jsf.myfaces | `jsf.myfaces.PRETTY_HTML: true`
+[jetty](http://www.eclipse.org/jetty) | jsf.jetty | `jsf.jetty.classPathResource: META-INF/resources`
+[undertow](http://undertow.io) | jsf.undertow | `jsf.undertow.classPathResource: META-INF/resources`
 
 Look full [application.yml](https://github.com/joinfaces/joinfaces/blob/master/jsf-spring-boot-autoconfigure/src/test/resources/application.yml) example.
 
@@ -71,20 +71,20 @@ Namespace: **http://www.springframework.org/security/tags**
 
 Tag | Description
 ------------ | -------------
-authorize | perform Spring Security authorization decisions, using attributes: ifAnyGranted, ifAllGranted, ifNotGranted, access, url, method, var.
-anonymous | verify if the user is anonymous.
-authenticated | verify if the user is not anonymous.
-fullyAuthenticated | verify if the is not an anonymous or a remember-me user.
+`authorize` | perform Spring Security authorization decisions, using attributes: ifAnyGranted, ifAllGranted, ifNotGranted, access, url, method, var.
+`anonymous` | verify if the user is anonymous.
+`authenticated` | verify if the user is not anonymous.
+`fullyAuthenticated` | verify if the is not an anonymous or a remember-me user.
 
 Function | Description
 ------------ | -------------
-areAllGranted | returns true if the user has all of of the given authorities.
-areAnyGranted | returns true if the user has any of the given authorities.
-areNotGranted | returns true if the user does not have any of the given authorities.
-isAllowed | returns true if the user is allowed to access the given URL and HTTP method combination.
-isAnonymous | returns true if user is anonymous.
-isAuthenticated | returns true if the user is not anonymous.
-isFullyAuthenticated | returns true if the is not an anonymous or a remember-me user.
+`areAllGranted` | returns true if the user has all of of the given authorities.
+`areAnyGranted` | returns true if the user has any of the given authorities.
+`areNotGranted` | returns true if the user does not have any of the given authorities.
+`isAllowed` | returns true if the user is allowed to access the given URL and HTTP method combination.
+`isAnonymous` | returns true if user is anonymous.
+`isAuthenticated` | returns true if the user is not anonymous.
+`isFullyAuthenticated` | returns true if the is not an anonymous or a remember-me user.
 
 Additional information in [#29](https://github.com/joinfaces/joinfaces/issues/29)
 
