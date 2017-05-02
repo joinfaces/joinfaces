@@ -17,6 +17,6 @@
 /**
  * PrimeFaces Spring Boot Auto Configuration classes.
  *
- * @see org.joinfaces.primefaces.PrimefacesSpringBootAutoConfiguration
+ * @see org.joinfaces.primefaces.PrimefacesAutoConfiguration.Primefaces6_0AutoConfiguration
  */
 package org.joinfaces.primefaces;

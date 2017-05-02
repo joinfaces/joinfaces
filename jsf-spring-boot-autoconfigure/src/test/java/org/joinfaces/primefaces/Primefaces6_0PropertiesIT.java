@@ -18,6 +18,7 @@ package org.joinfaces.primefaces;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.primefaces.cache.DefaultCacheProvider;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -26,11 +27,11 @@ import org.springframework.test.context.junit4.SpringRunner;
 import static org.assertj.core.api.Assertions.assertThat;
 
 @RunWith(SpringRunner.class)
-@SpringBootTest(classes = PrimefacesSpringBootAutoConfiguration.class, webEnvironment = SpringBootTest.WebEnvironment.MOCK)
-public class PrimefacesPropertiesIT {
+@SpringBootTest(classes = PrimefacesAutoConfiguration.Primefaces6_0AutoConfiguration.class, webEnvironment = SpringBootTest.WebEnvironment.MOCK)
+public class Primefaces6_0PropertiesIT {
 
 	@Autowired
-	private PrimefacesProperties primefacesProperties;
+	private Primefaces6_0Properties primefacesProperties;
 
 	@Test
 	public void testPrivateCaptchaKey() {
@@ -48,38 +49,33 @@ public class PrimefacesPropertiesIT {
 	}
 
 	@Test
-	public void testBeanValidationDisabled() {
-		assertThat(this.primefacesProperties.getBeanValidationDisabled()).isTrue();
-	}
-
-	@Test
 	public void testCacheProvider() {
-		assertThat(this.primefacesProperties.getCacheProvider()).isEqualTo("myCacheProvider");
+		assertThat(this.primefacesProperties.getCacheProvider()).isEqualTo(DefaultCacheProvider.class);
 	}
 
 	@Test
 	public void testDir() {
-		assertThat(this.primefacesProperties.getDir()).isEqualTo("left");
+		assertThat(this.primefacesProperties.getDir()).isEqualTo("ltr");
 	}
 
 	@Test
 	public void testEarlyPostParamEvaluation() {
-		assertThat(this.primefacesProperties.getEarlyPostParamEvaluation()).isTrue();
+		assertThat(this.primefacesProperties.isEarlyPostParamEvaluation()).isTrue();
 	}
 
 	@Test
 	public void testFontAwesome() {
-		assertThat(this.primefacesProperties.getFontAwesome()).isTrue();
+		assertThat(this.primefacesProperties.isFontAwesome()).isTrue();
 	}
 
 	@Test
 	public void testInterpolateClientSideValidationMessages() {
-		assertThat(this.primefacesProperties.getInterpolateClientSideValidationMessages()).isTrue();
+		assertThat(this.primefacesProperties.isInterpolateClientSideValidationMessages()).isTrue();
 	}
 
 	@Test
 	public void testLegacyWidgetNamespace() {
-		assertThat(this.primefacesProperties.getLegacyWidgetNamespace()).isTrue();
+		assertThat(this.primefacesProperties.isLegacyWidgetNamespace()).isTrue();
 	}
 
 	@Test
@@ -89,7 +85,7 @@ public class PrimefacesPropertiesIT {
 
 	@Test
 	public void testClientSideValidation() {
-		assertThat(this.primefacesProperties.getClientSideValidation()).isTrue();
+		assertThat(this.primefacesProperties.isClientSideValidation()).isTrue();
 	}
 
 	@Test
@@ -99,7 +95,7 @@ public class PrimefacesPropertiesIT {
 
 	@Test
 	public void testResetValues() {
-		assertThat(this.primefacesProperties.getResetValues()).isTrue();
+		assertThat(this.primefacesProperties.isResetValues()).isTrue();
 	}
 
 	@Test
@@ -119,17 +115,12 @@ public class PrimefacesPropertiesIT {
 
 	@Test
 	public void testTransformMetadata() {
-		assertThat(this.primefacesProperties.getTransformMetadata()).isTrue();
+		assertThat(this.primefacesProperties.isTransformMetadata()).isTrue();
 	}
 
 	@Test
 	public void testUploader() {
 		assertThat(this.primefacesProperties.getUploader()).isEqualTo("auto");
-	}
-
-	@Test
-	public void testCaptchaPrivateKey() {
-		assertThat(this.primefacesProperties.getCaptcha().getPrivateKey()).isEqualTo("myPrivateKey");
 	}
 
 }

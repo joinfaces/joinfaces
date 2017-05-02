@@ -32,151 +32,151 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class JavaxFacesPropertiesIT {
 
 	@Autowired
-	private JavaxFacesProperties javaxFacesProperties;
+	private JavaxFaces2_2Properties javaxFaces22Properties;
 
 	@Test
 	public void testProjectState() {
-		assertThat(this.javaxFacesProperties.getProjectStage()).isEqualTo(ProjectStage.Development);
+		assertThat(this.javaxFaces22Properties.getProjectStage()).isEqualTo(ProjectStage.Development);
 	}
 
 	@Test
 	public void testResourceExcludes() {
-		assertThat(this.javaxFacesProperties.getResourceExcludes()).containsExactly("myExcludes");
+		assertThat(this.javaxFaces22Properties.getResourceExcludes()).containsExactly("myExcludes");
 	}
 
 	@Test
 	public void testWebappContractsDirectory() {
-		assertThat(this.javaxFacesProperties.getWebappContractsDirectory()).isEqualTo("myContractsDirectory");
+		assertThat(this.javaxFaces22Properties.getWebappContractsDirectory()).isEqualTo("myContractsDirectory");
 	}
 
 	@Test
 	public void testWebappResourcesDirectory() {
-		assertThat(this.javaxFacesProperties.getWebappResourcesDirectory()).isEqualTo("myResourcesDirectory");
+		assertThat(this.javaxFaces22Properties.getWebappResourcesDirectory()).isEqualTo("myResourcesDirectory");
 	}
 
 	@Test
 	public void testFullStateSavingViewIds() {
-		assertThat(this.javaxFacesProperties.getFullStateSavingViewIds()).containsExactly("myIds");
+		assertThat(this.javaxFaces22Properties.getFullStateSavingViewIds()).containsExactly("myIds");
 	}
 
 	@Test
 	public void testPartialStateSaving() {
-		assertThat(this.javaxFacesProperties.getPartialStateSaving()).isTrue();
+		assertThat(this.javaxFaces22Properties.getPartialStateSaving()).isTrue();
 	}
 
 	@Test
 	public void testSerializeServerState() {
-		assertThat(this.javaxFacesProperties.getSerializeServerState()).isTrue();
+		assertThat(this.javaxFaces22Properties.getSerializeServerState()).isTrue();
 	}
 
 	@Test
 	public void testStateSavingMethod() {
-		assertThat(this.javaxFacesProperties.getStateSavingMethod()).isEqualTo("server");
+		assertThat(this.javaxFaces22Properties.getStateSavingMethod()).isEqualTo("server");
 	}
 
 	@Test
 	public void testDefaultSuffix() {
-		assertThat(this.javaxFacesProperties.getDefaultSuffix()).isEqualTo(".xhtml");
+		assertThat(this.javaxFaces22Properties.getDefaultSuffix()).isEqualTo(".xhtml");
 	}
 
 	@Test
 	public void testDisableFaceletJsfViewhandler() {
-		assertThat(this.javaxFacesProperties.getDisableFaceletJsfViewhandler()).isTrue();
+		assertThat(this.javaxFaces22Properties.getDisableFaceletJsfViewhandler()).isTrue();
 	}
 
 	@Test
 	public void testFaceletsBufferSize() {
-		assertThat(this.javaxFacesProperties.getFaceletsBufferSize()).isEqualTo(33);
+		assertThat(this.javaxFaces22Properties.getFaceletsBufferSize()).isEqualTo(33);
 	}
 
 	@Test
 	public void testFaceletsLibraries() {
-		assertThat(this.javaxFacesProperties.getFaceletsLibraries()).containsExactly("myLibrary");
+		assertThat(this.javaxFaces22Properties.getFaceletsLibraries()).containsExactly("myLibrary");
 	}
 
 	@Test
 	public void testFaceletsRefreshPeriod() {
-		assertThat(this.javaxFacesProperties.getFaceletsRefreshPeriod()).isEqualTo(35);
+		assertThat(this.javaxFaces22Properties.getFaceletsRefreshPeriod()).isEqualTo(35);
 	}
 
 	@Test
 	public void testFaceletsSkipComments() {
-		assertThat(this.javaxFacesProperties.getFaceletsSkipComments()).isTrue();
+		assertThat(this.javaxFaces22Properties.getFaceletsSkipComments()).isTrue();
 	}
 
 	@Test
 	public void testFaceletsSuffix() {
-		assertThat(this.javaxFacesProperties.getFaceletsSuffix()).isEqualTo(".html");
+		assertThat(this.javaxFaces22Properties.getFaceletsSuffix()).isEqualTo(".html");
 	}
 
 	@Test
 	public void testFaceletsViewMappings() {
-		assertThat(this.javaxFacesProperties.getFaceletsViewMappings()).containsExactly("newMapping");
+		assertThat(this.javaxFaces22Properties.getFaceletsViewMappings()).containsExactly("newMapping");
 	}
 
 	@Test
 	public void testHonorCurrentComponentAttributes() {
-		assertThat(this.javaxFacesProperties.getHonorCurrentComponentAttributes()).isTrue();
+		assertThat(this.javaxFaces22Properties.getHonorCurrentComponentAttributes()).isTrue();
 	}
 
 	@Test
 	public void testValidateEmptyFields() {
-		assertThat(this.javaxFacesProperties.getValidateEmptyFields()).isEqualTo("auto");
+		assertThat(this.javaxFaces22Properties.getValidateEmptyFields()).isEqualTo("auto");
 	}
 
 	@Test
 	public void testSeparatorChar() {
-		assertThat(this.javaxFacesProperties.getSeparatorChar()).isEqualTo(";");
+		assertThat(this.javaxFaces22Properties.getSeparatorChar()).isEqualTo(";");
 	}
 
 	@Test
 	public void testPartialExecute() {
-		assertThat(this.javaxFacesProperties.getPartial().getExecute()).isTrue();
+		assertThat(this.javaxFaces22Properties.getPartial().getExecute()).isTrue();
 	}
 
 	@Test
 	public void testPartialRender() {
-		assertThat(this.javaxFacesProperties.getPartial().getRender()).isTrue();
+		assertThat(this.javaxFaces22Properties.getPartial().getRender()).isTrue();
 	}
 
 	@Test
 	public void testPartialResetValues() {
-		assertThat(this.javaxFacesProperties.getPartial().getResetValues()).isTrue();
+		assertThat(this.javaxFaces22Properties.getPartial().getResetValues()).isTrue();
 	}
 
 	@Test
 	public void testDatetimeconverterDefaultTimezoneIsSystemTimezone() {
-		assertThat(this.javaxFacesProperties.getDatetimeconverterDefaultTimezoneIsSystemTimezone()).isTrue();
+		assertThat(this.javaxFaces22Properties.getDatetimeconverterDefaultTimezoneIsSystemTimezone()).isTrue();
 	}
 
 	@Test
 	public void testFlowNullFlow() {
-		assertThat(this.javaxFacesProperties.getFlow().getNullFlow()).isTrue();
+		assertThat(this.javaxFaces22Properties.getFlow().getNullFlow()).isTrue();
 	}
 
 	@Test
 	public void testValidatorDisableDefaultBeanValidator() {
-		assertThat(this.javaxFacesProperties.getValidator().getDisableDefaultBeanValidator()).isTrue();
+		assertThat(this.javaxFaces22Properties.getValidator().getDisableDefaultBeanValidator()).isTrue();
 	}
 
 	@Test
 	public void testConfigFiles() {
-		assertThat(this.javaxFacesProperties.getConfigFiles()).containsExactly("myConfig");
+		assertThat(this.javaxFaces22Properties.getConfigFiles()).containsExactly("myConfig");
 	}
 
 	@Test
 	public void testLifecycleId() {
-		assertThat(this.javaxFacesProperties.getLifecycleId()).isEqualTo("myId");
+		assertThat(this.javaxFaces22Properties.getLifecycleId()).isEqualTo("myId");
 	}
 
 	@Test
 	public void testClientWindowMode() {
-		assertThat(this.javaxFacesProperties.getClientWindowMode()).isEqualTo("url");
+		assertThat(this.javaxFaces22Properties.getClientWindowMode()).isEqualTo("url");
 	}
 
 	@Test
 	public void testInterpretEmptyStringSubmittedValuesAsNull() {
-		assertThat(this.javaxFacesProperties.getInterpretEmptyStringSubmittedValuesAsNull()).isTrue();
+		assertThat(this.javaxFaces22Properties.getInterpretEmptyStringSubmittedValuesAsNull()).isTrue();
 	}
 
 }

@@ -16,19 +16,26 @@
 
 package org.joinfaces.angularfaces;
 
+import java.util.ArrayList;
+
+import javax.faces.view.facelets.TagDecorator;
+
+import de.beyondjava.angularFaces.core.tagTransformer.AngularTagDecorator;
+import org.joinfaces.configuration.ServletContextInitParameterConfigurationPropertiesAutoConfiguration;
+import org.joinfaces.configuration.ServletContextInitParameterConfigurationPropertiesCustomizer;
+import org.joinfaces.javaxfaces.JavaxFaces2_0Properties;
 import org.joinfaces.javaxfaces.JavaxFacesSpringBootAutoConfiguration;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.AutoConfigureBefore;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnWebApplication;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
-import org.springframework.boot.web.servlet.ServletContextInitializer;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 /**
  * Spring Boot Auto Configuration of AngularFaces.
+ *
  * @author Marcelo Fernandes
  */
 @Configuration
@@ -36,13 +43,32 @@ import org.springframework.context.annotation.Configuration;
 @ConditionalOnClass(name = "de.beyondjava.angularFaces.core.ELTools")
 @AutoConfigureBefore(JavaxFacesSpringBootAutoConfiguration.class)
 @ConditionalOnWebApplication
-public class AngularfacesSpringBootAutoConfiguration {
-
-	@Autowired
-	private AngularfacesProperties angularfacesProperties;
+public class AngularfacesSpringBootAutoConfiguration extends ServletContextInitParameterConfigurationPropertiesAutoConfiguration<AngularfacesProperties> {
 
 	@Bean
-	public ServletContextInitializer angularfacesServletContextInitializer() {
-		return new AngularfacesServletContextInitializer(this.angularfacesProperties);
+	public JavaxFacesPropertiesCustomizer javaxFacesPropertiesCustomizer() {
+		return new JavaxFacesPropertiesCustomizer();
+	}
+
+	/**
+	 * Adds the {@link AngularTagDecorator} to {@link JavaxFaces2_0Properties#faceletsDecorators}.
+	 *
+	 * @author Lars Grefer
+	 */
+	static class JavaxFacesPropertiesCustomizer implements ServletContextInitParameterConfigurationPropertiesCustomizer<JavaxFaces2_0Properties> {
+		@Override
+		public void process(JavaxFaces2_0Properties properties) {
+			if (properties.getFaceletsDecorators() == null) {
+				ArrayList<Class<? extends TagDecorator>> faceletsDecorators = new ArrayList<Class<? extends TagDecorator>>();
+				faceletsDecorators.add(AngularTagDecorator.class);
+				properties.setFaceletsDecorators(faceletsDecorators);
+			}
+			else {
+				if (!properties.getFaceletsDecorators().contains(AngularTagDecorator.class)) {
+					properties.getFaceletsDecorators().add(AngularTagDecorator.class);
+
+				}
+			}
+		}
 	}
 }

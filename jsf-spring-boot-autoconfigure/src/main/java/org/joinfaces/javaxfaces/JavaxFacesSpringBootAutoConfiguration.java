@@ -16,12 +16,14 @@
 
 package org.joinfaces.javaxfaces;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import javax.faces.context.FacesContext;
+
+import org.joinfaces.configuration.ConditionalOnClassVersion;
+import org.joinfaces.configuration.ServletContextInitParameterConfigurationPropertiesAutoConfiguration;
+
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnWebApplication;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
-import org.springframework.boot.web.servlet.ServletContextInitializer;
-import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 /**
@@ -29,16 +31,35 @@ import org.springframework.context.annotation.Configuration;
  * @author Marcelo Fernandes
  */
 @Configuration
-@EnableConfigurationProperties({JavaxFacesProperties.class})
-@ConditionalOnClass(name = "javax.faces.application.ProjectStage")
+@ConditionalOnClass(FacesContext.class)
 @ConditionalOnWebApplication
 public class JavaxFacesSpringBootAutoConfiguration {
 
-	@Autowired
-	private JavaxFacesProperties javaxFacesProperties;
-
-	@Bean
-	public ServletContextInitializer javaxFacesServletContextInitializer() {
-		return new JavaxFacesServletContextInitializer(this.javaxFacesProperties);
+	/**
+	 * Auto configuration for JSF 2.0.
+	 */
+	@Configuration
+	@EnableConfigurationProperties(JavaxFaces2_0Properties.class)
+	@ConditionalOnClassVersion(value = FacesContext.class, versionRegex = "2\\.0.*")
+	public static class JavaxFaces2_0AutoConfiguration extends ServletContextInitParameterConfigurationPropertiesAutoConfiguration<JavaxFaces2_0Properties> {
 	}
+
+	/**
+	 * Auto configuration for JSF 2.1.
+	 */
+	@Configuration
+	@EnableConfigurationProperties(JavaxFaces2_1Properties.class)
+	@ConditionalOnClassVersion(value = FacesContext.class, versionRegex = "2\\.1.*")
+	public static class JavaxFaces2_1AutoConfiguration extends ServletContextInitParameterConfigurationPropertiesAutoConfiguration<JavaxFaces2_1Properties> {
+	}
+
+	/**
+	 * Auto configuration for JSF 2.2.
+	 */
+	@Configuration
+	@EnableConfigurationProperties(JavaxFaces2_2Properties.class)
+	@ConditionalOnClassVersion(value = FacesContext.class, versionRegex = "2\\.[2-9].*")
+	public static class JavaxFaces2_2AutoConfiguration extends ServletContextInitParameterConfigurationPropertiesAutoConfiguration<JavaxFaces2_2Properties> {
+	}
+
 }

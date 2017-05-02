@@ -207,7 +207,7 @@ jsf:
   omnifaces:
     cacheProvider: org.omnifaces.component.output.cache.DefaultCacheProvider
     defaultcache: myCache
-    exceptionTypesToUnwrap: myException
+    exceptionTypesToUnwrap: java.lang.IllegalStateException
     facesViewsDispatchMethod: myFacesMethod
     facesViewsEnabled: true
     facesViewsExtensionAction: extensionAction
@@ -225,20 +225,18 @@ jsf:
     combinedResourceHandlerInlineCss: true
     combinedResourceHandlerInlineJs: true
     combinedResourceHandlerSuppressedResources: suppressedResource
-    cache:
-      applicationMaxCapacity: 10
-      applicationTtl: 11
-      sessionMaxCapacity: 12
-      sessionTtl: 13
+    cacheSettingApplicationMaxCapacity: 10
+    cacheSettingApplicationTtl: 11
+    cacheSettingSessionMaxCapacity: 12
+    cacheSettingSessionTtl: 13
 
   # primefaces namespace
   primefaces:
     privateCaptchaKey: myPrivateCaptchaKey
     publicCaptchaKey: myKey
     autoUpdate: auto
-    beanValidationDisabled: true
-    cacheProvider: myCacheProvider
-    dir: left
+    cacheProvider: org.primefaces.cache.DefaultCacheProvider
+    dir: ltr
     earlyPostParamEvaluation: true
     fontAwesome: true
     interpolateClientSideValidationMessages: true
@@ -251,8 +249,6 @@ jsf:
     theme: omega
     transformMetadata: true
     uploader: auto
-    captcha:
-      privateKey: myPrivateKey
     mobile:
       theme: cupertino
 
@@ -265,7 +261,7 @@ jsf:
     getJqueryFromCdn: true
     getJqueryuiFromCdn: true
     getBootstrapFromCdn: true
-    blockUI: false
+    block-ui: false
     defaults:
       renderLabel: myRenderLabel
       decorator: false

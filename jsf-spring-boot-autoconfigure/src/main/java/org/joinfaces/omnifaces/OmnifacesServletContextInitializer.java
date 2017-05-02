@@ -32,12 +32,6 @@ import org.springframework.boot.web.servlet.ServletContextInitializer;
  */
 public class OmnifacesServletContextInitializer implements ServletContextInitializer, JsfClassFactoryConfiguration {
 
-	private final OmnifacesProperties omnifacesProperties;
-
-	public OmnifacesServletContextInitializer(OmnifacesProperties omnifacesProperties) {
-		this.omnifacesProperties = omnifacesProperties;
-	}
-
 	private ServletContainerInitializer servletContainerInitializer;
 
 	@Override
@@ -60,12 +54,6 @@ public class OmnifacesServletContextInitializer implements ServletContextInitial
 
 	@Override
 	public void onStartup(ServletContext sc) throws ServletException {
-		OmnifacesServletContextConfigurer.builder()
-			.omnifacesProperties(this.omnifacesProperties)
-			.servletContext(sc)
-			.build()
-			.configure();
-
 		ServletContainerInitializer servletContainerInitializer = getServletContainerInitializer();
 		JsfClassFactory jsfClassFactory = new JsfClassFactory(this);
 		servletContainerInitializer.onStartup(jsfClassFactory.getAllClasses(), sc);

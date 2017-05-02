@@ -37,12 +37,6 @@ public class MojarraServletContextInitializer implements ServletContextInitializ
 	 */
 	public static final String ANOTHER_FACES_CONFIG = "com/sun/faces/jsf-ri-runtime.xml";
 
-	private final MojarraProperties mojarraProperties;
-
-	public MojarraServletContextInitializer(MojarraProperties mojarraProperties) {
-		this.mojarraProperties = mojarraProperties;
-	}
-
 	private ServletContainerInitializer servletContainerInitializer;
 
 	@Override
@@ -65,12 +59,6 @@ public class MojarraServletContextInitializer implements ServletContextInitializ
 
 	@Override
 	public void onStartup(ServletContext sc) throws ServletException {
-		MojarraServletContextConfigurer.builder()
-			.mojarraProperties(this.mojarraProperties)
-			.servletContext(sc)
-			.build()
-			.configure();
-
 		ServletContainerInitializer servletContainerInitializer = getServletContainerInitializer();
 		JsfClassFactory jsfClassFactory = new JsfClassFactory(this);
 		servletContainerInitializer.onStartup(jsfClassFactory.getAllClasses(), sc);
