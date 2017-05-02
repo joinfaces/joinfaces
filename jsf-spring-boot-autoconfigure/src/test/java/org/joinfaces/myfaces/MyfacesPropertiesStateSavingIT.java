@@ -16,6 +16,7 @@
 
 package org.joinfaces.myfaces;
 
+import org.apache.myfaces.shared.util.serial.DefaultSerialFactory;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
@@ -102,7 +103,7 @@ public class MyfacesPropertiesStateSavingIT {
 
 	@Test
 	public void testSerialFactory() {
-		assertThat(this.myfacesProperties.getSerialFactory()).isEqualTo("mySerialFactory");
+		assertThat(this.myfacesProperties.getSerialFactory()).isEqualTo(DefaultSerialFactory.class);
 	}
 
 	@Test

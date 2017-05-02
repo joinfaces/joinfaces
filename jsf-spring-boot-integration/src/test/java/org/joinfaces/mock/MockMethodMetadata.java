@@ -70,7 +70,7 @@ public class MockMethodMetadata implements MethodMetadata {
 
 	@Override
 	public boolean isAnnotated(String annotationName) {
-		return annotation.getName().equals(annotationName);
+		return this.annotation.getName().equals(annotationName);
 	}
 
 	@Override

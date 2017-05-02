@@ -119,7 +119,7 @@ public class JsfClassFactory {
 	 * @return collection of urls
 	 */
 	public Collection<URL> getURLs() {
-		if (urls == null) {
+		if (this.urls == null) {
 			// stores collections of urls to be scanned
 			Collection<URL> result = new ArrayList<URL>();
 			Collection<String> strings = new HashSet<String>();
@@ -141,9 +141,9 @@ public class JsfClassFactory {
 					add(result, strings, url);
 				}
 			}
-			urls = result;
+			this.urls = result;
 		}
-		return urls;
+		return this.urls;
 	}
 
 	/**
@@ -153,11 +153,11 @@ public class JsfClassFactory {
 	 * @return classes annotated by types handled by servlet container initializer.
 	 */
 	public Map<Class<? extends Annotation>, Set<Class<?>>> getAnnotatedClassMap() {
-		if (annotatedClassMap == null) {
+		if (this.annotatedClassMap == null) {
 			computeClasses();
 		}
 
-		return annotatedClassMap;
+		return this.annotatedClassMap;
 	}
 
 	/**
@@ -167,16 +167,16 @@ public class JsfClassFactory {
 	 * @return classes annotated by types handled by servlet container initializer.
 	 */
 	public Map<Class<?>, Set<Class<?>>> getOtherClassMap() {
-		if (otherClassMap == null) {
+		if (this.otherClassMap == null) {
 			computeClasses();
 		}
 
-		return otherClassMap;
+		return this.otherClassMap;
 	}
 
 	private void computeClasses() {
-		annotatedClassMap = new HashMap<Class<? extends Annotation>, Set<Class<?>>>();
-		otherClassMap = new HashMap<Class<?>, Set<Class<?>>>();
+		this.annotatedClassMap = new HashMap<Class<? extends Annotation>, Set<Class<?>>>();
+		this.otherClassMap = new HashMap<Class<?>, Set<Class<?>>>();
 
 		TypesHandled handlesTypes = handlesTypes();
 		// check if any type is handled
@@ -186,11 +186,11 @@ public class JsfClassFactory {
 
 			// add types annotated for each type to be handled
 			for (Class<? extends Annotation> annotationType : handlesTypes.getAnnotationTypes()) {
-				annotatedClassMap.put(annotationType, reflections.getTypesAnnotatedWith(annotationType));
+				this.annotatedClassMap.put(annotationType, reflections.getTypesAnnotatedWith(annotationType));
 			}
 			// add subtype of other types to be handled
 			for (Class<?> otherType : handlesTypes.getOtherTypes()) {
-				otherClassMap.put(otherType, (Set<Class<?>>) reflections.getSubTypesOf(otherType));
+				this.otherClassMap.put(otherType, (Set<Class<?>>) reflections.getSubTypesOf(otherType));
 			}
 		}
 	}

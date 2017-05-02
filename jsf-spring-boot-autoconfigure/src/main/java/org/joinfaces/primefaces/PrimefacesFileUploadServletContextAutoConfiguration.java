@@ -67,7 +67,7 @@ public class PrimefacesFileUploadServletContextAutoConfiguration {
 	@ConditionalOnExpression("'${jsf.primefaces.uploader}' != 'commons'")
 	@Bean
 	public ServletContextInitializer primefacesFileUploadServletContextInitializer() {
-		return new PrimefacesFileUploadServletContextInitializer(multipartConfigElement);
+		return new PrimefacesFileUploadServletContextInitializer(this.multipartConfigElement);
 	}
 
 	/**

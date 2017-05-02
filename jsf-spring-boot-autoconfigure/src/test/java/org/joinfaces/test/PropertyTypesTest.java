@@ -16,6 +16,8 @@
 
 package org.joinfaces.test;
 
+import java.util.List;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
@@ -29,32 +31,49 @@ import static org.assertj.core.api.Assertions.assertThat;
  * @author Lars Grefer
  */
 @RunWith(SpringRunner.class)
-@SpringBootTest(classes = ListPropertiesAutoConfiguration.class)
-public class ListPropertiesTest {
+@SpringBootTest(classes = TestPropertiesAutoConfiguration.class)
+public class PropertyTypesTest {
 
 	private static final String FOO = "foo";
 	private static final String BAR = "bar";
 
 	@Autowired
-	private ListProperties listProperties;
+	private TestProperties testProperties;
 
 	@Test
 	public void testPropertiesListAProperties() {
-		assertThat(listProperties.getListA()).containsExactly(FOO, BAR);
+		assertThat(this.testProperties.getListA()).containsExactly(FOO, BAR);
 	}
 
 	@Test
 	public void testPropertiesListBProperties() {
-		assertThat(listProperties.getListB()).containsExactly(FOO, BAR);
+		assertThat(this.testProperties.getListB()).containsExactly(FOO, BAR);
 	}
 
 	@Test
 	public void testYamlListCProperties() {
-		assertThat(listProperties.getListC()).containsExactly(FOO, BAR);
+		assertThat(this.testProperties.getListC()).containsExactly(FOO, BAR);
 	}
 
 	@Test
 	public void testYamlListDProperties() {
-		assertThat(listProperties.getListD()).containsExactly(FOO, BAR);
+		assertThat(this.testProperties.getListD()).containsExactly(FOO, BAR);
+	}
+
+	@Test
+	public void textCharSequenceClassProperty() {
+		assertThat(this.testProperties.getCharSequenceClass()).isNotNull();
+		assertThat(this.testProperties.getCharSequenceClass()).isEqualTo(String.class);
+	}
+
+	@Test
+	public void testClassProperty() {
+		assertThat(this.testProperties.getRandomClass()).isNotNull();
+		assertThat(this.testProperties.getRandomClass()).isEqualTo(Void.class);
+	}
+
+	@Test
+	public void testClassListProperty() {
+		assertThat(this.testProperties.getClassList()).containsExactly(String.class, Void.class, List.class);
 	}
 }

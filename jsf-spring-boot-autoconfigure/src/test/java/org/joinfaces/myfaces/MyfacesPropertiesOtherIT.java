@@ -38,11 +38,6 @@ public class MyfacesPropertiesOtherIT {
 	}
 
 	@Test
-	public void testDelegateFacesServlet() {
-		assertThat(this.myfacesProperties.getDelegateFacesServlet()).isEqualTo("myFacesServlet");
-	}
-
-	@Test
 	public void testValidateXml() {
 		assertThat(this.myfacesProperties.getValidateXml()).isTrue();
 	}
@@ -155,16 +150,6 @@ public class MyfacesPropertiesOtherIT {
 	@Test
 	public void testLogWebContextParams() {
 		assertThat(this.myfacesProperties.getLogWebContextParams()).isEqualTo("auto");
-	}
-
-	@Test
-	public void testFacesInitializer() {
-		assertThat(this.myfacesProperties.getFacesInitializer()).isEqualTo("myFacesInitializer");
-	}
-
-	@Test
-	public void testFacesInitPlugins() {
-		assertThat(this.myfacesProperties.getFacesInitPlugins()).size().isEqualTo(1);
 	}
 
 	@Test
