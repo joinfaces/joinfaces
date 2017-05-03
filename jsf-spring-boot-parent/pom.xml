@@ -30,7 +30,7 @@
         <primefaces.version>6.0</primefaces.version>        
         <primefaces-extensions.version>6.0.0</primefaces-extensions.version>
 
-        <bootsfaces.version>1.0.2</bootsfaces.version>
+        <bootsfaces.version>1.1.0</bootsfaces.version>
         <angularfaces.version>2.1.12</angularfaces.version>
 
         <butterfaces.version>2.1.20</butterfaces.version>
