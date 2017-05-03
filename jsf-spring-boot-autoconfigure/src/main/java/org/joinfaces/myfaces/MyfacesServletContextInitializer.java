@@ -37,12 +37,6 @@ public class MyfacesServletContextInitializer implements ServletContextInitializ
 	 */
 	public static final String ANOTHER_FACES_CONFIG = "META-INF/standard-faces-config.xml";
 
-	private final MyfacesProperties myfacesProperties;
-
-	public MyfacesServletContextInitializer(MyfacesProperties myfacesProperties) {
-		this.myfacesProperties = myfacesProperties;
-	}
-
 	private ServletContainerInitializer servletContainerInitializer;
 
 	@Override
@@ -65,12 +59,6 @@ public class MyfacesServletContextInitializer implements ServletContextInitializ
 
 	@Override
 	public void onStartup(ServletContext sc) throws ServletException {
-		MyfacesServletContextConfigurer.builder()
-			.myfacesProperties(this.myfacesProperties)
-			.servletContext(sc)
-			.build()
-			.configure();
-
 		ServletContainerInitializer servletContainerInitializer = getServletContainerInitializer();
 		JsfClassFactory jsfClassFactory = new JsfClassFactory(this);
 		JoinFacesAnnotationProvider.setAnnotatedClasses(jsfClassFactory.getAnnotatedClassMap());

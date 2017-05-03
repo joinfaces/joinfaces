@@ -16,15 +16,14 @@
 
 package org.joinfaces.richfaces;
 
+import org.joinfaces.configuration.ServletContextInitParameterConfigurationPropertiesAutoConfiguration;
 import org.joinfaces.javaxfaces.JavaxFacesSpringBootAutoConfiguration;
 import org.richfaces.webapp.ResourceServlet;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.AutoConfigureBefore;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnWebApplication;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
-import org.springframework.boot.web.servlet.ServletContextInitializer;
 import org.springframework.boot.web.servlet.ServletRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -40,15 +39,7 @@ import org.springframework.context.annotation.Configuration;
 @ConditionalOnClass(name = "org.richfaces.application.CoreConfiguration")
 @AutoConfigureBefore(JavaxFacesSpringBootAutoConfiguration.class)
 @ConditionalOnWebApplication
-public class RichfacesSpringBootAutoConfiguration {
-
-	@Autowired
-	private RichfacesProperties richfacesProperties;
-
-	@Bean
-	public ServletContextInitializer richfacesServletContextInitializer() {
-		return new RichfacesServletContextInitializer(this.richfacesProperties);
-	}
+public class RichfacesSpringBootAutoConfiguration extends ServletContextInitParameterConfigurationPropertiesAutoConfiguration<RichfacesProperties> {
 
 	@Bean
 	public ServletRegistrationBean richfacesResourcesServlet() {

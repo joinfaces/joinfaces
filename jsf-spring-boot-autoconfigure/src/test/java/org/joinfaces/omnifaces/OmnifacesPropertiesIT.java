@@ -45,7 +45,7 @@ public class OmnifacesPropertiesIT {
 
 	@Test
 	public void testExceptionTypesToUnwrap() {
-		assertThat(this.omnifacesProperties.getExceptionTypesToUnwrap()).isEqualTo("myException");
+		assertThat(this.omnifacesProperties.getExceptionTypesToUnwrap()).containsExactly(IllegalStateException.class);
 	}
 
 	@Test
@@ -135,22 +135,22 @@ public class OmnifacesPropertiesIT {
 
 	@Test
 	public void testCacheApplicationMaxCapacity() {
-		assertThat(this.omnifacesProperties.getCache().getApplicationMaxCapacity()).isEqualTo(10);
+		assertThat(this.omnifacesProperties.getCacheSettingApplicationMaxCapacity()).isEqualTo(10);
 	}
 
 	@Test
 	public void testCacheApplicationTtl() {
-		assertThat(this.omnifacesProperties.getCache().getApplicationTtl()).isEqualTo(11);
+		assertThat(this.omnifacesProperties.getCacheSettingApplicationTtl()).isEqualTo(11);
 	}
 
 	@Test
 	public void testCacheSessionMaxCapacity() {
-		assertThat(this.omnifacesProperties.getCache().getSessionMaxCapacity()).isEqualTo(12);
+		assertThat(this.omnifacesProperties.getCacheSettingSessionMaxCapacity()).isEqualTo(12);
 	}
 
 	@Test
 	public void testCacheSessionTtl() {
-		assertThat(this.omnifacesProperties.getCache().getSessionTtl()).isEqualTo(13);
+		assertThat(this.omnifacesProperties.getCacheSettingSessionTtl()).isEqualTo(13);
 	}
 
 }

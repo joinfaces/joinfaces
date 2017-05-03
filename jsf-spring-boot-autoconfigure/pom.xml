@@ -22,8 +22,10 @@
         <duplicate.ignoredClassPattern>(javax.faces.*$|javax.persistence.(PersistenceContext|PersistenceContextType|PersistenceContexts|PersistenceProperty|PersistenceUnit|PersistenceUnits|SynchronizationType))</duplicate.ignoredClassPattern>
         <duplicate.ignoredResourcePattern>javax/faces/Messages.*\.properties</duplicate.ignoredResourcePattern>
         
+        <cobertura.totalLineRate>99</cobertura.totalLineRate>
+        <cobertura.lineRate>75</cobertura.lineRate>
         <cobertura.branchRate>92</cobertura.branchRate>
-        <cobertura.totalBranchRate>95</cobertura.totalBranchRate>
+        <cobertura.totalBranchRate>96</cobertura.totalBranchRate>
     </properties>
 
     <dependencies>
