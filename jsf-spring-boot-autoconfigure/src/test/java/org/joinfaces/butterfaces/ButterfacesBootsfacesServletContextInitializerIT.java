@@ -39,7 +39,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 		},
 		webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT
 )
-public class ButterfacesBootsfacesServletContextInitializerTest {
+public class ButterfacesBootsfacesServletContextInitializerIT {
 
 	@Autowired
 	private WebApplicationContext applicationContext;
