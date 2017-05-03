@@ -28,6 +28,7 @@ import org.springframework.boot.autoconfigure.condition.ConditionalOnWebApplicat
 import org.springframework.context.annotation.Bean;
 
 /**
+ * Auto configuration of JSF ProjectStage.
  * @author Lars Grefer
  */
 @Slf4j
@@ -46,7 +47,7 @@ public class ProjectStageAutoConfiguration {
 	@Bean
 	@ConditionalOnMissingBean
 	@ConditionalOnProperty(value = "debug", havingValue = "false", matchIfMissing = true)
-	public ProjectStageCustomizer ProductionProjectStageCustomizer() {
+	public ProjectStageCustomizer productionProjectStageCustomizer() {
 		return new ProjectStageCustomizer(ProjectStage.Production);
 	}
 

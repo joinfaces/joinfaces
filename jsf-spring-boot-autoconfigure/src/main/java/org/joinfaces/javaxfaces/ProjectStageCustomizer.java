@@ -20,7 +20,6 @@ import javax.faces.application.ProjectStage;
 
 import lombok.RequiredArgsConstructor;
 import org.joinfaces.configuration.ServletContextInitParameterConfigurationPropertiesCustomizer;
-import org.joinfaces.javaxfaces.JavaxFaces2_0Properties;
 
 /**
  * {@link ServletContextInitParameterConfigurationPropertiesCustomizer} for setting the JSF
@@ -36,7 +35,7 @@ public class ProjectStageCustomizer implements ServletContextInitParameterConfig
 	@Override
 	public void process(JavaxFaces2_0Properties properties) {
 		if (properties.getProjectStage() == null) {
-			properties.setProjectStage(projectStage);
+			properties.setProjectStage(this.projectStage);
 		}
 	}
 }
