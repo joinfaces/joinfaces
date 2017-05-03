@@ -43,11 +43,11 @@
                 </exclusion>
             </exclusions>
         </dependency>
-        <!-- jetty dependencies -->
         <dependency>
             <groupId>org.joinfaces</groupId>
-            <artifactId>jsf-jetty-spring-boot-autoconfigure</artifactId>
+            <artifactId>jsf-spring-boot-autoconfigure</artifactId>
         </dependency>
+        <!-- jetty dependencies -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-jetty</artifactId>

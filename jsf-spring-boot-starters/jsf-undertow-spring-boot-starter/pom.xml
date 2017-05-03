@@ -40,11 +40,11 @@
                 </exclusion>
             </exclusions>
         </dependency>
-        <!-- undertow dependencies -->
         <dependency>
             <groupId>org.joinfaces</groupId>
-            <artifactId>jsf-undertow-spring-boot-autoconfigure</artifactId>
+            <artifactId>jsf-spring-boot-autoconfigure</artifactId>
         </dependency>
+        <!-- undertow dependencies -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-undertow</artifactId>
