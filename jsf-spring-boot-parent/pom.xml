@@ -80,7 +80,7 @@
         <duplicate.ignoredResourcePattern>about.html</duplicate.ignoredResourcePattern>
         <duplicate.ignoredClassPattern>none</duplicate.ignoredClassPattern>
         
-        <maven-surefire-report-plugin.version>2.19.1</maven-surefire-report-plugin.version>
+        <maven-surefire-report-plugin.version>2.20</maven-surefire-report-plugin.version>
 
         <cobertura.totalBranchRate>100</cobertura.totalBranchRate>
         <cobertura.totalLineRate>100</cobertura.totalLineRate>
