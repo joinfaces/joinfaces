@@ -10,4 +10,5 @@ org.joinfaces.bootsfaces.BootsfacesSpringBootAutoConfiguration,\
 org.joinfaces.angularfaces.AngularfacesSpringBootAutoConfiguration,\
 org.joinfaces.butterfaces.ButterfacesSpringBootAutoConfiguration,\
 org.joinfaces.richfaces.RichfacesSpringBootAutoConfiguration,\
-org.joinfaces.jpa.JpaWebAutoConfiguration
+org.joinfaces.jpa.JpaWebAutoConfiguration,\
+org.joinfaces.javaxfaces.ProjectStageAutoConfiguration
