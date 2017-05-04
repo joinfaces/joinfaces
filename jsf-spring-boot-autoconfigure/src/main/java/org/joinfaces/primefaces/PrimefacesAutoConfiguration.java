@@ -25,6 +25,8 @@ import org.springframework.boot.autoconfigure.AutoConfigureBefore;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnWebApplication;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
+import org.springframework.boot.web.servlet.ServletContextInitializer;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 /**
@@ -46,6 +48,10 @@ public class PrimefacesAutoConfiguration {
 	@EnableConfigurationProperties(Primefaces5_0Properties.class)
 	@ConditionalOnClassVersion(value = Constants.ContextParams.class, versionRegex = "5\\.0.*")
 	public static class Primefaces5_0AutoConfiguration extends ServletContextInitParameterConfigurationPropertiesAutoConfiguration<Primefaces5_0Properties> {
+		@Bean
+		public ServletContextInitializer primefaces5_0PropertiesInitializer() {
+			return super.getPropertiesInitializer();
+		}
 	}
 
 	/**
@@ -55,6 +61,10 @@ public class PrimefacesAutoConfiguration {
 	@EnableConfigurationProperties(Primefaces5_1Properties.class)
 	@ConditionalOnClassVersion(value = Constants.ContextParams.class, versionRegex = "5\\.1.*")
 	public static class Primefaces5_1AutoConfiguration extends ServletContextInitParameterConfigurationPropertiesAutoConfiguration<Primefaces5_1Properties> {
+		@Bean
+		public ServletContextInitializer primefaces5_1PropertiesInitializer() {
+			return super.getPropertiesInitializer();
+		}
 	}
 
 	/**
@@ -64,6 +74,10 @@ public class PrimefacesAutoConfiguration {
 	@EnableConfigurationProperties(Primefaces5_2Properties.class)
 	@ConditionalOnClassVersion(value = Constants.ContextParams.class, versionRegex = "5\\.[2-9].*")
 	public static class Primefaces5_2AutoConfiguration extends ServletContextInitParameterConfigurationPropertiesAutoConfiguration<Primefaces5_2Properties> {
+		@Bean
+		public ServletContextInitializer primefaces5_2PropertiesInitializer() {
+			return super.getPropertiesInitializer();
+		}
 	}
 
 	/**
@@ -73,5 +87,9 @@ public class PrimefacesAutoConfiguration {
 	@EnableConfigurationProperties(Primefaces6_0Properties.class)
 	@ConditionalOnClassVersion(value = Constants.ContextParams.class, versionRegex = "[6-9].*")
 	public static class Primefaces6_0AutoConfiguration extends ServletContextInitParameterConfigurationPropertiesAutoConfiguration<Primefaces6_0Properties> {
+		@Bean
+		public ServletContextInitializer primefaces6_0PropertiesInitializer() {
+			return super.getPropertiesInitializer();
+		}
 	}
 }

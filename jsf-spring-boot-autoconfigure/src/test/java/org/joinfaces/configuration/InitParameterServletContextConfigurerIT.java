@@ -22,6 +22,7 @@ import java.util.Collections;
 import java.util.List;
 
 import javax.servlet.ServletContext;
+import javax.servlet.ServletException;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -36,93 +37,71 @@ import static org.assertj.core.api.Assertions.assertThat;
 /**
  * @author Lars Grefer
  */
-public class InitParameterConfigurationPropertiesServletContextConfigurerIT {
+public class InitParameterServletContextConfigurerIT {
 
 	static final String FOO = "foo";
-	private InitParameterConfigurationPropertiesServletContextConfigurer<?> servletContextConfigurer;
 	private ServletContext servletContext;
 
 	@Before
-	public void setUp() {
+	public void setUp() throws ServletException {
 		this.servletContext = new MockServletContext();
 
-		this.servletContextConfigurer = new InitParameterConfigurationPropertiesServletContextConfigurer<TestProperties>(this.servletContext, new TestProperties());
+		InitParameterServletContextConfigurer<?> servletContextConfigurer = new InitParameterServletContextConfigurer<TestProperties>(new TestProperties());
+		servletContextConfigurer.onStartup(this.servletContext);
 	}
 
 	@Test
 	public void testString() {
-		this.servletContextConfigurer.configure();
-
 		assertThat(this.servletContext.getInitParameter("test.STRING")).isEqualTo("fooBar");
 	}
 
 	@Test
 	public void testSuperString() {
-		this.servletContextConfigurer.configure();
-
 		assertThat(this.servletContext.getInitParameter("test.superString")).isEqualTo("barFoo");
 	}
 
 	@Test
 	public void testEmptyList() {
-		this.servletContextConfigurer.configure();
-
 		assertThat(this.servletContext.getInitParameter("test.EMPTY_LIST")).isEmpty();
 	}
 
 	@Test
 	public void testStringList() {
-		this.servletContextConfigurer.configure();
-
 		assertThat(this.servletContext.getInitParameter("test.LIST")).isEqualTo("foo...bar");
 	}
 
 	@Test
 	public void testSingletonList() {
-		this.servletContextConfigurer.configure();
-
 		assertThat(this.servletContext.getInitParameter("test.SINGLETON_LIST")).isEqualTo(FOO);
 	}
 
 	@Test
 	public void testNull() {
-		this.servletContextConfigurer.configure();
-
 		assertThat(this.servletContext.getInitParameter("test.NULL")).isNull();
 	}
 
 	@Test
 	public void testNestedProperty() {
-		this.servletContextConfigurer.configure();
-
 		assertThat(this.servletContext.getInitParameter("test.inner.STRING")).isEqualTo("bar");
 	}
 
 	@Test
 	public void testClassList() {
-		this.servletContextConfigurer.configure();
-
 		assertThat(this.servletContext.getInitParameter("test.CLASS_LIST")).isEqualTo("java.lang.String;java.lang.Void");
 	}
 
 	@Test
 	public void testEnum() {
-		this.servletContextConfigurer.configure();
-
 		assertThat(this.servletContext.getInitParameter("test.ENUM")).isEqualTo("SOURCE");
 	}
 
 	@Test
 	public void testBoolean() {
-		this.servletContextConfigurer.configure();
-
 		assertThat(this.servletContext.getInitParameter("test.BOOLEAN")).isEqualTo("false");
 	}
 
 	@Test
 	public void testInt() {
-		this.servletContextConfigurer.configure();
-
 		assertThat(this.servletContext.getInitParameter("test.INT")).isEqualTo("42");
 	}
 

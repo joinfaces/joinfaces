@@ -30,20 +30,20 @@ public class JavaxFacesSpringBootAutoConfigurationTest {
 	public void test2_0() {
 		JavaxFacesSpringBootAutoConfiguration.JavaxFaces2_0AutoConfiguration javaxFaces2_0AutoConfiguration = new JavaxFacesSpringBootAutoConfiguration.JavaxFaces2_0AutoConfiguration();
 
-		assertThat(javaxFaces2_0AutoConfiguration.propertiesServletContextInitializer()).isNotNull();
+		assertThat(javaxFaces2_0AutoConfiguration.javaxFaces2_0PropertiesInitializer()).isNotNull();
 	}
 
 	@Test
 	public void test2_1() {
 		JavaxFacesSpringBootAutoConfiguration.JavaxFaces2_1AutoConfiguration javaxFaces2_1AutoConfiguration = new JavaxFacesSpringBootAutoConfiguration.JavaxFaces2_1AutoConfiguration();
 
-		assertThat(javaxFaces2_1AutoConfiguration.propertiesServletContextInitializer()).isNotNull();
+		assertThat(javaxFaces2_1AutoConfiguration.javaxFaces2_1PropertiesInitializer()).isNotNull();
 	}
 
 	@Test
 	public void test2_2() {
 		JavaxFacesSpringBootAutoConfiguration.JavaxFaces2_2AutoConfiguration javaxFaces2_2AutoConfiguration = new JavaxFacesSpringBootAutoConfiguration.JavaxFaces2_2AutoConfiguration();
 
-		assertThat(javaxFaces2_2AutoConfiguration.propertiesServletContextInitializer()).isNotNull();
+		assertThat(javaxFaces2_2AutoConfiguration.javaxFaces2_2PropertiesInitializer()).isNotNull();
 	}
 }

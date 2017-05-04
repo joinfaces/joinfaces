@@ -23,6 +23,8 @@ import org.springframework.boot.autoconfigure.AutoConfigureBefore;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnWebApplication;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
+import org.springframework.boot.web.servlet.ServletContextInitializer;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 /**
@@ -35,4 +37,9 @@ import org.springframework.context.annotation.Configuration;
 @AutoConfigureBefore(JavaxFacesSpringBootAutoConfiguration.class)
 @ConditionalOnWebApplication
 public class BootsfacesSpringBootAutoConfiguration extends ServletContextInitParameterConfigurationPropertiesAutoConfiguration<BootsfacesProperties> {
+
+	@Bean
+	public ServletContextInitializer bootsfacesPropertiesInitializer() {
+		return super.getPropertiesInitializer();
+	}
 }

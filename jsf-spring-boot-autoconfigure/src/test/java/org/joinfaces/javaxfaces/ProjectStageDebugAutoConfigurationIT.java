@@ -39,7 +39,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 				JavaxFacesSpringBootAutoConfiguration.class,
 				JavaxFacesSpringBootAutoConfiguration.JavaxFaces2_2AutoConfiguration.class
 		},
-		webEnvironment = SpringBootTest.WebEnvironment.DEFINED_PORT
+		webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT
 )
 @DirtiesContext
 public class ProjectStageDebugAutoConfigurationIT {

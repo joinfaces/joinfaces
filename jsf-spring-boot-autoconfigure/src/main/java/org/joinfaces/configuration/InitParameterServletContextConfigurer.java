@@ -25,15 +25,20 @@ import java.util.Iterator;
 import java.util.Set;
 
 import javax.servlet.ServletContext;
+import javax.servlet.ServletException;
 
+import lombok.Getter;
+import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
 
 import org.springframework.aop.support.AopUtils;
+import org.springframework.boot.web.servlet.ServletContextInitializer;
+import org.springframework.core.Ordered;
 import org.springframework.core.annotation.AnnotatedElementUtils;
 import org.springframework.util.ReflectionUtils;
 
 /**
- * A ServletContextConfigurer which looks for all {@link ServletContextInitParameter init parameters}
+ * A ServletContextInitializer which looks for all {@link ServletContextInitParameter init parameters}
  * in an {@link ServletContextInitParameterConfigurationProperties} object by reflection.
  *
  * @param <PC> Type of the properties object
@@ -42,20 +47,25 @@ import org.springframework.util.ReflectionUtils;
  * @see NestedProperty
  */
 @Slf4j
-public class InitParameterConfigurationPropertiesServletContextConfigurer<PC extends ServletContextInitParameterConfigurationProperties> {
+public class InitParameterServletContextConfigurer<PC extends ServletContextInitParameterConfigurationProperties> implements ServletContextInitializer, Ordered {
 
-	private final PC servletContextInitParameterConfigurationProperties;
+	private final PC initParameterProperties;
 	private final Set<String> visitiedInitParameters;
-	private final ServletContext servletContext;
+	private ServletContext servletContext;
 
-	public InitParameterConfigurationPropertiesServletContextConfigurer(ServletContext servletContext, PC servletContextInitParameterConfigurationProperties) {
-		this.servletContext = servletContext;
-		this.servletContextInitParameterConfigurationProperties = servletContextInitParameterConfigurationProperties;
+	@Getter
+	@Setter
+	private int order;
+
+	public InitParameterServletContextConfigurer(PC initParameterProperties) {
+		this.initParameterProperties = initParameterProperties;
 		this.visitiedInitParameters = new HashSet<String>();
 	}
 
-	public void configure() {
-		handlePropertiesObject(this.servletContextInitParameterConfigurationProperties);
+	@Override
+	public void onStartup(ServletContext servletContext) throws ServletException {
+		this.servletContext = servletContext;
+		handlePropertiesObject(this.initParameterProperties);
 	}
 
 	private void handlePropertiesObject(final Object properties) {

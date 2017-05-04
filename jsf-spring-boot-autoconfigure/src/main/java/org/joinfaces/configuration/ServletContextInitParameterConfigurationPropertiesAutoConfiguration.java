@@ -19,9 +19,7 @@ package org.joinfaces.configuration;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.condition.ConditionalOnWebApplication;
 import org.springframework.boot.web.servlet.ServletContextInitializer;
-import org.springframework.context.annotation.Bean;
 
 /**
  * Common base class for all auto-configuration classes which provide properties
@@ -38,9 +36,7 @@ public abstract class ServletContextInitParameterConfigurationPropertiesAutoConf
 	@Autowired(required = false)
 	protected List<ServletContextInitParameterConfigurationPropertiesCustomizer<? super PC>> servletContextInitParameterConfigurationPropertiesCustomizers;
 
-	@Bean
-	@ConditionalOnWebApplication
-	public ServletContextInitializer propertiesServletContextInitializer() {
+	protected ServletContextInitializer getPropertiesInitializer() {
 
 		if (this.servletContextInitParameterConfigurationPropertiesCustomizers != null) {
 			for (ServletContextInitParameterConfigurationPropertiesCustomizer<? super PC> servletContextInitParameterConfigurationPropertiesCustomizer : this.servletContextInitParameterConfigurationPropertiesCustomizers) {
@@ -48,6 +44,6 @@ public abstract class ServletContextInitParameterConfigurationPropertiesAutoConf
 			}
 		}
 
-		return new InitParameterConfigurationPropertiesServletContextInitializer<PC>(this.servletContextInitParameterConfigurationProperties);
+		return new InitParameterServletContextConfigurer<PC>(this.servletContextInitParameterConfigurationProperties);
 	}
 }

@@ -42,6 +42,11 @@ import org.springframework.context.annotation.Configuration;
 public class MojarraSpringBootAutoConfiguration extends ServletContextInitParameterConfigurationPropertiesAutoConfiguration<MojarraProperties> {
 
 	@Bean
+	public ServletContextInitializer myfacesPropertiesInitializer() {
+		return super.getPropertiesInitializer();
+	}
+
+	@Bean
 	public ServletContextInitializer mojarraServletContextInitializer() {
 		return new MojarraServletContextInitializer();
 	}

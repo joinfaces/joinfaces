@@ -42,6 +42,11 @@ import org.springframework.context.annotation.Configuration;
 public class MyfacesSpringBootAutoConfiguration extends ServletContextInitParameterConfigurationPropertiesAutoConfiguration<MyfacesProperties> {
 
 	@Bean
+	public ServletContextInitializer myfacesPropertiesInitializer() {
+		return super.getPropertiesInitializer();
+	}
+
+	@Bean
 	public ServletContextInitializer myfacesServletContextInitializer() {
 		return new MyfacesServletContextInitializer();
 	}

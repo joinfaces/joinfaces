@@ -27,7 +27,7 @@ import java.lang.annotation.Target;
  * as {@link javax.servlet.ServletContext#setInitParameter(String, String) servlet context init parameter}.
  *
  * @author Lars Grefer
- * @see InitParameterConfigurationPropertiesServletContextConfigurer
+ * @see InitParameterServletContextConfigurer
  */
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.FIELD)

@@ -39,6 +39,11 @@ import org.springframework.context.annotation.Configuration;
 public class OmnifacesSpringBootAutoConfiguration extends ServletContextInitParameterConfigurationPropertiesAutoConfiguration<OmnifacesProperties> {
 
 	@Bean
+	public ServletContextInitializer omnifacesPropertiesInitializer() {
+		return super.getPropertiesInitializer();
+	}
+
+	@Bean
 	public ServletContextInitializer omnifacesServletContextInitializer() {
 		return new OmnifacesServletContextInitializer();
 	}
