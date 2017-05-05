@@ -182,7 +182,7 @@ public class JsfClassFactory {
 		// check if any type is handled
 		if (!handlesTypes.isEmpty()) {
 			// create reflections
-			Reflections reflections = new Reflections(new ConfigurationBuilder().setUrls(getURLs()));
+			Reflections reflections = new Reflections(new ConfigurationBuilder().setExpandSuperTypes(false).setUrls(getURLs()));
 
 			// add types annotated for each type to be handled
 			for (Class<? extends Annotation> annotationType : handlesTypes.getAnnotationTypes()) {
