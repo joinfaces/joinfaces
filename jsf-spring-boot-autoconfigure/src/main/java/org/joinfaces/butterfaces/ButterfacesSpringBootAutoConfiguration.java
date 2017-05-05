@@ -20,10 +20,10 @@ import lombok.extern.slf4j.Slf4j;
 import net.bootsfaces.C;
 import org.joinfaces.bootsfaces.BootsfacesProperties;
 import org.joinfaces.bootsfaces.BootsfacesSpringBootAutoConfiguration;
-import org.joinfaces.configuration.ServletContextInitParameterConfigurationPropertiesAutoConfiguration;
-import org.joinfaces.configuration.ServletContextInitParameterConfigurationPropertiesCustomizer;
 import org.joinfaces.javaxfaces.JavaxFacesSpringBootAutoConfiguration;
 
+import org.springframework.beans.BeansException;
+import org.springframework.beans.factory.config.BeanPostProcessor;
 import org.springframework.boot.autoconfigure.AutoConfigureBefore;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnWebApplication;
@@ -42,7 +42,7 @@ import org.springframework.context.annotation.Configuration;
 @AutoConfigureBefore(JavaxFacesSpringBootAutoConfiguration.class)
 @ConditionalOnWebApplication
 @Slf4j
-public class ButterfacesSpringBootAutoConfiguration extends ServletContextInitParameterConfigurationPropertiesAutoConfiguration<ButterfacesProperties> {
+public class ButterfacesSpringBootAutoConfiguration {
 
 	/**
 	 * Special auto configuration for butterfaces and bootsfaces in combination.
@@ -56,7 +56,7 @@ public class ButterfacesSpringBootAutoConfiguration extends ServletContextInitPa
 	public static class ButterfacesBootsfacesAutoConfiguration {
 
 		@Bean
-		public ServletContextInitParameterConfigurationPropertiesCustomizer<BootsfacesProperties> bootsfacesPropertiesCustomizer() {
+		public BeanPostProcessor butterfacesBootsfacesPropertiesPostProcessor() {
 			return new BootsfacesPropertiesCustomizer();
 		}
 
@@ -66,16 +66,28 @@ public class ButterfacesSpringBootAutoConfiguration extends ServletContextInitPa
 		 * @author Lars Grefer
 		 * @see https://github.com/ButterFaces/bootsfaces-integration/blob/6e9d45978590fa72361cf3c98bec77d863f02aea/README.md
 		 */
-		static class BootsfacesPropertiesCustomizer implements ServletContextInitParameterConfigurationPropertiesCustomizer<BootsfacesProperties> {
-			@Override
-			public void process(BootsfacesProperties properties) {
-				String getJqueryFromCdn = properties.getGetJqueryFromCdn();
-				if (getJqueryFromCdn == null || getJqueryFromCdn.equalsIgnoreCase("false")) {
-					log.info("Setting 'net.bootsfaces.get_jquery_from_cdn' to 'true'");
-					log.info("See: https://github.com/ButterFaces/bootsfaces-integration/blob/6e9d45978590fa72361cf3c98bec77d863f02aea/README.md");
+		static class BootsfacesPropertiesCustomizer implements BeanPostProcessor {
 
-					properties.setGetJqueryFromCdn("true");
+			@Override
+			public Object postProcessBeforeInitialization(Object bean, String beanName) throws BeansException {
+				return bean;
+			}
+
+			@Override
+			public Object postProcessAfterInitialization(Object bean, String beanName) throws BeansException {
+
+				if (bean instanceof BootsfacesProperties) {
+					BootsfacesProperties properties = (BootsfacesProperties) bean;
+					String getJqueryFromCdn = properties.getGetJqueryFromCdn();
+					if (getJqueryFromCdn == null || getJqueryFromCdn.equalsIgnoreCase("false")) {
+						log.info("Setting 'net.bootsfaces.get_jquery_from_cdn' to 'true'");
+						log.info("See: https://github.com/ButterFaces/bootsfaces-integration/blob/6e9d45978590fa72361cf3c98bec77d863f02aea/README.md");
+
+						properties.setGetJqueryFromCdn("true");
+					}
 				}
+
+				return bean;
 			}
 		}
 	}

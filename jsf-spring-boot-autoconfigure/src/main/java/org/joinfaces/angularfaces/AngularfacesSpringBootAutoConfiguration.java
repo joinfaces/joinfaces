@@ -21,11 +21,11 @@ import java.util.ArrayList;
 import javax.faces.view.facelets.TagDecorator;
 
 import de.beyondjava.angularFaces.core.tagTransformer.AngularTagDecorator;
-import org.joinfaces.configuration.ServletContextInitParameterConfigurationPropertiesAutoConfiguration;
-import org.joinfaces.configuration.ServletContextInitParameterConfigurationPropertiesCustomizer;
 import org.joinfaces.javaxfaces.JavaxFaces2_0Properties;
 import org.joinfaces.javaxfaces.JavaxFacesSpringBootAutoConfiguration;
 
+import org.springframework.beans.BeansException;
+import org.springframework.beans.factory.config.BeanPostProcessor;
 import org.springframework.boot.autoconfigure.AutoConfigureBefore;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnWebApplication;
@@ -43,11 +43,11 @@ import org.springframework.context.annotation.Configuration;
 @ConditionalOnClass(name = "de.beyondjava.angularFaces.core.ELTools")
 @AutoConfigureBefore(JavaxFacesSpringBootAutoConfiguration.class)
 @ConditionalOnWebApplication
-public class AngularfacesSpringBootAutoConfiguration extends ServletContextInitParameterConfigurationPropertiesAutoConfiguration<AngularfacesProperties> {
+public class AngularfacesSpringBootAutoConfiguration {
 
 	@Bean
-	public JavaxFacesPropertiesCustomizer javaxFacesPropertiesCustomizer() {
-		return new JavaxFacesPropertiesCustomizer();
+	public BeanPostProcessor angularfacesJavaxFacesPropertiesPostProcessor() {
+		return new JavaxFacesPropertiesPostProcessor();
 	}
 
 	/**
@@ -55,20 +55,30 @@ public class AngularfacesSpringBootAutoConfiguration extends ServletContextInitP
 	 *
 	 * @author Lars Grefer
 	 */
-	static class JavaxFacesPropertiesCustomizer implements ServletContextInitParameterConfigurationPropertiesCustomizer<JavaxFaces2_0Properties> {
-		@Override
-		public void process(JavaxFaces2_0Properties properties) {
-			if (properties.getFaceletsDecorators() == null) {
-				ArrayList<Class<? extends TagDecorator>> faceletsDecorators = new ArrayList<Class<? extends TagDecorator>>();
-				faceletsDecorators.add(AngularTagDecorator.class);
-				properties.setFaceletsDecorators(faceletsDecorators);
-			}
-			else {
-				if (!properties.getFaceletsDecorators().contains(AngularTagDecorator.class)) {
-					properties.getFaceletsDecorators().add(AngularTagDecorator.class);
+	static class JavaxFacesPropertiesPostProcessor implements BeanPostProcessor {
 
+		@Override
+		public Object postProcessBeforeInitialization(Object bean, String beanName) throws BeansException {
+			return bean;
+		}
+
+		@Override
+		public Object postProcessAfterInitialization(Object bean, String beanName) throws BeansException {
+			if (bean instanceof JavaxFaces2_0Properties) {
+				JavaxFaces2_0Properties properties = (JavaxFaces2_0Properties) bean;
+				if (properties.getFaceletsDecorators() == null) {
+					ArrayList<Class<? extends TagDecorator>> faceletsDecorators = new ArrayList<Class<? extends TagDecorator>>();
+					faceletsDecorators.add(AngularTagDecorator.class);
+					properties.setFaceletsDecorators(faceletsDecorators);
+				}
+				else {
+					if (!properties.getFaceletsDecorators().contains(AngularTagDecorator.class)) {
+						properties.getFaceletsDecorators().add(AngularTagDecorator.class);
+
+					}
 				}
 			}
+			return bean;
 		}
 	}
 }

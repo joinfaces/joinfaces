@@ -27,7 +27,7 @@ import java.lang.annotation.Target;
  * {@link ServletContextInitParameterConfigurationProperties properties classes}.
  *
  * @author Lars Grefer
- * @see InitParameterConfigurationPropertiesServletContextConfigurer
+ * @see InitParameterServletContextConfigurer
  */
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.FIELD)

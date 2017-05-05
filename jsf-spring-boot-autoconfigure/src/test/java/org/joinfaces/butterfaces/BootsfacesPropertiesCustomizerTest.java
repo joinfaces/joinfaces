@@ -42,7 +42,7 @@ public class BootsfacesPropertiesCustomizerTest {
 	public void testProcessNull() {
 		this.bootsfacesProperties.setGetJqueryFromCdn(null);
 
-		this.bootsfacesPropertiesCustomizer.process(this.bootsfacesProperties);
+		this.bootsfacesPropertiesCustomizer.postProcessAfterInitialization(this.bootsfacesProperties, null);
 
 		assertThat(this.bootsfacesProperties.getGetJqueryFromCdn()).isEqualTo(TRUE);
 	}
@@ -51,7 +51,7 @@ public class BootsfacesPropertiesCustomizerTest {
 	public void testProcessFalse() {
 		this.bootsfacesProperties.setGetJqueryFromCdn("false");
 
-		this.bootsfacesPropertiesCustomizer.process(this.bootsfacesProperties);
+		this.bootsfacesPropertiesCustomizer.postProcessAfterInitialization(this.bootsfacesProperties, null);
 
 		assertThat(this.bootsfacesProperties.getGetJqueryFromCdn()).isEqualTo(TRUE);
 	}
@@ -60,7 +60,7 @@ public class BootsfacesPropertiesCustomizerTest {
 	public void testProcessTrue() {
 		this.bootsfacesProperties.setGetJqueryFromCdn(TRUE);
 
-		this.bootsfacesPropertiesCustomizer.process(this.bootsfacesProperties);
+		this.bootsfacesPropertiesCustomizer.postProcessAfterInitialization(this.bootsfacesProperties, null);
 
 		assertThat(this.bootsfacesProperties.getGetJqueryFromCdn()).isEqualTo(TRUE);
 	}
@@ -69,7 +69,7 @@ public class BootsfacesPropertiesCustomizerTest {
 	public void testProcessEl() {
 		this.bootsfacesProperties.setGetJqueryFromCdn("#{foo}");
 
-		this.bootsfacesPropertiesCustomizer.process(this.bootsfacesProperties);
+		this.bootsfacesPropertiesCustomizer.postProcessAfterInitialization(this.bootsfacesProperties, null);
 
 		assertThat(this.bootsfacesProperties.getGetJqueryFromCdn()).isEqualTo("#{foo}");
 	}

@@ -17,7 +17,6 @@
 package org.joinfaces.primefaces;
 
 import org.joinfaces.configuration.ConditionalOnClassVersion;
-import org.joinfaces.configuration.ServletContextInitParameterConfigurationPropertiesAutoConfiguration;
 import org.joinfaces.javaxfaces.JavaxFacesSpringBootAutoConfiguration;
 import org.primefaces.util.Constants;
 
@@ -45,7 +44,7 @@ public class PrimefacesAutoConfiguration {
 	@Configuration
 	@EnableConfigurationProperties(Primefaces5_0Properties.class)
 	@ConditionalOnClassVersion(value = Constants.ContextParams.class, versionRegex = "5\\.0.*")
-	public static class Primefaces5_0AutoConfiguration extends ServletContextInitParameterConfigurationPropertiesAutoConfiguration<Primefaces5_0Properties> {
+	public static class Primefaces5_0AutoConfiguration {
 	}
 
 	/**
@@ -54,7 +53,7 @@ public class PrimefacesAutoConfiguration {
 	@Configuration
 	@EnableConfigurationProperties(Primefaces5_1Properties.class)
 	@ConditionalOnClassVersion(value = Constants.ContextParams.class, versionRegex = "5\\.1.*")
-	public static class Primefaces5_1AutoConfiguration extends ServletContextInitParameterConfigurationPropertiesAutoConfiguration<Primefaces5_1Properties> {
+	public static class Primefaces5_1AutoConfiguration {
 	}
 
 	/**
@@ -63,7 +62,7 @@ public class PrimefacesAutoConfiguration {
 	@Configuration
 	@EnableConfigurationProperties(Primefaces5_2Properties.class)
 	@ConditionalOnClassVersion(value = Constants.ContextParams.class, versionRegex = "5\\.[2-9].*")
-	public static class Primefaces5_2AutoConfiguration extends ServletContextInitParameterConfigurationPropertiesAutoConfiguration<Primefaces5_2Properties> {
+	public static class Primefaces5_2AutoConfiguration {
 	}
 
 	/**
@@ -72,6 +71,6 @@ public class PrimefacesAutoConfiguration {
 	@Configuration
 	@EnableConfigurationProperties(Primefaces6_0Properties.class)
 	@ConditionalOnClassVersion(value = Constants.ContextParams.class, versionRegex = "[6-9].*")
-	public static class Primefaces6_0AutoConfiguration extends ServletContextInitParameterConfigurationPropertiesAutoConfiguration<Primefaces6_0Properties> {
+	public static class Primefaces6_0AutoConfiguration {
 	}
 }

@@ -18,6 +18,7 @@ package org.joinfaces.javaxfaces;
 
 import javax.faces.application.ProjectStage;
 
+import org.joinfaces.configuration.ServletContextInitParameterConfigurationPropertiesAutoConfiguration;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
@@ -36,7 +37,8 @@ import static org.assertj.core.api.Assertions.assertThat;
 				EmbeddedServletContainerAutoConfiguration.class,
 				ProjectStageAutoConfiguration.class,
 				JavaxFacesSpringBootAutoConfiguration.class,
-				JavaxFacesSpringBootAutoConfiguration.JavaxFaces2_2AutoConfiguration.class
+				JavaxFacesSpringBootAutoConfiguration.JavaxFaces2_2AutoConfiguration.class,
+				ServletContextInitParameterConfigurationPropertiesAutoConfiguration.class
 		},
 		webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT
 )

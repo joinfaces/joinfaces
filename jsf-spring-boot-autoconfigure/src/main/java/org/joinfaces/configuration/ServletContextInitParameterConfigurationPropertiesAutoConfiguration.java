@@ -18,36 +18,25 @@ package org.joinfaces.configuration;
 
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnBean;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnWebApplication;
 import org.springframework.boot.web.servlet.ServletContextInitializer;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 
 /**
  * Common base class for all auto-configuration classes which provide properties
  * as {@link javax.servlet.ServletContext} init parameters.
  *
- * @param <PC> Actual type of the properties class
  * @author Lars Grefer
  */
-public abstract class ServletContextInitParameterConfigurationPropertiesAutoConfiguration<PC extends ServletContextInitParameterConfigurationProperties> {
-
-	@Autowired
-	protected PC servletContextInitParameterConfigurationProperties;
-
-	@Autowired(required = false)
-	protected List<ServletContextInitParameterConfigurationPropertiesCustomizer<? super PC>> servletContextInitParameterConfigurationPropertiesCustomizers;
+@Configuration
+@ConditionalOnWebApplication
+public class ServletContextInitParameterConfigurationPropertiesAutoConfiguration {
 
 	@Bean
-	@ConditionalOnWebApplication
-	public ServletContextInitializer propertiesServletContextInitializer() {
-
-		if (this.servletContextInitParameterConfigurationPropertiesCustomizers != null) {
-			for (ServletContextInitParameterConfigurationPropertiesCustomizer<? super PC> servletContextInitParameterConfigurationPropertiesCustomizer : this.servletContextInitParameterConfigurationPropertiesCustomizers) {
-				servletContextInitParameterConfigurationPropertiesCustomizer.process(this.servletContextInitParameterConfigurationProperties);
-			}
-		}
-
-		return new InitParameterConfigurationPropertiesServletContextInitializer<PC>(this.servletContextInitParameterConfigurationProperties);
+	@ConditionalOnBean(ServletContextInitParameterConfigurationProperties.class)
+	public ServletContextInitializer servletContextInitParameterInitializer(List<ServletContextInitParameterConfigurationProperties> initParameterProperties) {
+		return new InitParameterServletContextConfigurer(initParameterProperties);
 	}
 }
