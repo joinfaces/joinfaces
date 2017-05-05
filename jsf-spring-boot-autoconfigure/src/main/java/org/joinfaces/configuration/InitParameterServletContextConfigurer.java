@@ -22,6 +22,7 @@ import java.lang.reflect.Type;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Set;
 
 import javax.servlet.ServletContext;
@@ -41,15 +42,14 @@ import org.springframework.util.ReflectionUtils;
  * A ServletContextInitializer which looks for all {@link ServletContextInitParameter init parameters}
  * in an {@link ServletContextInitParameterConfigurationProperties} object by reflection.
  *
- * @param <PC> Type of the properties object
  * @author Lars Grefer
  * @see ServletContextInitParameter
  * @see NestedProperty
  */
 @Slf4j
-public class InitParameterServletContextConfigurer<PC extends ServletContextInitParameterConfigurationProperties> implements ServletContextInitializer, Ordered {
+public class InitParameterServletContextConfigurer implements ServletContextInitializer, Ordered {
 
-	private final PC initParameterProperties;
+	private final List<ServletContextInitParameterConfigurationProperties> initParameterProperties;
 	private final Set<String> visitiedInitParameters;
 	private ServletContext servletContext;
 
@@ -57,7 +57,7 @@ public class InitParameterServletContextConfigurer<PC extends ServletContextInit
 	@Setter
 	private int order;
 
-	public InitParameterServletContextConfigurer(PC initParameterProperties) {
+	public InitParameterServletContextConfigurer(List<ServletContextInitParameterConfigurationProperties> initParameterProperties) {
 		this.initParameterProperties = initParameterProperties;
 		this.visitiedInitParameters = new HashSet<String>();
 	}
@@ -65,7 +65,9 @@ public class InitParameterServletContextConfigurer<PC extends ServletContextInit
 	@Override
 	public void onStartup(ServletContext servletContext) throws ServletException {
 		this.servletContext = servletContext;
-		handlePropertiesObject(this.initParameterProperties);
+		for (ServletContextInitParameterConfigurationProperties properties : this.initParameterProperties) {
+			handlePropertiesObject(properties);
+		}
 	}
 
 	private void handlePropertiesObject(final Object properties) {

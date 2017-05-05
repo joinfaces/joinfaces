@@ -32,11 +32,11 @@ import static org.assertj.core.api.Assertions.assertThat;
  */
 public class JavaxFacesPropertiesCustomizerTest {
 
-	private AngularfacesSpringBootAutoConfiguration.JavaxFacesPropertiesCustomizer javaxFacesPropertiesCustomizer;
+	private AngularfacesSpringBootAutoConfiguration.JavaxFacesPropertiesPostProcessor javaxFacesPropertiesCustomizer;
 
 	@Before
 	public void setUp() {
-		this.javaxFacesPropertiesCustomizer = new AngularfacesSpringBootAutoConfiguration.JavaxFacesPropertiesCustomizer();
+		this.javaxFacesPropertiesCustomizer = new AngularfacesSpringBootAutoConfiguration.JavaxFacesPropertiesPostProcessor();
 	}
 
 	@Test
@@ -44,7 +44,7 @@ public class JavaxFacesPropertiesCustomizerTest {
 		JavaxFaces2_0Properties properties = new JavaxFaces2_0Properties();
 		properties.setFaceletsDecorators(null);
 
-		this.javaxFacesPropertiesCustomizer.process(properties);
+		this.javaxFacesPropertiesCustomizer.postProcessAfterInitialization(properties, null);
 
 		assertThat(properties.getFaceletsDecorators()).containsExactly(AngularTagDecorator.class);
 	}
@@ -54,7 +54,7 @@ public class JavaxFacesPropertiesCustomizerTest {
 		JavaxFaces2_0Properties properties = new JavaxFaces2_0Properties();
 		properties.setFaceletsDecorators(new ArrayList<Class<? extends TagDecorator>>());
 
-		this.javaxFacesPropertiesCustomizer.process(properties);
+		this.javaxFacesPropertiesCustomizer.postProcessAfterInitialization(properties, null);
 
 		assertThat(properties.getFaceletsDecorators()).containsOnlyOnce(AngularTagDecorator.class);
 	}
@@ -63,8 +63,8 @@ public class JavaxFacesPropertiesCustomizerTest {
 	public void testProcessDouble() {
 		JavaxFaces2_0Properties properties = new JavaxFaces2_0Properties();
 
-		this.javaxFacesPropertiesCustomizer.process(properties);
-		this.javaxFacesPropertiesCustomizer.process(properties);
+		this.javaxFacesPropertiesCustomizer.postProcessAfterInitialization(properties, null);
+		this.javaxFacesPropertiesCustomizer.postProcessAfterInitialization(properties, null);
 
 		assertThat(properties.getFaceletsDecorators()).containsOnlyOnce(AngularTagDecorator.class);
 	}

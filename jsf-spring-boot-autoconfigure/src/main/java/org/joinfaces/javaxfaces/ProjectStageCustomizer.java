@@ -19,23 +19,31 @@ package org.joinfaces.javaxfaces;
 import javax.faces.application.ProjectStage;
 
 import lombok.RequiredArgsConstructor;
-import org.joinfaces.configuration.ServletContextInitParameterConfigurationPropertiesCustomizer;
+
+import org.springframework.beans.BeansException;
+import org.springframework.beans.factory.config.BeanPostProcessor;
 
 /**
- * {@link ServletContextInitParameterConfigurationPropertiesCustomizer} for setting the JSF
+ * {@link BeanPostProcessor} for setting the JSF
  * {@link JavaxFaces2_0Properties#projectStage project stage}.
  *
  * @author Lars Grefer
  */
 @RequiredArgsConstructor
-public class ProjectStageCustomizer implements ServletContextInitParameterConfigurationPropertiesCustomizer<JavaxFaces2_0Properties> {
+public class ProjectStageCustomizer implements BeanPostProcessor {
 
-	final ProjectStage projectStage;
+	private final ProjectStage projectStage;
 
 	@Override
-	public void process(JavaxFaces2_0Properties properties) {
-		if (properties.getProjectStage() == null) {
-			properties.setProjectStage(this.projectStage);
+	public Object postProcessBeforeInitialization(Object bean, String beanName) throws BeansException {
+		return bean;
+	}
+
+	@Override
+	public Object postProcessAfterInitialization(Object bean, String beanName) throws BeansException {
+		if (bean instanceof JavaxFaces2_0Properties && ((JavaxFaces2_0Properties) bean).getProjectStage() == null) {
+			((JavaxFaces2_0Properties) bean).setProjectStage(this.projectStage);
 		}
+		return bean;
 	}
 }

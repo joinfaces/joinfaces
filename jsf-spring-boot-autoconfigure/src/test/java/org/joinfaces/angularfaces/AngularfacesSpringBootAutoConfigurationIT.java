@@ -19,6 +19,7 @@ package org.joinfaces.angularfaces;
 import javax.faces.application.ViewHandler;
 
 import de.beyondjava.angularFaces.core.tagTransformer.AngularTagDecorator;
+import org.joinfaces.configuration.ServletContextInitParameterConfigurationPropertiesAutoConfiguration;
 import org.joinfaces.javaxfaces.JavaxFaces2_0Properties;
 import org.joinfaces.javaxfaces.JavaxFacesSpringBootAutoConfiguration;
 import org.junit.Test;
@@ -43,7 +44,8 @@ import static org.assertj.core.api.Assertions.assertThat;
 				EmbeddedServletContainerAutoConfiguration.class,
 				JavaxFacesSpringBootAutoConfiguration.class,
 				JavaxFacesSpringBootAutoConfiguration.JavaxFaces2_0AutoConfiguration.class,
-				AngularfacesSpringBootAutoConfiguration.class
+				AngularfacesSpringBootAutoConfiguration.class,
+				ServletContextInitParameterConfigurationPropertiesAutoConfiguration.class
 		},
 		webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @DirtiesContext

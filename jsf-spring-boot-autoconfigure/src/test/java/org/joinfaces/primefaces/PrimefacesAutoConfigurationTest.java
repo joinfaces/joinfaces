@@ -39,36 +39,24 @@ public class PrimefacesAutoConfigurationTest {
 	public void test5_0() {
 		PrimefacesAutoConfiguration.Primefaces5_0AutoConfiguration primefaces5_0AutoConfiguration = new PrimefacesAutoConfiguration.Primefaces5_0AutoConfiguration();
 		assertThat(primefaces5_0AutoConfiguration).isNotNull();
-
-		ServletContextInitializer servletContextInitializer = primefaces5_0AutoConfiguration.primefaces5_0PropertiesInitializer();
-		assertThat(servletContextInitializer).isNotNull();
 	}
 
 	@Test
 	public void test5_1() {
 		PrimefacesAutoConfiguration.Primefaces5_1AutoConfiguration primefaces5_1AutoConfiguration = new PrimefacesAutoConfiguration.Primefaces5_1AutoConfiguration();
 		assertThat(primefaces5_1AutoConfiguration).isNotNull();
-
-		ServletContextInitializer servletContextInitializer = primefaces5_1AutoConfiguration.primefaces5_1PropertiesInitializer();
-		assertThat(servletContextInitializer).isNotNull();
 	}
 
 	@Test
 	public void test5_2() {
 		PrimefacesAutoConfiguration.Primefaces5_2AutoConfiguration primefaces5_2AutoConfiguration = new PrimefacesAutoConfiguration.Primefaces5_2AutoConfiguration();
 		assertThat(primefaces5_2AutoConfiguration).isNotNull();
-
-		ServletContextInitializer servletContextInitializer = primefaces5_2AutoConfiguration.primefaces5_2PropertiesInitializer();
-		assertThat(servletContextInitializer).isNotNull();
 	}
 
 	@Test
 	public void test6_0() {
 		PrimefacesAutoConfiguration.Primefaces6_0AutoConfiguration primefaces6_0AutoConfiguration = new PrimefacesAutoConfiguration.Primefaces6_0AutoConfiguration();
 		assertThat(primefaces6_0AutoConfiguration).isNotNull();
-
-		ServletContextInitializer servletContextInitializer = primefaces6_0AutoConfiguration.primefaces6_0PropertiesInitializer();
-		assertThat(servletContextInitializer).isNotNull();
 	}
 
 }
