@@ -18,8 +18,6 @@ package org.joinfaces.primefaces;
 
 import org.junit.Test;
 
-import org.springframework.boot.web.servlet.ServletContextInitializer;
-
 import static org.assertj.core.api.Assertions.assertThat;
 
 /**
