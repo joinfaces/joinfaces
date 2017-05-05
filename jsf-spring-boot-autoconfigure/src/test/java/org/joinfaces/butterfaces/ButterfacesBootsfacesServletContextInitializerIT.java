@@ -17,6 +17,7 @@
 package org.joinfaces.butterfaces;
 
 import org.joinfaces.bootsfaces.BootsfacesSpringBootAutoConfiguration;
+import org.joinfaces.configuration.ServletContextInitParameterConfigurationPropertiesAutoConfiguration;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
@@ -35,7 +36,8 @@ import static org.assertj.core.api.Assertions.assertThat;
 				EmbeddedServletContainerAutoConfiguration.class,
 				BootsfacesSpringBootAutoConfiguration.class,
 				ButterfacesSpringBootAutoConfiguration.class,
-				ButterfacesSpringBootAutoConfiguration.ButterfacesBootsfacesAutoConfiguration.class
+				ButterfacesSpringBootAutoConfiguration.ButterfacesBootsfacesAutoConfiguration.class,
+				ServletContextInitParameterConfigurationPropertiesAutoConfiguration.class
 		},
 		webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT
 )
