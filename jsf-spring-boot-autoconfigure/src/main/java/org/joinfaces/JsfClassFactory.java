@@ -16,6 +16,7 @@
 
 package org.joinfaces;
 
+import java.io.File;
 import java.lang.annotation.Annotation;
 import java.net.URL;
 import java.util.ArrayList;
@@ -136,8 +137,9 @@ public class JsfClassFactory {
 			// add project classes and resources folder
 			for (URL url : ClasspathHelper.forManifest()) {
 				String file = url.getFile();
-				// check if running debug/test or uber jar
-				if (!(file.endsWith(".jar") || file.endsWith(".jar!/") || file.endsWith(".war"))) {
+				// check if adding folder
+				if (!(file.endsWith(".jar") || file.endsWith(".jar!/") || file.endsWith(".war"))
+					&& new File(file).isDirectory()) {
 					add(result, strings, url);
 				}
 			}
