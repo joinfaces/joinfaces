@@ -98,14 +98,8 @@ public class JsfTomcatApplicationListener implements ApplicationListener<Applica
 				&& jarWarResourceSet.getBaseUrl().getFile().endsWith(".war");
 	}
 
-	private boolean isTestJar(WebResourceRoot resources) {
-		return !isUberJar(resources)
-				&& getFirstDirResourceSetAtJarResources(resources) == null;
-	}
-
-	private boolean isTestWar(WebResourceRoot resources) {
-		return !isUberWar(resources)
-				&& resources.getBaseUrls().size() != resources.getJarResources().length
+	private boolean isTesting(WebResourceRoot resources) {
+		return !isUberJar(resources) && !isUberWar(resources)
 				&& getFirstDirResourceSetAtJarResources(resources) == null;
 	}
 
@@ -114,11 +108,11 @@ public class JsfTomcatApplicationListener implements ApplicationListener<Applica
 				&& getFirstDirResourceSetAtJarResources(resources) != null;
 	}
 
-	// NOT COVERED YET
-	private boolean isUnpackagedWar() {
-		return false;
-	}
-
+	/**
+	 * Inform tomcat runtime setup. UNPACKAGED_WAR not covered yet.
+	 * @param resources of the tomcat
+	 * @return tomcat runtime
+	 */
 	TomcatRuntime getTomcatRuntime(WebResourceRoot resources) {
 		TomcatRuntime result = null;
 
@@ -128,17 +122,11 @@ public class JsfTomcatApplicationListener implements ApplicationListener<Applica
 		else if (isUberWar(resources)) {
 			result = TomcatRuntime.UBER_WAR;
 		}
-		else if (isTestJar(resources)) {
-			result = TomcatRuntime.TEST_JAR;
-		}
-		else if (isTestWar(resources)) {
-			result = TomcatRuntime.TEST_WAR;
+		else if (isTesting(resources)) {
+			result = TomcatRuntime.TEST;
 		}
 		else if (isUnpackagedJar(resources)) {
 			result = TomcatRuntime.UNPACKAGED_JAR;
-		}
-		else if (isUnpackagedWar()) {
-			result = TomcatRuntime.UNPACKAGED_WAR;
 		}
 
 		return result;
@@ -153,21 +141,16 @@ public class JsfTomcatApplicationListener implements ApplicationListener<Applica
 				TomcatRuntime tomcatRuntime = getTomcatRuntime(resources);
 
 				switch (tomcatRuntime) {
-					// add main resource
+					// add main resource 
 					case UBER_JAR: addMainJarResourceSet(resources);
-						break;
-					// adding main resource and lib resources
-					case TEST_JAR: addClasspathResourceSets(resources);
 						break;
 					// do nothing, already working with main resource and lib resources
 					case UNPACKAGED_JAR: break;
 					// do nothing, already working with main resource and lib resources
 					case UBER_WAR: break;
-					// add lib resources
-					case TEST_WAR: addClasspathResourceSets(resources);
+					// test jar: adding main resource and lib resources; test war: add lib resources
+					case TEST: addClasspathResourceSets(resources);
 						break;
-					// not covered yet
-					case UNPACKAGED_WAR: break;
 				}
 			}
 		}

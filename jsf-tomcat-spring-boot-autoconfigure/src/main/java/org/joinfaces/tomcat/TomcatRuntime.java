@@ -27,17 +27,13 @@ public enum TomcatRuntime  {
 	 */
 	UNPACKAGED_JAR,
 	/**,
-	 * Runtime jar testing.
+	 * Runtime jar testing or war testing.
 	 */
-	TEST_JAR,
+	TEST,
 	/**
 	 * Runtime java -jar jar packaging.
 	 */
 	UBER_JAR,
-	/**
-	 * Runtime war testing.
-	 */
-	TEST_WAR,
 	/**
 	 * Runtime java -jar war packaging.
 	 */
