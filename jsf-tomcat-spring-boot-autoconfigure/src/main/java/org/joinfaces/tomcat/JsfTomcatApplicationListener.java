@@ -151,6 +151,8 @@ public class JsfTomcatApplicationListener implements ApplicationListener<Applica
 					// test jar: adding main resource and lib resources; test war: add lib resources
 					case TEST: addClasspathResourceSets(resources);
 						break;
+					// default do nothing
+					default: break;
 				}
 			}
 		}
