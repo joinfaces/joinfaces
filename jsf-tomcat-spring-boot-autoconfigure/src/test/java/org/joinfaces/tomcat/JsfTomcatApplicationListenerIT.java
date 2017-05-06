@@ -143,7 +143,7 @@ public class JsfTomcatApplicationListenerIT {
 		callApplicationEvent(contextMock);
 
 		assertThat(contextMock.getCalledAnswer().getCalls())
-			.isGreaterThan(1);
+			.isEqualTo(0);
 	}
 
 	@Test
@@ -203,7 +203,7 @@ public class JsfTomcatApplicationListenerIT {
 		callApplicationEvent(contextMock);
 
 		assertThat(contextMock.getCalledAnswer().getCalls())
-			.isEqualTo(0);
+			.isEqualTo(1);
 	}
 
 	@Test
