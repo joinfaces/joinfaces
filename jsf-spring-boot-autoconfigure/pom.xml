@@ -24,8 +24,8 @@
         
         <cobertura.totalLineRate>99</cobertura.totalLineRate>
         <cobertura.lineRate>75</cobertura.lineRate>
-        <cobertura.branchRate>92</cobertura.branchRate>
-        <cobertura.totalBranchRate>96</cobertura.totalBranchRate>
+        <cobertura.branchRate>90</cobertura.branchRate>
+        <cobertura.totalBranchRate>95</cobertura.totalBranchRate>
     </properties>
 
     <dependencies>

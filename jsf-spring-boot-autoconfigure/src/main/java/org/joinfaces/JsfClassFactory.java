@@ -16,7 +16,6 @@
 
 package org.joinfaces;
 
-import java.io.File;
 import java.lang.annotation.Annotation;
 import java.net.URL;
 import java.util.ArrayList;
@@ -134,12 +133,11 @@ public class JsfClassFactory {
 				add(result, strings, ClasspathHelper.forResource(anotherFacesConfig, this.getClass().getClassLoader()));
 			}
 
-			// add project classes and resources folder
+			// add project classes folder
 			for (URL url : ClasspathHelper.forManifest()) {
 				String file = url.getFile();
-				// check if adding folder
-				if (!(file.endsWith(".jar") || file.endsWith(".jar!/") || file.endsWith(".war"))
-					&& new File(file).isDirectory()) {
+				// check if adding classes folder
+				if (file.endsWith("/classes/") || file.endsWith("/classes!/")) {
 					add(result, strings, url);
 				}
 			}

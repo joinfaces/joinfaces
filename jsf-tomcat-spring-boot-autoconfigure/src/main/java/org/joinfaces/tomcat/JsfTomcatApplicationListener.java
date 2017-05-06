@@ -141,7 +141,7 @@ public class JsfTomcatApplicationListener implements ApplicationListener<Applica
 				TomcatRuntime tomcatRuntime = getTomcatRuntime(resources);
 
 				switch (tomcatRuntime) {
-					// add main resource 
+					// add main resource
 					case UBER_JAR: addMainJarResourceSet(resources);
 						break;
 					// do nothing, already working with main resource and lib resources
