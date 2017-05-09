@@ -17,7 +17,6 @@
 /**
  * Core support classes to JSF Spring Boot Auto Configuration.
  *
- * @see org.joinfaces.ServletContextConfigurer
  * @see org.joinfaces.JsfClassFactory
  */
 package org.joinfaces;
