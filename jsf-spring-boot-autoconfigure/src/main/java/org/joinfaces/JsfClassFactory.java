@@ -16,6 +16,7 @@
 
 package org.joinfaces;
 
+import java.io.File;
 import java.lang.annotation.Annotation;
 import java.net.URL;
 import java.util.ArrayList;
@@ -114,6 +115,12 @@ public class JsfClassFactory {
 		}
 	}
 
+	private boolean isClassesFolder(String file) {
+		return file.endsWith("/classes/")
+			|| file.endsWith("/classes!/")
+			|| new File(file).isDirectory();
+	}
+
 	/**
 	 * Compute urls to scan for annotations.
 	 * @return collection of urls
@@ -137,7 +144,7 @@ public class JsfClassFactory {
 			for (URL url : ClasspathHelper.forManifest()) {
 				String file = url.getFile();
 				// check if adding classes folder
-				if (file.endsWith("/classes/") || file.endsWith("/classes!/")) {
+				if (isClassesFolder(file)) {
 					add(result, strings, url);
 				}
 			}
