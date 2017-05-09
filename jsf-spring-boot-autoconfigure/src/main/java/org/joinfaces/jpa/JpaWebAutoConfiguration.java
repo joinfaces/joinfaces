@@ -35,8 +35,7 @@ import org.springframework.orm.jpa.support.OpenEntityManagerInViewFilter;
  * {@link OpenEntityManagerInViewFilter} instead.
  *
  * @author Lars Grefer
- * @see org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration.JpaWebConfiguration
- * @see org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration.JpaWebConfiguration.JpaWebMvcConfiguration
+ * @see org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration
  */
 @Configuration
 @ConditionalOnWebApplication
