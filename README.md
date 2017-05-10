@@ -58,7 +58,7 @@ Additional information in [#22](https://github.com/joinfaces/joinfaces/issues/22
 ### JSF and CDI annotations support automatically
 
 Annotation |
-------- | ----
+------- |
 [@NoneScoped](http://docs.oracle.com/javaee/7/api/javax/faces/bean/NoneScoped.html) |
 [@RequestScoped](http://docs.oracle.com/javaee/7/api/javax/enterprise/context/RequestScoped.html) |
 [@ViewScoped](http://docs.oracle.com/javaee/7/api/javax/faces/view/ViewScoped.html) |
