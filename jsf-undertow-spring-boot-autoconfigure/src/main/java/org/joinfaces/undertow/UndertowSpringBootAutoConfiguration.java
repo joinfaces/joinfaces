@@ -22,7 +22,6 @@ import org.springframework.boot.context.embedded.ConfigurableEmbeddedServletCont
 import org.springframework.boot.context.embedded.EmbeddedServletContainerCustomizer;
 import org.springframework.boot.context.embedded.undertow.UndertowEmbeddedServletContainerFactory;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
-import org.springframework.boot.web.support.SpringBootServletInitializer;
 import org.springframework.context.annotation.Configuration;
 
 /**
@@ -33,7 +32,7 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 @EnableConfigurationProperties({UndertowProperties.class})
 @ConditionalOnClass(name = "io.undertow.Undertow")
-public class UndertowSpringBootAutoConfiguration extends SpringBootServletInitializer implements EmbeddedServletContainerCustomizer {
+public class UndertowSpringBootAutoConfiguration implements EmbeddedServletContainerCustomizer {
 
 	@Autowired
 	private UndertowProperties undertowProperties;

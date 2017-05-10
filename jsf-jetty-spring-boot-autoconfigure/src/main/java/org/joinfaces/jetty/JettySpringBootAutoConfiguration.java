@@ -22,7 +22,6 @@ import org.springframework.boot.context.embedded.ConfigurableEmbeddedServletCont
 import org.springframework.boot.context.embedded.EmbeddedServletContainerCustomizer;
 import org.springframework.boot.context.embedded.jetty.JettyEmbeddedServletContainerFactory;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
-import org.springframework.boot.web.support.SpringBootServletInitializer;
 import org.springframework.context.annotation.Configuration;
 
 /**
@@ -36,7 +35,7 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 @EnableConfigurationProperties({JettyProperties.class})
 @ConditionalOnClass(name = "org.eclipse.jetty.server.Server")
-public class JettySpringBootAutoConfiguration extends SpringBootServletInitializer implements EmbeddedServletContainerCustomizer {
+public class JettySpringBootAutoConfiguration implements EmbeddedServletContainerCustomizer {
 
 	@Autowired
 	private JettyProperties jettyProperties;
