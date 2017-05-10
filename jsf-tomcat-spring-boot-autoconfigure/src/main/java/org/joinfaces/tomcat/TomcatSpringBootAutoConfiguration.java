@@ -20,7 +20,6 @@ import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.boot.context.embedded.ConfigurableEmbeddedServletContainer;
 import org.springframework.boot.context.embedded.EmbeddedServletContainerCustomizer;
 import org.springframework.boot.context.embedded.tomcat.TomcatEmbeddedServletContainerFactory;
-import org.springframework.boot.web.support.SpringBootServletInitializer;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -32,8 +31,7 @@ import org.springframework.context.annotation.Configuration;
  */
 @ConditionalOnClass(name = "org.apache.catalina.Context")
 @Configuration
-public class TomcatSpringBootAutoConfiguration
-	extends SpringBootServletInitializer implements EmbeddedServletContainerCustomizer {
+public class TomcatSpringBootAutoConfiguration implements EmbeddedServletContainerCustomizer {
 
 	private JsfTomcatContextCustomizer customizer = new JsfTomcatContextCustomizer();
 
