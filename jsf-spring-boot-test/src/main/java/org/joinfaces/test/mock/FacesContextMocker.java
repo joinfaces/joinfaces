@@ -1,5 +1,5 @@
 /*
- * Copyright 2016-2016 the original author or authors.
+ * Copyright 2016-2017 the original author or authors.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package org.joinfaces.mock;
+package org.joinfaces.test.mock;
 
 import javax.faces.context.FacesContext;
 
@@ -25,6 +25,8 @@ import org.mockito.stubbing.Answer;
 /**
  * Taken from
  * http://ovaraksin.blogspot.com.br/2014/03/set-up-jsf-environment-for-junit-tests.html
+ *
+ * @author Marcelo Romulo Fernandes
  */
 public abstract class FacesContextMocker extends FacesContext {
 

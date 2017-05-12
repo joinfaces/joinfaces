@@ -1,5 +1,5 @@
 /*
- * Copyright 2016-2016 the original author or authors.
+ * Copyright 2016-2017 the original author or authors.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package org.joinfaces.mock;
+package org.joinfaces.test.mock;
 
 import javax.el.MethodExpression;
 import javax.el.ValueExpression;
@@ -24,6 +24,8 @@ import javax.faces.view.facelets.TagAttribute;
 
 /**
  * Tag Attribute Mock
+ *
+ * @author Marcelo Romulo Fernandes
  */
 public class MockTagAttribute extends TagAttribute {
 
