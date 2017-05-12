@@ -8,15 +8,24 @@
         <version>2.3.10-SNAPSHOT</version>
         <relativePath>../jsf-spring-boot-parent</relativePath>
     </parent>
-    
-    <artifactId>jsf-spring-boot-integration</artifactId>
-    <name>JSF Spring Boot Integration</name>
-    <description>Jsf Spring Boot Integration</description>
+
+    <artifactId>jsf-spring-boot-test</artifactId>
+    <name>JSF Spring Boot Test</name>
+    <description>JSF Spring Boot Test</description>
 
     <properties>
         <main.basedir>${basedir}/..</main.basedir>
-        
+
         <check.dir>../jsf-spring-boot-parent/src/checkconfig</check.dir>
+        <findbugs.dir>src/checkconfig/findbugs</findbugs.dir>
+        <!-- ignore javax.persistence classes that exists at tomcat-embed-core -->
+        <duplicate.ignoredClassPattern>(javax.faces.*$|javax.persistence.(PersistenceContext|PersistenceContextType|PersistenceContexts|PersistenceProperty|PersistenceUnit|PersistenceUnits|SynchronizationType))</duplicate.ignoredClassPattern>
+        <duplicate.ignoredResourcePattern>javax/faces/Messages.*\.properties</duplicate.ignoredResourcePattern>
+
+        <cobertura.totalLineRate>99</cobertura.totalLineRate>
+        <cobertura.lineRate>75</cobertura.lineRate>
+        <cobertura.branchRate>90</cobertura.branchRate>
+        <cobertura.totalBranchRate>95</cobertura.totalBranchRate>
     </properties>
 
     <dependencies>
@@ -33,45 +42,41 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
-            <optional>true</optional>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>com.sun.faces</groupId>
-            <artifactId>jsf-api</artifactId>
-            <optional>true</optional>
-        </dependency>
-        <dependency>
-            <groupId>javax.enterprise</groupId>
-            <artifactId>cdi-api</artifactId>
-            <optional>true</optional>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.security</groupId>
-            <artifactId>spring-security-taglibs</artifactId>
-            <optional>true</optional>
-            <exclusions>
-                <exclusion>
-                    <groupId>aopalliance</groupId>
-                    <artifactId>aopalliance</artifactId>
-                </exclusion>
-            </exclusions>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-security</artifactId>
-            <optional>true</optional>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.joinfaces</groupId>
-            <artifactId>jsf-spring-boot-test</artifactId>
-            <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
             <optional>true</optional>
         </dependency>
+
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-orm</artifactId>
+            <optional>true</optional>
+        </dependency>
+        <dependency>
+            <groupId>org.hibernate.javax.persistence</groupId>
+            <artifactId>hibernate-jpa-2.1-api</artifactId>
+            <version>1.0.0.Final</version>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.tomcat.embed</groupId>
+            <artifactId>tomcat-embed-jasper</artifactId>
+            <optional>true</optional>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.reflections</groupId>
+            <artifactId>reflections</artifactId>
+            <optional>true</optional>
+        </dependency>
+        <dependency>
+            <groupId>org.glassfish</groupId>
+            <artifactId>javax.faces</artifactId>
+            <optional>true</optional>
+        </dependency>
+
     </dependencies>
 </project>

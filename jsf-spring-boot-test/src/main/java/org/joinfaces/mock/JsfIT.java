@@ -16,12 +16,11 @@
 
 package org.joinfaces.mock;
 
-import javax.inject.Inject;
-
 import lombok.Getter;
 import org.junit.After;
 import org.junit.Before;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 
 /**
@@ -32,7 +31,7 @@ public class JsfIT {
 	@Getter
 	private JsfMock jsfMock;
 
-	@Inject
+	@Autowired
 	private ApplicationContext applicationContext;
 
 	@Before
