@@ -23,6 +23,8 @@ import org.mockito.invocation.InvocationOnMock;
 import org.mockito.stubbing.Answer;
 
 /**
+ * Faces Context Mocker.
+ *
  * Taken from
  * http://ovaraksin.blogspot.com.br/2014/03/set-up-jsf-environment-for-junit-tests.html
  *

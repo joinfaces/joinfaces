@@ -32,7 +32,7 @@ import javax.faces.view.facelets.FaceletContext;
 import lombok.Getter;
 
 /**
- * Facelet Context Mock
+ * Facelet Context Mock.
  *
  * @author Marcelo Romulo Fernandes
  */

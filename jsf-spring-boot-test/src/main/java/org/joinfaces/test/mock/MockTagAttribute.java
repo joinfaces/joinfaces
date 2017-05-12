@@ -23,7 +23,7 @@ import javax.faces.view.facelets.FaceletContext;
 import javax.faces.view.facelets.TagAttribute;
 
 /**
- * Tag Attribute Mock
+ * Tag Attribute Mock.
  *
  * @author Marcelo Romulo Fernandes
  */

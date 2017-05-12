@@ -25,7 +25,7 @@ import javax.faces.view.facelets.FaceletHandler;
 import lombok.Getter;
 
 /**
- * Facelet Handler Mock
+ * Facelet Handler Mock.
  *
  * @author Marcelo Romulo Fernandes
  */

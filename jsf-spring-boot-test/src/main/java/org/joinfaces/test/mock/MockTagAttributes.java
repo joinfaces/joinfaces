@@ -25,7 +25,7 @@ import javax.faces.view.facelets.TagAttributes;
 import lombok.Getter;
 
 /**
- * Tag Attributes Mock
+ * Tag Attributes Mock.
  *
  * @author Marcelo Romulo Fernandes
  */

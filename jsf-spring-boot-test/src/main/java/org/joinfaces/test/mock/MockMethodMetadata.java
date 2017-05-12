@@ -23,6 +23,8 @@ import org.springframework.core.type.MethodMetadata;
 import org.springframework.util.MultiValueMap;
 
 /**
+ * {@link MethodMetadata}-Mock.
+ *
  * @author Nurettin Yilmaz
  */
 public class MockMethodMetadata implements MethodMetadata {

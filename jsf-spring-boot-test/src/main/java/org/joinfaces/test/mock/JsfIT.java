@@ -24,7 +24,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 
 /**
- * Abstract integration test for jsf Activate JsfMock for each test execution
+ * Abstract integration test for jsf Activate JsfMock for each test execution.
  *
  * @author Marcelo Romulo Fernandes
  */

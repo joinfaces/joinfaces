@@ -40,6 +40,8 @@ import org.springframework.mock.web.MockServletContext;
 import org.springframework.web.context.WebApplicationContext;
 
 /**
+ * JSF Mock.
+ *
  * Taken from
  * http://ovaraksin.blogspot.com.br/2014/03/set-up-jsf-environment-for-junit-tests.html
  *

@@ -20,7 +20,7 @@ import javax.el.ELContext;
 import javax.el.ValueExpression;
 
 /**
- * Value Expression Mock
+ * Value Expression Mock.
  *
  * @author Marcelo Romulo Fernandes
  */
