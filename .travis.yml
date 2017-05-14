@@ -5,6 +5,8 @@ jdk:
 cache:
   directories:
   - $HOME/.m2
-script: mvn -T 4 -Pcheck-duplicate,check-checkstyle,check-cycles,check-cpd,check-pmd,check-findbugs -Dmaven.test.skip=true install && mvn -T 4 --settings ignoreSnapshotsSettings.xml -Pignore-snapshot-repositories,check-cobertura-integration-test,attach-integration-test cobertura:check-integration-test
+script:
+  - ./mvnw -T 2 -B -Pcheck-duplicate,check-checkstyle,check-cycles,check-cpd,check-pmd,check-findbugs -Dmaven.test.skip=true install
+  - ./mvnw -T 2 -B --settings ignoreSnapshotsSettings.xml -Pignore-snapshot-repositories,check-cobertura-integration-test,attach-integration-test cobertura:check-integration-test
 after_success:
-  - mvn --settings ignoreSnapshotsSettings.xml -Pignore-snapshot-repositories,attach-integration-test cobertura:cobertura-integration-test org.eluder.coveralls:coveralls-maven-plugin:4.3.0:report
+  - ./mvnw -B --settings ignoreSnapshotsSettings.xml -Pignore-snapshot-repositories,attach-integration-test cobertura:cobertura-integration-test org.eluder.coveralls:coveralls-maven-plugin:4.3.0:report
