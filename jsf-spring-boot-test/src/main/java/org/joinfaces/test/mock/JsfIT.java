@@ -1,5 +1,5 @@
 /*
- * Copyright 2016-2016 the original author or authors.
+ * Copyright 2016-2017 the original author or authors.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,25 +14,26 @@
  * limitations under the License.
  */
 
-package org.joinfaces.mock;
-
-import javax.inject.Inject;
+package org.joinfaces.test.mock;
 
 import lombok.Getter;
 import org.junit.After;
 import org.junit.Before;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 
 /**
- * Abstract integration test for jsf Activate JsfMock for each test execution
+ * Abstract integration test for jsf Activate JsfMock for each test execution.
+ *
+ * @author Marcelo Romulo Fernandes
  */
 public class JsfIT {
 
 	@Getter
 	private JsfMock jsfMock;
 
-	@Inject
+	@Autowired
 	private ApplicationContext applicationContext;
 
 	@Before

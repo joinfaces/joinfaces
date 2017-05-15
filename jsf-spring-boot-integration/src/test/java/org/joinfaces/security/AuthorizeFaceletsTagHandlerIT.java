@@ -20,8 +20,8 @@ import java.io.IOException;
 
 import javax.faces.view.facelets.FaceletContext;
 
-import org.joinfaces.mock.JsfIT;
-import org.joinfaces.mock.MockTagAttribute;
+import org.joinfaces.test.mock.JsfIT;
+import org.joinfaces.test.mock.MockTagAttribute;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
