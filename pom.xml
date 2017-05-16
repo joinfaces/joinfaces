@@ -25,6 +25,8 @@
     <modules>
         <module>jsf-spring-boot-parent</module>
 
+        <module>jsf-spring-boot-test</module>
+
         <module>jsf-spring-boot-integration</module>
 
         <module>jsf-spring-boot-autoconfigure</module>

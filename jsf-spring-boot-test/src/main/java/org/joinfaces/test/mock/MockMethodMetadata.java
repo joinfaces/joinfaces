@@ -1,5 +1,5 @@
 /*
- * Copyright 2016-2016 the original author or authors.
+ * Copyright 2016-2017 the original author or authors.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package org.joinfaces.mock;
+package org.joinfaces.test.mock;
 
 import java.lang.annotation.Annotation;
 import java.util.Map;
@@ -23,6 +23,8 @@ import org.springframework.core.type.MethodMetadata;
 import org.springframework.util.MultiValueMap;
 
 /**
+ * {@link MethodMetadata}-Mock.
+ *
  * @author Nurettin Yilmaz
  */
 public class MockMethodMetadata implements MethodMetadata {
