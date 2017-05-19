@@ -1,5 +1,5 @@
 /*
- * Copyright 2016-2016 the original author or authors.
+ * Copyright 2016-2017 the original author or authors.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,16 +14,18 @@
  * limitations under the License.
  */
 
-package org.joinfaces.annotations;
+package org.joinfaces.integration;
 
 import org.joinfaces.test.mock.JsfIT;
 import org.junit.Test;
 
+import org.springframework.beans.BeansException;
+import org.springframework.beans.factory.ObjectFactory;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-@SpringBootTest(classes = AnnotationConfiguration.class, webEnvironment = SpringBootTest.WebEnvironment.MOCK)
+@SpringBootTest(classes = ViewScopeAutoConfiguration.class, webEnvironment = SpringBootTest.WebEnvironment.MOCK)
 public class ViewScopeIT extends JsfIT {
 
 	private static final String KEY = "key";
@@ -32,10 +34,15 @@ public class ViewScopeIT extends JsfIT {
 	public void testViewScope() {
 		ViewScope viewScope = new ViewScope();
 
-		ViewScopedClassFactory viewScopedClassFactory = new ViewScopedClassFactory();
+		ObjectFactory<?> objectFactory = new ObjectFactory<Object>() {
+			@Override
+			public Object getObject() throws BeansException {
+				return new Object();
+			}
+		};
 
-		Object viewScopedClass = viewScope.get(KEY, viewScopedClassFactory);
-		viewScopedClass = viewScope.get(KEY, viewScopedClassFactory);
+		Object viewScopedClass = viewScope.get(KEY, objectFactory);
+		viewScopedClass = viewScope.get(KEY, objectFactory);
 
 		assertThat(viewScope.remove(KEY)).isEqualTo(viewScopedClass);
 	}
