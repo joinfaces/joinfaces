@@ -26,7 +26,10 @@ import org.springframework.test.context.junit4.SpringRunner;
 import static org.assertj.core.api.Assertions.assertThat;
 
 @RunWith(SpringRunner.class)
-@SpringBootTest(classes = MyfacesSpringBootAutoConfiguration.class, webEnvironment = SpringBootTest.WebEnvironment.MOCK)
+@SpringBootTest(
+		properties = "spring.profiles.active=propertyTest",
+		webEnvironment = SpringBootTest.WebEnvironment.MOCK
+)
 public class MyfacesPropertiesCDIIT {
 
 	@Autowired

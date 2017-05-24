@@ -34,13 +34,6 @@ import static org.assertj.core.api.Assertions.assertThat;
 @RunWith(SpringRunner.class)
 @SpringBootTest(
 		properties = "debug",
-		classes = {
-				EmbeddedServletContainerAutoConfiguration.class,
-				ProjectStageAutoConfiguration.class,
-				JavaxFacesSpringBootAutoConfiguration.class,
-				JavaxFacesSpringBootAutoConfiguration.JavaxFaces2_2AutoConfiguration.class,
-				ServletContextInitParameterConfigurationPropertiesAutoConfiguration.class
-		},
 		webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT
 )
 @DirtiesContext

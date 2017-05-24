@@ -32,13 +32,6 @@ import static org.assertj.core.api.Assertions.assertThat;
 @RunWith(SpringRunner.class)
 @SpringBootTest(
 		properties = "jsf.bootsfaces.get-jquery-from-cdn=false",
-		classes = {
-				EmbeddedServletContainerAutoConfiguration.class,
-				BootsfacesSpringBootAutoConfiguration.class,
-				ButterfacesSpringBootAutoConfiguration.class,
-				ButterfacesSpringBootAutoConfiguration.ButterfacesBootsfacesAutoConfiguration.class,
-				ServletContextInitParameterConfigurationPropertiesAutoConfiguration.class
-		},
 		webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT
 )
 public class ButterfacesBootsfacesServletContextInitializerIT {

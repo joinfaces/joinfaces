@@ -16,6 +16,7 @@
 
 package org.joinfaces.primefaces;
 
+import javax.servlet.MultipartConfigElement;
 import javax.servlet.ServletException;
 
 import org.junit.Test;
@@ -24,12 +25,17 @@ import org.primefaces.webapp.filter.FileUploadFilter;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.context.TestConfiguration;
+import org.springframework.context.annotation.Bean;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 @RunWith(SpringRunner.class)
-@SpringBootTest(properties = "jsf.primefaces.uploader=commons", classes = {MockPrimefacesFileUploadAutoConfiguration.class, PrimefacesFileUploadServletContextAutoConfiguration.class, PrimefacesAutoConfiguration.Primefaces6_0AutoConfiguration.class}, webEnvironment = SpringBootTest.WebEnvironment.MOCK)
+@SpringBootTest(
+		properties = "jsf.primefaces.uploader=commons",
+		webEnvironment = SpringBootTest.WebEnvironment.MOCK
+)
 public class CommonsPrimefacesFileUploadServletContextInitializerIT {
 
 	@Autowired
@@ -47,6 +53,15 @@ public class CommonsPrimefacesFileUploadServletContextInitializerIT {
 	public void testFileUploadFilter() throws ServletException {
 		assertThat(this.primefacesFileUploadServletContextAutoConfiguration.fileUploadFilter())
 			.isInstanceOfAny(FileUploadFilter.class);
+	}
+
+	@TestConfiguration
+	public static class TestConfig {
+		@Bean
+		public MultipartConfigElement multipartConfigElement() {
+			return new MultipartConfigElement("myLocation");
+		}
+
 	}
 
 }
