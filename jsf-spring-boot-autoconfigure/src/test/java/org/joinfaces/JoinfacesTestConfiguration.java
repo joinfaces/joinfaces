@@ -20,7 +20,10 @@ import org.springframework.boot.SpringBootConfiguration;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 
 /**
- * Created by larsgrefer on 24.05.17.
+ * This is the central {@link SpringBootConfiguration configuration} for all
+ * {@link org.springframework.boot.test.context.SpringBootTest spring boot tests}.
+ *
+ * @author Lars Grefer
  */
 @SpringBootConfiguration
 @EnableAutoConfiguration
