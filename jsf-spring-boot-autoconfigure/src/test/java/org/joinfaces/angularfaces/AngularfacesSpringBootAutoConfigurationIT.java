@@ -19,14 +19,11 @@ package org.joinfaces.angularfaces;
 import javax.faces.application.ViewHandler;
 
 import de.beyondjava.angularFaces.core.tagTransformer.AngularTagDecorator;
-import org.joinfaces.configuration.ServletContextInitParameterConfigurationPropertiesAutoConfiguration;
 import org.joinfaces.javaxfaces.JavaxFaces2_0Properties;
-import org.joinfaces.javaxfaces.JavaxFacesSpringBootAutoConfiguration;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.web.EmbeddedServletContainerAutoConfiguration;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.junit4.SpringRunner;
