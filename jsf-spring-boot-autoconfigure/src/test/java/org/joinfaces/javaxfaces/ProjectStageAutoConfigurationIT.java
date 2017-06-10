@@ -42,7 +42,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 		},
 		webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT
 )
-public class ProjectStageAutoConfigurationTest {
+public class ProjectStageAutoConfigurationIT {
 
 	@Autowired
 	private WebApplicationContext webApplicationContext;
