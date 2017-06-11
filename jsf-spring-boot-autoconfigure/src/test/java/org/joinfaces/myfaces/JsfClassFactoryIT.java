@@ -24,7 +24,6 @@ import org.apache.myfaces.renderkit.html.HtmlGridRenderer;
 import org.joinfaces.JsfClassFactory;
 import org.joinfaces.NullAnotherJsfClassFactoryConfiguration;
 import org.joinfaces.NullJsfClassFactoryConfiguration;
-import org.joinfaces.mojarra.MojarraJsfClassFactoryConfiguration;
 import org.junit.Test;
 
 import org.springframework.test.context.web.WebAppConfiguration;
