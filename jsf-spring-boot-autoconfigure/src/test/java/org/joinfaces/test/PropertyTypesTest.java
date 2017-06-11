@@ -22,7 +22,9 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.context.TestConfiguration;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -31,7 +33,10 @@ import static org.assertj.core.api.Assertions.assertThat;
  * @author Lars Grefer
  */
 @RunWith(SpringRunner.class)
-@SpringBootTest(classes = TestPropertiesAutoConfiguration.class)
+@SpringBootTest(
+		properties = "spring.profiles.active=propertyTest",
+		webEnvironment = SpringBootTest.WebEnvironment.MOCK
+)
 public class PropertyTypesTest {
 
 	private static final String FOO = "foo";
@@ -75,5 +80,10 @@ public class PropertyTypesTest {
 	@Test
 	public void testClassListProperty() {
 		assertThat(this.testProperties.getClassList()).containsExactly(String.class, Void.class, List.class);
+	}
+
+	@TestConfiguration
+	@EnableConfigurationProperties(TestProperties.class)
+	public static class TestPropertiesAutoConfiguration {
 	}
 }

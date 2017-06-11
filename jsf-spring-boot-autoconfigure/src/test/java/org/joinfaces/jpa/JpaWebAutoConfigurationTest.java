@@ -34,7 +34,6 @@ import static org.assertj.core.api.Assertions.assertThat;
  */
 @RunWith(SpringRunner.class)
 @SpringBootTest(
-		classes = JpaWebAutoConfiguration.class,
 		webEnvironment = SpringBootTest.WebEnvironment.MOCK
 )
 public class JpaWebAutoConfigurationTest {
