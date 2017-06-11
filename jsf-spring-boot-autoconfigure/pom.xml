@@ -186,5 +186,11 @@
             <artifactId>commons-fileupload</artifactId>
             <optional>true</optional>
         </dependency>
+
+        <dependency>
+            <groupId>commons-digester</groupId>
+            <artifactId>commons-digester</artifactId>
+            <scope>test</scope>
+        </dependency>
     </dependencies>
 </project>
