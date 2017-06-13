@@ -18,12 +18,10 @@ package org.joinfaces.javaxfaces;
 
 import javax.faces.application.ProjectStage;
 
-import org.joinfaces.configuration.ServletContextInitParameterConfigurationPropertiesAutoConfiguration;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.web.EmbeddedServletContainerAutoConfiguration;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.web.context.WebApplicationContext;
@@ -33,13 +31,6 @@ import static org.assertj.core.api.Assertions.assertThat;
 @RunWith(SpringRunner.class)
 @SpringBootTest(
 		properties = "jsf.project-stage=",
-		classes = {
-				EmbeddedServletContainerAutoConfiguration.class,
-				ProjectStageAutoConfiguration.class,
-				JavaxFacesSpringBootAutoConfiguration.class,
-				JavaxFacesSpringBootAutoConfiguration.JavaxFaces2_2AutoConfiguration.class,
-				ServletContextInitParameterConfigurationPropertiesAutoConfiguration.class
-		},
 		webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT
 )
 public class ProjectStageAutoConfigurationTest {

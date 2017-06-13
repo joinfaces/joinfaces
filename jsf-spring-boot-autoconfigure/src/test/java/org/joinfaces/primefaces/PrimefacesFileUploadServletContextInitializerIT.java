@@ -28,12 +28,14 @@ import org.primefaces.webapp.filter.FileUploadFilter;
 import org.springframework.beans.factory.NoSuchBeanDefinitionException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.context.TestConfiguration;
+import org.springframework.context.annotation.Bean;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 @RunWith(SpringRunner.class)
-@SpringBootTest(classes = {MockPrimefacesFileUploadAutoConfiguration.class, PrimefacesFileUploadServletContextAutoConfiguration.class, PrimefacesAutoConfiguration.Primefaces6_0AutoConfiguration.class}, webEnvironment = SpringBootTest.WebEnvironment.MOCK)
+@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.MOCK)
 public class PrimefacesFileUploadServletContextInitializerIT {
 
 	@Autowired
@@ -87,4 +89,11 @@ public class PrimefacesFileUploadServletContextInitializerIT {
 			.isNotNull();
 	}
 
+	@TestConfiguration
+	public static class TestConfig {
+		@Bean
+		public MultipartConfigElement multipartConfigElement() {
+			return new MultipartConfigElement("myLocation");
+		}
+	}
 }

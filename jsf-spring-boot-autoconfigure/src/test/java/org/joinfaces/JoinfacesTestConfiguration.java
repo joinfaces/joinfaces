@@ -1,5 +1,5 @@
 /*
- * Copyright 2016-2016 the original author or authors.
+ * Copyright 2016-2017 the original author or authors.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,19 +14,18 @@
  * limitations under the License.
  */
 
-package org.joinfaces.primefaces;
+package org.joinfaces;
 
-import javax.servlet.MultipartConfigElement;
+import org.springframework.boot.SpringBootConfiguration;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
-
-@Configuration
-public class MockPrimefacesFileUploadAutoConfiguration {
-
-	@Bean
-	public MultipartConfigElement multipartConfigElement() {
-		return new MultipartConfigElement("myLocation");
-	}
-
+/**
+ * This is the central {@link SpringBootConfiguration configuration} for all
+ * {@link org.springframework.boot.test.context.SpringBootTest spring boot tests}.
+ *
+ * @author Lars Grefer
+ */
+@SpringBootConfiguration
+@EnableAutoConfiguration
+public class JoinfacesTestConfiguration {
 }
