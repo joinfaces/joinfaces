@@ -7,7 +7,7 @@ JoinFaces
 [![Javadocs](http://javadoc.io/badge/org.joinfaces/jsf-spring-boot-build.svg)](http://javadoc.io/doc/org.joinfaces/jsf-spring-boot-build)
 [![License](http://img.shields.io/:license-apache-blue.svg)](http://www.apache.org/licenses/LICENSE-2.0.html)
 
-This project enables [JSF](http://www.oracle.com/technetwork/java/javaee/javaserverfaces-139869.html) usage inside JAR packaged [Spring Boot](http://projects.spring.io/spring-boot/) Application. 
+This project enables [JSF](http://www.oracle.com/technetwork/java/javaee/javaserverfaces-139869.html) usage inside JAR packaged [Spring Boot](http://projects.spring.io/spring-boot/) Application.
 
 It autoconfigures [PrimeFaces](http://primefaces.org/), [PrimeFaces Extensions](http://primefaces-extensions.github.io/), [BootsFaces](http://bootsfaces.net/), [ButterFaces](http://butterfaces.org/), [RichFaces](https://github.com/richfaces/richfaces), [OmniFaces](http://omnifaces.org/), [AngularFaces](http://angularfaces.net/), [Mojarra](https://javaserverfaces.java.net/) and [MyFaces](http://myfaces.apache.org/) libraries to run at embedded [Tomcat](http://tomcat.apache.org/), [Jetty](http://www.eclipse.org/jetty) or [Undertow](http://undertow.io) servlet containers.
 
@@ -24,7 +24,7 @@ You can find more examples [here.](https://github.com/joinfaces/joinfaces/wiki/S
 
 ### Twenty four JSF Spring Boot Starters available
 
-There are twenty four JSF Spring Boot Starters available. Each starter autoconfigures one Servlet Container, one JSF Implementation and compatible JSF Libraries. 
+There are twenty four JSF Spring Boot Starters available. Each starter autoconfigures one Servlet Container, one JSF Implementation and compatible JSF Libraries.
 
 See detailed starters [here](https://github.com/joinfaces/joinfaces/wiki/JSF-Spring-Boot-Starters).
 
@@ -65,7 +65,7 @@ Annotation |
 [@SessionScoped](http://docs.oracle.com/javaee/7/api/javax/enterprise/context/SessionScoped.html) |
 [@ApplicationScoped](http://docs.oracle.com/javaee/7/api/javax/enterprise/context/ApplicationScoped.html) |
 
-### Spring Security JSF Facelet Tag support 
+### Spring Security JSF Facelet Tag support
 
 Namespace: **http://www.springframework.org/security/tags**
 
@@ -90,7 +90,7 @@ Additional information in [#29](https://github.com/joinfaces/joinfaces/issues/29
 
 ## System Requirements
 
-By default, JSF Spring Boot Starter requires [Java 7](http://java.com) and [Spring Boot 1.5.3](http://projects.spring.io/spring-boot/) or above. 
+By default, JSF Spring Boot Starter requires [Java 7](http://java.com) and [Spring Boot 1.5.4](http://projects.spring.io/spring-boot/) or above. 
 
 Additionnal information [here.](https://github.com/joinfaces/joinfaces/wiki/System-Requirements)
 
