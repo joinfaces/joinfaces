@@ -1,5 +1,5 @@
 /*
- * Copyright 2016-2016 the original author or authors.
+ * Copyright 2016-2017 the original author or authors.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,14 +14,14 @@
  * limitations under the License.
  */
 
-package org.joinfaces;
+package org.joinfaces.mojarra;
 
 import java.util.Set;
 
 import javax.faces.component.html.HtmlPanelGroup;
 
 import com.sun.faces.facelets.compiler.UIText;
-import org.apache.myfaces.renderkit.html.HtmlGridRenderer;
+import org.joinfaces.JsfClassFactory;
 import org.junit.Test;
 
 import org.springframework.test.context.web.WebAppConfiguration;
@@ -45,38 +45,6 @@ public class JsfClassFactoryIT {
 
 		Set<Class<?>> classes = new JsfClassFactory(configuration).getOtherClasses();
 		assertThat(classes).contains(UIText.class);
-	}
-
-	@Test
-	public void testJavaxFacesHtmlPanelGroupWithMyfaces() {
-		MyfacesJsfClassFactoryConfiguration configuration = new MyfacesJsfClassFactoryConfiguration();
-
-		Set<Class<?>> classes = new JsfClassFactory(configuration).getOtherClasses();
-		assertThat(classes).contains(HtmlPanelGroup.class);
-	}
-
-	@Test
-	public void testMyfacesHtmlGridRendererWithMyfaces() {
-		MyfacesJsfClassFactoryConfiguration configuration = new MyfacesJsfClassFactoryConfiguration();
-
-		Set<Class<?>> classes = new JsfClassFactory(configuration).getOtherClasses();
-		assertThat(classes).contains(HtmlGridRenderer.class);
-	}
-
-	@Test
-	public void testNullServletContextInitializer() {
-		NullJsfClassFactoryConfiguration configuration = new NullJsfClassFactoryConfiguration();
-
-		Set<Class<?>> classes = new JsfClassFactory(configuration).getAllClasses();
-		assertThat(classes).doesNotContain(HtmlGridRenderer.class);
-	}
-
-	@Test
-	public void testNullAnotherServletContextInitializer() {
-		NullAnotherJsfClassFactoryConfiguration configuration = new NullAnotherJsfClassFactoryConfiguration();
-
-		Set<Class<?>> classes = new JsfClassFactory(configuration).getAllClasses();
-		assertThat(classes).doesNotContain(HtmlGridRenderer.class);
 	}
 
 }
