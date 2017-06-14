@@ -42,7 +42,9 @@
         
         <jboss-jsp-api_2.3_spec.version>1.0.1.Final</jboss-jsp-api_2.3_spec.version>
 
+        <!-- removing this dependency while https://www.versioneye.com/java/commons-fileupload:commons-fileupload/1.3.2
         <commons-fileupload.version>1.3.2</commons-fileupload.version>
+        -->
         
         <maven-gpg-plugin.version>1.6</maven-gpg-plugin.version>
         <nexus-staging-maven-plugin.version>1.6.8</nexus-staging-maven-plugin.version>
@@ -388,11 +390,13 @@
                 <artifactId>richfaces-a4j</artifactId>
                 <version>${richfaces.version}</version>
             </dependency>
+            <!-- removing this dependency while https://www.versioneye.com/java/commons-fileupload:commons-fileupload/1.3.2
             <dependency>
                 <groupId>commons-fileupload</groupId>
                 <artifactId>commons-fileupload</artifactId>
                 <version>${commons-fileupload.version}</version>
             </dependency>
+            -->
         </dependencies>
     </dependencyManagement>
             
