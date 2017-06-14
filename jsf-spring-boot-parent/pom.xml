@@ -28,7 +28,7 @@
         <omnifaces.version>1.14</omnifaces.version>
         
         <primefaces.version>6.1</primefaces.version>        
-        <primefaces-extensions.version>6.1.0</primefaces-extensions.version>
+        <primefaces-extensions.version>6.1.1</primefaces-extensions.version>
 
         <bootsfaces.version>1.1.1</bootsfaces.version>
         <angularfaces.version>2.1.12</angularfaces.version>
