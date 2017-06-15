@@ -595,28 +595,33 @@
                 <artifactId>jacoco-maven-plugin</artifactId>
                 <executions>
                     <execution>
-                        <id>default-prepare-agent</id>
+                        <id>prepare-unit-test</id>
                         <goals>
                             <goal>prepare-agent</goal>
                         </goals>
+                        <configuration>
+                            <sessionId>unit-tests</sessionId>
+                        </configuration>
                     </execution>
                     <execution>
-                        <id>default-prepare-agent-integration</id>
+                        <id>prepare-integration-test</id>
                         <goals>
                             <goal>prepare-agent-integration</goal>
                         </goals>
                         <configuration>
                             <destFile>${project.build.directory}/jacoco.exec</destFile>
                             <append>true</append>
+                            <sessionId>integration-tests</sessionId>
                         </configuration>
                     </execution>
                     <execution>
+                        <id>jacoco-report</id>
                         <goals>
                             <goal>report</goal>
                         </goals>
                     </execution>
                     <execution>
-                        <id>default-check</id>
+                        <id>jacoco-check</id>
                         <goals>
                             <goal>check</goal>
                         </goals>
