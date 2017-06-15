@@ -30,29 +30,6 @@
         </activatedProfiles>
     </action>
     <action>
-        <actionName>CUSTOM-cobertura</actionName>
-        <displayName>cobertura</displayName>
-        <goals>
-            <goal>clean</goal>
-            <goal>cobertura:check-integration-test</goal>
-        </goals>
-        <activatedProfiles>
-            <activatedProfile>attach-integration-test</activatedProfile>
-            <activatedProfile>check-cobertura-integration-test</activatedProfile>
-        </activatedProfiles>
-    </action>
-    <action>
-        <actionName>CUSTOM-cobertura-site</actionName>
-        <displayName>cobertura-site</displayName>
-        <goals>
-            <goal>clean</goal>
-            <goal>cobertura:cobertura-integration-test</goal>
-        </goals>
-        <activatedProfiles>
-            <activatedProfile>attach-integration-test</activatedProfile>
-        </activatedProfiles>
-    </action>
-    <action>
         <actionName>CUSTOM-site</actionName>
         <displayName>site</displayName>
         <goals>
