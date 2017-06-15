@@ -611,6 +611,11 @@
                         </configuration>
                     </execution>
                     <execution>
+                        <goals>
+                            <goal>report</goal>
+                        </goals>
+                    </execution>
+                    <execution>
                         <id>default-check</id>
                         <goals>
                             <goal>check</goal>
@@ -629,11 +634,6 @@
                                             <counter>BRANCH</counter>
                                             <value>COVEREDRATIO</value>
                                             <minimum>${jacoco.totalBranchRate}</minimum>
-                                        </limit>
-                                        <limit>
-                                            <counter>CLASS</counter>
-                                            <value>MISSEDCOUNT</value>
-                                            <maximum>0</maximum>
                                         </limit>
                                     </limits>
                                 </rule>

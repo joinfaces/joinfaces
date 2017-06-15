@@ -21,8 +21,8 @@
         <duplicate.ignoredClassPattern>(javax.faces.*$|javax.persistence.(PersistenceContext|PersistenceContextType|PersistenceContexts|PersistenceProperty|PersistenceUnit|PersistenceUnits|SynchronizationType))</duplicate.ignoredClassPattern>
         <duplicate.ignoredResourcePattern>javax/faces/Messages.*\.properties</duplicate.ignoredResourcePattern>
 
-        <jacoco.totalLineRate>0.53</jacoco.totalLineRate>
-        <jacoco.packageLineRate>0.53</jacoco.packageLineRate>
+        <jacoco.totalLineRate>0.41</jacoco.totalLineRate>
+        <jacoco.packageLineRate>0.41</jacoco.packageLineRate>
         <jacoco.lineRate>0</jacoco.lineRate>
         <jacoco.totalBranchRate>0.25</jacoco.totalBranchRate>
         <jacoco.packageBranchRate>0.25</jacoco.packageBranchRate>
