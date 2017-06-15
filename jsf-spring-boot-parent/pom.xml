@@ -82,14 +82,12 @@
         
         <maven-surefire-report-plugin.version>2.20</maven-surefire-report-plugin.version>
 
-        <cobertura.totalBranchRate>100</cobertura.totalBranchRate>
-        <cobertura.totalLineRate>100</cobertura.totalLineRate>
-        <cobertura.packageBranchRate>100</cobertura.packageBranchRate>
-        <cobertura.packageLineRate>100</cobertura.packageLineRate>
-        <cobertura.branchRate>100</cobertura.branchRate>
-        <cobertura.lineRate>100</cobertura.lineRate>
-        <cobertura.ignore>none</cobertura.ignore>
-        <cobertura.exclude>none</cobertura.exclude>
+        <jacoco.totalBranchRate>1.00</jacoco.totalBranchRate>
+        <jacoco.totalLineRate>1.00</jacoco.totalLineRate>
+        <jacoco.packageBranchRate>1.00</jacoco.packageBranchRate>
+        <jacoco.packageLineRate>1.00</jacoco.packageLineRate>
+        <jacoco.branchRate>1.00</jacoco.branchRate>
+        <jacoco.lineRate>1.00</jacoco.lineRate>
         
         <maven-project-info-reports-plugin.version>2.9</maven-project-info-reports-plugin.version>
         <maven-jxr-plugin.version>2.5</maven-jxr-plugin.version>
@@ -550,7 +548,12 @@
                         <skip>false</skip>
                         <quiet>false</quiet>
                     </configuration>            
-                </plugin>        
+                </plugin>
+                <plugin>
+                    <groupId>org.jacoco</groupId>
+                    <artifactId>jacoco-maven-plugin</artifactId>
+                    <version>0.7.9</version>
+                </plugin>
             </plugins>
         </pluginManagement>
         
@@ -586,7 +589,89 @@
                     <releaseProfiles>check-checkstyle,check-cycles,check-duplicate,check-pmd,check-cpd,check-findbugs,attach-test-jar,attach-source,attach-javadoc,sign-artifacts,nexus-staging</releaseProfiles>
                     <goals>deploy</goals>
                 </configuration>
-            </plugin>            
+            </plugin>
+            <plugin>
+                <groupId>org.jacoco</groupId>
+                <artifactId>jacoco-maven-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>default-prepare-agent</id>
+                        <goals>
+                            <goal>prepare-agent</goal>
+                        </goals>
+                    </execution>
+                    <execution>
+                        <id>default-prepare-agent-integration</id>
+                        <goals>
+                            <goal>prepare-agent-integration</goal>
+                        </goals>
+                        <configuration>
+                            <destFile>${project.build.directory}/jacoco.exec</destFile>
+                            <append>true</append>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>default-check</id>
+                        <goals>
+                            <goal>check</goal>
+                        </goals>
+                        <configuration>
+                            <rules>
+                                <rule>
+                                    <element>BUNDLE</element>
+                                    <limits>
+                                        <limit>
+                                            <counter>LINE</counter>
+                                            <value>COVEREDRATIO</value>
+                                            <minimum>${jacoco.totalLineRate}</minimum>
+                                        </limit>
+                                        <limit>
+                                            <counter>BRANCH</counter>
+                                            <value>COVEREDRATIO</value>
+                                            <minimum>${jacoco.totalBranchRate}</minimum>
+                                        </limit>
+                                        <limit>
+                                            <counter>CLASS</counter>
+                                            <value>MISSEDCOUNT</value>
+                                            <maximum>0</maximum>
+                                        </limit>
+                                    </limits>
+                                </rule>
+                                <rule>
+                                    <element>PACKAGE</element>
+                                    <limits>
+                                        <limit>
+                                            <counter>LINE</counter>
+                                            <value>COVEREDRATIO</value>
+                                            <minimum>${jacoco.packageLineRate}</minimum>
+                                        </limit>
+                                        <limit>
+                                            <counter>BRANCH</counter>
+                                            <value>COVEREDRATIO</value>
+                                            <minimum>${jacoco.packageBranchRate}</minimum>
+                                        </limit>
+                                    </limits>
+                                </rule>
+                                <rule>
+                                    <element>CLASS</element>
+                                    <limits>
+                                        <limit>
+                                            <counter>LINE</counter>
+                                            <value>COVEREDRATIO</value>
+                                            <minimum>${jacoco.lineRate}</minimum>
+                                        </limit>
+                                        <limit>
+                                            <counter>BRANCH</counter>
+                                            <value>COVEREDRATIO</value>
+                                            <minimum>${jacoco.branchRate}</minimum>
+                                        </limit>
+                                    </limits>
+                                </rule>
+                            </rules>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
         </plugins>
     </build>    
 

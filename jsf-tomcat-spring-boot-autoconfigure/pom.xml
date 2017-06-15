@@ -20,9 +20,9 @@
         <findbugs.dir>src/checkconfig/findbugs</findbugs.dir>
         <duplicate.ignoredClassPattern>javax.faces.*$</duplicate.ignoredClassPattern>
         <duplicate.ignoredResourcePattern>javax/faces/Messages.*\.properties</duplicate.ignoredResourcePattern>
-        <cobertura.branchRate>83</cobertura.branchRate>
-        <cobertura.packageBranchRate>83</cobertura.packageBranchRate>
-        <cobertura.totalBranchRate>83</cobertura.totalBranchRate>
+        <jacoco.branchRate>0.83</jacoco.branchRate>
+        <jacoco.packageBranchRate>0.83</jacoco.packageBranchRate>
+        <jacoco.totalBranchRate>0.83</jacoco.totalBranchRate>
     </properties>
 
     <dependencies>
