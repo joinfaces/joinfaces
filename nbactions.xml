@@ -60,7 +60,6 @@
             <activatedProfile>attach-test-jar</activatedProfile>
             <activatedProfile>attach-source</activatedProfile>
             <activatedProfile>attach-javadoc</activatedProfile>
-            <activatedProfile>attach-integration-test</activatedProfile>
             <activatedProfile>sign-artifacts</activatedProfile>
         </activatedProfiles>
     </action>
@@ -81,7 +80,6 @@
             <activatedProfile>attach-test-jar</activatedProfile>
             <activatedProfile>attach-source</activatedProfile>
             <activatedProfile>attach-javadoc</activatedProfile>
-            <activatedProfile>attach-integration-test</activatedProfile>
             <activatedProfile>sign-artifacts</activatedProfile>
         </activatedProfiles>
     </action>
