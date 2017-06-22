@@ -19,7 +19,6 @@ package org.joinfaces.integration;
 
 import org.junit.Test;
 
-import org.springframework.beans.factory.config.CustomScopeConfigurer;
 import org.springframework.core.Ordered;
 import org.springframework.core.type.AnnotationMetadata;
 import org.springframework.core.type.MethodMetadata;

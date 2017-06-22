@@ -18,19 +18,18 @@ package org.joinfaces.integration;
 
 import java.lang.annotation.Annotation;
 
-import lombok.Data;
+import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 
-import org.springframework.core.Ordered;
-
 /**
+ * Simple definition of a mapping between an {@link Annotation} and a scope.
+ *
  * @author Lars Grefer
  */
-@Data
+@Getter
 @RequiredArgsConstructor
-public class AnnotationToScopeMapping implements Ordered {
+public class AnnotationToScopeMapping {
 
-	int order;
 	final Class<? extends Annotation> annotation;
 	final String scope;
 }

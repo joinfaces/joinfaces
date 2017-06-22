@@ -31,6 +31,9 @@ import org.springframework.core.env.Environment;
 import org.springframework.web.context.WebApplicationContext;
 
 /**
+ * {@link org.springframework.boot.autoconfigure.EnableAutoConfiguration Auto configuration}
+ * for {@code javax.enterprise.context.*Scoped} annotations support.
+ *
  * @author Diego Diez
  * @author Lars Grefer
  */
