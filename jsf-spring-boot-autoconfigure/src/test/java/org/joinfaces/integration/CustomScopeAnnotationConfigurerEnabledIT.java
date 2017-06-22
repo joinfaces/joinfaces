@@ -28,22 +28,36 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 /**
  * Auto-configuration for JSF-CDI-Spring integration.
+ *
  * @author Diego Diez
  */
 @RunWith(SpringRunner.class)
 @SpringBootTest(
-		properties = "jsf.cdi.configurationOrder=100",
+		properties = {
+				"jsf.scope-configurer.cdi.enabled=false",
+				"jsf.scope-configurer.jsf.enabled=false"
+		},
 		webEnvironment = SpringBootTest.WebEnvironment.MOCK
 )
-public class CustomScopeAnnotationAutoConfigurationIT {
+public class CustomScopeAnnotationConfigurerEnabledIT {
 
-	@Autowired
+	@Autowired(required = false)
 	@Qualifier("cdiScopeAnnotationsConfigurer")
-	private CustomScopeAnnotationConfigurer customScopeAnnotationConfigurer;
+	private CustomScopeAnnotationConfigurer cdiScopeAnnotationsConfigurer;
+
+	@Autowired(required = false)
+	@Qualifier("jsfScopeAnnotationsConfigurer")
+	private CustomScopeAnnotationConfigurer jsfScopeAnnotationsConfigurer;
 
 	@Test
-	public void testInitializerOrder() {
-		assertThat(this.customScopeAnnotationConfigurer.getOrder())
-			.isEqualTo(100);
+	public void testCdiEnabled() {
+		assertThat(this.cdiScopeAnnotationsConfigurer)
+				.isNull();
+	}
+
+	@Test
+	public void testJsfEnabled() {
+		assertThat(this.jsfScopeAnnotationsConfigurer)
+				.isNull();
 	}
 }

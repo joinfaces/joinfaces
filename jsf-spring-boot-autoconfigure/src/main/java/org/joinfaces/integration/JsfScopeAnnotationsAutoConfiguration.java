@@ -24,6 +24,7 @@ import javax.faces.bean.SessionScoped;
 import org.springframework.beans.factory.config.BeanFactoryPostProcessor;
 import org.springframework.beans.factory.config.ConfigurableBeanFactory;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.Ordered;
@@ -41,13 +42,12 @@ import org.springframework.web.context.WebApplicationContext;
 @ConditionalOnClass(RequestScoped.class)
 public class JsfScopeAnnotationsAutoConfiguration {
 
-	private static final String JSF_CDI_CONFIGURATION_ORDER = "jsf.cdi.configurationOrder";
-
 	@Bean
+	@ConditionalOnProperty(value = "jsf.scope-configurer.jsf.enabled", havingValue = "true", matchIfMissing = true)
 	public static BeanFactoryPostProcessor jsfScopeAnnotationsConfigurer(Environment environment) {
 		CustomScopeAnnotationConfigurer scopeAnnotationConfigurer = new CustomScopeAnnotationConfigurer();
 
-		scopeAnnotationConfigurer.setOrder(environment.getProperty(JSF_CDI_CONFIGURATION_ORDER, Integer.class, Ordered.LOWEST_PRECEDENCE));
+		scopeAnnotationConfigurer.setOrder(environment.getProperty("jsf.scope-configurer.jsf.order", Integer.class, Ordered.LOWEST_PRECEDENCE));
 
 		scopeAnnotationConfigurer.addMapping(NoneScoped.class, ConfigurableBeanFactory.SCOPE_PROTOTYPE);
 		scopeAnnotationConfigurer.addMapping(RequestScoped.class, WebApplicationContext.SCOPE_REQUEST);

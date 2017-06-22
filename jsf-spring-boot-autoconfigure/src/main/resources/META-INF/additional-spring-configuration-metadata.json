@@ -1,6 +1,26 @@
 {
   "properties": [
     {
+      "name": "jsf.scope-configurer.jsf.enabled",
+      "defaultValue": "true",
+      "type": "java.lang.Boolean"
+    },
+    {
+      "name": "jsf.scope-configurer.jsf.order",
+      "type": "java.lang.Integer",
+      "description": "The order of the BeanFactoryPostProcessor."
+    },
+    {
+      "name": "jsf.scope-configurer.cdi.enabled",
+      "defaultValue": "true",
+      "type": "java.lang.Boolean"
+    },
+    {
+      "name": "jsf.scope-configurer.cdi.order",
+      "type": "java.lang.Integer",
+      "description": "The order of the BeanFactoryPostProcessor."
+    },
+    {
       "name": "jsf.mojarra.disable-unicode-escaping",
       "defaultValue": "false"
     }

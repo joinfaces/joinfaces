@@ -30,6 +30,6 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class AnnotationToScopeMapping {
 
-	final Class<? extends Annotation> annotation;
-	final String scope;
+	private final Class<? extends Annotation> annotation;
+	private final String scope;
 }
