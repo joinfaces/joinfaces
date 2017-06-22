@@ -1,5 +1,5 @@
 /*
- * Copyright 2016-2016 the original author or authors.
+ * Copyright 2016-2017 the original author or authors.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,12 +14,13 @@
  * limitations under the License.
  */
 
-package org.joinfaces.annotations;
+package org.joinfaces.integration;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
@@ -30,15 +31,19 @@ import static org.assertj.core.api.Assertions.assertThat;
  * @author Diego Diez
  */
 @RunWith(SpringRunner.class)
-@SpringBootTest(classes = JsfCdiToSpringAutoConfiguration.class, webEnvironment = SpringBootTest.WebEnvironment.MOCK)
-public class JsfCdiToSpringAutoConfigurationIT {
+@SpringBootTest(
+		properties = "jsf.cdi.configurationOrder=100",
+		webEnvironment = SpringBootTest.WebEnvironment.MOCK
+)
+public class CustomScopeAnnotationAutoConfigurationIT {
 
 	@Autowired
-	private JsfCdiToSpringBeanFactoryPostProcessor jsfCdiToSpringBeanFactoryPostProcessor;
+	@Qualifier("cdiScopeAnnotationsConfigurer")
+	private CustomScopeAnnotationConfigurer customScopeAnnotationConfigurer;
 
 	@Test
 	public void testInitializerOrder() {
-		assertThat(this.jsfCdiToSpringBeanFactoryPostProcessor.getOrder())
+		assertThat(this.customScopeAnnotationConfigurer.getOrder())
 			.isEqualTo(100);
 	}
 }

@@ -1,5 +1,5 @@
 /*
- * Copyright 2016-2016 the original author or authors.
+ * Copyright 2016-2017 the original author or authors.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,8 +14,23 @@
  * limitations under the License.
  */
 
-package org.joinfaces.annotations;
+package org.joinfaces.integration;
 
-public class NoScopedClass {
+import java.lang.annotation.Annotation;
 
+import lombok.Data;
+import lombok.RequiredArgsConstructor;
+
+import org.springframework.core.Ordered;
+
+/**
+ * @author Lars Grefer
+ */
+@Data
+@RequiredArgsConstructor
+public class AnnotationToScopeMapping implements Ordered {
+
+	int order;
+	final Class<? extends Annotation> annotation;
+	final String scope;
 }
