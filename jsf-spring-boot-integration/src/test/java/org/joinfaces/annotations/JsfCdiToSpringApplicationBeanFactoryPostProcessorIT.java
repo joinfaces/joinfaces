@@ -19,9 +19,6 @@ package org.joinfaces.annotations;
 import org.junit.Test;
 
 import org.springframework.beans.factory.annotation.AnnotatedGenericBeanDefinition;
-import org.springframework.beans.factory.config.BeanFactoryPostProcessor;
-import org.springframework.beans.factory.config.ConfigurableListableBeanFactory;
-import org.springframework.beans.factory.support.DefaultListableBeanFactory;
 import org.springframework.beans.factory.support.RootBeanDefinition;
 import org.springframework.context.annotation.AnnotationConfigUtils;
 import org.springframework.context.support.GenericApplicationContext;
@@ -30,17 +27,6 @@ import org.springframework.core.type.StandardAnnotationMetadata;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class JsfCdiToSpringApplicationBeanFactoryPostProcessorIT {
-
-	@Test
-	public void testRegisteredScopeView() {
-		ConfigurableListableBeanFactory beanFactory = new DefaultListableBeanFactory();
-		BeanFactoryPostProcessor beanFactoryPostProcessor = new JsfCdiToSpringBeanFactoryPostProcessor();
-
-		beanFactoryPostProcessor.postProcessBeanFactory(beanFactory);
-
-		assertThat(beanFactory.getRegisteredScope(JsfCdiToSpring.VIEW))
-			.isInstanceOf(ViewScope.class);
-	}
 
 	@Test
 	public void testViewScopedClass() {
