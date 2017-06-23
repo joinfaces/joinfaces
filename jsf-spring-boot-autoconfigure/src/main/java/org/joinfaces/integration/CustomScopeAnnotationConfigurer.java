@@ -121,7 +121,7 @@ public class CustomScopeAnnotationConfigurer implements BeanFactoryPostProcessor
 		addMapping(new AnnotationToScopeMapping(annotation, scopeName));
 	}
 
-	private void addMapping(AnnotationToScopeMapping annotationToScopeMapping) {
+	public void addMapping(AnnotationToScopeMapping annotationToScopeMapping) {
 		if (this.annotationToScopeMappings == null) {
 			this.annotationToScopeMappings = new LinkedList<AnnotationToScopeMapping>();
 		}
