@@ -37,10 +37,6 @@
                     <groupId>org.apache.tomcat.embed</groupId>
                     <artifactId>tomcat-embed-el</artifactId>
                 </exclusion>
-                <exclusion>
-                    <groupId>org.joinfaces</groupId>
-                    <artifactId>jsf-tomcat-spring-boot-autoconfigure</artifactId>
-                </exclusion>
             </exclusions>
         </dependency>
         <!-- jetty dependencies -->
