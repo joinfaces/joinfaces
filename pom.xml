@@ -33,8 +33,6 @@
 
         <module>jsf-tomcat-spring-boot-autoconfigure</module>
 
-        <module>jsf-jetty-spring-boot-autoconfigure</module>
-
         <module>jsf-undertow-spring-boot-autoconfigure</module>
 
         <module>jsf-spring-boot-starters</module>
