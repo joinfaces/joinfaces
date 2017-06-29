@@ -1,4 +1,0 @@
-jsf:
-  # undertow namespace
-  undertow:
-    classPathResource: public

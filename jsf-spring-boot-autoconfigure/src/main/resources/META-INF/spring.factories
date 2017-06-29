@@ -3,6 +3,8 @@ org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
 org.joinfaces.tomcat.TomcatSpringBootAutoConfiguration,\
 org.joinfaces.jetty.JettySpringBootAutoConfiguration,\
 org.joinfaces.jetty.JettyMyfacesSpringBootAutoConfiguration,\
+org.joinfaces.undertow.UndertowSpringBootAutoConfiguration,\
+org.joinfaces.undertow.UndertowMyfacesSpringBootAutoConfiguration,\
 org.joinfaces.integration.ViewScopeAutoConfiguration,\
 org.joinfaces.javaxfaces.JavaxFacesSpringBootAutoConfiguration,\
 org.joinfaces.mojarra.MojarraSpringBootAutoConfiguration,\
