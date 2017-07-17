@@ -1,5 +1,5 @@
 /*
- * Copyright 2016-2016 the original author or authors.
+ * Copyright 2016-2017 the original author or authors.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,11 +14,22 @@
  * limitations under the License.
  */
 
-package org.joinfaces.annotations;
+package org.joinfaces.integration;
 
-import javax.faces.bean.SessionScoped;
+import java.lang.annotation.Annotation;
 
-@SessionScoped
-public class SessionScopedClass {
+import lombok.Getter;
+import lombok.RequiredArgsConstructor;
 
+/**
+ * Simple definition of a mapping between an {@link Annotation} and a scope.
+ *
+ * @author Lars Grefer
+ */
+@Getter
+@RequiredArgsConstructor
+public class AnnotationToScopeMapping {
+
+	private final Class<? extends Annotation> annotation;
+	private final String scope;
 }
