@@ -20,7 +20,7 @@
         <findbugs.dir>src/checkconfig/findbugs</findbugs.dir>
         <!-- ignore javax.persistence classes that exists at tomcat-embed-core -->
         <duplicate.ignoredClassPattern>(javax.faces.*$|javax.persistence.(PersistenceContext|PersistenceContextType|PersistenceContexts|PersistenceProperty|PersistenceUnit|PersistenceUnits|SynchronizationType))</duplicate.ignoredClassPattern>
-        <duplicate.ignoredResourcePattern>javax/faces/Messages.*\.properties</duplicate.ignoredResourcePattern>
+        <duplicate.ignoredResourcePattern>(javax/faces/Messages.*\.properties)|(about.html)</duplicate.ignoredResourcePattern>
         
         <cobertura.totalLineRate>99</cobertura.totalLineRate>
         <cobertura.lineRate>75</cobertura.lineRate>
