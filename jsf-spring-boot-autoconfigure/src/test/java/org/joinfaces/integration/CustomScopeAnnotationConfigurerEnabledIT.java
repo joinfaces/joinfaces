@@ -1,5 +1,5 @@
 /*
- * Copyright 2016-2016 the original author or authors.
+ * Copyright 2016-2017 the original author or authors.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,12 +14,13 @@
  * limitations under the License.
  */
 
-package org.joinfaces.annotations;
+package org.joinfaces.integration;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
@@ -27,18 +28,36 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 /**
  * Auto-configuration for JSF-CDI-Spring integration.
+ *
  * @author Diego Diez
  */
 @RunWith(SpringRunner.class)
-@SpringBootTest(classes = JsfCdiToSpringAutoConfiguration.class, webEnvironment = SpringBootTest.WebEnvironment.MOCK)
-public class JsfCdiToSpringAutoConfigurationIT {
+@SpringBootTest(
+		properties = {
+				"jsf.scope-configurer.cdi.enabled=false",
+				"jsf.scope-configurer.jsf.enabled=false"
+		},
+		webEnvironment = SpringBootTest.WebEnvironment.MOCK
+)
+public class CustomScopeAnnotationConfigurerEnabledIT {
 
-	@Autowired
-	private JsfCdiToSpringBeanFactoryPostProcessor jsfCdiToSpringBeanFactoryPostProcessor;
+	@Autowired(required = false)
+	@Qualifier("cdiScopeAnnotationsConfigurer")
+	private CustomScopeAnnotationConfigurer cdiScopeAnnotationsConfigurer;
+
+	@Autowired(required = false)
+	@Qualifier("jsfScopeAnnotationsConfigurer")
+	private CustomScopeAnnotationConfigurer jsfScopeAnnotationsConfigurer;
 
 	@Test
-	public void testInitializerOrder() {
-		assertThat(this.jsfCdiToSpringBeanFactoryPostProcessor.getOrder())
-			.isEqualTo(100);
+	public void testCdiEnabled() {
+		assertThat(this.cdiScopeAnnotationsConfigurer)
+				.isNull();
+	}
+
+	@Test
+	public void testJsfEnabled() {
+		assertThat(this.jsfScopeAnnotationsConfigurer)
+				.isNull();
 	}
 }

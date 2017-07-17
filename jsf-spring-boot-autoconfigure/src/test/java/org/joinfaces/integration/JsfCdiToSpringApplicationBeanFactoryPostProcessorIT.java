@@ -1,5 +1,5 @@
 /*
- * Copyright 2016-2016 the original author or authors.
+ * Copyright 2016-2017 the original author or authors.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package org.joinfaces.annotations;
+package org.joinfaces.integration;
 
 import org.junit.Test;
 
@@ -23,6 +23,7 @@ import org.springframework.beans.factory.support.RootBeanDefinition;
 import org.springframework.context.annotation.AnnotationConfigUtils;
 import org.springframework.context.support.GenericApplicationContext;
 import org.springframework.core.type.StandardAnnotationMetadata;
+import org.springframework.web.context.WebApplicationContext;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -37,13 +38,14 @@ public class JsfCdiToSpringApplicationBeanFactoryPostProcessorIT {
 			new StandardAnnotationMetadata(ViewScopedClass.class)));
 		acx.registerBeanDefinition("scopedBeansConfiguration", new RootBeanDefinition(
 			ScopedBeansConfiguration.class));
-		acx.addBeanFactoryPostProcessor(new JsfCdiToSpringBeanFactoryPostProcessor());
+		acx.addBeanFactoryPostProcessor(JsfScopeAnnotationsAutoConfiguration.jsfScopeAnnotationsConfigurer(acx.getEnvironment()));
+		acx.addBeanFactoryPostProcessor(CdiScopeAnnotationsAutoConfiguration.cdiScopeAnnotationsConfigurer(acx.getEnvironment()));
 		acx.refresh();
 
 		assertThat(acx.getBeanDefinition("viewScopedClass").getScope())
-			.isEqualTo(JsfCdiToSpring.VIEW);
+			.isEqualTo(ViewScope.SCOPE_VIEW);
 		assertThat(acx.getBeanDefinition("viewScopedBean").getScope())
-			.isEqualTo(JsfCdiToSpring.VIEW);
+			.isEqualTo(ViewScope.SCOPE_VIEW);
 	}
 
 	@Test
@@ -55,13 +57,14 @@ public class JsfCdiToSpringApplicationBeanFactoryPostProcessorIT {
 			new StandardAnnotationMetadata(SessionScopedClass.class)));
 		acx.registerBeanDefinition("scopedBeansConfiguration", new RootBeanDefinition(
 			ScopedBeansConfiguration.class));
-		acx.addBeanFactoryPostProcessor(new JsfCdiToSpringBeanFactoryPostProcessor());
+		acx.addBeanFactoryPostProcessor(JsfScopeAnnotationsAutoConfiguration.jsfScopeAnnotationsConfigurer(acx.getEnvironment()));
+		acx.addBeanFactoryPostProcessor(CdiScopeAnnotationsAutoConfiguration.cdiScopeAnnotationsConfigurer(acx.getEnvironment()));
 		acx.refresh();
 
 		assertThat(acx.getBeanDefinition("sessionScopedClass").getScope())
-			.isEqualTo(JsfCdiToSpring.SESSION);
+			.isEqualTo(WebApplicationContext.SCOPE_SESSION);
 		assertThat(acx.getBeanDefinition("sessionScopedBean").getScope())
-			.isEqualTo(JsfCdiToSpring.SESSION);
+			.isEqualTo(WebApplicationContext.SCOPE_SESSION);
 	}
 
 	@Test
@@ -73,7 +76,8 @@ public class JsfCdiToSpringApplicationBeanFactoryPostProcessorIT {
 			new StandardAnnotationMetadata(NoScopedClass.class)));
 		acx.registerBeanDefinition("scopedBeansConfiguration", new RootBeanDefinition(
 			ScopedBeansConfiguration.class));
-		acx.addBeanFactoryPostProcessor(new JsfCdiToSpringBeanFactoryPostProcessor());
+		acx.addBeanFactoryPostProcessor(JsfScopeAnnotationsAutoConfiguration.jsfScopeAnnotationsConfigurer(acx.getEnvironment()));
+		acx.addBeanFactoryPostProcessor(CdiScopeAnnotationsAutoConfiguration.cdiScopeAnnotationsConfigurer(acx.getEnvironment()));
 		acx.refresh();
 
 		assertThat(acx.getBeanDefinition("noScopedClass").getScope())
