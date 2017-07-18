@@ -1,5 +1,5 @@
 /*
- * Copyright 2016-2016 the original author or authors.
+ * Copyright 2016-2017 the original author or authors.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,8 +14,15 @@
  * limitations under the License.
  */
 
-package org.joinfaces.annotations;
+package org.joinfaces.integration;
 
+import java.lang.annotation.Annotation;
+import java.util.LinkedList;
+import java.util.List;
+
+import lombok.Getter;
+import lombok.RequiredArgsConstructor;
+import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
 
 import org.springframework.beans.BeansException;
@@ -24,6 +31,8 @@ import org.springframework.beans.factory.config.BeanDefinition;
 import org.springframework.beans.factory.config.BeanFactoryPostProcessor;
 import org.springframework.beans.factory.config.ConfigurableListableBeanFactory;
 import org.springframework.core.Ordered;
+import org.springframework.core.type.AnnotationMetadata;
+import org.springframework.core.type.MethodMetadata;
 
 /**
  * Add custom JSF CDI scope implementations. Picks up JSF and CDI annotations both on
@@ -33,9 +42,16 @@ import org.springframework.core.Ordered;
  * @author Nurettin Yilmaz
  */
 @Slf4j
-public class JsfCdiToSpringBeanFactoryPostProcessor implements BeanFactoryPostProcessor, Ordered {
+@Getter
+@Setter
+@RequiredArgsConstructor
+public class CustomScopeAnnotationConfigurer implements BeanFactoryPostProcessor, Ordered {
 
+	@Getter
+	@Setter
 	private int order = Ordered.LOWEST_PRECEDENCE;
+
+	private List<AnnotationToScopeMapping> annotationToScopeMappings;
 
 	@Override
 	public void postProcessBeanFactory(ConfigurableListableBeanFactory clbf) throws BeansException {
@@ -58,11 +74,11 @@ public class JsfCdiToSpringBeanFactoryPostProcessor implements BeanFactoryPostPr
 			String scopeName = null;
 			// firstly check whether bean is defined via configuration
 			if (annDef.getFactoryMethodMetadata() != null) {
-				scopeName = JsfCdiToSpring.deduceScopeName(annDef.getFactoryMethodMetadata());
+				scopeName = deduceScopeName(annDef.getFactoryMethodMetadata());
 			}
 			else {
 				// fallback to type
-				scopeName = JsfCdiToSpring.deduceScopeName(annDef.getMetadata().getAnnotationTypes());
+				scopeName = deduceScopeName(annDef.getMetadata());
 			}
 
 			if (scopeName != null) {
@@ -73,12 +89,43 @@ public class JsfCdiToSpringBeanFactoryPostProcessor implements BeanFactoryPostPr
 		}
 	}
 
-	@Override
-	public int getOrder() {
-		return this.order;
+	protected String deduceScopeName(MethodMetadata factoryMethodMetadata) {
+		if (getAnnotationToScopeMappings() == null) {
+			return null;
+		}
+
+		for (AnnotationToScopeMapping annotationToScopeMapping : getAnnotationToScopeMappings()) {
+			if (factoryMethodMetadata.isAnnotated(annotationToScopeMapping.getAnnotation().getName())) {
+				return annotationToScopeMapping.getScope();
+			}
+		}
+
+		return null;
 	}
 
-	public void setOrder(int order) {
-		this.order = order;
+	protected String deduceScopeName(AnnotationMetadata classMetadata) {
+		if (classMetadata == null || getAnnotationToScopeMappings() == null) {
+			return null;
+		}
+
+		for (AnnotationToScopeMapping annotationToScopeMapping : getAnnotationToScopeMappings()) {
+			if (classMetadata.hasAnnotation(annotationToScopeMapping.getAnnotation().getName())) {
+				return annotationToScopeMapping.getScope();
+			}
+		}
+
+		return null;
+	}
+
+	public void addMapping(Class<? extends Annotation> annotation, String scopeName) {
+		addMapping(new AnnotationToScopeMapping(annotation, scopeName));
+	}
+
+	public void addMapping(AnnotationToScopeMapping annotationToScopeMapping) {
+		if (this.annotationToScopeMappings == null) {
+			this.annotationToScopeMappings = new LinkedList<AnnotationToScopeMapping>();
+		}
+
+		this.annotationToScopeMappings.add(annotationToScopeMapping);
 	}
 }
