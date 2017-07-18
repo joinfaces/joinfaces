@@ -23,11 +23,11 @@
         <duplicate.ignoredResourcePattern>(javax/faces/Messages.*\.properties)|(about.html)</duplicate.ignoredResourcePattern>
 
         <jacoco.totalLineRate>0.98</jacoco.totalLineRate>
-        <jacoco.totalBranchRate>0.95</jacoco.totalBranchRate>
+        <jacoco.totalBranchRate>0.93</jacoco.totalBranchRate>
         <jacoco.packageLineRate>0.90</jacoco.packageLineRate>
-        <jacoco.packageBranchRate>0.90</jacoco.packageBranchRate>
+        <jacoco.packageBranchRate>0.83</jacoco.packageBranchRate>
         <jacoco.lineRate>0.75</jacoco.lineRate>
-        <jacoco.branchRate>0.90</jacoco.branchRate>
+        <jacoco.branchRate>0.83</jacoco.branchRate>
     </properties>
 
     <build>
