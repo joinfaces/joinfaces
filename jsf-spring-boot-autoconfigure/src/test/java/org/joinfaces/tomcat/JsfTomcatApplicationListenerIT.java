@@ -1,5 +1,5 @@
 /*
- * Copyright 2016-2016 the original author or authors.
+ * Copyright 2016-2017 the original author or authors.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -52,7 +52,7 @@ public class JsfTomcatApplicationListenerIT {
 			.builder().context(jsfTomcatContextCustomizer.getContext()).build();
 		jsfTomcatApplicationListener.onApplicationEvent(null);
 		assertThat(webResourceRoot.getPostResources().length)
-			.isEqualTo(2);
+			.isEqualTo(9);
 	}
 
 	@Test
@@ -82,7 +82,7 @@ public class JsfTomcatApplicationListenerIT {
 			throw new RuntimeException("Could not delete dir: " + testClassesResources.toString());
 		}
 		assertThat(webResourceRoot.getPostResources().length)
-			.isEqualTo(3);
+			.isEqualTo(10);
 	}
 
 	@Test

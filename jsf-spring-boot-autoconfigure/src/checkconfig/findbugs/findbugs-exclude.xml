@@ -3,9 +3,25 @@
     <Match>
         <Method name="getBaseUrls" />
         <Bug pattern="DMI_COLLECTION_OF_URLS" />
-    </Match>    
+    </Match>
     <Match>
         <Method name="testBaseUrls" />
         <Bug pattern="DMI_COLLECTION_OF_URLS" />
-    </Match>    
+    </Match>
+    <Match>
+        <Method name="embeddedJarWithoutAppResources" />
+        <Bug pattern="DMI_HARDCODED_ABSOLUTE_FILENAME" />
+    </Match>
+    <Match>
+        <Method name="embeddedJarWithoutAppResources2" />
+        <Bug pattern="DMI_HARDCODED_ABSOLUTE_FILENAME" />
+    </Match>
+    <Match>
+        <Method name="embeddedWarWithoutAppResources" />
+        <Bug pattern="DMI_HARDCODED_ABSOLUTE_FILENAME" />
+    </Match>
+    <Match>
+        <Method name="testingResources" />
+        <Bug pattern="DMI_HARDCODED_ABSOLUTE_FILENAME" />
+    </Match>
 </FindBugsFilter>
