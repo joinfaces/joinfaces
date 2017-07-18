@@ -242,21 +242,6 @@
                 <artifactId>jsf-spring-boot-autoconfigure</artifactId>
                 <version>2.4.1-SNAPSHOT</version>
             </dependency>
-            <dependency>
-                <groupId>org.joinfaces</groupId>
-                <artifactId>jsf-tomcat-spring-boot-autoconfigure</artifactId>
-                <version>2.4.1-SNAPSHOT</version>
-            </dependency>
-            <dependency>
-                <groupId>org.joinfaces</groupId>
-                <artifactId>jsf-jetty-spring-boot-autoconfigure</artifactId>
-                <version>2.4.1-SNAPSHOT</version>
-            </dependency>
-            <dependency>
-                <groupId>org.joinfaces</groupId>
-                <artifactId>jsf-undertow-spring-boot-autoconfigure</artifactId>
-                <version>2.4.1-SNAPSHOT</version>
-            </dependency>
             
             <dependency>
                 <groupId>org.joinfaces</groupId>

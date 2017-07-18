@@ -20,12 +20,12 @@
         <findbugs.dir>src/checkconfig/findbugs</findbugs.dir>
         <!-- ignore javax.persistence classes that exists at tomcat-embed-core -->
         <duplicate.ignoredClassPattern>(javax.faces.*$|javax.persistence.(PersistenceContext|PersistenceContextType|PersistenceContexts|PersistenceProperty|PersistenceUnit|PersistenceUnits|SynchronizationType))</duplicate.ignoredClassPattern>
-        <duplicate.ignoredResourcePattern>javax/faces/Messages.*\.properties</duplicate.ignoredResourcePattern>
+        <duplicate.ignoredResourcePattern>(javax/faces/Messages.*\.properties)|(about.html)</duplicate.ignoredResourcePattern>
         
         <cobertura.totalLineRate>99</cobertura.totalLineRate>
         <cobertura.lineRate>75</cobertura.lineRate>
-        <cobertura.branchRate>90</cobertura.branchRate>
-        <cobertura.totalBranchRate>95</cobertura.totalBranchRate>
+        <cobertura.branchRate>83</cobertura.branchRate>
+        <cobertura.totalBranchRate>92</cobertura.totalBranchRate>
     </properties>
 
     <build>
@@ -54,6 +54,7 @@
                             </classpathDependencyExcludes>
                             <excludes>
                                 <exclude>**/myfaces/**.java</exclude>
+                                <exclude>**/**Myfaces**.java</exclude>
                             </excludes>
                         </configuration>
                     </execution>
@@ -140,6 +141,32 @@
             <artifactId>tomcat-embed-jasper</artifactId>
             <optional>true</optional>
             <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.eclipse.jetty</groupId>
+            <artifactId>jetty-webapp</artifactId>
+            <optional>true</optional>
+            <exclusions>
+                <exclusion>
+                    <groupId>javax.servlet</groupId>
+                    <artifactId>javax.servlet-api</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        <dependency>
+            <groupId>io.undertow</groupId>
+            <artifactId>undertow-servlet</artifactId>
+            <optional>true</optional>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.jboss.spec.javax.servlet</groupId>
+                    <artifactId>jboss-servlet-api_3.1_spec</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.jboss.spec.javax.annotation</groupId>
+                    <artifactId>jboss-annotations-api_1.2_spec</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
         <dependency>
             <groupId>org.reflections</groupId>

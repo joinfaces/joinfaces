@@ -14,11 +14,11 @@
  * limitations under the License.
  */
 
-package org.joinfaces;
+package org.joinfaces.jetty;
 
 import org.springframework.boot.SpringBootConfiguration;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
-import org.springframework.boot.context.embedded.tomcat.TomcatEmbeddedServletContainerFactory;
+import org.springframework.boot.context.embedded.jetty.JettyEmbeddedServletContainerFactory;
 import org.springframework.context.annotation.Bean;
 
 /**
@@ -29,10 +29,10 @@ import org.springframework.context.annotation.Bean;
  */
 @SpringBootConfiguration
 @EnableAutoConfiguration
-public class JoinfacesTestConfiguration {
+public class JettyTestConfiguration {
 
 	@Bean
-	public TomcatEmbeddedServletContainerFactory tomcatEmbeddedServletContainerFactory() {
-		return new TomcatEmbeddedServletContainerFactory();
+	public JettyEmbeddedServletContainerFactory jettyEmbeddedServletContainerFactory() {
+		return new JettyEmbeddedServletContainerFactory();
 	}
 }
