@@ -21,11 +21,13 @@
         <!-- ignore javax.persistence classes that exists at tomcat-embed-core -->
         <duplicate.ignoredClassPattern>(javax.faces.*$|javax.persistence.(PersistenceContext|PersistenceContextType|PersistenceContexts|PersistenceProperty|PersistenceUnit|PersistenceUnits|SynchronizationType))</duplicate.ignoredClassPattern>
         <duplicate.ignoredResourcePattern>(javax/faces/Messages.*\.properties)|(about.html)</duplicate.ignoredResourcePattern>
-        
-        <cobertura.totalLineRate>99</cobertura.totalLineRate>
-        <cobertura.lineRate>75</cobertura.lineRate>
-        <cobertura.branchRate>83</cobertura.branchRate>
-        <cobertura.totalBranchRate>92</cobertura.totalBranchRate>
+
+        <jacoco.totalLineRate>0.98</jacoco.totalLineRate>
+        <jacoco.totalBranchRate>0.93</jacoco.totalBranchRate>
+        <jacoco.packageLineRate>0.90</jacoco.packageLineRate>
+        <jacoco.packageBranchRate>0.83</jacoco.packageBranchRate>
+        <jacoco.lineRate>0.75</jacoco.lineRate>
+        <jacoco.branchRate>0.83</jacoco.branchRate>
     </properties>
 
     <build>
@@ -34,10 +36,6 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-failsafe-plugin</artifactId>
                 <executions>
-                    <execution>
-                        <id>default</id>
-                        <phase>none</phase>
-                    </execution>
                     <execution>
                         <id>integration-test</id>
                         <phase>none</phase>
@@ -72,13 +70,6 @@
                                 <exclude>**/mojarra/**.java</exclude>
                             </excludes>
                         </configuration>
-                    </execution>
-                    <execution>
-                        <id>verify</id>
-                        <phase>verify</phase>
-                        <goals>
-                            <goal>verify</goal>
-                        </goals>
                     </execution>
                 </executions>
             </plugin>
