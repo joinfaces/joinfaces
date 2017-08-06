@@ -17,8 +17,7 @@
 package org.joinfaces.javaxfaces;
 
 import javax.faces.context.FacesContext;
-
-import org.joinfaces.configuration.ConditionalOnClassVersion;
+import javax.faces.flow.FlowHandler;
 
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnWebApplication;
@@ -40,7 +39,6 @@ public class JavaxFacesSpringBootAutoConfiguration {
 	 */
 	@Configuration
 	@EnableConfigurationProperties(JavaxFaces2_0Properties.class)
-	@ConditionalOnClassVersion(value = FacesContext.class, versionRegex = "2\\.0.*")
 	public static class JavaxFaces2_0AutoConfiguration {
 	}
 
@@ -49,7 +47,6 @@ public class JavaxFacesSpringBootAutoConfiguration {
 	 */
 	@Configuration
 	@EnableConfigurationProperties(JavaxFaces2_1Properties.class)
-	@ConditionalOnClassVersion(value = FacesContext.class, versionRegex = "2\\.1.*")
 	public static class JavaxFaces2_1AutoConfiguration {
 	}
 
@@ -58,7 +55,7 @@ public class JavaxFacesSpringBootAutoConfiguration {
 	 */
 	@Configuration
 	@EnableConfigurationProperties(JavaxFaces2_2Properties.class)
-	@ConditionalOnClassVersion(value = FacesContext.class, versionRegex = "2\\.[2-9].*")
+	@ConditionalOnClass(FlowHandler.class)
 	public static class JavaxFaces2_2AutoConfiguration {
 	}
 

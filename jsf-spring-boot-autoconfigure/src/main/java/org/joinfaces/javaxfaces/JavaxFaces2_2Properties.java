@@ -26,6 +26,7 @@ import lombok.Getter;
 import lombok.Setter;
 import org.joinfaces.configuration.NestedProperty;
 import org.joinfaces.configuration.ServletContextInitParameter;
+import org.joinfaces.configuration.ServletContextInitParameterConfigurationProperties;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
@@ -41,7 +42,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 @Getter
 @Setter
 @ConfigurationProperties(prefix = "jsf")
-public class JavaxFaces2_2Properties extends JavaxFaces2_1Properties {
+public class JavaxFaces2_2Properties implements ServletContextInitParameterConfigurationProperties {
 
 	/**
 	 * <p class="changed_added_2_2">If a <code>&lt;context-param&gt;</code> with
@@ -111,7 +112,7 @@ public class JavaxFaces2_2Properties extends JavaxFaces2_1Properties {
 	 */
 	@Getter
 	@Setter
-	public static class Partial extends JavaxFaces2_0Properties.Partial {
+	public static class Partial {
 
 		/**
 		 * <p class="changed_added_2_2">
