@@ -82,15 +82,12 @@
         
         <maven-surefire-report-plugin.version>2.20</maven-surefire-report-plugin.version>
 
-        <cobertura.totalBranchRate>100</cobertura.totalBranchRate>
-        <cobertura.totalLineRate>100</cobertura.totalLineRate>
-        <cobertura.packageBranchRate>100</cobertura.packageBranchRate>
-        <cobertura.packageLineRate>100</cobertura.packageLineRate>
-        <cobertura.branchRate>100</cobertura.branchRate>
-        <cobertura.lineRate>100</cobertura.lineRate>
-        <cobertura.ignore>none</cobertura.ignore>
-        <cobertura.exclude>none</cobertura.exclude>
-        <cobertura-maven-plugin.version>2.7</cobertura-maven-plugin.version>
+        <jacoco.totalBranchRate>1.00</jacoco.totalBranchRate>
+        <jacoco.totalLineRate>1.00</jacoco.totalLineRate>
+        <jacoco.packageBranchRate>1.00</jacoco.packageBranchRate>
+        <jacoco.packageLineRate>1.00</jacoco.packageLineRate>
+        <jacoco.branchRate>1.00</jacoco.branchRate>
+        <jacoco.lineRate>1.00</jacoco.lineRate>
         
         <maven-project-info-reports-plugin.version>2.9</maven-project-info-reports-plugin.version>
         <maven-jxr-plugin.version>2.5</maven-jxr-plugin.version>
@@ -405,26 +402,6 @@
                     <version>${maven-release-plugin.version}</version>
                 </plugin>
                 <plugin>
-                    <groupId>org.codehaus.mojo</groupId>
-                    <artifactId>cobertura-maven-plugin</artifactId>
-                    <version>${cobertura-maven-plugin.version}</version>
-                    <configuration>
-                        <formats>
-                            <format>html</format>
-                            <format>xml</format>
-                        </formats>
-                        <instrumentation>
-                            <ignores>
-                                <ignore>${cobertura.ignore}</ignore>
-                            </ignores>
-                            <excludes>
-                                <exclude>${cobertura.exclude}</exclude>
-                            </excludes>
-                            <ignoreTrivial>true</ignoreTrivial>
-                        </instrumentation>
-                    </configuration>
-                </plugin>
-                <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-compiler-plugin</artifactId>
                     <version>${maven-compiler-plugin.version}</version>
@@ -556,15 +533,16 @@
                         <skip>false</skip>
                         <quiet>false</quiet>
                     </configuration>            
-                </plugin>        
+                </plugin>
+                <plugin>
+                    <groupId>org.jacoco</groupId>
+                    <artifactId>jacoco-maven-plugin</artifactId>
+                    <version>0.7.9</version>
+                </plugin>
             </plugins>
         </pluginManagement>
         
         <plugins>
-            <plugin>
-                <groupId>org.codehaus.mojo</groupId>
-                <artifactId>cobertura-maven-plugin</artifactId>
-            </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-enforcer-plugin</artifactId>
@@ -596,7 +574,116 @@
                     <releaseProfiles>check-checkstyle,check-cycles,check-duplicate,check-pmd,check-cpd,check-findbugs,attach-test-jar,attach-source,attach-javadoc,sign-artifacts,nexus-staging</releaseProfiles>
                     <goals>deploy</goals>
                 </configuration>
-            </plugin>            
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-failsafe-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>default</id>
+                        <phase>none</phase>
+                    </execution>
+                    <execution>
+                        <id>integration-test</id>
+                        <goals>
+                            <goal>integration-test</goal>
+                        </goals>
+                    </execution>
+                    <execution>
+                        <id>verify-integration-test</id>
+                        <goals>
+                            <goal>verify</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.jacoco</groupId>
+                <artifactId>jacoco-maven-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>prepare-unit-test</id>
+                        <goals>
+                            <goal>prepare-agent</goal>
+                        </goals>
+                        <configuration>
+                            <sessionId>${project.artifactId}.unit-tests</sessionId>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>prepare-integration-test</id>
+                        <goals>
+                            <goal>prepare-agent-integration</goal>
+                        </goals>
+                        <configuration>
+                            <destFile>${project.build.directory}/jacoco.exec</destFile>
+                            <append>true</append>
+                            <sessionId>${project.artifactId}.integration-tests</sessionId>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>jacoco-report</id>
+                        <goals>
+                            <goal>report</goal>
+                        </goals>
+                    </execution>
+                    <execution>
+                        <id>jacoco-check</id>
+                        <goals>
+                            <goal>check</goal>
+                        </goals>
+                        <configuration>
+                            <rules>
+                                <rule>
+                                    <element>BUNDLE</element>
+                                    <limits>
+                                        <limit>
+                                            <counter>LINE</counter>
+                                            <value>COVEREDRATIO</value>
+                                            <minimum>${jacoco.totalLineRate}</minimum>
+                                        </limit>
+                                        <limit>
+                                            <counter>BRANCH</counter>
+                                            <value>COVEREDRATIO</value>
+                                            <minimum>${jacoco.totalBranchRate}</minimum>
+                                        </limit>
+                                    </limits>
+                                </rule>
+                                <rule>
+                                    <element>PACKAGE</element>
+                                    <limits>
+                                        <limit>
+                                            <counter>LINE</counter>
+                                            <value>COVEREDRATIO</value>
+                                            <minimum>${jacoco.packageLineRate}</minimum>
+                                        </limit>
+                                        <limit>
+                                            <counter>BRANCH</counter>
+                                            <value>COVEREDRATIO</value>
+                                            <minimum>${jacoco.packageBranchRate}</minimum>
+                                        </limit>
+                                    </limits>
+                                </rule>
+                                <rule>
+                                    <element>CLASS</element>
+                                    <limits>
+                                        <limit>
+                                            <counter>LINE</counter>
+                                            <value>COVEREDRATIO</value>
+                                            <minimum>${jacoco.lineRate}</minimum>
+                                        </limit>
+                                        <limit>
+                                            <counter>BRANCH</counter>
+                                            <value>COVEREDRATIO</value>
+                                            <minimum>${jacoco.branchRate}</minimum>
+                                        </limit>
+                                    </limits>
+                                </rule>
+                            </rules>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
         </plugins>
     </build>    
 
@@ -636,10 +723,6 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-changelog-plugin</artifactId>
-            </plugin>                    
-            <plugin>
-                <groupId>org.codehaus.mojo</groupId>
-                <artifactId>cobertura-maven-plugin</artifactId>
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -919,57 +1002,6 @@
                 </plugins>
             </build>            
         </profile>
-                
-        <profile>
-            <id>check-cobertura-integration-test</id>
-            <build>
-                <pluginManagement>
-                    <plugins>
-                        <plugin>
-                            <groupId>org.codehaus.mojo</groupId>
-                            <artifactId>cobertura-maven-plugin</artifactId>
-                            <configuration>
-                                <check>
-                                    <haltOnFailure>true</haltOnFailure>
-                                    <totalBranchRate>${cobertura.totalBranchRate}</totalBranchRate>
-                                    <totalLineRate>${cobertura.totalLineRate}</totalLineRate>
-                                    <packageBranchRate>${cobertura.packageBranchRate}</packageBranchRate>
-                                    <packageLineRate>${cobertura.packageLineRate}</packageLineRate>
-                                    <branchRate>${cobertura.branchRate}</branchRate>
-                                    <lineRate>${cobertura.lineRate}</lineRate>                                    
-                                </check>
-                            </configuration>                        
-                        </plugin>        
-                    </plugins>
-                </pluginManagement>
-            </build>
-        </profile>
-        
-        <profile>
-            <id>attach-integration-test</id>
-            <build>
-                <plugins>
-                    <plugin>
-                        <groupId>org.apache.maven.plugins</groupId>
-                        <artifactId>maven-failsafe-plugin</artifactId>
-                        <executions>
-                            <execution>
-                                <id>integration-test</id>
-                                <goals>
-                                    <goal>integration-test</goal>
-                                </goals>
-                            </execution>
-                            <execution>
-                                <id>verify</id>
-                                <goals>
-                                    <goal>verify</goal>
-                                </goals>
-                            </execution>
-                        </executions>
-                    </plugin>                    
-                </plugins>
-            </build>
-        </profile>
         
         <profile>
             <id>sign-artifacts</id>
@@ -1045,4 +1077,5 @@
             <timezone>-3</timezone>
         </developer>
     </developers>
+
 </project>
