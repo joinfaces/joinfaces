@@ -16,8 +16,9 @@
 
 package org.joinfaces.primefaces;
 
-import org.joinfaces.configuration.ConditionalOnClassVersion;
 import org.joinfaces.javaxfaces.JavaxFacesSpringBootAutoConfiguration;
+import org.primefaces.cache.CacheProvider;
+import org.primefaces.component.captcha.Captcha;
 import org.primefaces.util.Constants;
 
 import org.springframework.boot.autoconfigure.AutoConfigureBefore;
@@ -39,11 +40,20 @@ import org.springframework.context.annotation.Configuration;
 public class PrimefacesAutoConfiguration {
 
 	/**
+	 * Auto Configuration for Primefaces 4.0.
+	 */
+	@Configuration
+	@EnableConfigurationProperties(Primefaces4_0Properties.class)
+	@ConditionalOnClass(Captcha.class)
+	public static class Primefaces4_0AutoConfiguration {
+	}
+
+	/**
 	 * Auto Configuration for Primefaces 5.0.
 	 */
 	@Configuration
 	@EnableConfigurationProperties(Primefaces5_0Properties.class)
-	@ConditionalOnClassVersion(value = Constants.ContextParams.class, versionRegex = "5\\.0.*")
+	@ConditionalOnClass(CacheProvider.class)
 	public static class Primefaces5_0AutoConfiguration {
 	}
 
@@ -52,7 +62,6 @@ public class PrimefacesAutoConfiguration {
 	 */
 	@Configuration
 	@EnableConfigurationProperties(Primefaces5_1Properties.class)
-	@ConditionalOnClassVersion(value = Constants.ContextParams.class, versionRegex = "5\\.1.*")
 	public static class Primefaces5_1AutoConfiguration {
 	}
 
@@ -61,7 +70,6 @@ public class PrimefacesAutoConfiguration {
 	 */
 	@Configuration
 	@EnableConfigurationProperties(Primefaces5_2Properties.class)
-	@ConditionalOnClassVersion(value = Constants.ContextParams.class, versionRegex = "5\\.[2-9].*")
 	public static class Primefaces5_2AutoConfiguration {
 	}
 
@@ -70,7 +78,6 @@ public class PrimefacesAutoConfiguration {
 	 */
 	@Configuration
 	@EnableConfigurationProperties(Primefaces6_0Properties.class)
-	@ConditionalOnClassVersion(value = Constants.ContextParams.class, versionRegex = "[6-9].*")
 	public static class Primefaces6_0AutoConfiguration {
 	}
 }

@@ -19,6 +19,7 @@ package org.joinfaces.primefaces;
 import lombok.Getter;
 import lombok.Setter;
 import org.joinfaces.configuration.ServletContextInitParameter;
+import org.joinfaces.configuration.ServletContextInitParameterConfigurationProperties;
 import org.primefaces.util.Constants;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
@@ -33,7 +34,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 @Getter
 @Setter
 @ConfigurationProperties("jsf.primefaces")
-public class Primefaces5_2Properties extends Primefaces5_1Properties {
+public class Primefaces5_2Properties implements ServletContextInitParameterConfigurationProperties {
 
 	/**
 	 * Enabled font-awesome icons.
