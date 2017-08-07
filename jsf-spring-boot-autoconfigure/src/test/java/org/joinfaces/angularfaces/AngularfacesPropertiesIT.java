@@ -52,7 +52,7 @@ public class AngularfacesPropertiesIT {
 
 	@Test
 	public void testIncludeAngularJS() {
-		assertThat(this.angularfacesProperties.getIncludeAngularJS()).isTrue();
+		assertThat(this.angularfacesProperties.getIncludeAngularJs()).isTrue();
 	}
 
 	@Test
@@ -62,7 +62,7 @@ public class AngularfacesPropertiesIT {
 
 	@Test
 	public void testIncludeJQueryUI() {
-		assertThat(this.angularfacesProperties.getIncludeJQueryUI()).isTrue();
+		assertThat(this.angularfacesProperties.getIncludeJQueryUi()).isTrue();
 	}
 
 	@Test
@@ -77,7 +77,7 @@ public class AngularfacesPropertiesIT {
 
 	@Test
 	public void testIncludeMainJS() {
-		assertThat(this.angularfacesProperties.getIncludeMainJS()).isTrue();
+		assertThat(this.angularfacesProperties.getIncludeMainJs()).isTrue();
 	}
 
 }

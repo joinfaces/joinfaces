@@ -57,7 +57,7 @@ public class RichfacesPropertiesIT {
 
 	@Test
 	public void testResourceDefaultTTL() {
-		assertThat(this.richfacesProperties.getResourceDefaultTTL()).isEqualTo(86400);
+		assertThat(this.richfacesProperties.getResourceDefaultTtl()).isEqualTo(86400);
 	}
 
 	@Test
@@ -117,7 +117,7 @@ public class RichfacesPropertiesIT {
 
 	@Test
 	public void testExecuteAWTInitializer() {
-		assertThat(this.richfacesProperties.getExecuteAWTInitializer()).isTrue();
+		assertThat(this.richfacesProperties.getExecuteAwtInitializer()).isTrue();
 	}
 
 	@Test

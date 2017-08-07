@@ -127,7 +127,7 @@ public class MojarraPropertiesIT {
 
 	@Test
 	public void testEnabledJSStyleHiding() {
-		assertThat(this.mojarraProperties.getEnabledJSStyleHiding())
+		assertThat(this.mojarraProperties.getEnabledJsStyleHiding())
 			.isTrue();
 	}
 
@@ -145,7 +145,7 @@ public class MojarraPropertiesIT {
 
 	@Test
 	public void testPreferXHTML() {
-		assertThat(this.mojarraProperties.getPreferXHTML())
+		assertThat(this.mojarraProperties.getPreferXhtml())
 			.isTrue();
 	}
 
