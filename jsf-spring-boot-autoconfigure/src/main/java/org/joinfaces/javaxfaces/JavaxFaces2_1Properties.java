@@ -21,6 +21,7 @@ import javax.faces.component.UIComponent;
 import lombok.Getter;
 import lombok.Setter;
 import org.joinfaces.configuration.ServletContextInitParameter;
+import org.joinfaces.configuration.ServletContextInitParameterConfigurationProperties;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
@@ -33,7 +34,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 @Getter
 @Setter
 @ConfigurationProperties(prefix = "jsf")
-public class JavaxFaces2_1Properties extends JavaxFaces2_0Properties {
+public class JavaxFaces2_1Properties implements ServletContextInitParameterConfigurationProperties {
 
 	/**
 	 * <p class="changed_added_2_1">The <code>ServletContext</code> init

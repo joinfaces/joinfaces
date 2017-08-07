@@ -6,10 +6,10 @@ cache:
   directories:
   - $HOME/.m2
 
-install: ./mvnw -B clean validate
+install: ./mvnw -T 2 -B clean validate
 
 script:
-  - ./mvnw -B -Pcheck-duplicate,check-checkstyle,check-cycles,check-cpd,check-pmd,check-findbugs -Dmaven.test.skip=true install
-  - ./mvnw -B --settings ignoreSnapshotsSettings.xml -Pignore-snapshot-repositories verify
+  - ./mvnw -T 2 -B -Pcheck-duplicate,check-checkstyle,check-cycles,check-cpd,check-pmd,check-findbugs -Dmaven.test.skip=true install
+  - ./mvnw -T 2 -B --settings ignoreSnapshotsSettings.xml -Pignore-snapshot-repositories verify
 after_success:
   - ./mvnw -B --settings ignoreSnapshotsSettings.xml -Pignore-snapshot-repositories org.eluder.coveralls:coveralls-maven-plugin:4.3.0:report

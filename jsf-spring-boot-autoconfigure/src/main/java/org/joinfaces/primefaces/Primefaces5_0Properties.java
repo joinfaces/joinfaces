@@ -23,7 +23,6 @@ import org.joinfaces.configuration.NestedProperty;
 import org.joinfaces.configuration.ServletContextInitParameter;
 import org.joinfaces.configuration.ServletContextInitParameterConfigurationProperties;
 import org.primefaces.cache.CacheProvider;
-import org.primefaces.component.captcha.Captcha;
 import org.primefaces.util.Constants;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
@@ -42,59 +41,11 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 @ConfigurationProperties("jsf.primefaces")
 public class Primefaces5_0Properties implements ServletContextInitParameterConfigurationProperties {
 
-	/**
-	 * Theme of the application.
-	 */
-	@ServletContextInitParameter(Constants.ContextParams.THEME)
-	private String theme = "aristo";
-
 	@NestedProperty
 	private Mobile mobile = new Mobile();
 
 	@ServletContextInitParameter(Constants.ContextParams.AUTO_UPDATE)
 	private String autoUpdate;
-
-	/**
-	 * Custom server url for PrimeFaces Push.
-	 */
-	@ServletContextInitParameter(Constants.ContextParams.PUSH_SERVER_URL)
-	private String pushServerUrl;
-
-	/**
-	 * Defines ajax submit mode, full or partial.
-	 */
-	@ServletContextInitParameter(Constants.ContextParams.SUBMIT)
-	private String submit = "full";
-
-	/**
-	 * Defines orientation, ltr or rtl.
-	 */
-	@ServletContextInitParameter(Constants.ContextParams.DIRECTION)
-	private String dir = "ltr";
-
-	/**
-	 * When enabled, ajax updated inputs are reset first.
-	 */
-	@ServletContextInitParameter(Constants.ContextParams.RESET_VALUES)
-	private boolean resetValues = false;
-
-	/**
-	 * Secret key to encrypt-decrypt value expressions exposed in rendering StreamedContents.
-	 */
-	@ServletContextInitParameter(Constants.ContextParams.SECRET_KEY)
-	private String secret = "primefaces";
-
-	/**
-	 * Controls client side validatation.
-	 */
-	@ServletContextInitParameter(Constants.ContextParams.PFV_KEY)
-	private boolean clientSideValidation = false;
-
-	/**
-	 * Defines uploader mode; auto, native or commons.
-	 */
-	@ServletContextInitParameter(Constants.ContextParams.UPLOADER)
-	private String uploader = "auto";
 
 	/**
 	 * Transforms bean validation metadata to html attributes.
@@ -108,18 +59,6 @@ public class Primefaces5_0Properties implements ServletContextInitParameterConfi
 	 */
 	@ServletContextInitParameter(Constants.ContextParams.CACHE_PROVIDER)
 	private Class<? extends CacheProvider> cacheProvider;
-
-	/**
-	 * Private reCaptcha key.
-	 */
-	@ServletContextInitParameter(Captcha.PRIVATE_KEY)
-	private String privateCaptchaKey = null;
-
-	/**
-	 * Public reCaptcha key.
-	 */
-	@ServletContextInitParameter(Captcha.PUBLIC_KEY)
-	private String publicCaptchaKey = null;
 
 	/**
 	 * Nested property class for {@literal primefaces.mobile}.
