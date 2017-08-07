@@ -39,17 +39,17 @@ Library | Dependency | Description
 
 Library | Namespace | Example
 ------------ | ------------- | ---------
-standard (javax.faces) | jsf | `jsf.PROJECT_STAGE: Development`
-[primefaces](http://primefaces.org/) | jsf.primefaces | `jsf.primefaces.theme: overcast`
-[bootsfaces](http://bootsfaces.net/) | jsf.bootsfaces | `jsf.bootsfaces.USETHEME: true`
-[butterfaces](http://butterfaces.org/) | jsf.butterfaces | `jsf.butterfaces.provideJQuery: true`
-[richfaces](https://github.com/richfaces/richfaces) | jsf.richfaces | `jsf.richfaces.resourceDefaultTTL: 86400`
-[omnifaces](http://omnifaces.org/) | jsf.omnifaces | `jsf.omnifaces.FACES_VIEWS_ENABLED: true`
-[angularfaces](http://angularfaces.net/) | jsf.angularfaces | `jsf.angularfaces.addLabels: true`
-[mojarra](https://javaserverfaces.java.net/) | jsf.mojarra | `jsf.mojarra.preferXHTML: true`
-[myfaces](http://myfaces.apache.org/) | jsf.myfaces | `jsf.myfaces.PRETTY_HTML: true`
-[jetty](http://www.eclipse.org/jetty) | jsf.jetty | `jsf.jetty.classPathResource: META-INF/resources`
-[undertow](http://undertow.io) | jsf.undertow | `jsf.undertow.classPathResource: META-INF/resources`
+standard (javax.faces) | jsf | `jsf.project-stage=development`
+[primefaces](http://primefaces.org/) | jsf.primefaces | `jsf.primefaces.theme=overcast`
+[bootsfaces](http://bootsfaces.net/) | jsf.bootsfaces | `jsf.bootsfaces.usetheme=true`
+[butterfaces](http://butterfaces.org/) | jsf.butterfaces | `jsf.butterfaces.provide-j-query=true`
+[richfaces](https://github.com/richfaces/richfaces) | jsf.richfaces | `jsf.richfaces.resource-default-t-t-l=86400`
+[omnifaces](http://omnifaces.org/) | jsf.omnifaces | `jsf.omnifaces.faces-views-enabled=true`
+[angularfaces](http://angularfaces.net/) | jsf.angularfaces | `jsf.angularfaces.add-labels=true`
+[mojarra](https://javaserverfaces.java.net/) | jsf.mojarra | `jsf.mojarra.prefer-x-h-t-m-l=true`
+[myfaces](http://myfaces.apache.org/) | jsf.myfaces | `jsf.myfaces.pretty-html=true`
+[jetty](http://www.eclipse.org/jetty) | jsf.jetty | `jsf.jetty.class-path-resource=META-INF/resources`
+[undertow](http://undertow.io) | jsf.undertow | `jsf.undertow.class-path-resource=META-INF/resources`
 
 Look full [application.yml](https://github.com/joinfaces/joinfaces/blob/master/jsf-spring-boot-autoconfigure/src/test/resources/application.yml) example.
 
@@ -90,7 +90,7 @@ Additional information in [#29](https://github.com/joinfaces/joinfaces/issues/29
 
 ## System Requirements
 
-By default, JSF Spring Boot Starter requires [Java 7](http://java.com) and [Spring Boot 1.5.4](http://projects.spring.io/spring-boot/) or above. 
+By default, JSF Spring Boot Starter requires [Java 7](http://java.com) and [Spring Boot 1.5.6](http://projects.spring.io/spring-boot/) or above. 
 
 Additionnal information [here.](https://github.com/joinfaces/joinfaces/wiki/System-Requirements)
 
