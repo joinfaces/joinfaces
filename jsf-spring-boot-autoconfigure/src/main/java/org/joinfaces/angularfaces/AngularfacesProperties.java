@@ -45,13 +45,13 @@ public class AngularfacesProperties implements ServletContextInitParameterConfig
 	private Boolean translation;
 
 	@ServletContextInitParameter(PREFIX + "includeAngularJS")
-	private Boolean includeAngularJS;
+	private Boolean includeAngularJs;
 
 	@ServletContextInitParameter(PREFIX + "includeJQuery")
 	private Boolean includeJQuery;
 
 	@ServletContextInitParameter(PREFIX + "includeJQueryUI")
-	private Boolean includeJQueryUI;
+	private Boolean includeJQueryUi;
 
 	@ServletContextInitParameter(PREFIX + "includeAngularMessages")
 	private Boolean includeAngularMessages;
@@ -60,5 +60,5 @@ public class AngularfacesProperties implements ServletContextInitParameterConfig
 	private Boolean clientSideMessages;
 
 	@ServletContextInitParameter(PREFIX + "includeMainJS")
-	private Boolean includeMainJS;
+	private Boolean includeMainJs;
 }

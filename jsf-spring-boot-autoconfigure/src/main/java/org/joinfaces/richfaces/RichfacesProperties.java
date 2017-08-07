@@ -58,7 +58,7 @@ public class RichfacesProperties implements ServletContextInitParameterConfigura
 
 	// (defaultValue = "86400" /* 24 * 60 * 60 */, names = "org.richfaces.resourceDefaultTTL", literal = true)
 	@ServletContextInitParameter("org.richfaces.resourceDefaultTTL")
-	private Integer resourceDefaultTTL;
+	private Integer resourceDefaultTtl;
 
 	// (defaultValue = "512", names = "org.richfaces.resourceCacheSize", literal = true)
 	@ServletContextInitParameter(CoreConfiguration.RESOURCES_CACHE_SIZE_PARAM_NAME)
@@ -79,7 +79,7 @@ public class RichfacesProperties implements ServletContextInitParameterConfigura
 
 	// (defaultValue = "true", names = "org.richfaces.executeAWTInitializer", literal = true)
 	@ServletContextInitParameter("org.richfaces.executeAWTInitializer")
-	private Boolean executeAWTInitializer;
+	private Boolean executeAwtInitializer;
 
 	@NestedProperty
 	private Push push = new Push();

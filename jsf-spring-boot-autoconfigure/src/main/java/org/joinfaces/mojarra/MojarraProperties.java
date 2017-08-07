@@ -202,7 +202,7 @@ public class MojarraProperties implements ServletContextInitParameterConfigurati
 	 * browser implementations which does not recognize <script/> elements.
 	 */
 	@ServletContextInitParameter(PREFIX + "enabledJSStyleHiding")
-	private Boolean enabledJSStyleHiding;
+	private Boolean enabledJsStyleHiding;
 
 	/**
 	 * If false, attribute values with javascript: or script: will not be
@@ -233,7 +233,7 @@ public class MojarraProperties implements ServletContextInitParameterConfigurati
 	 * output.
 	 */
 	@ServletContextInitParameter(PREFIX + "preferXHTML")
-	private Boolean preferXHTML;
+	private Boolean preferXhtml;
 
 	/**
 	 * This parameter specifies the size, in bytes, of the buffer that is used
