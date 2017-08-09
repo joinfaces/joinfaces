@@ -51,10 +51,10 @@ jsf:
     compressJavaScript: true
     disableUnicodeEscaping: true
     disableIdUniquenessCheck: true
-    enabledJSStyleHiding: true
+    enabled-js-style-hiding: true
     enableScriptsInAttributeValues: true
     enableViewStateIdRendering: true
-    preferXHTML: true
+    prefer-xhtml: true
     responseBufferSize: 20
     cacheResourceModificationTimestamp: true
     compressableMimeTypes: txt
@@ -271,12 +271,12 @@ jsf:
     addLabels: true
     addMessages: true
     translation: true
-    includeAngularJS: true
-    includeJQuery: true
-    includeJQueryUI: true
+    include-angular-js: true
+    include-j-query: true
+    include-j-query-ui: true
     includeAngularMessages: true
     clientSideMessages: true
-    includeMainJS: true
+    include-main-js: true
 
   # butterfaces namespace
   butterfaces:
@@ -327,7 +327,7 @@ jsf:
     enableControlSkinningClasses: true
     skin: "This is a skin"
     baseSkin: "This is a base skin"
-    resourceDefaultTTL: 86400
+    resource-default-ttl: 86400
     resourceCacheSize: 111
     resourceDefaultVersion: "Resource default version"
     cache:
@@ -342,7 +342,7 @@ jsf:
       enabled: true
       compressionStages: "Compression stages"
       packedStages: "Packed stages"
-    executeAWTInitializer: true
+    execute-awt-initializer: true
     push:
       handlerMapping: "Handler mapping"
       jms:
