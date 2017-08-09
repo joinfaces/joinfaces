@@ -88,6 +88,8 @@
         <jacoco.packageLineRate>1.00</jacoco.packageLineRate>
         <jacoco.branchRate>1.00</jacoco.branchRate>
         <jacoco.lineRate>1.00</jacoco.lineRate>
+
+        <argLine>-Xms32m -Xmx256m</argLine>
         
         <maven-project-info-reports-plugin.version>2.9</maven-project-info-reports-plugin.version>
         <maven-jxr-plugin.version>2.5</maven-jxr-plugin.version>
@@ -533,13 +535,6 @@
                         <skip>false</skip>
                         <quiet>false</quiet>
                     </configuration>            
-                </plugin>
-                <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-failsafe-plugin</artifactId>
-                    <configuration>
-                        <argLine>-Xms32m -Xmx256m @{argLine}</argLine>
-                    </configuration>
                 </plugin>
                 <plugin>
                     <groupId>org.jacoco</groupId>
