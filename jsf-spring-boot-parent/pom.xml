@@ -90,6 +90,7 @@
         <jacoco.lineRate>1.00</jacoco.lineRate>
 
         <argLine>-Xms32m -Xmx256m</argLine>
+        <findbugs.jvmArgs>-Xms32m -Xmx256m</findbugs.jvmArgs>
         
         <maven-project-info-reports-plugin.version>2.9</maven-project-info-reports-plugin.version>
         <maven-jxr-plugin.version>2.5</maven-jxr-plugin.version>
