@@ -20,7 +20,7 @@
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>        
         <java.version>1.6</java.version>
 
-        <lombok-maven-plugin.version>1.16.16.0</lombok-maven-plugin.version>        
+        <lombok-maven-plugin.version>1.16.18.1</lombok-maven-plugin.version>        
         
         <javax.faces.version>2.2.14</javax.faces.version>
         <myfaces.version>2.2.12</myfaces.version>
