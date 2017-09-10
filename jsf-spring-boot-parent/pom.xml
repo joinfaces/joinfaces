@@ -42,7 +42,7 @@
         
         <jboss-jsp-api_2.3_spec.version>1.0.1.Final</jboss-jsp-api_2.3_spec.version>
 
-        <commons-fileupload.version>1.3.2</commons-fileupload.version>
+        <commons-fileupload.version>1.3.3</commons-fileupload.version>
         
         <maven-gpg-plugin.version>1.6</maven-gpg-plugin.version>
         <nexus-staging-maven-plugin.version>1.6.8</nexus-staging-maven-plugin.version>
