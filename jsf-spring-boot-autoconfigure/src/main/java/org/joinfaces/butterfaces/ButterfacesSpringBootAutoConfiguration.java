@@ -64,7 +64,7 @@ public class ButterfacesSpringBootAutoConfiguration {
 		 * Configures Bootsfaces to work with Butterfaces.
 		 *
 		 * @author Lars Grefer
-		 * @see https://github.com/ButterFaces/bootsfaces-integration/blob/6e9d45978590fa72361cf3c98bec77d863f02aea/README.md
+		 * @see description at https://github.com/ButterFaces/bootsfaces-integration/blob/6e9d45978590fa72361cf3c98bec77d863f02aea/README.md
 		 */
 		static class BootsfacesPropertiesCustomizer implements BeanPostProcessor {
 
