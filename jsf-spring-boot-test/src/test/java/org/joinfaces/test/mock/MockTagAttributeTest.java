@@ -28,11 +28,12 @@ import static org.assertj.core.api.Assertions.assertThat;
  */
 public class MockTagAttributeTest {
 
+	private static final String FOO = "foo";
 	private MockTagAttribute mockTagAttribute;
 
 	@Before
 	public void setUp() {
-		this.mockTagAttribute = new MockTagAttribute("foo");
+		this.mockTagAttribute = new MockTagAttribute(FOO);
 	}
 
 	@Test(expected = UnsupportedOperationException.class)
@@ -77,12 +78,12 @@ public class MockTagAttributeTest {
 
 	@Test
 	public void testGetValue() {
-		assertThat(this.mockTagAttribute.getValue()).isEqualTo("foo");
+		assertThat(this.mockTagAttribute.getValue()).isEqualTo(FOO);
 	}
 
 	@Test
 	public void testGetValue1() {
-		assertThat(this.mockTagAttribute.getValue(null)).isEqualTo("foo");
+		assertThat(this.mockTagAttribute.getValue(null)).isEqualTo(FOO);
 	}
 
 	@Test(expected = UnsupportedOperationException.class)
@@ -95,7 +96,7 @@ public class MockTagAttributeTest {
 		ValueExpression valueExpression = this.mockTagAttribute.getValueExpression(null, null);
 
 		assertThat(valueExpression).isInstanceOf(MockValueExpression.class);
-		assertThat(valueExpression.getValue(null)).isEqualTo("foo");
+		assertThat(valueExpression.getValue(null)).isEqualTo(FOO);
 	}
 
 	@Test(expected = UnsupportedOperationException.class)

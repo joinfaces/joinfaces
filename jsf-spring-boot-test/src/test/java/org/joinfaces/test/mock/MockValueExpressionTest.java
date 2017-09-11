@@ -29,21 +29,22 @@ import static org.mockito.Mockito.mock;
  */
 public class MockValueExpressionTest {
 
+	private static final String FOO = "foo";
 	private MockValueExpression mockValueExpression;
 
 	@Before
 	public void setUp() {
-		this.mockValueExpression = new MockValueExpression("foo");
+		this.mockValueExpression = new MockValueExpression(FOO);
 	}
 
 	@Test
 	public void testGetValue_null() {
-		assertThat(this.mockValueExpression.getValue(null)).isEqualTo("foo");
+		assertThat(this.mockValueExpression.getValue(null)).isEqualTo(FOO);
 	}
 
 	@Test
 	public void testGetValue_mock() {
-		assertThat(this.mockValueExpression.getValue(mock(ELContext.class))).isEqualTo("foo");
+		assertThat(this.mockValueExpression.getValue(mock(ELContext.class))).isEqualTo(FOO);
 	}
 
 	@Test(expected = UnsupportedOperationException.class)
