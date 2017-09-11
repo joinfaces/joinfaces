@@ -29,32 +29,32 @@ public class MockTagAttributesTest {
 	private MockTagAttributes mockTagAttributes;
 
 	@Before
-	public void setUp() throws Exception {
+	public void setUp() {
 		this.mockTagAttributes = new MockTagAttributes();
 	}
 
 	@Test(expected = UnsupportedOperationException.class)
-	public void testGetAll() throws Exception {
+	public void testGetAll() {
 		this.mockTagAttributes.getAll();
 	}
 
 	@Test
-	public void testGet() throws Exception {
+	public void testGet() {
 		assertThat(this.mockTagAttributes.get("foo")).isNull();
 	}
 
 	@Test(expected = UnsupportedOperationException.class)
-	public void testGet1() throws Exception {
+	public void testGet1() {
 		this.mockTagAttributes.get(null, null);
 	}
 
 	@Test(expected = UnsupportedOperationException.class)
-	public void testGetAll1() throws Exception {
+	public void testGetAll1() {
 		this.mockTagAttributes.getAll(null);
 	}
 
 	@Test(expected = UnsupportedOperationException.class)
-	public void testGetNamespaces() throws Exception {
+	public void testGetNamespaces() {
 		this.mockTagAttributes.getNamespaces();
 	}
 

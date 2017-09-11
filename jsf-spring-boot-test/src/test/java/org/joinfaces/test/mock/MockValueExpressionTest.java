@@ -32,47 +32,47 @@ public class MockValueExpressionTest {
 	private MockValueExpression mockValueExpression;
 
 	@Before
-	public void setUp() throws Exception {
+	public void setUp() {
 		this.mockValueExpression = new MockValueExpression("foo");
 	}
 
 	@Test
-	public void testGetValue_null() throws Exception {
+	public void testGetValue_null() {
 		assertThat(this.mockValueExpression.getValue(null)).isEqualTo("foo");
 	}
 
 	@Test
-	public void testGetValue_mock() throws Exception {
+	public void testGetValue_mock() {
 		assertThat(this.mockValueExpression.getValue(mock(ELContext.class))).isEqualTo("foo");
 	}
 
 	@Test(expected = UnsupportedOperationException.class)
-	public void testSetValue() throws Exception {
+	public void testSetValue() {
 		this.mockValueExpression.setValue(null, null);
 	}
 
 	@Test(expected = UnsupportedOperationException.class)
-	public void testIsReadOnly() throws Exception {
+	public void testIsReadOnly() {
 		this.mockValueExpression.isReadOnly(null);
 	}
 
 	@Test(expected = UnsupportedOperationException.class)
-	public void testGetType() throws Exception {
+	public void testGetType() {
 		this.mockValueExpression.getType(null);
 	}
 
 	@Test(expected = UnsupportedOperationException.class)
-	public void testGetExpectedType() throws Exception {
+	public void testGetExpectedType() {
 		this.mockValueExpression.getExpectedType();
 	}
 
 	@Test(expected = UnsupportedOperationException.class)
-	public void testGetExpressionString() throws Exception {
+	public void testGetExpressionString() {
 		this.mockValueExpression.getExpressionString();
 	}
 
 	@Test(expected = UnsupportedOperationException.class)
-	public void testIsLiteralText() throws Exception {
+	public void testIsLiteralText() {
 		this.mockValueExpression.isLiteralText();
 	}
 
@@ -89,7 +89,7 @@ public class MockValueExpressionTest {
 	}
 
 	@Test(expected = UnsupportedOperationException.class)
-	public void testHashCode() throws Exception {
+	public void testHashCode() {
 		assertThat(this.mockValueExpression.hashCode()).isNotZero();
 	}
 
