@@ -9,9 +9,9 @@
         <relativePath>../jsf-spring-boot-parent</relativePath>
     </parent>
     
-    <artifactId>jsf-spring-boot-integration</artifactId>
-    <name>JSF Spring Boot Integration</name>
-    <description>Jsf Spring Boot Integration</description>
+    <artifactId>spring-security-jsf-taglib</artifactId>
+    <name>Spring Security JSF Taglib</name>
+    <description>Spring Security JSF Taglib</description>
 
     <properties>
         <main.basedir>${basedir}/..</main.basedir>
