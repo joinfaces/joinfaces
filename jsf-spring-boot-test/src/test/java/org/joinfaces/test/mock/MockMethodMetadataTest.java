@@ -31,7 +31,7 @@ public class MockMethodMetadataTest {
 	private MockMethodMetadata mockMethodMetadata;
 
 	@Before
-	public void setUp() throws Exception {
+	public void setUp() {
 		this.mockMethodMetadata = new MockMethodMetadata(Autowired.class);
 	}
 
