@@ -89,7 +89,6 @@
         <jacoco.packageLineRate>1.00</jacoco.packageLineRate>
         <jacoco.branchRate>1.00</jacoco.branchRate>
         <jacoco.lineRate>1.00</jacoco.lineRate>
-        <jacoco.exclude>none</jacoco.exclude>
 
         <argLine>-Xms32m -Xmx256m</argLine>
         <findbugs.jvmArgs>-Xms32m -Xmx256m</findbugs.jvmArgs>
@@ -576,9 +575,6 @@
                                 <goal>check</goal>
                             </goals>
                             <configuration>
-                                <excludes>
-                                    <exclude>${jacoco.exclude}</exclude>
-                                </excludes>
                                 <rules>
                                     <rule>
                                         <element>BUNDLE</element>
