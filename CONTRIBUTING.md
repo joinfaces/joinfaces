@@ -17,3 +17,17 @@ contains Joinfaces 2.x which targets _Spring Boot 1.5.x_.
 
 If you wan't to contribute to Joinfaces, make sure you start your work on the head of the correct branch.
 Make also sure, to select the same branch as _base_ when creating your pull request.
+
+## Code Conventions and Housekeeping
+> These section is mainly copied from https://github.com/spring-projects/spring-boot/blob/master/CONTRIBUTING.adoc
+
+None of these is essential for a pull request, but they will all help.  They can also be
+added after the original pull request but before a merge.
+
+* Make sure all new `.java` files to have a simple Javadoc class comment with at least an
+  `@author` tag identifying you, and preferably at least a paragraph on what the class is for.
+* Add the license header comment to all new `.java` files (copy from existing files in the project)
+* Add yourself as an `@author` to the `.java` files that you modify substantially (more than cosmetic changes).
+* Add some Javadocs.
+* A few unit tests would help a lot as well -- someone has to do it.
+* When writing a commit message please follow [these conventions](http://tbaggery.com/2008/04/19/a-note-about-git-commit-messages.html).
