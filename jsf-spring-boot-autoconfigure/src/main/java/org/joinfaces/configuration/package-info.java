@@ -15,8 +15,6 @@
  */
 
 /**
- * Scanner Utility Classes for initializing JSF properly.
- *
- * @see org.joinfaces.JsfClassFactory
+ * Core support classes to JSF Spring Boot Auto Configuration.
  */
-package org.joinfaces;
+package org.joinfaces.configuration;

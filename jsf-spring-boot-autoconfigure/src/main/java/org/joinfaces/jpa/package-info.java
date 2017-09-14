@@ -15,8 +15,6 @@
  */
 
 /**
- * Scanner Utility Classes for initializing JSF properly.
- *
- * @see org.joinfaces.JsfClassFactory
+ * Applying Spring-MVC setup for JPA to JSF.
  */
-package org.joinfaces;
+package org.joinfaces.jpa;

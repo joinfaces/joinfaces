@@ -15,8 +15,6 @@
  */
 
 /**
- * Scanner Utility Classes for initializing JSF properly.
- *
- * @see org.joinfaces.JsfClassFactory
+ * JSF Mock classes for testing.
  */
-package org.joinfaces;
+package org.joinfaces.test.mock;

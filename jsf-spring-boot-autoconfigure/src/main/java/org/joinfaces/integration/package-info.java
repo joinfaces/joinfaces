@@ -15,8 +15,6 @@
  */
 
 /**
- * Scanner Utility Classes for initializing JSF properly.
- *
- * @see org.joinfaces.JsfClassFactory
+ * Integration classes between and CDI.
  */
-package org.joinfaces;
+package org.joinfaces.integration;
