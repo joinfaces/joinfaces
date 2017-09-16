@@ -25,9 +25,9 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.context.embedded.jetty.JettyEmbeddedServletContainer;
-import org.springframework.boot.context.embedded.jetty.JettyEmbeddedServletContainerFactory;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.web.embedded.jetty.JettyServletWebServerFactory;
+import org.springframework.boot.web.embedded.jetty.JettyWebServer;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -41,11 +41,11 @@ public class JsfJettyServerCustomizerIT {
 
 	@Test
 	public void customize() throws MalformedURLException {
-		JettyEmbeddedServletContainerFactory factory = new JettyEmbeddedServletContainerFactory();
+		JettyServletWebServerFactory factory = new JettyServletWebServerFactory();
 
 		JsfJettyServerCustomizer customizer = new JsfJettyServerCustomizer(this.jettyProperties);
 
-		Server server = ((JettyEmbeddedServletContainer) factory.getEmbeddedServletContainer()).getServer();
+		Server server = ((JettyWebServer) factory.getWebServer()).getServer();
 
 		customizer.customize(server);
 
@@ -58,14 +58,14 @@ public class JsfJettyServerCustomizerIT {
 
 	@Test(expected = RuntimeException.class)
 	public void invalidClassPathResource() throws MalformedURLException {
-		JettyEmbeddedServletContainerFactory factory = new JettyEmbeddedServletContainerFactory();
+		JettyServletWebServerFactory factory = new JettyServletWebServerFactory();
 
 		JettyProperties jp = new JettyProperties();
 		jp.setClassPathResource("/~ã``'[ªº*-+.@#$%{&*ç|°;.<>");
 
 		JsfJettyServerCustomizer customizer = new JsfJettyServerCustomizer(jp);
 
-		Server server = ((JettyEmbeddedServletContainer) factory.getEmbeddedServletContainer()).getServer();
+		Server server = ((JettyWebServer) factory.getWebServer()).getServer();
 
 		customizer.customize(server);
 
