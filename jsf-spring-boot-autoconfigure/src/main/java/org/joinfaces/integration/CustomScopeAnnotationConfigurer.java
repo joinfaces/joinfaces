@@ -84,7 +84,7 @@ public class CustomScopeAnnotationConfigurer implements BeanFactoryPostProcessor
 			if (scopeName != null) {
 				definition.setScope(scopeName);
 
-				log.debug("{} - Scope({})", definition.getBeanClassName(), definition.getScope().toUpperCase());
+				log.debug("{} - Scope({})", definition.getBeanClassName(), scopeName.toUpperCase());
 			}
 		}
 	}

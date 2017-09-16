@@ -94,8 +94,9 @@ public class InitParameterServletContextConfigurer implements ServletContextInit
 				log.debug("Not visiting nested property {} because its null", field);
 			}
 		}
-		else if (AnnotatedElementUtils.isAnnotated(field, ServletContextInitParameter.class)) {
-			ServletContextInitParameter servletContextInitParameter = AnnotatedElementUtils.getMergedAnnotation(field, ServletContextInitParameter.class);
+
+		ServletContextInitParameter servletContextInitParameter = AnnotatedElementUtils.getMergedAnnotation(field, ServletContextInitParameter.class);
+		if (servletContextInitParameter != null) {
 
 			String paramName = servletContextInitParameter.value();
 

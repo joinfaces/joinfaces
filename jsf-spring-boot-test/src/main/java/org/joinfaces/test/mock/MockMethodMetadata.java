@@ -29,6 +29,7 @@ import org.springframework.util.MultiValueMap;
  */
 public class MockMethodMetadata implements MethodMetadata {
 
+	private static final String MOCK = "mock";
 	private final Class<? extends Annotation> annotation;
 
 	public MockMethodMetadata(Class<? extends Annotation> annotation) {
@@ -37,17 +38,17 @@ public class MockMethodMetadata implements MethodMetadata {
 
 	@Override
 	public String getMethodName() {
-		return null;
+		return MOCK;
 	}
 
 	@Override
 	public String getDeclaringClassName() {
-		return null;
+		return MOCK;
 	}
 
 	@Override
 	public String getReturnTypeName() {
-		return null;
+		return MOCK;
 	}
 
 	@Override
