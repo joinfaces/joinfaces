@@ -38,17 +38,17 @@ public class MockMethodMetadataTest {
 
 	@Test
 	public void testGetMethodName() {
-		assertThat(this.mockMethodMetadata.getMethodName()).isNull();
+		assertThat(this.mockMethodMetadata.getMethodName()).isNotNull();
 	}
 
 	@Test
 	public void testGetDeclaringClassName() {
-		assertThat(this.mockMethodMetadata.getDeclaringClassName()).isNull();
+		assertThat(this.mockMethodMetadata.getDeclaringClassName()).isNotNull();
 	}
 
 	@Test
 	public void testGetReturnTypeName() {
-		assertThat(this.mockMethodMetadata.getReturnTypeName()).isNull();
+		assertThat(this.mockMethodMetadata.getReturnTypeName()).isNotNull();
 	}
 
 	@Test
