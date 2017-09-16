@@ -52,7 +52,7 @@ public class JavaxFacesPropertiesCustomizerTest {
 	@Test
 	public void testProcess() {
 		JavaxFaces2_0Properties properties = new JavaxFaces2_0Properties();
-		properties.setFaceletsDecorators(new ArrayList<Class<? extends TagDecorator>>());
+		properties.setFaceletsDecorators(new ArrayList<>());
 
 		this.javaxFacesPropertiesCustomizer.postProcessAfterInitialization(properties, null);
 

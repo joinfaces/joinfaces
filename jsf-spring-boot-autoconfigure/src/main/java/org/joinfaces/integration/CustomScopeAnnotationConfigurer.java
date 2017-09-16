@@ -123,7 +123,7 @@ public class CustomScopeAnnotationConfigurer implements BeanFactoryPostProcessor
 
 	public void addMapping(AnnotationToScopeMapping annotationToScopeMapping) {
 		if (this.annotationToScopeMappings == null) {
-			this.annotationToScopeMappings = new LinkedList<AnnotationToScopeMapping>();
+			this.annotationToScopeMappings = new LinkedList<>();
 		}
 
 		this.annotationToScopeMappings.add(annotationToScopeMapping);

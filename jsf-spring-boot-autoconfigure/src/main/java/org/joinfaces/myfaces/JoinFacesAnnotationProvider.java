@@ -53,6 +53,6 @@ public class JoinFacesAnnotationProvider extends AnnotationProvider {
 
 	@Override
 	public Set<URL> getBaseUrls() throws IOException {
-		return new HashSet<URL>(urls);
+		return new HashSet<>(urls);
 	}
 }

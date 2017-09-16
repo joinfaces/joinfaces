@@ -34,7 +34,7 @@ public class MockTagAttributes extends TagAttributes {
 	private static final String NOT_SUPPORTED_YET = "Not supported yet.";
 
 	@Getter
-	private Map<String, TagAttribute> tagAttributes = new HashMap<String, TagAttribute>();
+	private Map<String, TagAttribute> tagAttributes = new HashMap<>();
 
 	@Override
 	public TagAttribute[] getAll() {

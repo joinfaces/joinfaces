@@ -32,10 +32,10 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 @Setter
 public class TestProperties {
 
-	private List<String> listA = new ArrayList<String>();
-	private List<String> listB = new ArrayList<String>();
-	private List<String> listC = new ArrayList<String>();
-	private List<String> listD = new ArrayList<String>();
+	private List<String> listA = new ArrayList<>();
+	private List<String> listB = new ArrayList<>();
+	private List<String> listC = new ArrayList<>();
+	private List<String> listD = new ArrayList<>();
 
 	private Class<? extends CharSequence> charSequenceClass;
 	private Class<?> randomClass;

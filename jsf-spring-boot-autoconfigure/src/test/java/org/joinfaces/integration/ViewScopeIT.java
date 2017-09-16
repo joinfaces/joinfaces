@@ -34,12 +34,7 @@ public class ViewScopeIT extends JsfIT {
 	public void testViewScope() {
 		ViewScope viewScope = new ViewScope();
 
-		ObjectFactory<?> objectFactory = new ObjectFactory<Object>() {
-			@Override
-			public Object getObject() throws BeansException {
-				return new Object();
-			}
-		};
+		ObjectFactory<?> objectFactory = (ObjectFactory<Object>) () -> new Object();
 
 		Object viewScopedClass = viewScope.get(KEY, objectFactory);
 		viewScopedClass = viewScope.get(KEY, objectFactory);
