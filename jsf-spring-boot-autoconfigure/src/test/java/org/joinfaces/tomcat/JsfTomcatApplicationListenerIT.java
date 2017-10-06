@@ -145,7 +145,7 @@ public class JsfTomcatApplicationListenerIT {
 
 		callApplicationEvent(contextMock);
 
-		assertThat(contextMock.getCalledAnswer().getCalls())
+		assertThat(contextMock.getWebResourceRoot().getCreateWebResourceSetCalls())
 			.isEqualTo(0);
 	}
 
@@ -165,7 +165,7 @@ public class JsfTomcatApplicationListenerIT {
 
 		callApplicationEvent(contextMock);
 
-		assertThat(contextMock.getCalledAnswer().getCalls())
+		assertThat(contextMock.getWebResourceRoot().getCreateWebResourceSetCalls())
 			.isEqualTo(1);
 	}
 
@@ -185,7 +185,7 @@ public class JsfTomcatApplicationListenerIT {
 
 		callApplicationEvent(contextMock);
 
-		assertThat(contextMock.getCalledAnswer().getCalls())
+		assertThat(contextMock.getWebResourceRoot().getCreateWebResourceSetCalls())
 			.isEqualTo(1);
 	}
 
@@ -205,7 +205,7 @@ public class JsfTomcatApplicationListenerIT {
 
 		callApplicationEvent(contextMock);
 
-		assertThat(contextMock.getCalledAnswer().getCalls())
+		assertThat(contextMock.getWebResourceRoot().getCreateWebResourceSetCalls())
 			.isEqualTo(1);
 	}
 
@@ -225,7 +225,7 @@ public class JsfTomcatApplicationListenerIT {
 
 		callApplicationEvent(contextMock);
 
-		assertThat(contextMock.getCalledAnswer().getCalls())
+		assertThat(contextMock.getWebResourceRoot().getCreateWebResourceSetCalls())
 			.isEqualTo(0);
 	}
 
@@ -245,7 +245,7 @@ public class JsfTomcatApplicationListenerIT {
 
 		callApplicationEvent(contextMock);
 
-		assertThat(contextMock.getCalledAnswer().getCalls())
+		assertThat(contextMock.getWebResourceRoot().getCreateWebResourceSetCalls())
 			.isEqualTo(0);
 	}
 

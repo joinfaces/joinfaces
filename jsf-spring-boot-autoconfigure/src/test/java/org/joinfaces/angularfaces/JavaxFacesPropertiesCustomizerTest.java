@@ -18,8 +18,6 @@ package org.joinfaces.angularfaces;
 
 import java.util.ArrayList;
 
-import javax.faces.view.facelets.TagDecorator;
-
 import de.beyondjava.angularFaces.core.tagTransformer.AngularTagDecorator;
 import org.joinfaces.javaxfaces.JavaxFaces2_0Properties;
 import org.junit.Before;
