@@ -17,9 +17,8 @@
 package org.joinfaces.tomcat;
 
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
-import org.springframework.boot.context.embedded.ConfigurableEmbeddedServletContainer;
-import org.springframework.boot.context.embedded.EmbeddedServletContainerCustomizer;
-import org.springframework.boot.context.embedded.tomcat.TomcatEmbeddedServletContainerFactory;
+import org.springframework.boot.web.embedded.tomcat.TomcatServletWebServerFactory;
+import org.springframework.boot.web.server.WebServerFactoryCustomizer;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -31,7 +30,7 @@ import org.springframework.context.annotation.Configuration;
  */
 @ConditionalOnClass(name = "org.apache.catalina.Context")
 @Configuration
-public class TomcatSpringBootAutoConfiguration implements EmbeddedServletContainerCustomizer {
+public class TomcatSpringBootAutoConfiguration implements WebServerFactoryCustomizer<TomcatServletWebServerFactory> {
 
 	private JsfTomcatContextCustomizer customizer = new JsfTomcatContextCustomizer();
 
@@ -41,12 +40,7 @@ public class TomcatSpringBootAutoConfiguration implements EmbeddedServletContain
 	}
 
 	@Override
-	public void customize(ConfigurableEmbeddedServletContainer container) {
-		if (container instanceof TomcatEmbeddedServletContainerFactory) {
-			TomcatEmbeddedServletContainerFactory tomcatFactory
-				= (TomcatEmbeddedServletContainerFactory) container;
-
-			tomcatFactory.addContextCustomizers(this.customizer);
-		}
+	public void customize(TomcatServletWebServerFactory container) {
+		container.addContextCustomizers(this.customizer);
 	}
 }

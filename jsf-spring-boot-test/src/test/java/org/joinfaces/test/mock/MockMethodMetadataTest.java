@@ -28,6 +28,7 @@ import static org.assertj.core.api.Assertions.assertThat;
  */
 public class MockMethodMetadataTest {
 
+	private static final String FOO = "foo";
 	private MockMethodMetadata mockMethodMetadata;
 
 	@Before
@@ -37,17 +38,17 @@ public class MockMethodMetadataTest {
 
 	@Test
 	public void testGetMethodName() {
-		assertThat(this.mockMethodMetadata.getMethodName()).isNull();
+		assertThat(this.mockMethodMetadata.getMethodName()).isNotNull();
 	}
 
 	@Test
 	public void testGetDeclaringClassName() {
-		assertThat(this.mockMethodMetadata.getDeclaringClassName()).isNull();
+		assertThat(this.mockMethodMetadata.getDeclaringClassName()).isNotNull();
 	}
 
 	@Test
 	public void testGetReturnTypeName() {
-		assertThat(this.mockMethodMetadata.getReturnTypeName()).isNull();
+		assertThat(this.mockMethodMetadata.getReturnTypeName()).isNotNull();
 	}
 
 	@Test
@@ -72,29 +73,28 @@ public class MockMethodMetadataTest {
 
 	@Test
 	public void testIsAnnotated() {
-		assertThat(this.mockMethodMetadata.isAnnotated(null)).isFalse();
 		assertThat(this.mockMethodMetadata.isAnnotated(Autowired.class.getName())).isTrue();
-		assertThat(this.mockMethodMetadata.isAnnotated("foo")).isFalse();
+		assertThat(this.mockMethodMetadata.isAnnotated(FOO)).isFalse();
 	}
 
 	@Test
 	public void testGetAnnotationAttributes_1() {
-		assertThat(this.mockMethodMetadata.getAnnotationAttributes(null)).isNull();
+		assertThat(this.mockMethodMetadata.getAnnotationAttributes(FOO)).isNull();
 	}
 
 	@Test
 	public void testGetAnnotationAttributes_2() {
-		assertThat(this.mockMethodMetadata.getAnnotationAttributes(null, false)).isNull();
+		assertThat(this.mockMethodMetadata.getAnnotationAttributes(FOO, false)).isNull();
 	}
 
 	@Test
 	public void testGetAllAnnotationAttributes_1() {
-		assertThat(this.mockMethodMetadata.getAllAnnotationAttributes(null)).isNull();
+		assertThat(this.mockMethodMetadata.getAllAnnotationAttributes(FOO)).isNull();
 	}
 
 	@Test
 	public void testGetAllAnnotationAttributes_2() {
-		assertThat(this.mockMethodMetadata.getAllAnnotationAttributes(null, false)).isNull();
+		assertThat(this.mockMethodMetadata.getAllAnnotationAttributes(FOO, false)).isNull();
 	}
 
 }

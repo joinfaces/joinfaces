@@ -24,10 +24,9 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.context.embedded.tomcat.TomcatEmbeddedServletContainerFactory;
-import org.springframework.boot.context.embedded.undertow.UndertowDeploymentInfoCustomizer;
-import org.springframework.boot.context.embedded.undertow.UndertowEmbeddedServletContainerFactory;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.web.embedded.undertow.UndertowDeploymentInfoCustomizer;
+import org.springframework.boot.web.embedded.undertow.UndertowServletWebServerFactory;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -40,8 +39,8 @@ public class UndertowSpringBootAutoConfigurationIT {
 	private UndertowSpringBootAutoConfiguration undertowSpringBootAutoConfiguration;
 
 	@Test
-	public void customize() throws MalformedURLException, IOException {
-		UndertowEmbeddedServletContainerFactory factory = new UndertowEmbeddedServletContainerFactory();
+	public void customize() throws IOException {
+		UndertowServletWebServerFactory factory = new UndertowServletWebServerFactory();
 
 		this.undertowSpringBootAutoConfiguration.customize(factory);
 
@@ -54,15 +53,5 @@ public class UndertowSpringBootAutoConfigurationIT {
 
 		assertThat(deploymentInfo.getResourceManager().getResource("testUndertow.txt"))
 			.isNotNull();
-	}
-
-	@Test
-	public void customizeTomcat() throws MalformedURLException, IOException {
-		TomcatEmbeddedServletContainerFactory factory = new TomcatEmbeddedServletContainerFactory();
-
-		this.undertowSpringBootAutoConfiguration.customize(factory);
-
-		assertThat(factory.getContextPath())
-			.isEqualTo("");
 	}
 }

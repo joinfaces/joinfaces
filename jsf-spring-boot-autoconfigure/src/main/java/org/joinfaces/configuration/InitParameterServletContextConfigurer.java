@@ -59,7 +59,7 @@ public class InitParameterServletContextConfigurer implements ServletContextInit
 
 	public InitParameterServletContextConfigurer(List<ServletContextInitParameterConfigurationProperties> initParameterProperties) {
 		this.initParameterProperties = initParameterProperties;
-		this.visitiedInitParameters = new HashSet<String>();
+		this.visitiedInitParameters = new HashSet<>();
 	}
 
 	@Override
@@ -76,18 +76,8 @@ public class InitParameterServletContextConfigurer implements ServletContextInit
 
 		ReflectionUtils.doWithFields(
 				type,
-				new ReflectionUtils.FieldCallback() {
-					@Override
-					public void doWith(Field field) throws IllegalArgumentException, IllegalAccessException {
-						handlePropertiesField(properties, field);
-					}
-				},
-				new ReflectionUtils.FieldFilter() {
-					@Override
-					public boolean matches(Field field) {
-						return AnnotatedElementUtils.isAnnotated(field, ServletContextInitParameter.class) || AnnotatedElementUtils.isAnnotated(field, NestedProperty.class);
-					}
-				});
+				field -> handlePropertiesField(properties, field),
+				field -> AnnotatedElementUtils.isAnnotated(field, ServletContextInitParameter.class) || AnnotatedElementUtils.isAnnotated(field, NestedProperty.class));
 
 	}
 
@@ -104,8 +94,9 @@ public class InitParameterServletContextConfigurer implements ServletContextInit
 				log.debug("Not visiting nested property {} because its null", field);
 			}
 		}
-		else if (AnnotatedElementUtils.isAnnotated(field, ServletContextInitParameter.class)) {
-			ServletContextInitParameter servletContextInitParameter = AnnotatedElementUtils.getMergedAnnotation(field, ServletContextInitParameter.class);
+
+		ServletContextInitParameter servletContextInitParameter = AnnotatedElementUtils.getMergedAnnotation(field, ServletContextInitParameter.class);
+		if (servletContextInitParameter != null) {
 
 			String paramName = servletContextInitParameter.value();
 

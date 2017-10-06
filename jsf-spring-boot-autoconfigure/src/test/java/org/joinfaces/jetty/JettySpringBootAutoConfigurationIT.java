@@ -25,10 +25,9 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.context.embedded.jetty.JettyEmbeddedServletContainer;
-import org.springframework.boot.context.embedded.jetty.JettyEmbeddedServletContainerFactory;
-import org.springframework.boot.context.embedded.tomcat.TomcatEmbeddedServletContainerFactory;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.web.embedded.jetty.JettyServletWebServerFactory;
+import org.springframework.boot.web.embedded.jetty.JettyWebServer;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -42,26 +41,16 @@ public class JettySpringBootAutoConfigurationIT {
 
 	@Test
 	public void customize() throws MalformedURLException {
-		JettyEmbeddedServletContainerFactory factory = new JettyEmbeddedServletContainerFactory();
+		JettyServletWebServerFactory factory = new JettyServletWebServerFactory();
 
 		this.jettySpringBootAutoConfiguration.customize(factory);
 
-		Server server = ((JettyEmbeddedServletContainer) factory.getEmbeddedServletContainer()).getServer();
+		Server server = ((JettyWebServer) factory.getWebServer()).getServer();
 
 		Handler[] childHandlersByClass = server.getChildHandlersByClass(WebAppContext.class);
 		WebAppContext webAppContext = (WebAppContext) childHandlersByClass[0];
 
 		assertThat(webAppContext.getBaseResource().getResource("testJetty.txt").exists())
 			.isTrue();
-	}
-
-	@Test
-	public void customizeTomcat() throws MalformedURLException {
-		TomcatEmbeddedServletContainerFactory factory = new TomcatEmbeddedServletContainerFactory();
-
-		this.jettySpringBootAutoConfiguration.customize(factory);
-
-		assertThat(factory.getContextPath())
-			.isEqualTo("");
 	}
 }

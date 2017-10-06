@@ -60,7 +60,7 @@ public class JsfClassFactory {
 	 * @return set of annotations to exclude from handlesType
 	 */
 	private Set<Class<? extends Annotation>> annotationsToExclude() {
-		Set<Class<? extends Annotation>> result = new HashSet<Class<? extends Annotation>>();
+		Set<Class<? extends Annotation>> result = new HashSet<>();
 		if (this.jsfAnnotatedClassFactoryConfiguration.isExcludeScopedAnnotations()) {
 			result.add(ViewScoped.class);
 			result.add(SessionScoped.class);
@@ -128,8 +128,8 @@ public class JsfClassFactory {
 	public Collection<URL> getURLs() {
 		if (this.urls == null) {
 			// stores collections of urls to be scanned
-			Collection<URL> result = new ArrayList<URL>();
-			Collection<String> strings = new HashSet<String>();
+			Collection<URL> result = new ArrayList<>();
+			Collection<String> strings = new HashSet<>();
 
 			// get only urls of libraries that contains jsf types
 			add(result, strings, ClasspathHelper.forResource("META-INF/faces-config.xml", this.getClass().getClassLoader()));
@@ -182,8 +182,8 @@ public class JsfClassFactory {
 	}
 
 	private void computeClasses() {
-		this.annotatedClassMap = new HashMap<Class<? extends Annotation>, Set<Class<?>>>();
-		this.otherClassMap = new HashMap<Class<?>, Set<Class<?>>>();
+		this.annotatedClassMap = new HashMap<>();
+		this.otherClassMap = new HashMap<>();
 
 		TypesHandled handlesTypes = handlesTypes();
 		// check if any type is handled
@@ -207,7 +207,7 @@ public class JsfClassFactory {
 	 * @return set of classes.
 	 */
 	public Set<Class<?>> getAllClasses() {
-		Set<Class<?>> result = new HashSet<Class<?>>();
+		Set<Class<?>> result = new HashSet<>();
 		result.addAll(getAnnotatedClasses());
 		result.addAll(getOtherClasses());
 
@@ -231,7 +231,7 @@ public class JsfClassFactory {
 	}
 
 	private Set<Class<?>> collectValues(Collection<Set<Class<?>>> sets) {
-		Set<Class<?>> classes = new HashSet<Class<?>>();
+		Set<Class<?>> classes = new HashSet<>();
 		for (Set<Class<?>> values : sets) {
 			classes.addAll(values);
 		}

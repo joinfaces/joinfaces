@@ -18,7 +18,7 @@ package org.joinfaces;
 
 import org.springframework.boot.SpringBootConfiguration;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
-import org.springframework.boot.context.embedded.tomcat.TomcatEmbeddedServletContainerFactory;
+import org.springframework.boot.web.embedded.tomcat.TomcatServletWebServerFactory;
 import org.springframework.context.annotation.Bean;
 
 /**
@@ -32,7 +32,7 @@ import org.springframework.context.annotation.Bean;
 public class JoinfacesTestConfiguration {
 
 	@Bean
-	public TomcatEmbeddedServletContainerFactory tomcatEmbeddedServletContainerFactory() {
-		return new TomcatEmbeddedServletContainerFactory();
+	public TomcatServletWebServerFactory tomcatServletWebServerFactory() {
+		return new TomcatServletWebServerFactory();
 	}
 }

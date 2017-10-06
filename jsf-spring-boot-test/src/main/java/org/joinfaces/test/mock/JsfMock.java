@@ -83,7 +83,7 @@ public class JsfMock {
 		this.mockTag = new Tag(null, null, null, null, this.mockTagAttributes);
 		this.mockFaceletContext = new MockFaceletContext(this.mockFacesContext);
 
-		this.mockViewMap = new HashMap<String, Object>();
+		this.mockViewMap = new HashMap<>();
 		this.mockServletContext = new MockServletContext();
 		if (applicationContext != null) {
 			this.mockServletContext.setAttribute(WebApplicationContext.ROOT_WEB_APPLICATION_CONTEXT_ATTRIBUTE, applicationContext);
@@ -105,12 +105,12 @@ public class JsfMock {
 		Mockito.when(this.mockExternalContext.getResponse()).thenReturn(this.mockHttpServletResponse);
 		Mockito.when(this.mockExternalContext.getContext()).thenReturn(this.mockServletContext);
 
-		Map<String, String> requestMap = new HashMap<String, String>();
+		Map<String, String> requestMap = new HashMap<>();
 		Mockito.when(this.mockExternalContext.getRequestParameterMap()).thenReturn(requestMap);
 	}
 
 	private List<Locale> createLocales() {
-		ArrayList<Locale> locales = new ArrayList<Locale>();
+		ArrayList<Locale> locales = new ArrayList<>();
 		locales.add(new Locale("en"));
 		locales.add(new Locale("de"));
 		locales.add(new Locale("pt_BR"));

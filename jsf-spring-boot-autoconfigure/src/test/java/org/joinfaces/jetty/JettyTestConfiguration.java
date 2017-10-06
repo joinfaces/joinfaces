@@ -18,7 +18,7 @@ package org.joinfaces.jetty;
 
 import org.springframework.boot.SpringBootConfiguration;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
-import org.springframework.boot.context.embedded.jetty.JettyEmbeddedServletContainerFactory;
+import org.springframework.boot.web.embedded.jetty.JettyServletWebServerFactory;
 import org.springframework.context.annotation.Bean;
 
 /**
@@ -32,7 +32,7 @@ import org.springframework.context.annotation.Bean;
 public class JettyTestConfiguration {
 
 	@Bean
-	public JettyEmbeddedServletContainerFactory jettyEmbeddedServletContainerFactory() {
-		return new JettyEmbeddedServletContainerFactory();
+	public JettyServletWebServerFactory jettyServletWebServerFactory() {
+		return new JettyServletWebServerFactory();
 	}
 }

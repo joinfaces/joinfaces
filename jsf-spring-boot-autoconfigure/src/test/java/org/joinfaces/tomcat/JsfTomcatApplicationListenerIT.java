@@ -28,7 +28,10 @@ import org.apache.catalina.webresources.StandardRoot;
 import org.junit.Test;
 import org.mockito.Mockito;
 
+import org.springframework.boot.context.event.ApplicationReadyEvent;
+
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.mockito.Mockito.mock;
 
 public class JsfTomcatApplicationListenerIT {
 
@@ -40,7 +43,7 @@ public class JsfTomcatApplicationListenerIT {
 
 	@Test
 	public void customize() throws LifecycleException {
-		Context standardContext = Mockito.mock(Context.class);
+		Context standardContext = mock(Context.class);
 		StandardRoot webResourceRoot = new StandardRoot(standardContext);
 		Mockito.when(standardContext.getResources()).thenReturn(webResourceRoot);
 		Mockito.when(standardContext.getAddWebinfClassesResources()).thenReturn(Boolean.FALSE);
@@ -50,14 +53,14 @@ public class JsfTomcatApplicationListenerIT {
 
 		JsfTomcatApplicationListener jsfTomcatApplicationListener = JsfTomcatApplicationListener
 			.builder().context(jsfTomcatContextCustomizer.getContext()).build();
-		jsfTomcatApplicationListener.onApplicationEvent(null);
+		jsfTomcatApplicationListener.onApplicationEvent(mock(ApplicationReadyEvent.class));
 		assertThat(webResourceRoot.getPostResources().length)
 			.isEqualTo(9);
 	}
 
 	@Test
 	public void customizeTargetTestClasses() throws LifecycleException {
-		Context standardContext = Mockito.mock(Context.class);
+		Context standardContext = mock(Context.class);
 		StandardRoot webResourceRoot = new StandardRoot(standardContext);
 		Mockito.when(standardContext.getResources()).thenReturn(webResourceRoot);
 		Mockito.when(standardContext.getAddWebinfClassesResources()).thenReturn(Boolean.FALSE);
@@ -77,7 +80,7 @@ public class JsfTomcatApplicationListenerIT {
 		JsfTomcatApplicationListener jsfTomcatApplicationListener = JsfTomcatApplicationListener
 			.builder().context(jsfTomcatContextCustomizer.getContext()).build();
 
-		jsfTomcatApplicationListener.onApplicationEvent(null);
+		jsfTomcatApplicationListener.onApplicationEvent(mock(ApplicationReadyEvent.class));
 		if (!testClassesResources.delete()) {
 			throw new RuntimeException("Could not delete dir: " + testClassesResources.toString());
 		}
@@ -89,7 +92,7 @@ public class JsfTomcatApplicationListenerIT {
 	public void contextNull() {
 		JsfTomcatApplicationListener jsfTomcatApplicationListener = JsfTomcatApplicationListener
 			.builder().build();
-		jsfTomcatApplicationListener.onApplicationEvent(null);
+		jsfTomcatApplicationListener.onApplicationEvent(mock(ApplicationReadyEvent.class));
 
 		assertThat(jsfTomcatApplicationListener)
 			.isNotNull();
@@ -97,7 +100,7 @@ public class JsfTomcatApplicationListenerIT {
 
 	@Test
 	public void resourcesNull() throws LifecycleException {
-		Context standardContext = Mockito.mock(Context.class);
+		Context standardContext = mock(Context.class);
 		Mockito.when(standardContext.getResources()).thenReturn(null);
 		Mockito.when(standardContext.getAddWebinfClassesResources()).thenReturn(Boolean.FALSE);
 
@@ -106,7 +109,7 @@ public class JsfTomcatApplicationListenerIT {
 
 		JsfTomcatApplicationListener jsfTomcatApplicationListener = JsfTomcatApplicationListener
 			.builder().context(jsfTomcatContextCustomizer.getContext()).build();
-		jsfTomcatApplicationListener.onApplicationEvent(null);
+		jsfTomcatApplicationListener.onApplicationEvent(mock(ApplicationReadyEvent.class));
 
 		assertThat(jsfTomcatApplicationListener)
 			.isNotNull();
@@ -114,8 +117,8 @@ public class JsfTomcatApplicationListenerIT {
 
 	@Test
 	public void jarResourcesNull() throws LifecycleException {
-		Context standardContext = Mockito.mock(Context.class);
-		WebResourceRoot webResourceRoot = Mockito.mock(WebResourceRoot.class);
+		Context standardContext = mock(Context.class);
+		WebResourceRoot webResourceRoot = mock(WebResourceRoot.class);
 		Mockito.when(standardContext.getResources()).thenReturn(webResourceRoot);
 		Mockito.when(standardContext.getAddWebinfClassesResources()).thenReturn(Boolean.FALSE);
 		Mockito.when(webResourceRoot.getJarResources()).thenReturn(null);
@@ -125,7 +128,7 @@ public class JsfTomcatApplicationListenerIT {
 
 		JsfTomcatApplicationListener jsfTomcatApplicationListener = JsfTomcatApplicationListener
 			.builder().context(jsfTomcatContextCustomizer.getContext()).build();
-		jsfTomcatApplicationListener.onApplicationEvent(null);
+		jsfTomcatApplicationListener.onApplicationEvent(mock(ApplicationReadyEvent.class));
 
 		assertThat(jsfTomcatApplicationListener)
 			.isNotNull();
@@ -252,6 +255,6 @@ public class JsfTomcatApplicationListenerIT {
 
 		JsfTomcatApplicationListener jsfTomcatApplicationListener = JsfTomcatApplicationListener
 			.builder().context(jsfTomcatContextCustomizer.getContext()).build();
-		jsfTomcatApplicationListener.onApplicationEvent(null);
+		jsfTomcatApplicationListener.onApplicationEvent(mock(ApplicationReadyEvent.class));
 	}
 }

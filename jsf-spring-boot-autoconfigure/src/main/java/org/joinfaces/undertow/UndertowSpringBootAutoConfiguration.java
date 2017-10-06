@@ -18,10 +18,9 @@ package org.joinfaces.undertow;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
-import org.springframework.boot.context.embedded.ConfigurableEmbeddedServletContainer;
-import org.springframework.boot.context.embedded.EmbeddedServletContainerCustomizer;
-import org.springframework.boot.context.embedded.undertow.UndertowEmbeddedServletContainerFactory;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
+import org.springframework.boot.web.embedded.undertow.UndertowServletWebServerFactory;
+import org.springframework.boot.web.server.WebServerFactoryCustomizer;
 import org.springframework.context.annotation.Configuration;
 
 /**
@@ -32,16 +31,13 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 @EnableConfigurationProperties({UndertowProperties.class})
 @ConditionalOnClass(name = "io.undertow.Undertow")
-public class UndertowSpringBootAutoConfiguration implements EmbeddedServletContainerCustomizer {
+public class UndertowSpringBootAutoConfiguration implements WebServerFactoryCustomizer<UndertowServletWebServerFactory> {
 
 	@Autowired
 	private UndertowProperties undertowProperties;
 
 	@Override
-	public void customize(ConfigurableEmbeddedServletContainer container) {
-		if (container instanceof UndertowEmbeddedServletContainerFactory) {
-			((UndertowEmbeddedServletContainerFactory) container).addDeploymentInfoCustomizers(
-				new JsfUndertowDeploymentInfoCustomizer(this.undertowProperties));
-		}
+	public void customize(UndertowServletWebServerFactory container) {
+		container.addDeploymentInfoCustomizers(new JsfUndertowDeploymentInfoCustomizer(this.undertowProperties));
 	}
 }
