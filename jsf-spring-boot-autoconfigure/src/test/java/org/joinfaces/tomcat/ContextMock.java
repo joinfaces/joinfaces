@@ -19,10 +19,7 @@ package org.joinfaces.tomcat;
 import lombok.Getter;
 import org.apache.catalina.Context;
 import org.apache.catalina.LifecycleException;
-import org.apache.catalina.LifecycleState;
-import org.apache.catalina.WebResourceRoot;
 import org.apache.catalina.WebResourceSet;
-import org.mockito.Matchers;
 import org.mockito.Mockito;
 
 @Getter
@@ -30,33 +27,21 @@ public class ContextMock {
 
 	private Context standardContext;
 
-	private WebResourceRoot webResourceRoot;
-
-	private CalledAnswer calledAnswer;
+	private MockWebResourceRoot webResourceRoot;
 
 	public ContextMock()  {
 		this.standardContext = Mockito.mock(Context.class);
-		this.webResourceRoot = Mockito.mock(WebResourceRoot.class);
-		LifecycleState state = LifecycleState.NEW;
-		Mockito.when(this.webResourceRoot.getContext())
-			.thenReturn(this.standardContext);
-		Mockito.when(this.webResourceRoot.getState())
-			.thenReturn(state);
+		this.webResourceRoot = new MockWebResourceRoot();
 		Mockito.when(this.standardContext.getResources())
 			.thenReturn(this.webResourceRoot);
 		Mockito.when(this.standardContext.getAddWebinfClassesResources())
 			.thenReturn(Boolean.FALSE);
+		this.webResourceRoot.setContext(this.standardContext);
 	}
 
-	public void init(WebResourceSet... array) throws LifecycleException {
-		Mockito.when(this.webResourceRoot.getJarResources()).thenReturn(array);
-
-		this.calledAnswer = new CalledAnswer();
-
-		Mockito.doAnswer(this.calledAnswer)
-			.when(this.webResourceRoot)
-			.createWebResourceSet(Matchers.any(WebResourceRoot.ResourceSetType.class),
-				Matchers.any(String.class), Matchers.any(String.class),
-				Matchers.any(String.class), Matchers.any(String.class));
+	public void init(WebResourceSet... webResourcesSet) throws LifecycleException {
+		for (WebResourceSet webResourceSet : webResourcesSet) {
+			this.webResourceRoot.addJarResources(webResourceSet);
+		}
 	}
 }

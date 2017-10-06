@@ -17,6 +17,8 @@
     <properties>
         <main.basedir>${basedir}/..</main.basedir>
         
+        <!-- ignore javax.annotation classes that exists at tomcat-embed-core -->
+        <duplicate.ignoredClassPattern>(javax.annotation.*$)</duplicate.ignoredClassPattern>
         <check.dir>../../jsf-spring-boot-parent/src/checkconfig</check.dir>
         <checkstyle.dir>../jsf-spring-boot-parent/src/checkconfig/checkstyle</checkstyle.dir>
     </properties>
