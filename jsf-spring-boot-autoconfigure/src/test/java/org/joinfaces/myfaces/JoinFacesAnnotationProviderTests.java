@@ -35,7 +35,7 @@ public class JoinFacesAnnotationProviderTests {
 
 	@Test
 	public void testBaseUrls() throws MalformedURLException, IOException {
-		Set<URL> urls = new HashSet<URL>();
+		Set<URL> urls = new HashSet<>();
 		URL myurl = new URL("http://localhost:8080");
 		urls.add(myurl);
 		JoinFacesAnnotationProvider.setUrls(urls);
@@ -46,8 +46,8 @@ public class JoinFacesAnnotationProviderTests {
 
 	@Test
 	public void testAnnotatedClasses() throws MalformedURLException, IOException {
-		Map<Class<? extends Annotation>, Set<Class<?>>> annotatedClasses = new HashMap<Class<? extends Annotation>, Set<Class<?>>>();
-		annotatedClasses.put(FacesConverter.class, new HashSet<Class<?>>());
+		Map<Class<? extends Annotation>, Set<Class<?>>> annotatedClasses = new HashMap<>();
+		annotatedClasses.put(FacesConverter.class, new HashSet<>());
 		JoinFacesAnnotationProvider.setAnnotatedClasses(annotatedClasses);
 
 		assertThat(new JoinFacesAnnotationProvider().getAnnotatedClasses(null).get(FacesConverter.class))

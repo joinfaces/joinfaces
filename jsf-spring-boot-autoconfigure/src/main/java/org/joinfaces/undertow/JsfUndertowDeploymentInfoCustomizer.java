@@ -25,7 +25,7 @@ import io.undertow.server.handlers.resource.ClassPathResourceManager;
 import io.undertow.servlet.api.DeploymentInfo;
 import lombok.extern.slf4j.Slf4j;
 
-import org.springframework.boot.context.embedded.undertow.UndertowDeploymentInfoCustomizer;
+import org.springframework.boot.web.embedded.undertow.UndertowDeploymentInfoCustomizer;
 
 /**
  * Configure undertow to load jsf resources from classpath.

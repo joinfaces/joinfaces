@@ -19,7 +19,6 @@ package org.joinfaces.integration;
 import org.joinfaces.test.mock.JsfIT;
 import org.junit.Test;
 
-import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.ObjectFactory;
 import org.springframework.boot.test.context.SpringBootTest;
 
@@ -34,12 +33,7 @@ public class ViewScopeIT extends JsfIT {
 	public void testViewScope() {
 		ViewScope viewScope = new ViewScope();
 
-		ObjectFactory<?> objectFactory = new ObjectFactory<Object>() {
-			@Override
-			public Object getObject() throws BeansException {
-				return new Object();
-			}
-		};
+		ObjectFactory<?> objectFactory = (ObjectFactory<Object>) () -> new Object();
 
 		Object viewScopedClass = viewScope.get(KEY, objectFactory);
 		viewScopedClass = viewScope.get(KEY, objectFactory);
@@ -62,6 +56,6 @@ public class ViewScopeIT extends JsfIT {
 	@Test
 	public void testRegisterDestructionCallback() {
 		ViewScope viewScope = new ViewScope();
-		viewScope.registerDestructionCallback(KEY, null);
+		viewScope.registerDestructionCallback(KEY, () -> { });
 	}
 }

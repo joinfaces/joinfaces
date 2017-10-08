@@ -18,7 +18,7 @@ package org.joinfaces.undertow;
 
 import org.springframework.boot.SpringBootConfiguration;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
-import org.springframework.boot.context.embedded.undertow.UndertowEmbeddedServletContainerFactory;
+import org.springframework.boot.web.embedded.undertow.UndertowServletWebServerFactory;
 import org.springframework.context.annotation.Bean;
 
 /**
@@ -32,7 +32,7 @@ import org.springframework.context.annotation.Bean;
 public class UndertowTestConfiguration {
 
 	@Bean
-	public UndertowEmbeddedServletContainerFactory undertowEmbeddedServletContainerFactory() {
-		return new UndertowEmbeddedServletContainerFactory();
+	public UndertowServletWebServerFactory undertowServletWebServerFactory() {
+		return new UndertowServletWebServerFactory();
 	}
 }

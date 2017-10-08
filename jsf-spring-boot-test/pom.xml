@@ -5,7 +5,7 @@
     <parent>
         <groupId>org.joinfaces</groupId>
         <artifactId>jsf-spring-boot-parent</artifactId>
-        <version>2.4.2-SNAPSHOT</version>
+        <version>3.0.0-SNAPSHOT</version>
         <relativePath>../jsf-spring-boot-parent</relativePath>
     </parent>
 
@@ -18,7 +18,8 @@
 
         <check.dir>../jsf-spring-boot-parent/src/checkconfig</check.dir>
         <!-- ignore javax.persistence classes that exists at tomcat-embed-core -->
-        <duplicate.ignoredClassPattern>(javax.faces.*$|javax.persistence.(PersistenceContext|PersistenceContextType|PersistenceContexts|PersistenceProperty|PersistenceUnit|PersistenceUnits|SynchronizationType))</duplicate.ignoredClassPattern>
+        <!-- ignore javax.annotation classes that exists at tomcat-embed-core -->
+        <duplicate.ignoredClassPattern>(javax.annotation.*$|javax.faces.*$|javax.persistence.(PersistenceContext|PersistenceContextType|PersistenceContexts|PersistenceProperty|PersistenceUnit|PersistenceUnits|SynchronizationType))</duplicate.ignoredClassPattern>
         <duplicate.ignoredResourcePattern>javax/faces/Messages.*\.properties</duplicate.ignoredResourcePattern>
 
         <jacoco.totalLineRate>0.86</jacoco.totalLineRate>

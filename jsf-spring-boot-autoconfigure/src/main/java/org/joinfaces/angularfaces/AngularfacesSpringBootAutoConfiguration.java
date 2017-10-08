@@ -18,6 +18,7 @@ package org.joinfaces.angularfaces;
 
 import java.util.ArrayList;
 
+import javax.annotation.Nullable;
 import javax.faces.view.facelets.TagDecorator;
 
 import de.beyondjava.angularFaces.core.tagTransformer.AngularTagDecorator;
@@ -58,16 +59,16 @@ public class AngularfacesSpringBootAutoConfiguration {
 	static class JavaxFacesPropertiesPostProcessor implements BeanPostProcessor {
 
 		@Override
-		public Object postProcessBeforeInitialization(Object bean, String beanName) throws BeansException {
+		public Object postProcessBeforeInitialization(@Nullable Object bean, @Nullable String beanName) throws BeansException {
 			return bean;
 		}
 
 		@Override
-		public Object postProcessAfterInitialization(Object bean, String beanName) throws BeansException {
+		public Object postProcessAfterInitialization(@Nullable Object bean, @Nullable String beanName) throws BeansException {
 			if (bean instanceof JavaxFaces2_0Properties) {
 				JavaxFaces2_0Properties properties = (JavaxFaces2_0Properties) bean;
 				if (properties.getFaceletsDecorators() == null) {
-					ArrayList<Class<? extends TagDecorator>> faceletsDecorators = new ArrayList<Class<? extends TagDecorator>>();
+					ArrayList<Class<? extends TagDecorator>> faceletsDecorators = new ArrayList<>();
 					faceletsDecorators.add(AngularTagDecorator.class);
 					properties.setFaceletsDecorators(faceletsDecorators);
 				}

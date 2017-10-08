@@ -18,8 +18,6 @@ package org.joinfaces.angularfaces;
 
 import java.util.ArrayList;
 
-import javax.faces.view.facelets.TagDecorator;
-
 import de.beyondjava.angularFaces.core.tagTransformer.AngularTagDecorator;
 import org.joinfaces.javaxfaces.JavaxFaces2_0Properties;
 import org.junit.Before;
@@ -52,7 +50,7 @@ public class JavaxFacesPropertiesCustomizerTest {
 	@Test
 	public void testProcess() {
 		JavaxFaces2_0Properties properties = new JavaxFaces2_0Properties();
-		properties.setFaceletsDecorators(new ArrayList<Class<? extends TagDecorator>>());
+		properties.setFaceletsDecorators(new ArrayList<>());
 
 		this.javaxFacesPropertiesCustomizer.postProcessAfterInitialization(properties, null);
 

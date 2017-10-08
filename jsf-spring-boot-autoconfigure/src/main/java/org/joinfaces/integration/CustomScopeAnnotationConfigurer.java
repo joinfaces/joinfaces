@@ -84,7 +84,7 @@ public class CustomScopeAnnotationConfigurer implements BeanFactoryPostProcessor
 			if (scopeName != null) {
 				definition.setScope(scopeName);
 
-				log.debug("{} - Scope({})", definition.getBeanClassName(), definition.getScope().toUpperCase());
+				log.debug("{} - Scope({})", definition.getBeanClassName(), scopeName.toUpperCase());
 			}
 		}
 	}
@@ -123,7 +123,7 @@ public class CustomScopeAnnotationConfigurer implements BeanFactoryPostProcessor
 
 	public void addMapping(AnnotationToScopeMapping annotationToScopeMapping) {
 		if (this.annotationToScopeMappings == null) {
-			this.annotationToScopeMappings = new LinkedList<AnnotationToScopeMapping>();
+			this.annotationToScopeMappings = new LinkedList<>();
 		}
 
 		this.annotationToScopeMappings.add(annotationToScopeMapping);

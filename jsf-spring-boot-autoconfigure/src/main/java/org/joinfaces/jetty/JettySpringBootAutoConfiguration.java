@@ -18,10 +18,9 @@ package org.joinfaces.jetty;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
-import org.springframework.boot.context.embedded.ConfigurableEmbeddedServletContainer;
-import org.springframework.boot.context.embedded.EmbeddedServletContainerCustomizer;
-import org.springframework.boot.context.embedded.jetty.JettyEmbeddedServletContainerFactory;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
+import org.springframework.boot.web.embedded.jetty.JettyServletWebServerFactory;
+import org.springframework.boot.web.server.WebServerFactoryCustomizer;
 import org.springframework.context.annotation.Configuration;
 
 /**
@@ -35,16 +34,13 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 @EnableConfigurationProperties({JettyProperties.class})
 @ConditionalOnClass(name = "org.eclipse.jetty.server.Server")
-public class JettySpringBootAutoConfiguration implements EmbeddedServletContainerCustomizer {
+public class JettySpringBootAutoConfiguration implements WebServerFactoryCustomizer<JettyServletWebServerFactory> {
 
 	@Autowired
 	private JettyProperties jettyProperties;
 
 	@Override
-	public void customize(ConfigurableEmbeddedServletContainer container) {
-		if (container instanceof JettyEmbeddedServletContainerFactory) {
-			((JettyEmbeddedServletContainerFactory) container).addServerCustomizers(
-				new JsfJettyServerCustomizer(this.jettyProperties));
-		}
+	public void customize(JettyServletWebServerFactory container) {
+		container.addServerCustomizers(new JsfJettyServerCustomizer(this.jettyProperties));
 	}
 }

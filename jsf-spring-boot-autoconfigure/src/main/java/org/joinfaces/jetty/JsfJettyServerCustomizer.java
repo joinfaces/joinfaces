@@ -28,7 +28,7 @@ import org.eclipse.jetty.server.Server;
 import org.eclipse.jetty.util.resource.ResourceCollection;
 import org.eclipse.jetty.webapp.WebAppContext;
 
-import org.springframework.boot.context.embedded.jetty.JettyServerCustomizer;
+import org.springframework.boot.web.embedded.jetty.JettyServerCustomizer;
 import org.springframework.core.io.ClassPathResource;
 
 /**

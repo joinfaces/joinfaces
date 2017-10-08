@@ -20,8 +20,7 @@ import java.net.MalformedURLException;
 
 import org.junit.Test;
 
-import org.springframework.boot.context.embedded.jetty.JettyEmbeddedServletContainerFactory;
-import org.springframework.boot.context.embedded.tomcat.TomcatEmbeddedServletContainerFactory;
+import org.springframework.boot.web.embedded.tomcat.TomcatServletWebServerFactory;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -29,7 +28,7 @@ public class TomcatSpringBootAutoConfigurationIT {
 
 	@Test
 	public void customize() throws MalformedURLException {
-		TomcatEmbeddedServletContainerFactory tomcatFactory = new TomcatEmbeddedServletContainerFactory();
+		TomcatServletWebServerFactory tomcatFactory = new TomcatServletWebServerFactory();
 
 		TomcatSpringBootAutoConfiguration tomcatSpringBootAutoConfiguration = new TomcatSpringBootAutoConfiguration();
 
@@ -41,13 +40,13 @@ public class TomcatSpringBootAutoConfigurationIT {
 
 	@Test
 	public void doNotCustomize() throws MalformedURLException {
-		JettyEmbeddedServletContainerFactory tomcatFactory = new JettyEmbeddedServletContainerFactory();
+		TomcatServletWebServerFactory tomcatFactory = new TomcatServletWebServerFactory();
 
 		TomcatSpringBootAutoConfiguration tomcatSpringBootAutoConfiguration = new TomcatSpringBootAutoConfiguration();
 
 		tomcatSpringBootAutoConfiguration.customize(tomcatFactory);
 
-		assertThat(tomcatFactory.getServerCustomizers())
+		assertThat(tomcatFactory.getTomcatConnectorCustomizers())
 			.isEmpty();
 	}
 

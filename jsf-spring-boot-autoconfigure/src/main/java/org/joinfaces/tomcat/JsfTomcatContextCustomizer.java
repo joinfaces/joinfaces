@@ -19,7 +19,7 @@ package org.joinfaces.tomcat;
 import lombok.Getter;
 import org.apache.catalina.Context;
 
-import org.springframework.boot.context.embedded.tomcat.TomcatContextCustomizer;
+import org.springframework.boot.web.embedded.tomcat.TomcatContextCustomizer;
 
 /**
  * Jsf Tomcat Context customizer to capture context.
