@@ -62,7 +62,7 @@
         </dependency>
         <dependency>
             <groupId>org.joinfaces</groupId>
-            <artifactId>jsf-spring-boot-test</artifactId>
+            <artifactId>joinfaces-test</artifactId>
             <scope>test</scope>
         </dependency>
         <dependency>

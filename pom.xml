@@ -21,7 +21,7 @@
     <modules>
         <module>jsf-spring-boot-parent</module>
 
-        <module>jsf-spring-boot-test</module>
+        <module>joinfaces-test</module>
 
         <module>spring-security-jsf-taglib</module>
 

@@ -9,7 +9,7 @@
         <relativePath>../jsf-spring-boot-parent</relativePath>
     </parent>
 
-    <artifactId>jsf-spring-boot-test</artifactId>
+    <artifactId>joinfaces-test</artifactId>
     <name>JSF Spring Boot Test</name>
     <description>JSF Spring Boot Test</description>
 
