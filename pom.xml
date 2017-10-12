@@ -27,7 +27,7 @@
 
         <module>joinfaces-autoconfigure</module>
 
-        <module>jsf-spring-boot-starters</module>
+        <module>joinfaces-starters</module>
     </modules>
 
     <build>
