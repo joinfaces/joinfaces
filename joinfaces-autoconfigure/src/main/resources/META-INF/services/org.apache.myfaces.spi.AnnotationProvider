@@ -1,1 +1,1 @@
-org.joinfaces.myfaces.JoinFacesAnnotationProvider
+org.joinfaces.autoconfigure.myfaces.JoinFacesAnnotationProvider
