@@ -4,9 +4,9 @@
 
     <parent>
         <groupId>org.joinfaces</groupId>
-        <artifactId>jsf-spring-boot-parent</artifactId>
+        <artifactId>joinfaces-parent</artifactId>
         <version>3.0.0-SNAPSHOT</version>
-        <relativePath>../jsf-spring-boot-parent</relativePath>
+        <relativePath>../joinfaces-parent</relativePath>
     </parent>
 
     <artifactId>joinfaces-test</artifactId>
@@ -16,7 +16,7 @@
     <properties>
         <main.basedir>${basedir}/..</main.basedir>
 
-        <check.dir>../jsf-spring-boot-parent/src/checkconfig</check.dir>
+        <check.dir>../joinfaces-parent/src/checkconfig</check.dir>
         <!-- ignore javax.persistence classes that exists at tomcat-embed-core -->
         <!-- ignore javax.annotation classes that exists at tomcat-embed-core -->
         <duplicate.ignoredClassPattern>(javax.annotation.*$|javax.faces.*$|javax.persistence.(PersistenceContext|PersistenceContextType|PersistenceContexts|PersistenceProperty|PersistenceUnit|PersistenceUnits|SynchronizationType))</duplicate.ignoredClassPattern>

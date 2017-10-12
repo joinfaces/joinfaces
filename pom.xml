@@ -19,7 +19,7 @@
     </properties>
     
     <modules>
-        <module>jsf-spring-boot-parent</module>
+        <module>joinfaces-parent</module>
 
         <module>joinfaces-test</module>
 
