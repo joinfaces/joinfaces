@@ -42,7 +42,7 @@
         <!-- jetty dependencies -->
         <dependency>
             <groupId>org.joinfaces</groupId>
-            <artifactId>jsf-spring-boot-autoconfigure</artifactId>
+            <artifactId>joinfaces-autoconfigure</artifactId>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>

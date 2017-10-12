@@ -9,7 +9,7 @@
         <relativePath>../jsf-spring-boot-parent</relativePath>
     </parent>
 
-    <artifactId>jsf-spring-boot-autoconfigure</artifactId>
+    <artifactId>joinfaces-autoconfigure</artifactId>
     <name>JSF Spring Boot AutoConfigure</name>
     <description>JSF Spring Boot AutoConfigure</description>
 

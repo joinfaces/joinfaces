@@ -25,7 +25,7 @@
 
         <module>spring-security-jsf-taglib</module>
 
-        <module>jsf-spring-boot-autoconfigure</module>
+        <module>joinfaces-autoconfigure</module>
 
         <module>jsf-spring-boot-starters</module>
     </modules>
