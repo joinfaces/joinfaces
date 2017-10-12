@@ -10,8 +10,8 @@
     </parent>
 
     <artifactId>joinfaces-test</artifactId>
-    <name>JSF Spring Boot Test</name>
-    <description>JSF Spring Boot Test</description>
+    <name>Joinfaces Test</name>
+    <description>Joinfaces Test</description>
 
     <properties>
         <main.basedir>${basedir}/..</main.basedir>

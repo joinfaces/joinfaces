@@ -11,8 +11,8 @@
 
     <artifactId>joinfaces-starters</artifactId>
     <packaging>pom</packaging>
-    <name>JSF Spring Boot Starters</name>
-    <description>Group of all JSF Spring Boot Starters</description>
+    <name>Joinfaces Starters</name>
+    <description>Group of all Joinfaces Starters</description>
 
     <properties>
         <main.basedir>${basedir}/..</main.basedir>

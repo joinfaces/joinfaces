@@ -10,8 +10,8 @@
     </parent>
 
     <artifactId>joinfaces-autoconfigure</artifactId>
-    <name>JSF Spring Boot AutoConfigure</name>
-    <description>JSF Spring Boot AutoConfigure</description>
+    <name>Joinfaces AutoConfigure</name>
+    <description>Joinfaces AutoConfigure</description>
 
     <properties>
         <main.basedir>${basedir}/..</main.basedir>
