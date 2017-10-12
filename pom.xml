@@ -3,7 +3,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>org.joinfaces</groupId>
-    <artifactId>jsf-spring-boot-build</artifactId>
+    <artifactId>joinfaces-build</artifactId>
     <version>3.0.0-SNAPSHOT</version>
     <packaging>pom</packaging>
 
@@ -19,15 +19,15 @@
     </properties>
     
     <modules>
-        <module>jsf-spring-boot-parent</module>
+        <module>joinfaces-parent</module>
 
-        <module>jsf-spring-boot-test</module>
+        <module>joinfaces-test</module>
 
         <module>spring-security-jsf-taglib</module>
 
-        <module>jsf-spring-boot-autoconfigure</module>
+        <module>joinfaces-autoconfigure</module>
 
-        <module>jsf-spring-boot-starters</module>
+        <module>joinfaces-starters</module>
     </modules>
 
     <build>
@@ -162,7 +162,7 @@
         </profile>        
     </profiles>                
 
-    <name>JSF Spring Boot Build</name>
+    <name>Joinfaces Build</name>
     <description>Spring Boot Starters to build MVC web applications using 
         JSF, PrimeFaces, Primefaces Extensions, BootsFaces, ButterFaces, OmniFaces
         , AngularFaces, Mojarra and MyFaces</description>

@@ -4,7 +4,7 @@ JoinFaces
 [![Build Status](https://travis-ci.org/joinfaces/joinfaces.svg?branch=master)](https://travis-ci.org/joinfaces/joinfaces)
 [![Coverage Status](https://coveralls.io/repos/github/joinfaces/joinfaces/badge.svg?branch=master)](https://coveralls.io/github/joinfaces/joinfaces?branch=master)
 [![Dependency Status](https://www.versioneye.com/user/projects/57914d6251500e0049408026/badge.svg?style=flat)](https://www.versioneye.com/user/projects/57914d6251500e0049408026)
-[![Javadocs](http://javadoc.io/badge/org.joinfaces/jsf-spring-boot-build.svg)](http://javadoc.io/doc/org.joinfaces/jsf-spring-boot-build)
+[![Javadocs](http://javadoc.io/badge/org.joinfaces/joinfaces-build.svg)](http://javadoc.io/doc/org.joinfaces/joinfaces-build)
 [![License](http://img.shields.io/:license-apache-blue.svg)](http://www.apache.org/licenses/LICENSE-2.0.html)
 
 This project enables [JSF](http://www.oracle.com/technetwork/java/javaee/javaserverfaces-139869.html) usage inside JAR packaged [Spring Boot](http://projects.spring.io/spring-boot/) Application.
@@ -51,7 +51,7 @@ standard (javax.faces) | jsf | `jsf.project-stage=development`
 [jetty](http://www.eclipse.org/jetty) | jsf.jetty | `jsf.jetty.class-path-resource=META-INF/resources`
 [undertow](http://undertow.io) | jsf.undertow | `jsf.undertow.class-path-resource=META-INF/resources`
 
-Look full [application.yml](https://github.com/joinfaces/joinfaces/blob/master/jsf-spring-boot-autoconfigure/src/test/resources/application.yml) example.
+Look full [application.yml](https://github.com/joinfaces/joinfaces/blob/master/joinfaces-autoconfigure/src/test/resources/application.yml) example.
 
 Additional information in [#22](https://github.com/joinfaces/joinfaces/issues/22)
 

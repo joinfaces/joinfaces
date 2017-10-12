@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>org.joinfaces</groupId>
+        <artifactId>joinfaces-starters</artifactId>
+        <version>3.0.0-SNAPSHOT</version>
+    </parent>
+    
+    <artifactId>jsf-jetty-spring-boot-starter</artifactId>
+    <name>JSF Jetty Spring Boot Starter</name>
+    <description>Jsf Spring Boot Starter for Jetty and Mojarra</description>
+    
+    <properties>
+        <main.basedir>${basedir}/../..</main.basedir>
+
+        <!-- asm classes are bundled at net.minidev:accessors-smart and org.ow2.asm:asm -->
+        <duplicate.ignoredClassPattern>org.objectweb.asm.(Frame|Item|Label|ByteVector|ClassReader|ClassWriter|Handle|MethodWriter|TypePath|signature.SignatureReader)</duplicate.ignoredClassPattern>
+    </properties>
+
+    <dependencies>
+        <!-- remove tomcat dependencies -->
+        <dependency>
+            <groupId>org.joinfaces</groupId>
+            <artifactId>jsf-spring-boot-starter</artifactId>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.springframework.boot</groupId>
+                    <artifactId>spring-boot-starter-tomcat</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.apache.tomcat.embed</groupId>
+                    <artifactId>tomcat-embed-jasper</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.apache.tomcat.embed</groupId>
+                    <artifactId>tomcat-embed-el</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        <!-- jetty dependencies -->
+        <dependency>
+            <groupId>org.joinfaces</groupId>
+            <artifactId>joinfaces-autoconfigure</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-jetty</artifactId>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.mortbay.jasper</groupId>
+                    <artifactId>apache-el</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        <dependency>
+            <groupId>org.glassfish</groupId>
+            <artifactId>javax.el</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.eclipse.jetty</groupId>
+            <artifactId>apache-jsp</artifactId>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.eclipse.jetty.orbit</groupId>
+                    <artifactId>javax.servlet</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.mortbay.jasper</groupId>
+                    <artifactId>apache-el</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+    </dependencies>
+</project>
