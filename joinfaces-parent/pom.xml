@@ -77,8 +77,6 @@
         <duplicate.ignoredResourcePattern>about.html</duplicate.ignoredResourcePattern>
         <duplicate.ignoredClassPattern>none</duplicate.ignoredClassPattern>
         
-        <maven-surefire-report-plugin.version>2.20</maven-surefire-report-plugin.version>
-
         <jacoco-maven-plugin.version>0.7.9</jacoco-maven-plugin.version>
         <jacoco.totalBranchRate>1.00</jacoco.totalBranchRate>
         <jacoco.totalLineRate>1.00</jacoco.totalLineRate>
@@ -460,11 +458,6 @@
                 </plugin>
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-surefire-report-plugin</artifactId>
-                    <version>${maven-surefire-report-plugin.version}</version>
-                </plugin>                    
-                <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-javadoc-plugin</artifactId>
                     <version>${maven-javadoc-plugin.version}</version>
                 </plugin>
@@ -722,10 +715,6 @@
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>jdepend-maven-plugin</artifactId>
             </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-surefire-report-plugin</artifactId>
-            </plugin>                    
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-javadoc-plugin</artifactId>
