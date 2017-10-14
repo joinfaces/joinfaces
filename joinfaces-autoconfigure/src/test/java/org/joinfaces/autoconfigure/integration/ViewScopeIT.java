@@ -16,7 +16,7 @@
 
 package org.joinfaces.autoconfigure.integration;
 
-import org.joinfaces.autoconfigure.test.mock.JsfIT;
+import org.joinfaces.test.mock.JsfIT;
 import org.junit.Test;
 
 import org.springframework.beans.factory.ObjectFactory;
