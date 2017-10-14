@@ -51,7 +51,7 @@ standard (javax.faces) | jsf | `jsf.project-stage=development`
 [jetty](http://www.eclipse.org/jetty) | jsf.jetty | `jsf.jetty.class-path-resource=META-INF/resources`
 [undertow](http://undertow.io) | jsf.undertow | `jsf.undertow.class-path-resource=META-INF/resources`
 
-Look full [application.yml](https://github.com/joinfaces/joinfaces/blob/master/joinfaces-autoconfigure/src/test/resources/application.yml) example.
+Look full [application.yml](https://github.com/joinfaces/joinfaces/blob/master/joinfaces-autoconfigure/src/test/resources/application-propertyTest.yml) example.
 
 Additional information in [#22](https://github.com/joinfaces/joinfaces/issues/22)
 
