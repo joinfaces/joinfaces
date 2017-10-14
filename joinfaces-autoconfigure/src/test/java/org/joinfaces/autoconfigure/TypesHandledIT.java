@@ -19,7 +19,6 @@ package org.joinfaces.autoconfigure;
 import javax.faces.component.FacesComponent;
 import javax.faces.component.UIComponent;
 
-import org.joinfaces.autoconfigure.TypesHandled;
 import org.junit.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;

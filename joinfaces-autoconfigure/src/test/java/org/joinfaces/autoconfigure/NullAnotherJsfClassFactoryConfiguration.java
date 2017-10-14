@@ -19,7 +19,6 @@ package org.joinfaces.autoconfigure;
 import javax.servlet.ServletContainerInitializer;
 
 import org.apache.myfaces.ee6.MyFacesContainerInitializer;
-import org.joinfaces.autoconfigure.JsfClassFactoryConfiguration;
 
 public class NullAnotherJsfClassFactoryConfiguration implements JsfClassFactoryConfiguration {
 

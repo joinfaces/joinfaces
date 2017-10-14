@@ -18,8 +18,6 @@ package org.joinfaces.autoconfigure;
 
 import javax.servlet.ServletContainerInitializer;
 
-import org.joinfaces.autoconfigure.JsfClassFactoryConfiguration;
-
 public class NullJsfClassFactoryConfiguration implements JsfClassFactoryConfiguration {
 
 	@Override
