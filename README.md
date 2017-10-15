@@ -3,7 +3,7 @@ JoinFaces
 [![Maven Central](https://maven-badges.herokuapp.com/maven-central/org.joinfaces/jsf-spring-boot-starter/badge.svg)](https://maven-badges.herokuapp.com/maven-central/org.joinfaces/jsf-spring-boot-starter)
 [![Build Status](https://travis-ci.org/joinfaces/joinfaces.svg?branch=master)](https://travis-ci.org/joinfaces/joinfaces)
 [![Coverage Status](https://coveralls.io/repos/github/joinfaces/joinfaces/badge.svg?branch=master)](https://coveralls.io/github/joinfaces/joinfaces?branch=master)
-[![Dependency Status](https://www.versioneye.com/user/projects/57914d6251500e0049408026/badge.svg?style=flat)](https://www.versioneye.com/user/projects/59e29fde2de28c21ceb9710e)
+[![Dependency Status](https://www.versioneye.com/user/projects/59e29fde2de28c21ceb9710e/badge.svg?style=flat)](https://www.versioneye.com/user/projects/59e29fde2de28c21ceb9710e)
 [![Javadocs](http://javadoc.io/badge/org.joinfaces/joinfaces-build.svg)](http://javadoc.io/doc/org.joinfaces/joinfaces-build)
 [![License](http://img.shields.io/:license-apache-blue.svg)](http://www.apache.org/licenses/LICENSE-2.0.html)
 
