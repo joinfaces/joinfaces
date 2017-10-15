@@ -18,4 +18,4 @@ script:
   - ./mvnw -T 2 -B --settings ignoreSnapshotsSettings.xml -Pignore-snapshot-repositories verify
 after_success:
   - ./mvnw -B --settings ignoreSnapshotsSettings.xml -Pignore-snapshot-repositories org.eluder.coveralls:coveralls-maven-plugin:4.3.0:report
-  - "[[ ${TRAVIS_PULL_REQUEST} == 'false' ]] && [[ ${TRAVIS_TAG} == '' ]] && mvn -DskipTests=true deploy --settings .travis.deploy-settings.xml"
+  - "[[ ${TRAVIS_PULL_REQUEST} == 'false' ]] && [[ ${TRAVIS_TAG} == '' ]] && mvn --settings .travis.deploy-settings.xml -DskipTests=true -Pattach-test-jar,attach-source,attach-javadoc deploy"
