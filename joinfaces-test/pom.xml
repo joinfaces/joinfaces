@@ -17,10 +17,6 @@
         <main.basedir>${basedir}/..</main.basedir>
 
         <check.dir>../joinfaces-parent/src/checkconfig</check.dir>
-        <!-- ignore javax.persistence classes that exists at tomcat-embed-core -->
-        <!-- ignore javax.annotation classes that exists at tomcat-embed-core -->
-        <duplicate.ignoredClassPattern>(javax.annotation.*$|javax.faces.*$|javax.persistence.(PersistenceContext|PersistenceContextType|PersistenceContexts|PersistenceProperty|PersistenceUnit|PersistenceUnits|SynchronizationType))</duplicate.ignoredClassPattern>
-        <duplicate.ignoredResourcePattern>javax/faces/Messages.*\.properties</duplicate.ignoredResourcePattern>
 
         <jacoco.totalLineRate>0.86</jacoco.totalLineRate>
         <jacoco.packageLineRate>0.86</jacoco.packageLineRate>
@@ -35,6 +31,12 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter</artifactId>
             <optional>true</optional>
+            <exclusions>
+                <exclusion>
+                    <groupId>javax.annotation</groupId>
+                    <artifactId>javax.annotation-api</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>

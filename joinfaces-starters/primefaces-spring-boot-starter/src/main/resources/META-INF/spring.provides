@@ -1,0 +1,1 @@
+provides: jsf-spring-boot-starter, primefaces, primefaces-extensions, resources-ckeditor, resources-codemirror
