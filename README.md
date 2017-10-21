@@ -14,7 +14,7 @@ It autoconfigures [PrimeFaces](http://primefaces.org/), [PrimeFaces Extensions](
 It also aims to solve [JSF](http://www.oracle.com/technetwork/java/javaee/javaserverfaces-139869.html) and [Spring Boot](http://projects.spring.io/spring-boot/) integration features. Current version includes [JSF](http://www.oracle.com/technetwork/java/javaee/javaserverfaces-139869.html) and [CDI](http://www.cdi-spec.org/) annotations support and [Spring Security](http://projects.spring.io/spring-security/) JSF Facelet Tag support.
 
 
-## How to use
+## How to use (JoinFaces 2.x)
 
 [JoinFaces Example](https://github.com/joinfaces/joinfaces-maven-jar-example) shows JSF Spring Boot Starter usage. It may help you to choose the JSF Spring Boot Starter that fits your needs.
 
@@ -22,11 +22,11 @@ You can find more examples [here.](https://github.com/joinfaces/joinfaces/wiki/E
 
 ## Key Features
 
-### Twenty four JSF Spring Boot Starters available
+### Twelve JoinFaces Starters available
 
-There are twenty four JSF Spring Boot Starters available. Each starter autoconfigures one Servlet Container, one JSF Implementation and compatible JSF Libraries.
+There are twelve four JSF Spring Boot Starters available: six basic starters, one utility starter, one meta starter and five component starters.
 
-See detailed starters [here](https://github.com/joinfaces/joinfaces/wiki/JSF-Spring-Boot-Starters).
+See detailed starters [here](https://github.com/joinfaces/joinfaces/wiki/JoinFaces-Starters-3.x).
 
 Note that all starters include the following libraries
 
@@ -90,7 +90,7 @@ Additional information in [#29](https://github.com/joinfaces/joinfaces/issues/29
 
 ## System Requirements
 
-By default, JSF Spring Boot Starter requires [Java 7](http://java.com) and [Spring Boot 1.5.7](http://projects.spring.io/spring-boot/) or above. 
+By default, JoinFaces Starters requires [Java 8](http://java.com) and [Spring Boot 2.0.0.M5](http://projects.spring.io/spring-boot/) or above. 
 
 Additionnal information [here.](https://github.com/joinfaces/joinfaces/wiki/System-Requirements)
 
