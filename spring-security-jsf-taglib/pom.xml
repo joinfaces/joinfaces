@@ -43,8 +43,8 @@
             <scope>test</scope>
         </dependency>
         <dependency>
-            <groupId>com.sun.faces</groupId>
-            <artifactId>jsf-api</artifactId>
+            <groupId>javax.faces</groupId>
+            <artifactId>javax.faces-api</artifactId>
             <optional>true</optional>
         </dependency>
         <dependency>
