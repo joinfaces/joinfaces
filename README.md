@@ -24,16 +24,9 @@ You can find more examples [here.](https://github.com/joinfaces/joinfaces/wiki/E
 
 ### Twelve JoinFaces Starters available
 
-There are twelve four JSF Spring Boot Starters available: six basic starters, one utility starter, one meta starter and five component starters.
+There are twelve JSF Spring Boot Starters available: six basic starters, one utility starter, one meta starter and five component starters.
 
 See detailed starters [here](https://github.com/joinfaces/joinfaces/wiki/JoinFaces-Starters-3.x).
-
-Note that all starters include the following libraries
-
-Library | Dependency | Description
------------- | ------------- | -------------
-[omnifaces](http://omnifaces.org/) | [1.14](http://search.maven.org/#artifactdetails\|org.omnifaces\|omnifaces\|1.14\|jar) | Utility library for JSF 2
-[cdi-api](http://www.cdi-spec.org/) | [1.2](http://search.maven.org/#artifactdetails\|javax.enterprise\|cdi-api\|1.2\|jar) | Api of CDI (Contexts and Dependency Injection)
 
 ### JSF properties configuration via application.properties or application.yml
 
@@ -90,7 +83,7 @@ Additional information in [#29](https://github.com/joinfaces/joinfaces/issues/29
 
 ## System Requirements
 
-By default, JoinFaces Starters requires [Java 8](http://java.com) and [Spring Boot 2.0.0.M5](http://projects.spring.io/spring-boot/) or above. 
+By default, JoinFaces Starters requires [Java 8](http://java.com) and [Spring Boot 2.0.0.M6](http://projects.spring.io/spring-boot/) or above. 
 
 Additionnal information [here.](https://github.com/joinfaces/joinfaces/wiki/System-Requirements)
 
