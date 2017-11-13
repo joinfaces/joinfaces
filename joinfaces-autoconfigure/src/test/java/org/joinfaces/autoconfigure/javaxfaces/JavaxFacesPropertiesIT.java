@@ -43,149 +43,217 @@ public class JavaxFacesPropertiesIT {
 	@Autowired
 	private JavaxFaces2_2Properties javaxFaces2_2Properties;
 
+	@Autowired
+	private JavaxFaces2_3Properties javaxFaces2_3Properties;
+
 	@Test
 	public void testProjectState() {
-		assertThat(this.javaxFaces2_0Properties.getProjectStage()).isEqualTo(ProjectStage.Development);
+		assertThat(this.javaxFaces2_0Properties.getProjectStage())
+			.isEqualTo(ProjectStage.Development);
 	}
 
 	@Test
 	public void testResourceExcludes() {
-		assertThat(this.javaxFaces2_0Properties.getResourceExcludes()).containsExactly("myExcludes");
+		assertThat(this.javaxFaces2_0Properties.getResourceExcludes())
+			.containsExactly("myExcludes");
 	}
 
 	@Test
 	public void testWebappContractsDirectory() {
-		assertThat(this.javaxFaces2_2Properties.getWebappContractsDirectory()).isEqualTo("myContractsDirectory");
+		assertThat(this.javaxFaces2_2Properties.getWebappContractsDirectory())
+			.isEqualTo("myContractsDirectory");
 	}
 
 	@Test
 	public void testWebappResourcesDirectory() {
-		assertThat(this.javaxFaces2_2Properties.getWebappResourcesDirectory()).isEqualTo("myResourcesDirectory");
+		assertThat(this.javaxFaces2_2Properties.getWebappResourcesDirectory())
+			.isEqualTo("myResourcesDirectory");
 	}
 
 	@Test
 	public void testFullStateSavingViewIds() {
-		assertThat(this.javaxFaces2_0Properties.getFullStateSavingViewIds()).containsExactly("myIds");
+		assertThat(this.javaxFaces2_0Properties.getFullStateSavingViewIds())
+			.containsExactly("myIds");
 	}
 
 	@Test
 	public void testPartialStateSaving() {
-		assertThat(this.javaxFaces2_0Properties.getPartialStateSaving()).isTrue();
+		assertThat(this.javaxFaces2_0Properties.getPartialStateSaving())
+			.isTrue();
 	}
 
 	@Test
 	public void testSerializeServerState() {
-		assertThat(this.javaxFaces2_2Properties.getSerializeServerState()).isTrue();
+		assertThat(this.javaxFaces2_2Properties.getSerializeServerState())
+			.isTrue();
 	}
 
 	@Test
 	public void testStateSavingMethod() {
-		assertThat(this.javaxFaces2_0Properties.getStateSavingMethod()).isEqualTo("server");
+		assertThat(this.javaxFaces2_0Properties.getStateSavingMethod())
+			.isEqualTo("server");
 	}
 
 	@Test
 	public void testDefaultSuffix() {
-		assertThat(this.javaxFaces2_0Properties.getDefaultSuffix()).isEqualTo(".xhtml");
+		assertThat(this.javaxFaces2_0Properties.getDefaultSuffix())
+			.isEqualTo(".xhtml");
 	}
 
 	@Test
 	public void testDisableFaceletJsfViewhandler() {
-		assertThat(this.javaxFaces2_0Properties.getDisableFaceletJsfViewhandler()).isTrue();
+		assertThat(this.javaxFaces2_0Properties.getDisableFaceletJsfViewhandler())
+			.isTrue();
 	}
 
 	@Test
 	public void testFaceletsBufferSize() {
-		assertThat(this.javaxFaces2_0Properties.getFaceletsBufferSize()).isEqualTo(33);
+		assertThat(this.javaxFaces2_0Properties.getFaceletsBufferSize())
+			.isEqualTo(33);
 	}
 
 	@Test
 	public void testFaceletsLibraries() {
-		assertThat(this.javaxFaces2_0Properties.getFaceletsLibraries()).containsExactly("myLibrary");
+		assertThat(this.javaxFaces2_0Properties.getFaceletsLibraries())
+			.containsExactly("myLibrary");
 	}
 
 	@Test
 	public void testFaceletsRefreshPeriod() {
-		assertThat(this.javaxFaces2_0Properties.getFaceletsRefreshPeriod()).isEqualTo(35);
+		assertThat(this.javaxFaces2_0Properties.getFaceletsRefreshPeriod())
+			.isEqualTo(35);
 	}
 
 	@Test
 	public void testFaceletsSkipComments() {
-		assertThat(this.javaxFaces2_0Properties.getFaceletsSkipComments()).isTrue();
+		assertThat(this.javaxFaces2_0Properties.getFaceletsSkipComments())
+			.isTrue();
 	}
 
 	@Test
 	public void testFaceletsSuffix() {
-		assertThat(this.javaxFaces2_0Properties.getFaceletsSuffix()).isEqualTo(".html");
+		assertThat(this.javaxFaces2_0Properties.getFaceletsSuffix())
+			.isEqualTo(".html");
 	}
 
 	@Test
 	public void testFaceletsViewMappings() {
-		assertThat(this.javaxFaces2_0Properties.getFaceletsViewMappings()).containsExactly("newMapping");
+		assertThat(this.javaxFaces2_0Properties.getFaceletsViewMappings())
+			.containsExactly("newMapping");
 	}
 
 	@Test
 	public void testHonorCurrentComponentAttributes() {
-		assertThat(this.javaxFaces2_1Properties.getHonorCurrentComponentAttributes()).isTrue();
+		assertThat(this.javaxFaces2_1Properties.getHonorCurrentComponentAttributes())
+			.isTrue();
 	}
 
 	@Test
 	public void testValidateEmptyFields() {
-		assertThat(this.javaxFaces2_0Properties.getValidateEmptyFields()).isEqualTo("auto");
+		assertThat(this.javaxFaces2_0Properties.getValidateEmptyFields())
+			.isEqualTo("auto");
 	}
 
 	@Test
 	public void testSeparatorChar() {
-		assertThat(this.javaxFaces2_0Properties.getSeparatorChar()).isEqualTo(";");
+		assertThat(this.javaxFaces2_0Properties.getSeparatorChar())
+			.isEqualTo(";");
 	}
 
 	@Test
 	public void testPartialExecute() {
-		assertThat(this.javaxFaces2_0Properties.getPartial().getExecute()).isTrue();
+		assertThat(this.javaxFaces2_0Properties.getPartial().getExecute())
+			.isTrue();
 	}
 
 	@Test
 	public void testPartialRender() {
-		assertThat(this.javaxFaces2_0Properties.getPartial().getRender()).isTrue();
+		assertThat(this.javaxFaces2_0Properties.getPartial().getRender())
+			.isTrue();
 	}
 
 	@Test
 	public void testPartialResetValues() {
-		assertThat(this.javaxFaces2_2Properties.getPartial().getResetValues()).isTrue();
+		assertThat(this.javaxFaces2_2Properties.getPartial().getResetValues())
+			.isTrue();
 	}
 
 	@Test
 	public void testDatetimeconverterDefaultTimezoneIsSystemTimezone() {
-		assertThat(this.javaxFaces2_0Properties.getDatetimeconverterDefaultTimezoneIsSystemTimezone()).isTrue();
+		assertThat(this.javaxFaces2_0Properties.getDatetimeconverterDefaultTimezoneIsSystemTimezone())
+			.isTrue();
 	}
 
 	@Test
 	public void testFlowNullFlow() {
-		assertThat(this.javaxFaces2_2Properties.getFlow().getNullFlow()).isTrue();
+		assertThat(this.javaxFaces2_2Properties.getFlow().getNullFlow())
+			.isTrue();
 	}
 
 	@Test
 	public void testValidatorDisableDefaultBeanValidator() {
-		assertThat(this.javaxFaces2_0Properties.getValidator().getDisableDefaultBeanValidator()).isTrue();
+		assertThat(this.javaxFaces2_0Properties.getValidator().getDisableDefaultBeanValidator())
+			.isTrue();
 	}
 
 	@Test
 	public void testConfigFiles() {
-		assertThat(this.javaxFaces2_0Properties.getConfigFiles()).containsExactly("myConfig");
+		assertThat(this.javaxFaces2_0Properties.getConfigFiles())
+			.containsExactly("myConfig");
 	}
 
 	@Test
 	public void testLifecycleId() {
-		assertThat(this.javaxFaces2_0Properties.getLifecycleId()).isEqualTo("myId");
+		assertThat(this.javaxFaces2_0Properties.getLifecycleId())
+			.isEqualTo("myId");
 	}
 
 	@Test
 	public void testClientWindowMode() {
-		assertThat(this.javaxFaces2_2Properties.getClientWindowMode()).isEqualTo("url");
+		assertThat(this.javaxFaces2_2Properties.getClientWindowMode())
+			.isEqualTo("url");
 	}
 
 	@Test
 	public void testInterpretEmptyStringSubmittedValuesAsNull() {
-		assertThat(this.javaxFaces2_0Properties.getInterpretEmptyStringSubmittedValuesAsNull()).isTrue();
+		assertThat(this.javaxFaces2_0Properties.getInterpretEmptyStringSubmittedValuesAsNull())
+			.isTrue();
+	}
+
+	@Test
+	public void testAlwaysPerformValidationWhenRequiredIsTrue() {
+		assertThat(this.javaxFaces2_3Properties.getAlwaysPerformValidationWhenRequiredIsTrue())
+			.isTrue();
+	}
+
+	@Test
+	public void testEnableWebsocketEndpoint() {
+		assertThat(this.javaxFaces2_3Properties.getEnableWebsocketEndpoint())
+			.isTrue();
+	}
+
+	@Test
+	public void testWebsocketEndpointPort() {
+		assertThat(this.javaxFaces2_3Properties.getWebsocketEndpointPort())
+			.isEqualTo(8888);
+	}
+
+	@Test
+	public void testDisableFacesservletToXhtml() {
+		assertThat(this.javaxFaces2_3Properties.getDisableFacesservletToXhtml())
+			.isTrue();
+	}
+
+	@Test
+	public void testViewrootPhaseListenerQueuesExceptions() {
+		assertThat(this.javaxFaces2_3Properties.getViewrootPhaseListenerQueuesExceptions())
+			.isTrue();
+	}
+
+	@Test
+	public void testEnableValidateWholeBean() {
+		assertThat(this.javaxFaces2_3Properties.getEnableValidateWholeBean())
+			.isTrue();
 	}
 
 }

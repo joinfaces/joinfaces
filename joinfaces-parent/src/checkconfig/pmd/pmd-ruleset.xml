@@ -59,12 +59,12 @@ under the License.
   </rule>
   <rule ref="rulesets/java/codesize.xml/TooManyMethods">
     <properties>
-      <property name="maxmethods" value="47"/>
+      <property name="maxmethods" value="56"/>
     </properties>
   </rule>
   <rule ref="rulesets/java/codesize.xml/ExcessivePublicCount">
     <properties>
-      <property name="minimum" value="50"/>
+      <property name="minimum" value="57"/>
     </properties>
   </rule>
   <rule ref="rulesets/java/clone.xml"/>

@@ -293,4 +293,82 @@ public class MojarraPropertiesIT {
 			.isTrue();
 	}
 
+	@Test
+	public void testManagedBeanFactoryDecorator() {
+		assertThat(this.mojarraProperties.getManagedBeanFactoryDecorator())
+			.isEmpty();
+	}
+
+	@Test
+	public void testNumberOfConcurrentFlashUsers() {
+		assertThat(this.mojarraProperties.getNumberOfConcurrentFlashUsers())
+			.isEqualTo(5000);
+	}
+
+	@Test
+	public void testNumberOfFlashesBetweenFlashReapings() {
+		assertThat(this.mojarraProperties.getNumberOfFlashesBetweenFlashReapings())
+			.isEqualTo(5000);
+	}
+
+	@Test
+	public void testDuplicateJARPattern() {
+		assertThat(this.mojarraProperties.getDuplicateJARPattern())
+			.isEmpty();
+	}
+
+	@Test
+	public void testFaceletCache() {
+		assertThat(this.mojarraProperties.getFaceletCache())
+			.isEmpty();
+	}
+
+	@Test
+	public void testFaceletsProcessingFileExtensionProcessAs() {
+		assertThat(this.mojarraProperties.getFaceletsProcessingFileExtensionProcessAs())
+			.isEmpty();
+	}
+
+	@Test
+	public void testDisableVersionTracking() {
+		assertThat(this.mojarraProperties.getDisableVersionTracking())
+			.isTrue();
+	}
+
+	@Test
+	public void testEnableJSStyleHiding() {
+		assertThat(this.mojarraProperties.getEnableJSStyleHiding())
+			.isTrue();
+	}
+
+	@Test
+	public void testEnabledLoadBundle11Compatibility() {
+		assertThat(this.mojarraProperties.getEnabledLoadBundle11Compatibility())
+			.isTrue();
+	}
+
+	@Test
+	public void testEnableRestoreView11Compatibility() {
+		assertThat(this.mojarraProperties.getEnableRestoreView11Compatibility())
+			.isTrue();
+	}
+
+	@Test
+	public void testEnableGroovyScripting() {
+		assertThat(this.mojarraProperties.getEnableGroovyScripting())
+			.isTrue();
+	}
+
+	@Test
+	public void testEnableHttpMethodRestrictionPhaseListener() {
+		assertThat(this.mojarraProperties.getEnableHttpMethodRestrictionPhaseListener())
+			.isTrue();
+	}
+
+	@Test
+	public void testAllowedHttpMethods() {
+		assertThat(this.mojarraProperties.getAllowedHttpMethods())
+			.isEqualTo("*");
+	}
+
 }

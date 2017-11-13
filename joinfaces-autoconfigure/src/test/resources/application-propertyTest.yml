@@ -33,6 +33,12 @@ jsf:
     nullFlow: true
   validator:
     disableDefaultBeanValidator: true
+  alwaysPerformValidationWhenRequiredIsTrue: true
+  enableWebsocketEndpoint: true
+  websocketEndpointPort: 8888
+  disableFacesservletToXhtml: true
+  viewrootPhaseListenerQueuesExceptions: true
+  enableValidateWholeBean: true
 
   # mojarra namespace
   mojarra:
@@ -79,6 +85,19 @@ jsf:
     registerConverterPropertyEditors: true
     sendPoweredByHeader: true
     disallowDoctypeDecl: true
+    managedBeanFactoryDecorator:
+    numberOfConcurrentFlashUsers: 5000
+    numberOfFlashesBetweenFlashReapings: 5000
+    duplicateJARPattern:
+    faceletCache:
+    faceletsProcessingFileExtensionProcessAs:
+    disableVersionTracking: true
+    enableJSStyleHiding: true
+    enabledLoadBundle11Compatibility: true
+    enableRestoreView11Compatibility: true
+    enableGroovyScripting: true
+    enableHttpMethodRestrictionPhaseListener: true
+    allowedHttpMethods: '*'
 
   # myfaces namespace
   myfaces:

@@ -18,6 +18,7 @@ package org.joinfaces.autoconfigure.javaxfaces;
 
 import javax.faces.context.FacesContext;
 import javax.faces.flow.FlowHandler;
+import javax.faces.push.PushContext;
 
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnWebApplication;
@@ -57,6 +58,15 @@ public class JavaxFacesSpringBootAutoConfiguration {
 	@EnableConfigurationProperties(JavaxFaces2_2Properties.class)
 	@ConditionalOnClass(FlowHandler.class)
 	public static class JavaxFaces2_2AutoConfiguration {
+	}
+
+	/**
+	 * Auto configuration for JSF 2.3.
+	 */
+	@Configuration
+	@EnableConfigurationProperties(JavaxFaces2_3Properties.class)
+	@ConditionalOnClass(PushContext.class)
+	public static class JavaxFaces2_3AutoConfiguration {
 	}
 
 }
