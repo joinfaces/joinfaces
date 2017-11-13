@@ -483,4 +483,83 @@ public class MojarraProperties implements ServletContextInitParameterConfigurati
 	 */
 	@ServletContextInitParameter(PREFIX + "disallowDoctypeDecl")
 	private Boolean disallowDoctypeDecl;
+
+	/**
+	 * Javadoc not found.
+	 */
+	@ServletContextInitParameter(PREFIX + "managedBeanFactoryDecorator")
+	private String managedBeanFactoryDecorator;
+
+	/**
+	 * Number of concurrent flash users.
+	 */
+	@ServletContextInitParameter(PREFIX + "numberOfConcerrentFlashUsers")
+	private Integer numberOfConcurrentFlashUsers;
+
+	/**
+	 * Number flashes between flash repaings.
+	 */
+	@ServletContextInitParameter(PREFIX + "numberOfFlashesBetweenFlashReapings")
+	private Integer numberOfFlashesBetweenFlashReapings;
+
+	/**
+	 * Javadoc not found.
+	 */
+	@ServletContextInitParameter(PREFIX + "duplicateJARPattern")
+	private String duplicateJARPattern;
+
+	/**
+	 * Javadoc not found.
+	 */
+	@ServletContextInitParameter(PREFIX + "faceletCache")
+	private String faceletCache;
+
+	/**
+	 * Javadoc not found.
+	 */
+	@ServletContextInitParameter(PREFIX + "faceletsProcessingFileExtensionProcessAs")
+	private String faceletsProcessingFileExtensionProcessAs;
+
+	/**
+	 * Javadoc not found.
+	 */
+	@ServletContextInitParameter(PREFIX + "disableVersionTracking")
+	private Boolean disableVersionTracking;
+
+	/**
+	 * Javadoc not found.
+	 */
+	@ServletContextInitParameter(PREFIX + "enableJSStyleHiding")
+	private Boolean enableJSStyleHiding;
+
+	/**
+	 * Javadoc not found.
+	 */
+	@ServletContextInitParameter(PREFIX + "enabledLoadBundle11Compatibility")
+	private Boolean enabledLoadBundle11Compatibility;
+
+	/**
+	 * Javadoc not found.
+	 */
+	@ServletContextInitParameter(PREFIX + "enableRestoreView11Compatibility")
+	private Boolean enableRestoreView11Compatibility;
+
+	/**
+	 * Javadoc not found.
+	 */
+	@ServletContextInitParameter(PREFIX + "enableGroovyScripting")
+	private Boolean enableGroovyScripting;
+
+	/**
+	 * add the HttpMethodRestrictionPhaseListener if the parameter is enabled.
+	 */
+	@ServletContextInitParameter(PREFIX + "ENABLE_HTTP_METHOD_RESTRICTION_PHASE_LISTENER")
+	private Boolean enableHttpMethodRestrictionPhaseListener;
+
+	/**
+	 * A white space separated list of case sensitive HTTP method names
+     * that are allowed to be processed by this servlet. * means allow all.
+	 */
+	@ServletContextInitParameter(PREFIX + "allowedHttpMethods")
+	private String allowedHttpMethods;
 }
