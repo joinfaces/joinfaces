@@ -12,6 +12,9 @@
             <activatedProfile>attach-source</activatedProfile>
             <activatedProfile>attach-javadoc</activatedProfile>
         </activatedProfiles>
+        <properties>
+            <maven.test.skip>true</maven.test.skip>
+        </properties>
     </action>
     <action>
         <actionName>CUSTOM-duplicate-checkstyle-pmd-cpd-cycles-findbugs</actionName>
@@ -28,6 +31,9 @@
             <activatedProfile>check-pmd</activatedProfile>
             <activatedProfile>check-findbugs</activatedProfile>
         </activatedProfiles>
+        <properties>
+            <maven.test.skip>true</maven.test.skip>
+        </properties>
     </action>
     <action>
         <actionName>CUSTOM-site</actionName>
@@ -38,24 +44,12 @@
         </goals>
     </action>
     <action>
-        <actionName>rebuild</actionName>
+        <actionName>buildSkipTests</actionName>
         <packagings>
             <packaging>*</packaging>
         </packagings>
         <goals>
             <goal>clean</goal>
-            <goal>install</goal>
-        </goals>
-        <properties>
-            <skipTests>true</skipTests>
-        </properties>
-    </action>
-    <action>
-        <actionName>build</actionName>
-        <packagings>
-            <packaging>*</packaging>
-        </packagings>
-        <goals>
             <goal>install</goal>
         </goals>
         <properties>
