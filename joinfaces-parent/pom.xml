@@ -46,11 +46,6 @@
         <nexus-staging-maven-plugin.version>1.6.8</nexus-staging-maven-plugin.version>
         <maven-release-plugin.version>2.5.3</maven-release-plugin.version>
         
-        <maven-jar-plugin.version>3.0.2</maven-jar-plugin.version>
-        <maven-compiler-plugin.version>3.7.0</maven-compiler-plugin.version>
-        <maven-source-plugin.version>3.0.1</maven-source-plugin.version>
-        <maven-javadoc-plugin.version>2.10.4</maven-javadoc-plugin.version>
-
         <check.dir>src/checkconfig</check.dir>
         <checkstyle.dir>${check.dir}/checkstyle</checkstyle.dir>
         <pmd.dir>${check.dir}/pmd</pmd.dir>
@@ -68,7 +63,6 @@
         <cpd.excludeFromFailureFile />
         <maven-enforcer-plugin.version>1.4.1</maven-enforcer-plugin.version>
         <no-package-cycles-enforcer-rule.version>1.0.8</no-package-cycles-enforcer-rule.version>
-        <maven-checkstyle-plugin.version>2.17</maven-checkstyle-plugin.version>
         <checkstyle.version>8.3</checkstyle.version>
         <checkstyle.configLocation>${checkstyle.dir}/checkstyle.xml</checkstyle.configLocation>
         <checkstyle.suppressionsLocation>${checkstyle.dir}/checkstyle-suppressions.xml</checkstyle.suppressionsLocation>
@@ -358,7 +352,6 @@
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-compiler-plugin</artifactId>
-                    <version>${maven-compiler-plugin.version}</version>
                     <configuration>
                         <source>${java.version}</source>
                         <target>${java.version}</target>
@@ -400,11 +393,6 @@
                 </plugin>
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-javadoc-plugin</artifactId>
-                    <version>${maven-javadoc-plugin.version}</version>
-                </plugin>
-                <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-jxr-plugin</artifactId>
                     <version>${maven-jxr-plugin.version}</version>
                 </plugin>    
@@ -420,30 +408,19 @@
                 </plugin>
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-jar-plugin</artifactId>
-                    <version>${maven-jar-plugin.version}</version>
-                </plugin>            
-                <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-source-plugin</artifactId>
-                    <version>${maven-source-plugin.version}</version>
-                </plugin>
-                <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-enforcer-plugin</artifactId>
                     <version>${maven-enforcer-plugin.version}</version>
                 </plugin>
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-checkstyle-plugin</artifactId>
-                    <version>${maven-checkstyle-plugin.version}</version>
                     <dependencies>
                         <dependency>
                             <groupId>com.puppycrawl.tools</groupId>
                             <artifactId>checkstyle</artifactId>
                             <version>${checkstyle.version}</version>
                         </dependency>
-                    </dependencies>
+                    </dependencies>                    
                     <configuration>
                         <configLocation>${checkstyle.configLocation}</configLocation>
                         <suppressionsLocation>${checkstyle.suppressionsLocation}</suppressionsLocation>
@@ -460,7 +437,7 @@
                         </testSourceDirectories>
                         <excludes>${checkstyle.excludes}</excludes>
                     </configuration>
-                </plugin>                
+                </plugin>
                 <plugin>
                     <groupId>org.basepom.maven</groupId>
                     <artifactId>duplicate-finder-maven-plugin</artifactId>
@@ -682,7 +659,7 @@
         </plugins>
     </reporting>
     
-    <profiles>        
+    <profiles>
         <profile>
             <id>delombok</id>
             <build>
