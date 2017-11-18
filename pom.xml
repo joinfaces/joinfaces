@@ -164,7 +164,7 @@
         </profile>        
     </profiles>                
 
-    <name>Joinfaces Build</name>
+    <name>JoinFaces Build</name>
     <description>Spring Boot Starters to build MVC web applications using 
         JSF, PrimeFaces, Primefaces Extensions, BootsFaces, ButterFaces, OmniFaces
         , AngularFaces, Mojarra and MyFaces</description>
