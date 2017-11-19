@@ -16,9 +16,12 @@
 
 package org.joinfaces.autoconfigure.tomcat;
 
+import java.net.URISyntaxException;
 import java.net.URL;
+import java.nio.file.Paths;
 
 import lombok.Builder;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.catalina.Context;
 import org.apache.catalina.WebResourceRoot;
 import org.apache.catalina.WebResourceSet;
@@ -35,6 +38,7 @@ import org.springframework.context.ApplicationListener;
  *
  * @author Marcelo Fernandes
  */
+@Slf4j
 @Builder
 public class JsfTomcatApplicationListener implements ApplicationListener<ApplicationReadyEvent> {
 
@@ -73,7 +77,7 @@ public class JsfTomcatApplicationListener implements ApplicationListener<Applica
 		return result;
 	}
 
-	private String base(URL url) {
+	private String base(URL url) throws URISyntaxException {
 		String result;
 		if (url.getProtocol().equals("jar")) {
 			result = url.getFile();
@@ -81,8 +85,9 @@ public class JsfTomcatApplicationListener implements ApplicationListener<Applica
 			result = result.substring(0, result.indexOf("!/"));
 		}
 		else {
-			result = url.getFile();
+			result = Paths.get(url.toURI()).toString();
 		}
+
 		return result;
 	}
 
@@ -142,14 +147,24 @@ public class JsfTomcatApplicationListener implements ApplicationListener<Applica
 
 				switch (tomcatRuntime) {
 					// add main resource
-					case UBER_JAR: addMainJarResourceSet(resources);
+					case UBER_JAR: try {
+							addMainJarResourceSet(resources);
+						}
+						catch (URISyntaxException ex) {
+							log.error(ex.getMessage());
+						}
 						break;
 					// do nothing, already working with main resource and lib resources
 					case UNPACKAGED_JAR: break;
 					// do nothing, already working with main resource and lib resources
 					case UBER_WAR: break;
 					// test jar: adding main resource and lib resources; test war: add lib resources
-					case TEST: addClasspathResourceSets(resources);
+					case TEST: try {
+							addClasspathResourceSets(resources);
+						}
+						catch (URISyntaxException ex) {
+							log.error(ex.getMessage());
+						}
 						break;
 					// default do nothing
 					default: break;
@@ -158,7 +173,7 @@ public class JsfTomcatApplicationListener implements ApplicationListener<Applica
 		}
 	}
 
-	private void addMainJarResourceSet(WebResourceRoot resources) {
+	private void addMainJarResourceSet(WebResourceRoot resources) throws URISyntaxException {
 		String webAppMount = "/";
 		String archivePath = null;
 		String internalPath = "/META-INF/resources";
@@ -167,7 +182,7 @@ public class JsfTomcatApplicationListener implements ApplicationListener<Applica
 			webAppMount, base(mainFile(resources)), archivePath, internalPath);
 	}
 
-	private void addClasspathResourceSets(WebResourceRoot resources) {
+	private void addClasspathResourceSets(WebResourceRoot resources) throws URISyntaxException {
 		String webAppMount = "/";
 		String archivePath = null;
 		String internalPath = "/META-INF/resources";
