@@ -24,4 +24,13 @@
         <Method name="testingResources" />
         <Bug pattern="DMI_HARDCODED_ABSOLUTE_FILENAME" />
     </Match>
+    <Match>
+        <Class name="org.joinfaces.autoconfigure.jetty.JsfJettyServerCustomizerIT" />
+        <Method name="invalidClassPathResource" />
+        <Bug pattern="DLS_DEAD_LOCAL_STORE" />
+    </Match>
+    <Match>
+        <Class name="org.joinfaces.autoconfigure.tomcat.JsfTomcatApplicationListenerIT" />
+        <Bug pattern="UC_USELESS_OBJECT" />
+    </Match>
 </FindBugsFilter>
