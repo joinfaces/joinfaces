@@ -25,7 +25,7 @@
         <commons-digester.version>2.1</commons-digester.version>
         <commons-beanutils.version>1.9.3</commons-beanutils.version>
 
-        <omnifaces.version>1.14</omnifaces.version>
+        <omnifaces.version>1.14.1</omnifaces.version>
         
         <primefaces.version>6.1</primefaces.version>        
         <primefaces-extensions.version>6.1.1</primefaces-extensions.version>
