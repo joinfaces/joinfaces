@@ -44,7 +44,7 @@ public class CdiScopeAnnotationsAutoConfiguration {
 
 	@Bean
 	@ConditionalOnProperty(value = "jsf.scope-configurer.cdi.enabled", havingValue = "true", matchIfMissing = true)
-	public static BeanFactoryPostProcessor cdiScopeAnnotationsConfigurer(Environment environment) {
+	public static CustomScopeAnnotationConfigurer cdiScopeAnnotationsConfigurer(Environment environment) {
 		CustomScopeAnnotationConfigurer scopeAnnotationConfigurer = new CustomScopeAnnotationConfigurer();
 
 		scopeAnnotationConfigurer.setOrder(environment.getProperty("jsf.scope-configurer.cdi.order", Integer.class, Ordered.LOWEST_PRECEDENCE));

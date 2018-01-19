@@ -44,7 +44,7 @@ public class JsfScopeAnnotationsAutoConfiguration {
 
 	@Bean
 	@ConditionalOnProperty(value = "jsf.scope-configurer.jsf.enabled", havingValue = "true", matchIfMissing = true)
-	public static BeanFactoryPostProcessor jsfScopeAnnotationsConfigurer(Environment environment) {
+	public static CustomScopeAnnotationConfigurer jsfScopeAnnotationsConfigurer(Environment environment) {
 		CustomScopeAnnotationConfigurer scopeAnnotationConfigurer = new CustomScopeAnnotationConfigurer();
 
 		scopeAnnotationConfigurer.setOrder(environment.getProperty("jsf.scope-configurer.jsf.order", Integer.class, Ordered.LOWEST_PRECEDENCE));
