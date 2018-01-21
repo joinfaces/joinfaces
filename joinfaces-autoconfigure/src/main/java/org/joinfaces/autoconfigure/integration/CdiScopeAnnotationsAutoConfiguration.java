@@ -22,7 +22,6 @@ import javax.enterprise.context.ConversationScoped;
 import javax.enterprise.context.RequestScoped;
 import javax.enterprise.context.SessionScoped;
 
-import org.springframework.beans.factory.config.BeanFactoryPostProcessor;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.context.annotation.Bean;
@@ -44,7 +43,7 @@ public class CdiScopeAnnotationsAutoConfiguration {
 
 	@Bean
 	@ConditionalOnProperty(value = "jsf.scope-configurer.cdi.enabled", havingValue = "true", matchIfMissing = true)
-	public static BeanFactoryPostProcessor cdiScopeAnnotationsConfigurer(Environment environment) {
+	public static CustomScopeAnnotationConfigurer cdiScopeAnnotationsConfigurer(Environment environment) {
 		CustomScopeAnnotationConfigurer scopeAnnotationConfigurer = new CustomScopeAnnotationConfigurer();
 
 		scopeAnnotationConfigurer.setOrder(environment.getProperty("jsf.scope-configurer.cdi.order", Integer.class, Ordered.LOWEST_PRECEDENCE));
