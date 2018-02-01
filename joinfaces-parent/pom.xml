@@ -65,7 +65,8 @@
         <cpd.excludeFromFailureFile />
         <maven-enforcer-plugin.version>1.4.1</maven-enforcer-plugin.version>
         <no-package-cycles-enforcer-rule.version>1.0.8</no-package-cycles-enforcer-rule.version>
-        <checkstyle.version>8.3</checkstyle.version>
+        <maven-checkstyle-plugin.version>3.0.0</maven-checkstyle-plugin.version>
+        <checkstyle.version>8.8</checkstyle.version>
         <checkstyle.configLocation>${checkstyle.dir}/checkstyle.xml</checkstyle.configLocation>
         <checkstyle.suppressionsLocation>${checkstyle.dir}/checkstyle-suppressions.xml</checkstyle.suppressionsLocation>
         <checkstyle.headerLocation>${checkstyle.dir}/checkstyle-header.txt</checkstyle.headerLocation>
@@ -438,6 +439,7 @@
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-checkstyle-plugin</artifactId>
+                    <version>${maven-checkstyle-plugin.version}</version>
                     <dependencies>
                         <dependency>
                             <groupId>com.puppycrawl.tools</groupId>
@@ -449,7 +451,6 @@
                         <configLocation>${checkstyle.configLocation}</configLocation>
                         <suppressionsLocation>${checkstyle.suppressionsLocation}</suppressionsLocation>
                         <headerLocation>${checkstyle.headerLocation}</headerLocation>
-                        <propertyExpansion>checkstyle.build.directory=${project.build.directory}</propertyExpansion>
                         <encoding>${project.build.sourceEncoding}</encoding>
                         <consoleOutput>true</consoleOutput>
                         <includeTestSourceDirectory>true</includeTestSourceDirectory>
