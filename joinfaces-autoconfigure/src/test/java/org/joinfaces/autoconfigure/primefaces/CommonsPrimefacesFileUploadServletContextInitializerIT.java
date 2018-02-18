@@ -50,7 +50,7 @@ public class CommonsPrimefacesFileUploadServletContextInitializerIT {
 			.isNotNull();
 	}
 
-	public void testFileUploadFilter() throws ServletException {
+	public void testFileUploadFilter() {
 		assertThat(this.primefacesFileUploadServletContextAutoConfiguration.fileUploadFilter())
 			.isInstanceOfAny(FileUploadFilter.class);
 	}

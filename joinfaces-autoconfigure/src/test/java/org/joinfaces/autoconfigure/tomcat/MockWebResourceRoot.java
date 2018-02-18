@@ -237,22 +237,22 @@ public class MockWebResourceRoot implements WebResourceRoot {
 	}
 
 	@Override
-	public void init() throws LifecycleException {
+	public void init() {
 		throw new UnsupportedOperationException(NOT_SUPPORTED_YET);
 	}
 
 	@Override
-	public void start() throws LifecycleException {
+	public void start() {
 		throw new UnsupportedOperationException(NOT_SUPPORTED_YET);
 	}
 
 	@Override
-	public void stop() throws LifecycleException {
+	public void stop() {
 		throw new UnsupportedOperationException(NOT_SUPPORTED_YET);
 	}
 
 	@Override
-	public void destroy() throws LifecycleException {
+	public void destroy() {
 		throw new UnsupportedOperationException(NOT_SUPPORTED_YET);
 	}
 

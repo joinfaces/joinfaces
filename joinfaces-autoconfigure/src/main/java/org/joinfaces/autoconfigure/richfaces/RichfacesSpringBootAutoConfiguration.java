@@ -41,8 +41,8 @@ import org.springframework.context.annotation.Configuration;
 public class RichfacesSpringBootAutoConfiguration {
 
 	@Bean
-	public ServletRegistrationBean richfacesResourcesServlet() {
-		ServletRegistrationBean result = new ServletRegistrationBean();
+	public ServletRegistrationBean<ResourceServlet> richfacesResourcesServlet() {
+		ServletRegistrationBean<ResourceServlet> result = new ServletRegistrationBean<>();
 		result.setServlet(new ResourceServlet());
 		result.setLoadOnStartup(1);
 		result.addUrlMappings("/org.richfaces.resources/*");

@@ -40,7 +40,7 @@ public class JsfJettyServerCustomizerIT {
 	private JettyProperties jettyProperties;
 
 	@Test
-	public void customize() throws MalformedURLException {
+	public void customize() {
 		JsfJettyServerCustomizer customizer = new JsfJettyServerCustomizer(this.jettyProperties);
 
 		Server server = ((JettyWebServer) new JettyServletWebServerFactory().getWebServer()).getServer();
@@ -55,7 +55,7 @@ public class JsfJettyServerCustomizerIT {
 	}
 
 	@Test(expected = RuntimeException.class)
-	public void invalidClassPathResource() throws MalformedURLException {
+	public void invalidClassPathResource() {
 		JettyProperties jp = new JettyProperties();
 		jp.setClassPathResource("/~ã``'[ªº*-+.@#$%{&*ç|°;.<>");
 

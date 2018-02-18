@@ -40,7 +40,7 @@ public class JettySpringBootAutoConfigurationIT {
 	private JettySpringBootAutoConfiguration jettySpringBootAutoConfiguration;
 
 	@Test
-	public void customize() throws MalformedURLException {
+	public void customize() {
 		JettyServletWebServerFactory factory = new JettyServletWebServerFactory();
 
 		this.jettySpringBootAutoConfiguration.customize(factory);

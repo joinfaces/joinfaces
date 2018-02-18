@@ -39,7 +39,7 @@ public class ContextMock {
 		this.webResourceRoot.setContext(this.standardContext);
 	}
 
-	public void init(WebResourceSet... webResourcesSet) throws LifecycleException {
+	public void init(WebResourceSet... webResourcesSet) {
 		for (WebResourceSet webResourceSet : webResourcesSet) {
 			this.webResourceRoot.addJarResources(webResourceSet);
 		}

@@ -46,7 +46,7 @@ public class InitParameterServletContextConfigurerIT {
 	public void setUp() throws ServletException {
 		this.servletContext = new MockServletContext();
 
-		InitParameterServletContextConfigurer servletContextConfigurer = new InitParameterServletContextConfigurer(Collections.singletonList((ServletContextInitParameterConfigurationProperties) new TestProperties()));
+		InitParameterServletContextConfigurer servletContextConfigurer = new InitParameterServletContextConfigurer(Collections.singletonList(new TestProperties()));
 		servletContextConfigurer.onStartup(this.servletContext);
 	}
 
