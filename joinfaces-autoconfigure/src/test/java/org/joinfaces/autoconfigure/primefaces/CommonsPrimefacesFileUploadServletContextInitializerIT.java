@@ -17,7 +17,6 @@
 package org.joinfaces.autoconfigure.primefaces;
 
 import javax.servlet.MultipartConfigElement;
-import javax.servlet.ServletException;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;

@@ -18,7 +18,6 @@ package org.joinfaces.autoconfigure.myfaces;
 
 import java.io.IOException;
 import java.lang.annotation.Annotation;
-import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.HashMap;
 import java.util.HashSet;

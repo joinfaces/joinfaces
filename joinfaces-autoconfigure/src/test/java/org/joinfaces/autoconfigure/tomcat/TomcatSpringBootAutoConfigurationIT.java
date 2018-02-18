@@ -16,8 +16,6 @@
 
 package org.joinfaces.autoconfigure.tomcat;
 
-import java.net.MalformedURLException;
-
 import org.junit.Test;
 
 import org.springframework.boot.web.embedded.tomcat.TomcatServletWebServerFactory;

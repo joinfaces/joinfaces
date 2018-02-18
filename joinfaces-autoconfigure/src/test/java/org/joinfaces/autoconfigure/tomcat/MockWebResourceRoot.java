@@ -24,7 +24,6 @@ import java.util.Set;
 
 import lombok.Getter;
 import org.apache.catalina.Context;
-import org.apache.catalina.LifecycleException;
 import org.apache.catalina.LifecycleListener;
 import org.apache.catalina.LifecycleState;
 import org.apache.catalina.TrackedWebResource;

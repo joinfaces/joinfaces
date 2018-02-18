@@ -18,7 +18,6 @@ package org.joinfaces.autoconfigure.tomcat;
 
 import lombok.Getter;
 import org.apache.catalina.Context;
-import org.apache.catalina.LifecycleException;
 import org.apache.catalina.WebResourceSet;
 import org.mockito.Mockito;
 

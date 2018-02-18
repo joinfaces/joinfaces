@@ -26,7 +26,6 @@ import java.util.List;
 import java.util.Set;
 
 import javax.servlet.ServletContext;
-import javax.servlet.ServletException;
 
 import lombok.Getter;
 import lombok.Setter;
