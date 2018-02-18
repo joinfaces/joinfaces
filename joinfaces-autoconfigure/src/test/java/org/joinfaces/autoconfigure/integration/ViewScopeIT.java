@@ -33,7 +33,7 @@ public class ViewScopeIT extends JsfIT {
 	public void testViewScope() {
 		ViewScope viewScope = new ViewScope();
 
-		ObjectFactory<?> objectFactory = (ObjectFactory<Object>) () -> new Object();
+		ObjectFactory<?> objectFactory = (ObjectFactory<Object>) Object::new;
 
 		Object viewScopedClass = viewScope.get(KEY, objectFactory);
 		viewScopedClass = viewScope.get(KEY, objectFactory);

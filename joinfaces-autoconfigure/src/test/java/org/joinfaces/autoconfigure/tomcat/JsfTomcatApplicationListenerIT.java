@@ -42,7 +42,7 @@ public class JsfTomcatApplicationListenerIT {
 	private static final String TEST = "/test";
 
 	@Test
-	public void customize() throws LifecycleException {
+	public void customize() {
 		Context standardContext = mock(Context.class);
 		StandardRoot webResourceRoot = new StandardRoot(standardContext);
 		Mockito.when(standardContext.getResources()).thenReturn(webResourceRoot);
@@ -59,7 +59,7 @@ public class JsfTomcatApplicationListenerIT {
 	}
 
 	@Test
-	public void customizeTargetTestClasses() throws LifecycleException {
+	public void customizeTargetTestClasses() {
 		Context standardContext = mock(Context.class);
 		StandardRoot webResourceRoot = new StandardRoot(standardContext);
 		Mockito.when(standardContext.getResources()).thenReturn(webResourceRoot);
@@ -99,7 +99,7 @@ public class JsfTomcatApplicationListenerIT {
 	}
 
 	@Test
-	public void resourcesNull() throws LifecycleException {
+	public void resourcesNull() {
 		Context standardContext = mock(Context.class);
 		Mockito.when(standardContext.getResources()).thenReturn(null);
 		Mockito.when(standardContext.getAddWebinfClassesResources()).thenReturn(Boolean.FALSE);
@@ -116,7 +116,7 @@ public class JsfTomcatApplicationListenerIT {
 	}
 
 	@Test
-	public void jarResourcesNull() throws LifecycleException {
+	public void jarResourcesNull() {
 		Context standardContext = mock(Context.class);
 		WebResourceRoot webResourceRoot = mock(WebResourceRoot.class);
 		Mockito.when(standardContext.getResources()).thenReturn(webResourceRoot);

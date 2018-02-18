@@ -18,7 +18,6 @@ package org.joinfaces.autoconfigure.tomcat;
 
 import lombok.Getter;
 import org.apache.catalina.Context;
-import org.apache.catalina.LifecycleException;
 import org.apache.catalina.WebResourceSet;
 import org.mockito.Mockito;
 
@@ -39,7 +38,7 @@ public class ContextMock {
 		this.webResourceRoot.setContext(this.standardContext);
 	}
 
-	public void init(WebResourceSet... webResourcesSet) throws LifecycleException {
+	public void init(WebResourceSet... webResourcesSet) {
 		for (WebResourceSet webResourceSet : webResourcesSet) {
 			this.webResourceRoot.addJarResources(webResourceSet);
 		}

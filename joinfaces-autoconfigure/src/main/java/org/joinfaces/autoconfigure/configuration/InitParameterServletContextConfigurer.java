@@ -26,7 +26,6 @@ import java.util.List;
 import java.util.Set;
 
 import javax.servlet.ServletContext;
-import javax.servlet.ServletException;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -63,7 +62,7 @@ public class InitParameterServletContextConfigurer implements ServletContextInit
 	}
 
 	@Override
-	public void onStartup(ServletContext servletContext) throws ServletException {
+	public void onStartup(ServletContext servletContext) {
 		this.servletContext = servletContext;
 		for (ServletContextInitParameterConfigurationProperties properties : this.initParameterProperties) {
 			handlePropertiesObject(properties);

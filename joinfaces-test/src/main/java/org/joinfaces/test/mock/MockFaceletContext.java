@@ -16,7 +16,6 @@
 
 package org.joinfaces.test.mock;
 
-import java.io.IOException;
 import java.net.URL;
 import java.util.HashMap;
 import java.util.Map;
@@ -85,12 +84,12 @@ public class MockFaceletContext extends FaceletContext {
 	}
 
 	@Override
-	public void includeFacelet(UIComponent parent, String relativePath) throws IOException {
+	public void includeFacelet(UIComponent parent, String relativePath) {
 		throw new UnsupportedOperationException(NOT_SUPPORTED_YET);
 	}
 
 	@Override
-	public void includeFacelet(UIComponent parent, URL absolutePath) throws IOException {
+	public void includeFacelet(UIComponent parent, URL absolutePath) {
 		throw new UnsupportedOperationException(NOT_SUPPORTED_YET);
 	}
 

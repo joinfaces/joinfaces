@@ -81,7 +81,7 @@ public class MyfacesServletContextInitializerIT {
 	}
 
 	@Test
-	public void testAnotherFacesConfig() throws ServletException {
+	public void testAnotherFacesConfig() {
 		MyfacesServletContextInitializer myfacesServletContextInitializer
 			= new MyfacesServletContextInitializer();
 
@@ -90,7 +90,7 @@ public class MyfacesServletContextInitializerIT {
 	}
 
 	@Test
-	public void testExcludeScopedAnnotations() throws ServletException {
+	public void testExcludeScopedAnnotations() {
 		MyfacesServletContextInitializer myfacesServletContextInitializer
 			= new MyfacesServletContextInitializer();
 

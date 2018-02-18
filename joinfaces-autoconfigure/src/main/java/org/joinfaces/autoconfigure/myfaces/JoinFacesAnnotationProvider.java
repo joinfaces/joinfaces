@@ -16,7 +16,6 @@
 
 package org.joinfaces.autoconfigure.myfaces;
 
-import java.io.IOException;
 import java.lang.annotation.Annotation;
 import java.net.URL;
 import java.util.Collection;
@@ -52,7 +51,7 @@ public class JoinFacesAnnotationProvider extends AnnotationProvider {
 	}
 
 	@Override
-	public Set<URL> getBaseUrls() throws IOException {
+	public Set<URL> getBaseUrls() {
 		return new HashSet<>(urls);
 	}
 }

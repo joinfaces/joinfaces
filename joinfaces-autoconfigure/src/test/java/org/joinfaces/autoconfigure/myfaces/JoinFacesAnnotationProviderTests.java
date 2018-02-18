@@ -18,7 +18,6 @@ package org.joinfaces.autoconfigure.myfaces;
 
 import java.io.IOException;
 import java.lang.annotation.Annotation;
-import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -34,7 +33,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class JoinFacesAnnotationProviderTests {
 
 	@Test
-	public void testBaseUrls() throws MalformedURLException, IOException {
+	public void testBaseUrls() throws IOException {
 		Set<URL> urls = new HashSet<>();
 		URL myurl = new URL("http://localhost:8080");
 		urls.add(myurl);
@@ -45,7 +44,7 @@ public class JoinFacesAnnotationProviderTests {
 	}
 
 	@Test
-	public void testAnnotatedClasses() throws MalformedURLException, IOException {
+	public void testAnnotatedClasses() {
 		Map<Class<? extends Annotation>, Set<Class<?>>> annotatedClasses = new HashMap<>();
 		annotatedClasses.put(FacesConverter.class, new HashSet<>());
 		JoinFacesAnnotationProvider.setAnnotatedClasses(annotatedClasses);

@@ -16,8 +16,6 @@
 
 package org.joinfaces.autoconfigure.jetty;
 
-import java.net.MalformedURLException;
-
 import org.eclipse.jetty.server.Handler;
 import org.eclipse.jetty.server.Server;
 import org.eclipse.jetty.webapp.WebAppContext;
@@ -40,7 +38,7 @@ public class JettySpringBootAutoConfigurationIT {
 	private JettySpringBootAutoConfiguration jettySpringBootAutoConfiguration;
 
 	@Test
-	public void customize() throws MalformedURLException {
+	public void customize() {
 		JettyServletWebServerFactory factory = new JettyServletWebServerFactory();
 
 		this.jettySpringBootAutoConfiguration.customize(factory);

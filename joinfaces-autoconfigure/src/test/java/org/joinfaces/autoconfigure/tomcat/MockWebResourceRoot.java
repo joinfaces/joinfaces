@@ -24,7 +24,6 @@ import java.util.Set;
 
 import lombok.Getter;
 import org.apache.catalina.Context;
-import org.apache.catalina.LifecycleException;
 import org.apache.catalina.LifecycleListener;
 import org.apache.catalina.LifecycleState;
 import org.apache.catalina.TrackedWebResource;
@@ -237,22 +236,22 @@ public class MockWebResourceRoot implements WebResourceRoot {
 	}
 
 	@Override
-	public void init() throws LifecycleException {
+	public void init() {
 		throw new UnsupportedOperationException(NOT_SUPPORTED_YET);
 	}
 
 	@Override
-	public void start() throws LifecycleException {
+	public void start() {
 		throw new UnsupportedOperationException(NOT_SUPPORTED_YET);
 	}
 
 	@Override
-	public void stop() throws LifecycleException {
+	public void stop() {
 		throw new UnsupportedOperationException(NOT_SUPPORTED_YET);
 	}
 
 	@Override
-	public void destroy() throws LifecycleException {
+	public void destroy() {
 		throw new UnsupportedOperationException(NOT_SUPPORTED_YET);
 	}
 
