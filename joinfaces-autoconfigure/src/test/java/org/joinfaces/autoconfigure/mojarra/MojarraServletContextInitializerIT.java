@@ -81,7 +81,7 @@ public class MojarraServletContextInitializerIT {
 	}
 
 	@Test
-	public void testAnotherFacesConfig() throws ServletException {
+	public void testAnotherFacesConfig() {
 		MojarraServletContextInitializer mojarraServletContextInitializer
 			= new MojarraServletContextInitializer();
 
@@ -90,7 +90,7 @@ public class MojarraServletContextInitializerIT {
 	}
 
 	@Test
-	public void testExcludeScopedAnnotations() throws ServletException {
+	public void testExcludeScopedAnnotations() {
 		MojarraServletContextInitializer mojarraServletContextInitializer
 			= new MojarraServletContextInitializer();
 

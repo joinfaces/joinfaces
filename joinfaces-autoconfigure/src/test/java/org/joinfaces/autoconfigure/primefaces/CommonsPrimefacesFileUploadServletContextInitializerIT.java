@@ -17,7 +17,6 @@
 package org.joinfaces.autoconfigure.primefaces;
 
 import javax.servlet.MultipartConfigElement;
-import javax.servlet.ServletException;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -50,7 +49,7 @@ public class CommonsPrimefacesFileUploadServletContextInitializerIT {
 			.isNotNull();
 	}
 
-	public void testFileUploadFilter() throws ServletException {
+	public void testFileUploadFilter() {
 		assertThat(this.primefacesFileUploadServletContextAutoConfiguration.fileUploadFilter())
 			.isInstanceOfAny(FileUploadFilter.class);
 	}

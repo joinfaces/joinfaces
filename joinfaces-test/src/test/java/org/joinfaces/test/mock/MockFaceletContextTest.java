@@ -38,7 +38,7 @@ public class MockFaceletContextTest {
 	private MockFaceletContext mockFaceletContext;
 
 	@Before
-	public void setUp() throws Exception {
+	public void setUp() {
 		this.facesContext = mock(FacesContext.class);
 		this.mockFaceletContext = new MockFaceletContext(this.facesContext);
 	}

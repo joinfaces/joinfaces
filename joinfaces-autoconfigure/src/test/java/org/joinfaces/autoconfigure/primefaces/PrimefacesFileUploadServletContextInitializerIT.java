@@ -84,7 +84,7 @@ public class PrimefacesFileUploadServletContextInitializerIT {
 	}
 
 	@Test(expected = NoSuchBeanDefinitionException.class)
-	public void testFileUploadFilter() throws ServletException {
+	public void testFileUploadFilter() {
 		assertThat(this.primefacesFileUploadServletContextAutoConfiguration.fileUploadFilter())
 			.isNotNull();
 	}

@@ -16,8 +16,6 @@
 
 package org.joinfaces.test.mock;
 
-import java.io.IOException;
-
 import javax.faces.component.UIComponent;
 import javax.faces.view.facelets.FaceletContext;
 import javax.faces.view.facelets.FaceletHandler;
@@ -35,7 +33,7 @@ public class MockFaceletHandler implements FaceletHandler {
 	private boolean applied = false;
 
 	@Override
-	public void apply(FaceletContext ctx, UIComponent parent) throws IOException {
+	public void apply(FaceletContext ctx, UIComponent parent) {
 		this.applied = true;
 	}
 }

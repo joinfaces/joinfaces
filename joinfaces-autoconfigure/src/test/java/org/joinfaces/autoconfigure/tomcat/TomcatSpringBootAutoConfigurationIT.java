@@ -16,8 +16,6 @@
 
 package org.joinfaces.autoconfigure.tomcat;
 
-import java.net.MalformedURLException;
-
 import org.junit.Test;
 
 import org.springframework.boot.web.embedded.tomcat.TomcatServletWebServerFactory;
@@ -27,7 +25,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class TomcatSpringBootAutoConfigurationIT {
 
 	@Test
-	public void customize() throws MalformedURLException {
+	public void customize() {
 		TomcatServletWebServerFactory tomcatFactory = new TomcatServletWebServerFactory();
 
 		TomcatSpringBootAutoConfiguration tomcatSpringBootAutoConfiguration = new TomcatSpringBootAutoConfiguration();
@@ -39,7 +37,7 @@ public class TomcatSpringBootAutoConfigurationIT {
 	}
 
 	@Test
-	public void doNotCustomize() throws MalformedURLException {
+	public void doNotCustomize() {
 		TomcatServletWebServerFactory tomcatFactory = new TomcatServletWebServerFactory();
 
 		TomcatSpringBootAutoConfiguration tomcatSpringBootAutoConfiguration = new TomcatSpringBootAutoConfiguration();

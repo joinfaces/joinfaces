@@ -19,7 +19,6 @@ package org.joinfaces.autoconfigure.primefaces;
 import javax.faces.webapp.FacesServlet;
 import javax.servlet.MultipartConfigElement;
 import javax.servlet.ServletContext;
-import javax.servlet.ServletException;
 import javax.servlet.ServletRegistration;
 
 import com.sun.faces.config.FacesInitializer;
@@ -46,7 +45,7 @@ class PrimefacesFileUploadServletContextInitializer implements ServletContextIni
 	}
 
 	@Override
-	public void onStartup(ServletContext servletContext) throws ServletException {
+	public void onStartup(ServletContext servletContext) {
 		ServletRegistration servletRegistration = servletContext.getServletRegistration(FACES_SERVLET_NAME);
 		if (servletRegistration instanceof ServletRegistration.Dynamic) {
 			((ServletRegistration.Dynamic) servletRegistration).setMultipartConfig(this.multipartConfigElement);

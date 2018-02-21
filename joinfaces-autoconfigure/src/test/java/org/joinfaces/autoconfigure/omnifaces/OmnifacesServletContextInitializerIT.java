@@ -61,7 +61,7 @@ public class OmnifacesServletContextInitializerIT {
 	}
 
 	@Test
-	public void testAnotherFacesConfig() throws ServletException {
+	public void testAnotherFacesConfig() {
 		OmnifacesServletContextInitializer omnifacesServletContextInitializer
 			= new OmnifacesServletContextInitializer();
 
@@ -69,7 +69,7 @@ public class OmnifacesServletContextInitializerIT {
 	}
 
 	@Test
-	public void testExcludeScopedAnnotations() throws ServletException {
+	public void testExcludeScopedAnnotations() {
 		OmnifacesServletContextInitializer omnifacesServletContextInitializer
 			= new OmnifacesServletContextInitializer();
 
