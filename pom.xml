@@ -9,7 +9,7 @@
 
     <properties>
         <main.basedir>${basedir}</main.basedir>
-        
+
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
         <maven-source-plugin.version>3.0.1</maven-source-plugin.version>
@@ -19,8 +19,10 @@
         <nexus-staging-maven-plugin.version>1.6.7</nexus-staging-maven-plugin.version>
         <maven-release-plugin.version>2.5.3</maven-release-plugin.version>
     </properties>
-    
+
     <modules>
+        <module>joinfaces-dependencies</module>
+
         <module>joinfaces-parent</module>
 
         <module>joinfaces-test</module>
@@ -54,7 +56,7 @@
                     <groupId>org.sonatype.plugins</groupId>
                     <artifactId>nexus-staging-maven-plugin</artifactId>
                     <version>${nexus-staging-maven-plugin.version}</version>
-                </plugin>            
+                </plugin>
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-release-plugin</artifactId>
@@ -72,7 +74,7 @@
                     <releaseProfiles>check-duplicate,check-checkstyle,check-cycles,check-cpd,check-pmd,check-findbugs,attach-test-jar,attach-source,attach-javadoc,sign-artifacts,nexus-staging</releaseProfiles>
                     <goals>deploy</goals>
                 </configuration>
-            </plugin>            
+            </plugin>
         </plugins>
     </build>
 
@@ -96,7 +98,7 @@
                 </plugins>
             </build>
         </profile>
-        
+
         <profile>
             <id>attach-javadoc</id>
             <build>
@@ -123,7 +125,7 @@
                 </plugins>
             </build>
         </profile>
-        
+
         <profile>
             <id>sign-artifacts</id>
             <build>
@@ -144,7 +146,7 @@
                 </plugins>
             </build>
         </profile>
-        
+
         <profile>
             <id>nexus-staging</id>
             <build>
@@ -161,11 +163,11 @@
                     </plugin>
                 </plugins>
             </build>
-        </profile>        
-    </profiles>                
+        </profile>
+    </profiles>
 
     <name>JoinFaces Build</name>
-    <description>Spring Boot Starters to build MVC web applications using 
+    <description>Spring Boot Starters to build MVC web applications using
         JSF, PrimeFaces, Primefaces Extensions, BootsFaces, ButterFaces, OmniFaces
         , AngularFaces, Mojarra and MyFaces</description>
     <url>http://joinfaces.org</url>
@@ -174,7 +176,7 @@
     <licenses>
         <license>
             <name>The Apache License, Version 2.0</name>
-            <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>        
+            <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
         </license>
     </licenses>
 
@@ -189,7 +191,7 @@
         <name>JoinFaces</name>
         <url>http://joinfaces.org</url>
     </organization>
-    
+
     <developers>
         <developer>
             <id>persapiens</id>
@@ -198,7 +200,7 @@
             <timezone>-3</timezone>
         </developer>
     </developers>
-    
+
     <distributionManagement>
         <snapshotRepository>
             <id>ossrh</id>
@@ -207,6 +209,6 @@
         <repository>
             <id>ossrh</id>
             <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
-        </repository>    
+        </repository>
     </distributionManagement>
 </project>

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<FindBugsFilter>
+    <Match>
+        <Method name="getBaseUrls" />
+        <Bug pattern="DMI_COLLECTION_OF_URLS" />
+    </Match>
+    <Match>
+        <Method name="testBaseUrls" />
+        <Bug pattern="DMI_COLLECTION_OF_URLS" />
+    </Match>
+    <Match>
+        <Method name="embeddedJarWithoutAppResources" />
+        <Bug pattern="DMI_HARDCODED_ABSOLUTE_FILENAME" />
+    </Match>
+    <Match>
+        <Method name="embeddedJarWithoutAppResources2" />
+        <Bug pattern="DMI_HARDCODED_ABSOLUTE_FILENAME" />
+    </Match>
+    <Match>
+        <Method name="embeddedWarWithoutAppResources" />
+        <Bug pattern="DMI_HARDCODED_ABSOLUTE_FILENAME" />
+    </Match>
+    <Match>
+        <Method name="testingResources" />
+        <Bug pattern="DMI_HARDCODED_ABSOLUTE_FILENAME" />
+    </Match>
+    <Match>
+        <Class name="org.joinfaces.autoconfigure.jetty.JsfJettyServerCustomizerIT" />
+        <Method name="invalidClassPathResource" />
+        <Bug pattern="DLS_DEAD_LOCAL_STORE" />
+    </Match>
+    <Match>
+        <Class name="org.joinfaces.autoconfigure.tomcat.JsfTomcatApplicationListenerIT" />
+        <Bug pattern="UC_USELESS_OBJECT" />
+    </Match>
+</FindBugsFilter>
