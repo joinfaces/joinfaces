@@ -14,9 +14,6 @@
     
     <properties>
         <main.basedir>${basedir}/../..</main.basedir>
-
-        <!-- asm classes are bundled at net.minidev:accessors-smart and org.ow2.asm:asm -->
-        <duplicate.ignoredClassPattern>org.objectweb.asm.(Frame|Item|Label|ByteVector|ClassReader|ClassWriter|Handle|MethodWriter|TypePath|signature.SignatureReader)</duplicate.ignoredClassPattern>
     </properties>
 
     <dependencies>
