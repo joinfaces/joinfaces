@@ -19,6 +19,9 @@
         
         <check.dir>../../jsf-spring-boot-parent/src/checkconfig</check.dir>
         <checkstyle.dir>../jsf-spring-boot-parent/src/checkconfig/checkstyle</checkstyle.dir>
+
+        <!-- asm classes are bundled at net.minidev:accessors-smart and org.ow2.asm:asm -->
+        <duplicate.ignoredClassPattern>(module-info|org.objectweb.asm.(AnnotationVisitor|AnnotationWriter|Attribute|ClassVisitor|Context|Edge|FieldVisitor|FieldWriter|Frame|Handler|Item|Label|ByteVector|ClassReader|ClassWriter|Handle|MethodWriter|MethodVisitor|Opcodes|Type|TypeReference|TypePath|signature.SignatureReader|signature.SignatureVisitor|signature.SignatureWriter))</duplicate.ignoredClassPattern>
     </properties>
     
     <dependencies>
