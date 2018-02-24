@@ -16,6 +16,7 @@
 
 package org.joinfaces.autoconfigure.weld;
 
+import org.jboss.weld.environment.servlet.EnhancedListener;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnWebApplication;
 import org.springframework.context.annotation.Bean;
@@ -30,7 +31,7 @@ import org.springframework.context.annotation.Configuration;
 
 @Configuration
 @ConditionalOnWebApplication
-@ConditionalOnClass(name = "org.jboss.weld.environment.servlet.EnhancedListener")
+@ConditionalOnClass(EnhancedListener.class)
 public class WeldSpringBootAutoConfiguration {
 
     @Bean
