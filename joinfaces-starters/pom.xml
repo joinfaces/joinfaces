@@ -53,5 +53,6 @@
         <module>butterfaces-spring-boot-starter</module>
         <module>angularfaces-spring-boot-starter</module>
         <module>richfaces-spring-boot-starter</module>
+        <module>weld-spring-boot-starter</module>
     </modules>
 </project>

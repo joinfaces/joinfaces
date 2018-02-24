@@ -131,7 +131,12 @@
             <artifactId>cdi-api</artifactId>
             <optional>true</optional>
         </dependency>
-
+        <dependency>
+            <groupId>org.jboss.weld.servlet</groupId>
+            <artifactId>weld-servlet-shaded</artifactId>
+            <optional>true</optional>
+        </dependency>
+        
         <dependency>
             <groupId>com.google.code.findbugs</groupId>
             <artifactId>jsr305</artifactId>

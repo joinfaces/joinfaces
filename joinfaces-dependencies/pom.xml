@@ -38,6 +38,7 @@
 
         <richfaces.version>4.5.17.Final</richfaces.version>
 
+        <weld.version>3.0.3.Final</weld.version>
         <cdi.version>2.0</cdi.version>
         <reflections.version>0.9.11</reflections.version>
 
@@ -272,6 +273,11 @@
                 <version>3.0.2</version>
                 <scope>provided</scope>
             </dependency>
+            <dependency>
+                <groupId>org.jboss.weld.servlet</groupId>
+                <artifactId>weld-servlet-shaded</artifactId>
+                <version>${weld.version}</version>
+            </dependency>
 
             <dependency>
                 <groupId>org.joinfaces</groupId>
@@ -347,6 +353,11 @@
             <dependency>
                 <groupId>org.joinfaces</groupId>
                 <artifactId>richfaces-spring-boot-starter</artifactId>
+                <version>3.0.0.RC2-SNAPSHOT</version>
+            </dependency>
+            <dependency>
+                <groupId>org.joinfaces</groupId>
+                <artifactId>weld-spring-boot-starter</artifactId>
                 <version>3.0.0.RC2-SNAPSHOT</version>
             </dependency>
         </dependencies>

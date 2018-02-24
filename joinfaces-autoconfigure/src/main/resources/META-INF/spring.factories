@@ -12,6 +12,7 @@ org.joinfaces.autoconfigure.javaxfaces.JavaxFacesSpringBootAutoConfiguration,\
 org.joinfaces.autoconfigure.mojarra.MojarraSpringBootAutoConfiguration,\
 org.joinfaces.autoconfigure.myfaces.MyfacesSpringBootAutoConfiguration,\
 org.joinfaces.autoconfigure.omnifaces.OmnifacesSpringBootAutoConfiguration,\
+org.joinfaces.autoconfigure.weld.WeldSpringBootAutoConfiguration,\
 org.joinfaces.autoconfigure.primefaces.PrimefacesAutoConfiguration,\
 org.joinfaces.autoconfigure.primefaces.PrimefacesFileUploadServletContextAutoConfiguration,\
 org.joinfaces.autoconfigure.bootsfaces.BootsfacesSpringBootAutoConfiguration,\
