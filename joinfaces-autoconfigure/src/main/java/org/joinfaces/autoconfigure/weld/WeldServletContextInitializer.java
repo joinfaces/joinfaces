@@ -18,29 +18,29 @@ package org.joinfaces.autoconfigure.weld;
 
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
+
 import org.jboss.weld.environment.servlet.EnhancedListener;
+
 import org.springframework.boot.web.servlet.ServletContextInitializer;
 
 /**
- * The goal of this class is to start the weld listener in order to enable the 
- * scan of all the cdi annotations
+ * This class starts the weld listener.
  *
  * @author classicPintus
  */
+public class WeldServletContextInitializer implements ServletContextInitializer {
 
-public class WeldServletContextInitializer implements ServletContextInitializer{
-    
-    private EnhancedListener enhancedListener = null;
+	private EnhancedListener enhancedListener = null;
 
-    private EnhancedListener getEnhancedListener() {
-        if(enhancedListener == null){
-            enhancedListener = new EnhancedListener();
-        }
-        return enhancedListener;
-    }
+	private EnhancedListener getEnhancedListener() {
+		if (this.enhancedListener == null) {
+			this.enhancedListener = new EnhancedListener();
+		}
+		return this.enhancedListener;
+	}
 
-    @Override
-    public void onStartup(ServletContext servletContext) throws ServletException {
-        getEnhancedListener().onStartup(null, servletContext);
-    }
+	@Override
+	public void onStartup(ServletContext servletContext) throws ServletException {
+		getEnhancedListener().onStartup(null, servletContext);
+	}
 }

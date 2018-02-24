@@ -17,26 +17,27 @@
 package org.joinfaces.autoconfigure.weld;
 
 import org.jboss.weld.environment.servlet.EnhancedListener;
+
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnWebApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 /**
- * The goal of this class is to initialize weld in order to have a full cdi environment
+ * This class initialize weld in order to have a full cdi environment.
  *
  * @author classicPintus
- * @see org.joinfaces.autoconfigure.weld.WeldServletContextInitializer for more details
+ * @see org.joinfaces.autoconfigure.weld.WeldServletContextInitializer for more
+ * details
  */
-
 @Configuration
 @ConditionalOnWebApplication
 @ConditionalOnClass(EnhancedListener.class)
 public class WeldSpringBootAutoConfiguration {
 
-    @Bean
-    public WeldServletContextInitializer weldServletContextInitializer(){
-        return new WeldServletContextInitializer();
-    }
-    
+	@Bean
+	public WeldServletContextInitializer weldServletContextInitializer() {
+		return new WeldServletContextInitializer();
+	}
+
 }
