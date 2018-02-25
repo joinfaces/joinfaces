@@ -133,7 +133,7 @@
         </dependency>
         <dependency>
             <groupId>org.jboss.weld.servlet</groupId>
-            <artifactId>weld-servlet-shaded</artifactId>
+            <artifactId>weld-servlet-core</artifactId>
             <optional>true</optional>
         </dependency>
         
