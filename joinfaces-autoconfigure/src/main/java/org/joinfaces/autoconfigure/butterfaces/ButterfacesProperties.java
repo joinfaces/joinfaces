@@ -16,9 +16,9 @@
 
 package org.joinfaces.autoconfigure.butterfaces;
 
-import org.butterfaces.resolver.WebXmlParameters;
 import lombok.Getter;
 import lombok.Setter;
+import org.butterfaces.resolver.WebXmlParameters;
 import org.joinfaces.autoconfigure.configuration.NestedProperty;
 import org.joinfaces.autoconfigure.configuration.ServletContextInitParameter;
 import org.joinfaces.autoconfigure.configuration.ServletContextInitParameterConfigurationProperties;
