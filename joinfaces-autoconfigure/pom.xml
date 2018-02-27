@@ -205,7 +205,7 @@
             <optional>true</optional>
         </dependency>
         <dependency>
-            <groupId>de.larmic.butterfaces</groupId>
+            <groupId>org.butterfaces</groupId>
             <artifactId>components</artifactId>
             <optional>true</optional>
         </dependency>
