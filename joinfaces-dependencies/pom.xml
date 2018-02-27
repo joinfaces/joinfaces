@@ -34,7 +34,7 @@
         <bootsfaces.version>1.2.0</bootsfaces.version>
         <angularfaces.version>2.1.12</angularfaces.version>
 
-        <butterfaces.version>2.1.25</butterfaces.version>
+        <butterfaces.version>3.0.0</butterfaces.version>
 
         <richfaces.version>4.5.17.Final</richfaces.version>
 
@@ -246,7 +246,7 @@
                 </exclusions>
             </dependency>
             <dependency>
-                <groupId>de.larmic.butterfaces</groupId>
+                <groupId>org.butterfaces</groupId>
                 <artifactId>components</artifactId>
                 <version>${butterfaces.version}</version>
             </dependency>
