@@ -395,7 +395,7 @@
                     <version>${maven-pmd-plugin.version}</version>
                     <configuration>
                         <targetJdk>${java.source}</targetJdk>
-                        <includeTests>true</includeTests>
+                        <includeTests>false</includeTests>
                         <rulesets>
                             <ruleset>${pmd.ruleset}</ruleset>
                         </rulesets>

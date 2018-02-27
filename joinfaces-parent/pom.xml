@@ -73,6 +73,7 @@
                 <configuration>
                     <linkXref>true</linkXref>
                     <skipEmptyReport>false</skipEmptyReport>
+                    <includeTests>false</includeTests>
                 </configuration>
             </plugin>
             <plugin>

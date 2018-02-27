@@ -27,6 +27,7 @@ import static org.mockito.BDDMockito.mock;
 
 public class ViewScopeErrorsTest {
 
+	public static final String BEAN_NAME = "bean";
 	private BeanFactory beanFactory;
 
 	private ViewScope viewScope;
@@ -41,28 +42,28 @@ public class ViewScopeErrorsTest {
 	public void testNoFacesContext_get() {
 		DummyFacesContext.setInstance(null);
 
-		this.viewScope.get("bean", Object::new);
+		this.viewScope.get(BEAN_NAME, Object::new);
 	}
 
 	@Test(expected = IllegalStateException.class)
 	public void testNoFacesContext_remove() {
 		DummyFacesContext.setInstance(null);
 
-		this.viewScope.remove("bean");
+		this.viewScope.remove(BEAN_NAME);
 	}
 
 	@Test(expected = IllegalStateException.class)
 	public void testNoViewRoot_get() {
 		DummyFacesContext.setInstance(mock(FacesContext.class));
 
-		this.viewScope.get("bean", Object::new);
+		this.viewScope.get(BEAN_NAME, Object::new);
 	}
 
 	@Test(expected = IllegalStateException.class)
 	public void testNoViewRoot_remove() {
 		DummyFacesContext.setInstance(mock(FacesContext.class));
 
-		this.viewScope.remove("bean");
+		this.viewScope.remove(BEAN_NAME);
 	}
 
 	private static abstract class DummyFacesContext extends FacesContext {
