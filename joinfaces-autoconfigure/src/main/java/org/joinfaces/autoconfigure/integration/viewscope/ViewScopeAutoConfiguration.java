@@ -1,5 +1,5 @@
 /*
- * Copyright 2016-2017 the original author or authors.
+ * Copyright 2016-2018 the original author or authors.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package org.joinfaces.autoconfigure.integration;
+package org.joinfaces.autoconfigure.integration.viewscope;
 
 import javax.faces.component.UIViewRoot;
 import javax.faces.context.FacesContext;
@@ -24,6 +24,8 @@ import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnWebApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.web.context.WebApplicationContext;
+import org.springframework.web.context.annotation.SessionScope;
 
 /**
  * An {@link org.springframework.boot.autoconfigure.EnableAutoConfiguration AutoConfiguration}
@@ -37,9 +39,15 @@ import org.springframework.context.annotation.Configuration;
 public class ViewScopeAutoConfiguration {
 
 	@Bean
-	public static CustomScopeConfigurer viewScopeConfigurer() {
+	public static CustomScopeConfigurer viewScopeConfigurer(WebApplicationContext applicationContext) {
 		CustomScopeConfigurer customScopeConfigurer = new CustomScopeConfigurer();
-		customScopeConfigurer.addScope(ViewScope.SCOPE_VIEW, new ViewScope());
+		customScopeConfigurer.addScope(ViewScope.SCOPE_VIEW, new ViewScope(applicationContext));
 		return customScopeConfigurer;
+	}
+
+	@Bean
+	@SessionScope
+	public SessionHelper viewScopeSessionHelper() {
+		return new SessionHelper();
 	}
 }
