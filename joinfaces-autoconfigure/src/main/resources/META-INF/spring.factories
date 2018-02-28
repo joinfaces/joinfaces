@@ -5,7 +5,7 @@ org.joinfaces.autoconfigure.jetty.JettySpringBootAutoConfiguration,\
 org.joinfaces.autoconfigure.jetty.JettyMyfacesSpringBootAutoConfiguration,\
 org.joinfaces.autoconfigure.undertow.UndertowSpringBootAutoConfiguration,\
 org.joinfaces.autoconfigure.undertow.UndertowMyfacesSpringBootAutoConfiguration,\
-org.joinfaces.autoconfigure.integration.ViewScopeAutoConfiguration,\
+org.joinfaces.autoconfigure.integration.viewscope.ViewScopeAutoConfiguration,\
 org.joinfaces.autoconfigure.integration.CdiScopeAnnotationsAutoConfiguration,\
 org.joinfaces.autoconfigure.integration.JsfScopeAnnotationsAutoConfiguration,\
 org.joinfaces.autoconfigure.javaxfaces.JavaxFacesSpringBootAutoConfiguration,\

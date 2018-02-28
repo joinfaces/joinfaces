@@ -136,7 +136,7 @@
             <artifactId>weld-servlet-core</artifactId>
             <optional>true</optional>
         </dependency>
-        
+
         <dependency>
             <groupId>com.google.code.findbugs</groupId>
             <artifactId>jsr305</artifactId>
@@ -210,7 +210,7 @@
             <optional>true</optional>
         </dependency>
         <dependency>
-            <groupId>de.larmic.butterfaces</groupId>
+            <groupId>org.butterfaces</groupId>
             <artifactId>components</artifactId>
             <optional>true</optional>
         </dependency>

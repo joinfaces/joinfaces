@@ -40,7 +40,7 @@ import org.springframework.context.annotation.Configuration;
  */
 @Configuration
 @EnableConfigurationProperties(ButterfacesProperties.class)
-@ConditionalOnClass(name = "de.larmic.butterfaces.util.ReflectionUtil")
+@ConditionalOnClass(name = "org.butterfaces.util.ReflectionUtil")
 @AutoConfigureBefore(JavaxFacesSpringBootAutoConfiguration.class)
 @ConditionalOnWebApplication
 @Slf4j

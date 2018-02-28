@@ -23,7 +23,7 @@
         </dependency>
 
         <dependency>
-            <groupId>de.larmic.butterfaces</groupId>
+            <groupId>org.butterfaces</groupId>
             <artifactId>components</artifactId>
         </dependency>
     </dependencies>
