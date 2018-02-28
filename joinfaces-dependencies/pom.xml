@@ -34,12 +34,12 @@
         <bootsfaces.version>1.2.0</bootsfaces.version>
         <angularfaces.version>2.1.12</angularfaces.version>
 
-		<butterfaces.version>2.1.25</butterfaces.version>
+        <butterfaces.version>2.1.25</butterfaces.version>
 
         <richfaces.version>4.5.17.Final</richfaces.version>
 
         <cdi.version>2.0</cdi.version>
-		<weld.version>3.0.3.Final</weld.version>
+        <weld.version>3.0.3.Final</weld.version>
         <reflections.version>0.9.11</reflections.version>
 
         <jboss-jsp-api_2.3_spec.version>1.0.2.Final</jboss-jsp-api_2.3_spec.version>
@@ -247,7 +247,7 @@
                 </exclusions>
             </dependency>
             <dependency>
-				<groupId>de.larmic.butterfaces</groupId>
+                <groupId>de.larmic.butterfaces</groupId>
                 <artifactId>components</artifactId>
                 <version>${butterfaces.version}</version>
             </dependency>
@@ -349,7 +349,7 @@
                 <artifactId>richfaces-spring-boot-starter</artifactId>
                 <version>3.0.0.RC2-SNAPSHOT</version>
             </dependency>
-			<dependency>
+            <dependency>
                 <groupId>org.jboss.weld.servlet</groupId>
                     <artifactId>weld-servlet-core</artifactId>
                     <version>${weld.version}</version>
@@ -414,7 +414,7 @@
                     <version>${maven-pmd-plugin.version}</version>
                     <configuration>
                         <targetJdk>${java.source}</targetJdk>
-						<includeTests>true</includeTests>
+                        <includeTests>true</includeTests>
                         <rulesets>
                             <ruleset>${pmd.ruleset}</ruleset>
                         </rulesets>
