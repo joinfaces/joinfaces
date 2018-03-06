@@ -30,7 +30,7 @@ import org.springframework.context.annotation.Configuration;
  */
 @ConditionalOnClass(name = "org.apache.catalina.Context")
 @Configuration
-public class TomcatSpringBootAutoConfiguration implements WebServerFactoryCustomizer<TomcatServletWebServerFactory> {
+public class TomcatAutoConfiguration implements WebServerFactoryCustomizer<TomcatServletWebServerFactory> {
 
 	private JsfTomcatContextCustomizer customizer = new JsfTomcatContextCustomizer();
 

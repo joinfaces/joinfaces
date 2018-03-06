@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package org.joinfaces.autoconfigure.undertow;
+package org.joinfaces.autoconfigure.jetty;
 
 import org.apache.myfaces.webapp.StartupServletContextListener;
 import org.junit.Test;
@@ -27,15 +27,16 @@ import org.springframework.test.context.junit4.SpringRunner;
 import static org.assertj.core.api.Assertions.assertThat;
 
 @RunWith(SpringRunner.class)
-@SpringBootTest(classes = UndertowMyfacesSpringBootAutoConfiguration.class, webEnvironment = SpringBootTest.WebEnvironment.MOCK)
-public class UndertowMyfacesSpringBootAutoConfigurationIT {
+@SpringBootTest(classes = JettyMyFacesAutoConfiguration.class, webEnvironment = SpringBootTest.WebEnvironment.MOCK)
+public class JettyMyFacesAutoConfigurationIT {
 
 	@Autowired
 	private StartupServletContextListener startupServletContextListener;
 
 	@Test
 	public void startupServletContextListenerNotNull() {
-		assertThat(this.startupServletContextListener).isNotNull();
+		assertThat(this.startupServletContextListener)
+			.isNotNull();
 	}
 
 }

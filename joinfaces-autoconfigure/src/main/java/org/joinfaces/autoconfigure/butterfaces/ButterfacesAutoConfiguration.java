@@ -21,8 +21,8 @@ import javax.annotation.Nullable;
 import lombok.extern.slf4j.Slf4j;
 import net.bootsfaces.C;
 import org.joinfaces.autoconfigure.bootsfaces.BootsfacesProperties;
-import org.joinfaces.autoconfigure.bootsfaces.BootsfacesSpringBootAutoConfiguration;
-import org.joinfaces.autoconfigure.javaxfaces.JavaxFacesSpringBootAutoConfiguration;
+import org.joinfaces.autoconfigure.bootsfaces.BootsfacesAutoConfiguration;
+import org.joinfaces.autoconfigure.javaxfaces.JavaxFacesAutoConfiguration;
 
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.config.BeanPostProcessor;
@@ -41,10 +41,10 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 @EnableConfigurationProperties(ButterfacesProperties.class)
 @ConditionalOnClass(name = "org.butterfaces.util.ReflectionUtil")
-@AutoConfigureBefore(JavaxFacesSpringBootAutoConfiguration.class)
+@AutoConfigureBefore(JavaxFacesAutoConfiguration.class)
 @ConditionalOnWebApplication
 @Slf4j
-public class ButterfacesSpringBootAutoConfiguration {
+public class ButterfacesAutoConfiguration {
 
 	/**
 	 * Special auto configuration for butterfaces and bootsfaces in combination.
@@ -54,7 +54,7 @@ public class ButterfacesSpringBootAutoConfiguration {
 	 */
 	@Configuration
 	@ConditionalOnClass(C.class)
-	@AutoConfigureBefore(BootsfacesSpringBootAutoConfiguration.class)
+	@AutoConfigureBefore(BootsfacesAutoConfiguration.class)
 	public static class ButterfacesBootsfacesAutoConfiguration {
 
 		@Bean

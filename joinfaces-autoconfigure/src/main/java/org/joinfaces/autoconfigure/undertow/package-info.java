@@ -17,6 +17,6 @@
 /**
  * Undertow Spring Boot Auto Configuration classes.
  *
- * @see org.joinfaces.autoconfigure.undertow.UndertowSpringBootAutoConfiguration
+ * @see org.joinfaces.autoconfigure.undertow.UndertowAutoConfiguration
  */
 package org.joinfaces.autoconfigure.undertow;

@@ -14,24 +14,34 @@
  * limitations under the License.
  */
 
-package org.joinfaces.autoconfigure.bootsfaces;
+package org.joinfaces.autoconfigure.myfaces;
 
-import org.joinfaces.autoconfigure.javaxfaces.JavaxFacesSpringBootAutoConfiguration;
+import org.joinfaces.autoconfigure.javaxfaces.JavaxFacesAutoConfiguration;
 
+import org.springframework.boot.autoconfigure.AutoConfigureAfter;
 import org.springframework.boot.autoconfigure.AutoConfigureBefore;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnWebApplication;
+import org.springframework.boot.autoconfigure.web.servlet.WebMvcAutoConfiguration;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
+import org.springframework.boot.web.servlet.ServletContextInitializer;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 /**
- * Spring Boot Auto Configuration of BootsFaces.
+ * Spring Boot Auto Configuration of MyFaces.
  * @author Marcelo Fernandes
  */
 @Configuration
-@EnableConfigurationProperties(BootsfacesProperties.class)
-@ConditionalOnClass(name = "net.bootsfaces.C")
-@AutoConfigureBefore(JavaxFacesSpringBootAutoConfiguration.class)
+@EnableConfigurationProperties({MyfacesProperties.class})
+@ConditionalOnClass(name = "org.apache.myfaces.ee6.MyFacesContainerInitializer")
+@AutoConfigureBefore(WebMvcAutoConfiguration.class)
+@AutoConfigureAfter({JavaxFacesAutoConfiguration.class})
 @ConditionalOnWebApplication
-public class BootsfacesSpringBootAutoConfiguration {
+public class MyFacesAutoConfiguration {
+
+	@Bean
+	public ServletContextInitializer myfacesServletContextInitializer() {
+		return new MyfacesServletContextInitializer();
+	}
 }

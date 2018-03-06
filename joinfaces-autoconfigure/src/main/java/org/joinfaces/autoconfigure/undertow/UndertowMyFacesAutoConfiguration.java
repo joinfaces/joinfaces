@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package org.joinfaces.autoconfigure.jetty;
+package org.joinfaces.autoconfigure.undertow;
 
 import org.apache.myfaces.webapp.StartupServletContextListener;
 
@@ -23,12 +23,12 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 /**
- * Spring Boot Auto Configuration of Jetty with MyFaces.
+ * Spring Boot Auto Configuration of Undertow with MyFaces.
  * @author Marcelo Fernandes
  */
 @Configuration
-@ConditionalOnClass(value = StartupServletContextListener.class, name = {"org.eclipse.jetty.server.Server"})
-public class JettyMyfacesSpringBootAutoConfiguration {
+@ConditionalOnClass(value = StartupServletContextListener.class, name = {"io.undertow.Undertow"})
+public class UndertowMyFacesAutoConfiguration {
 
 	@Bean
 	public StartupServletContextListener startupServletContextListener() {

@@ -22,15 +22,15 @@ import org.springframework.boot.web.embedded.tomcat.TomcatServletWebServerFactor
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class TomcatSpringBootAutoConfigurationIT {
+public class TomcatAutoConfigurationIT {
 
 	@Test
 	public void customize() {
 		TomcatServletWebServerFactory tomcatFactory = new TomcatServletWebServerFactory();
 
-		TomcatSpringBootAutoConfiguration tomcatSpringBootAutoConfiguration = new TomcatSpringBootAutoConfiguration();
+		TomcatAutoConfiguration tomcatAutoConfiguration = new TomcatAutoConfiguration();
 
-		tomcatSpringBootAutoConfiguration.customize(tomcatFactory);
+		tomcatAutoConfiguration.customize(tomcatFactory);
 
 		assertThat(tomcatFactory.getTomcatContextCustomizers())
 			.isNotEmpty();
@@ -40,9 +40,9 @@ public class TomcatSpringBootAutoConfigurationIT {
 	public void doNotCustomize() {
 		TomcatServletWebServerFactory tomcatFactory = new TomcatServletWebServerFactory();
 
-		TomcatSpringBootAutoConfiguration tomcatSpringBootAutoConfiguration = new TomcatSpringBootAutoConfiguration();
+		TomcatAutoConfiguration tomcatAutoConfiguration = new TomcatAutoConfiguration();
 
-		tomcatSpringBootAutoConfiguration.customize(tomcatFactory);
+		tomcatAutoConfiguration.customize(tomcatFactory);
 
 		assertThat(tomcatFactory.getTomcatConnectorCustomizers())
 			.isEmpty();
@@ -50,9 +50,9 @@ public class TomcatSpringBootAutoConfigurationIT {
 
 	@Test
 	public void listenerIsNotNull() {
-		TomcatSpringBootAutoConfiguration tomcatSpringBootAutoConfiguration = new TomcatSpringBootAutoConfiguration();
+		TomcatAutoConfiguration tomcatAutoConfiguration = new TomcatAutoConfiguration();
 
-		JsfTomcatApplicationListener jsfTomcatApplicationListener = tomcatSpringBootAutoConfiguration.jsfTomcatApplicationListener();
+		JsfTomcatApplicationListener jsfTomcatApplicationListener = tomcatAutoConfiguration.jsfTomcatApplicationListener();
 
 		assertThat(jsfTomcatApplicationListener)
 			.isNotNull();

@@ -17,6 +17,6 @@
 /**
  * Tomcat Spring Boot Auto Configuration classes.
  *
- * @see org.joinfaces.autoconfigure.tomcat.TomcatSpringBootAutoConfiguration
+ * @see org.joinfaces.autoconfigure.tomcat.TomcatAutoConfiguration
  */
 package org.joinfaces.autoconfigure.tomcat;

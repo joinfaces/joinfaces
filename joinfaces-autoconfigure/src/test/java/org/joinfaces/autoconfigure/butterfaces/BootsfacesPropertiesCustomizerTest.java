@@ -29,12 +29,12 @@ public class BootsfacesPropertiesCustomizerTest {
 
 	private static final String TRUE = "true";
 
-	private ButterfacesSpringBootAutoConfiguration.ButterfacesBootsfacesAutoConfiguration.BootsfacesPropertiesCustomizer bootsfacesPropertiesCustomizer;
+	private ButterfacesAutoConfiguration.ButterfacesBootsfacesAutoConfiguration.BootsfacesPropertiesCustomizer bootsfacesPropertiesCustomizer;
 	private BootsfacesProperties bootsfacesProperties;
 
 	@Before
 	public void init() {
-		this.bootsfacesPropertiesCustomizer = new ButterfacesSpringBootAutoConfiguration.ButterfacesBootsfacesAutoConfiguration.BootsfacesPropertiesCustomizer();
+		this.bootsfacesPropertiesCustomizer = new ButterfacesAutoConfiguration.ButterfacesBootsfacesAutoConfiguration.BootsfacesPropertiesCustomizer();
 		this.bootsfacesProperties = new BootsfacesProperties();
 	}
 

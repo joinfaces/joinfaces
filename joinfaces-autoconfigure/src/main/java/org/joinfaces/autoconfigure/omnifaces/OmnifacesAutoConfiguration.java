@@ -14,30 +14,31 @@
  * limitations under the License.
  */
 
-package org.joinfaces.autoconfigure.undertow;
+package org.joinfaces.autoconfigure.omnifaces;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import org.joinfaces.autoconfigure.javaxfaces.JavaxFacesAutoConfiguration;
+
+import org.springframework.boot.autoconfigure.AutoConfigureBefore;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnWebApplication;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
-import org.springframework.boot.web.embedded.undertow.UndertowServletWebServerFactory;
-import org.springframework.boot.web.server.WebServerFactoryCustomizer;
+import org.springframework.boot.web.servlet.ServletContextInitializer;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 /**
- * Spring Boot Auto Configuration of Undertow.
- * Configure undertow to load jsf resources from classpath.
+ * Spring Boot Auto Configuration of OmniFaces.
  * @author Marcelo Fernandes
  */
 @Configuration
-@EnableConfigurationProperties({UndertowProperties.class})
-@ConditionalOnClass(name = "io.undertow.Undertow")
-public class UndertowSpringBootAutoConfiguration implements WebServerFactoryCustomizer<UndertowServletWebServerFactory> {
+@EnableConfigurationProperties(OmnifacesProperties.class)
+@ConditionalOnClass(name = "org.omnifaces.facesviews.FacesViewsInitializer")
+@AutoConfigureBefore(JavaxFacesAutoConfiguration.class)
+@ConditionalOnWebApplication
+public class OmnifacesAutoConfiguration {
 
-	@Autowired
-	private UndertowProperties undertowProperties;
-
-	@Override
-	public void customize(UndertowServletWebServerFactory container) {
-		container.addDeploymentInfoCustomizers(new JsfUndertowDeploymentInfoCustomizer(this.undertowProperties));
+	@Bean
+	public ServletContextInitializer omnifacesServletContextInitializer() {
+		return new OmnifacesServletContextInitializer();
 	}
 }

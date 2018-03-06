@@ -33,7 +33,7 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 @ConditionalOnClass(FacesContext.class)
 @ConditionalOnWebApplication
-public class JavaxFacesSpringBootAutoConfiguration {
+public class JavaxFacesAutoConfiguration {
 
 	/**
 	 * Auto configuration for JSF 2.0.
