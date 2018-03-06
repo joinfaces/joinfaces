@@ -17,6 +17,6 @@
 /**
  * OmniFaces Spring Boot Auto Configuration classes.
  *
- * @see org.joinfaces.autoconfigure.omnifaces.OmnifacesSpringBootAutoConfiguration
+ * @see org.joinfaces.autoconfigure.omnifaces.OmnifacesAutoConfiguration
  */
 package org.joinfaces.autoconfigure.omnifaces;

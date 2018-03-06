@@ -17,6 +17,6 @@
 /**
  * AngularFaces Spring Boot Auto Configuration classes.
  *
- * @see org.joinfaces.autoconfigure.angularfaces.AngularfacesSpringBootAutoConfiguration
+ * @see org.joinfaces.autoconfigure.angularfaces.AngularfacesAutoConfiguration
  */
 package org.joinfaces.autoconfigure.angularfaces;

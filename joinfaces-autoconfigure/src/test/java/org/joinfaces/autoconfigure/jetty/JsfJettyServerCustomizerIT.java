@@ -31,7 +31,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 import static org.assertj.core.api.Assertions.assertThat;
 
 @RunWith(SpringRunner.class)
-@SpringBootTest(classes = JettySpringBootAutoConfiguration.class, webEnvironment = SpringBootTest.WebEnvironment.MOCK)
+@SpringBootTest(classes = JettyAutoConfiguration.class, webEnvironment = SpringBootTest.WebEnvironment.MOCK)
 public class JsfJettyServerCustomizerIT {
 
 	@Autowired

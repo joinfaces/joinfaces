@@ -14,33 +14,25 @@
  * limitations under the License.
  */
 
-package org.joinfaces.autoconfigure.tomcat;
+package org.joinfaces.autoconfigure.jetty;
+
+import org.apache.myfaces.webapp.StartupServletContextListener;
 
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
-import org.springframework.boot.web.embedded.tomcat.TomcatServletWebServerFactory;
-import org.springframework.boot.web.server.WebServerFactoryCustomizer;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 /**
- * Creating tomcat auto configuration to enable jsf read facelets at integration
- * tests.
- *
+ * Spring Boot Auto Configuration of Jetty with MyFaces.
  * @author Marcelo Fernandes
  */
-@ConditionalOnClass(name = "org.apache.catalina.Context")
 @Configuration
-public class TomcatSpringBootAutoConfiguration implements WebServerFactoryCustomizer<TomcatServletWebServerFactory> {
-
-	private JsfTomcatContextCustomizer customizer = new JsfTomcatContextCustomizer();
+@ConditionalOnClass(value = StartupServletContextListener.class, name = {"org.eclipse.jetty.server.Server"})
+public class JettyMyFacesAutoConfiguration {
 
 	@Bean
-	public JsfTomcatApplicationListener jsfTomcatApplicationListener() {
-		return JsfTomcatApplicationListener.builder().context(this.customizer.getContext()).build();
+	public StartupServletContextListener startupServletContextListener() {
+		return new StartupServletContextListener();
 	}
 
-	@Override
-	public void customize(TomcatServletWebServerFactory container) {
-		container.addContextCustomizers(this.customizer);
-	}
 }

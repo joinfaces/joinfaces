@@ -30,5 +30,5 @@ package org.joinfaces.autoconfigure.configuration;
  * @see ServletContextInitParameter
  * @see NestedProperty
  */
-public interface ServletContextInitParameterConfigurationProperties {
+public interface ServletContextInitParameterProperties {
 }

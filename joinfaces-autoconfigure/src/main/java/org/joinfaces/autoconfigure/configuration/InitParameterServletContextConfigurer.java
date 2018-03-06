@@ -39,7 +39,7 @@ import org.springframework.util.ReflectionUtils;
 
 /**
  * A ServletContextInitializer which looks for all {@link ServletContextInitParameter init parameters}
- * in an {@link ServletContextInitParameterConfigurationProperties} object by reflection.
+ * in an {@link ServletContextInitParameterProperties} object by reflection.
  *
  * @author Lars Grefer
  * @see ServletContextInitParameter
@@ -48,7 +48,7 @@ import org.springframework.util.ReflectionUtils;
 @Slf4j
 public class InitParameterServletContextConfigurer implements ServletContextInitializer, Ordered {
 
-	private final List<ServletContextInitParameterConfigurationProperties> initParameterProperties;
+	private final List<ServletContextInitParameterProperties> initParameterProperties;
 	private final Set<String> visitiedInitParameters;
 	private ServletContext servletContext;
 
@@ -56,7 +56,7 @@ public class InitParameterServletContextConfigurer implements ServletContextInit
 	@Setter
 	private int order;
 
-	public InitParameterServletContextConfigurer(List<ServletContextInitParameterConfigurationProperties> initParameterProperties) {
+	public InitParameterServletContextConfigurer(List<ServletContextInitParameterProperties> initParameterProperties) {
 		this.initParameterProperties = initParameterProperties;
 		this.visitiedInitParameters = new HashSet<>();
 	}
@@ -64,7 +64,7 @@ public class InitParameterServletContextConfigurer implements ServletContextInit
 	@Override
 	public void onStartup(ServletContext servletContext) {
 		this.servletContext = servletContext;
-		for (ServletContextInitParameterConfigurationProperties properties : this.initParameterProperties) {
+		for (ServletContextInitParameterProperties properties : this.initParameterProperties) {
 			handlePropertiesObject(properties);
 		}
 	}

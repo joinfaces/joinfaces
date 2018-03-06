@@ -14,34 +14,24 @@
  * limitations under the License.
  */
 
-package org.joinfaces.autoconfigure.mojarra;
+package org.joinfaces.autoconfigure.bootsfaces;
 
-import org.joinfaces.autoconfigure.javaxfaces.JavaxFacesSpringBootAutoConfiguration;
+import org.joinfaces.autoconfigure.javaxfaces.JavaxFacesAutoConfiguration;
 
-import org.springframework.boot.autoconfigure.AutoConfigureAfter;
 import org.springframework.boot.autoconfigure.AutoConfigureBefore;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnWebApplication;
-import org.springframework.boot.autoconfigure.web.servlet.WebMvcAutoConfiguration;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
-import org.springframework.boot.web.servlet.ServletContextInitializer;
-import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 /**
- * Spring Boot Auto Configuration for Mojarra.
+ * Spring Boot Auto Configuration of BootsFaces.
  * @author Marcelo Fernandes
  */
 @Configuration
-@EnableConfigurationProperties({MojarraProperties.class})
-@ConditionalOnClass(name = "com.sun.faces.config.FacesInitializer")
-@AutoConfigureBefore(WebMvcAutoConfiguration.class)
-@AutoConfigureAfter({JavaxFacesSpringBootAutoConfiguration.class})
+@EnableConfigurationProperties(BootsfacesProperties.class)
+@ConditionalOnClass(name = "net.bootsfaces.C")
+@AutoConfigureBefore(JavaxFacesAutoConfiguration.class)
 @ConditionalOnWebApplication
-public class MojarraSpringBootAutoConfiguration {
-
-	@Bean
-	public ServletContextInitializer mojarraServletContextInitializer() {
-		return new MojarraServletContextInitializer();
-	}
+public class BootsfacesAutoConfiguration {
 }

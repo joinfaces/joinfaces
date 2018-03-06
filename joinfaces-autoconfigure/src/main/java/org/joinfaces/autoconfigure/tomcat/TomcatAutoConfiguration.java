@@ -14,30 +14,33 @@
  * limitations under the License.
  */
 
-package org.joinfaces.autoconfigure.undertow;
+package org.joinfaces.autoconfigure.tomcat;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
-import org.springframework.boot.context.properties.EnableConfigurationProperties;
-import org.springframework.boot.web.embedded.undertow.UndertowServletWebServerFactory;
+import org.springframework.boot.web.embedded.tomcat.TomcatServletWebServerFactory;
 import org.springframework.boot.web.server.WebServerFactoryCustomizer;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 /**
- * Spring Boot Auto Configuration of Undertow.
- * Configure undertow to load jsf resources from classpath.
+ * Creating tomcat auto configuration to enable jsf read facelets at integration
+ * tests.
+ *
  * @author Marcelo Fernandes
  */
+@ConditionalOnClass(name = "org.apache.catalina.Context")
 @Configuration
-@EnableConfigurationProperties({UndertowProperties.class})
-@ConditionalOnClass(name = "io.undertow.Undertow")
-public class UndertowSpringBootAutoConfiguration implements WebServerFactoryCustomizer<UndertowServletWebServerFactory> {
+public class TomcatAutoConfiguration implements WebServerFactoryCustomizer<TomcatServletWebServerFactory> {
 
-	@Autowired
-	private UndertowProperties undertowProperties;
+	private JsfTomcatContextCustomizer customizer = new JsfTomcatContextCustomizer();
+
+	@Bean
+	public JsfTomcatApplicationListener jsfTomcatApplicationListener() {
+		return JsfTomcatApplicationListener.builder().context(this.customizer.getContext()).build();
+	}
 
 	@Override
-	public void customize(UndertowServletWebServerFactory container) {
-		container.addDeploymentInfoCustomizers(new JsfUndertowDeploymentInfoCustomizer(this.undertowProperties));
+	public void customize(TomcatServletWebServerFactory container) {
+		container.addContextCustomizers(this.customizer);
 	}
 }

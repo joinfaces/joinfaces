@@ -21,7 +21,7 @@ import javax.servlet.Filter;
 import javax.servlet.MultipartConfigElement;
 import javax.servlet.annotation.MultipartConfig;
 
-import org.joinfaces.autoconfigure.javaxfaces.JavaxFacesSpringBootAutoConfiguration;
+import org.joinfaces.autoconfigure.javaxfaces.JavaxFacesAutoConfiguration;
 import org.primefaces.webapp.MultipartRequest;
 import org.primefaces.webapp.filter.FileUploadFilter;
 
@@ -53,7 +53,7 @@ import org.springframework.context.annotation.Configuration;
  */
 @ConditionalOnClass(name = {"org.primefaces.webapp.MultipartRequest"})
 @Configuration
-@AutoConfigureAfter(JavaxFacesSpringBootAutoConfiguration.class)
+@AutoConfigureAfter(JavaxFacesAutoConfiguration.class)
 public class PrimefacesFileUploadServletContextAutoConfiguration {
 
 	@Autowired

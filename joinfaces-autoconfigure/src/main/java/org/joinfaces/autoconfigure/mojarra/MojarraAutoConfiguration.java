@@ -14,9 +14,9 @@
  * limitations under the License.
  */
 
-package org.joinfaces.autoconfigure.myfaces;
+package org.joinfaces.autoconfigure.mojarra;
 
-import org.joinfaces.autoconfigure.javaxfaces.JavaxFacesSpringBootAutoConfiguration;
+import org.joinfaces.autoconfigure.javaxfaces.JavaxFacesAutoConfiguration;
 
 import org.springframework.boot.autoconfigure.AutoConfigureAfter;
 import org.springframework.boot.autoconfigure.AutoConfigureBefore;
@@ -29,19 +29,19 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 /**
- * Spring Boot Auto Configuration of MyFaces.
+ * Spring Boot Auto Configuration for Mojarra.
  * @author Marcelo Fernandes
  */
 @Configuration
-@EnableConfigurationProperties({MyfacesProperties.class})
-@ConditionalOnClass(name = "org.apache.myfaces.ee6.MyFacesContainerInitializer")
+@EnableConfigurationProperties({MojarraProperties.class})
+@ConditionalOnClass(name = "com.sun.faces.config.FacesInitializer")
 @AutoConfigureBefore(WebMvcAutoConfiguration.class)
-@AutoConfigureAfter({JavaxFacesSpringBootAutoConfiguration.class})
+@AutoConfigureAfter({JavaxFacesAutoConfiguration.class})
 @ConditionalOnWebApplication
-public class MyfacesSpringBootAutoConfiguration {
+public class MojarraAutoConfiguration {
 
 	@Bean
-	public ServletContextInitializer myfacesServletContextInitializer() {
-		return new MyfacesServletContextInitializer();
+	public ServletContextInitializer mojarraServletContextInitializer() {
+		return new MojarraServletContextInitializer();
 	}
 }

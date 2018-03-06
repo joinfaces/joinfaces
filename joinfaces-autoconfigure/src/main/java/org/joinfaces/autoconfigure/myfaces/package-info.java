@@ -17,6 +17,6 @@
 /**
  * MyFaces Spring Boot Auto Configuration classes.
  *
- * @see org.joinfaces.autoconfigure.myfaces.MyfacesSpringBootAutoConfiguration
+ * @see org.joinfaces.autoconfigure.myfaces.MyFacesAutoConfiguration
  */
 package org.joinfaces.autoconfigure.myfaces;

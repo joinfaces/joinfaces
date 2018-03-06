@@ -19,7 +19,7 @@ package org.joinfaces.autoconfigure.primefaces;
 import lombok.Getter;
 import lombok.Setter;
 import org.joinfaces.autoconfigure.configuration.ServletContextInitParameter;
-import org.joinfaces.autoconfigure.configuration.ServletContextInitParameterConfigurationProperties;
+import org.joinfaces.autoconfigure.configuration.ServletContextInitParameterProperties;
 import org.primefaces.util.Constants;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
@@ -34,7 +34,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 @Getter
 @Setter
 @ConfigurationProperties("jsf.primefaces")
-public class Primefaces5_1Properties implements ServletContextInitParameterConfigurationProperties {
+public class Primefaces5_1Properties implements ServletContextInitParameterProperties {
 
 	/**
 	 * Enables window scope so that widgets can be accessed using widgetVar.method() in addition to default PF namespace approach like PF('widgetVar').method().

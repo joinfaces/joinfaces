@@ -17,6 +17,6 @@
 /**
  * BootsFaces Spring Boot Auto Configuration classes.
  *
- * @see org.joinfaces.autoconfigure.bootsfaces.BootsfacesSpringBootAutoConfiguration
+ * @see org.joinfaces.autoconfigure.bootsfaces.BootsfacesAutoConfiguration
  */
 package org.joinfaces.autoconfigure.bootsfaces;
