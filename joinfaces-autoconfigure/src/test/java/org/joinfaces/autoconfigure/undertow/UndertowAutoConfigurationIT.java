@@ -41,7 +41,7 @@ public class UndertowAutoConfigurationIT {
 	public void customize() throws IOException {
 		UndertowServletWebServerFactory factory = new UndertowServletWebServerFactory();
 
-		this.undertowAutoConfiguration.customize(factory);
+		this.undertowAutoConfiguration.jsfUndertowFactoryCustomizer().customize(factory);
 
 		UndertowDeploymentInfoCustomizer undertowDeploymentInfoCustomizer
 			= factory.getDeploymentInfoCustomizers().iterator().next();

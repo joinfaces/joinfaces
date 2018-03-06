@@ -59,8 +59,9 @@ public class JettyAutoConfiguration {
 			Handler[] childHandlersByClass = server.getChildHandlersByClass(WebAppContext.class);
 			final WebAppContext webAppContext = (WebAppContext) childHandlersByClass[0];
 
+			String classPathResourceString = this.jettyProperties.getClassPathResource();
 			try {
-				ClassPathResource classPathResource = new ClassPathResource(this.jettyProperties.getClassPathResource());
+				ClassPathResource classPathResource = new ClassPathResource(classPathResourceString);
 				webAppContext.setBaseResource(new ResourceCollection(classPathResource.getURI().toString()));
 
 				AccessController.doPrivileged(new PrivilegedAction<Void>() {
@@ -71,12 +72,10 @@ public class JettyAutoConfiguration {
 					}
 				});
 
-				log.info("Setting Jetty classLoader to {} directory", this.jettyProperties.getClassPathResource());
+				log.info("Setting Jetty classLoader to {} directory", classPathResourceString);
 			}
 			catch (IOException exception) {
-				log.error("Unable to configure Jetty classLoader to {} directory {}", this.jettyProperties.getClassPathResource(), exception.getMessage());
-
-				throw new RuntimeException(exception);
+				throw new RuntimeException("Unable to configure Jetty classLoader to " + classPathResourceString + " directory", exception);
 			}
 		});
 	}
