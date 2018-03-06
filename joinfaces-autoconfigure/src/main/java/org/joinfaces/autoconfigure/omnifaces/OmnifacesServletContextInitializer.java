@@ -16,46 +16,32 @@
 
 package org.joinfaces.autoconfigure.omnifaces;
 
-import javax.servlet.ServletContainerInitializer;
-import javax.servlet.ServletContext;
-import javax.servlet.ServletException;
+import java.util.Set;
+
+import javax.servlet.annotation.HandlesTypes;
 
 import org.joinfaces.autoconfigure.JsfClassFactory;
 import org.joinfaces.autoconfigure.JsfClassFactoryConfiguration;
+import org.joinfaces.autoconfigure.ServletContainerInitializerRegistrationBean;
 import org.omnifaces.facesviews.FacesViewsInitializer;
-
-import org.springframework.boot.web.servlet.ServletContextInitializer;
 
 /**
  * Servlet context initializer of OmniFaces.
  * @author Marcelo Fernandes
  */
-public class OmnifacesServletContextInitializer implements ServletContextInitializer, JsfClassFactoryConfiguration {
+public class OmnifacesServletContextInitializer extends ServletContainerInitializerRegistrationBean<FacesViewsInitializer> {
 
-	private ServletContainerInitializer servletContainerInitializer;
-
-	@Override
-	public ServletContainerInitializer getServletContainerInitializer() {
-		if (this.servletContainerInitializer == null) {
-			this.servletContainerInitializer = new FacesViewsInitializer();
-		}
-		return this.servletContainerInitializer;
+	public OmnifacesServletContextInitializer() {
+		super(FacesViewsInitializer.class);
 	}
 
 	@Override
-	public String getAnotherFacesConfig() {
-		return null;
-	}
-
-	@Override
-	public boolean isExcludeScopedAnnotations() {
-		return true;
-	}
-
-	@Override
-	public void onStartup(ServletContext sc) throws ServletException {
-		ServletContainerInitializer servletContainerInitializer = getServletContainerInitializer();
-		JsfClassFactory jsfClassFactory = new JsfClassFactory(this);
-		servletContainerInitializer.onStartup(jsfClassFactory.getAllClasses(), sc);
+	protected Set<Class<?>> getClasses(HandlesTypes handlesTypes) {
+		JsfClassFactory jsfClassFactory = new JsfClassFactory(JsfClassFactoryConfiguration.builder()
+				.excludeScopedAnnotations(true)
+				.anotherFacesConfig(null)
+				.handlesTypes(handlesTypes)
+				.build());
+		return jsfClassFactory.getAllClasses();
 	}
 }

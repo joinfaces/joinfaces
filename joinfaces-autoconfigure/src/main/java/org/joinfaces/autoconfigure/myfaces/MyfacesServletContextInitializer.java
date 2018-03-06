@@ -16,53 +16,40 @@
 
 package org.joinfaces.autoconfigure.myfaces;
 
-import javax.servlet.ServletContainerInitializer;
-import javax.servlet.ServletContext;
-import javax.servlet.ServletException;
+import java.util.Set;
+
+import javax.servlet.annotation.HandlesTypes;
 
 import org.apache.myfaces.ee6.MyFacesContainerInitializer;
 import org.joinfaces.autoconfigure.JsfClassFactory;
 import org.joinfaces.autoconfigure.JsfClassFactoryConfiguration;
-
-import org.springframework.boot.web.servlet.ServletContextInitializer;
+import org.joinfaces.autoconfigure.ServletContainerInitializerRegistrationBean;
 
 /**
  * Servlet context initializer of MyFaces.
  * @author Marcelo Fernandes
  */
-public class MyfacesServletContextInitializer implements ServletContextInitializer, JsfClassFactoryConfiguration {
+public class MyfacesServletContextInitializer extends ServletContainerInitializerRegistrationBean<MyFacesContainerInitializer> {
 
 	/**
 	 * Constant of another faces config name of MyFaces.
 	 */
 	public static final String ANOTHER_FACES_CONFIG = "META-INF/standard-faces-config.xml";
 
-	private ServletContainerInitializer servletContainerInitializer;
-
-	@Override
-	public ServletContainerInitializer getServletContainerInitializer() {
-		if (this.servletContainerInitializer == null) {
-			this.servletContainerInitializer = new MyFacesContainerInitializer();
-		}
-		return this.servletContainerInitializer;
+	public MyfacesServletContextInitializer() {
+		super(MyFacesContainerInitializer.class);
 	}
 
 	@Override
-	public String getAnotherFacesConfig() {
-		return ANOTHER_FACES_CONFIG;
-	}
-
-	@Override
-	public boolean isExcludeScopedAnnotations() {
-		return true;
-	}
-
-	@Override
-	public void onStartup(ServletContext sc) throws ServletException {
-		ServletContainerInitializer servletContainerInitializer = getServletContainerInitializer();
-		JsfClassFactory jsfClassFactory = new JsfClassFactory(this);
+	protected Set<Class<?>> getClasses(HandlesTypes handlesTypes) {
+		JsfClassFactoryConfiguration jsfClassFactoryConfiguration = JsfClassFactoryConfiguration.builder()
+				.handlesTypes(handlesTypes)
+				.excludeScopedAnnotations(true)
+				.anotherFacesConfig(ANOTHER_FACES_CONFIG)
+				.build();
+		JsfClassFactory jsfClassFactory = new JsfClassFactory(jsfClassFactoryConfiguration);
 		JoinFacesAnnotationProvider.setAnnotatedClasses(jsfClassFactory.getAnnotatedClassMap());
 		JoinFacesAnnotationProvider.setUrls(jsfClassFactory.getURLs());
-		servletContainerInitializer.onStartup(jsfClassFactory.getAllClasses(), sc);
+		return jsfClassFactory.getAllClasses();
 	}
 }
