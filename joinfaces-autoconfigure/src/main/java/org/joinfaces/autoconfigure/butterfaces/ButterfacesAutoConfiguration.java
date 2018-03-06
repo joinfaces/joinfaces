@@ -20,8 +20,8 @@ import javax.annotation.Nullable;
 
 import lombok.extern.slf4j.Slf4j;
 import net.bootsfaces.C;
-import org.joinfaces.autoconfigure.bootsfaces.BootsfacesProperties;
 import org.joinfaces.autoconfigure.bootsfaces.BootsfacesAutoConfiguration;
+import org.joinfaces.autoconfigure.bootsfaces.BootsfacesProperties;
 import org.joinfaces.autoconfigure.javaxfaces.JavaxFacesAutoConfiguration;
 
 import org.springframework.beans.BeansException;
