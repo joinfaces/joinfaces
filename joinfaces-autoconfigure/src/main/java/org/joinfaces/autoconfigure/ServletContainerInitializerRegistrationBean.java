@@ -27,10 +27,19 @@ import lombok.Setter;
 
 import org.springframework.beans.BeanUtils;
 import org.springframework.boot.web.server.WebServerFactoryCustomizer;
+import org.springframework.boot.web.servlet.RegistrationBean;
 import org.springframework.boot.web.servlet.server.ConfigurableServletWebServerFactory;
 import org.springframework.core.annotation.AnnotationUtils;
-import org.springframework.lang.NonNull;
 
+/**
+ * {@link RegistrationBean} for {@link ServletContainerInitializer}s.
+ * <p>
+ * This is implemented as {@link WebServerFactoryCustomizer} so its only applied to embedded servlet-containers.
+ * When deployed as war file, the external servlet-container will handle the {@link ServletContainerInitializer}.
+ *
+ * @param <T> The type of the {@link ServletContainerInitializer}
+ * @author Lars Grefer
+ */
 @RequiredArgsConstructor
 @Getter
 @Setter

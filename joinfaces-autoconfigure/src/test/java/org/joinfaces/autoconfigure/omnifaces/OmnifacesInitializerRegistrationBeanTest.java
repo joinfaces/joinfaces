@@ -25,11 +25,11 @@ public class OmnifacesInitializerRegistrationBeanTest {
 
 	@Before
 	public void setUp() {
-		omnifacesInitializerRegistrationBean = new OmnifacesInitializerRegistrationBean();
+		this.omnifacesInitializerRegistrationBean = new OmnifacesInitializerRegistrationBean();
 	}
 
 	@Test(expected = RuntimeException.class)
 	public void getClasses() {
-		omnifacesInitializerRegistrationBean.getClasses(null);
+		this.omnifacesInitializerRegistrationBean.getClasses(null);
 	}
 }

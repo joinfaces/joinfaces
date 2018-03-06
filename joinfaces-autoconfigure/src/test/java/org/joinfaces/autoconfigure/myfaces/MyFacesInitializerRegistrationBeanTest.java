@@ -35,7 +35,6 @@ import org.omnifaces.validator.RequiredCheckboxValidator;
 import org.springframework.core.annotation.AnnotationUtils;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.joinfaces.autoconfigure.myfaces.MyFacesInitializerRegistrationBean.ANOTHER_FACES_CONFIG;
 
 public class MyFacesInitializerRegistrationBeanTest {
 
@@ -46,7 +45,7 @@ public class MyFacesInitializerRegistrationBeanTest {
 		JsfClassFactoryConfiguration configuration = JsfClassFactoryConfiguration.builder()
 				.handlesTypes(AnnotationUtils.findAnnotation(MyFacesContainerInitializer.class, HandlesTypes.class))
 				.excludeScopedAnnotations(true)
-				.anotherFacesConfig(ANOTHER_FACES_CONFIG)
+				.anotherFacesConfig(MyFacesInitializerRegistrationBean.ANOTHER_FACES_CONFIG)
 				.build();
 
 		classes = new JsfClassFactory(configuration).getAllClasses();
@@ -54,32 +53,32 @@ public class MyFacesInitializerRegistrationBeanTest {
 
 	@Test
 	public void testOmnifacesSelectItemsIndexConverter() {
-		assertThat(this.classes).contains(SelectItemsIndexConverter.class);
+		assertThat(classes).contains(SelectItemsIndexConverter.class);
 	}
 
 	@Test
 	public void testOmnifacesRequiredCheckboxValidator() {
-		assertThat(this.classes).contains(RequiredCheckboxValidator.class);
+		assertThat(classes).contains(RequiredCheckboxValidator.class);
 	}
 
 	@Test
 	public void testOmnifacesFormComponent() {
-		assertThat(this.classes).contains(Form.class);
+		assertThat(classes).contains(Form.class);
 	}
 
 	@Test
 	public void testJavaxFacesHtmlPanelGroup() {
-		assertThat(this.classes).contains(HtmlPanelGroup.class);
+		assertThat(classes).contains(HtmlPanelGroup.class);
 	}
 
 	@Test
 	public void testMyfacesHtmlGridRenderer() {
-		assertThat(this.classes).contains(HtmlGridRenderer.class);
+		assertThat(classes).contains(HtmlGridRenderer.class);
 	}
 
 	@Test
 	public void testBootsfacesTreeRenderer() {
-		assertThat(this.classes).contains(TreeRenderer.class);
+		assertThat(classes).contains(TreeRenderer.class);
 	}
 
 }

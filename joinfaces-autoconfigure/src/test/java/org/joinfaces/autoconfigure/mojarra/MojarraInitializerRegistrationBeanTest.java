@@ -53,32 +53,32 @@ public class MojarraInitializerRegistrationBeanTest {
 
 	@Test
 	public void testJavaxFacesHtmlPanelGroup() {
-		assertThat(this.classes).contains(HtmlPanelGroup.class);
+		assertThat(classes).contains(HtmlPanelGroup.class);
 	}
 
 	@Test
 	public void testMojarraUIText() {
-		assertThat(this.classes).contains(UIText.class);
+		assertThat(classes).contains(UIText.class);
 	}
 
 	@Test
 	public void testOmnifacesSelectItemsIndexConverter() {
-		assertThat(this.classes).contains(SelectItemsIndexConverter.class);
+		assertThat(classes).contains(SelectItemsIndexConverter.class);
 	}
 
 	@Test
 	public void testOmnifacesRequiredCheckboxValidator() {
-		assertThat(this.classes).contains(RequiredCheckboxValidator.class);
+		assertThat(classes).contains(RequiredCheckboxValidator.class);
 	}
 
 	@Test
 	public void testOmnifacesFormComponent() {
-		assertThat(this.classes).contains(Form.class);
+		assertThat(classes).contains(Form.class);
 	}
 
 	@Test
 	public void testBootsfacesTreeRenderer() {
-		assertThat(this.classes).contains(TreeRenderer.class);
+		assertThat(classes).contains(TreeRenderer.class);
 	}
 
 }

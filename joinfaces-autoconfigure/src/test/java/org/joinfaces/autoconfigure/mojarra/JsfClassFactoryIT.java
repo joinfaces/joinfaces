@@ -40,7 +40,7 @@ public class JsfClassFactoryIT {
 
 	@Before
 	public void setUp() {
-		configuration = JsfClassFactoryConfiguration.builder()
+		this.configuration = JsfClassFactoryConfiguration.builder()
 				.excludeScopedAnnotations(false)
 				.anotherFacesConfig(MojarraInitializerRegistrationBean.ANOTHER_FACES_CONFIG)
 				.handlesTypes(AnnotationUtils.findAnnotation(FacesInitializer.class, HandlesTypes.class))
@@ -49,13 +49,13 @@ public class JsfClassFactoryIT {
 
 	@Test
 	public void testJavaxFacesHtmlPanelGroupWithMojarra() {
-		Set<Class<?>> classes = new JsfClassFactory(configuration).getOtherClasses();
+		Set<Class<?>> classes = new JsfClassFactory(this.configuration).getOtherClasses();
 		assertThat(classes).contains(HtmlPanelGroup.class);
 	}
 
 	@Test
 	public void testMojarraUITextWithMojarra() {
-		Set<Class<?>> classes = new JsfClassFactory(configuration).getOtherClasses();
+		Set<Class<?>> classes = new JsfClassFactory(this.configuration).getOtherClasses();
 		assertThat(classes).contains(UIText.class);
 	}
 
