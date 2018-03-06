@@ -41,7 +41,7 @@ public class JettyAutoConfigurationIT {
 	public void customize() {
 		JettyServletWebServerFactory factory = new JettyServletWebServerFactory();
 
-		this.jettyAutoConfiguration.customize(factory);
+		this.jettyAutoConfiguration.jsfJettyFactoryCustomizer().customize(factory);
 
 		Server server = ((JettyWebServer) factory.getWebServer()).getServer();
 

@@ -16,11 +16,20 @@
 
 package org.joinfaces.autoconfigure.undertow;
 
+import java.net.URL;
+import java.net.URLClassLoader;
+import java.security.AccessController;
+import java.security.PrivilegedAction;
+
+import io.undertow.server.handlers.resource.ClassPathResourceManager;
+import lombok.extern.slf4j.Slf4j;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.boot.web.embedded.undertow.UndertowServletWebServerFactory;
 import org.springframework.boot.web.server.WebServerFactoryCustomizer;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 /**
@@ -28,16 +37,29 @@ import org.springframework.context.annotation.Configuration;
  * Configure undertow to load jsf resources from classpath.
  * @author Marcelo Fernandes
  */
+@Slf4j
 @Configuration
 @EnableConfigurationProperties({UndertowProperties.class})
 @ConditionalOnClass(name = "io.undertow.Undertow")
-public class UndertowAutoConfiguration implements WebServerFactoryCustomizer<UndertowServletWebServerFactory> {
+public class UndertowAutoConfiguration {
 
 	@Autowired
 	private UndertowProperties undertowProperties;
 
-	@Override
-	public void customize(UndertowServletWebServerFactory container) {
-		container.addDeploymentInfoCustomizers(new JsfUndertowDeploymentInfoCustomizer(this.undertowProperties));
+	@Bean
+	public WebServerFactoryCustomizer<UndertowServletWebServerFactory> jsfUndertowFactoryCustomizer() {
+		return factory -> factory.addDeploymentInfoCustomizers(deploymentInfo -> {
+			AccessController.doPrivileged((PrivilegedAction<Void>) () -> {
+				ClassLoader jsfClassLoader = new URLClassLoader(new URL[0], this.getClass().getClassLoader());
+				deploymentInfo.setClassLoader(jsfClassLoader);
+
+				deploymentInfo.setResourceManager(new ClassPathResourceManager(
+						jsfClassLoader, this.undertowProperties.getClassPathResource()));
+
+				return null;
+			});
+
+			log.info("Setting Undertow classLoader to {} directory", this.undertowProperties.getClassPathResource());
+		});
 	}
 }
