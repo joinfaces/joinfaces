@@ -20,7 +20,7 @@ import lombok.Getter;
 import lombok.Setter;
 import org.joinfaces.autoconfigure.configuration.NestedProperty;
 import org.joinfaces.autoconfigure.configuration.ServletContextInitParameter;
-import org.joinfaces.autoconfigure.configuration.ServletContextInitParameterConfigurationProperties;
+import org.joinfaces.autoconfigure.configuration.ServletContextInitParameterProperties;
 import org.richfaces.application.CoreConfiguration;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
@@ -38,7 +38,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 @Getter
 @Setter
 @ConfigurationProperties(prefix = "jsf.richfaces")
-public class RichfacesProperties implements ServletContextInitParameterConfigurationProperties {
+public class RichfacesProperties implements ServletContextInitParameterProperties {
 
 	// (defaultValue = "true", names = "org.richfaces.enableControlSkinning")
 	@ServletContextInitParameter("org.richfaces.enableControlSkinning")

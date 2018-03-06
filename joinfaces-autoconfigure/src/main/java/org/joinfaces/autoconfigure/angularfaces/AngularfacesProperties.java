@@ -19,7 +19,7 @@ package org.joinfaces.autoconfigure.angularfaces;
 import lombok.Getter;
 import lombok.Setter;
 import org.joinfaces.autoconfigure.configuration.ServletContextInitParameter;
-import org.joinfaces.autoconfigure.configuration.ServletContextInitParameterConfigurationProperties;
+import org.joinfaces.autoconfigure.configuration.ServletContextInitParameterProperties;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
@@ -31,7 +31,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 @Getter
 @Setter
 @ConfigurationProperties(prefix = "jsf.angularfaces")
-public class AngularfacesProperties implements ServletContextInitParameterConfigurationProperties {
+public class AngularfacesProperties implements ServletContextInitParameterProperties {
 
 	static final String PREFIX = "AngularFaces.";
 

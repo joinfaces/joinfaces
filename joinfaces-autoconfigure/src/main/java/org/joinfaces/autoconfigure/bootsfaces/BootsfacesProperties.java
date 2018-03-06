@@ -21,7 +21,7 @@ import lombok.Setter;
 import net.bootsfaces.C;
 import org.joinfaces.autoconfigure.configuration.NestedProperty;
 import org.joinfaces.autoconfigure.configuration.ServletContextInitParameter;
-import org.joinfaces.autoconfigure.configuration.ServletContextInitParameterConfigurationProperties;
+import org.joinfaces.autoconfigure.configuration.ServletContextInitParameterProperties;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
@@ -41,7 +41,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 @Getter
 @Setter
 @ConfigurationProperties(prefix = "jsf.bootsfaces")
-public class BootsfacesProperties implements ServletContextInitParameterConfigurationProperties {
+public class BootsfacesProperties implements ServletContextInitParameterProperties {
 
 	private static final String PREFFIX = "net.bootsfaces.";
 

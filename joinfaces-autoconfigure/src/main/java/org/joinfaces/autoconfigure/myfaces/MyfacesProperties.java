@@ -46,7 +46,7 @@ import org.apache.myfaces.webapp.AbstractFacesInitializer;
 import org.apache.myfaces.webapp.FacesInitializer;
 import org.joinfaces.autoconfigure.configuration.NestedProperty;
 import org.joinfaces.autoconfigure.configuration.ServletContextInitParameter;
-import org.joinfaces.autoconfigure.configuration.ServletContextInitParameterConfigurationProperties;
+import org.joinfaces.autoconfigure.configuration.ServletContextInitParameterProperties;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
@@ -60,7 +60,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 @Getter
 @Setter
 @ConfigurationProperties(prefix = "jsf.myfaces")
-public class MyfacesProperties implements ServletContextInitParameterConfigurationProperties {
+public class MyfacesProperties implements ServletContextInitParameterProperties {
 
 	static final String PREFFIX = "org.apache.myfaces.";
 
