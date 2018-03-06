@@ -30,7 +30,7 @@ public class TomcatAutoConfigurationIT {
 
 		TomcatAutoConfiguration tomcatAutoConfiguration = new TomcatAutoConfiguration();
 
-		tomcatAutoConfiguration.customize(tomcatFactory);
+		tomcatAutoConfiguration.jsfTomcatFactoryCustomizer().customize(tomcatFactory);
 
 		assertThat(tomcatFactory.getTomcatContextCustomizers())
 			.isNotEmpty();
@@ -42,7 +42,7 @@ public class TomcatAutoConfigurationIT {
 
 		TomcatAutoConfiguration tomcatAutoConfiguration = new TomcatAutoConfiguration();
 
-		tomcatAutoConfiguration.customize(tomcatFactory);
+		tomcatAutoConfiguration.jsfTomcatFactoryCustomizer().customize(tomcatFactory);
 
 		assertThat(tomcatFactory.getTomcatConnectorCustomizers())
 			.isEmpty();
