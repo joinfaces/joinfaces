@@ -1,5 +1,5 @@
 /*
- * Copyright 2016-2017 the original author or authors.
+ * Copyright 2016-2016 the original author or authors.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -23,40 +23,62 @@ import javax.servlet.annotation.HandlesTypes;
 
 import com.sun.faces.config.FacesInitializer;
 import com.sun.faces.facelets.compiler.UIText;
+import net.bootsfaces.component.tree.TreeRenderer;
 import org.joinfaces.autoconfigure.JsfClassFactory;
 import org.joinfaces.autoconfigure.JsfClassFactoryConfiguration;
-import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Test;
+import org.omnifaces.component.input.Form;
+import org.omnifaces.converter.SelectItemsIndexConverter;
+import org.omnifaces.validator.RequiredCheckboxValidator;
 
 import org.springframework.core.annotation.AnnotationUtils;
-import org.springframework.test.context.web.WebAppConfiguration;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-@WebAppConfiguration
-public class JsfClassFactoryIT {
+public class MojarraInitializerRegistrationBeanTest {
 
-	private JsfClassFactoryConfiguration configuration;
+	private static Set<Class<?>> classes;
 
-	@Before
-	public void setUp() {
-		this.configuration = JsfClassFactoryConfiguration.builder()
-				.excludeScopedAnnotations(false)
-				.anotherFacesConfig(MojarraInitializerRegistrationBean.ANOTHER_FACES_CONFIG)
+	@BeforeClass
+	public static void setupClasses() {
+		JsfClassFactoryConfiguration configuration = JsfClassFactoryConfiguration.builder()
+				.excludeScopedAnnotations(true)
 				.handlesTypes(AnnotationUtils.findAnnotation(FacesInitializer.class, HandlesTypes.class))
+				.anotherFacesConfig(MojarraInitializerRegistrationBean.ANOTHER_FACES_CONFIG)
 				.build();
+
+		classes = new JsfClassFactory(configuration).getAllClasses();
 	}
 
 	@Test
-	public void testJavaxFacesHtmlPanelGroupWithMojarra() {
-		Set<Class<?>> classes = new JsfClassFactory(this.configuration).getOtherClasses();
+	public void testJavaxFacesHtmlPanelGroup() {
 		assertThat(classes).contains(HtmlPanelGroup.class);
 	}
 
 	@Test
-	public void testMojarraUITextWithMojarra() {
-		Set<Class<?>> classes = new JsfClassFactory(this.configuration).getOtherClasses();
+	public void testMojarraUIText() {
 		assertThat(classes).contains(UIText.class);
+	}
+
+	@Test
+	public void testOmnifacesSelectItemsIndexConverter() {
+		assertThat(classes).contains(SelectItemsIndexConverter.class);
+	}
+
+	@Test
+	public void testOmnifacesRequiredCheckboxValidator() {
+		assertThat(classes).contains(RequiredCheckboxValidator.class);
+	}
+
+	@Test
+	public void testOmnifacesFormComponent() {
+		assertThat(classes).contains(Form.class);
+	}
+
+	@Test
+	public void testBootsfacesTreeRenderer() {
+		assertThat(classes).contains(TreeRenderer.class);
 	}
 
 }

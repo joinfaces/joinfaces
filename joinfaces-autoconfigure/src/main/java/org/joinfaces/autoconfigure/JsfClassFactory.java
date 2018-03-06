@@ -78,10 +78,7 @@ public class JsfClassFactory {
 	private TypesHandled handlesTypes() {
 		TypesHandled result = new TypesHandled();
 
-		HandlesTypes ht = null;
-		if (this.jsfAnnotatedClassFactoryConfiguration.getServletContainerInitializer() != null) {
-			ht = this.jsfAnnotatedClassFactoryConfiguration.getServletContainerInitializer().getClass().getAnnotation(HandlesTypes.class);
-		}
+		HandlesTypes ht = this.jsfAnnotatedClassFactoryConfiguration.getHandlesTypes();
 		if (ht != null) {
 			Set<Class<? extends Annotation>> annotationsToExclude = annotationsToExclude();
 
