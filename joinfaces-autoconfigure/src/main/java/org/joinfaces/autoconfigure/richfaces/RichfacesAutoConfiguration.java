@@ -14,33 +14,38 @@
  * limitations under the License.
  */
 
-package org.joinfaces.autoconfigure.myfaces;
+package org.joinfaces.autoconfigure.richfaces;
 
-import org.joinfaces.autoconfigure.javaxfaces.JavaxFacesSpringBootAutoConfiguration;
+import org.joinfaces.autoconfigure.javaxfaces.JavaxFacesAutoConfiguration;
+import org.richfaces.webapp.ResourceServlet;
 
-import org.springframework.boot.autoconfigure.AutoConfigureAfter;
 import org.springframework.boot.autoconfigure.AutoConfigureBefore;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnWebApplication;
-import org.springframework.boot.autoconfigure.web.servlet.WebMvcAutoConfiguration;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
+import org.springframework.boot.web.servlet.ServletRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 /**
- * Spring Boot Auto Configuration of MyFaces.
+ * Spring Boot Auto Configuration of RichFaces.
  * @author Marcelo Fernandes
+ * @author Jamillo Santos
+ * @author Renato Soares
  */
 @Configuration
-@EnableConfigurationProperties({MyfacesProperties.class})
-@ConditionalOnClass(name = "org.apache.myfaces.ee6.MyFacesContainerInitializer")
-@AutoConfigureBefore(WebMvcAutoConfiguration.class)
-@AutoConfigureAfter({JavaxFacesSpringBootAutoConfiguration.class})
+@EnableConfigurationProperties(RichfacesProperties.class)
+@ConditionalOnClass(name = "org.richfaces.application.CoreConfiguration")
+@AutoConfigureBefore(JavaxFacesAutoConfiguration.class)
 @ConditionalOnWebApplication
-public class MyfacesSpringBootAutoConfiguration {
+public class RichfacesAutoConfiguration {
 
 	@Bean
-	public MyFacesInitializerRegistrationBean myFacesServletContainerInitializer() {
-		return new MyFacesInitializerRegistrationBean();
+	public ServletRegistrationBean<ResourceServlet> richfacesResourcesServlet() {
+		ServletRegistrationBean<ResourceServlet> result = new ServletRegistrationBean<>();
+		result.setServlet(new ResourceServlet());
+		result.setLoadOnStartup(1);
+		result.addUrlMappings("/org.richfaces.resources/*");
+		return result;
 	}
 }

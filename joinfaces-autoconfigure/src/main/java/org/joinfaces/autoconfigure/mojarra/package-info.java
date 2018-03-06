@@ -17,6 +17,6 @@
 /**
  * Mojarra Spring Boot Auto Configuration classes.
  *
- * @see org.joinfaces.autoconfigure.mojarra.MojarraSpringBootAutoConfiguration
+ * @see org.joinfaces.autoconfigure.mojarra.MojarraAutoConfiguration
  */
 package org.joinfaces.autoconfigure.mojarra;

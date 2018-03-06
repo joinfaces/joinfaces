@@ -31,17 +31,17 @@ import org.springframework.test.context.junit4.SpringRunner;
 import static org.assertj.core.api.Assertions.assertThat;
 
 @RunWith(SpringRunner.class)
-@SpringBootTest(classes = UndertowSpringBootAutoConfiguration.class, webEnvironment = SpringBootTest.WebEnvironment.MOCK)
-public class UndertowSpringBootAutoConfigurationIT {
+@SpringBootTest(classes = UndertowAutoConfiguration.class, webEnvironment = SpringBootTest.WebEnvironment.MOCK)
+public class UndertowAutoConfigurationIT {
 
 	@Autowired
-	private UndertowSpringBootAutoConfiguration undertowSpringBootAutoConfiguration;
+	private UndertowAutoConfiguration undertowAutoConfiguration;
 
 	@Test
 	public void customize() throws IOException {
 		UndertowServletWebServerFactory factory = new UndertowServletWebServerFactory();
 
-		this.undertowSpringBootAutoConfiguration.customize(factory);
+		this.undertowAutoConfiguration.customize(factory);
 
 		UndertowDeploymentInfoCustomizer undertowDeploymentInfoCustomizer
 			= factory.getDeploymentInfoCustomizers().iterator().next();

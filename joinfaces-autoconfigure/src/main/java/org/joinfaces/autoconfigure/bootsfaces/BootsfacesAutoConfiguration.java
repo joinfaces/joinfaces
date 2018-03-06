@@ -14,30 +14,24 @@
  * limitations under the License.
  */
 
-package org.joinfaces.autoconfigure.omnifaces;
+package org.joinfaces.autoconfigure.bootsfaces;
 
-import org.joinfaces.autoconfigure.javaxfaces.JavaxFacesSpringBootAutoConfiguration;
+import org.joinfaces.autoconfigure.javaxfaces.JavaxFacesAutoConfiguration;
 
 import org.springframework.boot.autoconfigure.AutoConfigureBefore;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnWebApplication;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
-import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 /**
- * Spring Boot Auto Configuration of OmniFaces.
+ * Spring Boot Auto Configuration of BootsFaces.
  * @author Marcelo Fernandes
  */
 @Configuration
-@EnableConfigurationProperties(OmnifacesProperties.class)
-@ConditionalOnClass(name = "org.omnifaces.facesviews.FacesViewsInitializer")
-@AutoConfigureBefore(JavaxFacesSpringBootAutoConfiguration.class)
+@EnableConfigurationProperties(BootsfacesProperties.class)
+@ConditionalOnClass(name = "net.bootsfaces.C")
+@AutoConfigureBefore(JavaxFacesAutoConfiguration.class)
 @ConditionalOnWebApplication
-public class OmnifacesSpringBootAutoConfiguration {
-
-	@Bean
-	public OmnifacesInitializerRegistrationBean omnifacesServletContainerInitializer() {
-		return new OmnifacesInitializerRegistrationBean();
-	}
+public class BootsfacesAutoConfiguration {
 }

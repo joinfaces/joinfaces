@@ -32,11 +32,11 @@ import org.springframework.context.annotation.Configuration;
  */
 @Configuration
 @ConditionalOnWebApplication
-public class ServletContextInitParameterConfigurationPropertiesAutoConfiguration {
+public class ServletContextInitParameterPropertiesAutoConfiguration {
 
 	@Bean
-	@ConditionalOnBean(ServletContextInitParameterConfigurationProperties.class)
-	public ServletContextInitializer servletContextInitParameterInitializer(List<ServletContextInitParameterConfigurationProperties> initParameterProperties) {
+	@ConditionalOnBean(ServletContextInitParameterProperties.class)
+	public ServletContextInitializer servletContextInitParameterInitializer(List<ServletContextInitParameterProperties> initParameterProperties) {
 		return new InitParameterServletContextConfigurer(initParameterProperties);
 	}
 }

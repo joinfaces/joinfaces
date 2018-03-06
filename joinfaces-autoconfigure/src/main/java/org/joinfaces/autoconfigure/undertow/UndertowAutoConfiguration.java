@@ -31,7 +31,7 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 @EnableConfigurationProperties({UndertowProperties.class})
 @ConditionalOnClass(name = "io.undertow.Undertow")
-public class UndertowSpringBootAutoConfiguration implements WebServerFactoryCustomizer<UndertowServletWebServerFactory> {
+public class UndertowAutoConfiguration implements WebServerFactoryCustomizer<UndertowServletWebServerFactory> {
 
 	@Autowired
 	private UndertowProperties undertowProperties;

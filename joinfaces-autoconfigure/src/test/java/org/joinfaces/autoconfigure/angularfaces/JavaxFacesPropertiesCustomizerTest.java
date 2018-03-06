@@ -30,11 +30,11 @@ import static org.assertj.core.api.Assertions.assertThat;
  */
 public class JavaxFacesPropertiesCustomizerTest {
 
-	private AngularfacesSpringBootAutoConfiguration.JavaxFacesPropertiesPostProcessor javaxFacesPropertiesCustomizer;
+	private AngularfacesAutoConfiguration.JavaxFacesPropertiesPostProcessor javaxFacesPropertiesCustomizer;
 
 	@Before
 	public void setUp() {
-		this.javaxFacesPropertiesCustomizer = new AngularfacesSpringBootAutoConfiguration.JavaxFacesPropertiesPostProcessor();
+		this.javaxFacesPropertiesCustomizer = new AngularfacesAutoConfiguration.JavaxFacesPropertiesPostProcessor();
 	}
 
 	@Test

@@ -23,7 +23,7 @@ import com.sun.faces.spi.SerializationProvider;
 import lombok.Getter;
 import lombok.Setter;
 import org.joinfaces.autoconfigure.configuration.ServletContextInitParameter;
-import org.joinfaces.autoconfigure.configuration.ServletContextInitParameterConfigurationProperties;
+import org.joinfaces.autoconfigure.configuration.ServletContextInitParameterProperties;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
@@ -36,7 +36,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 @Getter
 @Setter
 @ConfigurationProperties(prefix = "jsf.mojarra")
-public class MojarraProperties implements ServletContextInitParameterConfigurationProperties {
+public class MojarraProperties implements ServletContextInitParameterProperties {
 
 	static final String PREFIX = "com.sun.faces.";
 

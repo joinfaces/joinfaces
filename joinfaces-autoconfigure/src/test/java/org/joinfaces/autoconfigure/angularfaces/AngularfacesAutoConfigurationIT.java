@@ -38,7 +38,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 @RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @DirtiesContext
-public class AngularfacesSpringBootAutoConfigurationIT {
+public class AngularfacesAutoConfigurationIT {
 
 	@Autowired
 	JavaxFaces2_0Properties javaxFaces2_0Properties;

@@ -34,7 +34,7 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 @EnableConfigurationProperties({JettyProperties.class})
 @ConditionalOnClass(name = "org.eclipse.jetty.server.Server")
-public class JettySpringBootAutoConfiguration implements WebServerFactoryCustomizer<JettyServletWebServerFactory> {
+public class JettyAutoConfiguration implements WebServerFactoryCustomizer<JettyServletWebServerFactory> {
 
 	@Autowired
 	private JettyProperties jettyProperties;
