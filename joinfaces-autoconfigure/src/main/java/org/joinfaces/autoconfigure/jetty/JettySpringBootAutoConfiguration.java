@@ -16,12 +16,25 @@
 
 package org.joinfaces.autoconfigure.jetty;
 
+import java.io.IOException;
+import java.net.URL;
+import java.net.URLClassLoader;
+import java.security.AccessController;
+import java.security.PrivilegedAction;
+
+import lombok.extern.slf4j.Slf4j;
+import org.eclipse.jetty.server.Handler;
+import org.eclipse.jetty.util.resource.ResourceCollection;
+import org.eclipse.jetty.webapp.WebAppContext;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.boot.web.embedded.jetty.JettyServletWebServerFactory;
 import org.springframework.boot.web.server.WebServerFactoryCustomizer;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.core.io.ClassPathResource;
 
 /**
  * Spring Boot Auto Configuration of Jetty.
@@ -31,16 +44,40 @@ import org.springframework.context.annotation.Configuration;
  * https://github.com/spring-projects/spring-boot/pull/5290
  * @author Marcelo Fernandes
  */
+@Slf4j
 @Configuration
 @EnableConfigurationProperties({JettyProperties.class})
 @ConditionalOnClass(name = "org.eclipse.jetty.server.Server")
-public class JettySpringBootAutoConfiguration implements WebServerFactoryCustomizer<JettyServletWebServerFactory> {
+public class JettySpringBootAutoConfiguration {
 
 	@Autowired
 	private JettyProperties jettyProperties;
 
-	@Override
-	public void customize(JettyServletWebServerFactory container) {
-		container.addServerCustomizers(new JsfJettyServerCustomizer(this.jettyProperties));
+	@Bean
+	public WebServerFactoryCustomizer<JettyServletWebServerFactory> jsfJettyFactoryCustomizer() {
+		return factory -> factory.addServerCustomizers(server -> {
+			Handler[] childHandlersByClass = server.getChildHandlersByClass(WebAppContext.class);
+			final WebAppContext webAppContext = (WebAppContext) childHandlersByClass[0];
+
+			try {
+				ClassPathResource classPathResource = new ClassPathResource(this.jettyProperties.getClassPathResource());
+				webAppContext.setBaseResource(new ResourceCollection(classPathResource.getURI().toString()));
+
+				AccessController.doPrivileged(new PrivilegedAction<Void>() {
+					@Override
+					public Void run() {
+						webAppContext.setClassLoader(new URLClassLoader(new URL[0], this.getClass().getClassLoader()));
+						return null;
+					}
+				});
+
+				log.info("Setting Jetty classLoader to {} directory", this.jettyProperties.getClassPathResource());
+			}
+			catch (IOException exception) {
+				log.error("Unable to configure Jetty classLoader to {} directory {}", this.jettyProperties.getClassPathResource(), exception.getMessage());
+
+				throw new RuntimeException(exception);
+			}
+		});
 	}
 }
