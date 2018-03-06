@@ -40,7 +40,7 @@ import org.springframework.context.annotation.Configuration;
 public class MojarraSpringBootAutoConfiguration {
 
 	@Bean
-	public MojarraServletContextInitializer mojarraServletContextInitializer() {
-		return new MojarraServletContextInitializer();
+	public MojarraInitializerRegistrationBean mojarraServletContainerInitializer() {
+		return new MojarraInitializerRegistrationBean();
 	}
 }

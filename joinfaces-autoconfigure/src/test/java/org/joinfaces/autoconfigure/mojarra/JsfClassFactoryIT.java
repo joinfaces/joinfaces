@@ -42,7 +42,7 @@ public class JsfClassFactoryIT {
 	public void setUp() {
 		configuration = JsfClassFactoryConfiguration.builder()
 				.excludeScopedAnnotations(false)
-				.anotherFacesConfig(MojarraServletContextInitializer.ANOTHER_FACES_CONFIG)
+				.anotherFacesConfig(MojarraInitializerRegistrationBean.ANOTHER_FACES_CONFIG)
 				.handlesTypes(AnnotationUtils.findAnnotation(FacesInitializer.class, HandlesTypes.class))
 				.build();
 	}

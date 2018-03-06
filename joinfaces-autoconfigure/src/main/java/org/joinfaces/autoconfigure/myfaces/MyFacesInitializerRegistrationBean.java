@@ -29,14 +29,14 @@ import org.joinfaces.autoconfigure.ServletContainerInitializerRegistrationBean;
  * Servlet context initializer of MyFaces.
  * @author Marcelo Fernandes
  */
-public class MyfacesServletContextInitializer extends ServletContainerInitializerRegistrationBean<MyFacesContainerInitializer> {
+public class MyFacesInitializerRegistrationBean extends ServletContainerInitializerRegistrationBean<MyFacesContainerInitializer> {
 
 	/**
 	 * Constant of another faces config name of MyFaces.
 	 */
 	public static final String ANOTHER_FACES_CONFIG = "META-INF/standard-faces-config.xml";
 
-	public MyfacesServletContextInitializer() {
+	public MyFacesInitializerRegistrationBean() {
 		super(MyFacesContainerInitializer.class);
 	}
 

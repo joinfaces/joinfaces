@@ -40,7 +40,7 @@ import org.springframework.context.annotation.Configuration;
 public class MyfacesSpringBootAutoConfiguration {
 
 	@Bean
-	public MyfacesServletContextInitializer myfacesServletContextInitializer() {
-		return new MyfacesServletContextInitializer();
+	public MyFacesInitializerRegistrationBean myFacesServletContainerInitializer() {
+		return new MyFacesInitializerRegistrationBean();
 	}
 }

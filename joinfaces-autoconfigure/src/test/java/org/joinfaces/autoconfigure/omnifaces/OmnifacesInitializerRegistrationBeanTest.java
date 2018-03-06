@@ -19,17 +19,17 @@ package org.joinfaces.autoconfigure.omnifaces;
 import org.junit.Before;
 import org.junit.Test;
 
-public class OmnifacesServletContextInitializerTest {
+public class OmnifacesInitializerRegistrationBeanTest {
 
-	private OmnifacesServletContextInitializer omnifacesServletContextInitializer;
+	private OmnifacesInitializerRegistrationBean omnifacesInitializerRegistrationBean;
 
 	@Before
 	public void setUp() {
-		omnifacesServletContextInitializer = new OmnifacesServletContextInitializer();
+		omnifacesInitializerRegistrationBean = new OmnifacesInitializerRegistrationBean();
 	}
 
 	@Test(expected = RuntimeException.class)
 	public void getClasses() {
-		omnifacesServletContextInitializer.getClasses(null);
+		omnifacesInitializerRegistrationBean.getClasses(null);
 	}
 }

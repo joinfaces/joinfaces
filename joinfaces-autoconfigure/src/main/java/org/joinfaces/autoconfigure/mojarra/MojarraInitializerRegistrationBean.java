@@ -14,27 +14,40 @@
  * limitations under the License.
  */
 
-package org.joinfaces.autoconfigure.omnifaces;
+package org.joinfaces.autoconfigure.mojarra;
 
 import java.util.Set;
 
 import javax.servlet.annotation.HandlesTypes;
 
+import com.sun.faces.config.FacesInitializer;
+import org.joinfaces.autoconfigure.JsfClassFactory;
+import org.joinfaces.autoconfigure.JsfClassFactoryConfiguration;
 import org.joinfaces.autoconfigure.ServletContainerInitializerRegistrationBean;
-import org.omnifaces.facesviews.FacesViewsInitializer;
 
 /**
- * Servlet context initializer of OmniFaces.
+ * Servlet Context Initializer of Mojarra.
+ *
  * @author Marcelo Fernandes
  */
-public class OmnifacesServletContextInitializer extends ServletContainerInitializerRegistrationBean<FacesViewsInitializer> {
+public class MojarraInitializerRegistrationBean extends ServletContainerInitializerRegistrationBean<FacesInitializer> {
 
-	public OmnifacesServletContextInitializer() {
-		super(FacesViewsInitializer.class);
+	/**
+	 * Constant of another faces config of mojarra.
+	 */
+	public static final String ANOTHER_FACES_CONFIG = "com/sun/faces/jsf-ri-runtime.xml";
+
+	public MojarraInitializerRegistrationBean() {
+		super(FacesInitializer.class);
 	}
 
 	@Override
 	protected Set<Class<?>> getClasses(HandlesTypes handlesTypes) {
-		throw new IllegalStateException(FacesViewsInitializer.class + " is not annotated with " + HandlesTypes.class);
+		JsfClassFactory jsfClassFactory = new JsfClassFactory(JsfClassFactoryConfiguration.builder()
+				.anotherFacesConfig(ANOTHER_FACES_CONFIG)
+				.handlesTypes(handlesTypes)
+				.excludeScopedAnnotations(true)
+				.build());
+		return jsfClassFactory.getAllClasses();
 	}
 }

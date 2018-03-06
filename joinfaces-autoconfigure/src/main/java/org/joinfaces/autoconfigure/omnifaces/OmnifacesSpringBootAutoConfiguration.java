@@ -37,7 +37,7 @@ import org.springframework.context.annotation.Configuration;
 public class OmnifacesSpringBootAutoConfiguration {
 
 	@Bean
-	public OmnifacesServletContextInitializer omnifacesServletContextInitializer() {
-		return new OmnifacesServletContextInitializer();
+	public OmnifacesInitializerRegistrationBean omnifacesServletContainerInitializer() {
+		return new OmnifacesInitializerRegistrationBean();
 	}
 }

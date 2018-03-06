@@ -14,56 +14,42 @@
  * limitations under the License.
  */
 
-package org.joinfaces.autoconfigure.mojarra;
+package org.joinfaces.autoconfigure.myfaces;
 
 import java.util.Set;
 
 import javax.faces.component.html.HtmlPanelGroup;
 import javax.servlet.annotation.HandlesTypes;
 
-import com.sun.faces.config.FacesInitializer;
-import com.sun.faces.facelets.compiler.UIText;
 import net.bootsfaces.component.tree.TreeRenderer;
+import org.apache.myfaces.ee6.MyFacesContainerInitializer;
+import org.apache.myfaces.renderkit.html.HtmlGridRenderer;
 import org.joinfaces.autoconfigure.JsfClassFactory;
 import org.joinfaces.autoconfigure.JsfClassFactoryConfiguration;
 import org.junit.BeforeClass;
 import org.junit.Test;
-import org.junit.runner.RunWith;
 import org.omnifaces.component.input.Form;
 import org.omnifaces.converter.SelectItemsIndexConverter;
 import org.omnifaces.validator.RequiredCheckboxValidator;
 
-import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.core.annotation.AnnotationUtils;
-import org.springframework.test.context.junit4.SpringRunner;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.joinfaces.autoconfigure.myfaces.MyFacesInitializerRegistrationBean.ANOTHER_FACES_CONFIG;
 
-@RunWith(SpringRunner.class)
-@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.MOCK)
-public class MojarraServletContextInitializerIT {
+public class MyFacesInitializerRegistrationBeanTest {
 
 	private static Set<Class<?>> classes;
 
 	@BeforeClass
 	public static void setupClasses() {
 		JsfClassFactoryConfiguration configuration = JsfClassFactoryConfiguration.builder()
+				.handlesTypes(AnnotationUtils.findAnnotation(MyFacesContainerInitializer.class, HandlesTypes.class))
 				.excludeScopedAnnotations(true)
-				.handlesTypes(AnnotationUtils.findAnnotation(FacesInitializer.class, HandlesTypes.class))
-				.anotherFacesConfig(MojarraServletContextInitializer.ANOTHER_FACES_CONFIG)
+				.anotherFacesConfig(ANOTHER_FACES_CONFIG)
 				.build();
 
 		classes = new JsfClassFactory(configuration).getAllClasses();
-	}
-
-	@Test
-	public void testJavaxFacesHtmlPanelGroup() {
-		assertThat(this.classes).contains(HtmlPanelGroup.class);
-	}
-
-	@Test
-	public void testMojarraUIText() {
-		assertThat(this.classes).contains(UIText.class);
 	}
 
 	@Test
@@ -79,6 +65,16 @@ public class MojarraServletContextInitializerIT {
 	@Test
 	public void testOmnifacesFormComponent() {
 		assertThat(this.classes).contains(Form.class);
+	}
+
+	@Test
+	public void testJavaxFacesHtmlPanelGroup() {
+		assertThat(this.classes).contains(HtmlPanelGroup.class);
+	}
+
+	@Test
+	public void testMyfacesHtmlGridRenderer() {
+		assertThat(this.classes).contains(HtmlGridRenderer.class);
 	}
 
 	@Test

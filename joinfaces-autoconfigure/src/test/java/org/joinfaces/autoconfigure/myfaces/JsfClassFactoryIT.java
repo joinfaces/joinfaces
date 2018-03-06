@@ -38,7 +38,7 @@ public class JsfClassFactoryIT {
 	@Test
 	public void testJavaxFacesHtmlPanelGroupWithMyfaces() {
 		JsfClassFactoryConfiguration configuration = JsfClassFactoryConfiguration.builder()
-				.anotherFacesConfig(MyfacesServletContextInitializer.ANOTHER_FACES_CONFIG)
+				.anotherFacesConfig(MyFacesInitializerRegistrationBean.ANOTHER_FACES_CONFIG)
 				.excludeScopedAnnotations(true)
 				.handlesTypes(AnnotationUtils.findAnnotation(MyFacesContainerInitializer.class, HandlesTypes.class))
 				.build();
@@ -50,7 +50,7 @@ public class JsfClassFactoryIT {
 	@Test
 	public void testMyfacesHtmlGridRendererWithMyfaces() {
 		JsfClassFactoryConfiguration configuration = JsfClassFactoryConfiguration.builder()
-				.anotherFacesConfig(MyfacesServletContextInitializer.ANOTHER_FACES_CONFIG)
+				.anotherFacesConfig(MyFacesInitializerRegistrationBean.ANOTHER_FACES_CONFIG)
 				.excludeScopedAnnotations(true)
 				.handlesTypes(AnnotationUtils.findAnnotation(MyFacesContainerInitializer.class, HandlesTypes.class))
 				.build();
