@@ -20,8 +20,6 @@ import java.util.Set;
 
 import javax.servlet.annotation.HandlesTypes;
 
-import org.joinfaces.autoconfigure.JsfClassFactory;
-import org.joinfaces.autoconfigure.JsfClassFactoryConfiguration;
 import org.joinfaces.autoconfigure.ServletContainerInitializerRegistrationBean;
 import org.omnifaces.facesviews.FacesViewsInitializer;
 
@@ -37,11 +35,6 @@ public class OmnifacesServletContextInitializer extends ServletContainerInitiali
 
 	@Override
 	protected Set<Class<?>> getClasses(HandlesTypes handlesTypes) {
-		JsfClassFactory jsfClassFactory = new JsfClassFactory(JsfClassFactoryConfiguration.builder()
-				.excludeScopedAnnotations(true)
-				.anotherFacesConfig(null)
-				.handlesTypes(handlesTypes)
-				.build());
-		return jsfClassFactory.getAllClasses();
+		throw new IllegalStateException(FacesViewsInitializer.class + " is not annotated with " + HandlesTypes.class);
 	}
 }

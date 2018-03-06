@@ -29,6 +29,7 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.boot.web.server.WebServerFactoryCustomizer;
 import org.springframework.boot.web.servlet.server.ConfigurableServletWebServerFactory;
 import org.springframework.core.annotation.AnnotationUtils;
+import org.springframework.lang.NonNull;
 
 @RequiredArgsConstructor
 @Getter
@@ -44,15 +45,15 @@ public abstract class ServletContainerInitializerRegistrationBean<T extends Serv
 
 			Set<Class<?>> classes = null;
 
-			if (handlesTypes != null && handlesTypes.value().length > 0) {
+			if (handlesTypes != null) {
 				classes = getClasses(handlesTypes);
 			}
 
-			BeanUtils.instantiateClass(getServletContainerInitializerClass()).onStartup(classes, servletContext);
+			BeanUtils.instantiateClass(getServletContainerInitializerClass())
+					.onStartup(classes, servletContext);
 		});
 	}
 
 	protected abstract Set<Class<?>> getClasses(HandlesTypes handlesTypes);
-
 
 }

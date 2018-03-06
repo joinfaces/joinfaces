@@ -19,12 +19,13 @@ package org.joinfaces.autoconfigure.myfaces;
 import java.util.Set;
 
 import javax.faces.component.html.HtmlPanelGroup;
-import javax.servlet.ServletContext;
-import javax.servlet.ServletException;
+import javax.servlet.annotation.HandlesTypes;
 
 import net.bootsfaces.component.tree.TreeRenderer;
+import org.apache.myfaces.ee6.MyFacesContainerInitializer;
 import org.apache.myfaces.renderkit.html.HtmlGridRenderer;
 import org.joinfaces.autoconfigure.JsfClassFactory;
+import org.joinfaces.autoconfigure.JsfClassFactoryConfiguration;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -33,9 +34,11 @@ import org.omnifaces.converter.SelectItemsIndexConverter;
 import org.omnifaces.validator.RequiredCheckboxValidator;
 
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.core.annotation.AnnotationUtils;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.joinfaces.autoconfigure.myfaces.MyfacesServletContextInitializer.ANOTHER_FACES_CONFIG;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.MOCK)
@@ -45,7 +48,11 @@ public class MyfacesServletContextInitializerIT {
 
 	@BeforeClass
 	public static void setupClasses() {
-		MyfacesServletContextInitializer configuration = new MyfacesServletContextInitializer();
+		JsfClassFactoryConfiguration configuration = JsfClassFactoryConfiguration.builder()
+				.handlesTypes(AnnotationUtils.findAnnotation(MyFacesContainerInitializer.class, HandlesTypes.class))
+				.excludeScopedAnnotations(true)
+				.anotherFacesConfig(ANOTHER_FACES_CONFIG)
+				.build();
 
 		classes = new JsfClassFactory(configuration).getAllClasses();
 	}
@@ -78,33 +85,6 @@ public class MyfacesServletContextInitializerIT {
 	@Test
 	public void testBootsfacesTreeRenderer() {
 		assertThat(this.classes).contains(TreeRenderer.class);
-	}
-
-	@Test
-	public void testAnotherFacesConfig() {
-		MyfacesServletContextInitializer myfacesServletContextInitializer
-			= new MyfacesServletContextInitializer();
-
-		assertThat(myfacesServletContextInitializer.getAnotherFacesConfig())
-			.isEqualTo(MyfacesServletContextInitializer.ANOTHER_FACES_CONFIG);
-	}
-
-	@Test
-	public void testExcludeScopedAnnotations() {
-		MyfacesServletContextInitializer myfacesServletContextInitializer
-			= new MyfacesServletContextInitializer();
-
-		assertThat(myfacesServletContextInitializer.isExcludeScopedAnnotations()).isTrue();
-	}
-
-	@Test
-	public void testOnStartup() throws ServletException {
-		MyfacesServletContextInitializer myfacesServletContextInitializer
-			= new MyfacesServletContextInitializer();
-
-		ServletContext servletContext = new MyfacesMockServletContext();
-
-		myfacesServletContextInitializer.onStartup(servletContext);
 	}
 
 }

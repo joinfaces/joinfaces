@@ -18,16 +18,17 @@ package org.joinfaces.autoconfigure.omnifaces;
 
 import java.util.Set;
 
-import javax.servlet.ServletContext;
-import javax.servlet.ServletException;
+import javax.servlet.annotation.HandlesTypes;
 
 import org.joinfaces.autoconfigure.JsfClassFactory;
+import org.joinfaces.autoconfigure.JsfClassFactoryConfiguration;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.omnifaces.facesviews.FacesViewsInitializer;
 
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.mock.web.MockServletContext;
+import org.springframework.core.annotation.AnnotationUtils;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -40,7 +41,11 @@ public class OmnifacesServletContextInitializerIT {
 
 	@BeforeClass
 	public static void setupClasses() {
-		OmnifacesServletContextInitializer configuration = new OmnifacesServletContextInitializer();
+		JsfClassFactoryConfiguration configuration = JsfClassFactoryConfiguration.builder()
+				.excludeScopedAnnotations(true)
+				.anotherFacesConfig(null)
+				.handlesTypes(AnnotationUtils.findAnnotation(FacesViewsInitializer.class, HandlesTypes.class))
+				.build();
 
 		classes = new JsfClassFactory(configuration).getAllClasses();
 	}
@@ -48,32 +53,6 @@ public class OmnifacesServletContextInitializerIT {
 	@Test
 	public void testEmpty() {
 		assertThat(this.classes).isEmpty();
-	}
-
-	@Test
-	public void testOnStartup() throws ServletException {
-		OmnifacesServletContextInitializer omnifacesServletContextInitializer
-			= new OmnifacesServletContextInitializer();
-
-		ServletContext servletContext = new MockServletContext();
-
-		omnifacesServletContextInitializer.onStartup(servletContext);
-	}
-
-	@Test
-	public void testAnotherFacesConfig() {
-		OmnifacesServletContextInitializer omnifacesServletContextInitializer
-			= new OmnifacesServletContextInitializer();
-
-		assertThat(omnifacesServletContextInitializer.getAnotherFacesConfig()).isNull();
-	}
-
-	@Test
-	public void testExcludeScopedAnnotations() {
-		OmnifacesServletContextInitializer omnifacesServletContextInitializer
-			= new OmnifacesServletContextInitializer();
-
-		assertThat(omnifacesServletContextInitializer.isExcludeScopedAnnotations()).isTrue();
 	}
 
 }

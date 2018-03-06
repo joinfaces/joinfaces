@@ -19,13 +19,15 @@ package org.joinfaces.autoconfigure.myfaces;
 import java.util.Set;
 
 import javax.faces.component.html.HtmlPanelGroup;
+import javax.servlet.annotation.HandlesTypes;
 
+import org.apache.myfaces.ee6.MyFacesContainerInitializer;
 import org.apache.myfaces.renderkit.html.HtmlGridRenderer;
 import org.joinfaces.autoconfigure.JsfClassFactory;
-import org.joinfaces.autoconfigure.NullAnotherJsfClassFactoryConfiguration;
-import org.joinfaces.autoconfigure.NullJsfClassFactoryConfiguration;
+import org.joinfaces.autoconfigure.JsfClassFactoryConfiguration;
 import org.junit.Test;
 
+import org.springframework.core.annotation.AnnotationUtils;
 import org.springframework.test.context.web.WebAppConfiguration;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -35,7 +37,11 @@ public class JsfClassFactoryIT {
 
 	@Test
 	public void testJavaxFacesHtmlPanelGroupWithMyfaces() {
-		MyfacesJsfClassFactoryConfiguration configuration = new MyfacesJsfClassFactoryConfiguration();
+		JsfClassFactoryConfiguration configuration = JsfClassFactoryConfiguration.builder()
+				.anotherFacesConfig(MyfacesServletContextInitializer.ANOTHER_FACES_CONFIG)
+				.excludeScopedAnnotations(true)
+				.handlesTypes(AnnotationUtils.findAnnotation(MyFacesContainerInitializer.class, HandlesTypes.class))
+				.build();
 
 		Set<Class<?>> classes = new JsfClassFactory(configuration).getOtherClasses();
 		assertThat(classes).contains(HtmlPanelGroup.class);
@@ -43,7 +49,11 @@ public class JsfClassFactoryIT {
 
 	@Test
 	public void testMyfacesHtmlGridRendererWithMyfaces() {
-		MyfacesJsfClassFactoryConfiguration configuration = new MyfacesJsfClassFactoryConfiguration();
+		JsfClassFactoryConfiguration configuration = JsfClassFactoryConfiguration.builder()
+				.anotherFacesConfig(MyfacesServletContextInitializer.ANOTHER_FACES_CONFIG)
+				.excludeScopedAnnotations(true)
+				.handlesTypes(AnnotationUtils.findAnnotation(MyFacesContainerInitializer.class, HandlesTypes.class))
+				.build();
 
 		Set<Class<?>> classes = new JsfClassFactory(configuration).getOtherClasses();
 		assertThat(classes).contains(HtmlGridRenderer.class);
@@ -51,7 +61,11 @@ public class JsfClassFactoryIT {
 
 	@Test
 	public void testNullServletContextInitializer() {
-		NullJsfClassFactoryConfiguration configuration = new NullJsfClassFactoryConfiguration();
+		JsfClassFactoryConfiguration configuration = JsfClassFactoryConfiguration.builder()
+				.excludeScopedAnnotations(true)
+				.handlesTypes(null)
+				.anotherFacesConfig(null)
+				.build();
 
 		Set<Class<?>> classes = new JsfClassFactory(configuration).getAllClasses();
 		assertThat(classes).doesNotContain(HtmlGridRenderer.class);
@@ -59,7 +73,11 @@ public class JsfClassFactoryIT {
 
 	@Test
 	public void testNullAnotherServletContextInitializer() {
-		NullAnotherJsfClassFactoryConfiguration configuration = new NullAnotherJsfClassFactoryConfiguration();
+		JsfClassFactoryConfiguration configuration = JsfClassFactoryConfiguration.builder()
+				.anotherFacesConfig(null)
+				.excludeScopedAnnotations(true)
+				.handlesTypes(AnnotationUtils.findAnnotation(MyFacesContainerInitializer.class, HandlesTypes.class))
+				.build();
 
 		Set<Class<?>> classes = new JsfClassFactory(configuration).getAllClasses();
 		assertThat(classes).doesNotContain(HtmlGridRenderer.class);
