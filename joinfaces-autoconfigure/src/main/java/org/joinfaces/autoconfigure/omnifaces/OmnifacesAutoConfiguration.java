@@ -1,5 +1,5 @@
 /*
- * Copyright 2016-2017 the original author or authors.
+ * Copyright 2016-2016 the original author or authors.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,29 +14,31 @@
  * limitations under the License.
  */
 
-package org.joinfaces.autoconfigure.configuration;
+package org.joinfaces.autoconfigure.omnifaces;
 
-import java.util.List;
+import org.joinfaces.autoconfigure.javaxfaces.JavaxFacesAutoConfiguration;
 
-import org.springframework.boot.autoconfigure.condition.ConditionalOnBean;
+import org.springframework.boot.autoconfigure.AutoConfigureBefore;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnWebApplication;
+import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.boot.web.servlet.ServletContextInitializer;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 /**
- * Common base class for all auto-configuration classes which provide properties
- * as {@link javax.servlet.ServletContext} init parameters.
- *
- * @author Lars Grefer
+ * Spring Boot Auto Configuration of OmniFaces.
+ * @author Marcelo Fernandes
  */
 @Configuration
+@EnableConfigurationProperties(OmnifacesProperties.class)
+@ConditionalOnClass(name = "org.omnifaces.facesviews.FacesViewsInitializer")
+@AutoConfigureBefore(JavaxFacesAutoConfiguration.class)
 @ConditionalOnWebApplication
-public class ServletContextInitParameterConfigurationPropertiesAutoConfiguration {
+public class OmnifacesAutoConfiguration {
 
 	@Bean
-	@ConditionalOnBean(ServletContextInitParameterConfigurationProperties.class)
-	public ServletContextInitializer servletContextInitParameterInitializer(List<ServletContextInitParameterConfigurationProperties> initParameterProperties) {
-		return new InitParameterServletContextConfigurer(initParameterProperties);
+	public ServletContextInitializer omnifacesServletContextInitializer() {
+		return new OmnifacesServletContextInitializer();
 	}
 }

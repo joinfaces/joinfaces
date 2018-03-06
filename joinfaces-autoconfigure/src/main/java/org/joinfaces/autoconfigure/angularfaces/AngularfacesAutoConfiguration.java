@@ -23,7 +23,7 @@ import javax.faces.view.facelets.TagDecorator;
 
 import de.beyondjava.angularFaces.core.tagTransformer.AngularTagDecorator;
 import org.joinfaces.autoconfigure.javaxfaces.JavaxFaces2_0Properties;
-import org.joinfaces.autoconfigure.javaxfaces.JavaxFacesSpringBootAutoConfiguration;
+import org.joinfaces.autoconfigure.javaxfaces.JavaxFacesAutoConfiguration;
 
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.config.BeanPostProcessor;
@@ -42,9 +42,9 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 @EnableConfigurationProperties(AngularfacesProperties.class)
 @ConditionalOnClass(name = "de.beyondjava.angularFaces.core.ELTools")
-@AutoConfigureBefore(JavaxFacesSpringBootAutoConfiguration.class)
+@AutoConfigureBefore(JavaxFacesAutoConfiguration.class)
 @ConditionalOnWebApplication
-public class AngularfacesSpringBootAutoConfiguration {
+public class AngularfacesAutoConfiguration {
 
 	@Bean
 	public BeanPostProcessor angularfacesJavaxFacesPropertiesPostProcessor() {

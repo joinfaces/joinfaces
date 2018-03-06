@@ -17,6 +17,6 @@
 /**
  * Jetty Spring Boot Auto Configuration classes.
  *
- * @see org.joinfaces.autoconfigure.jetty.JettySpringBootAutoConfiguration
+ * @see org.joinfaces.autoconfigure.jetty.JettyAutoConfiguration
  */
 package org.joinfaces.autoconfigure.jetty;

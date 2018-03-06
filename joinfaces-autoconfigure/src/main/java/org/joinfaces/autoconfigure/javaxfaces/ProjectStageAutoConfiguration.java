@@ -34,7 +34,7 @@ import org.springframework.context.annotation.Bean;
 @Slf4j
 @ConditionalOnWebApplication
 @ConditionalOnClass(ProjectStage.class)
-@AutoConfigureBefore(JavaxFacesSpringBootAutoConfiguration.class)
+@AutoConfigureBefore(JavaxFacesAutoConfiguration.class)
 public class ProjectStageAutoConfiguration {
 
 	@Bean

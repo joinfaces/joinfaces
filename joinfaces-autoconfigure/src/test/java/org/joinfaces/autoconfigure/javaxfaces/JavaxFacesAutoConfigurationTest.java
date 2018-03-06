@@ -24,23 +24,23 @@ import static org.assertj.core.api.Assertions.assertThat;
 /**
  * @author Lars Grefer
  */
-public class JavaxFacesSpringBootAutoConfigurationTest {
+public class JavaxFacesAutoConfigurationTest {
 
 	@Test
 	public void test2_0() {
-		JavaxFacesSpringBootAutoConfiguration.JavaxFaces2_0AutoConfiguration javaxFaces2_0AutoConfiguration = new JavaxFacesSpringBootAutoConfiguration.JavaxFaces2_0AutoConfiguration();
+		JavaxFacesAutoConfiguration.JavaxFaces2_0AutoConfiguration javaxFaces2_0AutoConfiguration = new JavaxFacesAutoConfiguration.JavaxFaces2_0AutoConfiguration();
 		assertThat(javaxFaces2_0AutoConfiguration).isNotNull();
 	}
 
 	@Test
 	public void test2_1() {
-		JavaxFacesSpringBootAutoConfiguration.JavaxFaces2_1AutoConfiguration javaxFaces2_1AutoConfiguration = new JavaxFacesSpringBootAutoConfiguration.JavaxFaces2_1AutoConfiguration();
+		JavaxFacesAutoConfiguration.JavaxFaces2_1AutoConfiguration javaxFaces2_1AutoConfiguration = new JavaxFacesAutoConfiguration.JavaxFaces2_1AutoConfiguration();
 		assertThat(javaxFaces2_1AutoConfiguration).isNotNull();
 	}
 
 	@Test
 	public void test2_2() {
-		JavaxFacesSpringBootAutoConfiguration.JavaxFaces2_2AutoConfiguration javaxFaces2_2AutoConfiguration = new JavaxFacesSpringBootAutoConfiguration.JavaxFaces2_2AutoConfiguration();
+		JavaxFacesAutoConfiguration.JavaxFaces2_2AutoConfiguration javaxFaces2_2AutoConfiguration = new JavaxFacesAutoConfiguration.JavaxFaces2_2AutoConfiguration();
 		assertThat(javaxFaces2_2AutoConfiguration).isNotNull();
 	}
 }

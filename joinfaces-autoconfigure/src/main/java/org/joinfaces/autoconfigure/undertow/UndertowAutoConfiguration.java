@@ -41,7 +41,7 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 @EnableConfigurationProperties({UndertowProperties.class})
 @ConditionalOnClass(name = "io.undertow.Undertow")
-public class UndertowSpringBootAutoConfiguration {
+public class UndertowAutoConfiguration {
 
 	@Autowired
 	private UndertowProperties undertowProperties;

@@ -48,7 +48,7 @@ import org.springframework.core.io.ClassPathResource;
 @Configuration
 @EnableConfigurationProperties({JettyProperties.class})
 @ConditionalOnClass(name = "org.eclipse.jetty.server.Server")
-public class JettySpringBootAutoConfiguration {
+public class JettyAutoConfiguration {
 
 	@Autowired
 	private JettyProperties jettyProperties;

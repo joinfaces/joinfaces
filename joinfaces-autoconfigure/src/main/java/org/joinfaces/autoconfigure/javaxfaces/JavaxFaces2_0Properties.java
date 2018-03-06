@@ -35,7 +35,7 @@ import lombok.Getter;
 import lombok.Setter;
 import org.joinfaces.autoconfigure.configuration.NestedProperty;
 import org.joinfaces.autoconfigure.configuration.ServletContextInitParameter;
-import org.joinfaces.autoconfigure.configuration.ServletContextInitParameterConfigurationProperties;
+import org.joinfaces.autoconfigure.configuration.ServletContextInitParameterProperties;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
@@ -50,7 +50,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 @Getter
 @Setter
 @ConfigurationProperties(prefix = "jsf")
-public class JavaxFaces2_0Properties implements ServletContextInitParameterConfigurationProperties {
+public class JavaxFaces2_0Properties implements ServletContextInitParameterProperties {
 
 	/**
 	 * Set the project stage to "Development", "UnitTest", "SystemTest", or

@@ -14,24 +14,38 @@
  * limitations under the License.
  */
 
-package org.joinfaces.autoconfigure.bootsfaces;
+package org.joinfaces.autoconfigure.richfaces;
 
-import org.joinfaces.autoconfigure.javaxfaces.JavaxFacesSpringBootAutoConfiguration;
+import org.joinfaces.autoconfigure.javaxfaces.JavaxFacesAutoConfiguration;
+import org.richfaces.webapp.ResourceServlet;
 
 import org.springframework.boot.autoconfigure.AutoConfigureBefore;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnWebApplication;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
+import org.springframework.boot.web.servlet.ServletRegistrationBean;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 /**
- * Spring Boot Auto Configuration of BootsFaces.
+ * Spring Boot Auto Configuration of RichFaces.
  * @author Marcelo Fernandes
+ * @author Jamillo Santos
+ * @author Renato Soares
  */
 @Configuration
-@EnableConfigurationProperties(BootsfacesProperties.class)
-@ConditionalOnClass(name = "net.bootsfaces.C")
-@AutoConfigureBefore(JavaxFacesSpringBootAutoConfiguration.class)
+@EnableConfigurationProperties(RichfacesProperties.class)
+@ConditionalOnClass(name = "org.richfaces.application.CoreConfiguration")
+@AutoConfigureBefore(JavaxFacesAutoConfiguration.class)
 @ConditionalOnWebApplication
-public class BootsfacesSpringBootAutoConfiguration {
+public class RichfacesAutoConfiguration {
+
+	@Bean
+	public ServletRegistrationBean<ResourceServlet> richfacesResourcesServlet() {
+		ServletRegistrationBean<ResourceServlet> result = new ServletRegistrationBean<>();
+		result.setServlet(new ResourceServlet());
+		result.setLoadOnStartup(1);
+		result.addUrlMappings("/org.richfaces.resources/*");
+		return result;
+	}
 }

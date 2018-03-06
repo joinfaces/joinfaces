@@ -24,7 +24,7 @@ import java.lang.annotation.Target;
 
 /**
  * Annotation to mark fields for nested properties in
- * {@link ServletContextInitParameterConfigurationProperties properties classes}.
+ * {@link ServletContextInitParameterProperties properties classes}.
  *
  * @author Lars Grefer
  * @see InitParameterServletContextConfigurer

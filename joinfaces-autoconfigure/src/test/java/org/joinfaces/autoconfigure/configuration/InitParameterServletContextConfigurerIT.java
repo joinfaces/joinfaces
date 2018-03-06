@@ -161,7 +161,7 @@ public class InitParameterServletContextConfigurerIT {
 	@Getter
 	@Setter
 	@NoArgsConstructor
-	public static class SuperProperties implements ServletContextInitParameterConfigurationProperties {
+	public static class SuperProperties implements ServletContextInitParameterProperties {
 
 		@ServletContextInitParameter("test.superString")
 		private String superString = "barFoo";

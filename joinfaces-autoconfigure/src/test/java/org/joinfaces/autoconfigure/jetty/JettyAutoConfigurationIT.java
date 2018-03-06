@@ -31,17 +31,17 @@ import org.springframework.test.context.junit4.SpringRunner;
 import static org.assertj.core.api.Assertions.assertThat;
 
 @RunWith(SpringRunner.class)
-@SpringBootTest(classes = JettySpringBootAutoConfiguration.class, webEnvironment = SpringBootTest.WebEnvironment.MOCK)
-public class JettySpringBootAutoConfigurationIT {
+@SpringBootTest(classes = JettyAutoConfiguration.class, webEnvironment = SpringBootTest.WebEnvironment.MOCK)
+public class JettyAutoConfigurationIT {
 
 	@Autowired
-	private JettySpringBootAutoConfiguration jettySpringBootAutoConfiguration;
+	private JettyAutoConfiguration jettyAutoConfiguration;
 
 	@Test
 	public void customize() {
 		JettyServletWebServerFactory factory = new JettyServletWebServerFactory();
 
-		this.jettySpringBootAutoConfiguration.customize(factory);
+		this.jettyAutoConfiguration.customize(factory);
 
 		Server server = ((JettyWebServer) factory.getWebServer()).getServer();
 
