@@ -54,6 +54,7 @@
                             <excludes>
                                 <exclude>**/myfaces/**.java</exclude>
                                 <exclude>**/**Myfaces**.java</exclude>
+                                <exclude>**/**MyFaces**.java</exclude>
                             </excludes>
                         </configuration>
                     </execution>
