@@ -23,8 +23,7 @@ import javax.servlet.annotation.HandlesTypes;
 
 import com.sun.faces.config.FacesInitializer;
 import com.sun.faces.facelets.compiler.UIText;
-import org.joinfaces.autoconfigure.JsfClassFactory;
-import org.joinfaces.autoconfigure.JsfClassFactoryConfiguration;
+import org.joinfaces.autoconfigure.servlet.initializer.JsfClassFactory;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -36,11 +35,11 @@ import static org.assertj.core.api.Assertions.assertThat;
 @WebAppConfiguration
 public class JsfClassFactoryIT {
 
-	private JsfClassFactoryConfiguration configuration;
+	private JsfClassFactory.Configuration configuration;
 
 	@Before
 	public void setUp() {
-		this.configuration = JsfClassFactoryConfiguration.builder()
+		this.configuration = JsfClassFactory.Configuration.builder()
 				.excludeScopedAnnotations(false)
 				.anotherFacesConfig(MojarraInitializerRegistrationBean.ANOTHER_FACES_CONFIG)
 				.handlesTypes(AnnotationUtils.findAnnotation(FacesInitializer.class, HandlesTypes.class))

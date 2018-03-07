@@ -21,9 +21,8 @@ import java.util.Set;
 import javax.servlet.annotation.HandlesTypes;
 
 import com.sun.faces.config.FacesInitializer;
-import org.joinfaces.autoconfigure.JsfClassFactory;
-import org.joinfaces.autoconfigure.JsfClassFactoryConfiguration;
-import org.joinfaces.autoconfigure.ServletContainerInitializerRegistrationBean;
+import org.joinfaces.autoconfigure.servlet.initializer.JsfClassFactory;
+import org.joinfaces.autoconfigure.servlet.initializer.ServletContainerInitializerRegistrationBean;
 
 /**
  * Servlet Context Initializer of Mojarra.
@@ -43,7 +42,7 @@ public class MojarraInitializerRegistrationBean extends ServletContainerInitiali
 
 	@Override
 	protected Set<Class<?>> getClasses(HandlesTypes handlesTypes) {
-		JsfClassFactory jsfClassFactory = new JsfClassFactory(JsfClassFactoryConfiguration.builder()
+		JsfClassFactory jsfClassFactory = new JsfClassFactory(JsfClassFactory.Configuration.builder()
 				.anotherFacesConfig(ANOTHER_FACES_CONFIG)
 				.handlesTypes(handlesTypes)
 				.excludeScopedAnnotations(true)

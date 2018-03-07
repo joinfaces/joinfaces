@@ -20,8 +20,8 @@ import java.util.List;
 
 import lombok.Getter;
 import lombok.Setter;
-import org.joinfaces.autoconfigure.configuration.ServletContextInitParameter;
-import org.joinfaces.autoconfigure.configuration.ServletContextInitParameterProperties;
+import org.joinfaces.autoconfigure.servlet.initparams.ServletContextInitParameter;
+import org.joinfaces.autoconfigure.servlet.initparams.ServletContextInitParameterProperties;
 import org.omnifaces.component.output.cache.CacheInitializerListener;
 import org.omnifaces.component.output.cache.CacheInstancePerScopeProvider;
 import org.omnifaces.component.output.cache.CacheProvider;

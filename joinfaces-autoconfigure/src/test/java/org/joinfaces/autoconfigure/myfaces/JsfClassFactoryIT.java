@@ -23,8 +23,7 @@ import javax.servlet.annotation.HandlesTypes;
 
 import org.apache.myfaces.ee6.MyFacesContainerInitializer;
 import org.apache.myfaces.renderkit.html.HtmlGridRenderer;
-import org.joinfaces.autoconfigure.JsfClassFactory;
-import org.joinfaces.autoconfigure.JsfClassFactoryConfiguration;
+import org.joinfaces.autoconfigure.servlet.initializer.JsfClassFactory;
 import org.junit.Test;
 
 import org.springframework.core.annotation.AnnotationUtils;
@@ -37,7 +36,7 @@ public class JsfClassFactoryIT {
 
 	@Test
 	public void testJavaxFacesHtmlPanelGroupWithMyfaces() {
-		JsfClassFactoryConfiguration configuration = JsfClassFactoryConfiguration.builder()
+		JsfClassFactory.Configuration configuration = JsfClassFactory.Configuration.builder()
 				.anotherFacesConfig(MyFacesInitializerRegistrationBean.ANOTHER_FACES_CONFIG)
 				.excludeScopedAnnotations(true)
 				.handlesTypes(AnnotationUtils.findAnnotation(MyFacesContainerInitializer.class, HandlesTypes.class))
@@ -49,7 +48,7 @@ public class JsfClassFactoryIT {
 
 	@Test
 	public void testMyfacesHtmlGridRendererWithMyfaces() {
-		JsfClassFactoryConfiguration configuration = JsfClassFactoryConfiguration.builder()
+		JsfClassFactory.Configuration configuration = JsfClassFactory.Configuration.builder()
 				.anotherFacesConfig(MyFacesInitializerRegistrationBean.ANOTHER_FACES_CONFIG)
 				.excludeScopedAnnotations(true)
 				.handlesTypes(AnnotationUtils.findAnnotation(MyFacesContainerInitializer.class, HandlesTypes.class))
@@ -61,7 +60,7 @@ public class JsfClassFactoryIT {
 
 	@Test
 	public void testNullServletContextInitializer() {
-		JsfClassFactoryConfiguration configuration = JsfClassFactoryConfiguration.builder()
+		JsfClassFactory.Configuration configuration = JsfClassFactory.Configuration.builder()
 				.excludeScopedAnnotations(true)
 				.handlesTypes(null)
 				.anotherFacesConfig(null)
@@ -73,7 +72,7 @@ public class JsfClassFactoryIT {
 
 	@Test
 	public void testNullAnotherServletContextInitializer() {
-		JsfClassFactoryConfiguration configuration = JsfClassFactoryConfiguration.builder()
+		JsfClassFactory.Configuration configuration = JsfClassFactory.Configuration.builder()
 				.anotherFacesConfig(null)
 				.excludeScopedAnnotations(true)
 				.handlesTypes(AnnotationUtils.findAnnotation(MyFacesContainerInitializer.class, HandlesTypes.class))

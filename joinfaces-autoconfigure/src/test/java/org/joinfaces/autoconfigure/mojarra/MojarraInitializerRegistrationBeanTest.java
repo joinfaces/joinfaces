@@ -24,8 +24,7 @@ import javax.servlet.annotation.HandlesTypes;
 import com.sun.faces.config.FacesInitializer;
 import com.sun.faces.facelets.compiler.UIText;
 import net.bootsfaces.component.tree.TreeRenderer;
-import org.joinfaces.autoconfigure.JsfClassFactory;
-import org.joinfaces.autoconfigure.JsfClassFactoryConfiguration;
+import org.joinfaces.autoconfigure.servlet.initializer.JsfClassFactory;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.omnifaces.component.input.Form;
@@ -42,7 +41,7 @@ public class MojarraInitializerRegistrationBeanTest {
 
 	@BeforeClass
 	public static void setupClasses() {
-		JsfClassFactoryConfiguration configuration = JsfClassFactoryConfiguration.builder()
+		JsfClassFactory.Configuration configuration = JsfClassFactory.Configuration.builder()
 				.excludeScopedAnnotations(true)
 				.handlesTypes(AnnotationUtils.findAnnotation(FacesInitializer.class, HandlesTypes.class))
 				.anotherFacesConfig(MojarraInitializerRegistrationBean.ANOTHER_FACES_CONFIG)

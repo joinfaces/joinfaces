@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package org.joinfaces.autoconfigure;
+package org.joinfaces.autoconfigure.servlet.initializer;
 
 import java.util.Set;
 

@@ -1,5 +1,5 @@
 /*
- * Copyright 2016-2017 the original author or authors.
+ * Copyright 2016-2018 the original author or authors.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package org.joinfaces.autoconfigure.configuration;
+package org.joinfaces.autoconfigure.servlet.initparams;
 
 import java.lang.annotation.Documented;
 import java.lang.annotation.ElementType;
@@ -23,8 +23,8 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 /**
- * Marks a field of a {@link org.springframework.boot.context.properties.ConfigurationProperties Properties class}
- * as {@link javax.servlet.ServletContext#setInitParameter(String, String) servlet context init parameter}.
+ * Annotation to mark fields for nested properties in
+ * {@link ServletContextInitParameterProperties properties classes}.
  *
  * @author Lars Grefer
  * @see InitParameterServletContextConfigurer
@@ -32,10 +32,5 @@ import java.lang.annotation.Target;
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.FIELD)
 @Documented
-public @interface ServletContextInitParameter {
-
-	String value() default "";
-
-	String listSeparator() default ",";
-
+public @interface NestedProperty {
 }

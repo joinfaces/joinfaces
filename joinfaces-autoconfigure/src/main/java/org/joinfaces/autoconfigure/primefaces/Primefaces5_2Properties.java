@@ -18,8 +18,8 @@ package org.joinfaces.autoconfigure.primefaces;
 
 import lombok.Getter;
 import lombok.Setter;
-import org.joinfaces.autoconfigure.configuration.ServletContextInitParameter;
-import org.joinfaces.autoconfigure.configuration.ServletContextInitParameterProperties;
+import org.joinfaces.autoconfigure.servlet.initparams.ServletContextInitParameter;
+import org.joinfaces.autoconfigure.servlet.initparams.ServletContextInitParameterProperties;
 import org.primefaces.util.Constants;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;

@@ -20,7 +20,7 @@ import java.util.Set;
 
 import javax.servlet.annotation.HandlesTypes;
 
-import org.joinfaces.autoconfigure.ServletContainerInitializerRegistrationBean;
+import org.joinfaces.autoconfigure.servlet.initializer.ServletContainerInitializerRegistrationBean;
 import org.omnifaces.facesviews.FacesViewsInitializer;
 
 /**

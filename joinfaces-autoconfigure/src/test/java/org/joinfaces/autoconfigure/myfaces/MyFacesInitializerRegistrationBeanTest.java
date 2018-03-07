@@ -24,8 +24,7 @@ import javax.servlet.annotation.HandlesTypes;
 import net.bootsfaces.component.tree.TreeRenderer;
 import org.apache.myfaces.ee6.MyFacesContainerInitializer;
 import org.apache.myfaces.renderkit.html.HtmlGridRenderer;
-import org.joinfaces.autoconfigure.JsfClassFactory;
-import org.joinfaces.autoconfigure.JsfClassFactoryConfiguration;
+import org.joinfaces.autoconfigure.servlet.initializer.JsfClassFactory;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.omnifaces.component.input.Form;
@@ -42,7 +41,7 @@ public class MyFacesInitializerRegistrationBeanTest {
 
 	@BeforeClass
 	public static void setupClasses() {
-		JsfClassFactoryConfiguration configuration = JsfClassFactoryConfiguration.builder()
+		JsfClassFactory.Configuration configuration = JsfClassFactory.Configuration.builder()
 				.handlesTypes(AnnotationUtils.findAnnotation(MyFacesContainerInitializer.class, HandlesTypes.class))
 				.excludeScopedAnnotations(true)
 				.anotherFacesConfig(MyFacesInitializerRegistrationBean.ANOTHER_FACES_CONFIG)

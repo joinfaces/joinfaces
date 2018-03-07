@@ -1,5 +1,5 @@
 /*
- * Copyright 2016-2017 the original author or authors.
+ * Copyright 2016-2018 the original author or authors.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package org.joinfaces.autoconfigure;
+package org.joinfaces.autoconfigure.servlet.initializer;
 
 import java.io.File;
 import java.lang.annotation.Annotation;
@@ -30,19 +30,25 @@ import javax.faces.bean.NoneScoped;
 import javax.faces.bean.RequestScoped;
 import javax.faces.bean.SessionScoped;
 import javax.faces.bean.ViewScoped;
+import javax.servlet.ServletContainerInitializer;
 import javax.servlet.annotation.HandlesTypes;
 
+import lombok.Builder;
+import lombok.Data;
+import lombok.Getter;
 import org.reflections.Reflections;
 import org.reflections.util.ClasspathHelper;
 import org.reflections.util.ConfigurationBuilder;
 
+import org.springframework.lang.Nullable;
+
 /**
- * Factory of classes with jsf types handled by servlet context initializer.
+ * Factory of classes with jsf types handled by {@link ServletContainerInitializer}.
  * @author Marcelo Fernandes
  */
 public class JsfClassFactory {
 
-	private JsfClassFactoryConfiguration jsfAnnotatedClassFactoryConfiguration;
+	private Configuration jsfAnnotatedClassFactoryConfiguration;
 
 	private Collection<URL> urls;
 
@@ -50,7 +56,7 @@ public class JsfClassFactory {
 
 	private Map<Class<?>, Set<Class<?>>> otherClassMap;
 
-	public JsfClassFactory(JsfClassFactoryConfiguration jsfAnnotatedClassFactoryConfiguration) {
+	public JsfClassFactory(Configuration jsfAnnotatedClassFactoryConfiguration) {
 		this.jsfAnnotatedClassFactoryConfiguration = jsfAnnotatedClassFactoryConfiguration;
 	}
 
@@ -76,30 +82,12 @@ public class JsfClassFactory {
 	 * @return types to be handled by jsf implementation
 	 */
 	private TypesHandled handlesTypes() {
-		TypesHandled result = new TypesHandled();
-
 		HandlesTypes ht = this.jsfAnnotatedClassFactoryConfiguration.getHandlesTypes();
-		if (ht != null) {
-			Set<Class<? extends Annotation>> annotationsToExclude = annotationsToExclude();
-
-			for (Class<?> type : ht.value()) {
-				if (type.isAnnotation()) {
-					Class<? extends Annotation> annotation = (Class<? extends Annotation>) type;
-					if (!annotationsToExclude.contains(annotation)) {
-						result.getAnnotationTypes().add(annotation);
-					}
-				}
-				else {
-					result.getOtherTypes().add(type);
-				}
-			}
-		}
-
-		return result;
+		return new TypesHandled(ht, annotationsToExclude());
 	}
 
 	private void add(Collection<URL> urls, Collection<String> strings, Collection<URL> newURLs) {
-		for (URL url: newURLs) {
+		for (URL url : newURLs) {
 			add(urls, strings, url);
 		}
 	}
@@ -233,5 +221,63 @@ public class JsfClassFactory {
 			classes.addAll(values);
 		}
 		return classes;
+	}
+
+	/**
+	 * Configuration of Jsf Class Factory.
+	 * @author Marcelo Fernandes
+	 */
+	@Data
+	@Builder
+	public static class Configuration {
+
+		/**
+		 * {@link HandlesTypes} annotation found on the {@link ServletContainerInitializer}.
+		 */
+		@Nullable
+		private HandlesTypes handlesTypes;
+
+		/**
+		 * Another faces config resource to include in search.
+		 */
+		private String anotherFacesConfig;
+
+		/**
+		 * Inform if exclude scoped annotations in search.
+		 */
+		private boolean excludeScopedAnnotations;
+	}
+
+	/**
+	 * Single type to store annotationTypes and otherTypes handled by
+	 *  servlet context initializer.
+	 *
+	 * @author Marcelo Fernandes
+	 */
+	@Getter
+	static class TypesHandled {
+
+		TypesHandled(HandlesTypes handlesTypes, Set<Class<? extends Annotation>> annotationsToExclude) {
+			if (handlesTypes != null) {
+				for (Class<?> type : handlesTypes.value()) {
+					if (type.isAnnotation()) {
+						Class<? extends Annotation> annotation = (Class<? extends Annotation>) type;
+						if (!annotationsToExclude.contains(annotation)) {
+							this.annotationTypes.add(annotation);
+						}
+					}
+					else {
+						this.otherTypes.add(type);
+					}
+				}
+			}
+		}
+
+		private Set<Class<? extends Annotation>> annotationTypes = new HashSet<>();
+		private Set<Class> otherTypes = new HashSet<>();
+
+		boolean isEmpty() {
+			return this.annotationTypes.isEmpty() && this.otherTypes.isEmpty();
+		}
 	}
 }

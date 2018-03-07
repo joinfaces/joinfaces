@@ -1,5 +1,5 @@
 /*
- * Copyright 2016-2017 the original author or authors.
+ * Copyright 2016-2018 the original author or authors.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -17,6 +17,6 @@
 /**
  * Scanner Utility Classes for initializing JSF properly.
  *
- * @see org.joinfaces.autoconfigure.JsfClassFactory
+ * @see org.joinfaces.autoconfigure.servlet.initializer.JsfClassFactory
  */
-package org.joinfaces.autoconfigure;
+package org.joinfaces.autoconfigure.servlet.initializer;

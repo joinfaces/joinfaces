@@ -21,9 +21,8 @@ import java.util.Set;
 import javax.servlet.annotation.HandlesTypes;
 
 import org.apache.myfaces.ee6.MyFacesContainerInitializer;
-import org.joinfaces.autoconfigure.JsfClassFactory;
-import org.joinfaces.autoconfigure.JsfClassFactoryConfiguration;
-import org.joinfaces.autoconfigure.ServletContainerInitializerRegistrationBean;
+import org.joinfaces.autoconfigure.servlet.initializer.JsfClassFactory;
+import org.joinfaces.autoconfigure.servlet.initializer.ServletContainerInitializerRegistrationBean;
 
 /**
  * Servlet context initializer of MyFaces.
@@ -42,12 +41,12 @@ public class MyFacesInitializerRegistrationBean extends ServletContainerInitiali
 
 	@Override
 	protected Set<Class<?>> getClasses(HandlesTypes handlesTypes) {
-		JsfClassFactoryConfiguration jsfClassFactoryConfiguration = JsfClassFactoryConfiguration.builder()
+		JsfClassFactory.Configuration configuration = JsfClassFactory.Configuration.builder()
 				.handlesTypes(handlesTypes)
 				.excludeScopedAnnotations(true)
 				.anotherFacesConfig(ANOTHER_FACES_CONFIG)
 				.build();
-		JsfClassFactory jsfClassFactory = new JsfClassFactory(jsfClassFactoryConfiguration);
+		JsfClassFactory jsfClassFactory = new JsfClassFactory(configuration);
 		JoinFacesAnnotationProvider.setAnnotatedClasses(jsfClassFactory.getAnnotatedClassMap());
 		JoinFacesAnnotationProvider.setUrls(jsfClassFactory.getURLs());
 		return jsfClassFactory.getAllClasses();
