@@ -14,22 +14,11 @@
  * limitations under the License.
  */
 
-package org.joinfaces.autoconfigure.integration;
+package org.joinfaces.autoconfigure.scopemapping;
 
-import java.lang.annotation.Annotation;
+import javax.faces.bean.SessionScoped;
 
-import lombok.Getter;
-import lombok.RequiredArgsConstructor;
+@SessionScoped
+public class SessionScopedClass {
 
-/**
- * Simple definition of a mapping between an {@link Annotation} and a scope.
- *
- * @author Lars Grefer
- */
-@Getter
-@RequiredArgsConstructor
-public class AnnotationToScopeMapping {
-
-	private final Class<? extends Annotation> annotation;
-	private final String scope;
 }

@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package org.joinfaces.autoconfigure.integration;
+package org.joinfaces.autoconfigure.scopemapping;
 
 import javax.enterprise.context.SessionScoped;
 import javax.faces.view.ViewScoped;

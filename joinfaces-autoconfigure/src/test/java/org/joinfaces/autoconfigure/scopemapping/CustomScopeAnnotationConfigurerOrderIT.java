@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package org.joinfaces.autoconfigure.integration;
+package org.joinfaces.autoconfigure.scopemapping;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -27,37 +27,37 @@ import org.springframework.test.context.junit4.SpringRunner;
 import static org.assertj.core.api.Assertions.assertThat;
 
 /**
- * Auto-configuration for JSF-CDI-Spring integration.
+ * Auto-configuration for JSF-CDI-Spring scopemapping.
  *
  * @author Diego Diez
  */
 @RunWith(SpringRunner.class)
 @SpringBootTest(
 		properties = {
-				"jsf.scope-configurer.cdi.enabled=false",
-				"jsf.scope-configurer.jsf.enabled=false"
+				"jsf.scope-configurer.cdi.order=100",
+				"jsf.scope-configurer.jsf.order=200"
 		},
 		webEnvironment = SpringBootTest.WebEnvironment.MOCK
 )
-public class CustomScopeAnnotationConfigurerEnabledIT {
+public class CustomScopeAnnotationConfigurerOrderIT {
 
-	@Autowired(required = false)
+	@Autowired
 	@Qualifier("cdiScopeAnnotationsConfigurer")
 	private CustomScopeAnnotationConfigurer cdiScopeAnnotationsConfigurer;
 
-	@Autowired(required = false)
+	@Autowired
 	@Qualifier("jsfScopeAnnotationsConfigurer")
 	private CustomScopeAnnotationConfigurer jsfScopeAnnotationsConfigurer;
 
 	@Test
-	public void testCdiEnabled() {
-		assertThat(this.cdiScopeAnnotationsConfigurer)
-				.isNull();
+	public void testCdiOrder() {
+		assertThat(this.cdiScopeAnnotationsConfigurer.getOrder())
+				.isEqualTo(100);
 	}
 
 	@Test
-	public void testJsfEnabled() {
-		assertThat(this.jsfScopeAnnotationsConfigurer)
-				.isNull();
+	public void testJsfOrder() {
+		assertThat(this.jsfScopeAnnotationsConfigurer.getOrder())
+				.isEqualTo(200);
 	}
 }

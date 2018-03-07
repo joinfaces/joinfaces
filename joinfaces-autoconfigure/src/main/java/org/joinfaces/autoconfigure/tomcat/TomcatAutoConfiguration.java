@@ -26,7 +26,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 /**
- * Creating tomcat auto configuration to enable jsf read facelets at integration
+ * Creating tomcat auto configuration to enable jsf read facelets at scopemapping
  * tests.
  *
  * @author Marcelo Fernandes

@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package org.joinfaces.autoconfigure.integration.viewscope;
+package org.joinfaces.autoconfigure.viewscope;
 
 import java.util.LinkedList;
 import java.util.List;

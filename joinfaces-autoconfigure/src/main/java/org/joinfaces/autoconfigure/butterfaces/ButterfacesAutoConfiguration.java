@@ -51,7 +51,7 @@ public class ButterfacesAutoConfiguration {
 	 * Special auto configuration for butterfaces and bootsfaces in combination.
 	 *
 	 * @author Lars Grefer
-	 * @see <a href="https://github.com/ButterFaces/bootsfaces-integration/blob/6e9d45978590fa72361cf3c98bec77d863f02aea/README.md">ButterFaces/bootsfaces-integration</a>
+	 * @see <a href="https://github.com/ButterFaces/bootsfaces-integration/blob/6e9d45978590fa72361cf3c98bec77d863f02aea/README.md">ButterFaces/bootsfaces-scopemapping</a>
 	 */
 	@Configuration
 	@ConditionalOnClass(C.class)
@@ -84,7 +84,7 @@ public class ButterfacesAutoConfiguration {
 					String getJqueryFromCdn = properties.getGetJqueryFromCdn();
 					if (getJqueryFromCdn == null || getJqueryFromCdn.equalsIgnoreCase("false")) {
 						log.info("Setting 'net.bootsfaces.get_jquery_from_cdn' to 'true'");
-						log.info("See: https://github.com/ButterFaces/bootsfaces-integration/blob/6e9d45978590fa72361cf3c98bec77d863f02aea/README.md");
+						log.info("See: https://github.com/ButterFaces/bootsfaces-scopemapping/blob/6e9d45978590fa72361cf3c98bec77d863f02aea/README.md");
 
 						properties.setGetJqueryFromCdn("true");
 					}

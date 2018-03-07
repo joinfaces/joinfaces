@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package org.joinfaces.autoconfigure.integration.viewscope;
+package org.joinfaces.autoconfigure.viewscope;
 
 import javax.faces.component.UIViewRoot;
 import javax.faces.event.PreDestroyViewMapEvent;

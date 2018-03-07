@@ -14,16 +14,14 @@
  * limitations under the License.
  */
 
-package org.joinfaces.autoconfigure.integration;
+package org.joinfaces.autoconfigure.scopemapping;
 
-import javax.faces.bean.ApplicationScoped;
-import javax.faces.bean.NoneScoped;
-import javax.faces.bean.RequestScoped;
-import javax.faces.bean.SessionScoped;
 
-import org.joinfaces.autoconfigure.integration.viewscope.ViewScope;
+import javax.enterprise.context.ApplicationScoped;
+import javax.enterprise.context.ConversationScoped;
+import javax.enterprise.context.RequestScoped;
+import javax.enterprise.context.SessionScoped;
 
-import org.springframework.beans.factory.config.ConfigurableBeanFactory;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnWebApplication;
@@ -35,7 +33,7 @@ import org.springframework.web.context.WebApplicationContext;
 
 /**
  * {@link org.springframework.boot.autoconfigure.EnableAutoConfiguration Auto configuration}
- * for {@code javax.faces.bean.*Scoped} annotations support.
+ * for {@code javax.enterprise.context.*Scoped} annotations support.
  *
  * @author Diego Diez
  * @author Lars Grefer
@@ -43,20 +41,18 @@ import org.springframework.web.context.WebApplicationContext;
 @Configuration
 @ConditionalOnClass(RequestScoped.class)
 @ConditionalOnWebApplication(type = ConditionalOnWebApplication.Type.SERVLET)
-public class JsfScopeAnnotationsAutoConfiguration {
+public class CdiScopeAnnotationsAutoConfiguration {
 
 	@Bean
-	@ConditionalOnProperty(value = "jsf.scope-configurer.jsf.enabled", havingValue = "true", matchIfMissing = true)
-	public static CustomScopeAnnotationConfigurer jsfScopeAnnotationsConfigurer(Environment environment) {
+	@ConditionalOnProperty(value = "jsf.scope-configurer.cdi.enabled", havingValue = "true", matchIfMissing = true)
+	public static CustomScopeAnnotationConfigurer cdiScopeAnnotationsConfigurer(Environment environment) {
 		CustomScopeAnnotationConfigurer scopeAnnotationConfigurer = new CustomScopeAnnotationConfigurer();
 
-		scopeAnnotationConfigurer.setOrder(environment.getProperty("jsf.scope-configurer.jsf.order", Integer.class, Ordered.LOWEST_PRECEDENCE));
+		scopeAnnotationConfigurer.setOrder(environment.getProperty("jsf.scope-configurer.cdi.order", Integer.class, Ordered.LOWEST_PRECEDENCE));
 
-		scopeAnnotationConfigurer.addMapping(NoneScoped.class, ConfigurableBeanFactory.SCOPE_PROTOTYPE);
 		scopeAnnotationConfigurer.addMapping(RequestScoped.class, WebApplicationContext.SCOPE_REQUEST);
-		scopeAnnotationConfigurer.addMapping(javax.faces.bean.ViewScoped.class, ViewScope.SCOPE_VIEW);
-		scopeAnnotationConfigurer.addMapping(javax.faces.view.ViewScoped.class, ViewScope.SCOPE_VIEW);
 		scopeAnnotationConfigurer.addMapping(SessionScoped.class, WebApplicationContext.SCOPE_SESSION);
+		scopeAnnotationConfigurer.addMapping(ConversationScoped.class, WebApplicationContext.SCOPE_SESSION);
 		scopeAnnotationConfigurer.addMapping(ApplicationScoped.class, WebApplicationContext.SCOPE_APPLICATION);
 
 		return scopeAnnotationConfigurer;

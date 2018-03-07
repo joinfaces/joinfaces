@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package org.joinfaces.autoconfigure.integration.viewscope;
+package org.joinfaces.autoconfigure.viewscope;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;

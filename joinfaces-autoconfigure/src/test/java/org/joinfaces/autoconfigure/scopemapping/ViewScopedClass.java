@@ -14,16 +14,11 @@
  * limitations under the License.
  */
 
-package org.joinfaces.autoconfigure.integration;
+package org.joinfaces.autoconfigure.scopemapping;
 
-import org.springframework.beans.BeansException;
-import org.springframework.beans.factory.ObjectFactory;
+import javax.faces.bean.ViewScoped;
 
-public class ViewScopedClassFactory implements ObjectFactory<ViewScopedClass> {
-
-	@Override
-	public ViewScopedClass getObject() throws BeansException {
-		return new ViewScopedClass();
-	}
+@ViewScoped
+public class ViewScopedClass {
 
 }

@@ -5,9 +5,9 @@ org.joinfaces.autoconfigure.jetty.JettyAutoConfiguration,\
 org.joinfaces.autoconfigure.jetty.JettyMyFacesAutoConfiguration,\
 org.joinfaces.autoconfigure.undertow.UndertowAutoConfiguration,\
 org.joinfaces.autoconfigure.undertow.UndertowMyFacesAutoConfiguration,\
-org.joinfaces.autoconfigure.integration.viewscope.ViewScopeAutoConfiguration,\
-org.joinfaces.autoconfigure.integration.CdiScopeAnnotationsAutoConfiguration,\
-org.joinfaces.autoconfigure.integration.JsfScopeAnnotationsAutoConfiguration,\
+org.joinfaces.autoconfigure.viewscope.ViewScopeAutoConfiguration,\
+org.joinfaces.autoconfigure.scopemapping.CdiScopeAnnotationsAutoConfiguration,\
+org.joinfaces.autoconfigure.scopemapping.JsfScopeAnnotationsAutoConfiguration,\
 org.joinfaces.autoconfigure.javaxfaces.JavaxFacesAutoConfiguration,\
 org.joinfaces.autoconfigure.mojarra.MojarraAutoConfiguration,\
 org.joinfaces.autoconfigure.myfaces.MyFacesAutoConfiguration,\

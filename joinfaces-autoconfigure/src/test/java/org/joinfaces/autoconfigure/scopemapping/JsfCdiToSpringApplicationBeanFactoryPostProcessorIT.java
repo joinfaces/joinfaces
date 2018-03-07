@@ -14,9 +14,9 @@
  * limitations under the License.
  */
 
-package org.joinfaces.autoconfigure.integration;
+package org.joinfaces.autoconfigure.scopemapping;
 
-import org.joinfaces.autoconfigure.integration.viewscope.ViewScope;
+import org.joinfaces.autoconfigure.viewscope.ViewScope;
 import org.junit.Test;
 
 import org.springframework.beans.factory.annotation.AnnotatedGenericBeanDefinition;

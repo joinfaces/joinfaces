@@ -14,11 +14,8 @@
  * limitations under the License.
  */
 
-package org.joinfaces.autoconfigure.integration;
+package org.joinfaces.autoconfigure.scopemapping;
 
-import javax.faces.bean.ViewScoped;
-
-@ViewScoped
-public class ViewScopedClass {
+public class NoScopedClass {
 
 }
