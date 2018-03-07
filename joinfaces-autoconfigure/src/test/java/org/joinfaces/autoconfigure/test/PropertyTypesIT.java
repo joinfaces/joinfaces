@@ -37,7 +37,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 		properties = "spring.profiles.active=propertyTest",
 		webEnvironment = SpringBootTest.WebEnvironment.MOCK
 )
-public class PropertyTypesTest {
+public class PropertyTypesIT {
 
 	private static final String FOO = "foo";
 	private static final String BAR = "bar";

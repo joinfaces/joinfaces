@@ -27,12 +27,10 @@ import org.joinfaces.autoconfigure.servlet.initializer.JsfClassFactory;
 import org.junit.Test;
 
 import org.springframework.core.annotation.AnnotationUtils;
-import org.springframework.test.context.web.WebAppConfiguration;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-@WebAppConfiguration
-public class JsfClassFactoryIT {
+public class JsfClassFactoryTest {
 
 	@Test
 	public void testJavaxFacesHtmlPanelGroupWithMyfaces() {

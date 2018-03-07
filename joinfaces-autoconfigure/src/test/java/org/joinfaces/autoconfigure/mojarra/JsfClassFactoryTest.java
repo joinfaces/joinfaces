@@ -28,12 +28,10 @@ import org.junit.Before;
 import org.junit.Test;
 
 import org.springframework.core.annotation.AnnotationUtils;
-import org.springframework.test.context.web.WebAppConfiguration;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-@WebAppConfiguration
-public class JsfClassFactoryIT {
+public class JsfClassFactoryTest {
 
 	private JsfClassFactory.Configuration configuration;
 

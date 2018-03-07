@@ -22,7 +22,7 @@ import org.springframework.boot.web.embedded.tomcat.TomcatServletWebServerFactor
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class TomcatAutoConfigurationIT {
+public class TomcatAutoConfigurationTest {
 
 	@Test
 	public void customize() {

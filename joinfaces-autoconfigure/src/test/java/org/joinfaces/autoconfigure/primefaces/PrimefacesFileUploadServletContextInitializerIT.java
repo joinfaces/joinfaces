@@ -48,7 +48,7 @@ public class PrimefacesFileUploadServletContextInitializerIT {
 	private PrimefacesFileUploadServletContextAutoConfiguration primefacesFileUploadServletContextAutoConfiguration;
 
 	@Test
-	public void testOnStartup() throws ServletException {
+	public void testOnStartup() {
 		PrimefacesFileUploadServletContextInitializer primefacesServletContextInitializer
 			= new PrimefacesFileUploadServletContextInitializer(this.multipartConfigElement);
 

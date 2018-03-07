@@ -27,22 +27,25 @@ import org.springframework.orm.jpa.support.OpenEntityManagerInViewFilter;
 import org.springframework.orm.jpa.support.OpenEntityManagerInViewInterceptor;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import static org.assertj.core.api.Assertions.assertThat;
+
 /**
  * @author Lars Grefer
  */
 @RunWith(SpringRunner.class)
 @SpringBootTest(
-		properties = "spring.jpa.open-in-view=false",
 		webEnvironment = SpringBootTest.WebEnvironment.MOCK
 )
-public class JpaWebAutoConfigurationDisabledTest {
+public class JpaWebAutoConfigurationIT {
 
 	@Autowired
 	private ApplicationContext applicationContext;
 
-	@Test(expected = NoSuchBeanDefinitionException.class)
-	public void testFilterDisabled() {
-		this.applicationContext.getBean(OpenEntityManagerInViewFilter.class);
+	@Test
+	public void testFilterEnabled() {
+		OpenEntityManagerInViewFilter filter = this.applicationContext.getBean(OpenEntityManagerInViewFilter.class);
+
+		assertThat(filter).isNotNull();
 	}
 
 	@Test(expected = NoSuchBeanDefinitionException.class)
