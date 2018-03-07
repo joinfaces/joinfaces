@@ -27,7 +27,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 import static org.assertj.core.api.Assertions.assertThat;
 
 /**
- * Auto-configuration for JSF-CDI-Spring scopemapping.
+ * Auto-configuration for JSF-CDI-Spring integration.
  *
  * @author Diego Diez
  */

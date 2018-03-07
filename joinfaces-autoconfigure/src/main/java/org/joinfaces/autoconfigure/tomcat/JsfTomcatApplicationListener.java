@@ -34,7 +34,7 @@ import org.springframework.context.ApplicationListener;
 
 /**
  * Jsf Tomcat application listener to add resources to jsf access resources at
- * scopemapping tests or embedded jar.
+ * integration tests or embedded jar.
  *
  * @author Marcelo Fernandes
  */

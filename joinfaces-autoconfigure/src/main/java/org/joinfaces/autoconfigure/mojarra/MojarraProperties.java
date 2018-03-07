@@ -219,7 +219,7 @@ public class MojarraProperties implements ServletContextInitParameterProperties 
 	 * that will fail validation due to multiple ID attributes with the same
 	 * value: javax.faces.ViewState. Setting this parameter to false will result
 	 * in the ID attribute not being rendered. Keep in mind however, that doing
-	 * this may break scopemapping with AJAX frameworks that get the state field
+	 * this may break integration with AJAX frameworks that get the state field
 	 * via ID. See issue 433 for details.
 	 */
 	@ServletContextInitParameter(PREFIX + "enableViewStateIdRendering")
