@@ -16,7 +16,10 @@
 
 package org.joinfaces.autoconfigure.tomcat;
 
+import org.apache.catalina.Context;
+
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnWebApplication;
 import org.springframework.boot.web.embedded.tomcat.TomcatServletWebServerFactory;
 import org.springframework.boot.web.server.WebServerFactoryCustomizer;
 import org.springframework.context.annotation.Bean;
@@ -28,8 +31,9 @@ import org.springframework.context.annotation.Configuration;
  *
  * @author Marcelo Fernandes
  */
-@ConditionalOnClass(name = "org.apache.catalina.Context")
 @Configuration
+@ConditionalOnClass(Context.class)
+@ConditionalOnWebApplication(type = ConditionalOnWebApplication.Type.SERVLET)
 public class TomcatAutoConfiguration {
 
 	private JsfTomcatContextCustomizer customizer = new JsfTomcatContextCustomizer();

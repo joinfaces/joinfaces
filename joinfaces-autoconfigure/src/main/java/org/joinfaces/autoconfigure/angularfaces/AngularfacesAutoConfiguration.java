@@ -21,6 +21,7 @@ import java.util.ArrayList;
 import javax.annotation.Nullable;
 import javax.faces.view.facelets.TagDecorator;
 
+import de.beyondjava.angularFaces.core.ELTools;
 import de.beyondjava.angularFaces.core.tagTransformer.AngularTagDecorator;
 import org.joinfaces.autoconfigure.javaxfaces.JavaxFaces2_0Properties;
 import org.joinfaces.autoconfigure.javaxfaces.JavaxFacesAutoConfiguration;
@@ -41,9 +42,9 @@ import org.springframework.context.annotation.Configuration;
  */
 @Configuration
 @EnableConfigurationProperties(AngularfacesProperties.class)
-@ConditionalOnClass(name = "de.beyondjava.angularFaces.core.ELTools")
+@ConditionalOnClass(ELTools.class)
 @AutoConfigureBefore(JavaxFacesAutoConfiguration.class)
-@ConditionalOnWebApplication
+@ConditionalOnWebApplication(type = ConditionalOnWebApplication.Type.SERVLET)
 public class AngularfacesAutoConfiguration {
 
 	@Bean

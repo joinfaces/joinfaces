@@ -21,11 +21,13 @@ import java.net.URLClassLoader;
 import java.security.AccessController;
 import java.security.PrivilegedAction;
 
+import io.undertow.Undertow;
 import io.undertow.server.handlers.resource.ClassPathResourceManager;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnWebApplication;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.boot.web.embedded.undertow.UndertowServletWebServerFactory;
 import org.springframework.boot.web.server.WebServerFactoryCustomizer;
@@ -40,8 +42,9 @@ import org.springframework.context.annotation.Configuration;
 @Slf4j
 @RequiredArgsConstructor
 @Configuration
-@EnableConfigurationProperties({UndertowProperties.class})
-@ConditionalOnClass(name = "io.undertow.Undertow")
+@EnableConfigurationProperties(UndertowProperties.class)
+@ConditionalOnClass(Undertow.class)
+@ConditionalOnWebApplication(type = ConditionalOnWebApplication.Type.SERVLET)
 public class UndertowAutoConfiguration {
 
 	private final UndertowProperties undertowProperties;

@@ -16,6 +16,7 @@
 
 package org.joinfaces.autoconfigure.mojarra;
 
+import com.sun.faces.config.FacesInitializer;
 import org.joinfaces.autoconfigure.javaxfaces.JavaxFacesAutoConfiguration;
 
 import org.springframework.boot.autoconfigure.AutoConfigureAfter;
@@ -32,11 +33,11 @@ import org.springframework.context.annotation.Configuration;
  * @author Marcelo Fernandes
  */
 @Configuration
-@EnableConfigurationProperties({MojarraProperties.class})
-@ConditionalOnClass(name = "com.sun.faces.config.FacesInitializer")
+@EnableConfigurationProperties(MojarraProperties.class)
+@ConditionalOnClass(FacesInitializer.class)
 @AutoConfigureBefore(WebMvcAutoConfiguration.class)
-@AutoConfigureAfter({JavaxFacesAutoConfiguration.class})
-@ConditionalOnWebApplication
+@AutoConfigureAfter(JavaxFacesAutoConfiguration.class)
+@ConditionalOnWebApplication(type = ConditionalOnWebApplication.Type.SERVLET)
 public class MojarraAutoConfiguration {
 
 	@Bean

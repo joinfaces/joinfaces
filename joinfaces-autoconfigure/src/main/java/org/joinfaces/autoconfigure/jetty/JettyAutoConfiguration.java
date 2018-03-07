@@ -31,6 +31,7 @@ import org.eclipse.jetty.util.resource.ResourceCollection;
 import org.eclipse.jetty.webapp.WebAppContext;
 
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnWebApplication;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.boot.web.embedded.jetty.JettyServerCustomizer;
 import org.springframework.boot.web.embedded.jetty.JettyServletWebServerFactory;
@@ -50,8 +51,9 @@ import org.springframework.core.io.ClassPathResource;
 @Slf4j
 @Configuration
 @RequiredArgsConstructor
-@EnableConfigurationProperties({JettyProperties.class})
-@ConditionalOnClass(name = "org.eclipse.jetty.server.Server")
+@EnableConfigurationProperties(JettyProperties.class)
+@ConditionalOnClass(Server.class)
+@ConditionalOnWebApplication(type = ConditionalOnWebApplication.Type.SERVLET)
 public class JettyAutoConfiguration {
 
 	private final JettyProperties jettyProperties;

@@ -32,9 +32,9 @@ import org.springframework.context.annotation.Bean;
  * @author Lars Grefer
  */
 @Slf4j
-@ConditionalOnWebApplication
 @ConditionalOnClass(ProjectStage.class)
 @AutoConfigureBefore(JavaxFacesAutoConfiguration.class)
+@ConditionalOnWebApplication(type = ConditionalOnWebApplication.Type.SERVLET)
 public class ProjectStageAutoConfiguration {
 
 	@Bean

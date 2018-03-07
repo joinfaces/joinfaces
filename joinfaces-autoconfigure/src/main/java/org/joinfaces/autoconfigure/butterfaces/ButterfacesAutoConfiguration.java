@@ -20,6 +20,7 @@ import javax.annotation.Nullable;
 
 import lombok.extern.slf4j.Slf4j;
 import net.bootsfaces.C;
+import org.butterfaces.util.ReflectionUtil;
 import org.joinfaces.autoconfigure.bootsfaces.BootsfacesAutoConfiguration;
 import org.joinfaces.autoconfigure.bootsfaces.BootsfacesProperties;
 import org.joinfaces.autoconfigure.javaxfaces.JavaxFacesAutoConfiguration;
@@ -40,9 +41,9 @@ import org.springframework.context.annotation.Configuration;
  */
 @Configuration
 @EnableConfigurationProperties(ButterfacesProperties.class)
-@ConditionalOnClass(name = "org.butterfaces.util.ReflectionUtil")
+@ConditionalOnClass(ReflectionUtil.class)
 @AutoConfigureBefore(JavaxFacesAutoConfiguration.class)
-@ConditionalOnWebApplication
+@ConditionalOnWebApplication(type = ConditionalOnWebApplication.Type.SERVLET)
 @Slf4j
 public class ButterfacesAutoConfiguration {
 
