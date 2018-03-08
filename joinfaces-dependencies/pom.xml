@@ -391,6 +391,7 @@
                         <rulesets>
                             <ruleset>${pmd.ruleset}</ruleset>
                         </rulesets>
+                        <analysisCache>true</analysisCache>
                     </configuration>
                 </plugin>
                 <plugin>
