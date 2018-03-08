@@ -21,7 +21,7 @@ import java.util.Set;
 import javax.faces.component.html.HtmlPanelGroup;
 import javax.servlet.annotation.HandlesTypes;
 
-import org.apache.myfaces.ee6.MyFacesContainerInitializer;
+import org.apache.myfaces.ee.MyFacesContainerInitializer;
 import org.apache.myfaces.renderkit.html.HtmlGridRenderer;
 import org.joinfaces.autoconfigure.servlet.initializer.JsfClassFactory;
 import org.junit.Test;

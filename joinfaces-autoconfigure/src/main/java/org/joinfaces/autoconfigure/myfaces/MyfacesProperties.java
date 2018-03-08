@@ -622,13 +622,6 @@ public class MyfacesProperties implements ServletContextInitParameterProperties 
 	private Boolean errorHandling;
 
 	/**
-	 * Define if the state caching code should be handled by the
-	 * ResponseStateManager or by the StateManager used.
-	 */
-	@ServletContextInitParameter(HtmlResponseStateManager.INIT_PARAM_HANDLE_STATE_CACHING_MECHANICS)
-	private Boolean handleStateCachingMechanics;
-
-	/**
 	 * Add autocomplete="off" to the view state hidden field.
 	 */
 	@ServletContextInitParameter(HtmlResponseStateManager.INIT_PARAM_AUTOCOMPLETE_OFF_VIEW_STATE)
@@ -665,14 +658,6 @@ public class MyfacesProperties implements ServletContextInitParameterProperties 
 
 	@NestedProperty
 	private Spi spi = new Spi();
-
-	/**
-	 * If this param is set to true (by default), when pss algorithm is executed
-	 * to save state, a visit tree traversal is done, instead a plain traversal
-	 * like previous versions (2.
-	 */
-	@ServletContextInitParameter(DefaultFaceletsStateManagementStrategy.SAVE_STATE_WITH_VISIT_TREE_ON_PSS)
-	private Boolean saveStateWithVisitTreeOnPass;
 
 	/**
 	 * Define how duplicate ids are checked when ProjectStage is Production, by

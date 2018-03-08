@@ -20,7 +20,7 @@ import java.util.Set;
 
 import javax.servlet.annotation.HandlesTypes;
 
-import org.apache.myfaces.ee6.MyFacesContainerInitializer;
+import org.apache.myfaces.ee.MyFacesContainerInitializer;
 import org.joinfaces.autoconfigure.servlet.initializer.JsfClassFactory;
 import org.joinfaces.autoconfigure.servlet.initializer.ServletContainerInitializerRegistrationBean;
 

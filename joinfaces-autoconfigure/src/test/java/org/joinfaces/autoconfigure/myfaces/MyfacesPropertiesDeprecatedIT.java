@@ -55,14 +55,4 @@ public class MyfacesPropertiesDeprecatedIT {
 		assertThat(this.myfacesProperties.getCacheOldViewsInSessionMode()).isFalse();
 	}
 
-	@Test
-	public void testHandleStateCachingMechanics() {
-		assertThat(this.myfacesProperties.getHandleStateCachingMechanics()).isTrue();
-	}
-
-	@Test
-	public void testSaveStateWithVisitTreeOnPass() {
-		assertThat(this.myfacesProperties.getSaveStateWithVisitTreeOnPass()).isTrue();
-	}
-
 }
