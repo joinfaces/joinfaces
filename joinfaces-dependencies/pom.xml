@@ -16,7 +16,6 @@
 
     <properties>
         <main.basedir>..</main.basedir>
-        <tomcat.version>8.5.27</tomcat.version>
         <lombok.version>1.16.20</lombok.version>
         <lombok-maven-plugin.version>1.16.18.1</lombok-maven-plugin.version>
 
