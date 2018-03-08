@@ -28,36 +28,73 @@ import org.junit.Before;
 import org.junit.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
+import static org.mockito.BDDMockito.mock;
+import static org.mockito.BDDMockito.verify;
+import static org.mockito.BDDMockito.when;
 
 public class JsfBeansAutoConfigurationTest {
 
 	private JsfBeansAutoConfiguration jsfBeansAutoConfiguration;
 	private FacesContext facesContext;
-	private ExternalContext externalContext;
 
 	@Before
 	public void setUp() {
 		this.jsfBeansAutoConfiguration = new JsfBeansAutoConfiguration();
 		this.facesContext = FacesContextMocker.mockFacesContext();
-		this.externalContext = mock(ExternalContext.class);
-		when(facesContext.getExternalContext()).thenReturn(this.externalContext);
 	}
 
 	@Test
-	public void testApplication() {
-		Object application = "foo";
-		when(this.externalContext.getContext()).thenReturn(application);
-		assertThat(this.jsfBeansAutoConfiguration.application()).isSameAs(application);
+	public void testFacesContext() {
+		assertThat(this.jsfBeansAutoConfiguration.facesContext()).isEqualTo(FacesContext.getCurrentInstance());
 	}
 
 	@Test
-	public void testApplicationMap() {
-		Map<String, Object> map = Collections.emptyMap();
-		when(this.externalContext.getApplicationMap()).thenReturn(map);
-		assertThat(this.jsfBeansAutoConfiguration.applicationMap()).isSameAs(map);
+	public void testExternalContext() {
+		ExternalContext externalContext = mock(ExternalContext.class);
+		when(this.facesContext.getExternalContext()).thenReturn(externalContext);
+
+		assertThat(this.jsfBeansAutoConfiguration.externalContext()).isEqualTo(externalContext);
+
+		this.jsfBeansAutoConfiguration.application();
+		verify(externalContext).getContext();
+
+		this.jsfBeansAutoConfiguration.applicationMap();
+		verify(externalContext).getApplicationMap();
+
+		this.jsfBeansAutoConfiguration.requestCookieMap();
+		verify(externalContext).getRequestCookieMap();
+
+		this.jsfBeansAutoConfiguration.flash();
+		verify(externalContext).getFlash();
+
+		this.jsfBeansAutoConfiguration.headerMap();
+		verify(externalContext).getRequestHeaderMap();
+
+		this.jsfBeansAutoConfiguration.headerValuesMap();
+		verify(externalContext).getRequestHeaderValuesMap();
+
+		this.jsfBeansAutoConfiguration.initParameterMap();
+		verify(externalContext).getInitParameterMap();
+
+		this.jsfBeansAutoConfiguration.requestParameterMap();
+		verify(externalContext).getRequestParameterMap();
+
+		this.jsfBeansAutoConfiguration.requestParameterValuesMap();
+		verify(externalContext).getRequestParameterValuesMap();
+
+		this.jsfBeansAutoConfiguration.request();
+		verify(externalContext).getRequest();
+
+		this.jsfBeansAutoConfiguration.requestMap();
+		verify(externalContext).getRequestMap();
+
+		this.jsfBeansAutoConfiguration.session();
+		verify(externalContext).getSession(false);
+
+		this.jsfBeansAutoConfiguration.sessionMap();
+		verify(externalContext).getSessionMap();
 	}
+
 
 	@Test
 	public void testViewMap() {
