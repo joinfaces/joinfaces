@@ -74,10 +74,18 @@ public class PrimefacesAutoConfiguration {
 	}
 
 	/**
-	 * Auto Configuration for Primefaces 6+.
+	 * Auto Configuration for Primefaces 6.0.
 	 */
 	@Configuration
 	@EnableConfigurationProperties(Primefaces6_0Properties.class)
 	public static class Primefaces6_0AutoConfiguration {
+	}
+
+	/**
+	 * Auto Configuration for Primefaces 6.2+.
+	 */
+	@Configuration
+	@EnableConfigurationProperties(Primefaces6_2Properties.class)
+	public static class Primefaces6_2AutoConfiguration {
 	}
 }
