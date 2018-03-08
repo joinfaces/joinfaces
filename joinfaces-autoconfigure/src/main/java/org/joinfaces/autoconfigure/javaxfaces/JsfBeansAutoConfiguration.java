@@ -156,6 +156,16 @@ public class JsfBeansAutoConfiguration {
 	}
 
 	/**
+	 * @see com.sun.faces.cdi.RequestProducer
+	 */
+	@Bean("request")
+	@ConditionalOnMissingBean
+	@Scope(value = ConfigurableBeanFactory.SCOPE_PROTOTYPE, proxyMode = ScopedProxyMode.TARGET_CLASS)
+	public Object request() {
+		return externalContext().getRequest();
+	}
+
+	/**
 	 * @see com.sun.faces.cdi.RequestMapProducer
 	 */
 	@Bean("requestScope")
@@ -173,6 +183,16 @@ public class JsfBeansAutoConfiguration {
 	@ConditionalOnMissingBean
 	public ResourceHandler resourceHandler() {
 		return facesContext().getApplication().getResourceHandler();
+	}
+
+	/**
+	 * @see com.sun.faces.cdi.SessionProducer
+	 */
+	@Bean("session")
+	@Scope(value = ConfigurableBeanFactory.SCOPE_PROTOTYPE, proxyMode = ScopedProxyMode.TARGET_CLASS)
+	@ConditionalOnMissingBean
+	public Object session() {
+		return externalContext().getSession(false);
 	}
 
 	/**
