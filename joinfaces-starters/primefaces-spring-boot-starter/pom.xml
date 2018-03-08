@@ -34,9 +34,5 @@
             <groupId>org.primefaces.extensions</groupId>
             <artifactId>resources-ckeditor</artifactId>
         </dependency>
-        <dependency>
-            <groupId>org.primefaces.extensions</groupId>
-            <artifactId>resources-codemirror</artifactId>
-        </dependency>
     </dependencies>
 </project>

@@ -48,6 +48,9 @@ public class PrimefacesPropertiesIT {
 	@Autowired
 	private Primefaces6_0Properties primefaces6_0Properties;
 
+	@Autowired
+	private Primefaces6_2Properties primefaces6_2Properties;
+
 	@Test
 	public void testPrivateCaptchaKey() {
 		assertThat(this.primefaces4_0Properties.getPrivateCaptchaKey()).isEqualTo("myPrivateCaptchaKey");
@@ -136,6 +139,11 @@ public class PrimefacesPropertiesIT {
 	@Test
 	public void testUploader() {
 		assertThat(this.primefaces4_0Properties.getUploader()).isEqualTo("auto");
+	}
+
+	@Test
+	public void testMoveScriptsToBottom() {
+		assertThat(this.primefaces6_2Properties.isMoveScriptsToBottom()).isTrue();
 	}
 
 }

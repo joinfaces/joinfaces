@@ -27,8 +27,8 @@
 
         <omnifaces.version>1.14.1</omnifaces.version>
 
-        <primefaces.version>6.1</primefaces.version>
-        <primefaces-extensions.version>6.1.1</primefaces-extensions.version>
+        <primefaces.version>6.2</primefaces.version>
+        <primefaces-extensions.version>6.2</primefaces-extensions.version>
 
         <bootsfaces.version>1.2.0</bootsfaces.version>
         <angularfaces.version>2.1.12</angularfaces.version>
@@ -207,12 +207,6 @@
             <dependency>
                 <groupId>org.primefaces.extensions</groupId>
                 <artifactId>resources-ckeditor</artifactId>
-                <version>${primefaces-extensions.version}</version>
-                <scope>runtime</scope>
-            </dependency>
-            <dependency>
-                <groupId>org.primefaces.extensions</groupId>
-                <artifactId>resources-codemirror</artifactId>
                 <version>${primefaces-extensions.version}</version>
                 <scope>runtime</scope>
             </dependency>
