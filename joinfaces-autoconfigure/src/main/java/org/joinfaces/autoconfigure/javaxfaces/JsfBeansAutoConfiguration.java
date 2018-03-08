@@ -51,7 +51,7 @@ public class JsfBeansAutoConfiguration {
 	@ConditionalOnMissingBean(name = "application")
 	@Scope(value = ConfigurableBeanFactory.SCOPE_PROTOTYPE, proxyMode = ScopedProxyMode.TARGET_CLASS)
 	public Object application() {
-		return externalContext().getContext();
+		return FacesContext.getCurrentInstance().getExternalContext().getContext();
 	}
 
 	/**
@@ -61,7 +61,7 @@ public class JsfBeansAutoConfiguration {
 	@ConditionalOnMissingBean(name = "applicationScope")
 	@Scope(value = ConfigurableBeanFactory.SCOPE_PROTOTYPE, proxyMode = ScopedProxyMode.INTERFACES)
 	public Map<String, Object> applicationMap() {
-		return externalContext().getApplicationMap();
+		return FacesContext.getCurrentInstance().getExternalContext().getApplicationMap();
 	}
 
 	/**
@@ -71,7 +71,7 @@ public class JsfBeansAutoConfiguration {
 	@ConditionalOnMissingBean(name = "cookie")
 	@Scope(value = ConfigurableBeanFactory.SCOPE_PROTOTYPE, proxyMode = ScopedProxyMode.INTERFACES)
 	public Map<String, Object> requestCookieMap() {
-		return externalContext().getRequestCookieMap();
+		return FacesContext.getCurrentInstance().getExternalContext().getRequestCookieMap();
 	}
 
 	/**
@@ -91,7 +91,7 @@ public class JsfBeansAutoConfiguration {
 	@Scope(value = ConfigurableBeanFactory.SCOPE_PROTOTYPE, proxyMode = ScopedProxyMode.TARGET_CLASS)
 	@ConditionalOnMissingBean
 	public Flash flash() {
-		return externalContext().getFlash();
+		return FacesContext.getCurrentInstance().getExternalContext().getFlash();
 	}
 
 	/**
@@ -101,7 +101,7 @@ public class JsfBeansAutoConfiguration {
 	@ConditionalOnMissingBean(name = "flowScope")
 	@Scope(value = ConfigurableBeanFactory.SCOPE_PROTOTYPE, proxyMode = ScopedProxyMode.INTERFACES)
 	public Map<Object, Object> flowScope() {
-		return facesContext().getApplication().getFlowHandler().getCurrentFlowScope();
+		return FacesContext.getCurrentInstance().getApplication().getFlowHandler().getCurrentFlowScope();
 	}
 
 	/**
@@ -111,7 +111,7 @@ public class JsfBeansAutoConfiguration {
 	@ConditionalOnMissingBean(name = "header")
 	@Scope(value = ConfigurableBeanFactory.SCOPE_PROTOTYPE, proxyMode = ScopedProxyMode.INTERFACES)
 	public Map<String, String> headerMap() {
-		return externalContext().getRequestHeaderMap();
+		return FacesContext.getCurrentInstance().getExternalContext().getRequestHeaderMap();
 	}
 
 	/**
@@ -121,7 +121,7 @@ public class JsfBeansAutoConfiguration {
 	@ConditionalOnMissingBean(name = "headerValues")
 	@Scope(value = ConfigurableBeanFactory.SCOPE_PROTOTYPE, proxyMode = ScopedProxyMode.INTERFACES)
 	public Map<String, String[]> headerValuesMap() {
-		return externalContext().getRequestHeaderValuesMap();
+		return FacesContext.getCurrentInstance().getExternalContext().getRequestHeaderValuesMap();
 	}
 
 	/**
@@ -132,7 +132,7 @@ public class JsfBeansAutoConfiguration {
 	@Scope(value = ConfigurableBeanFactory.SCOPE_PROTOTYPE, proxyMode = ScopedProxyMode.INTERFACES)
 	@SuppressWarnings("unchecked")
 	public Map<String, String> initParameterMap() {
-		return externalContext().getInitParameterMap();
+		return FacesContext.getCurrentInstance().getExternalContext().getInitParameterMap();
 	}
 
 	/**
@@ -142,7 +142,7 @@ public class JsfBeansAutoConfiguration {
 	@ConditionalOnMissingBean(name = "param")
 	@Scope(value = ConfigurableBeanFactory.SCOPE_PROTOTYPE, proxyMode = ScopedProxyMode.INTERFACES)
 	public Map<String, String> requestParameterMap() {
-		return externalContext().getRequestParameterMap();
+		return FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap();
 	}
 
 	/**
@@ -152,7 +152,7 @@ public class JsfBeansAutoConfiguration {
 	@ConditionalOnMissingBean(name = "paramValues")
 	@Scope(value = ConfigurableBeanFactory.SCOPE_PROTOTYPE, proxyMode = ScopedProxyMode.INTERFACES)
 	public Map<String, String[]> requestParameterValuesMap() {
-		return externalContext().getRequestParameterValuesMap();
+		return FacesContext.getCurrentInstance().getExternalContext().getRequestParameterValuesMap();
 	}
 
 	/**
@@ -162,7 +162,7 @@ public class JsfBeansAutoConfiguration {
 	@ConditionalOnMissingBean
 	@Scope(value = ConfigurableBeanFactory.SCOPE_PROTOTYPE, proxyMode = ScopedProxyMode.TARGET_CLASS)
 	public Object request() {
-		return externalContext().getRequest();
+		return FacesContext.getCurrentInstance().getExternalContext().getRequest();
 	}
 
 	/**
@@ -172,7 +172,7 @@ public class JsfBeansAutoConfiguration {
 	@ConditionalOnMissingBean(name = "requestScope")
 	@Scope(value = ConfigurableBeanFactory.SCOPE_PROTOTYPE, proxyMode = ScopedProxyMode.INTERFACES)
 	public Map<String, Object> requestMap() {
-		return externalContext().getRequestMap();
+		return FacesContext.getCurrentInstance().getExternalContext().getRequestMap();
 	}
 
 	/**
@@ -182,7 +182,7 @@ public class JsfBeansAutoConfiguration {
 	@Scope(value = ConfigurableBeanFactory.SCOPE_PROTOTYPE, proxyMode = ScopedProxyMode.TARGET_CLASS)
 	@ConditionalOnMissingBean
 	public ResourceHandler resourceHandler() {
-		return facesContext().getApplication().getResourceHandler();
+		return FacesContext.getCurrentInstance().getApplication().getResourceHandler();
 	}
 
 	/**
@@ -192,7 +192,7 @@ public class JsfBeansAutoConfiguration {
 	@Scope(value = ConfigurableBeanFactory.SCOPE_PROTOTYPE, proxyMode = ScopedProxyMode.TARGET_CLASS)
 	@ConditionalOnMissingBean
 	public Object session() {
-		return externalContext().getSession(false);
+		return FacesContext.getCurrentInstance().getExternalContext().getSession(false);
 	}
 
 	/**
@@ -202,7 +202,7 @@ public class JsfBeansAutoConfiguration {
 	@ConditionalOnMissingBean(name = "sessionScope")
 	@Scope(value = ConfigurableBeanFactory.SCOPE_PROTOTYPE, proxyMode = ScopedProxyMode.INTERFACES)
 	public Map<String, Object> sessionMap() {
-		return externalContext().getSessionMap();
+		return FacesContext.getCurrentInstance().getExternalContext().getSessionMap();
 	}
 
 	/**
@@ -212,7 +212,7 @@ public class JsfBeansAutoConfiguration {
 	@Scope(value = ConfigurableBeanFactory.SCOPE_PROTOTYPE, proxyMode = ScopedProxyMode.TARGET_CLASS)
 	@ConditionalOnMissingBean
 	public UIViewRoot viewRoot() {
-		return facesContext().getViewRoot();
+		return FacesContext.getCurrentInstance().getViewRoot();
 	}
 
 	/**
@@ -222,7 +222,7 @@ public class JsfBeansAutoConfiguration {
 	@Scope(value = ConfigurableBeanFactory.SCOPE_PROTOTYPE, proxyMode = ScopedProxyMode.INTERFACES)
 	@ConditionalOnMissingBean(name = "viewScope")
 	public Map<String, Object> viewMap() {
-		return viewRoot().getViewMap();
+		return FacesContext.getCurrentInstance().getViewRoot().getViewMap();
 	}
 
 	/**
@@ -232,6 +232,6 @@ public class JsfBeansAutoConfiguration {
 	@Scope(value = ConfigurableBeanFactory.SCOPE_PROTOTYPE, proxyMode = ScopedProxyMode.TARGET_CLASS)
 	@ConditionalOnMissingBean
 	public ExternalContext externalContext() {
-		return facesContext().getExternalContext();
+		return FacesContext.getCurrentInstance().getExternalContext();
 	}
 }
