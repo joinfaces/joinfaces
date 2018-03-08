@@ -17,7 +17,7 @@
     <properties>
         <main.basedir>..</main.basedir>
 
-        <lombok-maven-plugin.version>1.16.18.1</lombok-maven-plugin.version>
+        <lombok-maven-plugin.version>1.16.20.0</lombok-maven-plugin.version>
 
         <javax.faces-api.version>2.3</javax.faces-api.version>
         <mojarra.version>2.3.3</mojarra.version>
