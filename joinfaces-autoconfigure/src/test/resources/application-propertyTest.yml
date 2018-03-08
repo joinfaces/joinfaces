@@ -219,8 +219,6 @@ jsf:
     viewstateJavascript: true
     serializeStateInSession: true
     cacheOldViewsInSessionMode: false
-    handleStateCachingMechanics: true
-    saveStateWithVisitTreeOnPass: true
 
   # omnifaces namespace
   omnifaces:

@@ -21,7 +21,7 @@
 
         <javax.faces-api.version>2.3</javax.faces-api.version>
         <mojarra.version>2.3.3</mojarra.version>
-        <myfaces.version>2.3.0-beta</myfaces.version>
+        <myfaces.version>2.3.0</myfaces.version>
         <commons-digester.version>2.1</commons-digester.version>
         <commons-beanutils.version>1.9.3</commons-beanutils.version>
 
