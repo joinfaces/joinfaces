@@ -12,14 +12,8 @@
     <artifactId>joinfaces-parent</artifactId>
     <version>3.0.1-SNAPSHOT</version>
     <packaging>pom</packaging>
-
-    <properties>
-        <maven.compiler.source>${java.version}</maven.compiler.source>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <maven.compiler.target>${java.version}</maven.compiler.target>
-        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-        <resource.delimiter>@</resource.delimiter>
-    </properties>
+    <name>JoinFaces Parent</name>
+    <description>JoinFaces configuration for reports and quality checks: pmd, cpd, checkstyle, findbugs, cycles, duplicate.</description>
 
     <build>
         <plugins>
@@ -283,8 +277,4 @@
         </profile>
     </profiles>
 
-    <name>JoinFaces Parent</name>
-    <description>Spring Boot Starters to build MVC web applications using
-        JSF, PrimeFaces, Primefaces Extensions, BootsFaces, ButterFaces, OmniFaces
-        , AngularFaces, Mojarra and MyFaces</description>
 </project>
