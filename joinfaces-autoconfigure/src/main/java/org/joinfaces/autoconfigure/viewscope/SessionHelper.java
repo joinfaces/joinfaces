@@ -19,7 +19,6 @@ package org.joinfaces.autoconfigure.viewscope;
 import java.util.LinkedList;
 import java.util.List;
 
-import lombok.AccessLevel;
 import lombok.Getter;
 
 import org.springframework.beans.factory.DisposableBean;
@@ -31,8 +30,8 @@ import org.springframework.beans.factory.DisposableBean;
  *
  * @author Lars Grefer
  */
-@Getter(AccessLevel.PACKAGE)
-class SessionHelper implements DisposableBean {
+@Getter
+public class SessionHelper implements DisposableBean {
 
 	private List<DestructionCallbackWrapper> destructionCallbackWrappers = new LinkedList<>();
 
