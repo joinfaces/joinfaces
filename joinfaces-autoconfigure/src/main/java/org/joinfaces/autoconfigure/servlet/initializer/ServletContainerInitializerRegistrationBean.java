@@ -43,7 +43,7 @@ import org.springframework.core.annotation.AnnotationUtils;
 @RequiredArgsConstructor
 @Getter
 @Setter
-public abstract class ServletContainerInitializerRegistrationBean<T extends ServletContainerInitializer> implements WebServerFactoryCustomizer<ConfigurableServletWebServerFactory> {
+public class ServletContainerInitializerRegistrationBean<T extends ServletContainerInitializer> implements WebServerFactoryCustomizer<ConfigurableServletWebServerFactory> {
 
 	private final Class<T> servletContainerInitializerClass;
 
@@ -63,6 +63,8 @@ public abstract class ServletContainerInitializerRegistrationBean<T extends Serv
 		});
 	}
 
-	protected abstract Set<Class<?>> getClasses(HandlesTypes handlesTypes);
+	protected Set<Class<?>> getClasses(HandlesTypes handlesTypes) {
+		throw new UnsupportedOperationException("Can't handle " + handlesTypes + " for class " + servletContainerInitializerClass);
+	}
 
 }
