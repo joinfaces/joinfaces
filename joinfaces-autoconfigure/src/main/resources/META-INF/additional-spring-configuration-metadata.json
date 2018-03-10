@@ -101,6 +101,25 @@
       ]
     },
     {
+      "name": "jsf.myfaces.el-resolver-predicate",
+      "providers": [
+        {
+          "name": "class-reference",
+          "parameters": {
+            "target": "java.util.function.Predicate",
+            "concrete": true
+          }
+        },
+        {
+          "name": "class-reference",
+          "parameters": {
+            "target": "org.apache.commons.collections.Predicate",
+            "concrete": true
+          }
+        }
+      ]
+    },
+    {
       "name": "jsf.bootsfaces.get-bootstrap-from-cdn",
       "values": [
         {

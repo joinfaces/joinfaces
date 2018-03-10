@@ -24,7 +24,6 @@ import javax.el.ExpressionFactory;
 
 import lombok.Getter;
 import lombok.Setter;
-import org.apache.commons.collections.Predicate;
 import org.apache.myfaces.application.ResourceHandlerImpl;
 import org.apache.myfaces.application.StateCache;
 import org.apache.myfaces.config.FacesConfigValidator;
@@ -586,14 +585,20 @@ public class MyfacesProperties implements ServletContextInitParameterProperties 
 	private Class<? extends Comparator<ELResolver>> elResolverComparator;
 
 	/**
-	 * The Class of an org.apache.commons.collections.Predicate<ELResolver/>
-	 * implementation." + "If used and returns true for a ELResolver instance,
-	 * such resolver will not be installed in " + "ELResolvers chain. Use with
-	 * caution - can break functionality defined in JSF specification " +
-	 * "'ELResolver Instances Provided by Faces'.
+	 * The {@link Class} of an Predicate<ELResolver> implementation.
+	 * If used and returns true for a ELResolver instance, such resolver will not be installed in ELResolvers chain.
+	 * Use with caution - can break functionality defined in JSF specification 'ELResolver Instances Provided by Faces'.
+	 *
+	 * For MyFaces versions up to 2.2.x the class provided here must implement the
+	 * {@link org.apache.commons.collections.Predicate} interface,
+	 * since version 2.3.0 the class must implement the {@link java.util.function.Predicate} interface.
+	 *
+	 * @see ResolverBuilderBase#EL_RESOLVER_PREDICATE
+	 * @see org.apache.commons.collections.Predicate
+	 * @see java.util.function.Predicate
 	 */
 	@ServletContextInitParameter(ResolverBuilderBase.EL_RESOLVER_PREDICATE)
-	private Class<? extends Predicate> elResolverPredicate;
+	private Class<?> elResolverPredicate;
 
 	/**
 	 * no description.
