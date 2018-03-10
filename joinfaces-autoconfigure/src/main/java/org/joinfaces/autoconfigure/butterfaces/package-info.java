@@ -17,6 +17,6 @@
 /**
  * ButterFaces Spring Boot Auto Configuration classes.
  *
- * @see org.joinfaces.autoconfigure.butterfaces.ButterfacesSpringBootAutoConfiguration
+ * @see org.joinfaces.autoconfigure.butterfaces.ButterfacesAutoConfiguration
  */
 package org.joinfaces.autoconfigure.butterfaces;

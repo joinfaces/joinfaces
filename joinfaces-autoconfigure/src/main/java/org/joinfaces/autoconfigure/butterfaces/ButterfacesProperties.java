@@ -19,9 +19,9 @@ package org.joinfaces.autoconfigure.butterfaces;
 import lombok.Getter;
 import lombok.Setter;
 import org.butterfaces.resolver.WebXmlParameters;
-import org.joinfaces.autoconfigure.configuration.NestedProperty;
-import org.joinfaces.autoconfigure.configuration.ServletContextInitParameter;
-import org.joinfaces.autoconfigure.configuration.ServletContextInitParameterConfigurationProperties;
+import org.joinfaces.autoconfigure.servlet.initparams.NestedProperty;
+import org.joinfaces.autoconfigure.servlet.initparams.ServletContextInitParameter;
+import org.joinfaces.autoconfigure.servlet.initparams.ServletContextInitParameterProperties;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
@@ -35,7 +35,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 @Getter
 @Setter
 @ConfigurationProperties(prefix = "jsf.butterfaces")
-public class ButterfacesProperties implements ServletContextInitParameterConfigurationProperties {
+public class ButterfacesProperties implements ServletContextInitParameterProperties {
 
 	/**
 	 * b:commandLink components comes with ajaxDisableRenderRegionsOnRequest to

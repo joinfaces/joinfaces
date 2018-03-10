@@ -19,8 +19,8 @@ package org.joinfaces.autoconfigure.primefaces;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.joinfaces.autoconfigure.configuration.ServletContextInitParameter;
-import org.joinfaces.autoconfigure.configuration.ServletContextInitParameterConfigurationProperties;
+import org.joinfaces.autoconfigure.servlet.initparams.ServletContextInitParameter;
+import org.joinfaces.autoconfigure.servlet.initparams.ServletContextInitParameterProperties;
 import org.primefaces.component.captcha.Captcha;
 import org.primefaces.util.Constants;
 
@@ -38,7 +38,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 @Setter
 @NoArgsConstructor
 @ConfigurationProperties("jsf.primefaces")
-public class Primefaces4_0Properties implements ServletContextInitParameterConfigurationProperties {
+public class Primefaces4_0Properties implements ServletContextInitParameterProperties {
 
 	/**
 	 * Theme of the application.

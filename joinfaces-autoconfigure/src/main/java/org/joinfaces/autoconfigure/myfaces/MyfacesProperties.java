@@ -44,9 +44,9 @@ import org.apache.myfaces.view.facelets.impl.FaceletCompositionContextImpl;
 import org.apache.myfaces.view.facelets.pool.ViewPool;
 import org.apache.myfaces.webapp.AbstractFacesInitializer;
 import org.apache.myfaces.webapp.FacesInitializer;
-import org.joinfaces.autoconfigure.configuration.NestedProperty;
-import org.joinfaces.autoconfigure.configuration.ServletContextInitParameter;
-import org.joinfaces.autoconfigure.configuration.ServletContextInitParameterConfigurationProperties;
+import org.joinfaces.autoconfigure.servlet.initparams.NestedProperty;
+import org.joinfaces.autoconfigure.servlet.initparams.ServletContextInitParameter;
+import org.joinfaces.autoconfigure.servlet.initparams.ServletContextInitParameterProperties;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
@@ -60,7 +60,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 @Getter
 @Setter
 @ConfigurationProperties(prefix = "jsf.myfaces")
-public class MyfacesProperties implements ServletContextInitParameterConfigurationProperties {
+public class MyfacesProperties implements ServletContextInitParameterProperties {
 
 	static final String PREFFIX = "org.apache.myfaces.";
 
@@ -622,13 +622,6 @@ public class MyfacesProperties implements ServletContextInitParameterConfigurati
 	private Boolean errorHandling;
 
 	/**
-	 * Define if the state caching code should be handled by the
-	 * ResponseStateManager or by the StateManager used.
-	 */
-	@ServletContextInitParameter(HtmlResponseStateManager.INIT_PARAM_HANDLE_STATE_CACHING_MECHANICS)
-	private Boolean handleStateCachingMechanics;
-
-	/**
 	 * Add autocomplete="off" to the view state hidden field.
 	 */
 	@ServletContextInitParameter(HtmlResponseStateManager.INIT_PARAM_AUTOCOMPLETE_OFF_VIEW_STATE)
@@ -665,14 +658,6 @@ public class MyfacesProperties implements ServletContextInitParameterConfigurati
 
 	@NestedProperty
 	private Spi spi = new Spi();
-
-	/**
-	 * If this param is set to true (by default), when pss algorithm is executed
-	 * to save state, a visit tree traversal is done, instead a plain traversal
-	 * like previous versions (2.
-	 */
-	@ServletContextInitParameter(DefaultFaceletsStateManagementStrategy.SAVE_STATE_WITH_VISIT_TREE_ON_PSS)
-	private Boolean saveStateWithVisitTreeOnPass;
 
 	/**
 	 * Define how duplicate ids are checked when ProjectStage is Production, by

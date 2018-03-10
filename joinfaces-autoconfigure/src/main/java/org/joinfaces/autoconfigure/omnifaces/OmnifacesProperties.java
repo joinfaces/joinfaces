@@ -20,8 +20,8 @@ import java.util.List;
 
 import lombok.Getter;
 import lombok.Setter;
-import org.joinfaces.autoconfigure.configuration.ServletContextInitParameter;
-import org.joinfaces.autoconfigure.configuration.ServletContextInitParameterConfigurationProperties;
+import org.joinfaces.autoconfigure.servlet.initparams.ServletContextInitParameter;
+import org.joinfaces.autoconfigure.servlet.initparams.ServletContextInitParameterProperties;
 import org.omnifaces.component.output.cache.CacheInitializerListener;
 import org.omnifaces.component.output.cache.CacheInstancePerScopeProvider;
 import org.omnifaces.component.output.cache.CacheProvider;
@@ -42,7 +42,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 @Getter
 @Setter
 @ConfigurationProperties(prefix = "jsf.omnifaces")
-public class OmnifacesProperties implements ServletContextInitParameterConfigurationProperties {
+public class OmnifacesProperties implements ServletContextInitParameterProperties {
 
 	@ServletContextInitParameter(CacheInitializerListener.CACHE_PROVIDER_INIT_PARAM_NAME)
 	private Class<? extends CacheProvider> cacheProvider;

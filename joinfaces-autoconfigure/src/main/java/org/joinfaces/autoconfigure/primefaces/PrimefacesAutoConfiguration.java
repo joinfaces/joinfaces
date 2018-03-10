@@ -16,7 +16,7 @@
 
 package org.joinfaces.autoconfigure.primefaces;
 
-import org.joinfaces.autoconfigure.javaxfaces.JavaxFacesSpringBootAutoConfiguration;
+import org.joinfaces.autoconfigure.javaxfaces.JavaxFacesAutoConfiguration;
 import org.primefaces.cache.CacheProvider;
 import org.primefaces.component.captcha.Captcha;
 import org.primefaces.util.Constants;
@@ -35,8 +35,8 @@ import org.springframework.context.annotation.Configuration;
  */
 @Configuration
 @ConditionalOnClass(Constants.class)
-@ConditionalOnWebApplication
-@AutoConfigureBefore(JavaxFacesSpringBootAutoConfiguration.class)
+@ConditionalOnWebApplication(type = ConditionalOnWebApplication.Type.SERVLET)
+@AutoConfigureBefore(JavaxFacesAutoConfiguration.class)
 public class PrimefacesAutoConfiguration {
 
 	/**
@@ -74,10 +74,18 @@ public class PrimefacesAutoConfiguration {
 	}
 
 	/**
-	 * Auto Configuration for Primefaces 6+.
+	 * Auto Configuration for Primefaces 6.0.
 	 */
 	@Configuration
 	@EnableConfigurationProperties(Primefaces6_0Properties.class)
 	public static class Primefaces6_0AutoConfiguration {
+	}
+
+	/**
+	 * Auto Configuration for Primefaces 6.2+.
+	 */
+	@Configuration
+	@EnableConfigurationProperties(Primefaces6_2Properties.class)
+	public static class Primefaces6_2AutoConfiguration {
 	}
 }

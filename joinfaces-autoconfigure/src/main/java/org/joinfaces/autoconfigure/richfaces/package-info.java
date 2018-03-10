@@ -17,6 +17,6 @@
 /**
  * RichFaces Spring Boot Auto Configuration classes.
  *
- * @see org.joinfaces.autoconfigure.richfaces.RichfacesSpringBootAutoConfiguration
+ * @see org.joinfaces.autoconfigure.richfaces.RichfacesAutoConfiguration
  */
 package org.joinfaces.autoconfigure.richfaces;

@@ -21,11 +21,10 @@ import javax.servlet.Filter;
 import javax.servlet.MultipartConfigElement;
 import javax.servlet.annotation.MultipartConfig;
 
-import org.joinfaces.autoconfigure.javaxfaces.JavaxFacesSpringBootAutoConfiguration;
+import org.joinfaces.autoconfigure.javaxfaces.JavaxFacesAutoConfiguration;
 import org.primefaces.webapp.MultipartRequest;
 import org.primefaces.webapp.filter.FileUploadFilter;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.AutoConfigureAfter;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnExpression;
@@ -53,21 +52,20 @@ import org.springframework.context.annotation.Configuration;
  */
 @ConditionalOnClass(name = {"org.primefaces.webapp.MultipartRequest"})
 @Configuration
-@AutoConfigureAfter(JavaxFacesSpringBootAutoConfiguration.class)
+@AutoConfigureAfter(JavaxFacesAutoConfiguration.class)
 public class PrimefacesFileUploadServletContextAutoConfiguration {
-
-	@Autowired
-	private MultipartConfigElement multipartConfigElement;
 
 	/**
 	 * PrimefacesFileUploadServletContextInitializer for native uploader,
 	 * since {@link FileUploadFilter} suffices for commons file uploader.
+	 *
+	 * @param multipartConfigElement {@link PrimefacesFileUploadServletContextInitializer#multipartConfigElement}
 	 * @return primefaces file upload servlet context initializer
 	 */
 	@ConditionalOnExpression("'${jsf.primefaces.uploader}' != 'commons'")
 	@Bean
-	public ServletContextInitializer primefacesFileUploadServletContextInitializer() {
-		return new PrimefacesFileUploadServletContextInitializer(this.multipartConfigElement);
+	public ServletContextInitializer primefacesFileUploadServletContextInitializer(MultipartConfigElement multipartConfigElement) {
+		return new PrimefacesFileUploadServletContextInitializer(multipartConfigElement);
 	}
 
 	/**
