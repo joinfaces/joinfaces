@@ -585,7 +585,7 @@ public class MyfacesProperties implements ServletContextInitParameterProperties 
 	private Class<? extends Comparator<ELResolver>> elResolverComparator;
 
 	/**
-	 * The {@link Class} of an Predicate<ELResolver> implementation.
+	 * The {@link Class} of an Predicate&lt;ELResolver&gt; implementation.
 	 * If used and returns true for a ELResolver instance, such resolver will not be installed in ELResolvers chain.
 	 * Use with caution - can break functionality defined in JSF specification 'ELResolver Instances Provided by Faces'.
 	 *
