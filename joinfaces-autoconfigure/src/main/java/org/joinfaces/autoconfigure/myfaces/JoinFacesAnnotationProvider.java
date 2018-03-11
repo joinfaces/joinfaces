@@ -16,6 +16,7 @@
 
 package org.joinfaces.autoconfigure.myfaces;
 
+import java.io.IOException;
 import java.lang.annotation.Annotation;
 import java.net.URL;
 import java.util.Collection;
@@ -26,16 +27,21 @@ import java.util.Set;
 import javax.faces.context.ExternalContext;
 
 import org.apache.myfaces.spi.AnnotationProvider;
+import org.apache.myfaces.spi.AnnotationProviderWrapper;
 
 /**
  * Servlet context configurer of MyFaces.
  * @author Marcelo Fernandes
  */
-public class JoinFacesAnnotationProvider extends AnnotationProvider {
+public class JoinFacesAnnotationProvider extends AnnotationProviderWrapper {
 
 	private static Map<Class<? extends Annotation>, Set<Class<?>>> annotatedClasses;
 
 	private static Collection<URL> urls;
+
+	public JoinFacesAnnotationProvider(AnnotationProvider annotationProvider) {
+		super(annotationProvider);
+	}
 
 	public static void setAnnotatedClasses(Map<Class<? extends Annotation>, Set<Class<?>>> annotatedClasses) {
 		JoinFacesAnnotationProvider.annotatedClasses = annotatedClasses;
@@ -47,11 +53,26 @@ public class JoinFacesAnnotationProvider extends AnnotationProvider {
 
 	@Override
 	public Map<Class<? extends Annotation>, Set<Class<?>>> getAnnotatedClasses(ExternalContext ctx) {
-		return annotatedClasses;
+		if (annotatedClasses != null) {
+			return annotatedClasses;
+		}
+		else {
+			return super.getAnnotatedClasses(ctx);
+		}
 	}
 
 	@Override
-	public Set<URL> getBaseUrls() {
-		return new HashSet<>(urls);
+	public Set<URL> getBaseUrls() throws IOException {
+		if (urls != null) {
+			return new HashSet<>(urls);
+		}
+		else {
+			return super.getBaseUrls();
+		}
+	}
+
+	@Override
+	public Set<URL> getBaseUrls(ExternalContext ctx) throws IOException {
+		return getBaseUrls();
 	}
 }
