@@ -47,48 +47,64 @@ public class OmnifacesProperties implements ServletContextInitParameterPropertie
 
 
 	/**
+	 * org.omnifaces.CACHE_PROVIDER.
+	 *
 	 * @see CacheInitializerListener#CACHE_PROVIDER_INIT_PARAM_NAME
 	 */
 	@ServletContextInitParameter("org.omnifaces.CACHE_PROVIDER")
 	private Class<?> cacheProvider;
 
 	/**
+	 * org.omnifaces.defaultcache.
+	 *
 	 * @see CacheInstancePerScopeProvider#DEFAULT_CACHE_PARAM_NAME
 	 */
 	@ServletContextInitParameter("org.omnifaces.defaultcache")
 	private String defaultcache;
 
 	/**
+	 * org.omnifaces.EXCEPTION_TYPES_TO_UNWRAP.
+	 *
 	 * @see FullAjaxExceptionHandler#PARAM_NAME_EXCEPTION_TYPES_TO_UNWRAP
 	 */
 	@ServletContextInitParameter("org.omnifaces.EXCEPTION_TYPES_TO_UNWRAP")
 	private List<Class<? extends Throwable>> exceptionTypesToUnwrap;
 
 	/**
+	 * org.omnifaces.FACES_VIEWS_DISPATCH_METHOD.
+	 *
 	 * @see FacesViews#FACES_VIEWS_DISPATCH_METHOD_PARAM_NAME
 	 */
 	@ServletContextInitParameter("org.omnifaces.FACES_VIEWS_DISPATCH_METHOD")
 	private String facesViewsDispatchMethod;
 
 	/**
+	 * org.omnifaces.FACES_VIEWS_ENABLED.
+	 *
 	 * @see FacesViews#FACES_VIEWS_ENABLED_PARAM_NAME
 	 */
 	@ServletContextInitParameter("org.omnifaces.FACES_VIEWS_ENABLED")
 	private Boolean facesViewsEnabled;
 
 	/**
+	 * org.omnifaces.FACES_VIEWS_EXTENSION_ACTION.
+	 *
 	 * @see FacesViews#FACES_VIEWS_EXTENSION_ACTION_PARAM_NAME
 	 */
 	@ServletContextInitParameter("org.omnifaces.FACES_VIEWS_EXTENSION_ACTION")
 	private String facesViewsExtensionAction;
 
 	/**
+	 * org.omnifaces.FACES_VIEWS_FILTER_AFTER_DECLARED_FILTERS.
+	 *
 	 * @see FacesViews#FACES_VIEWS_FILTER_AFTER_DECLARED_FILTERS_PARAM_NAME
 	 */
 	@ServletContextInitParameter("org.omnifaces.FACES_VIEWS_FILTER_AFTER_DECLARED_FILTERS")
 	private String facesViewsFilterAfterDeclaredFilters;
 
 	/**
+	 * org.omnifaces.FACES_VIEWS_PATH_ACTION.
+	 *
 	 * @see FacesViews#FACES_VIEWS_PATH_ACTION_PARAM_NAME
 	 */
 	@ServletContextInitParameter("org.omnifaces.FACES_VIEWS_PATH_ACTION")
@@ -103,30 +119,40 @@ public class OmnifacesProperties implements ServletContextInitParameterPropertie
 	private List<String> facesViewsScanPaths;
 
 	/**
+	 * org.omnifaces.FACES_VIEWS_SCANNED_VIEWS_ALWAYS_EXTENSIONLESS.
+	 *
 	 * @see FacesViews#FACES_VIEWS_SCANNED_VIEWS_EXTENSIONLESS_PARAM_NAME
 	 */
 	@ServletContextInitParameter("org.omnifaces.FACES_VIEWS_SCANNED_VIEWS_ALWAYS_EXTENSIONLESS")
 	private Boolean facesViewsScannedViewsAlwaysExtensionless;
 
 	/**
+	 * org.omnifaces.FACES_VIEWS_VIEW_HANDLER_MODE.
+	 *
 	 * @see FacesViews#FACES_VIEWS_VIEW_HANDLER_MODE_PARAM_NAME
 	 */
 	@ServletContextInitParameter("org.omnifaces.FACES_VIEWS_VIEW_HANDLER_MODE")
 	private String facesViewsViewHandlerMode;
 
 	/**
+	 * org.omnifaces.HTML5_RENDER_KIT_PASSTHROUGH_ATTRIBUTES.
+	 *
 	 * @see Html5RenderKit#PARAM_NAME_PASSTHROUGH_ATTRIBUTES
 	 */
 	@ServletContextInitParameter("org.omnifaces.HTML5_RENDER_KIT_PASSTHROUGH_ATTRIBUTES")
 	private String html5RenderKitPassthroughAttributes;
 
 	/**
+	 * org.omnifaces.CDN_RESOURCE_HANDLER_DISABLED.
+	 *
 	 * @see CDNResourceHandler#PARAM_NAME_CDN_DISABLED
 	 */
 	@ServletContextInitParameter("org.omnifaces.CDN_RESOURCE_HANDLER_DISABLED")
 	private Boolean cdnResourceHandlerDisabled;
 
 	/**
+	 * org.omnifaces.CDN_RESOURCE_HANDLER_URLS.
+	 *
 	 * @see CDNResourceHandler#PARAM_NAME_CDN_RESOURCES
 	 */
 	@ServletContextInitParameter("org.omnifaces.CDN_RESOURCE_HANDLER_URLS")
@@ -143,7 +169,9 @@ public class OmnifacesProperties implements ServletContextInitParameterPropertie
 	private Integer combinedResourceHandlerCacheTtl;
 
 	/**
-	 *	@see CombinedResourceHandler#PARAM_NAME_DISABLED
+	 * org.omnifaces.COMBINED_RESOURCE_HANDLER_DISABLED.
+	 *
+	 * @see CombinedResourceHandler#PARAM_NAME_DISABLED
 	 */
 	@ServletContextInitParameter("org.omnifaces.COMBINED_RESOURCE_HANDLER_DISABLED")
 	private Boolean combinedResourceHandlerDisabled;
