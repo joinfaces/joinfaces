@@ -27,6 +27,8 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 
 /**
  * Configuration Properties added with MyFaces 2.3.
+ * <p>
+ * Taken from: https://myfaces.apache.org/core23/myfaces-impl/webconfig.html
  *
  * @author Lars Grefer
  */
