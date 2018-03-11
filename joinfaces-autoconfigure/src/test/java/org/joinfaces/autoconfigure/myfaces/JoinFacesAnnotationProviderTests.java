@@ -39,7 +39,7 @@ public class JoinFacesAnnotationProviderTests {
 		urls.add(myurl);
 		JoinFacesAnnotationProvider.setUrls(urls);
 
-		assertThat(new JoinFacesAnnotationProvider().getBaseUrls())
+		assertThat(new JoinFacesAnnotationProvider(null).getBaseUrls())
 			.contains(myurl);
 	}
 
@@ -49,7 +49,7 @@ public class JoinFacesAnnotationProviderTests {
 		annotatedClasses.put(FacesConverter.class, new HashSet<>());
 		JoinFacesAnnotationProvider.setAnnotatedClasses(annotatedClasses);
 
-		assertThat(new JoinFacesAnnotationProvider().getAnnotatedClasses(null).get(FacesConverter.class))
+		assertThat(new JoinFacesAnnotationProvider(null).getAnnotatedClasses(null).get(FacesConverter.class))
 			.isNotNull();
 	}
 
