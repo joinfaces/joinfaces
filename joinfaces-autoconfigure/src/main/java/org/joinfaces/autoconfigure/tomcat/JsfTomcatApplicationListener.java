@@ -149,7 +149,6 @@ public class JsfTomcatApplicationListener implements ApplicationListener<Applica
 					// add main resource
 					case UBER_JAR: try {
 							addMainJarResourceSet(resources);
-							addClasspathResourceSets(resources);
 						}
 						catch (URISyntaxException ex) {
 							log.error(ex.getMessage());
