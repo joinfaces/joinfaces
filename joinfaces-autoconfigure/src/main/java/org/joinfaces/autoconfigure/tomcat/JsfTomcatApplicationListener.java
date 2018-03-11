@@ -149,6 +149,7 @@ public class JsfTomcatApplicationListener implements ApplicationListener<Applica
 					// add main resource
 					case UBER_JAR: try {
 							addMainJarResourceSet(resources);
+							addClasspathResourceSets(resources);
 						}
 						catch (URISyntaxException ex) {
 							log.error(ex.getMessage());
@@ -177,9 +178,13 @@ public class JsfTomcatApplicationListener implements ApplicationListener<Applica
 		String webAppMount = "/";
 		String archivePath = null;
 		String internalPath = "/META-INF/resources";
+		String bootInfPath = "/BOOT-INF/classes";
 
 		resources.createWebResourceSet(WebResourceRoot.ResourceSetType.POST,
 			webAppMount, base(mainFile(resources)), archivePath, internalPath);
+		System.out.println("ADICIONOU2 : '" + base(mainFile(resources)));
+		resources.createWebResourceSet(WebResourceRoot.ResourceSetType.POST,
+			webAppMount, base(mainFile(resources)), archivePath, bootInfPath + internalPath);
 	}
 
 	private void addClasspathResourceSets(WebResourceRoot resources) throws URISyntaxException {
