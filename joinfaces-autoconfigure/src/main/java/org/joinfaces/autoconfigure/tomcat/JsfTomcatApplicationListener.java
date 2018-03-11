@@ -182,7 +182,6 @@ public class JsfTomcatApplicationListener implements ApplicationListener<Applica
 
 		resources.createWebResourceSet(WebResourceRoot.ResourceSetType.POST,
 			webAppMount, base(mainFile(resources)), archivePath, internalPath);
-		System.out.println("ADICIONOU2 : '" + base(mainFile(resources)));
 		resources.createWebResourceSet(WebResourceRoot.ResourceSetType.POST,
 			webAppMount, base(mainFile(resources)), archivePath, bootInfPath + internalPath);
 	}
