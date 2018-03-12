@@ -120,6 +120,25 @@
       ]
     },
     {
+      "name": "jsf.omnifaces.cache-provider",
+      "providers": [
+        {
+          "name": "class-reference",
+          "parameters": {
+            "target": "org.omnifaces.util.cache.CacheProvider",
+            "concrete": true
+          }
+        },
+        {
+          "name": "class-reference",
+          "parameters": {
+            "target": "org.omnifaces.component.output.cache.CacheProvider",
+            "concrete": true
+          }
+        }
+      ]
+    },
+    {
       "name": "jsf.bootsfaces.get-bootstrap-from-cdn",
       "values": [
         {
