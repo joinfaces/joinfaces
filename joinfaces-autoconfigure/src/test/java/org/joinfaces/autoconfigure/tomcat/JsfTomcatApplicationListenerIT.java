@@ -166,7 +166,7 @@ public class JsfTomcatApplicationListenerIT {
 		callApplicationEvent(contextMock);
 
 		assertThat(contextMock.getWebResourceRoot().getCreateWebResourceSetCalls())
-			.isEqualTo(1);
+			.isEqualTo(2);
 	}
 
 	@Test
@@ -186,7 +186,7 @@ public class JsfTomcatApplicationListenerIT {
 		callApplicationEvent(contextMock);
 
 		assertThat(contextMock.getWebResourceRoot().getCreateWebResourceSetCalls())
-			.isEqualTo(1);
+			.isEqualTo(2);
 	}
 
 	@Test
@@ -206,7 +206,7 @@ public class JsfTomcatApplicationListenerIT {
 		callApplicationEvent(contextMock);
 
 		assertThat(contextMock.getWebResourceRoot().getCreateWebResourceSetCalls())
-			.isEqualTo(1);
+			.isEqualTo(2);
 	}
 
 	@Test

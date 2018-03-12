@@ -16,8 +16,7 @@
 
 package org.joinfaces.autoconfigure.primefaces;
 
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
 import org.joinfaces.autoconfigure.servlet.initparams.ServletContextInitParameter;
 import org.joinfaces.autoconfigure.servlet.initparams.ServletContextInitParameterProperties;
 import org.primefaces.util.Constants;
@@ -31,8 +30,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
  *
  * @author Lars Grefer
  */
-@Getter
-@Setter
+@Data
 @ConfigurationProperties("jsf.primefaces")
 public class Primefaces5_2Properties implements ServletContextInitParameterProperties {
 

@@ -32,51 +32,125 @@ under the License.
     This ruleset checks the code for discouraged programming constructs.
   </description>
 
-  <rule ref="rulesets/java/basic.xml"/>
+    <rule ref="category/java/errorprone.xml/AvoidBranchingStatementAsLastInLoop" />
+    <rule ref="category/java/errorprone.xml/AvoidDecimalLiteralsInBigDecimalConstructor" />
+    <rule ref="category/java/errorprone.xml/AvoidMultipleUnaryOperators" />
+    <rule ref="category/java/errorprone.xml/AvoidUsingOctalValues" />
+    <rule ref="category/java/errorprone.xml/BrokenNullCheck" />
+    <rule ref="category/java/errorprone.xml/CheckSkipResult" />
+    <rule ref="category/java/errorprone.xml/ClassCastExceptionWithToArray" />
+    <rule ref="category/java/errorprone.xml/DontUseFloatTypeForLoopIndices" />
+    <rule ref="category/java/errorprone.xml/JumbledIncrementer" />
+    <rule ref="category/java/errorprone.xml/MisplacedNullCheck" />
+    <rule ref="category/java/errorprone.xml/OverrideBothEqualsAndHashcode" />
+    <rule ref="category/java/errorprone.xml/ReturnFromFinallyBlock" />
+    <rule ref="category/java/errorprone.xml/UnconditionalIfStatement" />
+    <rule ref="category/java/errorprone.xml/EmptyCatchBlock">
+      <properties>
+        <property name="allowCommentedBlocks" value="true"/>
+      </properties>
+    </rule>
+    <rule ref="category/java/errorprone.xml/EmptyFinallyBlock" />
+    <rule ref="category/java/errorprone.xml/EmptyIfStmt" />
+    <rule ref="category/java/errorprone.xml/EmptyInitializer" />
+    <rule ref="category/java/errorprone.xml/EmptyStatementBlock" />
+    <rule ref="category/java/errorprone.xml/EmptyStatementNotInLoop" />
+    <rule ref="category/java/errorprone.xml/EmptyInitializer" name="EmptyStaticInitializer" />
+    <rule ref="category/java/errorprone.xml/EmptySwitchStatements" />
+    <rule ref="category/java/errorprone.xml/EmptySynchronizedBlock" />
+    <rule ref="category/java/errorprone.xml/EmptyTryBlock" />
+    <rule ref="category/java/errorprone.xml/EmptyWhileStmt" />    
+    <rule ref="category/java/errorprone.xml/UnnecessaryConversionTemporary" />
+    <rule ref="category/java/errorprone.xml/UnusedNullCheckInEquals" />
+    <rule ref="category/java/errorprone.xml/UselessOperationOnImmutable" />
+    <rule ref="category/java/errorprone.xml/ImportFromSamePackage" />
+    <rule ref="category/java/errorprone.xml/CloneMethodMustBePublic" />
+    <rule ref="category/java/errorprone.xml/CloneMethodMustImplementCloneable" />
+    <rule ref="category/java/errorprone.xml/CloneMethodReturnTypeMustMatchClassName" />
+    <rule ref="category/java/errorprone.xml/CloneThrowsCloneNotSupportedException" />
+    <rule ref="category/java/errorprone.xml/ProperCloneImplementation" />    
+    <rule ref="category/java/errorprone.xml/CloneMethodMustImplementCloneable" />
+    <rule ref="category/java/errorprone.xml/AvoidCallingFinalize" />
+    <rule ref="category/java/errorprone.xml/EmptyFinalizer" />
+    <rule ref="category/java/errorprone.xml/FinalizeDoesNotCallSuperFinalize" />
+    <rule ref="category/java/errorprone.xml/FinalizeOnlyCallsSuperFinalize" />
+    <rule ref="category/java/errorprone.xml/FinalizeOverloaded" />
+    <rule ref="category/java/errorprone.xml/FinalizeShouldBeProtected" />
+    <rule ref="category/java/errorprone.xml/MissingSerialVersionUID" />
+    <rule ref="category/java/errorprone.xml/AvoidDuplicateLiterals" />
+    <rule ref="category/java/errorprone.xml/StringBufferInstantiationWithChar" />
+    <rule ref="category/java/errorprone.xml/UnnecessaryCaseChange" />
+    <rule ref="category/java/errorprone.xml/UseEqualsToCompareStrings" />
 
-  <rule ref="rulesets/java/empty.xml">
-    <exclude name="EmptyCatchBlock"/>
-  </rule>
-  <rule ref="rulesets/java/empty.xml/EmptyCatchBlock">
-    <properties>
-      <property name="allowCommentedBlocks" value="true"/>
-    </properties>
-  </rule>
+    <rule ref="category/java/multithreading.xml/AvoidThreadGroup" />
+    <rule ref="category/java/multithreading.xml/DontCallThreadRun" />
+    <rule ref="category/java/multithreading.xml/DoubleCheckedLocking" />
 
-  <rule ref="rulesets/java/unnecessary.xml"/>
+    <rule ref="category/java/bestpractices.xml/AvoidUsingHardCodedIP" />
+    <rule ref="category/java/bestpractices.xml/CheckResultSet" />
+    <rule ref="category/java/bestpractices.xml/UnusedImports" />
+    <rule ref="category/java/bestpractices.xml/LooseCoupling" />
+    <rule ref="category/java/bestpractices.xml/AvoidStringBufferField" />
+    <rule ref="category/java/bestpractices.xml/LooseCoupling" />
+    <rule ref="category/java/bestpractices.xml/UnusedImports" />
 
-  <rule ref="rulesets/java/unusedcode.xml">
-    <exclude name="UnusedPrivateField"/>
-  </rule>
+    <rule ref="category/java/codestyle.xml/ExtendsObject" />
+    <rule ref="category/java/codestyle.xml/ForLoopShouldBeWhileLoop" />
+    <rule ref="category/java/codestyle.xml/UnnecessaryModifier" />
+    <rule ref="category/java/codestyle.xml/UnnecessaryReturn" />
+    <rule ref="category/java/codestyle.xml/UselessParentheses" />
+    <rule ref="category/java/codestyle.xml/UselessQualifiedThis" />
+    <rule ref="category/java/codestyle.xml/UnnecessaryModifier" name="UnnecessaryFinalModifier" />
+    <rule ref="category/java/codestyle.xml/DontImportJavaLang" />
+    <rule ref="category/java/codestyle.xml/DuplicateImports" />
+    <rule ref="category/java/codestyle.xml/TooManyStaticImports" />
+    <rule ref="category/java/codestyle.xml/UnnecessaryFullyQualifiedName" />
+    <rule ref="category/java/codestyle.xml/ForLoopsMustUseBraces" />
+    <rule ref="category/java/codestyle.xml/IfElseStmtsMustUseBraces" />
+    <rule ref="category/java/codestyle.xml/IfStmtsMustUseBraces" />
+    <rule ref="category/java/codestyle.xml/WhileLoopsMustUseBraces" />
 
-  <rule ref="rulesets/java/imports.xml"/>
+    <rule ref="category/java/performance.xml/BigIntegerInstantiation" />
+    <rule ref="category/java/performance.xml/BooleanInstantiation" />
+    <rule ref="category/java/performance.xml/AppendCharacterWithChar" />
+    <rule ref="category/java/performance.xml/ConsecutiveAppendsShouldReuse" />
+    <rule ref="category/java/performance.xml/ConsecutiveLiteralAppends" />
+    <rule ref="category/java/performance.xml/InefficientEmptyStringCheck" />
+    <rule ref="category/java/performance.xml/InefficientStringBuffering" />
+    <rule ref="category/java/performance.xml/InsufficientStringBufferDeclaration" />
+    <rule ref="category/java/performance.xml/StringInstantiation" />
+    <rule ref="category/java/performance.xml/StringToString" />
+    <rule ref="category/java/performance.xml/UseIndexOfChar" />
+    <rule ref="category/java/performance.xml/UselessStringValueOf" />
+    <rule ref="category/java/performance.xml/UseStringBufferLength" />
 
-  <rule ref="rulesets/java/braces.xml"/>
-  <rule ref="rulesets/java/codesize.xml">
-    <exclude name="TooManyFields"/>
-    <exclude name="ExcessivePublicCount"/>
-    <exclude name="CyclomaticComplexity"/>
-  </rule>
-  <rule ref="rulesets/java/codesize.xml/TooManyMethods">
-    <properties>
-      <property name="maxmethods" value="56"/>
-    </properties>
-  </rule>
-  <rule ref="rulesets/java/codesize.xml/ExcessivePublicCount">
-    <properties>
-      <property name="minimum" value="57"/>
-    </properties>
-  </rule>
-  <rule ref="rulesets/java/clone.xml"/>
-  <rule ref="rulesets/java/coupling.xml">
-      <exclude name="LawOfDemeter"/>
-      <exclude name="ExcessiveImports"/>
-      <exclude name="CouplingBetweenObjects"/>
-  </rule>
-  <rule ref="rulesets/java/finalizers.xml"/>
-  <rule ref="rulesets/java/javabeans.xml">
-      <exclude name="BeanMembersShouldSerialize"/>
-  </rule>
-  <rule ref="rulesets/java/strings.xml"/>
-  <rule ref="rulesets/java/typeresolution.xml"/>
+    <rule ref="category/java/design.xml/CollapsibleIfStatements" />
+    <rule ref="category/java/design.xml/SimplifiedTernary" />
+    <rule ref="category/java/design.xml/UselessOverridingMethod" />
+    <rule ref="category/java/design.xml/ExcessiveClassLength" />
+    <rule ref="category/java/design.xml/ExcessiveMethodLength" />
+    <rule ref="category/java/design.xml/ExcessiveParameterList" />
+    <rule ref="category/java/design.xml/ExcessivePublicCount" >
+      <properties>
+        <property name="minimum" value="57"/>
+      </properties>
+    </rule>
+    <rule ref="category/java/design.xml/ModifiedCyclomaticComplexity" />
+    <rule ref="category/java/design.xml/NcssConstructorCount" />
+    <rule ref="category/java/design.xml/NcssMethodCount" />
+    <rule ref="category/java/design.xml/NcssTypeCount" />
+    <rule ref="category/java/design.xml/NPathComplexity" />
+    <rule ref="category/java/design.xml/StdCyclomaticComplexity" />
+    <rule ref="category/java/design.xml/TooManyFields" >
+      <properties>
+        <property name="maxfields" value="101"/>
+      </properties>
+    </rule>
+    <rule ref="category/java/design.xml/TooManyMethods" >
+      <properties>
+        <property name="maxmethods" value="56"/>
+      </properties>
+    </rule>
+    <rule ref="category/java/design.xml/SignatureDeclareThrowsException" />
+
 </ruleset>

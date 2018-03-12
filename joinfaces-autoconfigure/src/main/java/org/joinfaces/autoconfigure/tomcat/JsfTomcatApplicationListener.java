@@ -177,9 +177,12 @@ public class JsfTomcatApplicationListener implements ApplicationListener<Applica
 		String webAppMount = "/";
 		String archivePath = null;
 		String internalPath = "/META-INF/resources";
+		String bootInfPath = "/BOOT-INF/classes";
 
 		resources.createWebResourceSet(WebResourceRoot.ResourceSetType.POST,
 			webAppMount, base(mainFile(resources)), archivePath, internalPath);
+		resources.createWebResourceSet(WebResourceRoot.ResourceSetType.POST,
+			webAppMount, base(mainFile(resources)), archivePath, bootInfPath + internalPath);
 	}
 
 	private void addClasspathResourceSets(WebResourceRoot resources) throws URISyntaxException {

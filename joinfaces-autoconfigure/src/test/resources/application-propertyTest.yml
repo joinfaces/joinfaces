@@ -219,8 +219,6 @@ jsf:
     viewstateJavascript: true
     serializeStateInSession: true
     cacheOldViewsInSessionMode: false
-    handleStateCachingMechanics: true
-    saveStateWithVisitTreeOnPass: true
 
   # omnifaces namespace
   omnifaces:
@@ -270,6 +268,7 @@ jsf:
     uploader: auto
     mobile:
       theme: cupertino
+    moveScriptsToBottom: true
 
   # bootsfaces namespace
   bootsfaces:

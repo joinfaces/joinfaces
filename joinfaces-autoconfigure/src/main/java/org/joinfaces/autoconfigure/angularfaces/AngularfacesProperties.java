@@ -16,8 +16,7 @@
 
 package org.joinfaces.autoconfigure.angularfaces;
 
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
 import org.joinfaces.autoconfigure.servlet.initparams.ServletContextInitParameter;
 import org.joinfaces.autoconfigure.servlet.initparams.ServletContextInitParameterProperties;
 
@@ -28,8 +27,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
  * Taken from https://github.com/stephanrauh/AngularFaces
  * @author Marcelo Fernandes
  */
-@Getter
-@Setter
+@Data
 @ConfigurationProperties(prefix = "jsf.angularfaces")
 public class AngularfacesProperties implements ServletContextInitParameterProperties {
 

@@ -16,6 +16,7 @@
 
 package org.joinfaces.autoconfigure.richfaces;
 
+import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 import org.joinfaces.autoconfigure.servlet.initparams.NestedProperty;
@@ -35,8 +36,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
  * @author Jamillo Santos
  * @author Lars Grefer
  */
-@Getter
-@Setter
+@Data
 @ConfigurationProperties(prefix = "jsf.richfaces")
 public class RichfacesProperties implements ServletContextInitParameterProperties {
 
