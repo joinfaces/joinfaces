@@ -324,7 +324,7 @@
             </dependency>
             <dependency>
                 <groupId>org.joinfaces</groupId>
-                <artifactId>omnifaces-spring-boot-starter</artifactId>
+                <artifactId>omnifaces1-spring-boot-starter</artifactId>
                 <version>3.0.3-SNAPSHOT</version>
             </dependency>
             <dependency>
