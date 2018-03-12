@@ -16,9 +16,8 @@
 
 package org.joinfaces.autoconfigure.primefaces;
 
-import lombok.Getter;
+import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 import org.joinfaces.autoconfigure.servlet.initparams.ServletContextInitParameter;
 import org.joinfaces.autoconfigure.servlet.initparams.ServletContextInitParameterProperties;
 import org.primefaces.component.captcha.Captcha;
@@ -34,8 +33,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
  *
  * @author Lars Grefer
  */
-@Getter
-@Setter
+@Data
 @NoArgsConstructor
 @ConfigurationProperties("jsf.primefaces")
 public class Primefaces4_0Properties implements ServletContextInitParameterProperties {

@@ -18,8 +18,7 @@ package org.joinfaces.autoconfigure.omnifaces;
 
 import java.util.List;
 
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
 import org.joinfaces.autoconfigure.servlet.initparams.ServletContextInitParameter;
 import org.joinfaces.autoconfigure.servlet.initparams.ServletContextInitParameterProperties;
 import org.omnifaces.component.output.cache.CacheInitializerListener;
@@ -39,8 +38,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
  * http://central.maven.org/maven2/org/omnifaces/omnifaces/1.13/omnifaces-1.13-javadoc.jar
  * @author Marcelo Fernandes
  */
-@Getter
-@Setter
+@Data
 @ConfigurationProperties(prefix = "jsf.omnifaces")
 public class OmnifacesProperties implements ServletContextInitParameterProperties {
 

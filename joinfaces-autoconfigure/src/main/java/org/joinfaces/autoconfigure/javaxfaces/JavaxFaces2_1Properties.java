@@ -18,8 +18,7 @@ package org.joinfaces.autoconfigure.javaxfaces;
 
 import javax.faces.component.UIComponent;
 
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
 import org.joinfaces.autoconfigure.servlet.initparams.ServletContextInitParameter;
 import org.joinfaces.autoconfigure.servlet.initparams.ServletContextInitParameterProperties;
 
@@ -31,8 +30,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
  * @author Marcelo Fernandes
  * @author Lars Grefer
  */
-@Getter
-@Setter
+@Data
 @ConfigurationProperties(prefix = "jsf")
 public class JavaxFaces2_1Properties implements ServletContextInitParameterProperties {
 

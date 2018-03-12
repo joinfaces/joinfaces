@@ -31,6 +31,7 @@ import javax.faces.view.facelets.ResourceResolver;
 import javax.faces.view.facelets.TagDecorator;
 import javax.faces.webapp.FacesServlet;
 
+import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 import org.joinfaces.autoconfigure.servlet.initparams.NestedProperty;
@@ -47,8 +48,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
  * @see <a href="https://www.jcp.org/en/jsr/detail?id=314">JSR-314</a>
  * @see <a href="http://stackoverflow.com/a/17341945/3574494">http://stackoverflow.com/a/17341945/3574494</a>
  */
-@Getter
-@Setter
+@Data
 @ConfigurationProperties(prefix = "jsf")
 public class JavaxFaces2_0Properties implements ServletContextInitParameterProperties {
 

@@ -16,8 +16,7 @@
 
 package org.joinfaces.autoconfigure.jetty;
 
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
@@ -25,9 +24,8 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
  * Configuration properties of jetty.
  * @author Marcelo Fernandes
  */
+@Data
 @ConfigurationProperties("jsf.jetty")
-@Getter
-@Setter
 public class JettyProperties {
 
 	/**

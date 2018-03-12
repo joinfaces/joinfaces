@@ -20,8 +20,7 @@ import javax.el.ExpressionFactory;
 
 import com.sun.faces.spi.InjectionProvider;
 import com.sun.faces.spi.SerializationProvider;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
 import org.joinfaces.autoconfigure.servlet.initparams.ServletContextInitParameter;
 import org.joinfaces.autoconfigure.servlet.initparams.ServletContextInitParameterProperties;
 
@@ -33,8 +32,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
  * http://balusc.omnifaces.org/2015/09/what-mojarra-context-parameters-are.html
  * @author Marcelo Fernandes
  */
-@Getter
-@Setter
+@Data
 @ConfigurationProperties(prefix = "jsf.mojarra")
 public class MojarraProperties implements ServletContextInitParameterProperties {
 

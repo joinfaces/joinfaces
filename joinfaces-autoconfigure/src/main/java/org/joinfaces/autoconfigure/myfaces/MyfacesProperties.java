@@ -22,6 +22,7 @@ import java.util.List;
 import javax.el.ELResolver;
 import javax.el.ExpressionFactory;
 
+import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 import org.apache.myfaces.application.ResourceHandlerImpl;
@@ -56,8 +57,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
  * http://myfaces.apache.org/core22/myfaces-impl/apidocs/constant-values.html
  * @author Marcelo Fernandes
  */
-@Getter
-@Setter
+@Data
 @ConfigurationProperties(prefix = "jsf.myfaces")
 public class MyfacesProperties implements ServletContextInitParameterProperties {
 
