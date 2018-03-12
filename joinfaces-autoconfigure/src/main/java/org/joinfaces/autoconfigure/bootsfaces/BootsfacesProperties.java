@@ -16,8 +16,7 @@
 
 package org.joinfaces.autoconfigure.bootsfaces;
 
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
 import net.bootsfaces.C;
 import org.joinfaces.autoconfigure.servlet.initparams.NestedProperty;
 import org.joinfaces.autoconfigure.servlet.initparams.ServletContextInitParameter;
@@ -38,8 +37,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
  * @author Marcelo Fernandes
  * @author Lars Grefer
  */
-@Getter
-@Setter
+@Data
 @ConfigurationProperties(prefix = "jsf.bootsfaces")
 public class BootsfacesProperties implements ServletContextInitParameterProperties {
 
@@ -116,8 +114,7 @@ public class BootsfacesProperties implements ServletContextInitParameterProperti
 	/**
 	 * Defaults class of renderLabel property.
 	 */
-	@Getter
-	@Setter
+	@Data
 	public static class Defaults {
 
 		/**

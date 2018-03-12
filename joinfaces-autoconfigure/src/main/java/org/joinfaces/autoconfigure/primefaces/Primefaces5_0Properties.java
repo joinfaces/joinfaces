@@ -16,6 +16,7 @@
 
 package org.joinfaces.autoconfigure.primefaces;
 
+import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -35,8 +36,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
  *
  * @author Lars Grefer
  */
-@Getter
-@Setter
+@Data
 @NoArgsConstructor
 @ConfigurationProperties("jsf.primefaces")
 public class Primefaces5_0Properties implements ServletContextInitParameterProperties {

@@ -22,6 +22,7 @@ import javax.faces.context.PartialViewContext;
 import javax.faces.flow.FlowHandler;
 import javax.faces.lifecycle.ClientWindow;
 
+import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 import org.joinfaces.autoconfigure.servlet.initparams.NestedProperty;
@@ -39,8 +40,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
  * @author Marcelo Fernandes
  * @see <a href="https://www.jcp.org/en/jsr/detail?id=344">JSR-344</a>
  */
-@Getter
-@Setter
+@Data
 @ConfigurationProperties(prefix = "jsf")
 public class JavaxFaces2_2Properties implements ServletContextInitParameterProperties {
 

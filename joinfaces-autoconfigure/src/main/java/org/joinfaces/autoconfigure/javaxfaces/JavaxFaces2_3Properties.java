@@ -22,8 +22,7 @@ import javax.faces.push.PushContext;
 import javax.faces.validator.BeanValidator;
 import javax.faces.webapp.FacesServlet;
 
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
 import org.joinfaces.autoconfigure.servlet.initparams.ServletContextInitParameter;
 import org.joinfaces.autoconfigure.servlet.initparams.ServletContextInitParameterProperties;
 
@@ -39,8 +38,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
  * @author Marcelo Fernandes
  * @see <a href="https://www.jcp.org/en/jsr/detail?id=344">JSR-344</a>
  */
-@Getter
-@Setter
+@Data
 @ConfigurationProperties(prefix = "jsf")
 public class JavaxFaces2_3Properties implements ServletContextInitParameterProperties {
 
