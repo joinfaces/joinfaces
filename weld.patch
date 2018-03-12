@@ -1,0 +1,412 @@
+diff --git a/joinfaces-autoconfigure/pom.xml b/joinfaces-autoconfigure/pom.xml
+index 4af1111..51ea5b9 100644
+--- a/joinfaces-autoconfigure/pom.xml
++++ b/joinfaces-autoconfigure/pom.xml
+@@ -132,6 +132,11 @@
+             <artifactId>cdi-api</artifactId>
+             <optional>true</optional>
+         </dependency>
++        <dependency>
++            <groupId>org.jboss.weld.servlet</groupId>
++            <artifactId>weld-servlet-core</artifactId>
++            <optional>true</optional>
++        </dependency>
+ 
+         <dependency>
+             <groupId>com.google.code.findbugs</groupId>
+diff --git a/joinfaces-autoconfigure/src/main/java/org/joinfaces/autoconfigure/weld/WeldServletContextInitializer.java b/joinfaces-autoconfigure/src/main/java/org/joinfaces/autoconfigure/weld/WeldServletContextInitializer.java
+new file mode 100644
+index 0000000..4481558
+--- /dev/null
++++ b/joinfaces-autoconfigure/src/main/java/org/joinfaces/autoconfigure/weld/WeldServletContextInitializer.java
+@@ -0,0 +1,46 @@
++/*
++ * Copyright 2016-2017 the original author or authors.
++ *
++ * Licensed under the Apache License, Version 2.0 (the "License");
++ * you may not use this file except in compliance with the License.
++ * You may obtain a copy of the License at
++ *
++ *      http://www.apache.org/licenses/LICENSE-2.0
++ *
++ * Unless required by applicable law or agreed to in writing, software
++ * distributed under the License is distributed on an "AS IS" BASIS,
++ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
++ * See the License for the specific language governing permissions and
++ * limitations under the License.
++ */
++
++package org.joinfaces.autoconfigure.weld;
++
++import javax.servlet.ServletContext;
++import javax.servlet.ServletException;
++
++import org.jboss.weld.environment.servlet.EnhancedListener;
++
++import org.springframework.boot.web.servlet.ServletContextInitializer;
++
++/**
++ * This class starts the weld listener.
++ *
++ * @author classicPintus
++ */
++public class WeldServletContextInitializer implements ServletContextInitializer {
++
++	private EnhancedListener enhancedListener = null;
++
++	private EnhancedListener getEnhancedListener() {
++		if (this.enhancedListener == null) {
++			this.enhancedListener = new EnhancedListener();
++		}
++		return this.enhancedListener;
++	}
++
++	@Override
++	public void onStartup(ServletContext servletContext) throws ServletException {
++		getEnhancedListener().onStartup(null, servletContext);
++	}
++}
+diff --git a/joinfaces-autoconfigure/src/main/java/org/joinfaces/autoconfigure/weld/WeldSpringBootAutoConfiguration.java b/joinfaces-autoconfigure/src/main/java/org/joinfaces/autoconfigure/weld/WeldSpringBootAutoConfiguration.java
+new file mode 100644
+index 0000000..ef56039
+--- /dev/null
++++ b/joinfaces-autoconfigure/src/main/java/org/joinfaces/autoconfigure/weld/WeldSpringBootAutoConfiguration.java
+@@ -0,0 +1,43 @@
++/*
++ * Copyright 2016-2017 the original author or authors.
++ *
++ * Licensed under the Apache License, Version 2.0 (the "License");
++ * you may not use this file except in compliance with the License.
++ * You may obtain a copy of the License at
++ *
++ *      http://www.apache.org/licenses/LICENSE-2.0
++ *
++ * Unless required by applicable law or agreed to in writing, software
++ * distributed under the License is distributed on an "AS IS" BASIS,
++ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
++ * See the License for the specific language governing permissions and
++ * limitations under the License.
++ */
++
++package org.joinfaces.autoconfigure.weld;
++
++import org.jboss.weld.environment.servlet.EnhancedListener;
++
++import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
++import org.springframework.boot.autoconfigure.condition.ConditionalOnWebApplication;
++import org.springframework.context.annotation.Bean;
++import org.springframework.context.annotation.Configuration;
++
++/**
++ * This class initialize weld in order to have a full cdi environment.
++ *
++ * @author classicPintus
++ * @see org.joinfaces.autoconfigure.weld.WeldServletContextInitializer for more
++ * details
++ */
++@Configuration
++@ConditionalOnWebApplication
++@ConditionalOnClass(EnhancedListener.class)
++public class WeldSpringBootAutoConfiguration {
++
++	@Bean
++	public WeldServletContextInitializer weldServletContextInitializer() {
++		return new WeldServletContextInitializer();
++	}
++
++}
+diff --git a/joinfaces-autoconfigure/src/main/java/org/joinfaces/autoconfigure/weld/package-info.java b/joinfaces-autoconfigure/src/main/java/org/joinfaces/autoconfigure/weld/package-info.java
+new file mode 100644
+index 0000000..a6485da
+--- /dev/null
++++ b/joinfaces-autoconfigure/src/main/java/org/joinfaces/autoconfigure/weld/package-info.java
+@@ -0,0 +1,22 @@
++/*
++ * Copyright 2016-2018 the original author or authors.
++ *
++ * Licensed under the Apache License, Version 2.0 (the "License");
++ * you may not use this file except in compliance with the License.
++ * You may obtain a copy of the License at
++ *
++ *      http://www.apache.org/licenses/LICENSE-2.0
++ *
++ * Unless required by applicable law or agreed to in writing, software
++ * distributed under the License is distributed on an "AS IS" BASIS,
++ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
++ * See the License for the specific language governing permissions and
++ * limitations under the License.
++ */
++
++/**
++ * Weld Spring Boot Auto Configuration classes.
++ *
++ * @see org.joinfaces.autoconfigure.weld.WeldSpringBootAutoConfiguration
++ */
++package org.joinfaces.autoconfigure.weld;
+diff --git a/joinfaces-autoconfigure/src/test/java/org/joinfaces/autoconfigure/weld/WeldServletContextInitializerIT.java b/joinfaces-autoconfigure/src/test/java/org/joinfaces/autoconfigure/weld/WeldServletContextInitializerIT.java
+new file mode 100644
+index 0000000..da84646
+--- /dev/null
++++ b/joinfaces-autoconfigure/src/test/java/org/joinfaces/autoconfigure/weld/WeldServletContextInitializerIT.java
+@@ -0,0 +1,46 @@
++/*
++ * Copyright 2016-2018 the original author or authors.
++ *
++ * Licensed under the Apache License, Version 2.0 (the "License");
++ * you may not use this file except in compliance with the License.
++ * You may obtain a copy of the License at
++ *
++ *      http://www.apache.org/licenses/LICENSE-2.0
++ *
++ * Unless required by applicable law or agreed to in writing, software
++ * distributed under the License is distributed on an "AS IS" BASIS,
++ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
++ * See the License for the specific language governing permissions and
++ * limitations under the License.
++ */
++
++package org.joinfaces.autoconfigure.weld;
++
++import javax.servlet.ServletException;
++
++import org.junit.Test;
++import org.junit.runner.RunWith;
++
++import org.springframework.boot.test.context.SpringBootTest;
++import org.springframework.mock.web.MockServletContext;
++import org.springframework.test.context.junit4.SpringRunner;
++import org.springframework.test.util.ReflectionTestUtils;
++
++import static org.assertj.core.api.Assertions.assertThat;
++
++@RunWith(SpringRunner.class)
++@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.MOCK)
++public class WeldServletContextInitializerIT {
++
++	@Test
++	public void testOnStartup() throws ServletException {
++		WeldServletContextInitializer weldServletContextInitializer = new WeldServletContextInitializer();
++		weldServletContextInitializer.onStartup(new MockServletContext());
++		Object field = ReflectionTestUtils.getField(weldServletContextInitializer, "enhancedListener");
++		assertThat(field).isNotNull();
++		weldServletContextInitializer.onStartup(new MockServletContext());
++		Object field2 = ReflectionTestUtils.getField(weldServletContextInitializer, "enhancedListener");
++		assertThat(field).isEqualTo(field2);
++	}
++
++}
+diff --git a/joinfaces-autoconfigure/src/test/java/org/joinfaces/autoconfigure/weld/WeldSpringBootAutoConfigurationIT.java b/joinfaces-autoconfigure/src/test/java/org/joinfaces/autoconfigure/weld/WeldSpringBootAutoConfigurationIT.java
+new file mode 100644
+index 0000000..17f9e94
+--- /dev/null
++++ b/joinfaces-autoconfigure/src/test/java/org/joinfaces/autoconfigure/weld/WeldSpringBootAutoConfigurationIT.java
+@@ -0,0 +1,40 @@
++/*
++ * Copyright 2016-2018 the original author or authors.
++ *
++ * Licensed under the Apache License, Version 2.0 (the "License");
++ * you may not use this file except in compliance with the License.
++ * You may obtain a copy of the License at
++ *
++ *      http://www.apache.org/licenses/LICENSE-2.0
++ *
++ * Unless required by applicable law or agreed to in writing, software
++ * distributed under the License is distributed on an "AS IS" BASIS,
++ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
++ * See the License for the specific language governing permissions and
++ * limitations under the License.
++ */
++
++package org.joinfaces.autoconfigure.weld;
++
++import org.junit.Test;
++import org.junit.runner.RunWith;
++
++import org.springframework.beans.factory.annotation.Autowired;
++import org.springframework.boot.test.context.SpringBootTest;
++import org.springframework.test.context.junit4.SpringRunner;
++
++import static org.assertj.core.api.Assertions.assertThat;
++
++@RunWith(SpringRunner.class)
++@SpringBootTest(classes = WeldSpringBootAutoConfiguration.class, webEnvironment = SpringBootTest.WebEnvironment.MOCK)
++public class WeldSpringBootAutoConfigurationIT {
++
++	@Autowired
++	private WeldServletContextInitializer weldServletContextInitializer;
++
++	@Test
++	public void testWeldServletContextInitializer() {
++		assertThat(this.weldServletContextInitializer).isNotNull();
++	}
++
++}
+diff --git a/joinfaces-dependencies/pom.xml b/joinfaces-dependencies/pom.xml
+index 6e1e95b..ac3b49a 100644
+--- a/joinfaces-dependencies/pom.xml
++++ b/joinfaces-dependencies/pom.xml
+@@ -39,6 +39,7 @@
+         <richfaces.version>4.5.17.Final</richfaces.version>
+ 
+         <cdi.version>2.0</cdi.version>
++        <weld.version>3.0.3.Final</weld.version>
+         <reflections.version>0.9.11</reflections.version>
+ 
+         <jboss-jsp-api_2.3_spec.version>1.0.3.Final</jboss-jsp-api_2.3_spec.version>
+@@ -259,6 +260,26 @@
+                 <version>3.0.2</version>
+                 <scope>provided</scope>
+             </dependency>
++			
++			<dependency>
++                <groupId>org.jboss.weld.servlet</groupId>
++                    <artifactId>weld-servlet-core</artifactId>
++                    <version>${weld.version}</version>
++                    <exclusions>
++                        <exclusion>
++                            <groupId>org.jboss.spec.javax.el</groupId>
++                            <artifactId>jboss-el-api_3.0_spec</artifactId>
++                        </exclusion>
++                        <exclusion>
++                            <groupId>org.jboss.logging</groupId>
++                            <artifactId>jboss-logging</artifactId>
++                        </exclusion>
++                        <exclusion>
++                            <groupId>org.jboss.spec.javax.interceptor</groupId>
++                            <artifactId>jboss-interceptors-api_1.2_spec</artifactId>
++                        </exclusion>
++                    </exclusions>
++            </dependency>
+ 
+             <dependency>
+                 <groupId>org.joinfaces</groupId>
+@@ -303,7 +324,7 @@
+             </dependency>
+             <dependency>
+                 <groupId>org.joinfaces</groupId>
+-                <artifactId>omnifaces-spring-boot-starter</artifactId>
++                <artifactId>omnifaces1-spring-boot-starter</artifactId>
+                 <version>3.0.3-SNAPSHOT</version>
+             </dependency>
+             <dependency>
+@@ -336,6 +357,13 @@
+                 <artifactId>richfaces-spring-boot-starter</artifactId>
+                 <version>3.0.3-SNAPSHOT</version>
+             </dependency>
++			
++			<dependency>
++                <groupId>org.joinfaces</groupId>
++                <artifactId>weld-spring-boot-starter</artifactId>
++                <version>3.0.3-SNAPSHOT</version>
++            </dependency>
++			
+         </dependencies>
+     </dependencyManagement>
+ 
+diff --git a/joinfaces-starters/jsf-spring-boot-starter/pom.xml b/joinfaces-starters/jsf-spring-boot-starter/pom.xml
+index 176c521..13d3344 100644
+--- a/joinfaces-starters/jsf-spring-boot-starter/pom.xml
++++ b/joinfaces-starters/jsf-spring-boot-starter/pom.xml
+@@ -38,7 +38,7 @@
+         </dependency>
+         <dependency>
+             <groupId>org.joinfaces</groupId>
+-            <artifactId>omnifaces-spring-boot-starter</artifactId>
++            <artifactId>omnifaces1-spring-boot-starter</artifactId>
+         </dependency>
+ 
+         <dependency>
+diff --git a/joinfaces-starters/jsf-spring-boot-starter/src/main/resources/META-INF/spring.provides b/joinfaces-starters/jsf-spring-boot-starter/src/main/resources/META-INF/spring.provides
+index 66061f8..e8d9d05 100644
+--- a/joinfaces-starters/jsf-spring-boot-starter/src/main/resources/META-INF/spring.provides
++++ b/joinfaces-starters/jsf-spring-boot-starter/src/main/resources/META-INF/spring.provides
+@@ -1 +1 @@
+-provides: spring-boot-starter-web, tomcat-spring-boot-starter, mojarra-spring-boot-starter, omnifaces-spring-boot-starter, joinfaces-autoconfigure, spring-security-jsf-taglib, jstl, cdi-api, reflections
++provides: spring-boot-starter-web, tomcat-spring-boot-starter, mojarra-spring-boot-starter, omnifaces1-spring-boot-starter, joinfaces-autoconfigure, spring-security-jsf-taglib, jstl, cdi-api, reflections
+diff --git a/joinfaces-starters/omnifaces-spring-boot-starter/nbactions.xml b/joinfaces-starters/omnifaces1-spring-boot-starter/nbactions.xml
+similarity index 100%
+rename from joinfaces-starters/omnifaces-spring-boot-starter/nbactions.xml
+rename to joinfaces-starters/omnifaces1-spring-boot-starter/nbactions.xml
+diff --git a/joinfaces-starters/omnifaces-spring-boot-starter/pom.xml b/joinfaces-starters/omnifaces1-spring-boot-starter/pom.xml
+similarity index 87%
+rename from joinfaces-starters/omnifaces-spring-boot-starter/pom.xml
+rename to joinfaces-starters/omnifaces1-spring-boot-starter/pom.xml
+index 57210ed..3b8273f 100644
+--- a/joinfaces-starters/omnifaces-spring-boot-starter/pom.xml
++++ b/joinfaces-starters/omnifaces1-spring-boot-starter/pom.xml
+@@ -8,8 +8,8 @@
+         <version>3.0.3-SNAPSHOT</version>
+     </parent>
+     
+-    <artifactId>omnifaces-spring-boot-starter</artifactId>
+-    <name>Omnifaces Spring Boot Starter</name>
++    <artifactId>omnifaces1-spring-boot-starter</artifactId>
++    <name>Omnifaces 1.x Spring Boot Starter</name>
+     <description>Omnifaces Utility JSF Spring Boot Starter</description>
+     
+     <properties>
+diff --git a/joinfaces-starters/omnifaces-spring-boot-starter/src/main/resources/META-INF/spring.provides b/joinfaces-starters/omnifaces1-spring-boot-starter/src/main/resources/META-INF/spring.provides
+similarity index 100%
+rename from joinfaces-starters/omnifaces-spring-boot-starter/src/main/resources/META-INF/spring.provides
+rename to joinfaces-starters/omnifaces1-spring-boot-starter/src/main/resources/META-INF/spring.provides
+diff --git a/joinfaces-starters/pom.xml b/joinfaces-starters/pom.xml
+index e122469..6eb71cb 100644
+--- a/joinfaces-starters/pom.xml
++++ b/joinfaces-starters/pom.xml
+@@ -46,12 +46,13 @@
+         <module>undertow-spring-boot-starter</module>
+         <module>mojarra-spring-boot-starter</module>
+         <module>myfaces-spring-boot-starter</module>
+-        <module>omnifaces-spring-boot-starter</module>
++        <module>omnifaces1-spring-boot-starter</module>
+         <module>jsf-spring-boot-starter</module>
+         <module>primefaces-spring-boot-starter</module>
+         <module>bootsfaces-spring-boot-starter</module>
+         <module>butterfaces-spring-boot-starter</module>
+         <module>angularfaces-spring-boot-starter</module>
+         <module>richfaces-spring-boot-starter</module>
++        <module>weld-spring-boot-starter</module>
+     </modules>
+ </project>
+diff --git a/joinfaces-starters/omnifaces-spring-boot-starter/pom.xml b/joinfaces-starters/weld-spring-boot-starter/pom.xml
+similarity index 69%
+copy from joinfaces-starters/omnifaces-spring-boot-starter/pom.xml
+copy to joinfaces-starters/weld-spring-boot-starter/pom.xml
+index 57210ed..69d78cb 100644
+--- a/joinfaces-starters/omnifaces-spring-boot-starter/pom.xml
++++ b/joinfaces-starters/weld-spring-boot-starter/pom.xml
+@@ -1,25 +1,24 @@
+ <?xml version="1.0" encoding="UTF-8"?>
+ <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+     <modelVersion>4.0.0</modelVersion>
+-
+     <parent>
+         <groupId>org.joinfaces</groupId>
+         <artifactId>joinfaces-starters</artifactId>
+         <version>3.0.3-SNAPSHOT</version>
+     </parent>
+-    
+-    <artifactId>omnifaces-spring-boot-starter</artifactId>
+-    <name>Omnifaces Spring Boot Starter</name>
+-    <description>Omnifaces Utility JSF Spring Boot Starter</description>
++    <artifactId>weld-spring-boot-starter</artifactId>
++    <name>Weld Spring Boot Starter</name>
++    <description>Weld Basic Spring Boot Starter</description>
+     
+     <properties>
+         <main.basedir>${basedir}/../..</main.basedir>
+     </properties>
+-
++    
+     <dependencies>
+         <dependency>
+-            <groupId>org.omnifaces</groupId>
+-            <artifactId>omnifaces</artifactId>
++            <groupId>org.jboss.weld.servlet</groupId>
++            <artifactId>weld-servlet-core</artifactId>
+         </dependency>
+     </dependencies>
+-</project>
++    
++</project>
+\ No newline at end of file
