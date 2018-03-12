@@ -25,9 +25,9 @@
 
         <jacoco.totalLineRate>0.97</jacoco.totalLineRate>
         <jacoco.totalBranchRate>0.92</jacoco.totalBranchRate>
-        <jacoco.packageLineRate>0.90</jacoco.packageLineRate>
+        <jacoco.packageLineRate>0.50</jacoco.packageLineRate>
         <jacoco.packageBranchRate>0.50</jacoco.packageBranchRate>
-        <jacoco.lineRate>0.75</jacoco.lineRate>
+        <jacoco.lineRate>0.33</jacoco.lineRate>
         <jacoco.branchRate>0.50</jacoco.branchRate>
     </properties>
 
