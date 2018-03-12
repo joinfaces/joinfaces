@@ -47,6 +47,7 @@
         <module>mojarra-spring-boot-starter</module>
         <module>myfaces-spring-boot-starter</module>
         <module>omnifaces1-spring-boot-starter</module>
+        <module>omnifaces3-spring-boot-starter</module>
         <module>jsf-spring-boot-starter</module>
         <module>primefaces-spring-boot-starter</module>
         <module>bootsfaces-spring-boot-starter</module>
