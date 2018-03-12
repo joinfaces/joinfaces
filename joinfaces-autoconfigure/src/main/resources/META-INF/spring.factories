@@ -2,9 +2,7 @@
 org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
 org.joinfaces.autoconfigure.tomcat.TomcatAutoConfiguration,\
 org.joinfaces.autoconfigure.jetty.JettyAutoConfiguration,\
-org.joinfaces.autoconfigure.jetty.JettyMyFacesAutoConfiguration,\
 org.joinfaces.autoconfigure.undertow.UndertowAutoConfiguration,\
-org.joinfaces.autoconfigure.undertow.UndertowMyFacesAutoConfiguration,\
 org.joinfaces.autoconfigure.viewscope.ViewScopeAutoConfiguration,\
 org.joinfaces.autoconfigure.scopemapping.CdiScopeAnnotationsAutoConfiguration,\
 org.joinfaces.autoconfigure.scopemapping.JsfScopeAnnotationsAutoConfiguration,\

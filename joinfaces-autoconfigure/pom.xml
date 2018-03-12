@@ -5,7 +5,7 @@
     <parent>
         <groupId>org.joinfaces</groupId>
         <artifactId>joinfaces-parent</artifactId>
-        <version>3.0.2-SNAPSHOT</version>
+        <version>3.0.3-SNAPSHOT</version>
         <relativePath>../joinfaces-parent</relativePath>
     </parent>
 
@@ -23,12 +23,12 @@
         <duplicate.ignoredClassPattern>(javax.annotation.*$|javax.faces.*$|javax.persistence.(PersistenceContext|PersistenceContextType|PersistenceContexts|PersistenceProperty|PersistenceUnit|PersistenceUnits|SynchronizationType)|(module-info))</duplicate.ignoredClassPattern>
         <duplicate.ignoredResourcePattern>(javax/faces/Messages.*\.properties)|(about.html)</duplicate.ignoredResourcePattern>
 
-        <jacoco.totalLineRate>0.98</jacoco.totalLineRate>
+        <jacoco.totalLineRate>0.97</jacoco.totalLineRate>
         <jacoco.totalBranchRate>0.92</jacoco.totalBranchRate>
         <jacoco.packageLineRate>0.90</jacoco.packageLineRate>
-        <jacoco.packageBranchRate>0.83</jacoco.packageBranchRate>
+        <jacoco.packageBranchRate>0.50</jacoco.packageBranchRate>
         <jacoco.lineRate>0.75</jacoco.lineRate>
-        <jacoco.branchRate>0.83</jacoco.branchRate>
+        <jacoco.branchRate>0.50</jacoco.branchRate>
     </properties>
 
     <build>

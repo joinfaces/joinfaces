@@ -16,8 +16,7 @@
 
 package org.joinfaces.autoconfigure.undertow;
 
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
@@ -25,9 +24,8 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
  * Configuration properties of Undertow.
  * @author Marcelo Fernandes
  */
+@Data
 @ConfigurationProperties("jsf.undertow")
-@Getter
-@Setter
 public class UndertowProperties {
 
 	/**
