@@ -20,10 +20,18 @@ import javax.faces.context.FacesContext;
 import javax.faces.flow.FlowHandler;
 import javax.faces.push.PushContext;
 
+import lombok.RequiredArgsConstructor;
+
+import org.springframework.beans.BeansException;
+import org.springframework.beans.factory.config.BeanPostProcessor;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnWebApplication;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.core.Ordered;
+import org.springframework.core.PriorityOrdered;
 
 /**
  * Auto configuration for Standard Javax Faces Properties.
@@ -67,6 +75,34 @@ public class JavaxFacesAutoConfiguration {
 	@EnableConfigurationProperties(JavaxFaces2_3Properties.class)
 	@ConditionalOnClass(PushContext.class)
 	public static class JavaxFaces2_3AutoConfiguration {
+
+		@Bean
+		public static FacesServletPropertiesPostProcessor disableFacesservletToXhtml(ApplicationContext applicationContext) {
+			return new FacesServletPropertiesPostProcessor(applicationContext);
+		}
+
+		@RequiredArgsConstructor
+		public static class FacesServletPropertiesPostProcessor implements BeanPostProcessor, PriorityOrdered {
+
+			private final ApplicationContext applicationContext;
+
+			@Override
+			public int getOrder() {
+				return Ordered.HIGHEST_PRECEDENCE;
+			}
+
+			@Override
+			public Object postProcessBeforeInitialization(Object bean, String beanName) throws BeansException {
+				if (bean instanceof FacesServletProperties) {
+					FacesServletProperties facesServletProperties = (FacesServletProperties) bean;
+					Boolean disableFacesservletToXhtml = this.applicationContext.getBean(JavaxFaces2_3Properties.class).getDisableFacesservletToXhtml();
+					if (disableFacesservletToXhtml != null && disableFacesservletToXhtml) {
+						facesServletProperties.getUrlMappings().remove("*.xhtml");
+					}
+				}
+				return bean;
+			}
+		}
 	}
 
 }
