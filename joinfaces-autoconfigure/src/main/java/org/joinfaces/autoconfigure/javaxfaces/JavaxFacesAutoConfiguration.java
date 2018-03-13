@@ -16,21 +16,13 @@
 
 package org.joinfaces.autoconfigure.javaxfaces;
 
-import java.util.Optional;
-
 import javax.faces.context.FacesContext;
 import javax.faces.flow.FlowHandler;
 import javax.faces.push.PushContext;
-import javax.faces.webapp.FacesServlet;
-import javax.servlet.ServletContext;
-import javax.servlet.ServletRegistration;
 
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnWebApplication;
-import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
-import org.springframework.boot.web.servlet.ServletRegistrationBean;
-import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 /**
@@ -42,48 +34,6 @@ import org.springframework.context.annotation.Configuration;
 @ConditionalOnClass(FacesContext.class)
 @ConditionalOnWebApplication(type = ConditionalOnWebApplication.Type.SERVLET)
 public class JavaxFacesAutoConfiguration {
-
-	/**
-	 * This bean registers the {@link FacesServlet}.
-	 * <p>
-	 * This {@link ServletRegistrationBean} also sets two
-	 * {@link ServletContext#setAttribute(String, Object) servlet-context attributes} to inform Mojarra and MyFaces about
-	 * the dynamically added Servlet.
-	 *
-	 * @param javaxFaces2_3Properties The optional {@link JavaxFaces2_3Properties} in order to honor the
-	 *                                {@link JavaxFaces2_3Properties#disableFacesservletToXhtml javax.faces.DISABLE_FACESSERVLET_TO_XHTML}
-	 *                                init-parameter.
-	 * @return A custom {@link ServletRegistrationBean} which registers the {@link FacesServlet}.
-	 */
-	@Bean
-	@ConfigurationProperties("jsf.faces-servlet")
-	public ServletRegistrationBean<FacesServlet> facesServletServletRegistrationBean(
-			@SuppressWarnings("OptionalUsedAsFieldOrParameterType") Optional<JavaxFaces2_3Properties> javaxFaces2_3Properties
-	) {
-		ServletRegistrationBean<FacesServlet> facesServletServletRegistrationBean = new ServletRegistrationBean<FacesServlet>(new FacesServlet()) {
-			@Override
-			protected ServletRegistration.Dynamic addRegistration(String description, ServletContext servletContext) {
-				ServletRegistration.Dynamic servletRegistration = super.addRegistration(description, servletContext);
-				if (servletRegistration != null) {
-					servletContext.setAttribute("org.apache.myfaces.DYNAMICALLY_ADDED_FACES_SERVLET", true);
-					servletContext.setAttribute("com.sun.faces.facesInitializerMappingsAdded", true);
-				}
-				return servletRegistration;
-			}
-		};
-
-		facesServletServletRegistrationBean.setName("FacesServlet");
-		facesServletServletRegistrationBean.addUrlMappings("/faces/*", "*.jsf", "*.faces", "*.xhtml");
-
-		javaxFaces2_3Properties.map(JavaxFaces2_3Properties::getDisableFacesservletToXhtml)
-				.ifPresent(disableFacesservletToXhtml -> {
-					if (disableFacesservletToXhtml) {
-						facesServletServletRegistrationBean.getUrlMappings().remove("*.xhtml");
-					}
-				});
-
-		return facesServletServletRegistrationBean;
-	}
 
 	/**
 	 * Auto configuration for JSF 2.0.
