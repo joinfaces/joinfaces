@@ -193,7 +193,7 @@
         <dependency>
             <groupId>org.omnifaces</groupId>
             <artifactId>omnifaces</artifactId>
-            <version>1.14.1</version>
+            <version>${omnifaces1.version}</version>
             <optional>true</optional>
         </dependency>
         <dependency>

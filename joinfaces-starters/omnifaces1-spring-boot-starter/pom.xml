@@ -14,7 +14,6 @@
     
     <properties>
         <main.basedir>${basedir}/../..</main.basedir>
-		<omnifaces.version>1.14.1</omnifaces.version>
     </properties>
 
     <dependencies>
@@ -25,7 +24,7 @@
         <dependency>
             <groupId>org.omnifaces</groupId>
             <artifactId>omnifaces</artifactId>
-            <version>${omnifaces.version}</version>
+            <version>${omnifaces1.version}</version>
         </dependency>
     </dependencies>
 </project>

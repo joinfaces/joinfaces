@@ -23,6 +23,10 @@
         <javax.faces-api.version>2.3</javax.faces-api.version>
         <mojarra.version>2.3.3</mojarra.version>
         <myfaces.version>2.3.0</myfaces.version>
+
+        <omnifaces1.version>1.14.1</omnifaces1.version>
+        <omnifaces3.version>3.0</omnifaces3.version>
+
         <commons-digester.version>2.1</commons-digester.version>
         <commons-beanutils.version>1.9.3</commons-beanutils.version>
 
