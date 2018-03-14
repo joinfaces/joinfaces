@@ -1,6 +1,10 @@
 {
   "properties": [
     {
+      "name": "jsf.faces-servlet.url-mappings",
+      "defaultValue": ["/faces/*", "*.jsf", "*.faces", "*.xhtml"]
+    },
+    {
       "name": "jsf.scope-configurer.jsf.enabled",
       "defaultValue": "true",
       "type": "java.lang.Boolean"
