@@ -1,1 +1,0 @@
-provides: spring-boot-starter-web, tomcat-spring-boot-starter, mojarra-spring-boot-starter, omnifaces-spring-boot-starter, joinfaces-autoconfigure, spring-security-jsf-taglib, jstl, cdi-api, reflections
