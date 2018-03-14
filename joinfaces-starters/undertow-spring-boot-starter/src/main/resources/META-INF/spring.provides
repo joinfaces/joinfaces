@@ -1,1 +1,0 @@
-provides: spring-boot-starter-undertow, javax.el, jboss-jsp-api_2.3_spec, tomcat-jasper
