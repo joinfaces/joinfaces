@@ -18,8 +18,11 @@ package org.joinfaces.autoconfigure.javaxfaces;
 
 import javax.faces.application.ProjectStage;
 
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
+import org.springframework.beans.BeansException;
+import org.springframework.beans.factory.config.BeanPostProcessor;
 import org.springframework.boot.autoconfigure.AutoConfigureBefore;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
@@ -28,7 +31,8 @@ import org.springframework.boot.autoconfigure.condition.ConditionalOnWebApplicat
 import org.springframework.context.annotation.Bean;
 
 /**
- * Auto configuration of JSF ProjectStage.
+ * Auto configuration of JSF {@link ProjectStage}.
+ *
  * @author Lars Grefer
  */
 @Slf4j
@@ -40,15 +44,34 @@ public class ProjectStageAutoConfiguration {
 	@Bean
 	@ConditionalOnMissingBean
 	@ConditionalOnProperty("debug")
-	public ProjectStageCustomizer developmentProjectStageCustomizer() {
+	public static ProjectStageCustomizer developmentProjectStageCustomizer() {
 		return new ProjectStageCustomizer(ProjectStage.Development);
 	}
 
 	@Bean
 	@ConditionalOnMissingBean
 	@ConditionalOnProperty(value = "debug", havingValue = "false", matchIfMissing = true)
-	public ProjectStageCustomizer productionProjectStageCustomizer() {
+	public static ProjectStageCustomizer productionProjectStageCustomizer() {
 		return new ProjectStageCustomizer(ProjectStage.Production);
 	}
 
+	/**
+	 * {@link BeanPostProcessor} for setting the JSF
+	 * {@link JavaxFaces2_0Properties#projectStage project stage}.
+	 *
+	 * @author Lars Grefer
+	 */
+	@RequiredArgsConstructor
+	public static class ProjectStageCustomizer implements BeanPostProcessor {
+
+		private final ProjectStage projectStage;
+
+		@Override
+		public Object postProcessAfterInitialization(Object bean, String beanName) throws BeansException {
+			if (bean instanceof JavaxFaces2_0Properties && ((JavaxFaces2_0Properties) bean).getProjectStage() == null) {
+				((JavaxFaces2_0Properties) bean).setProjectStage(this.projectStage);
+			}
+			return bean;
+		}
+	}
 }
