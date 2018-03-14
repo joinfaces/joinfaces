@@ -16,20 +16,14 @@
 
 package org.joinfaces.autoconfigure.omnifaces;
 
-import org.junit.Before;
 import org.junit.Test;
 
-public class OmnifacesInitializerRegistrationBeanTest {
+public class Omnifaces2AutoConfigurationTest {
 
-	private OmnifacesInitializerRegistrationBean omnifacesInitializerRegistrationBean;
+	@Test(expected = ClassNotFoundException.class)
+	public void testOmnifaces2AutoConfiguration() throws ClassNotFoundException {
+		OmnifacesAutoConfiguration.Omnifaces2AutoConfiguration configuration = new OmnifacesAutoConfiguration.Omnifaces2AutoConfiguration();
 
-	@Before
-	public void setUp() {
-		this.omnifacesInitializerRegistrationBean = new OmnifacesInitializerRegistrationBean();
-	}
-
-	@Test(expected = RuntimeException.class)
-	public void getClasses() {
-		this.omnifacesInitializerRegistrationBean.getClasses(null);
+		configuration.omnifacesServletContainerInitializer();
 	}
 }

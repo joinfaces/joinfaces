@@ -23,10 +23,12 @@
         <javax.faces-api.version>2.3</javax.faces-api.version>
         <mojarra.version>2.3.3</mojarra.version>
         <myfaces.version>2.3.0</myfaces.version>
+
+        <omnifaces1.version>1.14.1</omnifaces1.version>
+        <omnifaces3.version>3.0</omnifaces3.version>
+
         <commons-digester.version>2.1</commons-digester.version>
         <commons-beanutils.version>1.9.3</commons-beanutils.version>
-
-        <omnifaces.version>1.14.1</omnifaces.version>
 
         <primefaces.version>6.2</primefaces.version>
         <primefaces-extensions.version>6.2</primefaces-extensions.version>
@@ -39,6 +41,7 @@
         <richfaces.version>4.5.17.Final</richfaces.version>
 
         <cdi.version>2.0</cdi.version>
+        <weld.version>3.0.3.Final</weld.version>
         <reflections.version>0.9.11</reflections.version>
 
         <jboss-jsp-api_2.3_spec.version>1.0.3.Final</jboss-jsp-api_2.3_spec.version>
@@ -180,11 +183,6 @@
                 <version>${primefaces.version}</version>
             </dependency>
             <dependency>
-                <groupId>org.omnifaces</groupId>
-                <artifactId>omnifaces</artifactId>
-                <version>${omnifaces.version}</version>
-            </dependency>
-            <dependency>
                 <groupId>javax.enterprise</groupId>
                 <artifactId>cdi-api</artifactId>
                 <version>${cdi.version}</version>
@@ -259,6 +257,26 @@
                 <version>3.0.2</version>
                 <scope>provided</scope>
             </dependency>
+			
+			<dependency>
+                <groupId>org.jboss.weld.servlet</groupId>
+                    <artifactId>weld-servlet-core</artifactId>
+                    <version>${weld.version}</version>
+                    <exclusions>
+                        <exclusion>
+                            <groupId>org.jboss.spec.javax.el</groupId>
+                            <artifactId>jboss-el-api_3.0_spec</artifactId>
+                        </exclusion>
+                        <exclusion>
+                            <groupId>org.jboss.logging</groupId>
+                            <artifactId>jboss-logging</artifactId>
+                        </exclusion>
+                        <exclusion>
+                            <groupId>org.jboss.spec.javax.interceptor</groupId>
+                            <artifactId>jboss-interceptors-api_1.2_spec</artifactId>
+                        </exclusion>
+                    </exclusions>
+            </dependency>
 
             <dependency>
                 <groupId>org.joinfaces</groupId>
@@ -303,7 +321,12 @@
             </dependency>
             <dependency>
                 <groupId>org.joinfaces</groupId>
-                <artifactId>omnifaces-spring-boot-starter</artifactId>
+                <artifactId>omnifaces1-spring-boot-starter</artifactId>
+                <version>3.0.3-SNAPSHOT</version>
+            </dependency>
+            <dependency>
+                <groupId>org.joinfaces</groupId>
+                <artifactId>omnifaces3-spring-boot-starter</artifactId>
                 <version>3.0.3-SNAPSHOT</version>
             </dependency>
             <dependency>
@@ -336,6 +359,13 @@
                 <artifactId>richfaces-spring-boot-starter</artifactId>
                 <version>3.0.3-SNAPSHOT</version>
             </dependency>
+			
+			<dependency>
+                <groupId>org.joinfaces</groupId>
+                <artifactId>weld-spring-boot-starter</artifactId>
+                <version>3.0.3-SNAPSHOT</version>
+            </dependency>
+			
         </dependencies>
     </dependencyManagement>
 

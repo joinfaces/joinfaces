@@ -20,4 +20,5 @@ org.joinfaces.autoconfigure.butterfaces.ButterfacesAutoConfiguration,\
 org.joinfaces.autoconfigure.richfaces.RichfacesAutoConfiguration,\
 org.joinfaces.autoconfigure.jpa.JpaWebAutoConfiguration,\
 org.joinfaces.autoconfigure.javaxfaces.ProjectStageAutoConfiguration,\
-org.joinfaces.autoconfigure.servlet.initparams.ServletContextInitParameterPropertiesAutoConfiguration
+org.joinfaces.autoconfigure.servlet.initparams.ServletContextInitParameterPropertiesAutoConfiguration,\
+org.joinfaces.autoconfigure.weld.WeldSpringBootAutoConfiguration

@@ -38,7 +38,7 @@
         </dependency>
         <dependency>
             <groupId>org.joinfaces</groupId>
-            <artifactId>omnifaces-spring-boot-starter</artifactId>
+            <artifactId>omnifaces1-spring-boot-starter</artifactId>
         </dependency>
 
         <dependency>

@@ -46,12 +46,14 @@
         <module>undertow-spring-boot-starter</module>
         <module>mojarra-spring-boot-starter</module>
         <module>myfaces-spring-boot-starter</module>
-        <module>omnifaces-spring-boot-starter</module>
+        <module>omnifaces1-spring-boot-starter</module>
+        <module>omnifaces3-spring-boot-starter</module>
         <module>jsf-spring-boot-starter</module>
         <module>primefaces-spring-boot-starter</module>
         <module>bootsfaces-spring-boot-starter</module>
         <module>butterfaces-spring-boot-starter</module>
         <module>angularfaces-spring-boot-starter</module>
         <module>richfaces-spring-boot-starter</module>
+        <module>weld-spring-boot-starter</module>
     </modules>
 </project>
