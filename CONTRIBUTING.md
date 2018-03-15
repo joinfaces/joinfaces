@@ -15,7 +15,7 @@ The `master`-branch could contain Joinfaces 3.x which targets the upcoming _Spri
 contains Joinfaces 2.x which targets _Spring Boot 1.5.x_.
 (The exact version numbers and branch names will change over time, but the principle stays the same.)
 
-If you wan't to contribute to Joinfaces, make sure you start your work on the head of the correct branch.
+If you want to contribute to Joinfaces, make sure you start your work on the head of the correct branch.
 Make also sure, to select the same branch as _base_ when creating your pull request.
 
 ## Code Conventions and Housekeeping
@@ -31,3 +31,11 @@ added after the original pull request but before a merge.
 * Add some Javadocs.
 * A few unit tests would help a lot as well -- someone has to do it.
 * When writing a commit message please follow [these conventions](http://tbaggery.com/2008/04/19/a-note-about-git-commit-messages.html).
+
+## Submitting issues
+
+Some tips are very useful to help problem solving on issues.
+
+* Provide sample github repository is great.
+* Describe joinfaces environment used: servlet container, jsf implementation, jar or war packaging, starters.
+
