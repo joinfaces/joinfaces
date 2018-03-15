@@ -17,10 +17,6 @@
 package org.joinfaces.autoconfigure.jetty;
 
 import java.io.IOException;
-import java.net.URL;
-import java.net.URLClassLoader;
-import java.security.AccessController;
-import java.security.PrivilegedAction;
 
 import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
@@ -71,11 +67,6 @@ public class JettyAutoConfiguration {
 
 				ClassPathResource classPathResource = new ClassPathResource(classPathResourceString);
 				webAppContext.setBaseResource(new ResourceCollection(classPathResource.getURI().toString()));
-
-				AccessController.doPrivileged((PrivilegedAction<Void>) () -> {
-					webAppContext.setClassLoader(new URLClassLoader(new URL[0], JettyAutoConfiguration.this.getClass().getClassLoader()));
-					return null;
-				});
 
 				log.info("Setting Jetty classLoader to {} directory", classPathResourceString);
 			}
