@@ -18,7 +18,6 @@ package org.joinfaces.autoconfigure.angularfaces;
 
 import java.util.ArrayList;
 
-import javax.annotation.Nullable;
 import javax.faces.view.facelets.TagDecorator;
 
 import de.beyondjava.angularFaces.core.ELTools;
@@ -34,6 +33,7 @@ import org.springframework.boot.autoconfigure.condition.ConditionalOnWebApplicat
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.lang.Nullable;
 
 /**
  * Spring Boot Auto Configuration of AngularFaces.
