@@ -16,8 +16,6 @@
 
 package org.joinfaces.autoconfigure.butterfaces;
 
-import javax.annotation.Nullable;
-
 import lombok.extern.slf4j.Slf4j;
 import net.bootsfaces.C;
 import org.butterfaces.util.ReflectionUtil;
@@ -33,6 +31,7 @@ import org.springframework.boot.autoconfigure.condition.ConditionalOnWebApplicat
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.lang.Nullable;
 
 /**
  * Spring Boot Auto Configuration of ButterFaces.
