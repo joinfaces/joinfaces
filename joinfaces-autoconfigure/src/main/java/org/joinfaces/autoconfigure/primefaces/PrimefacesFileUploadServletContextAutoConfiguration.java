@@ -17,8 +17,8 @@
 package org.joinfaces.autoconfigure.primefaces;
 
 import javax.faces.webapp.FacesServlet;
-import javax.servlet.Filter;
 import javax.servlet.MultipartConfigElement;
+import javax.servlet.ServletRegistration;
 import javax.servlet.annotation.MultipartConfig;
 
 import org.joinfaces.autoconfigure.javaxfaces.JavaxFacesAutoConfiguration;
@@ -28,6 +28,7 @@ import org.primefaces.webapp.filter.FileUploadFilter;
 import org.springframework.boot.autoconfigure.AutoConfigureAfter;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnExpression;
+import org.springframework.boot.autoconfigure.web.servlet.MultipartAutoConfiguration;
 import org.springframework.boot.autoconfigure.web.servlet.MultipartProperties;
 import org.springframework.boot.web.servlet.ServletContextInitializer;
 import org.springframework.context.annotation.Bean;
@@ -48,24 +49,30 @@ import org.springframework.context.annotation.Configuration;
  * spring's {@link MultipartProperties}
  *
  * @author Nurettin Yilmaz
- * @see PrimefacesFileUploadServletContextInitializer
  */
-@ConditionalOnClass(name = {"org.primefaces.webapp.MultipartRequest"})
 @Configuration
+@ConditionalOnClass(MultipartRequest.class)
 @AutoConfigureAfter(JavaxFacesAutoConfiguration.class)
 public class PrimefacesFileUploadServletContextAutoConfiguration {
+
+	private static final String FACES_SERVLET_NAME = "FacesServlet";
 
 	/**
 	 * PrimefacesFileUploadServletContextInitializer for native uploader,
 	 * since {@link FileUploadFilter} suffices for commons file uploader.
 	 *
-	 * @param multipartConfigElement {@link PrimefacesFileUploadServletContextInitializer#multipartConfigElement}
+	 * @param multipartConfigElement {@link MultipartAutoConfiguration#multipartConfigElement()}
 	 * @return primefaces file upload servlet context initializer
 	 */
 	@ConditionalOnExpression("'${jsf.primefaces.uploader}' != 'commons'")
 	@Bean
 	public ServletContextInitializer primefacesFileUploadServletContextInitializer(MultipartConfigElement multipartConfigElement) {
-		return new PrimefacesFileUploadServletContextInitializer(multipartConfigElement);
+		return servletContext -> {
+			ServletRegistration servletRegistration = servletContext.getServletRegistration(FACES_SERVLET_NAME);
+			if (servletRegistration instanceof ServletRegistration.Dynamic) {
+				((ServletRegistration.Dynamic) servletRegistration).setMultipartConfig(multipartConfigElement);
+			}
+		};
 	}
 
 	/**
@@ -74,7 +81,7 @@ public class PrimefacesFileUploadServletContextAutoConfiguration {
 	 */
 	@ConditionalOnExpression("'${jsf.primefaces.uploader}' == 'commons'")
 	@Bean
-	public Filter fileUploadFilter() {
+	public FileUploadFilter fileUploadFilter() {
 		return new FileUploadFilter();
 	}
 }
