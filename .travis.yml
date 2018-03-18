@@ -15,7 +15,7 @@ install: ./mvnw -B clean validate
 
 script:
   - ./mvnw -B -Pcheck-duplicate,check-checkstyle,check-cycles,check-cpd,check-pmd,check-findbugs -DskipTests=true install
-  - ./mvnw -T 2 -B verify -X
+  - ./mvnw -B verify
 
 after_success:
   - "[[ ${TRAVIS_PULL_REQUEST} == 'false' ]] && ./mvnw -B org.eluder.coveralls:coveralls-maven-plugin:4.3.0:report"
