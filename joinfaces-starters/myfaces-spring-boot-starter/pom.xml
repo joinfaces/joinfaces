@@ -19,11 +19,7 @@
     <dependencies>
         <dependency>
             <groupId>org.apache.myfaces.core</groupId>
-            <artifactId>myfaces-bundle</artifactId>
-        </dependency>        
-        <dependency>
-            <groupId>commons-digester</groupId>
-            <artifactId>commons-digester</artifactId>
+            <artifactId>myfaces-impl</artifactId>
         </dependency>
     </dependencies>
 </project>

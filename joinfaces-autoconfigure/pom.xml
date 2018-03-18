@@ -49,7 +49,8 @@
                         <phase>integration-test</phase>
                         <configuration>
                             <classpathDependencyExcludes>
-                                <classpathDependencyExclude>org.apache.myfaces.core:myfaces-bundle</classpathDependencyExclude>
+                                <classpathDependencyExclude>org.apache.myfaces.core:myfaces-impl</classpathDependencyExclude>
+                                <classpathDependencyExclude>org.apache.myfaces.core:myfaces-api</classpathDependencyExclude>
                             </classpathDependencyExcludes>
                             <excludes>
                                 <exclude>**/myfaces/**.java</exclude>
@@ -182,7 +183,7 @@
         </dependency>
         <dependency>
             <groupId>org.apache.myfaces.core</groupId>
-            <artifactId>myfaces-bundle</artifactId>
+            <artifactId>myfaces-impl</artifactId>
             <optional>true</optional>
         </dependency>
         <dependency>
@@ -225,17 +226,6 @@
             <groupId>commons-fileupload</groupId>
             <artifactId>commons-fileupload</artifactId>
             <optional>true</optional>
-        </dependency>
-        <dependency>
-            <groupId>commons-beanutils</groupId>
-            <artifactId>commons-beanutils</artifactId>
-            <optional>true</optional>
-        </dependency>
-
-        <dependency>
-            <groupId>commons-digester</groupId>
-            <artifactId>commons-digester</artifactId>
-            <scope>test</scope>
         </dependency>
     </dependencies>
 </project>

@@ -27,9 +27,6 @@
         <omnifaces1.version>1.14.1</omnifaces1.version>
         <omnifaces3.version>3.0</omnifaces3.version>
 
-        <commons-digester.version>2.1</commons-digester.version>
-        <commons-beanutils.version>1.9.3</commons-beanutils.version>
-
         <primefaces.version>6.2</primefaces.version>
         <primefaces-extensions.version>6.2</primefaces-extensions.version>
 
@@ -156,20 +153,14 @@
                 <version>${myfaces.version}</version>
             </dependency>
             <dependency>
-                <groupId>commons-digester</groupId>
-                <artifactId>commons-digester</artifactId>
-                <version>${commons-digester.version}</version>
-                <exclusions>
-                    <exclusion>
-                        <groupId>commons-logging</groupId>
-                        <artifactId>commons-logging</artifactId>
-                    </exclusion>
-                </exclusions>
+                <groupId>org.apache.myfaces.core</groupId>
+                <artifactId>myfaces-api</artifactId>
+                <version>${myfaces.version}</version>
             </dependency>
             <dependency>
-                <groupId>commons-beanutils</groupId>
-                <artifactId>commons-beanutils</artifactId>
-                <version>${commons-beanutils.version}</version>
+                <groupId>org.apache.myfaces.core</groupId>
+                <artifactId>myfaces-impl</artifactId>
+                <version>${myfaces.version}</version>
                 <exclusions>
                     <exclusion>
                         <groupId>commons-logging</groupId>
