@@ -40,7 +40,7 @@ public class TomcatAutoConfiguration {
 
 	@Bean
 	public JsfTomcatApplicationListener jsfTomcatApplicationListener() {
-		return JsfTomcatApplicationListener.builder().context(this.customizer.getContext()).build();
+		return new JsfTomcatApplicationListener(this.customizer.getContext());
 	}
 
 	@Bean

@@ -51,8 +51,7 @@ public class JsfTomcatApplicationListenerIT {
 		JsfTomcatContextCustomizer jsfTomcatContextCustomizer = new JsfTomcatContextCustomizer();
 		jsfTomcatContextCustomizer.customize(standardContext);
 
-		JsfTomcatApplicationListener jsfTomcatApplicationListener = JsfTomcatApplicationListener
-			.builder().context(jsfTomcatContextCustomizer.getContext()).build();
+		JsfTomcatApplicationListener jsfTomcatApplicationListener = new JsfTomcatApplicationListener(jsfTomcatContextCustomizer.getContext());
 		jsfTomcatApplicationListener.onApplicationEvent(mock(ApplicationReadyEvent.class));
 		assertThat(webResourceRoot.getPostResources().length)
 			.isEqualTo(9);
@@ -77,8 +76,7 @@ public class JsfTomcatApplicationListenerIT {
 		JsfTomcatContextCustomizer jsfTomcatContextCustomizer = new JsfTomcatContextCustomizer();
 		jsfTomcatContextCustomizer.customize(standardContext);
 
-		JsfTomcatApplicationListener jsfTomcatApplicationListener = JsfTomcatApplicationListener
-			.builder().context(jsfTomcatContextCustomizer.getContext()).build();
+		JsfTomcatApplicationListener jsfTomcatApplicationListener = new JsfTomcatApplicationListener(jsfTomcatContextCustomizer.getContext());
 
 		jsfTomcatApplicationListener.onApplicationEvent(mock(ApplicationReadyEvent.class));
 		if (!testClassesResources.delete()) {
@@ -90,8 +88,7 @@ public class JsfTomcatApplicationListenerIT {
 
 	@Test
 	public void contextNull() {
-		JsfTomcatApplicationListener jsfTomcatApplicationListener = JsfTomcatApplicationListener
-			.builder().build();
+		JsfTomcatApplicationListener jsfTomcatApplicationListener = new JsfTomcatApplicationListener(null);
 		jsfTomcatApplicationListener.onApplicationEvent(mock(ApplicationReadyEvent.class));
 
 		assertThat(jsfTomcatApplicationListener)
@@ -107,8 +104,7 @@ public class JsfTomcatApplicationListenerIT {
 		JsfTomcatContextCustomizer jsfTomcatContextCustomizer = new JsfTomcatContextCustomizer();
 		jsfTomcatContextCustomizer.customize(standardContext);
 
-		JsfTomcatApplicationListener jsfTomcatApplicationListener = JsfTomcatApplicationListener
-			.builder().context(jsfTomcatContextCustomizer.getContext()).build();
+		JsfTomcatApplicationListener jsfTomcatApplicationListener = new JsfTomcatApplicationListener(jsfTomcatContextCustomizer.getContext());
 		jsfTomcatApplicationListener.onApplicationEvent(mock(ApplicationReadyEvent.class));
 
 		assertThat(jsfTomcatApplicationListener)
@@ -126,8 +122,7 @@ public class JsfTomcatApplicationListenerIT {
 		JsfTomcatContextCustomizer jsfTomcatContextCustomizer = new JsfTomcatContextCustomizer();
 		jsfTomcatContextCustomizer.customize(standardContext);
 
-		JsfTomcatApplicationListener jsfTomcatApplicationListener = JsfTomcatApplicationListener
-			.builder().context(jsfTomcatContextCustomizer.getContext()).build();
+		JsfTomcatApplicationListener jsfTomcatApplicationListener = new JsfTomcatApplicationListener(jsfTomcatContextCustomizer.getContext());
 		jsfTomcatApplicationListener.onApplicationEvent(mock(ApplicationReadyEvent.class));
 
 		assertThat(jsfTomcatApplicationListener)
@@ -253,8 +248,7 @@ public class JsfTomcatApplicationListenerIT {
 		JsfTomcatContextCustomizer jsfTomcatContextCustomizer = new JsfTomcatContextCustomizer();
 		jsfTomcatContextCustomizer.customize(contextMock.getStandardContext());
 
-		JsfTomcatApplicationListener jsfTomcatApplicationListener = JsfTomcatApplicationListener
-			.builder().context(jsfTomcatContextCustomizer.getContext()).build();
+		JsfTomcatApplicationListener jsfTomcatApplicationListener = new JsfTomcatApplicationListener(jsfTomcatContextCustomizer.getContext());
 		jsfTomcatApplicationListener.onApplicationEvent(mock(ApplicationReadyEvent.class));
 	}
 }

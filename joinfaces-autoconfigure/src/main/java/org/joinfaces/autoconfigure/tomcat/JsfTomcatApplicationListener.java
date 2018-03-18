@@ -20,7 +20,7 @@ import java.net.URISyntaxException;
 import java.net.URL;
 import java.nio.file.Paths;
 
-import lombok.Builder;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.catalina.Context;
 import org.apache.catalina.WebResourceRoot;
@@ -39,10 +39,10 @@ import org.springframework.context.ApplicationListener;
  * @author Marcelo Fernandes
  */
 @Slf4j
-@Builder
+@RequiredArgsConstructor
 public class JsfTomcatApplicationListener implements ApplicationListener<ApplicationReadyEvent> {
 
-	private Context context;
+	private final Context context;
 
 	private JarWarResourceSet getFirstJarWarResourceSetAtJarResources(WebResourceRoot resources) {
 		JarWarResourceSet result = null;

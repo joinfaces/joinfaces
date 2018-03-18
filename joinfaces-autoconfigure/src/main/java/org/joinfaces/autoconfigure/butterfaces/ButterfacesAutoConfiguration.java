@@ -72,11 +72,6 @@ public class ButterfacesAutoConfiguration {
 
 			@Override
 			public Object postProcessBeforeInitialization(@Nullable Object bean, @Nullable String beanName) throws BeansException {
-				return bean;
-			}
-
-			@Override
-			public Object postProcessAfterInitialization(@Nullable Object bean, @Nullable String beanName) throws BeansException {
 
 				if (bean instanceof BootsfacesProperties) {
 					BootsfacesProperties properties = (BootsfacesProperties) bean;
