@@ -32,6 +32,8 @@
         <module>joinfaces-autoconfigure</module>
 
         <module>joinfaces-starters</module>
+
+        <module>test-projects</module>
     </modules>
 
     <build>

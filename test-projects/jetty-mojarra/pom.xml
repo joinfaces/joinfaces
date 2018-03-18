@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<project xmlns="http://maven.apache.org/POM/4.0.0">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>org.joinfaces.test</groupId>
+        <artifactId>test-projects</artifactId>
+        <version>3.0.3-SNAPSHOT</version>
+    </parent>
+
+    <artifactId>jetty-mojarra</artifactId>
+    <version>3.0.3-SNAPSHOT</version>
+    <packaging>jar</packaging>
+
+    <name>Joinfaces Jetty-Mojarra Test Project</name>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.joinfaces</groupId>
+            <artifactId>jsf-spring-boot-starter</artifactId>
+            <version>3.0.3-SNAPSHOT</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.joinfaces</groupId>
+                    <artifactId>tomcat-spring-boot-starter</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        <dependency>
+            <groupId>org.joinfaces</groupId>
+            <artifactId>jetty-spring-boot-starter</artifactId>
+            <version>3.0.3-SNAPSHOT</version>
+        </dependency>
+    </dependencies>
+
+</project>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<project xmlns="http://maven.apache.org/POM/4.0.0">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>org.joinfaces.test</groupId>
+    <artifactId>test-projects</artifactId>
+    <version>3.0.3-SNAPSHOT</version>
+    <packaging>pom</packaging>
+
+    <name>JoinFaces Test Projects</name>
+
+    <modules>
+        <module>tomcat-mojarra</module>
+        <module>tomcat-myfaces</module>
+        <module>jetty-mojarra</module>
+        <module>jetty-myfaces</module>
+        <module>undertow-mojarra</module>
+        <module>undertow-myfaces</module>
+    </modules>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <version>2.0.0.RELEASE</version>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+</project>
