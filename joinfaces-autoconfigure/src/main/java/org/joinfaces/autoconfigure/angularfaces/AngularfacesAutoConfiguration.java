@@ -18,9 +18,6 @@ package org.joinfaces.autoconfigure.angularfaces;
 
 import java.util.ArrayList;
 
-import javax.annotation.Nullable;
-import javax.faces.view.facelets.TagDecorator;
-
 import de.beyondjava.angularFaces.core.ELTools;
 import de.beyondjava.angularFaces.core.tagTransformer.AngularTagDecorator;
 import org.joinfaces.autoconfigure.javaxfaces.JavaxFaces2_0Properties;
@@ -34,6 +31,7 @@ import org.springframework.boot.autoconfigure.condition.ConditionalOnWebApplicat
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.lang.Nullable;
 
 /**
  * Spring Boot Auto Configuration of AngularFaces.
@@ -61,23 +59,14 @@ public class AngularfacesAutoConfiguration {
 
 		@Override
 		public Object postProcessBeforeInitialization(@Nullable Object bean, @Nullable String beanName) throws BeansException {
-			return bean;
-		}
-
-		@Override
-		public Object postProcessAfterInitialization(@Nullable Object bean, @Nullable String beanName) throws BeansException {
 			if (bean instanceof JavaxFaces2_0Properties) {
 				JavaxFaces2_0Properties properties = (JavaxFaces2_0Properties) bean;
 				if (properties.getFaceletsDecorators() == null) {
-					ArrayList<Class<? extends TagDecorator>> faceletsDecorators = new ArrayList<>();
-					faceletsDecorators.add(AngularTagDecorator.class);
-					properties.setFaceletsDecorators(faceletsDecorators);
+					properties.setFaceletsDecorators(new ArrayList<>(1));
 				}
-				else {
-					if (!properties.getFaceletsDecorators().contains(AngularTagDecorator.class)) {
-						properties.getFaceletsDecorators().add(AngularTagDecorator.class);
 
-					}
+				if (!properties.getFaceletsDecorators().contains(AngularTagDecorator.class)) {
+					properties.getFaceletsDecorators().add(AngularTagDecorator.class);
 				}
 			}
 			return bean;
