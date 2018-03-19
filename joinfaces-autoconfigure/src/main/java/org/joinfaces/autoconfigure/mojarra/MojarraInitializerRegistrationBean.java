@@ -34,7 +34,7 @@ public class MojarraInitializerRegistrationBean extends ServletContainerInitiali
 	/**
 	 * Constant of another faces config of mojarra.
 	 */
-	public static final String ANOTHER_FACES_CONFIG = "com/sun/faces/jsf-ri-runtime.xml";
+	public static final String ANOTHER_CONFIG = "com/sun/faces/jsf-ri-runtime.xml";
 
 	public MojarraInitializerRegistrationBean() {
 		super(FacesInitializer.class);
@@ -43,7 +43,7 @@ public class MojarraInitializerRegistrationBean extends ServletContainerInitiali
 	@Override
 	protected Set<Class<?>> getClasses(HandlesTypes handlesTypes) {
 		JsfClassFactory jsfClassFactory = new JsfClassFactory(JsfClassFactory.Configuration.builder()
-				.anotherFacesConfig(ANOTHER_FACES_CONFIG)
+				.anotherConfig(ANOTHER_CONFIG)
 				.handlesTypes(handlesTypes)
 				.excludeScopedAnnotations(true)
 				.build());

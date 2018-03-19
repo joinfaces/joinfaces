@@ -21,6 +21,7 @@ import java.io.File;
 import org.apache.catalina.Context;
 import org.apache.catalina.LifecycleException;
 import org.apache.catalina.WebResourceRoot;
+import org.apache.catalina.WebResourceSet;
 import org.apache.catalina.webresources.DirResourceSet;
 import org.apache.catalina.webresources.JarResourceSet;
 import org.apache.catalina.webresources.JarWarResourceSet;
@@ -54,7 +55,7 @@ public class JsfTomcatApplicationListenerIT {
 		JsfTomcatApplicationListener jsfTomcatApplicationListener = new JsfTomcatApplicationListener(jsfTomcatContextCustomizer.getContext());
 		jsfTomcatApplicationListener.onApplicationEvent(mock(ApplicationReadyEvent.class));
 		assertThat(webResourceRoot.getPostResources().length)
-			.isEqualTo(9);
+			.isGreaterThanOrEqualTo(9);
 	}
 
 	@Test
@@ -83,7 +84,7 @@ public class JsfTomcatApplicationListenerIT {
 			throw new RuntimeException("Could not delete dir: " + testClassesResources.toString());
 		}
 		assertThat(webResourceRoot.getPostResources().length)
-			.isEqualTo(10);
+			.isGreaterThanOrEqualTo(10);
 	}
 
 	@Test

@@ -44,7 +44,7 @@ public class MyFacesInitializerRegistrationBeanTest {
 		JsfClassFactory.Configuration configuration = JsfClassFactory.Configuration.builder()
 				.handlesTypes(AnnotationUtils.findAnnotation(MyFacesContainerInitializer.class, HandlesTypes.class))
 				.excludeScopedAnnotations(true)
-				.anotherFacesConfig(MyFacesInitializerRegistrationBean.ANOTHER_FACES_CONFIG)
+				.anotherConfig(MyFacesInitializerRegistrationBean.ANOTHER_CONFIG)
 				.build();
 
 		classes = new JsfClassFactory(configuration).getAllClasses();
