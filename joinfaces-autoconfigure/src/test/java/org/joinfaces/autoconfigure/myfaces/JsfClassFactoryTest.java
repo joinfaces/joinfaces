@@ -35,7 +35,7 @@ public class JsfClassFactoryTest {
 	@Test
 	public void testJavaxFacesHtmlPanelGroupWithMyfaces() {
 		JsfClassFactory.Configuration configuration = JsfClassFactory.Configuration.builder()
-				.anotherFacesConfig(MyFacesInitializerRegistrationBean.ANOTHER_FACES_CONFIG)
+				.anotherConfig(MyFacesInitializerRegistrationBean.ANOTHER_CONFIG)
 				.excludeScopedAnnotations(true)
 				.handlesTypes(AnnotationUtils.findAnnotation(MyFacesContainerInitializer.class, HandlesTypes.class))
 				.build();
@@ -47,7 +47,7 @@ public class JsfClassFactoryTest {
 	@Test
 	public void testMyfacesHtmlGridRendererWithMyfaces() {
 		JsfClassFactory.Configuration configuration = JsfClassFactory.Configuration.builder()
-				.anotherFacesConfig(MyFacesInitializerRegistrationBean.ANOTHER_FACES_CONFIG)
+				.anotherConfig(MyFacesInitializerRegistrationBean.ANOTHER_CONFIG)
 				.excludeScopedAnnotations(true)
 				.handlesTypes(AnnotationUtils.findAnnotation(MyFacesContainerInitializer.class, HandlesTypes.class))
 				.build();
@@ -61,7 +61,7 @@ public class JsfClassFactoryTest {
 		JsfClassFactory.Configuration configuration = JsfClassFactory.Configuration.builder()
 				.excludeScopedAnnotations(true)
 				.handlesTypes(null)
-				.anotherFacesConfig(null)
+				.anotherConfig(null)
 				.build();
 
 		Set<Class<?>> classes = new JsfClassFactory(configuration).getAllClasses();
@@ -71,7 +71,7 @@ public class JsfClassFactoryTest {
 	@Test
 	public void testNullAnotherServletContextInitializer() {
 		JsfClassFactory.Configuration configuration = JsfClassFactory.Configuration.builder()
-				.anotherFacesConfig(null)
+				.anotherConfig(null)
 				.excludeScopedAnnotations(true)
 				.handlesTypes(AnnotationUtils.findAnnotation(MyFacesContainerInitializer.class, HandlesTypes.class))
 				.build();

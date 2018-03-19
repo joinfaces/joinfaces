@@ -33,7 +33,7 @@ public class MyFacesInitializerRegistrationBean extends ServletContainerInitiali
 	/**
 	 * Constant of another faces config name of MyFaces.
 	 */
-	public static final String ANOTHER_FACES_CONFIG = "META-INF/standard-faces-config.xml";
+	public static final String ANOTHER_CONFIG = "META-INF/myfaces-metadata.xml";
 
 	public MyFacesInitializerRegistrationBean() {
 		super(MyFacesContainerInitializer.class);
@@ -44,7 +44,7 @@ public class MyFacesInitializerRegistrationBean extends ServletContainerInitiali
 		JsfClassFactory.Configuration configuration = JsfClassFactory.Configuration.builder()
 				.handlesTypes(handlesTypes)
 				.excludeScopedAnnotations(true)
-				.anotherFacesConfig(ANOTHER_FACES_CONFIG)
+				.anotherConfig(ANOTHER_CONFIG)
 				.build();
 		JsfClassFactory jsfClassFactory = new JsfClassFactory(configuration);
 		JoinFacesAnnotationProvider.setAnnotatedClasses(jsfClassFactory.getAnnotatedClassMap());

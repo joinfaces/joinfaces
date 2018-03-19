@@ -39,7 +39,7 @@ public class JsfClassFactoryTest {
 	public void setUp() {
 		this.configuration = JsfClassFactory.Configuration.builder()
 				.excludeScopedAnnotations(false)
-				.anotherFacesConfig(MojarraInitializerRegistrationBean.ANOTHER_FACES_CONFIG)
+				.anotherConfig(MojarraInitializerRegistrationBean.ANOTHER_CONFIG)
 				.handlesTypes(AnnotationUtils.findAnnotation(FacesInitializer.class, HandlesTypes.class))
 				.build();
 	}

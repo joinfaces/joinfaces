@@ -44,7 +44,7 @@ public class MojarraInitializerRegistrationBeanTest {
 		JsfClassFactory.Configuration configuration = JsfClassFactory.Configuration.builder()
 				.excludeScopedAnnotations(true)
 				.handlesTypes(AnnotationUtils.findAnnotation(FacesInitializer.class, HandlesTypes.class))
-				.anotherFacesConfig(MojarraInitializerRegistrationBean.ANOTHER_FACES_CONFIG)
+				.anotherConfig(MojarraInitializerRegistrationBean.ANOTHER_CONFIG)
 				.build();
 
 		classes = new JsfClassFactory(configuration).getAllClasses();

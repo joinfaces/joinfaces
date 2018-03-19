@@ -119,10 +119,10 @@ public class JsfClassFactory {
 			// get only urls of libraries that contains jsf types
 			add(result, strings, ClasspathHelper.forResource("META-INF/faces-config.xml", this.getClass().getClassLoader()));
 
-			// add jsf library with anotherFacesConfig
-			String anotherFacesConfig = this.jsfAnnotatedClassFactoryConfiguration.getAnotherFacesConfig();
-			if (anotherFacesConfig != null) {
-				add(result, strings, ClasspathHelper.forResource(anotherFacesConfig, this.getClass().getClassLoader()));
+			// add jsf library with anotherConfig
+			String anotherConfig = this.jsfAnnotatedClassFactoryConfiguration.getAnotherConfig();
+			if (anotherConfig != null) {
+				add(result, strings, ClasspathHelper.forResource(anotherConfig, this.getClass().getClassLoader()));
 			}
 
 			// add project classes folder
@@ -140,8 +140,8 @@ public class JsfClassFactory {
 
 	/**
 	 * Compute annotated types to be handled by servlet container initializer.
-	 * Search libraries with anotherFacesConfig, project classes and resources
-	 * folder too.
+	 * Search libraries with anotherConfig, project classes and resources
+ folder too.
 	 * @return classes annotated by types handled by servlet container initializer.
 	 */
 	public Map<Class<? extends Annotation>, Set<Class<?>>> getAnnotatedClassMap() {
@@ -154,8 +154,8 @@ public class JsfClassFactory {
 
 	/**
 	 * Compute other types to be handled by servlet container initializer.
-	 * Search libraries with anotherFacesConfig, project classes and resources
-	 * folder too.
+	 * Search libraries with anotherConfig, project classes and resources
+ folder too.
 	 * @return classes annotated by types handled by servlet container initializer.
 	 */
 	public Map<Class<?>, Set<Class<?>>> getOtherClassMap() {
@@ -238,9 +238,9 @@ public class JsfClassFactory {
 		private HandlesTypes handlesTypes;
 
 		/**
-		 * Another faces config resource to include in search.
+		 * Another config resource to include in search.
 		 */
-		private String anotherFacesConfig;
+		private String anotherConfig;
 
 		/**
 		 * Inform if exclude scoped annotations in search.
