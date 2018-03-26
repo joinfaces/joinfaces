@@ -1,5 +1,5 @@
 /*
- * Copyright 2016-2016 the original author or authors.
+ * Copyright 2016-2017 the original author or authors.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -13,11 +13,14 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 package org.joinfaces.autoconfigure.rewrite;
 
 import java.util.EnumSet;
+
 import javax.inject.Inject;
 import javax.servlet.DispatcherType;
+
 import org.ocpsoft.rewrite.servlet.RewriteFilter;
 import org.ocpsoft.rewrite.servlet.impl.RewriteServletContextListener;
 import org.ocpsoft.rewrite.servlet.impl.RewriteServletRequestListener;
@@ -30,6 +33,7 @@ import org.springframework.boot.context.properties.EnableConfigurationProperties
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.DependsOn;
 
 /**
  * Spring Boot Auto Configuration of Rewrite.
@@ -43,25 +47,35 @@ import org.springframework.context.annotation.Configuration;
 @ConditionalOnWebApplication(type = ConditionalOnWebApplication.Type.SERVLET)
 public class RewriteAutoConfiguration {
 
-    @Inject
-    private RewriteFilterProperties rewriteFilterProperties;
-    
-    @Bean
-    public RewriteServletRequestListener rewriteServletRequestListener() {
-        return new RewriteServletRequestListener();
-    }
+	@Inject
+	private RewriteFilterProperties rewriteFilterProperties;
 
-    @Bean
-    public RewriteServletContextListener rewriteServletContextListener() {
-        return new RewriteServletContextListener();
-    }
-    
-    @Bean
-    public FilterRegistrationBean rewriteFilterRegistrationBean() {
-        FilterRegistrationBean registration = new FilterRegistrationBean();
-        registration.setFilter(new RewriteFilter());
-        registration.setDispatcherTypes(EnumSet.allOf(DispatcherType.class));        
-        registration.addUrlPatterns(rewriteFilterProperties.getUrlPatterns().toArray(new String[rewriteFilterProperties.getUrlPatterns().size()]));
-        return registration;
-    }
+	@Bean
+	public RewriteServletRequestListener rewriteServletRequestListener() {
+		return new RewriteServletRequestListener();
+	}
+
+	@Bean
+	public RewriteServletContextListener rewriteServletContextListener() {
+		return new RewriteServletContextListener();
+	}
+
+	/**
+	 * See https://www.ocpsoft.org/support/topic/integration-with-spring-boot-not-working/ .
+	 * @return rewrite filter registration bean
+	 */
+	@DependsOn("applicationContextProvider")
+	@Bean
+	public FilterRegistrationBean rewriteFilterRegistrationBean() {
+		FilterRegistrationBean registration = new FilterRegistrationBean();
+		registration.setFilter(new RewriteFilter());
+		registration.setDispatcherTypes(EnumSet.allOf(DispatcherType.class));
+		registration.addUrlPatterns(this.rewriteFilterProperties.getUrlPatterns().toArray(new String[this.rewriteFilterProperties.getUrlPatterns().size()]));
+		return registration;
+	}
+
+	@Bean
+	public ApplicationContextProvider applicationContextProvider() {
+		return new ApplicationContextProvider();
+	}
 }

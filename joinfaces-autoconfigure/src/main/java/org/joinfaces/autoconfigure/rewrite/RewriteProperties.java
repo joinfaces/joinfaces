@@ -17,6 +17,7 @@
 package org.joinfaces.autoconfigure.rewrite;
 
 import java.util.List;
+
 import lombok.Data;
 import org.joinfaces.autoconfigure.servlet.initparams.ServletContextInitParameter;
 import org.joinfaces.autoconfigure.servlet.initparams.ServletContextInitParameterProperties;
@@ -33,23 +34,23 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 @ConfigurationProperties(prefix = "rewrite")
 public class RewriteProperties implements ServletContextInitParameterProperties {
 
-    /**
-     * Reload configuration.
-     */
-    @ServletContextInitParameter(value = "org.ocpsoft.rewrite.config.CONFIG_RELOADING")
-    private Boolean configReloading;
-    
-    /**
-     * Does the user want to scan the WEB-INF/lib directory.
-     */ 
-    @ServletContextInitParameter(value = AnnotationConfigProvider.CONFIG_SCAN_LIB_DIR)
-    private Boolean scanLibDirectory;
-    
-    /**
-     * Retrieve the optional package filter configuration parameter.
-     * Users can disable annotation scanning with value none.
-     */
-    @ServletContextInitParameter(value = AnnotationConfigProvider.CONFIG_BASE_PACKAGES, listSeparator = ",")
-    private List<String> basePackages;
-    
+	/**
+	 * Reload configuration.
+	 */
+	@ServletContextInitParameter("org.ocpsoft.rewrite.config.CONFIG_RELOADING")
+	private Boolean configReloading;
+
+	/**
+	 * Does the user want to scan the WEB-INF/lib directory.
+	 */
+	@ServletContextInitParameter(AnnotationConfigProvider.CONFIG_SCAN_LIB_DIR)
+	private Boolean scanLibDirectory;
+
+	/**
+	 * Retrieve the optional package filter configuration parameter. Users can
+	 * disable annotation scanning with value none.
+	 */
+	@ServletContextInitParameter(value = AnnotationConfigProvider.CONFIG_BASE_PACKAGES, listSeparator = ",")
+	private List<String> basePackages;
+
 }

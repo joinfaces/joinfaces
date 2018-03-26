@@ -16,23 +16,19 @@
 
 package org.joinfaces.autoconfigure.rewrite;
 
-import java.util.Arrays;
-import java.util.List;
+import org.springframework.beans.BeansException;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.ApplicationContextAware;
 
-import lombok.Data;
+public class ApplicationContextProvider implements ApplicationContextAware {
+	private static ApplicationContext applicationContext;
 
-import org.springframework.boot.context.properties.ConfigurationProperties;
+	@Override
+	public void setApplicationContext(ApplicationContext newApplicationContext) throws BeansException {
+		applicationContext = newApplicationContext;
+	}
 
-/**
- * Filter Configuration of Rewrite.
- *
- * @author Marcelo Fernandes
- */
-@Data
-@ConfigurationProperties(prefix = "rewrite")
-public class RewriteFilterProperties {
-	/**
-	 * list of url patterns to rewrite filter.
-	 */
-	private List<String> urlPatterns = Arrays.asList("/*");
+	static ApplicationContext applicationContext() {
+		return applicationContext;
+	}
 }
