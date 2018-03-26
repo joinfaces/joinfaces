@@ -235,24 +235,6 @@
         <dependency>
             <groupId>org.ocpsoft.rewrite</groupId>
             <artifactId>rewrite-integration-spring</artifactId>
-            <optional>true</optional>
         </dependency>
-        <!--
-        <dependency>
-            <groupId>org.ocpsoft.rewrite</groupId>
-            <artifactId>rewrite-integration-faces</artifactId>
-            <optional>true</optional>
-        </dependency>
-        <dependency>
-            <groupId>org.ocpsoft.rewrite</groupId>
-            <artifactId>rewrite-integration-cdi</artifactId>
-            <optional>true</optional>
-        </dependency>
-        <dependency>
-            <groupId>org.ocpsoft.rewrite</groupId>
-            <artifactId>rewrite-config-prettyfaces</artifactId>
-            <optional>true</optional>
-        </dependency>
-        -->
     </dependencies>
 </project>
