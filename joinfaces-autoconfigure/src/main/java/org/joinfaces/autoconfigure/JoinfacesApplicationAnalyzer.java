@@ -42,7 +42,7 @@ public class JoinfacesApplicationAnalyzer implements ApplicationListener<Applica
 		String[] managedBeanNames = applicationContext.getBeanNamesForAnnotation(ManagedBean.class);
 
 		for (String managedBeanName : managedBeanNames) {
-			log.warn("The spring bean {} of type {} is also annotated with {}. This may lead to unexpected behaviour.", managedBeanName, applicationContext.getType(managedBeanName), ManagedBean.class);
+			log.warn("The spring bean '{}' of type '{}' is also annotated with '@{}'. This may lead to unexpected behaviour.", managedBeanName, applicationContext.getType(managedBeanName).getName(), ManagedBean.class.getName());
 		}
 	}
 }
