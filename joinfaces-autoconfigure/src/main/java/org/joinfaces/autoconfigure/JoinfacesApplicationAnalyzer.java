@@ -18,6 +18,7 @@ package org.joinfaces.autoconfigure;
 
 import javax.faces.bean.ManagedBean;
 
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import lombok.extern.slf4j.Slf4j;
 
 import org.springframework.boot.SpringApplication;
@@ -38,6 +39,7 @@ public class JoinfacesApplicationAnalyzer implements ApplicationListener<Applica
 		warnAboutJsfManagedBeans(event.getApplicationContext());
 	}
 
+	@SuppressFBWarnings(value = "NP_NULL_ON_SOME_PATH_FROM_RETURN_VALUE", justification = "getType() is always non-null when reached")
 	private void warnAboutJsfManagedBeans(ConfigurableApplicationContext applicationContext) {
 		String[] managedBeanNames = applicationContext.getBeanNamesForAnnotation(ManagedBean.class);
 
