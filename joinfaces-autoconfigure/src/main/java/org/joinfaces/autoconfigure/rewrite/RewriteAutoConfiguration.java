@@ -16,10 +16,8 @@
 
 package org.joinfaces.autoconfigure.rewrite;
 
-import java.util.EnumSet;
 
 import javax.inject.Inject;
-import javax.servlet.DispatcherType;
 
 import org.ocpsoft.rewrite.servlet.RewriteFilter;
 import org.ocpsoft.rewrite.servlet.impl.RewriteServletContextListener;
@@ -31,6 +29,7 @@ import org.springframework.boot.autoconfigure.condition.ConditionalOnWebApplicat
 import org.springframework.boot.autoconfigure.web.servlet.WebMvcAutoConfiguration;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
+import org.springframework.boot.web.servlet.ServletListenerRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.DependsOn;
@@ -51,13 +50,17 @@ public class RewriteAutoConfiguration {
 	private RewriteFilterProperties rewriteFilterProperties;
 
 	@Bean
-	public RewriteServletRequestListener rewriteServletRequestListener() {
-		return new RewriteServletRequestListener();
+	public ServletListenerRegistrationBean<RewriteServletRequestListener> rewriteServletRequestListener() {
+		ServletListenerRegistrationBean<RewriteServletRequestListener> result = new ServletListenerRegistrationBean<RewriteServletRequestListener>();
+		result.setListener(new RewriteServletRequestListener());
+		return result;
 	}
 
 	@Bean
-	public RewriteServletContextListener rewriteServletContextListener() {
-		return new RewriteServletContextListener();
+	public ServletListenerRegistrationBean<RewriteServletContextListener> rewriteServletContextListener() {
+		ServletListenerRegistrationBean<RewriteServletContextListener> result = new ServletListenerRegistrationBean<>();
+		result.setListener(new RewriteServletContextListener());
+		return result;
 	}
 
 	/**
@@ -66,11 +69,14 @@ public class RewriteAutoConfiguration {
 	 */
 	@DependsOn("applicationContextProvider")
 	@Bean
-	public FilterRegistrationBean rewriteFilterRegistrationBean() {
-		FilterRegistrationBean registration = new FilterRegistrationBean();
+	public FilterRegistrationBean<RewriteFilter> rewriteFilterRegistrationBean() {
+		FilterRegistrationBean<RewriteFilter> registration = new FilterRegistrationBean<>();
 		registration.setFilter(new RewriteFilter());
-		registration.setDispatcherTypes(EnumSet.allOf(DispatcherType.class));
+		registration.setDispatcherTypes(this.rewriteFilterProperties.getDispatcherTypes());
 		registration.addUrlPatterns(this.rewriteFilterProperties.getUrlPatterns().toArray(new String[this.rewriteFilterProperties.getUrlPatterns().size()]));
+		registration.setEnabled(this.rewriteFilterProperties.isEnabled());
+		registration.setAsyncSupported(this.rewriteFilterProperties.isAsyncSupported());
+		registration.setOrder(this.rewriteFilterProperties.getOrder());
 		return registration;
 	}
 

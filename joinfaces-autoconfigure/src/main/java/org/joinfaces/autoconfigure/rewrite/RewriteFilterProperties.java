@@ -17,7 +17,10 @@
 package org.joinfaces.autoconfigure.rewrite;
 
 import java.util.Arrays;
+import java.util.EnumSet;
 import java.util.List;
+
+import javax.servlet.DispatcherType;
 
 import lombok.Data;
 
@@ -35,4 +38,15 @@ public class RewriteFilterProperties {
 	 * list of url patterns to rewrite filter.
 	 */
 	private List<String> urlPatterns = Arrays.asList("/*");
+
+	private EnumSet<DispatcherType> dispatcherTypes = EnumSet.allOf(DispatcherType.class);
+
+	private boolean enabled = true;
+
+	private boolean asyncSupported = true;
+
+	/**
+	 * The order-property for the ServletRegistrationBean.
+	 */
+	private int order = 0;
 }
