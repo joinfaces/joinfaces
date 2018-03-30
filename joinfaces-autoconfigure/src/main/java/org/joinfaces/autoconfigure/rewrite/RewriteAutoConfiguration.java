@@ -17,7 +17,10 @@
 package org.joinfaces.autoconfigure.rewrite;
 
 
-import javax.inject.Inject;
+import java.util.EnumSet;
+
+import javax.servlet.DispatcherType;
+import javax.servlet.FilterRegistration;
 
 import org.ocpsoft.rewrite.servlet.RewriteFilter;
 import org.ocpsoft.rewrite.servlet.impl.RewriteServletContextListener;
@@ -28,56 +31,39 @@ import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnWebApplication;
 import org.springframework.boot.autoconfigure.web.servlet.WebMvcAutoConfiguration;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
-import org.springframework.boot.web.servlet.FilterRegistrationBean;
-import org.springframework.boot.web.servlet.ServletListenerRegistrationBean;
+import org.springframework.boot.web.server.WebServerFactoryCustomizer;
+import org.springframework.boot.web.servlet.ServletContextInitializer;
+import org.springframework.boot.web.servlet.server.ConfigurableServletWebServerFactory;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.DependsOn;
 
 /**
  * Spring Boot Auto Configuration of Rewrite.
  *
  * @author Marcelo Fernandes
+ * @author Lars Grefer
  */
 @Configuration
-@EnableConfigurationProperties({RewriteFilterProperties.class, RewriteProperties.class})
+@EnableConfigurationProperties(RewriteProperties.class)
 @ConditionalOnClass(RewriteFilter.class)
 @AutoConfigureAfter(WebMvcAutoConfiguration.class)
 @ConditionalOnWebApplication(type = ConditionalOnWebApplication.Type.SERVLET)
 public class RewriteAutoConfiguration {
 
-	@Inject
-	private RewriteFilterProperties rewriteFilterProperties;
-
-	@Bean
-	public ServletListenerRegistrationBean<RewriteServletRequestListener> rewriteServletRequestListener() {
-		ServletListenerRegistrationBean<RewriteServletRequestListener> result = new ServletListenerRegistrationBean<RewriteServletRequestListener>();
-		result.setListener(new RewriteServletRequestListener());
-		return result;
-	}
-
-	@Bean
-	public ServletListenerRegistrationBean<RewriteServletContextListener> rewriteServletContextListener() {
-		ServletListenerRegistrationBean<RewriteServletContextListener> result = new ServletListenerRegistrationBean<>();
-		result.setListener(new RewriteServletContextListener());
-		return result;
-	}
-
 	/**
-	 * See https://www.ocpsoft.org/support/topic/integration-with-spring-boot-not-working/ .
-	 * @return rewrite filter registration bean
+	 * This {@link WebServerFactoryCustomizer} adds a {@link ServletContextInitializer} to the embedded servlet-container
+	 * which is equivalent to rewrite's own {@code META-INF/web-fragment.xml}.
 	 */
-	@DependsOn("applicationContextProvider")
 	@Bean
-	public FilterRegistrationBean<RewriteFilter> rewriteFilterRegistrationBean() {
-		FilterRegistrationBean<RewriteFilter> registration = new FilterRegistrationBean<>();
-		registration.setFilter(new RewriteFilter());
-		registration.setDispatcherTypes(this.rewriteFilterProperties.getDispatcherTypes());
-		registration.addUrlPatterns(this.rewriteFilterProperties.getUrlPatterns().toArray(new String[this.rewriteFilterProperties.getUrlPatterns().size()]));
-		registration.setEnabled(this.rewriteFilterProperties.isEnabled());
-		registration.setAsyncSupported(this.rewriteFilterProperties.isAsyncSupported());
-		registration.setOrder(this.rewriteFilterProperties.getOrder());
-		return registration;
+	public WebServerFactoryCustomizer<ConfigurableServletWebServerFactory> rewriteWebServerFactoryCustomizer() {
+		return factory -> factory.addInitializers(servletContext -> {
+			servletContext.addListener(new RewriteServletContextListener());
+			servletContext.addListener(new RewriteServletRequestListener());
+
+			FilterRegistration.Dynamic rewriteFilterRegistration = servletContext.addFilter("OCPsoft Rewrite Filter", RewriteFilter.class);
+			rewriteFilterRegistration.setAsyncSupported(true);
+			rewriteFilterRegistration.addMappingForUrlPatterns(EnumSet.allOf(DispatcherType.class), false, "/*");
+		});
 	}
 
 	@Bean
