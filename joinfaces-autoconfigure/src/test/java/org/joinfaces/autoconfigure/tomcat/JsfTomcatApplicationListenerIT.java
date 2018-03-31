@@ -18,6 +18,7 @@ package org.joinfaces.autoconfigure.tomcat;
 
 import java.io.File;
 
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import org.apache.catalina.Context;
 import org.apache.catalina.LifecycleException;
 import org.apache.catalina.WebResourceRoot;
@@ -33,6 +34,7 @@ import org.springframework.boot.context.event.ApplicationReadyEvent;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.mock;
 
+@SuppressFBWarnings(value = "DMI_HARDCODED_ABSOLUTE_FILENAME", justification = "Tests")
 public class JsfTomcatApplicationListenerIT {
 
 	private static final String METAINF_RESOURCES = "/META-INF/resources";

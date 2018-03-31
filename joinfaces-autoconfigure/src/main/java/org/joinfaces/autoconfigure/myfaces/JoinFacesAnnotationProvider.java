@@ -26,6 +26,7 @@ import java.util.Set;
 
 import javax.faces.context.ExternalContext;
 
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import org.apache.myfaces.spi.AnnotationProvider;
 import org.apache.myfaces.spi.AnnotationProviderWrapper;
 
@@ -33,6 +34,7 @@ import org.apache.myfaces.spi.AnnotationProviderWrapper;
  * Servlet context configurer of MyFaces.
  * @author Marcelo Fernandes
  */
+@SuppressFBWarnings("DMI_COLLECTION_OF_URLS")
 public class JoinFacesAnnotationProvider extends AnnotationProviderWrapper {
 
 	private static Map<Class<? extends Annotation>, Set<Class<?>>> annotatedClasses;
