@@ -16,8 +16,6 @@
 
 package org.joinfaces.test;
 
-import lombok.NoArgsConstructor;
-
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
@@ -28,7 +26,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * @author Lars Grefer
  */
 @SpringBootApplication
-@NoArgsConstructor
 public class JoinfacesTestApplication {
 
 	public static void main(String[] args) {
