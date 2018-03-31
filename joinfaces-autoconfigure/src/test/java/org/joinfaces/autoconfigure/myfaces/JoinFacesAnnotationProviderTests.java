@@ -26,10 +26,12 @@ import java.util.Set;
 
 import javax.faces.convert.FacesConverter;
 
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import org.junit.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+@SuppressFBWarnings("DMI_COLLECTION_OF_URLS")
 public class JoinFacesAnnotationProviderTests {
 
 	@Test
