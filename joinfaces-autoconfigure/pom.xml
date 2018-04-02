@@ -24,7 +24,7 @@
         <duplicate.ignoredResourcePattern>(javax/faces/Messages.*\.properties)|(about.html)</duplicate.ignoredResourcePattern>
 
         <jacoco.totalLineRate>0.97</jacoco.totalLineRate>
-        <jacoco.totalBranchRate>0.92</jacoco.totalBranchRate>
+        <jacoco.totalBranchRate>0.90</jacoco.totalBranchRate>
         <jacoco.packageLineRate>0.50</jacoco.packageLineRate>
         <jacoco.packageBranchRate>0.50</jacoco.packageBranchRate>
         <jacoco.lineRate>0.33</jacoco.lineRate>
@@ -226,6 +226,21 @@
             <groupId>commons-fileupload</groupId>
             <artifactId>commons-fileupload</artifactId>
             <optional>true</optional>
+        </dependency>
+        <dependency>
+            <groupId>org.ocpsoft.rewrite</groupId>
+            <artifactId>rewrite-servlet</artifactId>
+            <optional>true</optional>
+        </dependency>
+        <dependency>
+            <groupId>org.ocpsoft.rewrite</groupId>
+            <artifactId>rewrite-integration-spring</artifactId>
+            <optional>true</optional>
+        </dependency>
+        <dependency>
+            <groupId>com.google.code.findbugs</groupId>
+            <artifactId>annotations</artifactId>
+            <scope>provided</scope>
         </dependency>
     </dependencies>
 </project>
