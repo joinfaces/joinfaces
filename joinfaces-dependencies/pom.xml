@@ -56,13 +56,11 @@
         <check.dir>src/checkconfig</check.dir>
         <checkstyle.dir>${check.dir}/checkstyle</checkstyle.dir>
         <pmd.dir>${check.dir}/pmd</pmd.dir>
-        <findbugs.dir>${check.dir}/findbugs</findbugs.dir>
 
         <requireMaven.version>3.1.1</requireMaven.version>
         <requireJava.version>[1.8,)</requireJava.version>
 
         <findbugs-maven-plugin.version>3.0.5</findbugs-maven-plugin.version>
-        <findbugs.excludeFilterFile>${findbugs.dir}/findbugs-exclude.xml</findbugs.excludeFilterFile>
         <jdepend-maven-plugin.version>2.0</jdepend-maven-plugin.version>
         <maven-pmd-plugin.version>3.9.0</maven-pmd-plugin.version>
         <pmd.ruleset>${pmd.dir}/pmd-ruleset.xml</pmd.ruleset>
@@ -446,7 +444,6 @@
                         <includeTests>true</includeTests>
                         <xmlOutput>true</xmlOutput>
                         <effort>Max</effort>
-                        <excludeFilterFile>${findbugs.excludeFilterFile}</excludeFilterFile>
                     </configuration>
                 </plugin>
                 <plugin>
