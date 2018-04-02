@@ -36,6 +36,7 @@ import org.springframework.boot.web.servlet.ServletContextInitializer;
 import org.springframework.boot.web.servlet.server.ConfigurableServletWebServerFactory;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.DependsOn;
 
 /**
  * Spring Boot Auto Configuration of Rewrite.
@@ -55,6 +56,7 @@ public class RewriteAutoConfiguration {
 	 * which is equivalent to rewrite's own {@code META-INF/web-fragment.xml}.
 	 * @return rewrite web server factory customizer
 	 */
+	@DependsOn("applicationContextProvider")
 	@Bean
 	public WebServerFactoryCustomizer<ConfigurableServletWebServerFactory> rewriteWebServerFactoryCustomizer() {
 		return factory -> factory.addInitializers(servletContext -> {
