@@ -53,6 +53,7 @@ public class RewriteAutoConfiguration {
 	/**
 	 * This {@link WebServerFactoryCustomizer} adds a {@link ServletContextInitializer} to the embedded servlet-container
 	 * which is equivalent to rewrite's own {@code META-INF/web-fragment.xml}.
+	 * @return rewrite web server factory customizer
 	 */
 	@Bean
 	public WebServerFactoryCustomizer<ConfigurableServletWebServerFactory> rewriteWebServerFactoryCustomizer() {
