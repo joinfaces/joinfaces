@@ -399,15 +399,3 @@ rewrite:
   basePackages:
     - my.package1
     - my.package2
-  order: 1
-  asyncSupported: true
-  enabled: true  
-  urlPatterns:
-    - /foo
-    - /base
-  dispatcherTypes:
-    - FORWARD
-    - INCLUDE
-    - REQUEST
-    - ASYNC
-    - ERROR
