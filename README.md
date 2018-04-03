@@ -21,9 +21,9 @@ You can find more examples [here.](https://github.com/joinfaces/joinfaces/wiki/E
 
 ## Key Features
 
-### Fourteen JoinFaces Starters available
+### Fifteen JoinFaces Starters available
 
-There are fourteen JSF Spring Boot Starters available: six basic starters, two utility starter, one meta starter and five component starters.
+There are fourteen JSF Spring Boot Starters available: six basic starters, two utility starters, one meta starter, five component starters and one extra starter.
 
 See detailed starters [here](https://github.com/joinfaces/joinfaces/wiki/JoinFaces-Starters-3.x).
 
