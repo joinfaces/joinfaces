@@ -27,7 +27,7 @@ import io.undertow.server.handlers.resource.ResourceManager;
 
 /**
  * A {@ResourceManager} that delegates to multiple {@code ResourceManager} instances.
- * Inspired by Spring Boot identical one.
+ * Inspired by @see <a href="https://github.com/spring-projects/spring-boot/blob/master/spring-boot-project/spring-boot/src/main/java/org/springframework/boot/web/embedded/undertow/CompositeResourceManager.java">CompositeResourceManager</a>
  *
  * @author Marcelo Fernandes
  */

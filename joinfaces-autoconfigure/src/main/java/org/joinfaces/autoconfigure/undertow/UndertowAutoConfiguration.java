@@ -16,8 +16,6 @@
 
 package org.joinfaces.autoconfigure.undertow;
 
-import java.net.URL;
-import java.net.URLClassLoader;
 import java.security.AccessController;
 import java.security.PrivilegedAction;
 
@@ -54,11 +52,8 @@ public class UndertowAutoConfiguration {
 	public WebServerFactoryCustomizer<UndertowServletWebServerFactory> jsfUndertowFactoryCustomizer() {
 		return factory -> factory.addDeploymentInfoCustomizers(deploymentInfo -> {
 			AccessController.doPrivileged((PrivilegedAction<Void>) () -> {
-				ClassLoader jsfClassLoader = new URLClassLoader(new URL[0], this.getClass().getClassLoader());
-				deploymentInfo.setClassLoader(jsfClassLoader);
-
 				deploymentInfo.setResourceManager(new CompositeResourceManager(
-					new ClassPathResourceManager(jsfClassLoader, this.undertowProperties.getClassPathResource()),
+					new ClassPathResourceManager(deploymentInfo.getClassLoader(), this.undertowProperties.getClassPathResource()),
 					deploymentInfo.getResourceManager()));
 
 				return null;

@@ -47,6 +47,7 @@ public class UndertowAutoConfigurationIT {
 			= factory.getDeploymentInfoCustomizers().iterator().next();
 
 		DeploymentInfo deploymentInfo = new DeploymentInfo();
+		deploymentInfo.setClassLoader(this.getClass().getClassLoader());
 
 		undertowDeploymentInfoCustomizer.customize(deploymentInfo);
 
