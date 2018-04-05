@@ -5,11 +5,11 @@
     <parent>
         <groupId>org.joinfaces.test</groupId>
         <artifactId>test-projects</artifactId>
-        <version>3.1.1-SNAPSHOT</version>
+        <version>3.1.1</version>
     </parent>
 
     <artifactId>undertow-myfaces</artifactId>
-    <version>3.1.1-SNAPSHOT</version>
+    <version>3.1.1</version>
     <packaging>jar</packaging>
 
     <name>Joinfaces Undertow-MyFaces Test Project</name>
@@ -18,7 +18,7 @@
         <dependency>
             <groupId>org.joinfaces</groupId>
             <artifactId>jsf-spring-boot-starter</artifactId>
-            <version>3.1.1-SNAPSHOT</version>
+            <version>3.1.1</version>
             <exclusions>
                 <exclusion>
                     <groupId>org.joinfaces</groupId>
@@ -33,12 +33,12 @@
         <dependency>
             <groupId>org.joinfaces</groupId>
             <artifactId>undertow-spring-boot-starter</artifactId>
-            <version>3.1.1-SNAPSHOT</version>
+            <version>3.1.1</version>
         </dependency>
         <dependency>
             <groupId>org.joinfaces</groupId>
             <artifactId>myfaces-spring-boot-starter</artifactId>
-            <version>3.1.1-SNAPSHOT</version>
+            <version>3.1.1</version>
         </dependency>
     </dependencies>
 
