@@ -18,5 +18,5 @@ script:
   - ./mvnw -B verify
 
 after_success:
-  - "[[ ${TRAVIS_PULL_REQUEST} == 'false' ]] && ./mvnw -B org.eluder.coveralls:coveralls-maven-plugin:4.3.0:report"
+  - bash <(curl -s https://codecov.io/bash)
   - "[[ ${TRAVIS_PULL_REQUEST} == 'false' ]] && [[ ${TRAVIS_TAG} == '' ]] && ./mvnw --settings .travis.deploy-settings.xml -DskipTests=true -Pattach-test-jar,attach-source,attach-javadoc deploy"
