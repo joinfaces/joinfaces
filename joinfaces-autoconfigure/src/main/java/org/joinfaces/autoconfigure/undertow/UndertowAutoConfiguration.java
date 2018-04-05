@@ -57,8 +57,9 @@ public class UndertowAutoConfiguration {
 				ClassLoader jsfClassLoader = new URLClassLoader(new URL[0], this.getClass().getClassLoader());
 				deploymentInfo.setClassLoader(jsfClassLoader);
 
-				deploymentInfo.setResourceManager(new ClassPathResourceManager(
-						jsfClassLoader, this.undertowProperties.getClassPathResource()));
+				deploymentInfo.setResourceManager(new CompositeResourceManager(
+					new ClassPathResourceManager(jsfClassLoader, this.undertowProperties.getClassPathResource()),
+					deploymentInfo.getResourceManager()));
 
 				return null;
 			});
