@@ -23,6 +23,7 @@ import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 import org.eclipse.jetty.server.Handler;
 import org.eclipse.jetty.server.Server;
+import org.eclipse.jetty.util.resource.Resource;
 import org.eclipse.jetty.util.resource.ResourceCollection;
 import org.eclipse.jetty.webapp.WebAppContext;
 
@@ -65,8 +66,9 @@ public class JettyAutoConfiguration {
 
 				String classPathResourceString = JettyAutoConfiguration.this.jettyProperties.getClassPathResource();
 
-				ClassPathResource classPathResource = new ClassPathResource(classPathResourceString);
-				webAppContext.setBaseResource(new ResourceCollection(classPathResource.getURI().toString()));
+				webAppContext.setBaseResource(new ResourceCollection(
+					Resource.newResource(new ClassPathResource(classPathResourceString).getURI()),
+					webAppContext.getBaseResource()));
 
 				log.info("Setting Jetty classLoader to {} directory", classPathResourceString);
 			}
