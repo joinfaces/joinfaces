@@ -126,7 +126,11 @@ public class JsfClassFactory {
 			}
 
 			// add project classes folder
-			for (URL url : ClasspathHelper.forManifest()) {
+			Collection<URL> urlsClassesFolder = new ArrayList<>();
+			Collection<String> stringsClassesFolder = new HashSet<>();
+			add(urlsClassesFolder, stringsClassesFolder, ClasspathHelper.forJavaClassPath());
+			add(urlsClassesFolder, stringsClassesFolder, ClasspathHelper.forManifest());
+			for (URL url : urlsClassesFolder) {
 				String file = url.getFile();
 				// check if adding classes folder
 				if (isClassesFolder(file)) {
