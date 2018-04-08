@@ -18,7 +18,7 @@ It also aims to solve [JSF](http://www.oracle.com/technetwork/java/javaee/javase
 
 [JoinFaces Example](https://github.com/joinfaces/joinfaces-maven-jar-example) shows JSF Spring Boot Starter usage. It may help you to choose the JSF Spring Boot Starter that fits your needs.
 
-You can find more examples [here.](https://github.com/joinfaces/joinfaces/wiki/Examples-of-JSF-Spring-Boot-Starter-usage)
+You can find more examples [here.](https://github.com/joinfaces/joinfaces/wiki/Examples-of-JoinFaces-usage)
 
 ## Key Features
 
