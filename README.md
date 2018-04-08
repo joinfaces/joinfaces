@@ -8,7 +8,7 @@ JoinFaces
 [![Javadocs](http://javadoc.io/badge/org.joinfaces/joinfaces-build.svg)](http://javadoc.io/doc/org.joinfaces/joinfaces-build)
 [![License](http://img.shields.io/:license-apache-blue.svg)](http://www.apache.org/licenses/LICENSE-2.0.html)
 
-This project enables [JSF](http://www.oracle.com/technetwork/java/javaee/javaserverfaces-139869.html) usage inside JAR packaged [Spring Boot](http://projects.spring.io/spring-boot/) Application.
+This project enables [JSF](http://www.oracle.com/technetwork/java/javaee/javaserverfaces-139869.html) usage inside [Spring Boot](http://projects.spring.io/spring-boot/) Application.
 
 It autoconfigures [PrimeFaces](http://primefaces.org/), [PrimeFaces Extensions](http://primefaces-extensions.github.io/), [BootsFaces](http://bootsfaces.net/), [ButterFaces](http://butterfaces.org/), [RichFaces](https://github.com/richfaces/richfaces), [OmniFaces](http://omnifaces.org/), [AngularFaces](http://angularfaces.net/), [Mojarra](https://javaserverfaces.java.net/) and [MyFaces](http://myfaces.apache.org/) libraries to run at embedded [Tomcat](http://tomcat.apache.org/), [Jetty](http://www.eclipse.org/jetty) or [Undertow](http://undertow.io) servlet containers. It autoconfigures [Weld](http://weld.cdi-spec.org) and [Rewrite](https://www.ocpsoft.org/rewrite/) too.
 
@@ -24,7 +24,7 @@ You can find more examples [here.](https://github.com/joinfaces/joinfaces/wiki/E
 
 ### Fifteen JoinFaces Starters available
 
-There are fourteen JSF Spring Boot Starters available: six basic starters, two utility starters, one meta starter, five component starters and one extra starter.
+There are fifteen JSF Spring Boot Starters available: six basic starters, two utility starters, one meta starter, five component starters and one extra starter.
 
 See detailed starters [here](https://github.com/joinfaces/joinfaces/wiki/JoinFaces-Starters-3.x).
 
