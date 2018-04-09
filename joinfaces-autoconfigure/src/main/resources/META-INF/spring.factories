@@ -22,7 +22,8 @@ org.joinfaces.autoconfigure.jpa.JpaWebAutoConfiguration,\
 org.joinfaces.autoconfigure.javaxfaces.ProjectStageAutoConfiguration,\
 org.joinfaces.autoconfigure.servlet.initparams.ServletContextInitParameterPropertiesAutoConfiguration,\
 org.joinfaces.autoconfigure.weld.WeldSpringBootAutoConfiguration,\
-org.joinfaces.autoconfigure.rewrite.RewriteAutoConfiguration
+org.joinfaces.autoconfigure.rewrite.RewriteAutoConfiguration,\
+org.joinfaces.autoconfigure.adminfaces.AdminfacesAutoConfiguration
 
 org.springframework.context.ApplicationListener=\
   org.joinfaces.autoconfigure.JoinfacesApplicationAnalyzer
