@@ -53,6 +53,7 @@
         <jaxb.version>2.3.0</jaxb.version>
 
         <adminfaces.version>1.0.0-RC13</adminfaces.version>
+        <hibernate-jpa-2.1-api.version>1.0.2.Final</hibernate-jpa-2.1-api.version>
 
         <maven-gpg-plugin.version>1.6</maven-gpg-plugin.version>
         <nexus-staging-maven-plugin.version>1.6.8</nexus-staging-maven-plugin.version>
@@ -341,6 +342,11 @@
                 <artifactId>admin-theme</artifactId>
                 <version>${adminfaces.version}</version>
                 <scope>compile</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.hibernate.javax.persistence</groupId>
+                <artifactId>hibernate-jpa-2.1-api</artifactId>
+                <version>${hibernate-jpa-2.1-api.version}</version>
             </dependency>
 
             <dependency>

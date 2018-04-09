@@ -16,10 +16,12 @@
 
 package org.joinfaces.autoconfigure.adminfaces;
 
+import javax.faces.application.ViewExpiredException;
+import javax.persistence.OptimisticLockException;
+
 import com.github.adminfaces.template.exception.AccessDeniedException;
 import com.github.adminfaces.template.session.AdminServletContextListener;
 import com.github.adminfaces.template.session.AdminSession;
-import javax.faces.application.ViewExpiredException;
 import org.joinfaces.autoconfigure.primefaces.Primefaces4_0Properties;
 import org.joinfaces.autoconfigure.primefaces.Primefaces5_2Properties;
 import org.joinfaces.autoconfigure.primefaces.PrimefacesAutoConfiguration;
@@ -50,11 +52,11 @@ import org.springframework.lang.Nullable;
 @Configuration
 // will adminfaces autoconfigure via application.yml ?
 //@EnableConfigurationProperties(AdminfacesProperties.class)
-@ComponentScan({"com.github.adminfaces.template.bean"
-				, "com.github.adminfaces.template.config"
-				, "com.github.adminfaces.template.security"})
-@ServletComponentScan({"com.github.adminfaces.template.security"
-				, "com.github.adminfaces.template.session"})
+@ComponentScan({"com.github.adminfaces.template.bean",
+	"com.github.adminfaces.template.config",
+	"com.github.adminfaces.template.security"})
+@ServletComponentScan({"com.github.adminfaces.template.security",
+	"com.github.adminfaces.template.session"})
 @ConditionalOnClass(AdminSession.class)
 @AutoConfigureBefore(PrimefacesAutoConfiguration.class)
 @ConditionalOnWebApplication(type = ConditionalOnWebApplication.Type.SERVLET)
@@ -63,6 +65,35 @@ public class AdminfacesAutoConfiguration {
 	@Bean
 	public BeanPostProcessor adminfacesPrimeFacesPropertiesPostProcessor() {
 		return new PrimeFacesPropertiesPostProcessor();
+	}
+
+	// AdminSession does not contain @Named.
+	@Bean
+	@Scope(value = "session", proxyMode = ScopedProxyMode.TARGET_CLASS)
+	public AdminSession adminSession() {
+		return new AdminSession();
+	}
+
+	/**
+	 * This {@link WebServerFactoryCustomizer} adds a {@link ServletContextInitializer} to the embedded servlet-container
+	 * which is equivalent to adminfaces's own {@code META-INF/web-fragment.xml}.
+	 * @return adminfaces web server factory customizer
+	 */
+	@Bean
+	public WebServerFactoryCustomizer<ConfigurableServletWebServerFactory> adminfacesWebServerFactoryCustomizer() {
+		return factory -> {
+			factory.addErrorPages(new ErrorPage(HttpStatus.FORBIDDEN, "/403.jsf"),
+					new ErrorPage(AccessDeniedException.class, "/403.jsf"),
+					new ErrorPage(HttpStatus.NOT_FOUND, "/404.jsf"),
+					new ErrorPage(HttpStatus.INTERNAL_SERVER_ERROR, "/500.jsf"),
+					new ErrorPage(Throwable.class, "/500.jsf"),
+					new ErrorPage(ViewExpiredException.class, "/expired.jsf"),
+					new ErrorPage(OptimisticLockException.class, "/optimistic.jsf")
+			);
+			factory.addInitializers(servletContext -> {
+				servletContext.addListener(new AdminServletContextListener());
+			});
+		};
 	}
 
 	/**
@@ -84,36 +115,6 @@ public class AdminfacesAutoConfiguration {
 			}
 			return bean;
 		}
-	}
-
-	// AdminSession does not contain @Named.
-	@Bean
-	@Scope(value = "session", proxyMode = ScopedProxyMode.TARGET_CLASS)
-	public AdminSession adminSession() {
-		return new AdminSession();
-	}
-
-	/**
-	 * This {@link WebServerFactoryCustomizer} adds a {@link ServletContextInitializer} to the embedded servlet-container
-	 * which is equivalent to adminfaces's own {@code META-INF/web-fragment.xml}.
-	 * @return adminfaces web server factory customizer
-	 */
-	@Bean
-	public WebServerFactoryCustomizer<ConfigurableServletWebServerFactory> adminfacesWebServerFactoryCustomizer() {
-		return factory -> { 
-			factory.addErrorPages(new ErrorPage(HttpStatus.FORBIDDEN, "/403.jsf")
-				, new ErrorPage(AccessDeniedException.class, "/403.jsf")
-				, new ErrorPage(HttpStatus.NOT_FOUND, "/404.jsf")
-				, new ErrorPage(HttpStatus.INTERNAL_SERVER_ERROR, "/500.jsf")
-				, new ErrorPage(Throwable.class, "/500.jsf")
-				, new ErrorPage(ViewExpiredException.class, "/expired.jsf")
-				// ConditionOnClass OptimisticLockException.class
-				//, new ErrorPage(OptimisticLockException.class, "/optimistic.jsf")
-			);
-			factory.addInitializers(servletContext -> {
-				servletContext.addListener(new AdminServletContextListener());
-			});
-		};
 	}
 
 }
