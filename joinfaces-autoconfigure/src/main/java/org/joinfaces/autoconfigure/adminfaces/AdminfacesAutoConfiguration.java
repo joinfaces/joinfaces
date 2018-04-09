@@ -37,6 +37,8 @@ import org.springframework.boot.web.servlet.server.ConfigurableServletWebServerF
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Scope;
+import org.springframework.context.annotation.ScopedProxyMode;
 import org.springframework.http.HttpStatus;
 import org.springframework.lang.Nullable;
 
@@ -48,8 +50,11 @@ import org.springframework.lang.Nullable;
 @Configuration
 // will adminfaces autoconfigure via application.yml ?
 //@EnableConfigurationProperties(AdminfacesProperties.class)
-@ComponentScan("com.github.adminfaces.template")
-@ServletComponentScan("com.github.adminfaces.template")
+@ComponentScan({"com.github.adminfaces.template.bean"
+				, "com.github.adminfaces.template.config"
+				, "com.github.adminfaces.template.security"})
+@ServletComponentScan({"com.github.adminfaces.template.security"
+				, "com.github.adminfaces.template.session"})
 @ConditionalOnClass(AdminSession.class)
 @AutoConfigureBefore(PrimefacesAutoConfiguration.class)
 @ConditionalOnWebApplication(type = ConditionalOnWebApplication.Type.SERVLET)
@@ -83,6 +88,7 @@ public class AdminfacesAutoConfiguration {
 
 	// AdminSession does not contain @Named.
 	@Bean
+	@Scope(value = "session", proxyMode = ScopedProxyMode.TARGET_CLASS)
 	public AdminSession adminSession() {
 		return new AdminSession();
 	}
