@@ -102,7 +102,6 @@ public class AdminfacesAutoConfiguration {
 	 * @author Marcelo Fernandes
 	 */
 	static class PrimeFacesPropertiesPostProcessor implements BeanPostProcessor {
-
 		@Override
 		public Object postProcessBeforeInitialization(@Nullable Object bean, @Nullable String beanName) throws BeansException {
 			if (bean instanceof Primefaces4_0Properties) {

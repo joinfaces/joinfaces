@@ -28,8 +28,8 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(
-		properties = "spring.profiles.active=propertyTest",
-		webEnvironment = SpringBootTest.WebEnvironment.MOCK
+	properties = "spring.profiles.active=propertyTest",
+	webEnvironment = SpringBootTest.WebEnvironment.MOCK
 )
 public class PrimefacesPropertiesIT {
 
@@ -53,97 +53,116 @@ public class PrimefacesPropertiesIT {
 
 	@Test
 	public void testPrivateCaptchaKey() {
-		assertThat(this.primefaces4_0Properties.getPrivateCaptchaKey()).isEqualTo("myPrivateCaptchaKey");
+		assertThat(this.primefaces4_0Properties.getPrivateCaptchaKey())
+			.isEqualTo("myPrivateCaptchaKey");
 	}
 
 	@Test
 	public void testPublicCaptchaKey() {
-		assertThat(this.primefaces4_0Properties.getPublicCaptchaKey()).isEqualTo("myKey");
+		assertThat(this.primefaces4_0Properties.getPublicCaptchaKey())
+			.isEqualTo("myKey");
 	}
 
 	@Test
 	public void testAutoUpdate() {
-		assertThat(this.primefaces5_0Properties.getAutoUpdate()).isEqualTo("auto");
+		assertThat(this.primefaces5_0Properties.getAutoUpdate())
+			.isEqualTo("auto");
 	}
 
 	@Test
 	public void testCacheProvider() {
-		assertThat(this.primefaces5_0Properties.getCacheProvider()).isEqualTo(DefaultCacheProvider.class);
+		assertThat(this.primefaces5_0Properties.getCacheProvider())
+			.isEqualTo(DefaultCacheProvider.class);
 	}
 
 	@Test
 	public void testDir() {
-		assertThat(this.primefaces4_0Properties.getDir()).isEqualTo("ltr");
+		assertThat(this.primefaces4_0Properties.getDir())
+			.isEqualTo("ltr");
 	}
 
 	@Test
 	public void testEarlyPostParamEvaluation() {
-		assertThat(this.primefaces6_0Properties.isEarlyPostParamEvaluation()).isTrue();
+		assertThat(this.primefaces6_0Properties.isEarlyPostParamEvaluation())
+			.isTrue();
 	}
 
 	@Test
 	public void testFontAwesome() {
-		assertThat(this.primefaces5_2Properties.isFontAwesome()).isTrue();
+		assertThat(this.primefaces5_2Properties.isFontAwesome())
+			.isTrue();
 	}
 
 	@Test
 	public void testInterpolateClientSideValidationMessages() {
-		assertThat(this.primefaces6_0Properties.isInterpolateClientSideValidationMessages()).isTrue();
+		assertThat(this.primefaces6_0Properties.isInterpolateClientSideValidationMessages())
+			.isTrue();
 	}
 
 	@Test
 	public void testLegacyWidgetNamespace() {
-		assertThat(this.primefaces5_1Properties.isLegacyWidgetNamespace()).isTrue();
+		assertThat(this.primefaces5_1Properties.isLegacyWidgetNamespace())
+			.isTrue();
 	}
 
 	@Test
 	public void testMobileTheme() {
-		assertThat(this.primefaces5_0Properties.getMobile().getTheme()).isEqualTo("cupertino");
+		assertThat(this.primefaces5_0Properties.getMobile().getTheme())
+			.isEqualTo("cupertino");
 	}
 
 	@Test
 	public void testClientSideValidation() {
-		assertThat(this.primefaces4_0Properties.isClientSideValidation()).isTrue();
+		assertThat(this.primefaces4_0Properties.isClientSideValidation())
+			.isTrue();
 	}
 
 	@Test
 	public void testPushServerUrl() {
-		assertThat(this.primefaces4_0Properties.getPushServerUrl()).isEqualTo("http://myhost.org");
+		assertThat(this.primefaces4_0Properties.getPushServerUrl())
+			.isEqualTo("http://myhost.org");
 	}
 
 	@Test
 	public void testResetValues() {
-		assertThat(this.primefaces4_0Properties.isResetValues()).isTrue();
+		assertThat(this.primefaces4_0Properties.isResetValues())
+			.isTrue();
 	}
 
 	@Test
 	public void testSecret() {
-		assertThat(this.primefaces4_0Properties.getSecret()).isEqualTo("mySecret");
+		assertThat(this.primefaces4_0Properties.getSecret())
+			.isEqualTo("mySecret");
 	}
 
 	@Test
 	public void testSubmit() {
-		assertThat(this.primefaces4_0Properties.getSubmit()).isEqualTo("partial");
+		assertThat(this.primefaces4_0Properties.getSubmit())
+			.isEqualTo("partial");
 	}
 
 	@Test
 	public void testTheme() {
-		assertThat(this.primefaces4_0Properties.getTheme()).isEqualTo("omega");
+		assertThat(this.primefaces4_0Properties.getTheme())
+			.isEqualTo("admin");
 	}
 
 	@Test
 	public void testTransformMetadata() {
-		assertThat(this.primefaces5_0Properties.isTransformMetadata()).isTrue();
+		assertThat(this.primefaces5_0Properties.isTransformMetadata())
+			.isTrue();
 	}
 
 	@Test
 	public void testUploader() {
-		assertThat(this.primefaces4_0Properties.getUploader()).isEqualTo("auto");
+		assertThat(this.primefaces4_0Properties.getUploader())
+			.isEqualTo("auto");
 	}
 
 	@Test
 	public void testMoveScriptsToBottom() {
-		assertThat(this.primefaces6_2Properties.isMoveScriptsToBottom()).isTrue();
+		assertThat(this.primefaces6_2Properties.isMoveScriptsToBottom())
+			.isTrue();
 	}
 
 }
