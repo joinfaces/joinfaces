@@ -37,14 +37,14 @@ import org.springframework.util.Assert;
  */
 @Slf4j
 @Getter
-class DestructionCallbackWrapper implements SystemEventListener {
+public class DestructionCallbackWrapper implements SystemEventListener {
 
 	private final String beanName;
 
 	private Runnable callback;
 	private boolean callbackCalled;
 
-	DestructionCallbackWrapper(String beanName, Runnable callback) {
+	public DestructionCallbackWrapper(String beanName, Runnable callback) {
 		Assert.hasText(beanName, "beanName must not be null or empty");
 		Assert.notNull(callback, "callback must not be null");
 		this.beanName = beanName;
