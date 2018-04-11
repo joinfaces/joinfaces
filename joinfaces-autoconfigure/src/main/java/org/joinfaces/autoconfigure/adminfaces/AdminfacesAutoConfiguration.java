@@ -108,16 +108,12 @@ public class AdminfacesAutoConfiguration {
 		public Object postProcessBeforeInitialization(@Nullable Object bean, @Nullable String beanName) throws BeansException {
 			if (bean instanceof Primefaces4_0Properties) {
 				Primefaces4_0Properties properties = (Primefaces4_0Properties) bean;
-				if (!"admin".equals(properties.getTheme())) {
-					log.warn("Changing primefaces theme from '{}' to 'admin'.", properties.getTheme());
-				}
+				log.warn("Changing primefaces theme from '{}' to 'admin'.", properties.getTheme());
 				properties.setTheme("admin");
 			}
 			if (bean instanceof Primefaces5_2Properties) {
 				Primefaces5_2Properties properties = (Primefaces5_2Properties) bean;
-				if (!properties.isFontAwesome()) {
-					log.warn("Changing primefaces fontAwesome from 'false' to 'true'.");
-				}
+				log.warn("Changing primefaces fontAwesome from 'false' to 'true'.");
 				properties.setFontAwesome(true);
 			}
 			return bean;
