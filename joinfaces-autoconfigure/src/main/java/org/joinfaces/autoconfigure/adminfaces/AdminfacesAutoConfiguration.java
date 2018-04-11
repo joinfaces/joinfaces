@@ -22,6 +22,7 @@ import javax.persistence.OptimisticLockException;
 import com.github.adminfaces.template.exception.AccessDeniedException;
 import com.github.adminfaces.template.session.AdminServletContextListener;
 import com.github.adminfaces.template.session.AdminSession;
+import lombok.extern.slf4j.Slf4j;
 import org.joinfaces.autoconfigure.primefaces.Primefaces4_0Properties;
 import org.joinfaces.autoconfigure.primefaces.Primefaces5_2Properties;
 import org.joinfaces.autoconfigure.primefaces.PrimefacesAutoConfiguration;
@@ -49,6 +50,7 @@ import org.springframework.lang.Nullable;
  *
  * @author Marcelo Fernandes
  */
+@Slf4j
 @Configuration
 // will adminfaces autoconfigure via application.yml ?
 //@EnableConfigurationProperties(AdminfacesProperties.class)
@@ -106,10 +108,16 @@ public class AdminfacesAutoConfiguration {
 		public Object postProcessBeforeInitialization(@Nullable Object bean, @Nullable String beanName) throws BeansException {
 			if (bean instanceof Primefaces4_0Properties) {
 				Primefaces4_0Properties properties = (Primefaces4_0Properties) bean;
+				if (!"admin".equals(properties.getTheme())) {
+					log.warn("Changing primefaces theme from '{}' to 'admin'.", properties.getTheme());
+				}
 				properties.setTheme("admin");
 			}
 			if (bean instanceof Primefaces5_2Properties) {
 				Primefaces5_2Properties properties = (Primefaces5_2Properties) bean;
+				if (!properties.isFontAwesome()) {
+					log.warn("Changing primefaces fontAwesome from 'false' to 'true'.");
+				}
 				properties.setFontAwesome(true);
 			}
 			return bean;
