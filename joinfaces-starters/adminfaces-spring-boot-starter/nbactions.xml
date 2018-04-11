@@ -43,29 +43,4 @@
             <goal>site</goal>
         </goals>
     </action>
-    <action>
-        <actionName>buildSkipTests</actionName>
-        <packagings>
-            <packaging>*</packaging>
-        </packagings>
-        <goals>
-            <goal>clean</goal>
-            <goal>install</goal>
-        </goals>
-        <properties>
-            <skipTests>true</skipTests>
-        </properties>
-    </action>
-    <action>
-        <actionName>build</actionName>
-        <packagings>
-            <packaging>*</packaging>
-        </packagings>
-        <goals>
-            <goal>install</goal>
-        </goals>
-        <properties>
-            <skipTests>true</skipTests>
-        </properties>
-    </action>
 </actions>

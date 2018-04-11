@@ -263,7 +263,7 @@ jsf:
     resetValues: true
     secret: mySecret
     submit: partial
-    theme: omega
+    theme: admin
     transformMetadata: true
     uploader: auto
     mobile:
