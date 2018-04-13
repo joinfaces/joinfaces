@@ -21,7 +21,7 @@
         <lombok-maven-plugin.version>1.16.20.0</lombok-maven-plugin.version>
 
         <javax.faces-api.version>2.3</javax.faces-api.version>
-        <mojarra.version>2.3.4</mojarra.version>
+        <mojarra.version>2.3.3.99</mojarra.version>
         <myfaces.version>2.3.0</myfaces.version>
 
         <omnifaces1.version>1.14.1</omnifaces1.version>
@@ -155,6 +155,16 @@
                 <groupId>org.glassfish</groupId>
                 <artifactId>javax.faces</artifactId>
                 <version>${mojarra.version}</version>
+                <exclusions>
+                    <exclusion>
+                        <groupId>org.glassfish</groupId>
+                        <artifactId>javax.el</artifactId>
+                    </exclusion>
+                    <exclusion>
+                        <groupId>javax.el</groupId>
+                        <artifactId>javax.el-api</artifactId>
+                    </exclusion>
+                </exclusions>
             </dependency>
             <dependency>
                 <groupId>org.apache.myfaces.core</groupId>
