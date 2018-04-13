@@ -101,9 +101,8 @@ public class JsfClassFactory {
 	}
 
 	private boolean isClassesFolder(String file) {
-		return file.endsWith("/classes/")
-			|| file.endsWith("/classes!/")
-			|| new File(file).isDirectory();
+		return (file.endsWith("/classes/") || file.endsWith("/classes!/") || new File(file).isDirectory())
+			&& !file.contains(".war*/WEB-INF/classes");
 	}
 
 	/**
