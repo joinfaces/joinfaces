@@ -45,6 +45,13 @@ public class CompositeResourceManagerTest {
 	}
 
 	@Test
+	public void testGetResource_empty() throws IOException {
+		assertThat(new CompositeResourceManager().getResource(null)).isNull();
+		assertThat(new CompositeResourceManager().getResource("")).isNull();
+		assertThat(new CompositeResourceManager().getResource("/index.xhtml")).isNull();
+	}
+
+	@Test
 	public void testIsResourceChangeListenerSupported() {
 		CompositeResourceManager compositeResourceManager = new CompositeResourceManager();
 
