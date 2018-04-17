@@ -32,8 +32,6 @@ import javax.faces.view.facelets.TagDecorator;
 import javax.faces.webapp.FacesServlet;
 
 import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
 import org.joinfaces.autoconfigure.servlet.initparams.NestedProperty;
 import org.joinfaces.autoconfigure.servlet.initparams.ServletContextInitParameter;
 import org.joinfaces.autoconfigure.servlet.initparams.ServletContextInitParameterProperties;
@@ -208,8 +206,7 @@ public class JavaxFaces2_0Properties implements ServletContextInitParameterPrope
 	/**
 	 * Partial class for execute, render and resetValues parameters.
 	 */
-	@Getter
-	@Setter
+	@Data
 	public static class Partial {
 
 		/**
@@ -243,8 +240,7 @@ public class JavaxFaces2_0Properties implements ServletContextInitParameterPrope
 	/**
 	 * Valitador class for disableDefaultBeanValidator parameter.
 	 */
-	@Getter
-	@Setter
+	@Data
 	public static class Validator {
 
 		/**
