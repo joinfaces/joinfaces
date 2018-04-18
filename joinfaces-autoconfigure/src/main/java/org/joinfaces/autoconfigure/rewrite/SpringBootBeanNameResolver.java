@@ -42,7 +42,7 @@ public class SpringBootBeanNameResolver implements BeanNameResolver {
 	public String getBeanName(Class<?> clazz) {
 
 		// try to obtain the WebApplicationContext using ContextLoader
-		ApplicationContext context = ApplicationContextProvider.applicationContext();
+		ApplicationContext context = ApplicationContextProvider.getApplicationContext();
 		if (context == null) {
 			throw new IllegalStateException("Unable to get current WebApplicationContext");
 		}

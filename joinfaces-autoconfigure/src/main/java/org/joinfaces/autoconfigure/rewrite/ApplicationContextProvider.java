@@ -17,6 +17,7 @@
 package org.joinfaces.autoconfigure.rewrite;
 
 import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
+import lombok.Getter;
 
 import org.springframework.beans.BeansException;
 import org.springframework.context.ApplicationContext;
@@ -27,15 +28,11 @@ import org.springframework.lang.Nullable;
 public class ApplicationContextProvider implements ApplicationContextAware {
 
 	@Nullable
+	@Getter
 	private static ApplicationContext applicationContext;
 
 	@Override
 	public void setApplicationContext(ApplicationContext newApplicationContext) throws BeansException {
 		applicationContext = newApplicationContext;
-	}
-
-	@Nullable
-	static ApplicationContext applicationContext() {
-		return applicationContext;
 	}
 }

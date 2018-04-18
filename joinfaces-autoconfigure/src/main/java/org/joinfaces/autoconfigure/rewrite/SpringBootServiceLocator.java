@@ -41,7 +41,7 @@ public class SpringBootServiceLocator implements ServiceLocator {
 		Set<Class<T>> result = new LinkedHashSet<Class<T>>();
 
 		// use the Spring API to obtain the WebApplicationContext
-		ApplicationContext context = ApplicationContextProvider.applicationContext();
+		ApplicationContext context = ApplicationContextProvider.getApplicationContext();
 
 		// may be null if Spring hasn't started yet
 		if (context != null) {
