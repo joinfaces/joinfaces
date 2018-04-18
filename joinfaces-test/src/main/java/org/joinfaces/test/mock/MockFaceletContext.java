@@ -28,13 +28,17 @@ import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.view.facelets.FaceletContext;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 /**
  * Facelet Context Mock.
  *
  * @author Marcelo Romulo Fernandes
  */
+@NoArgsConstructor
+@AllArgsConstructor
 public class MockFaceletContext extends FaceletContext {
 
 	private static final String NOT_SUPPORTED_YET = "Not supported yet.";

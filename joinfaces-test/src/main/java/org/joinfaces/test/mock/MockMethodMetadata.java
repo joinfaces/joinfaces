@@ -19,6 +19,8 @@ package org.joinfaces.test.mock;
 import java.lang.annotation.Annotation;
 import java.util.Map;
 
+import lombok.RequiredArgsConstructor;
+
 import org.springframework.core.type.MethodMetadata;
 import org.springframework.util.MultiValueMap;
 
@@ -27,14 +29,11 @@ import org.springframework.util.MultiValueMap;
  *
  * @author Nurettin Yilmaz
  */
+@RequiredArgsConstructor
 public class MockMethodMetadata implements MethodMetadata {
 
 	private static final String MOCK = "mock";
 	private final Class<? extends Annotation> annotation;
-
-	public MockMethodMetadata(Class<? extends Annotation> annotation) {
-		this.annotation = annotation;
-	}
 
 	@Override
 	public String getMethodName() {
