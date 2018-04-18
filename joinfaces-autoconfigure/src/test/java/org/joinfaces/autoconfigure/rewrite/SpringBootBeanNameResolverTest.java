@@ -19,8 +19,6 @@ package org.joinfaces.autoconfigure.rewrite;
 import org.junit.Before;
 import org.junit.Test;
 
-import static org.junit.Assert.*;
-
 public class SpringBootBeanNameResolverTest {
 
 	private SpringBootBeanNameResolver springBootBeanNameResolver;
@@ -32,6 +30,6 @@ public class SpringBootBeanNameResolverTest {
 
 	@Test(expected = IllegalStateException.class)
 	public void getBeanName() {
-		springBootBeanNameResolver.getBeanName(Object.class);
+		this.springBootBeanNameResolver.getBeanName(Object.class);
 	}
 }
