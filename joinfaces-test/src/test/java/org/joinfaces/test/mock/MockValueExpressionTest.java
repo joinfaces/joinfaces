@@ -77,21 +77,4 @@ public class MockValueExpressionTest {
 		this.mockValueExpression.isLiteralText();
 	}
 
-	@Test
-	@SuppressWarnings("ObjectEqualsNull")
-	public void testEquals_null() {
-		assertThat(this.mockValueExpression.equals(null)).isFalse();
-	}
-
-	@Test
-	@SuppressWarnings("EqualsWithItself")
-	public void testEquals_self() {
-		assertThat(this.mockValueExpression.equals(this.mockValueExpression)).isTrue();
-	}
-
-	@Test(expected = UnsupportedOperationException.class)
-	public void testHashCode() {
-		assertThat(this.mockValueExpression.hashCode()).isNotZero();
-	}
-
 }
