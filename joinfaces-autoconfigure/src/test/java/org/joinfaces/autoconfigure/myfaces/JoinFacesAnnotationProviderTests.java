@@ -55,4 +55,11 @@ public class JoinFacesAnnotationProviderTests {
 			.isNotNull();
 	}
 
+	@Test
+	public void testGetBaseUrls() throws IOException {
+		JoinFacesAnnotationProvider joinFacesAnnotationProvider = new JoinFacesAnnotationProvider(null);
+
+		assertThat(joinFacesAnnotationProvider.getBaseUrls(null)).isEqualTo(joinFacesAnnotationProvider.getBaseUrls());
+	}
+
 }
