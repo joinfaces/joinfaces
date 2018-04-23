@@ -28,8 +28,11 @@ public class SpringBootBeanNameResolverTest {
 		this.springBootBeanNameResolver = new SpringBootBeanNameResolver();
 	}
 
+	@SuppressWarnings("ConstantConditions")
 	@Test(expected = IllegalStateException.class)
-	public void getBeanName() {
+	public void testNoApplicationContext() {
+		new ApplicationContextProvider().setApplicationContext(null);
+
 		this.springBootBeanNameResolver.getBeanName(Object.class);
 	}
 }
