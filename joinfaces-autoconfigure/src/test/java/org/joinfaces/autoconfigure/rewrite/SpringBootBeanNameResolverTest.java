@@ -16,6 +16,7 @@
 
 package org.joinfaces.autoconfigure.rewrite;
 
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -29,6 +30,7 @@ public class SpringBootBeanNameResolverTest {
 	}
 
 	@SuppressWarnings("ConstantConditions")
+	@SuppressFBWarnings("NP_NONNULL_PARAM_VIOLATION")
 	@Test(expected = IllegalStateException.class)
 	public void testNoApplicationContext() {
 		new ApplicationContextProvider().setApplicationContext(null);
