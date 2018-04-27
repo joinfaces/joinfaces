@@ -20,30 +20,35 @@ import java.io.IOException;
 import java.lang.annotation.Annotation;
 import java.net.URL;
 import java.util.Collection;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
+import java.util.function.BiConsumer;
 
 import javax.faces.context.ExternalContext;
 
 import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
 import org.apache.myfaces.spi.AnnotationProvider;
-import org.apache.myfaces.spi.AnnotationProviderWrapper;
+
+import org.springframework.lang.Nullable;
 
 /**
  * Servlet context configurer of MyFaces.
  * @author Marcelo Fernandes
  */
 @SuppressFBWarnings("DMI_COLLECTION_OF_URLS")
-public class JoinFacesAnnotationProvider extends AnnotationProviderWrapper {
+@Getter
+@NoArgsConstructor
+@AllArgsConstructor
+public class JoinFacesAnnotationProvider extends AnnotationProvider {
 
 	private static Map<Class<? extends Annotation>, Set<Class<?>>> annotatedClasses;
 
 	private static Collection<URL> urls;
-
-	public JoinFacesAnnotationProvider(AnnotationProvider annotationProvider) {
-		super(annotationProvider);
-	}
 
 	public static void setAnnotatedClasses(Map<Class<? extends Annotation>, Set<Class<?>>> annotatedClasses) {
 		JoinFacesAnnotationProvider.annotatedClasses = annotatedClasses;
@@ -53,28 +58,37 @@ public class JoinFacesAnnotationProvider extends AnnotationProviderWrapper {
 		JoinFacesAnnotationProvider.urls = urls;
 	}
 
+	@Nullable
+	private AnnotationProvider wrapped;
+
 	@Override
 	public Map<Class<? extends Annotation>, Set<Class<?>>> getAnnotatedClasses(ExternalContext ctx) {
+		Map<Class<? extends Annotation>, Set<Class<?>>> result = new HashMap<>();
+
+		BiConsumer<Class<? extends Annotation>, Set<Class<?>>> resultMerger = (key, value) ->
+				result.computeIfAbsent(key, k -> new HashSet<>()).addAll(value);
+
 		if (annotatedClasses != null) {
-			return annotatedClasses;
+			annotatedClasses.forEach(resultMerger);
 		}
-		else {
-			return super.getAnnotatedClasses(ctx);
+		if (this.wrapped != null) {
+			this.wrapped.getAnnotatedClasses(ctx).forEach(resultMerger);
 		}
+
+		return result;
 	}
 
 	@Override
 	public Set<URL> getBaseUrls() throws IOException {
-		if (urls != null) {
-			return new HashSet<>(urls);
-		}
-		else {
-			return super.getBaseUrls();
-		}
-	}
+		Set<URL> result = new HashSet<>();
 
-	@Override
-	public Set<URL> getBaseUrls(ExternalContext ctx) throws IOException {
-		return getBaseUrls();
+		if (urls != null) {
+			result.addAll(urls);
+		}
+		if (this.wrapped != null) {
+			result.addAll(this.wrapped.getBaseUrls());
+		}
+
+		return result;
 	}
 }

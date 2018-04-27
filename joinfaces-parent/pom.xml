@@ -42,6 +42,14 @@
         </plugins>
     </build>
 
+    <dependencies>
+        <dependency>
+            <groupId>com.google.code.findbugs</groupId>
+            <artifactId>annotations</artifactId>
+            <scope>provided</scope>
+        </dependency>
+    </dependencies>
+
     <reporting>
         <plugins>
             <plugin>

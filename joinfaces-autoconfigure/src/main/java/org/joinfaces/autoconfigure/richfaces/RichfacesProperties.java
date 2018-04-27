@@ -17,8 +17,6 @@
 package org.joinfaces.autoconfigure.richfaces;
 
 import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
 import org.joinfaces.autoconfigure.servlet.initparams.NestedProperty;
 import org.joinfaces.autoconfigure.servlet.initparams.ServletContextInitParameter;
 import org.joinfaces.autoconfigure.servlet.initparams.ServletContextInitParameterProperties;
@@ -97,8 +95,7 @@ public class RichfacesProperties implements ServletContextInitParameterPropertie
 	/**
 	 * Cache namespace.
 	 */
-	@Getter
-	@Setter
+	@Data
 	public static class Cache {
 
 		// (names = "org.richfaces.cache.LRU_MAP_CACHE_SIZE", literal = true)
@@ -109,8 +106,7 @@ public class RichfacesProperties implements ServletContextInitParameterPropertie
 	/**
 	 * ResourceMapping namespace.
 	 */
-	@Getter
-	@Setter
+	@Data
 	public static class ResourceMapping {
 
 		// (names = "org.richfaces.resourceMapping.enabled", literal = true)
@@ -137,8 +133,7 @@ public class RichfacesProperties implements ServletContextInitParameterPropertie
 	/**
 	 * Resource optimization namespace.
 	 */
-	@Getter
-	@Setter
+	@Data
 	public static class ResourceOptimization {
 
 		// (defaultValue = "false", names = { "org.richfaces.resourceOptimization.enabled", "org.richfaces.resourceMapping.enabled" }, literal = true)
@@ -157,8 +152,7 @@ public class RichfacesProperties implements ServletContextInitParameterPropertie
 	/**
 	 * Push namespace.
 	 */
-	@Getter
-	@Setter
+	@Data
 	public static class Push {
 
 		// (names = "org.richfaces.push.handlerMapping", literal = true)
@@ -178,8 +172,7 @@ public class RichfacesProperties implements ServletContextInitParameterPropertie
 		/**
 		 * Jms namespace.
 		 */
-		@Getter
-		@Setter
+		@Data
 		public static class Jms {
 
 			// (defaultValue = "/ConnectionFactory", names = "org.richfaces.push.jms.connectionFactory")
@@ -206,8 +199,7 @@ public class RichfacesProperties implements ServletContextInitParameterPropertie
 		/**
 		 * Session namespace.
 		 */
-		@Getter
-		@Setter
+		@Data
 		public static class Session {
 
 			// (defaultValue = "300000", names="org.richfaces.push.session.maxInactiveInterval")
@@ -220,7 +212,7 @@ public class RichfacesProperties implements ServletContextInitParameterPropertie
 	/**
 	 * Builtin namespace.
 	 */
-	@Getter
+	@Data
 	public static class Builtin {
 
 		@NestedProperty
@@ -232,8 +224,7 @@ public class RichfacesProperties implements ServletContextInitParameterPropertie
 		/**
 		 * Sort namespace.
 		 */
-		@Getter
-		@Setter
+		@Data
 		public static class Sort {
 
 			// (defaultValue = "true", names = "org.richfaces.builtin.sort.enabled")
@@ -244,8 +235,7 @@ public class RichfacesProperties implements ServletContextInitParameterPropertie
 		/**
 		 * Filter namespace.
 		 */
-		@Getter
-		@Setter
+		@Data
 		public static class Filter {
 
 			// (defaultValue = "true", names = "org.richfaces.builtin.filter.enabled")
@@ -257,8 +247,7 @@ public class RichfacesProperties implements ServletContextInitParameterPropertie
 	/**
 	 * Queue namespace.
 	 */
-	@Getter
-	@Setter
+	@Data
 	public static class Queue {
 
 		// (defaultValue = "true", names = "org.richfaces.queue.enabled", literal = true)

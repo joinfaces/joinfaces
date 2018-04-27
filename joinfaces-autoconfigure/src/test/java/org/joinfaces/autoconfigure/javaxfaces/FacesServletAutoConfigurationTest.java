@@ -68,7 +68,18 @@ public class FacesServletAutoConfigurationTest {
 	}
 
 	@Test
-	public void testDisableFacesservletToXhtmlDefaultMapping() {
+	public void testDisableFacesservletToXhtmlDefaultMapping_false() {
+		this.webApplicationContextRunner
+				.withPropertyValues("jsf.disable-facesservlet-to-xhtml=false")
+				.run(context -> {
+					ServletRegistrationBean<FacesServlet> facesServletRegistrationBean = (ServletRegistrationBean<FacesServlet>) context.getBean("facesServletRegistrationBean");
+
+					assertThat(facesServletRegistrationBean.getUrlMappings()).containsExactlyInAnyOrder("/faces/*", "*.jsf", "*.faces", "*.xhtml");
+				});
+	}
+
+	@Test
+	public void testDisableFacesservletToXhtmlDefaultMapping_true() {
 		this.webApplicationContextRunner
 				.withPropertyValues("jsf.disable-facesservlet-to-xhtml=true")
 				.run(context -> {

@@ -19,18 +19,21 @@ package org.joinfaces.test.mock;
 import javax.el.ELContext;
 import javax.el.ValueExpression;
 
+import lombok.AllArgsConstructor;
+import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
+
 /**
  * Value Expression Mock.
  *
  * @author Marcelo Romulo Fernandes
  */
+@AllArgsConstructor
+@NoArgsConstructor
+@EqualsAndHashCode(of = "value", callSuper = false)
 public class MockValueExpression extends ValueExpression {
 
 	private static final String NOT_SUPPORTED_YET = "Not supported yet.";
-
-	public MockValueExpression(String value) {
-		this.value = value;
-	}
 
 	private String value;
 
@@ -61,20 +64,6 @@ public class MockValueExpression extends ValueExpression {
 
 	@Override
 	public String getExpressionString() {
-		throw new UnsupportedOperationException(NOT_SUPPORTED_YET);
-	}
-
-	@Override
-	public boolean equals(Object o) {
-		boolean result = false;
-		if (o instanceof MockValueExpression) {
-			result = this.value.equals(((MockValueExpression) o).value);
-		}
-		return result;
-	}
-
-	@Override
-	public int hashCode() {
 		throw new UnsupportedOperationException(NOT_SUPPORTED_YET);
 	}
 

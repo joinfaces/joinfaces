@@ -22,6 +22,7 @@ import java.util.Map;
 import java.util.Set;
 
 import org.ocpsoft.common.spi.ServiceLocator;
+import org.ocpsoft.rewrite.spring.SpringServiceLocator;
 
 import org.springframework.context.ApplicationContext;
 
@@ -30,6 +31,7 @@ import org.springframework.context.ApplicationContext;
  * https://github.com/ocpsoft/rewrite/blob/master/integration-spring/src/main/java/org/ocpsoft/rewrite/spring/SpringServiceLocator.java
  *
  * @author Marcelo Fernandes
+ * @see SpringServiceLocator
  */
 public class SpringBootServiceLocator implements ServiceLocator {
 
@@ -39,7 +41,7 @@ public class SpringBootServiceLocator implements ServiceLocator {
 		Set<Class<T>> result = new LinkedHashSet<Class<T>>();
 
 		// use the Spring API to obtain the WebApplicationContext
-		ApplicationContext context = ApplicationContextProvider.applicationContext();
+		ApplicationContext context = ApplicationContextProvider.getApplicationContext();
 
 		// may be null if Spring hasn't started yet
 		if (context != null) {

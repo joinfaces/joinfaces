@@ -23,8 +23,6 @@ import javax.faces.flow.FlowHandler;
 import javax.faces.lifecycle.ClientWindow;
 
 import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
 import org.joinfaces.autoconfigure.servlet.initparams.NestedProperty;
 import org.joinfaces.autoconfigure.servlet.initparams.ServletContextInitParameter;
 import org.joinfaces.autoconfigure.servlet.initparams.ServletContextInitParameterProperties;
@@ -110,8 +108,7 @@ public class JavaxFaces2_2Properties implements ServletContextInitParameterPrope
 	/**
 	 * Partial class for execute, render and resetValues parameters.
 	 */
-	@Getter
-	@Setter
+	@Data
 	public static class Partial {
 
 		/**
@@ -129,8 +126,7 @@ public class JavaxFaces2_2Properties implements ServletContextInitParameterPrope
 	/**
 	 * Flow class for nullFlow parameter.
 	 */
-	@Getter
-	@Setter
+	@Data
 	public static class Flow {
 
 		/**

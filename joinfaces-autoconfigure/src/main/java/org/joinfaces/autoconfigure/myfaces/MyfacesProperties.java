@@ -23,8 +23,6 @@ import javax.el.ELResolver;
 import javax.el.ExpressionFactory;
 
 import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
 import org.apache.myfaces.application.ResourceHandlerImpl;
 import org.apache.myfaces.application.StateCache;
 import org.apache.myfaces.config.FacesConfigValidator;
@@ -720,7 +718,7 @@ public class MyfacesProperties implements ServletContextInitParameterProperties 
 	private Boolean viewPoolDeferredNavigation;
 
 	@NestedProperty
-	private Validator Validator = new Validator();
+	private Validator validator = new Validator();
 
 	/**
 	 * This parameter specifies the ExpressionFactory implementation to use.
@@ -750,8 +748,7 @@ public class MyfacesProperties implements ServletContextInitParameterProperties 
 	/**
 	 * Annotation class of useCdiForAnnotationScanning and scanPackages properties.
 	 */
-	@Getter
-	@Setter
+	@Data
 	public static class Annotation {
 
 		/**
@@ -772,8 +769,7 @@ public class MyfacesProperties implements ServletContextInitParameterProperties 
 	/**
 	 * Spi class of injectionProvider property..
 	 */
-	@Getter
-	@Setter
+	@Data
 	public static class Spi {
 
 		/**
@@ -786,8 +782,7 @@ public class MyfacesProperties implements ServletContextInitParameterProperties 
 	/**
 	 * Validator class of beanBeforeJsfValidation property.
 	 */
-	@Getter
-	@Setter
+	@Data
 	public static class Validator {
 
 		/**

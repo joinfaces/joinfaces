@@ -19,9 +19,11 @@ package org.joinfaces.autoconfigure.javaxfaces;
 import java.util.Collections;
 import java.util.Map;
 
+import javax.faces.application.Application;
 import javax.faces.component.UIViewRoot;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
+import javax.faces.flow.FlowHandler;
 
 import org.joinfaces.test.mock.FacesContextMocker;
 import org.junit.Before;
@@ -52,6 +54,10 @@ public class JsfBeansAutoConfigurationTest {
 	public void testExternalContext() {
 		ExternalContext externalContext = mock(ExternalContext.class);
 		when(this.facesContext.getExternalContext()).thenReturn(externalContext);
+		Application application = mock(Application.class);
+		when(this.facesContext.getApplication()).thenReturn(application);
+		FlowHandler flowHandler = mock(FlowHandler.class);
+		when(application.getFlowHandler()).thenReturn(flowHandler);
 
 		assertThat(this.jsfBeansAutoConfiguration.externalContext()).isEqualTo(externalContext);
 
@@ -93,6 +99,12 @@ public class JsfBeansAutoConfigurationTest {
 
 		this.jsfBeansAutoConfiguration.sessionMap();
 		verify(externalContext).getSessionMap();
+
+		this.jsfBeansAutoConfiguration.resourceHandler();
+		verify(application).getResourceHandler();
+
+		this.jsfBeansAutoConfiguration.flowScope();
+		verify(flowHandler).getCurrentFlowScope();
 	}
 
 

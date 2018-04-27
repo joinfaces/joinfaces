@@ -16,8 +16,7 @@
 
 package org.joinfaces.autoconfigure.butterfaces;
 
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
 import org.butterfaces.resolver.WebXmlParameters;
 import org.joinfaces.autoconfigure.servlet.initparams.NestedProperty;
 import org.joinfaces.autoconfigure.servlet.initparams.ServletContextInitParameter;
@@ -32,8 +31,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
  * org.butterfaces.resolver.WebXmlParameters.java
  * @author Marcelo Fernandes
  */
-@Getter
-@Setter
+@Data
 @ConfigurationProperties(prefix = "jsf.butterfaces")
 public class ButterfacesProperties implements ServletContextInitParameterProperties {
 
@@ -117,8 +115,7 @@ public class ButterfacesProperties implements ServletContextInitParameterPropert
 	/**
 	 * Treebox class of specific tree box properties.
 	 */
-	@Getter
-	@Setter
+	@Data
 	public static class Treebox {
 		@ServletContextInitParameter(WebXmlParameters.CTX_PARAM_TREEBOX_SHOW_CLEAR_BUTTON)
 		private Boolean showClearButton;
@@ -127,8 +124,7 @@ public class ButterfacesProperties implements ServletContextInitParameterPropert
 	/**
 	 * Glyphicon class of collapsing, expansion, options, refresh and order properties.
 	 */
-	@Getter
-	@Setter
+	@Data
 	public static class Glyphicon {
 
 		@ServletContextInitParameter(WebXmlParameters.CTX_PARAM_COLLAPSING_GLYPHICON)
@@ -152,8 +148,7 @@ public class ButterfacesProperties implements ServletContextInitParameterPropert
 		/**
 		 * Order class of left and right properties.
 		 */
-		@Getter
-		@Setter
+		@Data
 		public static class Order {
 
 			@ServletContextInitParameter(WebXmlParameters.CTX_PARAM_ORDER_LEFT_GLYPHICON)
@@ -165,8 +160,7 @@ public class ButterfacesProperties implements ServletContextInitParameterPropert
 		/**
 		 * Sort class of ascending, descending and none properties.
 		 */
-		@Getter
-		@Setter
+		@Data
 		public static class Sort {
 
 			@ServletContextInitParameter(WebXmlParameters.CTX_PARAM_SORT_ASC_GLYPHICON)
@@ -181,7 +175,7 @@ public class ButterfacesProperties implements ServletContextInitParameterPropert
 	/**
 	 * Integration class of primefaces properties.
 	 */
-	@Getter
+	@Data
 	public static class Integration {
 
 		@NestedProperty
@@ -190,8 +184,7 @@ public class ButterfacesProperties implements ServletContextInitParameterPropert
 		/**
 		 * Primefaces class of disableJQuery properties.
 		 */
-		@Getter
-		@Setter
+		@Data
 		public static class Primefaces {
 
 			/**

@@ -22,23 +22,21 @@ import javax.faces.view.Location;
 import javax.faces.view.facelets.FaceletContext;
 import javax.faces.view.facelets.TagAttribute;
 
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
+
 /**
  * Tag Attribute Mock.
  *
  * @author Marcelo Romulo Fernandes
  */
+@NoArgsConstructor
+@AllArgsConstructor
 public class MockTagAttribute extends TagAttribute {
 
 	private static final String NOT_SUPPORTED_YET = "Not supported yet.";
 
 	private String value;
-
-	public MockTagAttribute() {
-	}
-
-	public MockTagAttribute(String value) {
-		this.value = value;
-	}
 
 	@Override
 	public boolean getBoolean(FaceletContext ctx) {

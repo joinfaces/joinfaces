@@ -1,5 +1,5 @@
 /*
- * Copyright 2016-2017 the original author or authors.
+ * Copyright 2016-2018 the original author or authors.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -17,22 +17,24 @@
 package org.joinfaces.autoconfigure.rewrite;
 
 import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
-import lombok.Getter;
+import org.junit.Before;
+import org.junit.Test;
 
-import org.springframework.beans.BeansException;
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.ApplicationContextAware;
-import org.springframework.lang.Nullable;
+public class SpringBootBeanNameResolverTest {
 
-@SuppressFBWarnings("ST_WRITE_TO_STATIC_FROM_INSTANCE_METHOD")
-public class ApplicationContextProvider implements ApplicationContextAware {
+	private SpringBootBeanNameResolver springBootBeanNameResolver;
 
-	@Nullable
-	@Getter
-	private static ApplicationContext applicationContext;
+	@Before
+	public void setUp() {
+		this.springBootBeanNameResolver = new SpringBootBeanNameResolver();
+	}
 
-	@Override
-	public void setApplicationContext(ApplicationContext newApplicationContext) throws BeansException {
-		applicationContext = newApplicationContext;
+	@SuppressWarnings("ConstantConditions")
+	@SuppressFBWarnings("NP_NONNULL_PARAM_VIOLATION")
+	@Test(expected = IllegalStateException.class)
+	public void testNoApplicationContext() {
+		new ApplicationContextProvider().setApplicationContext(null);
+
+		this.springBootBeanNameResolver.getBeanName(Object.class);
 	}
 }

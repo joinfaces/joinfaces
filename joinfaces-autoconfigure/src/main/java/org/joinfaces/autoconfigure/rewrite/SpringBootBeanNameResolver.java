@@ -20,27 +20,29 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
-import org.ocpsoft.logging.Logger;
+import lombok.extern.slf4j.Slf4j;
 import org.ocpsoft.rewrite.el.spi.BeanNameResolver;
 
 import org.springframework.beans.factory.ListableBeanFactory;
 import org.springframework.context.ApplicationContext;
+import org.springframework.lang.Nullable;
 
 /**
  * {@link BeanNameResolver} implementation for Spring. Inspired by
  * https://github.com/ocpsoft/rewrite/blob/master/integration-spring/src/main/java/org/ocpsoft/rewrite/spring/SpringServiceEnricher.java
  *
  * @author Marcelo Fernandes
+ * @see org.ocpsoft.rewrite.spring.SpringBeanNameResolver
  */
+@Slf4j
 public class SpringBootBeanNameResolver implements BeanNameResolver {
 
-	private final Logger log = Logger.getLogger(SpringBootBeanNameResolver.class);
-
 	@Override
+	@Nullable
 	public String getBeanName(Class<?> clazz) {
 
 		// try to obtain the WebApplicationContext using ContextLoader
-		ApplicationContext context = ApplicationContextProvider.applicationContext();
+		ApplicationContext context = ApplicationContextProvider.getApplicationContext();
 		if (context == null) {
 			throw new IllegalStateException("Unable to get current WebApplicationContext");
 		}
@@ -49,7 +51,7 @@ public class SpringBootBeanNameResolver implements BeanNameResolver {
 		Set<String> beanNames = resolveBeanNames(context, clazz);
 
 		// no beans of that type, nothing we can do
-		if (beanNames == null || beanNames.size() == 0) {
+		if (beanNames.size() == 0) {
 			return null;
 		} // more than one result -> warn the user
 		else if (beanNames.size() > 1) {
@@ -72,11 +74,9 @@ public class SpringBootBeanNameResolver implements BeanNameResolver {
 		final Set<String> result = new HashSet<String>();
 
 		Map<String, ?> beanMap = beanFactory.getBeansOfType(clazz);
-		if (beanMap != null) {
-			for (String name : beanMap.keySet()) {
-				if (name != null && !name.startsWith("scopedTarget.")) {
-					result.add(name);
-				}
+		for (String name : beanMap.keySet()) {
+			if (name != null && !name.startsWith("scopedTarget.")) {
+				result.add(name);
 			}
 		}
 

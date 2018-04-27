@@ -19,4 +19,7 @@
  *
  * @see org.joinfaces.autoconfigure.rewrite.RewriteAutoConfiguration
  */
+@NonNullApi
 package org.joinfaces.autoconfigure.rewrite;
+
+import org.springframework.lang.NonNullApi;

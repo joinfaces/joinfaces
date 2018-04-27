@@ -17,9 +17,6 @@
 package org.joinfaces.autoconfigure.primefaces;
 
 import lombok.Data;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
 import org.joinfaces.autoconfigure.servlet.initparams.NestedProperty;
 import org.joinfaces.autoconfigure.servlet.initparams.ServletContextInitParameter;
 import org.joinfaces.autoconfigure.servlet.initparams.ServletContextInitParameterProperties;
@@ -37,7 +34,6 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
  * @author Lars Grefer
  */
 @Data
-@NoArgsConstructor
 @ConfigurationProperties("jsf.primefaces")
 public class Primefaces5_0Properties implements ServletContextInitParameterProperties {
 
@@ -65,9 +61,7 @@ public class Primefaces5_0Properties implements ServletContextInitParameterPrope
 	 *
 	 * @author Lars Grefer
 	 */
-	@Getter
-	@Setter
-	@NoArgsConstructor
+	@Data
 	public static class Mobile {
 		/**
 		 * Theme of the mobile application.
