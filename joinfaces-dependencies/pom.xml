@@ -22,7 +22,7 @@
 
         <javax.faces-api.version>2.3</javax.faces-api.version>
         <mojarra.version>2.3.4</mojarra.version>
-        <myfaces.version>2.3.0</myfaces.version>
+        <myfaces.version>2.3.1</myfaces.version>
 
         <omnifaces1.version>1.14.1</omnifaces1.version>
         <omnifaces3.version>3.1</omnifaces3.version>
