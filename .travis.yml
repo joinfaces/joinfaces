@@ -11,6 +11,7 @@ install: ./mvnw -B clean validate
 script:
   - ./mvnw -B -Pcheck-duplicate,check-checkstyle,check-cycles,check-cpd,check-pmd,check-findbugs -Dmaven.test.skip=true install
   - ./mvnw -B --settings ignoreSnapshotsSettings.xml -Pignore-snapshot-repositories verify
+
 after_success:
   - bash <(curl -s https://codecov.io/bash)
-  - ./mvnw -B --settings ignoreSnapshotsSettings.xml -Pignore-snapshot-repositories org.eluder.coveralls:coveralls-maven-plugin:4.3.0:report
+  - "[[ ${TRAVIS_PULL_REQUEST} == 'false' ]] && ./mvnw -B org.eluder.coveralls:coveralls-maven-plugin:4.3.0:report"
