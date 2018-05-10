@@ -21,10 +21,13 @@ import java.util.Set;
 import javax.faces.component.html.HtmlPanelGroup;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.HandlesTypes;
 
+import com.sun.faces.config.FacesInitializer;
 import com.sun.faces.facelets.compiler.UIText;
 import net.bootsfaces.component.tree.TreeRenderer;
 import org.joinfaces.JsfClassFactory;
+import org.joinfaces.JsfClassFactoryConfiguration;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -33,6 +36,7 @@ import org.omnifaces.converter.SelectItemsIndexConverter;
 import org.omnifaces.validator.RequiredCheckboxValidator;
 
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.core.annotation.AnnotationUtils;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -45,7 +49,11 @@ public class MojarraServletContextInitializerIT {
 
 	@BeforeClass
 	public static void setupClasses() {
-		MojarraServletContextInitializer configuration = new MojarraServletContextInitializer();
+		JsfClassFactoryConfiguration configuration = JsfClassFactoryConfiguration.builder()
+				.excludeScopedAnnotations(true)
+				.handlesTypes(AnnotationUtils.findAnnotation(FacesInitializer.class, HandlesTypes.class))
+				.anotherConfig(MojarraServletContextInitializer.ANOTHER_CONFIG)
+				.build();
 
 		classes = new JsfClassFactory(configuration).getAllClasses();
 	}
@@ -78,33 +86,6 @@ public class MojarraServletContextInitializerIT {
 	@Test
 	public void testBootsfacesTreeRenderer() {
 		assertThat(this.classes).contains(TreeRenderer.class);
-	}
-
-	@Test
-	public void testAnotherFacesConfig() throws ServletException {
-		MojarraServletContextInitializer mojarraServletContextInitializer
-			= new MojarraServletContextInitializer();
-
-		assertThat(mojarraServletContextInitializer.getAnotherFacesConfig())
-			.isEqualTo(MojarraServletContextInitializer.ANOTHER_FACES_CONFIG);
-	}
-
-	@Test
-	public void testExcludeScopedAnnotations() throws ServletException {
-		MojarraServletContextInitializer mojarraServletContextInitializer
-			= new MojarraServletContextInitializer();
-
-		assertThat(mojarraServletContextInitializer.isExcludeScopedAnnotations()).isTrue();
-	}
-
-	@Test
-	public void testOnStartup() throws ServletException {
-		MojarraServletContextInitializer mojarraServletContextInitializer
-			= new MojarraServletContextInitializer();
-
-		ServletContext servletContext = new MojarraMockServletContext();
-
-		mojarraServletContextInitializer.onStartup(servletContext);
 	}
 
 }

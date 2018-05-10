@@ -17,28 +17,31 @@
 package org.joinfaces;
 
 import javax.servlet.ServletContainerInitializer;
+import javax.servlet.annotation.HandlesTypes;
+
+import lombok.Builder;
+import lombok.Data;
 
 /**
  * Configuration of Jsf Class Factory.
  * @author Marcelo Fernandes
  */
-public interface JsfClassFactoryConfiguration {
+@Data
+@Builder
+public class JsfClassFactoryConfiguration {
 
 	/**
-	 * Servlet container initializer that contains handleTypes.
-	 * @return servlet container initializer
+	 * {@link HandlesTypes} annotation found on the {@link ServletContainerInitializer}.
 	 */
-	ServletContainerInitializer getServletContainerInitializer();
+	private HandlesTypes handlesTypes;
 
 	/**
-	 * Another faces config resource to include in search.
-	 * @return name of another faces-config.xml
+	 * Another config resource to include in search.
 	 */
-	String getAnotherFacesConfig();
+	private String anotherConfig;
 
 	/**
 	 * Inform if exclude scoped annotations in search.
-	 * @return if exclude scoped annotations in search
 	 */
-	boolean isExcludeScopedAnnotations();
+	private boolean excludeScopedAnnotations;
 }

@@ -78,10 +78,7 @@ public class JsfClassFactory {
 	private TypesHandled handlesTypes() {
 		TypesHandled result = new TypesHandled();
 
-		HandlesTypes ht = null;
-		if (this.jsfAnnotatedClassFactoryConfiguration.getServletContainerInitializer() != null) {
-			ht = this.jsfAnnotatedClassFactoryConfiguration.getServletContainerInitializer().getClass().getAnnotation(HandlesTypes.class);
-		}
+		HandlesTypes ht = this.jsfAnnotatedClassFactoryConfiguration.getHandlesTypes();
 		if (ht != null) {
 			Set<Class<? extends Annotation>> annotationsToExclude = annotationsToExclude();
 
@@ -135,7 +132,7 @@ public class JsfClassFactory {
 			add(result, strings, ClasspathHelper.forResource("META-INF/faces-config.xml", this.getClass().getClassLoader()));
 
 			// add jsf library with anotherFacesConfig
-			String anotherFacesConfig = this.jsfAnnotatedClassFactoryConfiguration.getAnotherFacesConfig();
+			String anotherFacesConfig = this.jsfAnnotatedClassFactoryConfiguration.getAnotherConfig();
 			if (anotherFacesConfig != null) {
 				add(result, strings, ClasspathHelper.forResource(anotherFacesConfig, this.getClass().getClassLoader()));
 			}
