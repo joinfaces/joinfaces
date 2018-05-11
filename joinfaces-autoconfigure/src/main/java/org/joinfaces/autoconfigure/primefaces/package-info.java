@@ -19,4 +19,7 @@
  *
  * @see org.joinfaces.autoconfigure.primefaces.PrimefacesAutoConfiguration.Primefaces6_0AutoConfiguration
  */
+@NonNullApi
 package org.joinfaces.autoconfigure.primefaces;
+
+import org.springframework.lang.NonNullApi;

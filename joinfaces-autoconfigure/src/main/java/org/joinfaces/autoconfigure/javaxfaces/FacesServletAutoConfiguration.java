@@ -19,6 +19,7 @@ package org.joinfaces.autoconfigure.javaxfaces;
 import javax.faces.webapp.FacesServlet;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletRegistration;
+import javax.validation.constraints.Null;
 
 import org.springframework.boot.autoconfigure.AutoConfigureAfter;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
@@ -27,6 +28,7 @@ import org.springframework.boot.context.properties.EnableConfigurationProperties
 import org.springframework.boot.web.servlet.ServletRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.lang.Nullable;
 
 @Configuration
 @ConditionalOnClass(FacesServlet.class)
@@ -52,6 +54,7 @@ public class FacesServletAutoConfiguration {
 	) {
 		ServletRegistrationBean<FacesServlet> facesServletServletRegistrationBean = new ServletRegistrationBean<FacesServlet>(new FacesServlet()) {
 			@Override
+			@Nullable
 			protected ServletRegistration.Dynamic addRegistration(String description, ServletContext servletContext) {
 				ServletRegistration.Dynamic servletRegistration = super.addRegistration(description, servletContext);
 				if (servletRegistration != null) {

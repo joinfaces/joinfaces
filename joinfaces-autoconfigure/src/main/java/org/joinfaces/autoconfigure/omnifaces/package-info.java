@@ -19,4 +19,7 @@
  *
  * @see org.joinfaces.autoconfigure.omnifaces.OmnifacesAutoConfiguration
  */
+@NonNullApi
 package org.joinfaces.autoconfigure.omnifaces;
+
+import org.springframework.lang.NonNullApi;

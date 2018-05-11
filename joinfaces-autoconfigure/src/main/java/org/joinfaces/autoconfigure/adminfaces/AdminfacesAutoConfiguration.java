@@ -43,7 +43,6 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Scope;
 import org.springframework.context.annotation.ScopedProxyMode;
 import org.springframework.http.HttpStatus;
-import org.springframework.lang.Nullable;
 
 /**
  * Spring Boot Auto Configuration of AdminFaces.
@@ -105,7 +104,7 @@ public class AdminfacesAutoConfiguration {
 	 */
 	static class PrimeFacesPropertiesPostProcessor implements BeanPostProcessor {
 		@Override
-		public Object postProcessBeforeInitialization(@Nullable Object bean, @Nullable String beanName) throws BeansException {
+		public Object postProcessBeforeInitialization(Object bean, String beanName) throws BeansException {
 			if (bean instanceof Primefaces4_0Properties) {
 				Primefaces4_0Properties properties = (Primefaces4_0Properties) bean;
 				log.warn("Changing primefaces theme from '{}' to 'admin'.", properties.getTheme());

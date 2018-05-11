@@ -19,4 +19,7 @@
  *
  * @see org.joinfaces.autoconfigure.butterfaces.ButterfacesAutoConfiguration
  */
+@NonNullApi
 package org.joinfaces.autoconfigure.butterfaces;
+
+import org.springframework.lang.NonNullApi;

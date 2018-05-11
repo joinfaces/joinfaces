@@ -17,4 +17,7 @@
 /**
  * Mapping of JSF and CDI Scope Annotation to spring scopes.
  */
+@NonNullApi
 package org.joinfaces.autoconfigure.scopemapping;
+
+import org.springframework.lang.NonNullApi;

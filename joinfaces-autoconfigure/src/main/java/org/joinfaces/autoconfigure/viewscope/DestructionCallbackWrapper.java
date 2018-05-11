@@ -25,6 +25,7 @@ import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
+import org.springframework.lang.Nullable;
 import org.springframework.util.Assert;
 
 /**
@@ -41,6 +42,7 @@ public class DestructionCallbackWrapper implements SystemEventListener {
 
 	private final String beanName;
 
+	@Nullable
 	private Runnable callback;
 	private boolean callbackCalled;
 

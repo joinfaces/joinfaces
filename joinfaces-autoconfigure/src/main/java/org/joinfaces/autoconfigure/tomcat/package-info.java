@@ -19,4 +19,7 @@
  *
  * @see org.joinfaces.autoconfigure.tomcat.TomcatAutoConfiguration
  */
+@NonNullApi
 package org.joinfaces.autoconfigure.tomcat;
+
+import org.springframework.lang.NonNullApi;

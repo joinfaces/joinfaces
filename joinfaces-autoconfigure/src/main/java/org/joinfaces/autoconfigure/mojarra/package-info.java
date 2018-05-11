@@ -19,4 +19,7 @@
  *
  * @see org.joinfaces.autoconfigure.mojarra.MojarraAutoConfiguration
  */
+@NonNullApi
 package org.joinfaces.autoconfigure.mojarra;
+
+import org.springframework.lang.NonNullApi;
