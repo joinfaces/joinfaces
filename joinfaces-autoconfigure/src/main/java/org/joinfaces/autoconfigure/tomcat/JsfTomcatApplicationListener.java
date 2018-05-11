@@ -31,6 +31,7 @@ import org.reflections.util.ClasspathHelper;
 
 import org.springframework.boot.context.event.ApplicationReadyEvent;
 import org.springframework.context.ApplicationListener;
+import org.springframework.lang.Nullable;
 
 /**
  * Jsf Tomcat application listener to add resources to jsf access resources at
@@ -44,6 +45,7 @@ public class JsfTomcatApplicationListener implements ApplicationListener<Applica
 
 	private final Context context;
 
+	@Nullable
 	private JarWarResourceSet getFirstJarWarResourceSetAtJarResources(WebResourceRoot resources) {
 		JarWarResourceSet result = null;
 		for (WebResourceSet resourceSet :resources.getJarResources()) {
@@ -55,6 +57,7 @@ public class JsfTomcatApplicationListener implements ApplicationListener<Applica
 		return result;
 	}
 
+	@Nullable
 	private DirResourceSet getFirstDirResourceSetAtJarResources(WebResourceRoot resources) {
 		DirResourceSet result = null;
 		for (WebResourceSet resourceSet :resources.getJarResources()) {
@@ -66,6 +69,7 @@ public class JsfTomcatApplicationListener implements ApplicationListener<Applica
 		return result;
 	}
 
+	@Nullable
 	private URL mainFile(WebResourceRoot resources) {
 		URL result = null;
 		for (WebResourceSet resourceSet :resources.getJarResources()) {
@@ -118,6 +122,7 @@ public class JsfTomcatApplicationListener implements ApplicationListener<Applica
 	 * @param resources of the tomcat
 	 * @return tomcat runtime
 	 */
+	@Nullable
 	TomcatRuntime getTomcatRuntime(WebResourceRoot resources) {
 		TomcatRuntime result = null;
 

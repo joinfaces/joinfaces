@@ -31,7 +31,6 @@ import org.springframework.boot.autoconfigure.condition.ConditionalOnWebApplicat
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.lang.Nullable;
 
 /**
  * Spring Boot Auto Configuration of ButterFaces.
@@ -71,7 +70,7 @@ public class ButterfacesAutoConfiguration {
 		static class BootsfacesPropertiesCustomizer implements BeanPostProcessor {
 
 			@Override
-			public Object postProcessBeforeInitialization(@Nullable Object bean, @Nullable String beanName) throws BeansException {
+			public Object postProcessBeforeInitialization(Object bean, String beanName) throws BeansException {
 
 				if (bean instanceof BootsfacesProperties) {
 					BootsfacesProperties properties = (BootsfacesProperties) bean;

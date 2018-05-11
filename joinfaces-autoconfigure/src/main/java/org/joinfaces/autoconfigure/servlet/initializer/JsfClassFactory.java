@@ -260,7 +260,7 @@ public class JsfClassFactory {
 	@Getter
 	static class TypesHandled {
 
-		TypesHandled(HandlesTypes handlesTypes, Set<Class<? extends Annotation>> annotationsToExclude) {
+		TypesHandled(@Nullable HandlesTypes handlesTypes, Set<Class<? extends Annotation>> annotationsToExclude) {
 			if (handlesTypes != null) {
 				for (Class<?> type : handlesTypes.value()) {
 					if (type.isAnnotation()) {

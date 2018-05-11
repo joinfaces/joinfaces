@@ -19,4 +19,7 @@
  *
  * @see org.joinfaces.autoconfigure.richfaces.RichfacesAutoConfiguration
  */
+@NonNullApi
 package org.joinfaces.autoconfigure.richfaces;
+
+import org.springframework.lang.NonNullApi;

@@ -26,6 +26,7 @@ import org.springframework.beans.factory.BeanFactory;
 import org.springframework.beans.factory.ObjectFactory;
 import org.springframework.beans.factory.config.Scope;
 import org.springframework.lang.NonNull;
+import org.springframework.lang.Nullable;
 import org.springframework.web.context.request.RequestAttributes;
 import org.springframework.web.context.request.RequestContextHolder;
 
@@ -53,6 +54,7 @@ public class ViewScope implements Scope {
 	}
 
 	@Override
+	@Nullable
 	public Object remove(String name) {
 
 		UIViewRoot viewRoot = getViewRoot();
@@ -86,6 +88,7 @@ public class ViewScope implements Scope {
 		getSessionHelper().register(wrapper);
 	}
 
+	@Nullable
 	@Override
 	public Object resolveContextualObject(String key) {
 		RequestAttributes attributes = RequestContextHolder.currentRequestAttributes();

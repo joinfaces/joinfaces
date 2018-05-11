@@ -19,4 +19,7 @@
  *
  * @see org.joinfaces.autoconfigure.javaxfaces.JavaxFacesAutoConfiguration
  */
+@NonNullApi
 package org.joinfaces.autoconfigure.javaxfaces;
+
+import org.springframework.lang.NonNullApi;

@@ -19,4 +19,7 @@
  *
  * @see org.joinfaces.autoconfigure.angularfaces.AngularfacesAutoConfiguration
  */
+@NonNullApi
 package org.joinfaces.autoconfigure.angularfaces;
+
+import org.springframework.lang.NonNullApi;

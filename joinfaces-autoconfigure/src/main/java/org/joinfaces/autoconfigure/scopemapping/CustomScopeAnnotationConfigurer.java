@@ -33,6 +33,7 @@ import org.springframework.beans.factory.config.ConfigurableListableBeanFactory;
 import org.springframework.core.Ordered;
 import org.springframework.core.type.AnnotationMetadata;
 import org.springframework.core.type.MethodMetadata;
+import org.springframework.lang.Nullable;
 
 /**
  * Add custom JSF CDI scope implementations. Picks up JSF and CDI annotations both on
@@ -89,6 +90,7 @@ public class CustomScopeAnnotationConfigurer implements BeanFactoryPostProcessor
 		}
 	}
 
+	@Nullable
 	protected String deduceScopeName(MethodMetadata factoryMethodMetadata) {
 		if (getAnnotationToScopeMappings() == null) {
 			return null;
@@ -103,7 +105,8 @@ public class CustomScopeAnnotationConfigurer implements BeanFactoryPostProcessor
 		return null;
 	}
 
-	protected String deduceScopeName(AnnotationMetadata classMetadata) {
+	@Nullable
+	protected String deduceScopeName(@Nullable AnnotationMetadata classMetadata) {
 		if (classMetadata == null || getAnnotationToScopeMappings() == null) {
 			return null;
 		}

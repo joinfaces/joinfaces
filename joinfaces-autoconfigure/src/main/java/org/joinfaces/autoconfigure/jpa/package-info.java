@@ -17,4 +17,7 @@
 /**
  * Applying Spring-MVC setup for JPA to JSF.
  */
+@NonNullApi
 package org.joinfaces.autoconfigure.jpa;
+
+import org.springframework.lang.NonNullApi;

@@ -19,4 +19,7 @@
  *
  * @see org.joinfaces.autoconfigure.undertow.UndertowAutoConfiguration
  */
+@NonNullApi
 package org.joinfaces.autoconfigure.undertow;
+
+import org.springframework.lang.NonNullApi;

@@ -19,4 +19,7 @@
  *
  * @see org.joinfaces.autoconfigure.jetty.JettyAutoConfiguration
  */
+@NonNullApi
 package org.joinfaces.autoconfigure.jetty;
+
+import org.springframework.lang.NonNullApi;

@@ -19,4 +19,7 @@
  *
  * @see org.joinfaces.autoconfigure.servlet.initializer.JsfClassFactory
  */
+@NonNullApi
 package org.joinfaces.autoconfigure.servlet.initializer;
+
+import org.springframework.lang.NonNullApi;

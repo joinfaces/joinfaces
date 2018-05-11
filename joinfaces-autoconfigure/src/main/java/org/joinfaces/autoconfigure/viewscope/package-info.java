@@ -17,4 +17,7 @@
 /**
  * JSF View Scope implementation with Spring classes.
  */
+@NonNullApi
 package org.joinfaces.autoconfigure.viewscope;
+
+import org.springframework.lang.NonNullApi;

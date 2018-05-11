@@ -25,6 +25,8 @@ import io.undertow.server.handlers.resource.Resource;
 import io.undertow.server.handlers.resource.ResourceChangeListener;
 import io.undertow.server.handlers.resource.ResourceManager;
 
+import org.springframework.lang.Nullable;
+
 /**
  * A {@ResourceManager} that delegates to multiple {@code ResourceManager} instances.
  *
@@ -47,6 +49,7 @@ class CompositeResourceManager implements ResourceManager {
 	}
 
 	@Override
+	@Nullable
 	public Resource getResource(String path) throws IOException {
 		for (ResourceManager resourceManager : this.resourceManagers) {
 			Resource resource = resourceManager.getResource(path);

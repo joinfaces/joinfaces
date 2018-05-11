@@ -17,4 +17,7 @@
 /**
  * Core support classes to JSF Spring Boot Auto Configuration.
  */
+@NonNullApi
 package org.joinfaces.autoconfigure.servlet.initparams;
+
+import org.springframework.lang.NonNullApi;
