@@ -19,11 +19,16 @@ package org.joinfaces.mojarra;
 import java.util.Set;
 
 import javax.faces.component.html.HtmlPanelGroup;
+import javax.servlet.annotation.HandlesTypes;
 
+import com.sun.faces.config.FacesInitializer;
 import com.sun.faces.facelets.compiler.UIText;
 import org.joinfaces.JsfClassFactory;
+import org.joinfaces.JsfClassFactoryConfiguration;
+import org.junit.Before;
 import org.junit.Test;
 
+import org.springframework.core.annotation.AnnotationUtils;
 import org.springframework.test.context.web.WebAppConfiguration;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -31,19 +36,26 @@ import static org.assertj.core.api.Assertions.assertThat;
 @WebAppConfiguration
 public class JsfClassFactoryIT {
 
+	private JsfClassFactoryConfiguration configuration;
+
+	@Before
+	public void setUp() {
+		this.configuration = JsfClassFactoryConfiguration.builder()
+				.excludeScopedAnnotations(false)
+				.anotherConfig(MojarraServletContextInitializer.ANOTHER_CONFIG)
+				.handlesTypes(AnnotationUtils.findAnnotation(FacesInitializer.class, HandlesTypes.class))
+				.build();
+	}
+
 	@Test
 	public void testJavaxFacesHtmlPanelGroupWithMojarra() {
-		MojarraJsfClassFactoryConfiguration configuration = new MojarraJsfClassFactoryConfiguration();
-
-		Set<Class<?>> classes = new JsfClassFactory(configuration).getOtherClasses();
+		Set<Class<?>> classes = new JsfClassFactory(this.configuration).getOtherClasses();
 		assertThat(classes).contains(HtmlPanelGroup.class);
 	}
 
 	@Test
 	public void testMojarraUITextWithMojarra() {
-		MojarraJsfClassFactoryConfiguration configuration = new MojarraJsfClassFactoryConfiguration();
-
-		Set<Class<?>> classes = new JsfClassFactory(configuration).getOtherClasses();
+		Set<Class<?>> classes = new JsfClassFactory(this.configuration).getOtherClasses();
 		assertThat(classes).contains(UIText.class);
 	}
 

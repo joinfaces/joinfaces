@@ -1,5 +1,5 @@
 /*
- * Copyright 2016-2016 the original author or authors.
+ * Copyright 2016-2018 the original author or authors.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,22 +16,14 @@
 
 package org.joinfaces;
 
-import javax.servlet.ServletContainerInitializer;
+import com.sun.faces.config.FacesInitializer;
+import org.junit.Test;
 
-public class NullJsfClassFactoryConfiguration implements JsfClassFactoryConfiguration {
+public class ServletContainerInitializerRegistrationBeanTest {
 
-	@Override
-	public ServletContainerInitializer getServletContainerInitializer() {
-		return null;
-	}
-
-	@Override
-	public String getAnotherFacesConfig() {
-		return null;
-	}
-
-	@Override
-	public boolean isExcludeScopedAnnotations() {
-		return true;
+	@Test(expected = UnsupportedOperationException.class)
+	public void getClasses() {
+		new ServletContainerInitializerRegistrationBean<FacesInitializer>(FacesInitializer.class)
+				.getClasses(null);
 	}
 }

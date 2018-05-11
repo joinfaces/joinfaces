@@ -16,14 +16,14 @@
 
 package org.joinfaces.richfaces;
 
+import org.joinfaces.ServletContainerInitializerRegistrationBean;
 import org.joinfaces.javaxfaces.JavaxFacesSpringBootAutoConfiguration;
-import org.richfaces.webapp.ResourceServlet;
+import org.richfaces.webapp.ServletsInitializer;
 
 import org.springframework.boot.autoconfigure.AutoConfigureBefore;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnWebApplication;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
-import org.springframework.boot.web.servlet.ServletRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -41,11 +41,7 @@ import org.springframework.context.annotation.Configuration;
 public class RichfacesSpringBootAutoConfiguration {
 
 	@Bean
-	public ServletRegistrationBean richfacesResourcesServlet() {
-		ServletRegistrationBean result = new ServletRegistrationBean();
-		result.setServlet(new ResourceServlet());
-		result.setLoadOnStartup(1);
-		result.addUrlMappings("/org.richfaces.resources/*");
-		return result;
+	public ServletContainerInitializerRegistrationBean<ServletsInitializer> richfacesServletsInitializer() {
+		return new ServletContainerInitializerRegistrationBean<ServletsInitializer>(ServletsInitializer.class);
 	}
 }
