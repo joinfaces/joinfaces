@@ -82,7 +82,7 @@
         
         <maven-surefire-report-plugin.version>2.20</maven-surefire-report-plugin.version>
 
-        <jacoco-maven-plugin.version>0.7.9</jacoco-maven-plugin.version>
+        <jacoco-maven-plugin.version>0.8.1</jacoco-maven-plugin.version>
         <jacoco.totalBranchRate>1.00</jacoco.totalBranchRate>
         <jacoco.totalLineRate>1.00</jacoco.totalLineRate>
         <jacoco.packageBranchRate>1.00</jacoco.packageBranchRate>

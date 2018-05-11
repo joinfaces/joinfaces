@@ -19,8 +19,6 @@ package org.joinfaces.mojarra;
 import java.util.Set;
 
 import javax.faces.component.html.HtmlPanelGroup;
-import javax.servlet.ServletContext;
-import javax.servlet.ServletException;
 import javax.servlet.annotation.HandlesTypes;
 
 import com.sun.faces.config.FacesInitializer;
