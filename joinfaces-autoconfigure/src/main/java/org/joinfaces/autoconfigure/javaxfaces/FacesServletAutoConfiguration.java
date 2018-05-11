@@ -19,7 +19,6 @@ package org.joinfaces.autoconfigure.javaxfaces;
 import javax.faces.webapp.FacesServlet;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletRegistration;
-import javax.validation.constraints.Null;
 
 import org.springframework.boot.autoconfigure.AutoConfigureAfter;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
