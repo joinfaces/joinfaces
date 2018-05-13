@@ -19,10 +19,15 @@
     </properties>
 
     <dependencies>
-        <!-- javax-annotation is excluded at parent joinfaces-starters/pom.xml -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter</artifactId>
+            <exclusions>
+                <exclusion>
+                    <groupId>javax.annotation</groupId>
+                    <artifactId>javax.annotation-api</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
 
         <dependency>
