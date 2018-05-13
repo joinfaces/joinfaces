@@ -31,10 +31,6 @@
 
         <dependency>
             <groupId>org.eclipse.jetty</groupId>
-            <artifactId>apache-jstl</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.eclipse.jetty</groupId>
             <artifactId>apache-jsp</artifactId>
         </dependency>
     </dependencies>
