@@ -19,9 +19,10 @@ package org.joinfaces.autoconfigure.viewscope;
 import java.util.LinkedList;
 import java.util.List;
 
-import lombok.Getter;
+import javax.servlet.http.HttpSessionBindingEvent;
+import javax.servlet.http.HttpSessionBindingListener;
 
-import org.springframework.beans.factory.DisposableBean;
+import lombok.Getter;
 
 
 /**
@@ -29,16 +30,12 @@ import org.springframework.beans.factory.DisposableBean;
  * of all view scoped beans that have not been destructed yet.
  *
  * @author Lars Grefer
+ * @see org.springframework.web.context.request.DestructionCallbackBindingListener
  */
 @Getter
-public class SessionHelper implements DisposableBean {
+public class SessionHelper implements HttpSessionBindingListener {
 
 	private List<DestructionCallbackWrapper> destructionCallbackWrappers = new LinkedList<>();
-
-	@Override
-	public void destroy() {
-		this.destructionCallbackWrappers.forEach(DestructionCallbackWrapper::onSessionDestroy);
-	}
 
 	public void register(DestructionCallbackWrapper destructionCallbackWrapper) {
 		cleanup();
@@ -52,5 +49,15 @@ public class SessionHelper implements DisposableBean {
 
 	synchronized void cleanup() {
 		this.destructionCallbackWrappers.removeIf(DestructionCallbackWrapper::isCallbackCalled);
+	}
+
+	@Override
+	public void valueBound(HttpSessionBindingEvent httpSessionBindingEvent) {
+
+	}
+
+	@Override
+	public void valueUnbound(HttpSessionBindingEvent httpSessionBindingEvent) {
+		this.destructionCallbackWrappers.forEach(DestructionCallbackWrapper::onSessionDestroy);
 	}
 }

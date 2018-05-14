@@ -27,14 +27,12 @@ import org.joinfaces.test.mock.JsfIT;
 import org.junit.Before;
 import org.junit.Test;
 
-import org.springframework.beans.factory.BeanFactory;
 import org.springframework.beans.factory.ObjectFactory;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.BDDMockito.doCallRealMethod;
-import static org.mockito.BDDMockito.mock;
 import static org.mockito.BDDMockito.verify;
 import static org.mockito.BDDMockito.when;
 
@@ -42,14 +40,11 @@ public class ViewScopeTest extends JsfIT {
 
 	private static final String KEY = "key";
 
-	private BeanFactory beanFactory;
-
 	private ViewScope viewScope;
 
 	@Before
 	public void setUp() {
-		this.beanFactory = mock(BeanFactory.class);
-		this.viewScope = new ViewScope(this.beanFactory);
+		this.viewScope = new ViewScope();
 	}
 
 	@Test
@@ -82,9 +77,6 @@ public class ViewScopeTest extends JsfIT {
 
 	@Test
 	public void testRegisterDestructionCallback() {
-		SessionHelper sessionHelper = mock(SessionHelper.class);
-		when(this.beanFactory.getBean(SessionHelper.class)).thenReturn(sessionHelper);
-
 		UIViewRoot viewRoot = FacesContext.getCurrentInstance().getViewRoot();
 		doCallRealMethod().when(viewRoot).subscribeToViewEvent(any(), any());
 		doCallRealMethod().when(viewRoot).unsubscribeFromViewEvent(any(), any());

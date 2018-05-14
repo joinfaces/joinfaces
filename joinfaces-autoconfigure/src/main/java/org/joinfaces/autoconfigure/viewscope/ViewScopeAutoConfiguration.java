@@ -39,15 +39,10 @@ import org.springframework.web.context.annotation.SessionScope;
 public class ViewScopeAutoConfiguration {
 
 	@Bean
-	public static CustomScopeConfigurer viewScopeConfigurer(WebApplicationContext applicationContext) {
+	public static CustomScopeConfigurer viewScopeConfigurer() {
 		CustomScopeConfigurer customScopeConfigurer = new CustomScopeConfigurer();
-		customScopeConfigurer.addScope(ViewScope.SCOPE_VIEW, new ViewScope(applicationContext));
+		customScopeConfigurer.addScope(ViewScope.SCOPE_VIEW, new ViewScope());
 		return customScopeConfigurer;
 	}
 
-	@Bean
-	@SessionScope
-	public SessionHelper viewScopeSessionHelper() {
-		return new SessionHelper();
-	}
 }

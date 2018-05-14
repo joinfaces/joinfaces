@@ -20,14 +20,10 @@ import javax.faces.component.UIViewRoot;
 import javax.faces.context.FacesContext;
 import javax.faces.event.PreDestroyViewMapEvent;
 
-import lombok.RequiredArgsConstructor;
-
-import org.springframework.beans.factory.BeanFactory;
 import org.springframework.beans.factory.ObjectFactory;
 import org.springframework.beans.factory.config.Scope;
 import org.springframework.lang.NonNull;
-import org.springframework.web.context.request.RequestAttributes;
-import org.springframework.web.context.request.RequestContextHolder;
+import org.springframework.web.context.request.FacesRequestAttributes;
 
 /**
  * Implementation of view scope.
@@ -35,15 +31,12 @@ import org.springframework.web.context.request.RequestContextHolder;
  * @author Marcelo Fernandes
  * @author Lars Grefer
  */
-@RequiredArgsConstructor
 public class ViewScope implements Scope {
 
 	/**
 	 * Scope identifier for view scope: "view".
 	 */
 	public static final String SCOPE_VIEW = "view";
-
-	private final BeanFactory beanFactory;
 
 	@Override
 	public Object get(String name, ObjectFactory objectFactory) {
@@ -61,8 +54,8 @@ public class ViewScope implements Scope {
 		viewRoot
 				.getViewListenersForEventClass(PreDestroyViewMapEvent.class)
 				.stream()
-				.filter(systemEventListener -> systemEventListener instanceof DestructionCallbackWrapper)
-				.map(systemEventListener -> (DestructionCallbackWrapper) systemEventListener)
+				.filter(DestructionCallbackWrapper.class::isInstance)
+				.map(DestructionCallbackWrapper.class::cast)
 				.filter(destructionCallbackWrapper -> destructionCallbackWrapper.getBeanName().equals(name))
 				.findFirst()
 				.ifPresent(destructionCallbackWrapper -> {
@@ -75,7 +68,8 @@ public class ViewScope implements Scope {
 
 	@Override
 	public String getConversationId() {
-		return getViewRoot().getViewId();
+		getFacesContext(); //maybe throws an Exception
+		return null;
 	}
 
 	@Override
@@ -88,18 +82,12 @@ public class ViewScope implements Scope {
 
 	@Override
 	public Object resolveContextualObject(String key) {
-		RequestAttributes attributes = RequestContextHolder.currentRequestAttributes();
-		return attributes.resolveReference(key);
+		return new FacesRequestAttributes(getFacesContext()).resolveReference(key);
 	}
 
 	@NonNull
 	private UIViewRoot getViewRoot() {
-		FacesContext facesContext = FacesContext.getCurrentInstance();
-		if (facesContext == null) {
-			throw new IllegalStateException("No FacesContext found.");
-		}
-
-		UIViewRoot viewRoot = facesContext.getViewRoot();
+		UIViewRoot viewRoot = getFacesContext().getViewRoot();
 		if (viewRoot == null) {
 			throw new IllegalStateException("No ViewRoot found");
 		}
@@ -107,8 +95,20 @@ public class ViewScope implements Scope {
 		return viewRoot;
 	}
 
+	@NonNull
+	private FacesContext getFacesContext() {
+		FacesContext facesContext = FacesContext.getCurrentInstance();
+		if (facesContext == null) {
+			throw new IllegalStateException("No FacesContext found.");
+		}
+		return facesContext;
+	}
+
 	private SessionHelper getSessionHelper() {
-		return this.beanFactory.getBean(SessionHelper.class);
+		return (SessionHelper) getFacesContext()
+				.getExternalContext()
+				.getSessionMap()
+				.computeIfAbsent(SessionHelper.class.getName(), k -> new SessionHelper());
 	}
 
 }

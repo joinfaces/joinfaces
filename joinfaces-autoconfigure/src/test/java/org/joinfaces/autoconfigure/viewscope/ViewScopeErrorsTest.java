@@ -21,21 +21,17 @@ import javax.faces.context.FacesContext;
 import org.junit.Before;
 import org.junit.Test;
 
-import org.springframework.beans.factory.BeanFactory;
-
 import static org.mockito.BDDMockito.mock;
 
 public class ViewScopeErrorsTest {
 
 	public static final String BEAN_NAME = "bean";
-	private BeanFactory beanFactory;
 
 	private ViewScope viewScope;
 
 	@Before
 	public void setUp() {
-		this.beanFactory = mock(BeanFactory.class);
-		this.viewScope = new ViewScope(this.beanFactory);
+		this.viewScope = new ViewScope();
 	}
 
 	@Test(expected = IllegalStateException.class)

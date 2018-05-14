@@ -54,7 +54,7 @@ public class SessionHelperTest {
 
 		assertThat(this.sessionHelper.getDestructionCallbackWrappers()).containsExactly(mock1, mock2);
 
-		this.sessionHelper.destroy();
+		this.sessionHelper.valueUnbound(null);
 
 		verify(mock1).onSessionDestroy();
 		verify(mock2).onSessionDestroy();
