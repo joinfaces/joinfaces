@@ -88,7 +88,7 @@ public class ViewScopeTest extends JsfIT {
 				.subscribeToViewEvent(eq(PreDestroyViewMapEvent.class), any());
 
 		when(viewRoot.getListenersForEventClass(PreDestroyViewMapEvent.class))
-				.thenReturn(Collections.singletonList(new DestructionCallbackWrapper(KEY, () -> { })));
+				.thenReturn(Collections.singletonList(new ViewScope.DestructionCallbackWrapper(KEY, () -> { })));
 		this.viewScope.remove(KEY);
 
 		verify(viewRoot)

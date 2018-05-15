@@ -16,13 +16,25 @@
 
 package org.joinfaces.autoconfigure.viewscope;
 
+import java.util.LinkedList;
+import java.util.List;
+
 import javax.faces.component.UIViewRoot;
 import javax.faces.context.FacesContext;
+import javax.faces.event.AbortProcessingException;
 import javax.faces.event.PreDestroyViewMapEvent;
+import javax.faces.event.SystemEvent;
+import javax.faces.event.SystemEventListener;
+import javax.servlet.http.HttpSessionBindingEvent;
+import javax.servlet.http.HttpSessionBindingListener;
+
+import lombok.Getter;
+import lombok.extern.slf4j.Slf4j;
 
 import org.springframework.beans.factory.ObjectFactory;
 import org.springframework.beans.factory.config.Scope;
 import org.springframework.lang.NonNull;
+import org.springframework.util.Assert;
 import org.springframework.web.context.request.FacesRequestAttributes;
 
 /**
@@ -31,6 +43,7 @@ import org.springframework.web.context.request.FacesRequestAttributes;
  * @author Marcelo Fernandes
  * @author Lars Grefer
  */
+@Slf4j
 public class ViewScope implements Scope {
 
 	/**
@@ -47,7 +60,6 @@ public class ViewScope implements Scope {
 
 	@Override
 	public Object remove(String name) {
-
 		UIViewRoot viewRoot = getViewRoot();
 		Object bean = viewRoot.getViewMap().remove(name);
 
@@ -60,7 +72,7 @@ public class ViewScope implements Scope {
 				.findFirst()
 				.ifPresent(destructionCallbackWrapper -> {
 					viewRoot.unsubscribeFromViewEvent(PreDestroyViewMapEvent.class, destructionCallbackWrapper);
-					getSessionHelper().unregister(destructionCallbackWrapper);
+					getSessionListener().unregister(destructionCallbackWrapper);
 				});
 
 		return bean;
@@ -77,7 +89,7 @@ public class ViewScope implements Scope {
 		DestructionCallbackWrapper wrapper = new DestructionCallbackWrapper(name, callback);
 
 		getViewRoot().subscribeToViewEvent(PreDestroyViewMapEvent.class, wrapper);
-		getSessionHelper().register(wrapper);
+		getSessionListener().register(wrapper);
 	}
 
 	@Override
@@ -104,11 +116,93 @@ public class ViewScope implements Scope {
 		return facesContext;
 	}
 
-	private SessionHelper getSessionHelper() {
-		return (SessionHelper) getFacesContext()
+	private SessionListener getSessionListener() {
+		return (SessionListener) getFacesContext()
 				.getExternalContext()
 				.getSessionMap()
-				.computeIfAbsent(SessionHelper.class.getName(), k -> new SessionHelper());
+				.computeIfAbsent(SessionListener.class.getName(), k -> new SessionListener());
 	}
 
+	/**
+	 * This class acts as "session-destroyed" listener, which call the destruction callbacks
+	 * of all view scoped beans that have not been destructed yet.
+	 *
+	 * @author Lars Grefer
+	 * @see org.springframework.web.context.request.DestructionCallbackBindingListener
+	 */
+	@Getter
+	public static class SessionListener implements HttpSessionBindingListener {
+
+		private List<DestructionCallbackWrapper> destructionCallbackWrappers = new LinkedList<>();
+
+		void register(DestructionCallbackWrapper destructionCallbackWrapper) {
+			cleanup();
+			this.destructionCallbackWrappers.add(destructionCallbackWrapper);
+		}
+
+		void unregister(DestructionCallbackWrapper destructionCallbackWrapper) {
+			cleanup();
+			this.destructionCallbackWrappers.remove(destructionCallbackWrapper);
+		}
+
+		synchronized void cleanup() {
+			this.destructionCallbackWrappers.removeIf(DestructionCallbackWrapper::isCallbackCalled);
+		}
+
+		@Override
+		public void valueBound(HttpSessionBindingEvent httpSessionBindingEvent) {
+		}
+
+		@Override
+		public void valueUnbound(HttpSessionBindingEvent httpSessionBindingEvent) {
+			this.destructionCallbackWrappers.forEach(DestructionCallbackWrapper::onSessionDestroy);
+		}
+	}
+
+	/**
+	 * Wrapper around the {@link ViewScope#registerDestructionCallback(String, Runnable) destruction callback} of
+	 * view scoped beans which acts as listener for {@link PreDestroyViewMapEvent view-map destruction} and
+	 * session destruction.
+	 *
+	 * @author Lars Grefer
+	 * @see #registerDestructionCallback(String, Runnable)
+	 */
+	@Getter
+	public static class DestructionCallbackWrapper implements SystemEventListener {
+
+		private final String beanName;
+
+		private Runnable callback;
+		private boolean callbackCalled;
+
+		DestructionCallbackWrapper(String beanName, Runnable callback) {
+			Assert.hasText(beanName, "beanName must not be null or empty");
+			Assert.notNull(callback, "callback must not be null");
+			this.beanName = beanName;
+			this.callback = callback;
+		}
+
+		@Override
+		public void processEvent(SystemEvent systemEvent) throws AbortProcessingException {
+			doRunCallback(false);
+		}
+
+		@Override
+		public boolean isListenerForSource(Object source) {
+			return source instanceof UIViewRoot;
+		}
+
+		void onSessionDestroy() {
+			doRunCallback(true);
+		}
+
+		private synchronized void doRunCallback(boolean session) {
+			if (!isCallbackCalled()) {
+				log.debug("Calling destruction callbacks for bean {} because the {} is destroyed", getBeanName(), session ? "session" : "view map");
+				this.callback.run();
+				this.callbackCalled = true;
+				this.callback = null;
+			}
+		}
+	}
 }

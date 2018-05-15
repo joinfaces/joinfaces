@@ -28,13 +28,13 @@ import static org.mockito.BDDMockito.verify;
 
 public class DestructionCallbackWrapperTest {
 
-	private DestructionCallbackWrapper destructionCallbackWrapper;
+	private ViewScope.DestructionCallbackWrapper destructionCallbackWrapper;
 	private Runnable callback;
 
 	@Before
 	public void setUp() {
 		this.callback = mock(Runnable.class);
-		this.destructionCallbackWrapper = new DestructionCallbackWrapper("bean", this.callback);
+		this.destructionCallbackWrapper = new ViewScope.DestructionCallbackWrapper("bean", this.callback);
 	}
 
 	@Test
