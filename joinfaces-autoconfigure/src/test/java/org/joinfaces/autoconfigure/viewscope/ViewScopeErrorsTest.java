@@ -21,6 +21,8 @@ import javax.faces.context.FacesContext;
 import org.junit.Before;
 import org.junit.Test;
 
+import org.springframework.lang.Nullable;
+
 import static org.mockito.BDDMockito.mock;
 
 public class ViewScopeErrorsTest {
@@ -49,6 +51,13 @@ public class ViewScopeErrorsTest {
 	}
 
 	@Test(expected = IllegalStateException.class)
+	public void testNoFacesContext_getConversationId() {
+		DummyFacesContext.setInstance(null);
+
+		this.viewScope.getConversationId();
+	}
+
+	@Test(expected = IllegalStateException.class)
 	public void testNoViewRoot_get() {
 		DummyFacesContext.setInstance(mock(FacesContext.class));
 
@@ -63,7 +72,7 @@ public class ViewScopeErrorsTest {
 	}
 
 	private static abstract class DummyFacesContext extends FacesContext {
-		public static void setInstance(FacesContext instance) {
+		public static void setInstance(@Nullable FacesContext instance) {
 			setCurrentInstance(instance);
 		}
 	}

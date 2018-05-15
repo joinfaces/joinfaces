@@ -39,11 +39,11 @@ public class DestructionCallbackWrapperTest {
 
 	@Test
 	public void processEvent() {
+		assertThat(this.destructionCallbackWrapper.isCallbackCalled()).isFalse();
 		this.destructionCallbackWrapper.processEvent(mock(PreDestroyViewMapEvent.class));
 
 		verify(this.callback).run();
 		assertThat(this.destructionCallbackWrapper.isCallbackCalled()).isTrue();
-		assertThat(this.destructionCallbackWrapper.getCallback()).isNull();
 	}
 
 	@Test
@@ -54,11 +54,10 @@ public class DestructionCallbackWrapperTest {
 
 	@Test
 	public void onSessionDestroy() {
+		assertThat(this.destructionCallbackWrapper.isCallbackCalled()).isFalse();
 		this.destructionCallbackWrapper.onSessionDestroy();
-
 		verify(this.callback).run();
 		assertThat(this.destructionCallbackWrapper.isCallbackCalled()).isTrue();
-		assertThat(this.destructionCallbackWrapper.getCallback()).isNull();
 	}
 
 	@Test
@@ -66,6 +65,5 @@ public class DestructionCallbackWrapperTest {
 		this.destructionCallbackWrapper.processEvent(mock(PreDestroyViewMapEvent.class));
 		this.destructionCallbackWrapper.onSessionDestroy();
 		verify(this.callback).run();
-
 	}
 }

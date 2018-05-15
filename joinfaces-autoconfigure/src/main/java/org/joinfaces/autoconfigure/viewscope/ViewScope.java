@@ -33,7 +33,7 @@ import lombok.extern.slf4j.Slf4j;
 
 import org.springframework.beans.factory.ObjectFactory;
 import org.springframework.beans.factory.config.Scope;
-import org.springframework.lang.NonNull;
+import org.springframework.lang.Nullable;
 import org.springframework.util.Assert;
 import org.springframework.web.context.request.FacesRequestAttributes;
 
@@ -59,6 +59,7 @@ public class ViewScope implements Scope {
 	}
 
 	@Override
+	@Nullable
 	public Object remove(String name) {
 		UIViewRoot viewRoot = getViewRoot();
 		Object bean = viewRoot.getViewMap().remove(name);
@@ -79,6 +80,7 @@ public class ViewScope implements Scope {
 	}
 
 	@Override
+	@Nullable
 	public String getConversationId() {
 		getFacesContext(); //maybe throws an Exception
 		return null;
@@ -93,11 +95,11 @@ public class ViewScope implements Scope {
 	}
 
 	@Override
+	@Nullable
 	public Object resolveContextualObject(String key) {
 		return new FacesRequestAttributes(getFacesContext()).resolveReference(key);
 	}
 
-	@NonNull
 	private UIViewRoot getViewRoot() {
 		UIViewRoot viewRoot = getFacesContext().getViewRoot();
 		if (viewRoot == null) {
@@ -107,7 +109,6 @@ public class ViewScope implements Scope {
 		return viewRoot;
 	}
 
-	@NonNull
 	private FacesContext getFacesContext() {
 		FacesContext facesContext = FacesContext.getCurrentInstance();
 		if (facesContext == null) {
@@ -150,11 +151,11 @@ public class ViewScope implements Scope {
 		}
 
 		@Override
-		public void valueBound(HttpSessionBindingEvent httpSessionBindingEvent) {
+		public void valueBound(@Nullable HttpSessionBindingEvent httpSessionBindingEvent) {
 		}
 
 		@Override
-		public void valueUnbound(HttpSessionBindingEvent httpSessionBindingEvent) {
+		public void valueUnbound(@Nullable HttpSessionBindingEvent httpSessionBindingEvent) {
 			this.destructionCallbackWrappers.forEach(DestructionCallbackWrapper::onSessionDestroy);
 		}
 	}
@@ -167,13 +168,13 @@ public class ViewScope implements Scope {
 	 * @author Lars Grefer
 	 * @see #registerDestructionCallback(String, Runnable)
 	 */
-	@Getter
 	public static class DestructionCallbackWrapper implements SystemEventListener {
 
+		@Getter
 		private final String beanName;
 
+		@Nullable
 		private Runnable callback;
-		private boolean callbackCalled;
 
 		DestructionCallbackWrapper(String beanName, Runnable callback) {
 			Assert.hasText(beanName, "beanName must not be null or empty");
@@ -183,12 +184,12 @@ public class ViewScope implements Scope {
 		}
 
 		@Override
-		public void processEvent(SystemEvent systemEvent) throws AbortProcessingException {
+		public void processEvent(@Nullable SystemEvent systemEvent) throws AbortProcessingException {
 			doRunCallback(false);
 		}
 
 		@Override
-		public boolean isListenerForSource(Object source) {
+		public boolean isListenerForSource(@Nullable Object source) {
 			return source instanceof UIViewRoot;
 		}
 
@@ -197,12 +198,15 @@ public class ViewScope implements Scope {
 		}
 
 		private synchronized void doRunCallback(boolean session) {
-			if (!isCallbackCalled()) {
+			if (this.callback != null) {
 				log.debug("Calling destruction callbacks for bean {} because the {} is destroyed", getBeanName(), session ? "session" : "view map");
 				this.callback.run();
-				this.callbackCalled = true;
 				this.callback = null;
 			}
+		}
+
+		boolean isCallbackCalled() {
+			return this.callback == null;
 		}
 	}
 }
