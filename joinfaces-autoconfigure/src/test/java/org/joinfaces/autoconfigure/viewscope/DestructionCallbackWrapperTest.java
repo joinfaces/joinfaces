@@ -16,9 +16,6 @@
 
 package org.joinfaces.autoconfigure.viewscope;
 
-import javax.faces.component.UIViewRoot;
-import javax.faces.event.PreDestroyViewMapEvent;
-
 import org.junit.Before;
 import org.junit.Test;
 
@@ -38,21 +35,6 @@ public class DestructionCallbackWrapperTest {
 	}
 
 	@Test
-	public void processEvent() {
-		assertThat(this.destructionCallbackWrapper.isCallbackCalled()).isFalse();
-		this.destructionCallbackWrapper.processEvent(mock(PreDestroyViewMapEvent.class));
-
-		verify(this.callback).run();
-		assertThat(this.destructionCallbackWrapper.isCallbackCalled()).isTrue();
-	}
-
-	@Test
-	public void isListenerForSource() {
-		assertThat(this.destructionCallbackWrapper.isListenerForSource(mock(UIViewRoot.class))).isTrue();
-		assertThat(this.destructionCallbackWrapper.isListenerForSource(new Object())).isFalse();
-	}
-
-	@Test
 	public void onSessionDestroy() {
 		assertThat(this.destructionCallbackWrapper.isCallbackCalled()).isFalse();
 		this.destructionCallbackWrapper.onSessionDestroy();
@@ -62,7 +44,7 @@ public class DestructionCallbackWrapperTest {
 
 	@Test
 	public void testRunCalledOnlyOnce() {
-		this.destructionCallbackWrapper.processEvent(mock(PreDestroyViewMapEvent.class));
+		this.destructionCallbackWrapper.onViewDestroy();
 		this.destructionCallbackWrapper.onSessionDestroy();
 		verify(this.callback).run();
 	}

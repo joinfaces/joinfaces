@@ -73,6 +73,5 @@ public class SessionListenerTest {
 		when(mock1.isCallbackCalled()).thenReturn(true);
 		this.sessionListener.cleanup();
 		assertThat(this.sessionListener.getDestructionCallbackWrappers()).containsExactly(mock2);
-
 	}
 }
