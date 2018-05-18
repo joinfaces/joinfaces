@@ -24,8 +24,6 @@ import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnWebApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.web.context.WebApplicationContext;
-import org.springframework.web.context.annotation.SessionScope;
 
 /**
  * An {@link org.springframework.boot.autoconfigure.EnableAutoConfiguration AutoConfiguration}
@@ -39,15 +37,10 @@ import org.springframework.web.context.annotation.SessionScope;
 public class ViewScopeAutoConfiguration {
 
 	@Bean
-	public static CustomScopeConfigurer viewScopeConfigurer(WebApplicationContext applicationContext) {
+	public static CustomScopeConfigurer viewScopeConfigurer() {
 		CustomScopeConfigurer customScopeConfigurer = new CustomScopeConfigurer();
-		customScopeConfigurer.addScope(ViewScope.SCOPE_VIEW, new ViewScope(applicationContext));
+		customScopeConfigurer.addScope(ViewScope.SCOPE_VIEW, new ViewScope());
 		return customScopeConfigurer;
 	}
 
-	@Bean
-	@SessionScope
-	public SessionHelper viewScopeSessionHelper() {
-		return new SessionHelper();
-	}
 }

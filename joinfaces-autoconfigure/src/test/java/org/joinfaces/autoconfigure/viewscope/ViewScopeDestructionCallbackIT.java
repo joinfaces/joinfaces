@@ -38,6 +38,7 @@ import org.springframework.boot.test.context.TestConfiguration;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Scope;
+import org.springframework.lang.Nullable;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -120,11 +121,13 @@ public class ViewScopeDestructionCallbackIT {
 			}
 
 			@Override
+			@Nullable
 			public Object resolveContextualObject(String key) {
 				return null;
 			}
 
 			@Override
+			@Nullable
 			public String getConversationId() {
 				return null;
 			}

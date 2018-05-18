@@ -16,9 +16,6 @@
 
 package org.joinfaces.autoconfigure.viewscope;
 
-import javax.faces.component.UIViewRoot;
-import javax.faces.event.PreDestroyViewMapEvent;
-
 import org.junit.Before;
 import org.junit.Test;
 
@@ -28,44 +25,27 @@ import static org.mockito.BDDMockito.verify;
 
 public class DestructionCallbackWrapperTest {
 
-	private DestructionCallbackWrapper destructionCallbackWrapper;
+	private ViewScope.DestructionCallbackWrapper destructionCallbackWrapper;
 	private Runnable callback;
 
 	@Before
 	public void setUp() {
 		this.callback = mock(Runnable.class);
-		this.destructionCallbackWrapper = new DestructionCallbackWrapper("bean", this.callback);
-	}
-
-	@Test
-	public void processEvent() {
-		this.destructionCallbackWrapper.processEvent(mock(PreDestroyViewMapEvent.class));
-
-		verify(this.callback).run();
-		assertThat(this.destructionCallbackWrapper.isCallbackCalled()).isTrue();
-		assertThat(this.destructionCallbackWrapper.getCallback()).isNull();
-	}
-
-	@Test
-	public void isListenerForSource() {
-		assertThat(this.destructionCallbackWrapper.isListenerForSource(mock(UIViewRoot.class))).isTrue();
-		assertThat(this.destructionCallbackWrapper.isListenerForSource(new Object())).isFalse();
+		this.destructionCallbackWrapper = new ViewScope.DestructionCallbackWrapper("bean", this.callback);
 	}
 
 	@Test
 	public void onSessionDestroy() {
+		assertThat(this.destructionCallbackWrapper.isCallbackCalled()).isFalse();
 		this.destructionCallbackWrapper.onSessionDestroy();
-
 		verify(this.callback).run();
 		assertThat(this.destructionCallbackWrapper.isCallbackCalled()).isTrue();
-		assertThat(this.destructionCallbackWrapper.getCallback()).isNull();
 	}
 
 	@Test
 	public void testRunCalledOnlyOnce() {
-		this.destructionCallbackWrapper.processEvent(mock(PreDestroyViewMapEvent.class));
+		this.destructionCallbackWrapper.onViewDestroy();
 		this.destructionCallbackWrapper.onSessionDestroy();
 		verify(this.callback).run();
-
 	}
 }
