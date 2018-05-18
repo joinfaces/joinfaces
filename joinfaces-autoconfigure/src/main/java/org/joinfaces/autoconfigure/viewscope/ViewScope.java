@@ -40,6 +40,8 @@ import org.springframework.web.context.request.FacesRequestAttributes;
 /**
  * Implementation of view scope.
  *
+ * This class exposes the JSF {@link UIViewRoot#getViewMap() view map} as spring {@link Scope}.
+ *
  * @author Marcelo Fernandes
  * @author Lars Grefer
  */
@@ -48,9 +50,18 @@ public class ViewScope implements Scope {
 
 	/**
 	 * Scope identifier for view scope: "view".
+	 *
+	 * @see org.springframework.web.context.WebApplicationContext#SCOPE_SESSION
+	 * @see org.springframework.web.context.WebApplicationContext#SCOPE_REQUEST
 	 */
 	public static final String SCOPE_VIEW = "view";
 
+	/**
+	 * Constant identifying the {@link String} prefixed to the name of a
+	 * destruction callback when it is stored in a {@link UIViewRoot#getViewMap() view map}.
+	 *
+	 * @see org.springframework.web.context.request.ServletRequestAttributes#DESTRUCTION_CALLBACK_NAME_PREFIX
+	 */
 	public static final String DESTRUCTION_CALLBACK_NAME_PREFIX = ViewScope.class.getName() + ".DESTRUCTION_CALLBACK.";
 
 	@Getter(AccessLevel.PACKAGE)
@@ -160,6 +171,13 @@ public class ViewScope implements Scope {
 		}
 	}
 
+	/**
+	 * This class acts as {@link PreDestroyViewMapEvent}-listener, which calls all destruction callbacks
+	 * which are stored in the view map to be destroyed.
+	 *
+	 * @author Lars Grefer
+	 * @see #registerDestructionCallback(String, Runnable)
+	 */
 	class PreDestroyViewMapListener implements ViewMapListener {
 
 		@Override
