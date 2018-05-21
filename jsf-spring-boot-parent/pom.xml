@@ -59,7 +59,7 @@
         <findbugs.dir>${check.dir}/findbugs</findbugs.dir>
         
         <requireMaven.version>3.1.1</requireMaven.version>
-        <requireJava.version>[1.8,)</requireJava.version>
+        <requireJava.version>[1.7,)</requireJava.version>
         
         <findbugs-maven-plugin.version>3.0.5</findbugs-maven-plugin.version>
         <findbugs.excludeFilterFile>${findbugs.dir}/findbugs-exclude.xml</findbugs.excludeFilterFile>
