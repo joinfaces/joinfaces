@@ -49,7 +49,7 @@ public class JsfBeansAnnotationPostProcessorTest {
 
 	@Before
 	public void setUp() {
-		jsfBeansAutoConfiguration = mock(JsfBeansAutoConfiguration.class);
+		this.jsfBeansAutoConfiguration = mock(JsfBeansAutoConfiguration.class);
 
 		this.jsfBeansAnnotationPostProcessor = new JsfBeansAnnotationPostProcessor(jsfBeansAutoConfiguration);
 	}
@@ -65,7 +65,7 @@ public class JsfBeansAnnotationPostProcessorTest {
 			private Map<String, Object> map;
 		};
 
-		jsfBeansAnnotationPostProcessor.postProcessBeforeInitialization(bean, "");
+		this.jsfBeansAnnotationPostProcessor.postProcessBeforeInitialization(bean, "");
 
 		verify(this.jsfBeansAutoConfiguration).applicationMap();
 		assertThat(bean).hasFieldOrPropertyWithValue("map", map);
@@ -82,7 +82,7 @@ public class JsfBeansAnnotationPostProcessorTest {
 			private Map<String, Object> map;
 		};
 
-		jsfBeansAnnotationPostProcessor.postProcessBeforeInitialization(bean, "");
+		this.jsfBeansAnnotationPostProcessor.postProcessBeforeInitialization(bean, "");
 
 		verify(this.jsfBeansAutoConfiguration).flowScope();
 		assertThat(bean).hasFieldOrPropertyWithValue("map", map);
@@ -99,7 +99,7 @@ public class JsfBeansAnnotationPostProcessorTest {
 			private Map<String, Object> map;
 		};
 
-		jsfBeansAnnotationPostProcessor.postProcessBeforeInitialization(bean, "");
+		this.jsfBeansAnnotationPostProcessor.postProcessBeforeInitialization(bean, "");
 
 		verify(this.jsfBeansAutoConfiguration).headerMap();
 		assertThat(bean).hasFieldOrPropertyWithValue("map", map);
@@ -116,7 +116,7 @@ public class JsfBeansAnnotationPostProcessorTest {
 			private Map<String, Object> map;
 		};
 
-		jsfBeansAnnotationPostProcessor.postProcessBeforeInitialization(bean, "");
+		this.jsfBeansAnnotationPostProcessor.postProcessBeforeInitialization(bean, "");
 
 		verify(this.jsfBeansAutoConfiguration).headerValuesMap();
 		assertThat(bean).hasFieldOrPropertyWithValue("map", map);
@@ -133,7 +133,7 @@ public class JsfBeansAnnotationPostProcessorTest {
 			private Map<String, Object> map;
 		};
 
-		jsfBeansAnnotationPostProcessor.postProcessBeforeInitialization(bean, "");
+		this.jsfBeansAnnotationPostProcessor.postProcessBeforeInitialization(bean, "");
 
 		verify(this.jsfBeansAutoConfiguration).initParameterMap();
 		assertThat(bean).hasFieldOrPropertyWithValue("map", map);
@@ -150,7 +150,7 @@ public class JsfBeansAnnotationPostProcessorTest {
 			private Map<String, Object> map;
 		};
 
-		jsfBeansAnnotationPostProcessor.postProcessBeforeInitialization(bean, "");
+		this.jsfBeansAnnotationPostProcessor.postProcessBeforeInitialization(bean, "");
 
 		verify(this.jsfBeansAutoConfiguration).requestCookieMap();
 		assertThat(bean).hasFieldOrPropertyWithValue("map", map);
@@ -167,7 +167,7 @@ public class JsfBeansAnnotationPostProcessorTest {
 			private Map<String, Object> map;
 		};
 
-		jsfBeansAnnotationPostProcessor.postProcessBeforeInitialization(bean, "");
+		this.jsfBeansAnnotationPostProcessor.postProcessBeforeInitialization(bean, "");
 
 		verify(this.jsfBeansAutoConfiguration).requestMap();
 		assertThat(bean).hasFieldOrPropertyWithValue("map", map);
@@ -184,7 +184,7 @@ public class JsfBeansAnnotationPostProcessorTest {
 			private Map<String, Object> map;
 		};
 
-		jsfBeansAnnotationPostProcessor.postProcessBeforeInitialization(bean, "");
+		this.jsfBeansAnnotationPostProcessor.postProcessBeforeInitialization(bean, "");
 
 		verify(this.jsfBeansAutoConfiguration).requestParameterMap();
 		assertThat(bean).hasFieldOrPropertyWithValue("map", map);
@@ -201,7 +201,7 @@ public class JsfBeansAnnotationPostProcessorTest {
 			private Map<String, Object> map;
 		};
 
-		jsfBeansAnnotationPostProcessor.postProcessBeforeInitialization(bean, "");
+		this.jsfBeansAnnotationPostProcessor.postProcessBeforeInitialization(bean, "");
 
 		verify(this.jsfBeansAutoConfiguration).requestParameterValuesMap();
 		assertThat(bean).hasFieldOrPropertyWithValue("map", map);
@@ -218,7 +218,7 @@ public class JsfBeansAnnotationPostProcessorTest {
 			private Map<String, Object> sessionMap;
 		};
 
-		jsfBeansAnnotationPostProcessor.postProcessBeforeInitialization(bean, "");
+		this.jsfBeansAnnotationPostProcessor.postProcessBeforeInitialization(bean, "");
 
 		verify(this.jsfBeansAutoConfiguration).sessionMap();
 		assertThat(bean).hasFieldOrPropertyWithValue("sessionMap", map);
@@ -235,7 +235,7 @@ public class JsfBeansAnnotationPostProcessorTest {
 			private Map<String, Object> viewMap;
 		};
 
-		jsfBeansAnnotationPostProcessor.postProcessBeforeInitialization(bean, "");
+		this.jsfBeansAnnotationPostProcessor.postProcessBeforeInitialization(bean, "");
 
 		verify(this.jsfBeansAutoConfiguration).viewMap();
 		assertThat(bean).hasFieldOrPropertyWithValue("viewMap", map);
