@@ -18,6 +18,7 @@ package org.joinfaces.autoconfigure.javaxfaces;
 
 import java.util.Map;
 
+import javax.faces.annotation.ApplicationMap;
 import javax.faces.application.ResourceHandler;
 import javax.faces.component.UIViewRoot;
 import javax.faces.context.ExternalContext;
@@ -184,5 +185,15 @@ public class JsfBeansAutoConfiguration {
 	@ConditionalOnMissingBean
 	public ExternalContext externalContext() {
 		return FacesContext.getCurrentInstance().getExternalContext();
+	}
+
+	@Configuration
+	@ConditionalOnClass(ApplicationMap.class)
+	public static class Jsf2_3AutoConfiguration {
+
+		@Bean
+		public JsfBeansAnnotationPostProcessor jsfBeansAnnotationPostProcessor(JsfBeansAutoConfiguration jsfBeansAutoConfiguration) {
+			return new JsfBeansAnnotationPostProcessor(jsfBeansAutoConfiguration);
+		}
 	}
 }
