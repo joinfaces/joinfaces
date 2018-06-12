@@ -35,7 +35,6 @@ import javax.faces.annotation.ViewMap;
 
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.beans.factory.config.BeanPostProcessor;
 import org.springframework.core.annotation.AnnotatedElementUtils;
@@ -43,7 +42,10 @@ import org.springframework.util.ClassUtils;
 import org.springframework.util.ReflectionUtils;
 
 /**
+ * This {@link BeanPostProcessor} injects JSF artifacts which use a custom qualifier annotation.
+ *
  * @author Lars Grefer
+ * @see javax.faces.annotation
  */
 public class JsfBeansAnnotationPostProcessor implements BeanPostProcessor {
 
@@ -59,7 +61,7 @@ public class JsfBeansAnnotationPostProcessor implements BeanPostProcessor {
 		this.autowiredAnnotationTypes.add(Value.class);
 		try {
 			this.autowiredAnnotationTypes.add((Class<? extends Annotation>)
-					ClassUtils.forName("javax.inject.Inject", AutowiredAnnotationBeanPostProcessor.class.getClassLoader()));
+					ClassUtils.forName("javax.inject.Inject", JsfBeansAnnotationPostProcessor.class.getClassLoader()));
 		}
 		catch (ClassNotFoundException ex) {
 			// JSR-330 API not available - simply skip.

@@ -38,9 +38,9 @@ import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
+import static org.mockito.BDDMockito.mock;
+import static org.mockito.BDDMockito.verify;
+import static org.mockito.BDDMockito.when;
 
 public class JsfBeansAnnotationPostProcessorTest {
 
@@ -51,7 +51,7 @@ public class JsfBeansAnnotationPostProcessorTest {
 	public void setUp() {
 		this.jsfBeansAutoConfiguration = mock(JsfBeansAutoConfiguration.class);
 
-		this.jsfBeansAnnotationPostProcessor = new JsfBeansAnnotationPostProcessor(jsfBeansAutoConfiguration);
+		this.jsfBeansAnnotationPostProcessor = new JsfBeansAnnotationPostProcessor(this.jsfBeansAutoConfiguration);
 	}
 
 	@Test
