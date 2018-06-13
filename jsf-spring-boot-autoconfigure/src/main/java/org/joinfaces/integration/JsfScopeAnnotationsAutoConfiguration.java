@@ -16,10 +16,13 @@
 
 package org.joinfaces.integration;
 
+import java.lang.annotation.Annotation;
+
 import javax.faces.bean.ApplicationScoped;
 import javax.faces.bean.NoneScoped;
 import javax.faces.bean.RequestScoped;
 import javax.faces.bean.SessionScoped;
+import javax.faces.bean.ViewScoped;
 
 import org.springframework.beans.factory.config.BeanFactoryPostProcessor;
 import org.springframework.beans.factory.config.ConfigurableBeanFactory;
@@ -51,10 +54,17 @@ public class JsfScopeAnnotationsAutoConfiguration {
 
 		scopeAnnotationConfigurer.addMapping(NoneScoped.class, ConfigurableBeanFactory.SCOPE_PROTOTYPE);
 		scopeAnnotationConfigurer.addMapping(RequestScoped.class, WebApplicationContext.SCOPE_REQUEST);
-		scopeAnnotationConfigurer.addMapping(javax.faces.bean.ViewScoped.class, ViewScope.SCOPE_VIEW);
-		scopeAnnotationConfigurer.addMapping(javax.faces.view.ViewScoped.class, ViewScope.SCOPE_VIEW);
+		scopeAnnotationConfigurer.addMapping(ViewScoped.class, ViewScope.SCOPE_VIEW);
 		scopeAnnotationConfigurer.addMapping(SessionScoped.class, WebApplicationContext.SCOPE_SESSION);
 		scopeAnnotationConfigurer.addMapping(ApplicationScoped.class, WebApplicationContext.SCOPE_APPLICATION);
+
+		try {
+			Class<? extends Annotation> cdiViewScopedClass = (Class<? extends Annotation>) Class.forName("javax.faces.view.ViewScoped");
+			scopeAnnotationConfigurer.addMapping(cdiViewScopedClass, ViewScope.SCOPE_VIEW);
+		}
+		catch (ClassNotFoundException ignored) {
+			// JSF 2.1 or lower
+		}
 
 		return scopeAnnotationConfigurer;
 	}
