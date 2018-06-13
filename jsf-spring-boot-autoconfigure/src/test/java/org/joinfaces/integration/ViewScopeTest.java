@@ -78,8 +78,6 @@ public class ViewScopeTest extends JsfIT {
 
 	@Test
 	public void testRegisterDestructionCallback() {
-		UIViewRoot viewRoot = FacesContext.getCurrentInstance().getViewRoot();
-
 		this.viewScope.registerDestructionCallback(KEY, new Runnable() {
 			@Override
 			public void run() {
