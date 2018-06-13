@@ -36,6 +36,8 @@ import org.junit.Before;
 import org.junit.Test;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.util.ReflectionUtils;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.BDDMockito.mock;
@@ -52,6 +54,25 @@ public class JsfBeansAnnotationPostProcessorTest {
 		this.jsfBeansAutoConfiguration = mock(JsfBeansAutoConfiguration.class);
 
 		this.jsfBeansAnnotationPostProcessor = new JsfBeansAnnotationPostProcessor(this.jsfBeansAutoConfiguration);
+	}
+
+	@Test
+	public void testIsAutowiredField() {
+		class TestFields {
+			@Autowired
+			private Object a;
+			@Value("b")
+			private Object b;
+			@Inject
+			private Object c;
+
+			private Object d;
+		}
+
+		assertThat(this.jsfBeansAnnotationPostProcessor.isAutowiredField(ReflectionUtils.findField(TestFields.class, "a"))).isTrue();
+		assertThat(this.jsfBeansAnnotationPostProcessor.isAutowiredField(ReflectionUtils.findField(TestFields.class, "b"))).isTrue();
+		assertThat(this.jsfBeansAnnotationPostProcessor.isAutowiredField(ReflectionUtils.findField(TestFields.class, "c"))).isTrue();
+		assertThat(this.jsfBeansAnnotationPostProcessor.isAutowiredField(ReflectionUtils.findField(TestFields.class, "d"))).isFalse();
 	}
 
 	@Test

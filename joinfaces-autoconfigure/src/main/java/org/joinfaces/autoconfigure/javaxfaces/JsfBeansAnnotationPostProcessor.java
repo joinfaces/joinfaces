@@ -18,8 +18,11 @@ package org.joinfaces.autoconfigure.javaxfaces;
 
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Field;
+import java.util.HashMap;
 import java.util.LinkedHashSet;
+import java.util.Map;
 import java.util.Set;
+import java.util.function.Supplier;
 
 import javax.faces.annotation.ApplicationMap;
 import javax.faces.annotation.FlowMap;
@@ -49,13 +52,10 @@ import org.springframework.util.ReflectionUtils;
  */
 public class JsfBeansAnnotationPostProcessor implements BeanPostProcessor {
 
-	private final JsfBeansAutoConfiguration jsfBeansAutoConfiguration;
-
 	private final Set<Class<? extends Annotation>> autowiredAnnotationTypes = new LinkedHashSet<>();
-
+	private final Map<Class<? extends Annotation>, Supplier<?>> suppliers = new HashMap<>();
 
 	public JsfBeansAnnotationPostProcessor(JsfBeansAutoConfiguration jsfBeansAutoConfiguration) {
-		this.jsfBeansAutoConfiguration = jsfBeansAutoConfiguration;
 
 		this.autowiredAnnotationTypes.add(Autowired.class);
 		this.autowiredAnnotationTypes.add(Value.class);
@@ -66,77 +66,41 @@ public class JsfBeansAnnotationPostProcessor implements BeanPostProcessor {
 		catch (ClassNotFoundException ex) {
 			// JSR-330 API not available - simply skip.
 		}
+
+		this.suppliers.put(ApplicationMap.class, jsfBeansAutoConfiguration::applicationMap);
+		this.suppliers.put(FlowMap.class, jsfBeansAutoConfiguration::flowScope);
+		this.suppliers.put(HeaderMap.class, jsfBeansAutoConfiguration::headerMap);
+		this.suppliers.put(HeaderValuesMap.class, jsfBeansAutoConfiguration::headerValuesMap);
+		this.suppliers.put(InitParameterMap.class, jsfBeansAutoConfiguration::initParameterMap);
+		this.suppliers.put(RequestCookieMap.class, jsfBeansAutoConfiguration::requestCookieMap);
+		this.suppliers.put(RequestMap.class, jsfBeansAutoConfiguration::requestMap);
+		this.suppliers.put(RequestParameterMap.class, jsfBeansAutoConfiguration::requestParameterMap);
+		this.suppliers.put(RequestParameterValuesMap.class, jsfBeansAutoConfiguration::requestParameterValuesMap);
+		this.suppliers.put(SessionMap.class, jsfBeansAutoConfiguration::sessionMap);
+		this.suppliers.put(ViewMap.class, jsfBeansAutoConfiguration::viewMap);
+
 	}
 
 	@Override
 	public Object postProcessBeforeInitialization(Object bean, String beanName) throws BeansException {
 		ReflectionUtils.doWithFields(bean.getClass(),
-				field -> checkField(field, bean),
-				field -> {
-					for (Class<? extends Annotation> autowiredAnnotationType : this.autowiredAnnotationTypes) {
-						if (AnnotatedElementUtils.hasAnnotation(field, autowiredAnnotationType)) {
-							return true;
-						}
+				field -> this.suppliers.forEach((annotation, supplier) -> {
+					if (AnnotatedElementUtils.hasAnnotation(field, annotation)) {
+						ReflectionUtils.makeAccessible(field);
+						ReflectionUtils.setField(field, bean, supplier.get());
 					}
-					return false;
-				});
+				}),
+				this::isAutowiredField);
 		return bean;
 	}
 
-	private void checkField(Field field, Object bean) {
-		if (AnnotatedElementUtils.hasAnnotation(field, ApplicationMap.class)) {
-			ReflectionUtils.makeAccessible(field);
-			ReflectionUtils.setField(field, bean, this.jsfBeansAutoConfiguration.applicationMap());
+	boolean isAutowiredField(Field field) {
+		for (Class<? extends Annotation> autowiredAnnotationType : this.autowiredAnnotationTypes) {
+			if (AnnotatedElementUtils.hasAnnotation(field, autowiredAnnotationType)) {
+				return true;
+			}
 		}
-
-		if (AnnotatedElementUtils.hasAnnotation(field, FlowMap.class)) {
-			ReflectionUtils.makeAccessible(field);
-			ReflectionUtils.setField(field, bean, this.jsfBeansAutoConfiguration.flowScope());
-		}
-
-		if (AnnotatedElementUtils.hasAnnotation(field, HeaderMap.class)) {
-			ReflectionUtils.makeAccessible(field);
-			ReflectionUtils.setField(field, bean, this.jsfBeansAutoConfiguration.headerMap());
-		}
-
-		if (AnnotatedElementUtils.hasAnnotation(field, HeaderValuesMap.class)) {
-			ReflectionUtils.makeAccessible(field);
-			ReflectionUtils.setField(field, bean, this.jsfBeansAutoConfiguration.headerValuesMap());
-		}
-
-		if (AnnotatedElementUtils.hasAnnotation(field, InitParameterMap.class)) {
-			ReflectionUtils.makeAccessible(field);
-			ReflectionUtils.setField(field, bean, this.jsfBeansAutoConfiguration.initParameterMap());
-		}
-
-		if (AnnotatedElementUtils.hasAnnotation(field, RequestCookieMap.class)) {
-			ReflectionUtils.makeAccessible(field);
-			ReflectionUtils.setField(field, bean, this.jsfBeansAutoConfiguration.requestCookieMap());
-		}
-
-		if (AnnotatedElementUtils.hasAnnotation(field, RequestMap.class)) {
-			ReflectionUtils.makeAccessible(field);
-			ReflectionUtils.setField(field, bean, this.jsfBeansAutoConfiguration.requestMap());
-		}
-
-		if (AnnotatedElementUtils.hasAnnotation(field, RequestParameterMap.class)) {
-			ReflectionUtils.makeAccessible(field);
-			ReflectionUtils.setField(field, bean, this.jsfBeansAutoConfiguration.requestParameterMap());
-		}
-
-		if (AnnotatedElementUtils.hasAnnotation(field, RequestParameterValuesMap.class)) {
-			ReflectionUtils.makeAccessible(field);
-			ReflectionUtils.setField(field, bean, this.jsfBeansAutoConfiguration.requestParameterValuesMap());
-		}
-
-		if (AnnotatedElementUtils.hasAnnotation(field, SessionMap.class)) {
-			ReflectionUtils.makeAccessible(field);
-			ReflectionUtils.setField(field, bean, this.jsfBeansAutoConfiguration.sessionMap());
-		}
-
-		if (AnnotatedElementUtils.hasAnnotation(field, ViewMap.class)) {
-			ReflectionUtils.makeAccessible(field);
-			ReflectionUtils.setField(field, bean, this.jsfBeansAutoConfiguration.viewMap());
-		}
+		return false;
 	}
+
 }
