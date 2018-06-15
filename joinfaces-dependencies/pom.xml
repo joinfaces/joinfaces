@@ -22,7 +22,7 @@
         <lombok.version>1.18.0</lombok.version>
 
         <javax.faces-api.version>2.3</javax.faces-api.version>
-        <mojarra.version>2.3.4</mojarra.version>
+        <mojarra.version>2.3.5</mojarra.version>
         <myfaces.version>2.3.1</myfaces.version>
 
         <omnifaces1.version>1.14.1</omnifaces1.version>
