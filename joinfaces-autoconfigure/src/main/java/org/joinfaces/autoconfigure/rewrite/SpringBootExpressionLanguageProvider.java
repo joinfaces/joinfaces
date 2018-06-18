@@ -16,6 +16,7 @@
 
 package org.joinfaces.autoconfigure.rewrite;
 
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import org.ocpsoft.rewrite.el.spi.ExpressionLanguageProvider;
 
 import org.springframework.beans.factory.config.BeanExpressionContext;
@@ -55,6 +56,7 @@ public class SpringBootExpressionLanguageProvider implements ExpressionLanguageP
 		return 20;
 	}
 
+	@SuppressFBWarnings("NP_NULL_ON_SOME_PATH_FROM_RETURN_VALUE")
 	@Override
 	public Object retrieveValue(String expression) throws UnsupportedOperationException {
 		try {
@@ -77,6 +79,7 @@ public class SpringBootExpressionLanguageProvider implements ExpressionLanguageP
 		}
 	}
 
+	@SuppressFBWarnings("NP_NULL_ON_SOME_PATH_FROM_RETURN_VALUE")
 	@Override
 	public Object evaluateMethodExpression(String expression) throws UnsupportedOperationException {
 		try {
