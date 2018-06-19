@@ -4,7 +4,7 @@
 
     <groupId>org.joinfaces.test</groupId>
     <artifactId>test-projects</artifactId>
-    <version>3.2.2</version>
+    <version>3.2.3-SNAPSHOT</version>
     <packaging>pom</packaging>
 
     <name>JoinFaces Test Projects</name>
