@@ -42,5 +42,9 @@
             <groupId>javax.ejb</groupId>
             <artifactId>javax.ejb-api</artifactId>
         </dependency>
+        <dependency>
+            <groupId>javax.enterprise</groupId>
+            <artifactId>cdi-api</artifactId>
+        </dependency>
     </dependencies>
 </project>
