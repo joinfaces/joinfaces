@@ -4,7 +4,7 @@
 
     <groupId>org.joinfaces</groupId>
     <artifactId>joinfaces-build</artifactId>
-    <version>3.2.2-SNAPSHOT</version>
+    <version>3.2.2</version>
     <packaging>pom</packaging>
 
     <properties>
@@ -186,7 +186,7 @@
         <connection>scm:git:https://github.com/joinfaces/joinfaces.git</connection>
         <developerConnection>scm:git:https://github.com/joinfaces/joinfaces.git</developerConnection>
         <url>scm:git:https://github.com/joinfaces/joinfaces.git</url>
-        <tag>HEAD</tag>
+        <tag>joinfaces-build-3.2.2</tag>
     </scm>
 
     <organization>

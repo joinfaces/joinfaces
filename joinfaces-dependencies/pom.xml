@@ -11,7 +11,7 @@
     
     <groupId>org.joinfaces</groupId>
     <artifactId>joinfaces-dependencies</artifactId>
-    <version>3.2.2-SNAPSHOT</version>
+    <version>3.2.2</version>
     <packaging>pom</packaging>
     <name>JoinFaces Dependencies</name>
 
@@ -363,98 +363,98 @@
             <dependency>
                 <groupId>org.joinfaces</groupId>
                 <artifactId>spring-security-jsf-taglib</artifactId>
-                <version>3.2.2-SNAPSHOT</version>
+                <version>3.2.2</version>
             </dependency>
             <dependency>
                 <groupId>org.joinfaces</groupId>
                 <artifactId>joinfaces-test</artifactId>
-                <version>3.2.2-SNAPSHOT</version>
+                <version>3.2.2</version>
             </dependency>
             <dependency>
                 <groupId>org.joinfaces</groupId>
                 <artifactId>joinfaces-autoconfigure</artifactId>
-                <version>3.2.2-SNAPSHOT</version>
+                <version>3.2.2</version>
             </dependency>
 
             <dependency>
                 <groupId>org.joinfaces</groupId>
                 <artifactId>tomcat-spring-boot-starter</artifactId>
-                <version>3.2.2-SNAPSHOT</version>
+                <version>3.2.2</version>
             </dependency>
             <dependency>
                 <groupId>org.joinfaces</groupId>
                 <artifactId>jetty-spring-boot-starter</artifactId>
-                <version>3.2.2-SNAPSHOT</version>
+                <version>3.2.2</version>
             </dependency>
             <dependency>
                 <groupId>org.joinfaces</groupId>
                 <artifactId>undertow-spring-boot-starter</artifactId>
-                <version>3.2.2-SNAPSHOT</version>
+                <version>3.2.2</version>
             </dependency>
             <dependency>
                 <groupId>org.joinfaces</groupId>
                 <artifactId>mojarra-spring-boot-starter</artifactId>
-                <version>3.2.2-SNAPSHOT</version>
+                <version>3.2.2</version>
             </dependency>
             <dependency>
                 <groupId>org.joinfaces</groupId>
                 <artifactId>myfaces-spring-boot-starter</artifactId>
-                <version>3.2.2-SNAPSHOT</version>
+                <version>3.2.2</version>
             </dependency>
             <dependency>
                 <groupId>org.joinfaces</groupId>
                 <artifactId>omnifaces1-spring-boot-starter</artifactId>
-                <version>3.2.2-SNAPSHOT</version>
+                <version>3.2.2</version>
             </dependency>
             <dependency>
                 <groupId>org.joinfaces</groupId>
                 <artifactId>omnifaces3-spring-boot-starter</artifactId>
-                <version>3.2.2-SNAPSHOT</version>
+                <version>3.2.2</version>
             </dependency>
             <dependency>
                 <groupId>org.joinfaces</groupId>
                 <artifactId>jsf-spring-boot-starter</artifactId>
-                <version>3.2.2-SNAPSHOT</version>
+                <version>3.2.2</version>
             </dependency>
             <dependency>
                 <groupId>org.joinfaces</groupId>
                 <artifactId>primefaces-spring-boot-starter</artifactId>
-                <version>3.2.2-SNAPSHOT</version>
+                <version>3.2.2</version>
             </dependency>
             <dependency>
                 <groupId>org.joinfaces</groupId>
                 <artifactId>bootsfaces-spring-boot-starter</artifactId>
-                <version>3.2.2-SNAPSHOT</version>
+                <version>3.2.2</version>
             </dependency>
             <dependency>
                 <groupId>org.joinfaces</groupId>
                 <artifactId>butterfaces-spring-boot-starter</artifactId>
-                <version>3.2.2-SNAPSHOT</version>
+                <version>3.2.2</version>
             </dependency>
             <dependency>
                 <groupId>org.joinfaces</groupId>
                 <artifactId>angularfaces-spring-boot-starter</artifactId>
-                <version>3.2.2-SNAPSHOT</version>
+                <version>3.2.2</version>
             </dependency>
             <dependency>
                 <groupId>org.joinfaces</groupId>
                 <artifactId>richfaces-spring-boot-starter</artifactId>
-                <version>3.2.2-SNAPSHOT</version>
+                <version>3.2.2</version>
             </dependency>			
             <dependency>
                 <groupId>org.joinfaces</groupId>
                 <artifactId>weld-spring-boot-starter</artifactId>
-                <version>3.2.2-SNAPSHOT</version>
+                <version>3.2.2</version>
             </dependency>			
             <dependency>
                 <groupId>org.joinfaces</groupId>
                 <artifactId>rewrite-spring-boot-starter</artifactId>
-                <version>3.2.2-SNAPSHOT</version>
+                <version>3.2.2</version>
             </dependency>			
             <dependency>
                 <groupId>org.joinfaces</groupId>
                 <artifactId>adminfaces-spring-boot-starter</artifactId>
-                <version>3.2.2-SNAPSHOT</version>
+                <version>3.2.2</version>
             </dependency>			
         </dependencies>
     </dependencyManagement>
@@ -798,7 +798,7 @@
         <connection>scm:git:https://github.com/joinfaces/joinfaces.git</connection>
         <developerConnection>scm:git:https://github.com/joinfaces/joinfaces.git</developerConnection>
         <url>scm:git:https://github.com/joinfaces/joinfaces.git</url>
-        <tag>HEAD</tag>
+        <tag>joinfaces-build-3.2.2</tag>
     </scm>
 
     <organization>

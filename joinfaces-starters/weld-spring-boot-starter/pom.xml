@@ -4,7 +4,7 @@
     <parent>
         <groupId>org.joinfaces</groupId>
         <artifactId>joinfaces-starters</artifactId>
-        <version>3.2.2-SNAPSHOT</version>
+        <version>3.2.2</version>
     </parent>
     <artifactId>weld-spring-boot-starter</artifactId>
     <name>Weld Spring Boot Starter</name>
