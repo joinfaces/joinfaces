@@ -16,6 +16,8 @@
 
 package org.joinfaces.tomcat;
 
+import org.apache.catalina.WebResourceRoot;
+
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.boot.context.embedded.ConfigurableEmbeddedServletContainer;
 import org.springframework.boot.context.embedded.EmbeddedServletContainerCustomizer;
@@ -29,7 +31,7 @@ import org.springframework.context.annotation.Configuration;
  *
  * @author Marcelo Fernandes
  */
-@ConditionalOnClass(name = "org.apache.catalina.Context")
+@ConditionalOnClass(WebResourceRoot.class)
 @Configuration
 public class TomcatSpringBootAutoConfiguration implements EmbeddedServletContainerCustomizer {
 
