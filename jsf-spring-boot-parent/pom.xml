@@ -11,7 +11,7 @@
 
     <groupId>org.joinfaces</groupId>
     <artifactId>jsf-spring-boot-parent</artifactId>
-    <version>2.4.2-SNAPSHOT</version>
+    <version>2.4.3-SNAPSHOT</version>
     <packaging>pom</packaging>
 
     <properties>
@@ -22,7 +22,7 @@
 
         <lombok-maven-plugin.version>1.16.18.1</lombok-maven-plugin.version>        
         
-        <javax.faces.version>2.2.14</javax.faces.version>
+        <javax.faces.version>2.2.17</javax.faces.version>
         <myfaces.version>2.2.12</myfaces.version>
 
         <omnifaces.version>1.14</omnifaces.version>
@@ -231,138 +231,138 @@
             <dependency>
                 <groupId>org.joinfaces</groupId>
                 <artifactId>spring-security-jsf-taglib</artifactId>
-                <version>2.4.2-SNAPSHOT</version>
+                <version>2.4.3-SNAPSHOT</version>
             </dependency>
             <dependency>
                 <groupId>org.joinfaces</groupId>
                 <artifactId>jsf-spring-boot-test</artifactId>
-                <version>2.4.2-SNAPSHOT</version>
+                <version>2.4.3-SNAPSHOT</version>
             </dependency>
             <dependency>
                 <groupId>org.joinfaces</groupId>
                 <artifactId>jsf-spring-boot-autoconfigure</artifactId>
-                <version>2.4.2-SNAPSHOT</version>
+                <version>2.4.3-SNAPSHOT</version>
             </dependency>
             
             <dependency>
                 <groupId>org.joinfaces</groupId>
                 <artifactId>jsf-spring-boot-starter</artifactId>
-                <version>2.4.2-SNAPSHOT</version>
+                <version>2.4.3-SNAPSHOT</version>
             </dependency>
             <dependency>
                 <groupId>org.joinfaces</groupId>
                 <artifactId>jsf-bootsfaces-spring-boot-starter</artifactId>
-                <version>2.4.2-SNAPSHOT</version>
+                <version>2.4.3-SNAPSHOT</version>
             </dependency>
             <dependency>
                 <groupId>org.joinfaces</groupId>
                 <artifactId>jsf-butterfaces-spring-boot-starter</artifactId>
-                <version>2.4.2-SNAPSHOT</version>
+                <version>2.4.3-SNAPSHOT</version>
             </dependency>
             <dependency>
                 <groupId>org.joinfaces</groupId>
                 <artifactId>jsf-myfaces-spring-boot-starter</artifactId>
-                <version>2.4.2-SNAPSHOT</version>
+                <version>2.4.3-SNAPSHOT</version>
             </dependency>
             <dependency>
                 <groupId>org.joinfaces</groupId>
                 <artifactId>jsf-myfaces-bootsfaces-spring-boot-starter</artifactId>
-                <version>2.4.2-SNAPSHOT</version>
+                <version>2.4.3-SNAPSHOT</version>
             </dependency>
             <dependency>
                 <groupId>org.joinfaces</groupId>
                 <artifactId>jsf-myfaces-butterfaces-spring-boot-starter</artifactId>
-                <version>2.4.2-SNAPSHOT</version>
+                <version>2.4.3-SNAPSHOT</version>
             </dependency>
             <dependency>
                 <groupId>org.joinfaces</groupId>
                 <artifactId>jsf-jetty-spring-boot-starter</artifactId>
-                <version>2.4.2-SNAPSHOT</version>
+                <version>2.4.3-SNAPSHOT</version>
             </dependency>
             <dependency>
                 <groupId>org.joinfaces</groupId>
                 <artifactId>jsf-jetty-bootsfaces-spring-boot-starter</artifactId>
-                <version>2.4.2-SNAPSHOT</version>
+                <version>2.4.3-SNAPSHOT</version>
             </dependency>
             <dependency>
                 <groupId>org.joinfaces</groupId>
                 <artifactId>jsf-jetty-butterfaces-spring-boot-starter</artifactId>
-                <version>2.4.2-SNAPSHOT</version>
+                <version>2.4.3-SNAPSHOT</version>
             </dependency>
             <dependency>
                 <groupId>org.joinfaces</groupId>
                 <artifactId>jsf-jetty-myfaces-spring-boot-starter</artifactId>
-                <version>2.4.2-SNAPSHOT</version>
+                <version>2.4.3-SNAPSHOT</version>
             </dependency>
             <dependency>
                 <groupId>org.joinfaces</groupId>
                 <artifactId>jsf-jetty-myfaces-bootsfaces-spring-boot-starter</artifactId>
-                <version>2.4.2-SNAPSHOT</version>
+                <version>2.4.3-SNAPSHOT</version>
             </dependency>
             <dependency>
                 <groupId>org.joinfaces</groupId>
                 <artifactId>jsf-jetty-myfaces-butterfaces-spring-boot-starter</artifactId>
-                <version>2.4.2-SNAPSHOT</version>
+                <version>2.4.3-SNAPSHOT</version>
             </dependency>
             <dependency>
                 <groupId>org.joinfaces</groupId>
                 <artifactId>jsf-undertow-spring-boot-starter</artifactId>
-                <version>2.4.2-SNAPSHOT</version>
+                <version>2.4.3-SNAPSHOT</version>
             </dependency>
             <dependency>
                 <groupId>org.joinfaces</groupId>
                 <artifactId>jsf-undertow-bootsfaces-spring-boot-starter</artifactId>
-                <version>2.4.2-SNAPSHOT</version>
+                <version>2.4.3-SNAPSHOT</version>
             </dependency>
             <dependency>
                 <groupId>org.joinfaces</groupId>
                 <artifactId>jsf-undertow-butterfaces-spring-boot-starter</artifactId>
-                <version>2.4.2-SNAPSHOT</version>
+                <version>2.4.3-SNAPSHOT</version>
             </dependency>
             <dependency>
                 <groupId>org.joinfaces</groupId>
                 <artifactId>jsf-undertow-myfaces-spring-boot-starter</artifactId>
-                <version>2.4.2-SNAPSHOT</version>
+                <version>2.4.3-SNAPSHOT</version>
             </dependency>
             <dependency>
                 <groupId>org.joinfaces</groupId>
                 <artifactId>jsf-undertow-myfaces-bootsfaces-spring-boot-starter</artifactId>
-                <version>2.4.2-SNAPSHOT</version>
+                <version>2.4.3-SNAPSHOT</version>
             </dependency>
             <dependency>
                 <groupId>org.joinfaces</groupId>
                 <artifactId>jsf-undertow-myfaces-butterfaces-spring-boot-starter</artifactId>
-                <version>2.4.2-SNAPSHOT</version>
+                <version>2.4.3-SNAPSHOT</version>
             </dependency>
             <dependency>
                 <groupId>org.joinfaces</groupId>
                 <artifactId>jsf-richfaces-spring-boot-starter</artifactId>
-                <version>2.4.2-SNAPSHOT</version>
+                <version>2.4.3-SNAPSHOT</version>
             </dependency>
             <dependency>
                 <groupId>org.joinfaces</groupId>
                 <artifactId>jsf-jetty-richfaces-spring-boot-starter</artifactId>
-                <version>2.4.2-SNAPSHOT</version>
+                <version>2.4.3-SNAPSHOT</version>
             </dependency>
             <dependency>
                 <groupId>org.joinfaces</groupId>
                 <artifactId>jsf-myfaces-richfaces-spring-boot-starter</artifactId>
-                <version>2.4.2-SNAPSHOT</version>
+                <version>2.4.3-SNAPSHOT</version>
             </dependency>
             <dependency>
                 <groupId>org.joinfaces</groupId>
                 <artifactId>jsf-undertow-richfaces-spring-boot-starter</artifactId>
-                <version>2.4.2-SNAPSHOT</version>
+                <version>2.4.3-SNAPSHOT</version>
             </dependency>
             <dependency>
                 <groupId>org.joinfaces</groupId>
                 <artifactId>jsf-jetty-myfaces-richfaces-spring-boot-starter</artifactId>
-                <version>2.4.2-SNAPSHOT</version>
+                <version>2.4.3-SNAPSHOT</version>
             </dependency>
             <dependency>
                 <groupId>org.joinfaces</groupId>
                 <artifactId>jsf-undertow-myfaces-richfaces-spring-boot-starter</artifactId>
-                <version>2.4.2-SNAPSHOT</version>
+                <version>2.4.3-SNAPSHOT</version>
             </dependency>
             <dependency>
                 <groupId>org.richfaces</groupId>
