@@ -2,7 +2,9 @@ dist: trusty
 language: java
 jdk:
   - oraclejdk8
-  - oraclejdk9
+  - openjdk8
+  - oraclejdk10
+  - openjdk10
 cache:
   directories:
   - $HOME/.m2
@@ -15,8 +17,7 @@ env:
 install: ./mvnw -B clean validate
 
 script:
-  - ./mvnw -B -Pcheck-duplicate,check-checkstyle,check-cycles,check-cpd,check-pmd,check-findbugs -DskipTests=true install
-  - ./mvnw -B verify
+  - ./mvnw -B -Pcheck-duplicate,check-checkstyle,check-cycles,check-cpd,check-pmd,check-findbugs verify
 
 after_success:
   - bash <(curl -s https://codecov.io/bash)

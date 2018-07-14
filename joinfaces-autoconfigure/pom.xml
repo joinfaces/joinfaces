@@ -5,7 +5,7 @@
     <parent>
         <groupId>org.joinfaces</groupId>
         <artifactId>joinfaces-parent</artifactId>
-        <version>3.2.1-SNAPSHOT</version>
+        <version>3.2.4-SNAPSHOT</version>
         <relativePath>../joinfaces-parent</relativePath>
     </parent>
 
@@ -21,13 +21,6 @@
         <!-- ignore javax.annotation classes that exists at tomcat-embed-core -->
         <duplicate.ignoredClassPattern>(javax.annotation.*$|javax.faces.*$|javax.persistence.(PersistenceContext|PersistenceContextType|PersistenceContexts|PersistenceProperty|PersistenceUnit|PersistenceUnits|SynchronizationType)|(module-info))</duplicate.ignoredClassPattern>
         <duplicate.ignoredResourcePattern>(javax/faces/Messages.*\.properties)|(about.html)</duplicate.ignoredResourcePattern>
-
-        <jacoco.totalLineRate>0.95</jacoco.totalLineRate>
-        <jacoco.totalBranchRate>0.88</jacoco.totalBranchRate>
-        <jacoco.packageLineRate>0.50</jacoco.packageLineRate>
-        <jacoco.packageBranchRate>0.33</jacoco.packageBranchRate>
-        <jacoco.lineRate>0.33</jacoco.lineRate>
-        <jacoco.branchRate>0.33</jacoco.branchRate>
     </properties>
 
     <build>

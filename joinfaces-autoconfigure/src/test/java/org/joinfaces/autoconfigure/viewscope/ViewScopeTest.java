@@ -16,7 +16,6 @@
 
 package org.joinfaces.autoconfigure.viewscope;
 
-import java.util.Collections;
 import java.util.concurrent.atomic.AtomicInteger;
 
 import javax.faces.component.UIViewRoot;
@@ -27,29 +26,23 @@ import org.joinfaces.test.mock.JsfIT;
 import org.junit.Before;
 import org.junit.Test;
 
-import org.springframework.beans.factory.BeanFactory;
 import org.springframework.beans.factory.ObjectFactory;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.BDDMockito.doCallRealMethod;
 import static org.mockito.BDDMockito.mock;
-import static org.mockito.BDDMockito.verify;
 import static org.mockito.BDDMockito.when;
 
 public class ViewScopeTest extends JsfIT {
 
 	private static final String KEY = "key";
 
-	private BeanFactory beanFactory;
-
 	private ViewScope viewScope;
 
 	@Before
 	public void setUp() {
-		this.beanFactory = mock(BeanFactory.class);
-		this.viewScope = new ViewScope(this.beanFactory);
+		this.viewScope = new ViewScope();
 	}
 
 	@Test
@@ -80,26 +73,31 @@ public class ViewScopeTest extends JsfIT {
 		assertThat(this.viewScope.resolveContextualObject(KEY)).isNull();
 	}
 
+
 	@Test
 	public void testRegisterDestructionCallback() {
-		SessionHelper sessionHelper = mock(SessionHelper.class);
-		when(this.beanFactory.getBean(SessionHelper.class)).thenReturn(sessionHelper);
-
 		UIViewRoot viewRoot = FacesContext.getCurrentInstance().getViewRoot();
 		doCallRealMethod().when(viewRoot).subscribeToViewEvent(any(), any());
 		doCallRealMethod().when(viewRoot).unsubscribeFromViewEvent(any(), any());
 		when(viewRoot.getViewListenersForEventClass(any())).thenCallRealMethod();
 
-		this.viewScope.registerDestructionCallback(KEY, () -> { });
+		this.viewScope.registerDestructionCallback(KEY, () -> {
+		});
 
-		verify(viewRoot)
-				.subscribeToViewEvent(eq(PreDestroyViewMapEvent.class), any());
-
-		when(viewRoot.getListenersForEventClass(PreDestroyViewMapEvent.class))
-				.thenReturn(Collections.singletonList(new DestructionCallbackWrapper(KEY, () -> { })));
 		this.viewScope.remove(KEY);
+	}
 
-		verify(viewRoot)
-				.unsubscribeFromViewEvent(eq(PreDestroyViewMapEvent.class), any());
+	@Test
+	public void processEvent() {
+		PreDestroyViewMapEvent event = mock(PreDestroyViewMapEvent.class);
+		UIViewRoot viewRoot = FacesContext.getCurrentInstance().getViewRoot();
+		when(event.getSource()).thenReturn(viewRoot);
+		this.viewScope.getPreDestroyViewMapListener().processEvent(event);
+	}
+
+	@Test
+	public void isListenerForSource() {
+		assertThat(this.viewScope.getPreDestroyViewMapListener().isListenerForSource(mock(UIViewRoot.class))).isTrue();
+		assertThat(this.viewScope.getPreDestroyViewMapListener().isListenerForSource(new Object())).isFalse();
 	}
 }

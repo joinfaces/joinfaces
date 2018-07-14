@@ -5,24 +5,25 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>2.0.1.RELEASE</version>
+        <version>2.0.3.RELEASE</version>
         <relativePath /> <!-- lookup parent from repository -->
     </parent>
     
     <groupId>org.joinfaces</groupId>
     <artifactId>joinfaces-dependencies</artifactId>
-    <version>3.2.1-SNAPSHOT</version>
+    <version>3.2.4-SNAPSHOT</version>
     <packaging>pom</packaging>
     <name>JoinFaces Dependencies</name>
 
     <properties>
         <main.basedir>..</main.basedir>
 
-        <lombok-maven-plugin.version>1.16.20.0</lombok-maven-plugin.version>
+        <lombok-maven-plugin.version>1.18.0.0</lombok-maven-plugin.version>
+        <lombok.version>1.18.0</lombok.version>
 
         <javax.faces-api.version>2.3</javax.faces-api.version>
-        <mojarra.version>2.3.4</mojarra.version>
-        <myfaces.version>2.3.0</myfaces.version>
+        <mojarra.version>2.3.5</mojarra.version>
+        <myfaces.version>2.3.1</myfaces.version>
 
         <omnifaces1.version>1.14.1</omnifaces1.version>
         <omnifaces3.version>3.1</omnifaces3.version>
@@ -38,7 +39,7 @@
         <richfaces.version>4.5.17.Final</richfaces.version>
 
         <cdi.version>2.0</cdi.version>
-        <weld.version>3.0.3.Final</weld.version>
+        <weld.version>3.0.4.Final</weld.version>
         <reflections.version>0.9.11</reflections.version>
 
         <jboss-jsp-api_2.3_spec.version>1.0.3.Final</jboss-jsp-api_2.3_spec.version>
@@ -52,7 +53,7 @@
         <activation.version>1.1.1</activation.version>
         <jaxb.version>2.3.0</jaxb.version>
 
-        <adminfaces.version>1.0.0-RC14</adminfaces.version>
+        <adminfaces.version>1.0.0-RC15</adminfaces.version>
         <hibernate-jpa-2.1-api.version>1.0.2.Final</hibernate-jpa-2.1-api.version>
         <javax.ejb-api.version>3.2.2</javax.ejb-api.version>
 
@@ -76,7 +77,7 @@
         <maven-enforcer-plugin.version>1.4.1</maven-enforcer-plugin.version>
         <no-package-cycles-enforcer-rule.version>1.0.8</no-package-cycles-enforcer-rule.version>
         <maven-checkstyle-plugin.version>3.0.0</maven-checkstyle-plugin.version>
-        <checkstyle.version>8.8</checkstyle.version>
+        <checkstyle.version>8.10</checkstyle.version>
         <checkstyle.configLocation>${checkstyle.dir}/checkstyle.xml</checkstyle.configLocation>
         <checkstyle.suppressionsLocation>${checkstyle.dir}/checkstyle-suppressions.xml</checkstyle.suppressionsLocation>
         <checkstyle.headerLocation>${checkstyle.dir}/checkstyle-header.txt</checkstyle.headerLocation>
@@ -85,13 +86,7 @@
         <duplicate.ignoredResourcePattern>about.html</duplicate.ignoredResourcePattern>
         <duplicate.ignoredClassPattern>none</duplicate.ignoredClassPattern>
 
-        <jacoco-maven-plugin.version>0.8.0</jacoco-maven-plugin.version>
-        <jacoco.totalBranchRate>1.00</jacoco.totalBranchRate>
-        <jacoco.totalLineRate>1.00</jacoco.totalLineRate>
-        <jacoco.packageBranchRate>1.00</jacoco.packageBranchRate>
-        <jacoco.packageLineRate>1.00</jacoco.packageLineRate>
-        <jacoco.branchRate>1.00</jacoco.branchRate>
-        <jacoco.lineRate>1.00</jacoco.lineRate>
+        <jacoco-maven-plugin.version>0.8.1</jacoco-maven-plugin.version>
 
         <argLine>-Xms32m -Xmx256m</argLine>
         <findbugs.jvmArgs>-Xms32m -Xmx256m</findbugs.jvmArgs>
@@ -368,98 +363,98 @@
             <dependency>
                 <groupId>org.joinfaces</groupId>
                 <artifactId>spring-security-jsf-taglib</artifactId>
-                <version>3.2.1-SNAPSHOT</version>
+                <version>3.2.4-SNAPSHOT</version>
             </dependency>
             <dependency>
                 <groupId>org.joinfaces</groupId>
                 <artifactId>joinfaces-test</artifactId>
-                <version>3.2.1-SNAPSHOT</version>
+                <version>3.2.4-SNAPSHOT</version>
             </dependency>
             <dependency>
                 <groupId>org.joinfaces</groupId>
                 <artifactId>joinfaces-autoconfigure</artifactId>
-                <version>3.2.1-SNAPSHOT</version>
+                <version>3.2.4-SNAPSHOT</version>
             </dependency>
 
             <dependency>
                 <groupId>org.joinfaces</groupId>
                 <artifactId>tomcat-spring-boot-starter</artifactId>
-                <version>3.2.1-SNAPSHOT</version>
+                <version>3.2.4-SNAPSHOT</version>
             </dependency>
             <dependency>
                 <groupId>org.joinfaces</groupId>
                 <artifactId>jetty-spring-boot-starter</artifactId>
-                <version>3.2.1-SNAPSHOT</version>
+                <version>3.2.4-SNAPSHOT</version>
             </dependency>
             <dependency>
                 <groupId>org.joinfaces</groupId>
                 <artifactId>undertow-spring-boot-starter</artifactId>
-                <version>3.2.1-SNAPSHOT</version>
+                <version>3.2.4-SNAPSHOT</version>
             </dependency>
             <dependency>
                 <groupId>org.joinfaces</groupId>
                 <artifactId>mojarra-spring-boot-starter</artifactId>
-                <version>3.2.1-SNAPSHOT</version>
+                <version>3.2.4-SNAPSHOT</version>
             </dependency>
             <dependency>
                 <groupId>org.joinfaces</groupId>
                 <artifactId>myfaces-spring-boot-starter</artifactId>
-                <version>3.2.1-SNAPSHOT</version>
+                <version>3.2.4-SNAPSHOT</version>
             </dependency>
             <dependency>
                 <groupId>org.joinfaces</groupId>
                 <artifactId>omnifaces1-spring-boot-starter</artifactId>
-                <version>3.2.1-SNAPSHOT</version>
+                <version>3.2.4-SNAPSHOT</version>
             </dependency>
             <dependency>
                 <groupId>org.joinfaces</groupId>
                 <artifactId>omnifaces3-spring-boot-starter</artifactId>
-                <version>3.2.1-SNAPSHOT</version>
+                <version>3.2.4-SNAPSHOT</version>
             </dependency>
             <dependency>
                 <groupId>org.joinfaces</groupId>
                 <artifactId>jsf-spring-boot-starter</artifactId>
-                <version>3.2.1-SNAPSHOT</version>
+                <version>3.2.4-SNAPSHOT</version>
             </dependency>
             <dependency>
                 <groupId>org.joinfaces</groupId>
                 <artifactId>primefaces-spring-boot-starter</artifactId>
-                <version>3.2.1-SNAPSHOT</version>
+                <version>3.2.4-SNAPSHOT</version>
             </dependency>
             <dependency>
                 <groupId>org.joinfaces</groupId>
                 <artifactId>bootsfaces-spring-boot-starter</artifactId>
-                <version>3.2.1-SNAPSHOT</version>
+                <version>3.2.4-SNAPSHOT</version>
             </dependency>
             <dependency>
                 <groupId>org.joinfaces</groupId>
                 <artifactId>butterfaces-spring-boot-starter</artifactId>
-                <version>3.2.1-SNAPSHOT</version>
+                <version>3.2.4-SNAPSHOT</version>
             </dependency>
             <dependency>
                 <groupId>org.joinfaces</groupId>
                 <artifactId>angularfaces-spring-boot-starter</artifactId>
-                <version>3.2.1-SNAPSHOT</version>
+                <version>3.2.4-SNAPSHOT</version>
             </dependency>
             <dependency>
                 <groupId>org.joinfaces</groupId>
                 <artifactId>richfaces-spring-boot-starter</artifactId>
-                <version>3.2.1-SNAPSHOT</version>
+                <version>3.2.4-SNAPSHOT</version>
             </dependency>			
             <dependency>
                 <groupId>org.joinfaces</groupId>
                 <artifactId>weld-spring-boot-starter</artifactId>
-                <version>3.2.1-SNAPSHOT</version>
+                <version>3.2.4-SNAPSHOT</version>
             </dependency>			
             <dependency>
                 <groupId>org.joinfaces</groupId>
                 <artifactId>rewrite-spring-boot-starter</artifactId>
-                <version>3.2.1-SNAPSHOT</version>
+                <version>3.2.4-SNAPSHOT</version>
             </dependency>			
             <dependency>
                 <groupId>org.joinfaces</groupId>
                 <artifactId>adminfaces-spring-boot-starter</artifactId>
-                <version>3.2.1-SNAPSHOT</version>
+                <version>3.2.4-SNAPSHOT</version>
             </dependency>			
         </dependencies>
     </dependencyManagement>
@@ -628,61 +623,6 @@
                             <goals>
                                 <goal>report</goal>
                             </goals>
-                        </execution>
-                        <execution>
-                            <id>jacoco-check</id>
-                            <goals>
-                                <goal>check</goal>
-                            </goals>
-                            <configuration>
-                                <rules>
-                                    <rule>
-                                        <element>BUNDLE</element>
-                                        <limits>
-                                            <limit>
-                                                <counter>LINE</counter>
-                                                <value>COVEREDRATIO</value>
-                                                <minimum>${jacoco.totalLineRate}</minimum>
-                                            </limit>
-                                            <limit>
-                                                <counter>BRANCH</counter>
-                                                <value>COVEREDRATIO</value>
-                                                <minimum>${jacoco.totalBranchRate}</minimum>
-                                            </limit>
-                                        </limits>
-                                    </rule>
-                                    <rule>
-                                        <element>PACKAGE</element>
-                                        <limits>
-                                            <limit>
-                                                <counter>LINE</counter>
-                                                <value>COVEREDRATIO</value>
-                                                <minimum>${jacoco.packageLineRate}</minimum>
-                                            </limit>
-                                            <limit>
-                                                <counter>BRANCH</counter>
-                                                <value>COVEREDRATIO</value>
-                                                <minimum>${jacoco.packageBranchRate}</minimum>
-                                            </limit>
-                                        </limits>
-                                    </rule>
-                                    <rule>
-                                        <element>CLASS</element>
-                                        <limits>
-                                            <limit>
-                                                <counter>LINE</counter>
-                                                <value>COVEREDRATIO</value>
-                                                <minimum>${jacoco.lineRate}</minimum>
-                                            </limit>
-                                            <limit>
-                                                <counter>BRANCH</counter>
-                                                <value>COVEREDRATIO</value>
-                                                <minimum>${jacoco.branchRate}</minimum>
-                                            </limit>
-                                        </limits>
-                                    </rule>
-                                </rules>
-                            </configuration>
                         </execution>
                     </executions>
                 </plugin>
