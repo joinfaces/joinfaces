@@ -18,6 +18,7 @@ package org.joinfaces.autoconfigure.viewscope;
 
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 
 import javax.faces.component.UIViewRoot;
 import javax.faces.context.FacesContext;
@@ -69,9 +70,16 @@ public class ViewScope implements Scope {
 
 	@Override
 	public Object get(String name, ObjectFactory objectFactory) {
-		return getViewRoot()
-				.getViewMap()
-				.computeIfAbsent(name, k -> objectFactory.getObject());
+		Map<String, Object> viewMap = getViewRoot().getViewMap();
+
+		Object bean = viewMap.get(name);
+
+		if (bean == null) {
+			bean = objectFactory.getObject();
+			viewMap.put(name, bean);
+		}
+
+		return bean;
 	}
 
 	@Override
