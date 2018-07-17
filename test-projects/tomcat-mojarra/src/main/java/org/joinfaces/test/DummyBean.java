@@ -18,6 +18,9 @@ package org.joinfaces.test;
 
 import java.time.LocalDateTime;
 
+import javax.annotation.PreDestroy;
+import javax.faces.view.ViewScoped;
+
 import org.springframework.stereotype.Component;
 
 /**
@@ -26,9 +29,15 @@ import org.springframework.stereotype.Component;
  * @author Lars Grefer
  */
 @Component("dummy")
+@ViewScoped
 public class DummyBean {
 
 	public String getText() {
 		return "Hello from Spring: " + LocalDateTime.now().toString();
+	}
+
+	@PreDestroy
+	public void destroy() {
+
 	}
 }
