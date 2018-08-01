@@ -53,7 +53,7 @@
         <activation.version>1.1.1</activation.version>
         <jaxb.version>2.3.0</jaxb.version>
 
-        <adminfaces.version>1.0.0-RC15</adminfaces.version>
+        <adminfaces.version>1.0.0-RC18</adminfaces.version>
         <hibernate-jpa-2.1-api.version>1.0.2.Final</hibernate-jpa-2.1-api.version>
         <javax.ejb-api.version>3.2.2</javax.ejb-api.version>
 
