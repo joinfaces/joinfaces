@@ -91,7 +91,7 @@
         <argLine>-Xms32m -Xmx256m</argLine>
         <findbugs.jvmArgs>-Xms32m -Xmx256m</findbugs.jvmArgs>
 
-        <maven-project-info-reports-plugin.version>2.9</maven-project-info-reports-plugin.version>
+        <maven-project-info-reports-plugin.version>3.0.0</maven-project-info-reports-plugin.version>
         <maven-jxr-plugin.version>2.5</maven-jxr-plugin.version>
         <maven-changelog-plugin.version>2.3</maven-changelog-plugin.version>
     </properties>
