@@ -5,7 +5,7 @@
     <parent>
         <groupId>org.joinfaces</groupId>
         <artifactId>joinfaces-starters</artifactId>
-        <version>3.2.4-SNAPSHOT</version>
+        <version>3.2.4</version>
     </parent>
     
     <artifactId>jetty-spring-boot-starter</artifactId>

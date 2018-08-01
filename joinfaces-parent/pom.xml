@@ -5,12 +5,12 @@
     <parent>
         <groupId>org.joinfaces</groupId>
         <artifactId>joinfaces-dependencies</artifactId>
-        <version>3.2.4-SNAPSHOT</version>
+        <version>3.2.4</version>
         <relativePath>../joinfaces-dependencies</relativePath>
     </parent>
 
     <artifactId>joinfaces-parent</artifactId>
-    <version>3.2.4-SNAPSHOT</version>
+    <version>3.2.4</version>
     <packaging>pom</packaging>
     <name>JoinFaces Parent</name>
     <description>JoinFaces configuration for reports and quality checks: pmd, cpd, checkstyle, findbugs, cycles, duplicate.</description>
