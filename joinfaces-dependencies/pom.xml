@@ -26,7 +26,7 @@
         <myfaces.version>2.3.1</myfaces.version>
 
         <omnifaces1.version>1.14.1</omnifaces1.version>
-        <omnifaces3.version>3.1</omnifaces3.version>
+        <omnifaces3.version>3.2</omnifaces3.version>
 
         <primefaces.version>6.2</primefaces.version>
         <primefaces-extensions.version>6.2.4</primefaces-extensions.version>
