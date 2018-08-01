@@ -39,7 +39,7 @@
         <richfaces.version>4.5.17.Final</richfaces.version>
 
         <cdi.version>2.0</cdi.version>
-        <weld.version>3.0.4.Final</weld.version>
+        <weld.version>3.0.5.Final</weld.version>
         <reflections.version>0.9.11</reflections.version>
 
         <jboss-jsp-api_2.3_spec.version>1.0.3.Final</jboss-jsp-api_2.3_spec.version>
