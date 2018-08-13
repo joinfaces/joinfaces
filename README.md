@@ -36,6 +36,7 @@ standard (javax.faces) | jsf | `jsf.project-stage=development`
 [primefaces](http://primefaces.org/) | jsf.primefaces | `jsf.primefaces.theme=overcast`
 [bootsfaces](http://bootsfaces.net/) | jsf.bootsfaces | `jsf.bootsfaces.usetheme=true`
 [butterfaces](http://butterfaces.org/) | jsf.butterfaces | `jsf.butterfaces.provide-j-query=true`
+[adminfaces](http://adminfaces.github.io/site/) | jsf.adminfaces | `jsf.adminfaces.skin=skin-blue`
 [richfaces](https://github.com/richfaces/richfaces) | jsf.richfaces | `jsf.richfaces.resource-default-ttl=86400`
 [omnifaces](http://omnifaces.org/) | jsf.omnifaces | `jsf.omnifaces.faces-views-enabled=true`
 [angularfaces](http://angularfaces.net/) | jsf.angularfaces | `jsf.angularfaces.add-labels=true`
