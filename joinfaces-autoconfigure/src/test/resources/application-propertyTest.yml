@@ -325,6 +325,42 @@ jsf:
         ascending: glyphicon glyphicon-chevron-down
         descending: glyphicon glyphicon-chevron-up
         none: glyphicon glyphicon-chevron-right
+        
+  # adminfaces namespace
+  adminfaces:
+    loginPage: login
+    indexPage: index
+    dateFormat: dd-mm-yyyy
+    templatePath: my-template-path
+    breadcrumbSize: 50
+    renderMessages: true
+    renderAjaxStatus: true
+    disableFilter: true
+    renderBreadCrumb: true
+    enableSlideMenu: true
+    enableRipple: true
+    rippleElements: .ripplelink,button.ui-button
+    skin: skin-blue
+    autoShowNavbar: true
+    ignoredResources: /rest, /pages/car-list
+    loadingImage: ajaxloadingbar.png
+    extensionLessUrls: true
+    renderControlSidebar: true
+    rippleMobileOnly: true
+    renderMenuSearch: true
+    autoHideMessages: true
+    messagesHideTimeout: 2200
+    controlSidebar:
+        showOnMobile: true
+        leftMenuTemplate: true
+        fixedLayout: true
+        boxedLayout: true
+        sidebarCollapsed: true
+        expandOnHover: true
+        fixed: true
+        darkSkin: true   
+  
+  # richafaces namespace
   richfaces:
     longValueWithDefault: -100
     intValue: -1
