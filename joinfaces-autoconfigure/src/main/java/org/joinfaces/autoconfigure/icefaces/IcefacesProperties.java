@@ -235,7 +235,7 @@ public class IcefacesProperties {
 
 	/**
 	 * Setting org.icefaces.sessionExpiredRedirectURI to a valid URI tells ICEfaces that when the user session expires, that the client is to be redirected to the specified page.
-	 * When using ICEpush, or |@code <icecore:refresh>}, the user will be redirected automatically on session expiry.
+	 * When using ICEpush, or {@code <icecore:refresh>}, the user will be redirected automatically on session expiry.
 	 * Otherwise, they will be redirected on the next request after session expiry.
 	 *
 	 * @since ICEfaces 2.0
