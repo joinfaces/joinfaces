@@ -123,7 +123,6 @@ public class InitParameterServletContextConfigurer implements ServletContextInit
 	}
 
 	private String convertToString(Field field, Object value, ServletContextInitParameter servletContextInitParameter) {
-
 		if (Collection.class.isAssignableFrom(field.getType())) {
 			Collection<?> collection = (Collection<?>) value;
 
