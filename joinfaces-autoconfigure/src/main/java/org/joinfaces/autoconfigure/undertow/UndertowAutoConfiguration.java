@@ -24,6 +24,9 @@ import io.undertow.Undertow;
 import io.undertow.server.handlers.resource.ClassPathResourceManager;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.icefaces.impl.application.SessionExpiredListener;
+import org.icefaces.impl.application.WindowScopeManager;
+import org.icefaces.impl.push.servlet.ICEpushResourceHandlerLifecycle;
 
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnWebApplication;
@@ -78,6 +81,20 @@ public class UndertowAutoConfiguration {
 			return factory -> factory.addInitializers(servletContext ->
 					servletContext.addListener(ConfigureListener.class)
 			);
+		}
+	}
+
+	@Configuration
+	@ConditionalOnClass(ICEpushResourceHandlerLifecycle.class)
+	public static class UndertowIcefacesAutoConfiguration {
+
+		@Bean
+		public WebServerFactoryCustomizer<UndertowServletWebServerFactory> icefacesUndertowFactoryCustomizer() {
+			return factory -> factory.addInitializers(servletContext -> {
+				servletContext.addListener(ICEpushResourceHandlerLifecycle.class);
+				servletContext.addListener(SessionExpiredListener.class);
+				servletContext.addListener(WindowScopeManager.SetupTimer.class);
+			});
 		}
 	}
 }

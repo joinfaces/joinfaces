@@ -191,7 +191,11 @@
         <dependency>
             <groupId>org.icefaces</groupId>
             <artifactId>icefaces</artifactId>
-            <version>4.2.0</version>
+            <optional>true</optional>
+        </dependency>
+        <dependency>
+            <groupId>org.icefaces</groupId>
+            <artifactId>icefaces-ace</artifactId>
             <optional>true</optional>
         </dependency>
         <dependency>

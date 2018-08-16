@@ -15,6 +15,13 @@
     <name>JoinFaces Parent</name>
     <description>JoinFaces configuration for reports and quality checks: pmd, cpd, checkstyle, findbugs, cycles, duplicate.</description>
 
+    <repositories>
+        <repository>
+            <id>icesoft-releases</id>
+            <url>http://anonsvn.icesoft.org/repo/maven2/releases/</url>
+        </repository>
+    </repositories>
+
     <build>
         <plugins>
             <plugin>
