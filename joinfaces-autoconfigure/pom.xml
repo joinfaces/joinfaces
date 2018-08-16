@@ -189,6 +189,12 @@
             <optional>true</optional>
         </dependency>
         <dependency>
+            <groupId>org.icefaces</groupId>
+            <artifactId>icefaces</artifactId>
+            <version>4.2.0</version>
+            <optional>true</optional>
+        </dependency>
+        <dependency>
             <groupId>net.bootsfaces</groupId>
             <artifactId>bootsfaces</artifactId>
             <optional>true</optional>
