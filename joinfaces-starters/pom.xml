@@ -38,6 +38,7 @@
         <module>weld-spring-boot-starter</module>
         <module>rewrite-spring-boot-starter</module>
         <module>adminfaces-spring-boot-starter</module>
+        <module>icefaces-spring-boot-starter</module>
     </modules>
 
     <build>
