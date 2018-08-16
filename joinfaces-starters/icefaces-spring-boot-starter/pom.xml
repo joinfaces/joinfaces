@@ -26,7 +26,6 @@
         <dependency>
             <groupId>org.icefaces</groupId>
             <artifactId>icefaces</artifactId>
-            <version>4.2.0</version>
         </dependency>
     </dependencies>
 </project>
