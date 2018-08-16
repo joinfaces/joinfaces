@@ -27,7 +27,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 /**
- * Spring Boot auto configuration for ICEfaces
+ * Spring Boot auto configuration for ICEfaces.
  *
  * @author Lars Grefer
  */

@@ -196,6 +196,8 @@ public class IcefacesProperties {
 	private Boolean lazyWindowScope;
 
 	/**
+	 * The org.icefaces.mandatoryResourceConfiguration context-parameter may be set to one of three values: none, all, or a space delimited list of components.
+	 *
 	 * @since ICEfaces 2.0
 	 */
 	@ServletContextInitParameter(value = "org.icefaces.mandatoryResourceConfiguration", listSeparator = " ")
@@ -233,7 +235,7 @@ public class IcefacesProperties {
 
 	/**
 	 * Setting org.icefaces.sessionExpiredRedirectURI to a valid URI tells ICEfaces that when the user session expires, that the client is to be redirected to the specified page.
-	 * When using ICEpush, or <icecore:refresh>, the user will be redirected automatically on session expiry.
+	 * When using ICEpush, or |@code <icecore:refresh>}, the user will be redirected automatically on session expiry.
 	 * Otherwise, they will be redirected on the next request after session expiry.
 	 *
 	 * @since ICEfaces 2.0
