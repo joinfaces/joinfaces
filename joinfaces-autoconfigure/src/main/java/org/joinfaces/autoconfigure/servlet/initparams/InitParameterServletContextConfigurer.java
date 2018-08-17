@@ -32,6 +32,7 @@ import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
 
 import org.springframework.aop.support.AopUtils;
+import org.springframework.boot.context.properties.NestedConfigurationProperty;
 import org.springframework.boot.web.servlet.ServletContextInitializer;
 import org.springframework.core.Ordered;
 import org.springframework.core.annotation.AnnotatedElementUtils;
@@ -43,7 +44,6 @@ import org.springframework.util.ReflectionUtils;
  *
  * @author Lars Grefer
  * @see ServletContextInitParameter
- * @see NestedProperty
  */
 @Slf4j
 public class InitParameterServletContextConfigurer implements ServletContextInitializer, Ordered {
@@ -76,12 +76,12 @@ public class InitParameterServletContextConfigurer implements ServletContextInit
 		ReflectionUtils.doWithFields(
 				type,
 				field -> handlePropertiesField(properties, field),
-				field -> AnnotatedElementUtils.isAnnotated(field, ServletContextInitParameter.class) || AnnotatedElementUtils.isAnnotated(field, NestedProperty.class));
+				field -> AnnotatedElementUtils.isAnnotated(field, ServletContextInitParameter.class) || AnnotatedElementUtils.isAnnotated(field, NestedConfigurationProperty.class));
 
 	}
 
 	private void handlePropertiesField(Object properties, Field field) {
-		if (AnnotatedElementUtils.isAnnotated(field, NestedProperty.class)) {
+		if (AnnotatedElementUtils.isAnnotated(field, NestedConfigurationProperty.class)) {
 
 			ReflectionUtils.makeAccessible(field);
 			Object nestedProperties = ReflectionUtils.getField(field, properties);

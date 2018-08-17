@@ -29,6 +29,7 @@ import lombok.Setter;
 import org.junit.Before;
 import org.junit.Test;
 
+import org.springframework.boot.context.properties.NestedConfigurationProperty;
 import org.springframework.mock.web.MockServletContext;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -80,7 +81,7 @@ public class InitParameterServletContextConfigurerIT {
 	}
 
 	@Test
-	public void testNestedProperty() {
+	public void testNestedConfigurationProperty() {
 		assertThat(this.servletContext.getInitParameter("test.inner.STRING")).isEqualTo("bar");
 	}
 
@@ -124,10 +125,10 @@ public class InitParameterServletContextConfigurerIT {
 		@ServletContextInitParameter("test.NULL")
 		private Object nullObject = null;
 
-		@NestedProperty
+		@NestedConfigurationProperty
 		private InnerProperties innerProperties = new InnerProperties();
 
-		@NestedProperty
+		@NestedConfigurationProperty
 		private InnerProperties nullInnerProperties = null;
 
 		@ServletContextInitParameter(value = "test.CLASS_LIST", listSeparator = ";")
@@ -165,7 +166,7 @@ public class InitParameterServletContextConfigurerIT {
 		@ServletContextInitParameter("test.superString")
 		private String superString = "barFoo";
 
-		@NestedProperty
+		@NestedConfigurationProperty
 		private TestProperties.InnerProperties innerProperties = new TestProperties.InnerProperties();
 
 		@Getter

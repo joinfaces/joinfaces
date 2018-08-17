@@ -18,11 +18,11 @@ package org.joinfaces.autoconfigure.butterfaces;
 
 import lombok.Data;
 import org.butterfaces.resolver.WebXmlParameters;
-import org.joinfaces.autoconfigure.servlet.initparams.NestedProperty;
 import org.joinfaces.autoconfigure.servlet.initparams.ServletContextInitParameter;
 import org.joinfaces.autoconfigure.servlet.initparams.ServletContextInitParameterProperties;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.boot.context.properties.NestedConfigurationProperty;
 
 /**
  * Configuration properties of ButterFaces.
@@ -63,10 +63,10 @@ public class ButterfacesProperties implements ServletContextInitParameterPropert
 	@ServletContextInitParameter(WebXmlParameters.CTX_PARAM_BOOTSTRAP)
 	private Boolean provideBootstrap;
 
-	@NestedProperty
+	@NestedConfigurationProperty
 	private Glyphicon glyphicon = new Glyphicon();
 
-	@NestedProperty
+	@NestedConfigurationProperty
 	private Treebox treebox = new Treebox();
 
 	/**
@@ -109,7 +109,7 @@ public class ButterfacesProperties implements ServletContextInitParameterPropert
 	@ServletContextInitParameter(WebXmlParameters.CTX_PARAM_USE_COMPRESSED_RESOURCES)
 	private Boolean useCompressedResources;
 
-	@NestedProperty
+	@NestedConfigurationProperty
 	private Integration integration = new Integration();
 
 	/**
@@ -139,10 +139,10 @@ public class ButterfacesProperties implements ServletContextInitParameterPropert
 		@ServletContextInitParameter(WebXmlParameters.CTX_PARAM_REFRESH_GLYPHICON)
 		private String refresh;
 
-		@NestedProperty
+		@NestedConfigurationProperty
 		private Order order = new Order();
 
-		@NestedProperty
+		@NestedConfigurationProperty
 		private Sort sort = new Sort();
 
 		/**
@@ -178,7 +178,7 @@ public class ButterfacesProperties implements ServletContextInitParameterPropert
 	@Data
 	public static class Integration {
 
-		@NestedProperty
+		@NestedConfigurationProperty
 		private Primefaces primefaces = new Primefaces();
 
 		/**

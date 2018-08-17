@@ -32,11 +32,11 @@ import javax.faces.view.facelets.TagDecorator;
 import javax.faces.webapp.FacesServlet;
 
 import lombok.Data;
-import org.joinfaces.autoconfigure.servlet.initparams.NestedProperty;
 import org.joinfaces.autoconfigure.servlet.initparams.ServletContextInitParameter;
 import org.joinfaces.autoconfigure.servlet.initparams.ServletContextInitParameterProperties;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.boot.context.properties.NestedConfigurationProperty;
 
 /**
  * {@link ConfigurationProperties Configuration properties} for JSF 2.0.
@@ -158,7 +158,7 @@ public class JavaxFaces2_0Properties implements ServletContextInitParameterPrope
 	@ServletContextInitParameter(UINamingContainer.SEPARATOR_CHAR_PARAM_NAME)
 	private String separatorChar;
 
-	@NestedProperty
+	@NestedConfigurationProperty
 	private Partial partial = new Partial();
 
 	/**
@@ -168,7 +168,7 @@ public class JavaxFaces2_0Properties implements ServletContextInitParameterPrope
 	@ServletContextInitParameter(Converter.DATETIMECONVERTER_DEFAULT_TIMEZONE_IS_SYSTEM_TIMEZONE_PARAM_NAME)
 	private Boolean datetimeconverterDefaultTimezoneIsSystemTimezone;
 
-	@NestedProperty
+	@NestedConfigurationProperty
 	private Validator validator = new Validator();
 
 	/**
