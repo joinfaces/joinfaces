@@ -109,7 +109,7 @@ public class InitParameterServletContextConfigurer implements ServletContextInit
 				log.debug("Not setting '{}' because the value is null", paramName);
 			}
 			else {
-				String paramValue = convertToString(field, value);
+				String paramValue = convertToString(field, value, servletContextInitParameter);
 
 				log.debug("{} = {}", paramName, paramValue);
 				this.servletContext.setInitParameter(paramName, paramValue);
@@ -118,7 +118,7 @@ public class InitParameterServletContextConfigurer implements ServletContextInit
 		}
 	}
 
-	private String convertToString(Field field, Object value) {
+	private String convertToString(Field field, Object value, ServletContextInitParameter servletContextInitParameter) {
 
 		if (Collection.class.isAssignableFrom(field.getType())) {
 			Collection<?> collection = (Collection<?>) value;
@@ -127,8 +127,6 @@ public class InitParameterServletContextConfigurer implements ServletContextInit
 				return "";
 			}
 			else {
-				ServletContextInitParameter servletContextInitParameter = AnnotatedElementUtils.getMergedAnnotation(field, ServletContextInitParameter.class);
-
 				return collection.stream()
 						.map(this::convertToString)
 						.collect(Collectors.joining(servletContextInitParameter.listSeparator()));
