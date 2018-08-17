@@ -17,12 +17,12 @@
 package org.joinfaces.autoconfigure.richfaces;
 
 import lombok.Data;
-import org.joinfaces.autoconfigure.servlet.initparams.NestedProperty;
 import org.joinfaces.autoconfigure.servlet.initparams.ServletContextInitParameter;
 import org.joinfaces.autoconfigure.servlet.initparams.ServletContextInitParameterProperties;
 import org.richfaces.application.CoreConfiguration;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.boot.context.properties.NestedConfigurationProperty;
 
 /**
  * Configuration properties of RichFaces.
@@ -66,26 +66,26 @@ public class RichfacesProperties implements ServletContextInitParameterPropertie
 	@ServletContextInitParameter("org.richfaces.resourceDefaultVersion")
 	private String resourceDefaultVersion;
 
-	@NestedProperty
+	@NestedConfigurationProperty
 	private Cache cache = new Cache();
 
-	@NestedProperty
+	@NestedConfigurationProperty
 	private ResourceMapping resourceMapping = new ResourceMapping();
 
-	@NestedProperty
+	@NestedConfigurationProperty
 	private ResourceOptimization resourceOptimization = new ResourceOptimization();
 
 	// (defaultValue = "true", names = "org.richfaces.executeAWTInitializer", literal = true)
 	@ServletContextInitParameter("org.richfaces.executeAWTInitializer")
 	private Boolean executeAwtInitializer;
 
-	@NestedProperty
+	@NestedConfigurationProperty
 	private Push push = new Push();
 
-	@NestedProperty
+	@NestedConfigurationProperty
 	private Builtin builtin = new Builtin();
 
-	@NestedProperty
+	@NestedConfigurationProperty
 	private Queue queue = new Queue();
 
 	// (defaultValue = "false", names = "org.richfaces.datatableUsesViewLocale")
@@ -159,14 +159,14 @@ public class RichfacesProperties implements ServletContextInitParameterPropertie
 		@ServletContextInitParameter("org.richfaces.push.handlerMapping")
 		private String handlerMapping;
 
-		@NestedProperty
+		@NestedConfigurationProperty
 		private Jms jms = new Jms();
 
 		// (defaultValue = "false", names="org.richfaces.push.initializeOnStartup")
 		@ServletContextInitParameter("org.richfaces.push.initializeOnStartup")
 		private Boolean initializeOnStartup;
 
-		@NestedProperty
+		@NestedConfigurationProperty
 		private Session session = new Session();
 
 		/**
@@ -215,10 +215,10 @@ public class RichfacesProperties implements ServletContextInitParameterPropertie
 	@Data
 	public static class Builtin {
 
-		@NestedProperty
+		@NestedConfigurationProperty
 		private Sort sort = new Sort();
 
-		@NestedProperty
+		@NestedConfigurationProperty
 		private Filter filter = new Filter();
 
 		/**

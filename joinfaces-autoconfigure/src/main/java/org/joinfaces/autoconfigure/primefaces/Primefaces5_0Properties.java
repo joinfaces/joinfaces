@@ -17,13 +17,13 @@
 package org.joinfaces.autoconfigure.primefaces;
 
 import lombok.Data;
-import org.joinfaces.autoconfigure.servlet.initparams.NestedProperty;
 import org.joinfaces.autoconfigure.servlet.initparams.ServletContextInitParameter;
 import org.joinfaces.autoconfigure.servlet.initparams.ServletContextInitParameterProperties;
 import org.primefaces.cache.CacheProvider;
 import org.primefaces.util.Constants;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.boot.context.properties.NestedConfigurationProperty;
 
 /**
  * Configuration properties for Primefaces 5.0.
@@ -37,7 +37,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 @ConfigurationProperties("jsf.primefaces")
 public class Primefaces5_0Properties implements ServletContextInitParameterProperties {
 
-	@NestedProperty
+	@NestedConfigurationProperty
 	private Mobile mobile = new Mobile();
 
 	@ServletContextInitParameter(Constants.ContextParams.AUTO_UPDATE)

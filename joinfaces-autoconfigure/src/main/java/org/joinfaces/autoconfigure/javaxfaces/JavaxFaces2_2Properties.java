@@ -23,11 +23,11 @@ import javax.faces.flow.FlowHandler;
 import javax.faces.lifecycle.ClientWindow;
 
 import lombok.Data;
-import org.joinfaces.autoconfigure.servlet.initparams.NestedProperty;
 import org.joinfaces.autoconfigure.servlet.initparams.ServletContextInitParameter;
 import org.joinfaces.autoconfigure.servlet.initparams.ServletContextInitParameterProperties;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.boot.context.properties.NestedConfigurationProperty;
 
 /**
  * {@link ConfigurationProperties Configuration properties} for JSF 2.0.
@@ -87,10 +87,10 @@ public class JavaxFaces2_2Properties implements ServletContextInitParameterPrope
 	@ServletContextInitParameter(StateManager.SERIALIZE_SERVER_STATE_PARAM_NAME)
 	private Boolean serializeServerState;
 
-	@NestedProperty
+	@NestedConfigurationProperty
 	private Partial partial = new Partial();
 
-	@NestedProperty
+	@NestedConfigurationProperty
 	private Flow flow = new Flow();
 
 	/**

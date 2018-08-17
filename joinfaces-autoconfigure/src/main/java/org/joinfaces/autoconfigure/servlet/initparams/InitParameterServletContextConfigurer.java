@@ -17,13 +17,11 @@
 package org.joinfaces.autoconfigure.servlet.initparams;
 
 import java.lang.reflect.Field;
-import java.lang.reflect.ParameterizedType;
-import java.lang.reflect.Type;
 import java.util.Collection;
 import java.util.HashSet;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 import javax.servlet.ServletContext;
 
@@ -32,6 +30,7 @@ import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
 
 import org.springframework.aop.support.AopUtils;
+import org.springframework.boot.context.properties.NestedConfigurationProperty;
 import org.springframework.boot.web.servlet.ServletContextInitializer;
 import org.springframework.core.Ordered;
 import org.springframework.core.annotation.AnnotatedElementUtils;
@@ -43,13 +42,12 @@ import org.springframework.util.ReflectionUtils;
  *
  * @author Lars Grefer
  * @see ServletContextInitParameter
- * @see NestedProperty
  */
 @Slf4j
 public class InitParameterServletContextConfigurer implements ServletContextInitializer, Ordered {
 
 	private final List<ServletContextInitParameterProperties> initParameterProperties;
-	private final Set<String> visitiedInitParameters;
+	private final Set<String> visitedInitParameters;
 	private ServletContext servletContext;
 
 	@Getter
@@ -58,7 +56,7 @@ public class InitParameterServletContextConfigurer implements ServletContextInit
 
 	public InitParameterServletContextConfigurer(List<ServletContextInitParameterProperties> initParameterProperties) {
 		this.initParameterProperties = initParameterProperties;
-		this.visitiedInitParameters = new HashSet<>();
+		this.visitedInitParameters = new HashSet<>();
 	}
 
 	@Override
@@ -76,12 +74,12 @@ public class InitParameterServletContextConfigurer implements ServletContextInit
 		ReflectionUtils.doWithFields(
 				type,
 				field -> handlePropertiesField(properties, field),
-				field -> AnnotatedElementUtils.isAnnotated(field, ServletContextInitParameter.class) || AnnotatedElementUtils.isAnnotated(field, NestedProperty.class));
+				field -> AnnotatedElementUtils.isAnnotated(field, ServletContextInitParameter.class) || AnnotatedElementUtils.isAnnotated(field, NestedConfigurationProperty.class));
 
 	}
 
 	private void handlePropertiesField(Object properties, Field field) {
-		if (AnnotatedElementUtils.isAnnotated(field, NestedProperty.class)) {
+		if (AnnotatedElementUtils.isAnnotated(field, NestedConfigurationProperty.class)) {
 
 			ReflectionUtils.makeAccessible(field);
 			Object nestedProperties = ReflectionUtils.getField(field, properties);
@@ -99,7 +97,7 @@ public class InitParameterServletContextConfigurer implements ServletContextInit
 
 			String paramName = servletContextInitParameter.value();
 
-			if (this.visitiedInitParameters.contains(paramName)) {
+			if (this.visitedInitParameters.contains(paramName)) {
 				log.debug("Not setting '{}' because it was already processed", paramName);
 				return;
 			}
@@ -111,73 +109,48 @@ public class InitParameterServletContextConfigurer implements ServletContextInit
 				log.debug("Not setting '{}' because the value is null", paramName);
 			}
 			else {
-				String paramValue = convertToString(field, value);
+				String paramValue = convertToString(field, value, servletContextInitParameter);
 
 				log.debug("{} = {}", paramName, paramValue);
 				this.servletContext.setInitParameter(paramName, paramValue);
 			}
-			this.visitiedInitParameters.add(paramName);
+			this.visitedInitParameters.add(paramName);
 		}
 	}
 
-	private String convertToString(Field field, Object value) {
-		Class<?> targetType = field.getType();
+	private String convertToString(Field field, Object value, ServletContextInitParameter servletContextInitParameter) {
 
 		if (Collection.class.isAssignableFrom(field.getType())) {
-			targetType = resolveCollectionItemType(field);
+			Collection<?> collection = (Collection<?>) value;
 
-
-			if (((Collection) value).isEmpty()) {
+			if (collection.isEmpty()) {
 				return "";
 			}
 			else {
-				ServletContextInitParameter servletContextInitParameter = AnnotatedElementUtils.getMergedAnnotation(field, ServletContextInitParameter.class);
-				Iterator iterator = ((Collection) value).iterator();
-				String firstValue = convertToString(targetType, iterator.next());
-
-				StringBuilder sb = new StringBuilder(firstValue);
-				while (iterator.hasNext()) {
-					String nextValue = convertToString(targetType, iterator.next());
-					sb.append(servletContextInitParameter.listSeparator()).append(nextValue);
-				}
-				return sb.toString();
+				return collection.stream()
+						.map(this::convertToString)
+						.collect(Collectors.joining(servletContextInitParameter.listSeparator()));
 			}
 		}
 		else {
-			return convertToString(targetType, value);
+			return convertToString(value);
 		}
 	}
 
-	private String convertToString(Class<?> targetType, Object value) {
+	private String convertToString(Object value) {
 
-		if (String.class.isAssignableFrom(targetType)) {
+		if (value instanceof String) {
 			return (String) value;
 		}
 
-		if (targetType.isEnum()) {
+		if (value instanceof Enum) {
 			return ((Enum) value).name();
 		}
 
-		if (Class.class.isAssignableFrom(targetType)) {
+		if (value instanceof Class) {
 			return ((Class) value).getName();
 		}
 
 		return value.toString();
-	}
-
-	static Class<?> resolveCollectionItemType(Field field) {
-
-		Type genericFieldType = field.getGenericType();
-		if (genericFieldType instanceof Class) {
-			log.warn("Field {} uses a raw collection type. Assuming Object as item type", field);
-			return Object.class;
-		}
-
-		Type actualType = ((ParameterizedType) genericFieldType).getActualTypeArguments()[0];
-		if (actualType instanceof Class) {
-			return (Class<?>) actualType;
-		}
-
-		return (Class<?>) ((ParameterizedType) actualType).getRawType();
 	}
 }
