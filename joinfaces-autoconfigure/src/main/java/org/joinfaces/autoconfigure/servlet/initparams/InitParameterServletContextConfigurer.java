@@ -47,7 +47,7 @@ import org.springframework.util.ReflectionUtils;
 public class InitParameterServletContextConfigurer implements ServletContextInitializer, Ordered {
 
 	private final List<ServletContextInitParameterProperties> initParameterProperties;
-	private final Set<String> visitiedInitParameters;
+	private final Set<String> visitedInitParameters;
 	private ServletContext servletContext;
 
 	@Getter
@@ -56,7 +56,7 @@ public class InitParameterServletContextConfigurer implements ServletContextInit
 
 	public InitParameterServletContextConfigurer(List<ServletContextInitParameterProperties> initParameterProperties) {
 		this.initParameterProperties = initParameterProperties;
-		this.visitiedInitParameters = new HashSet<>();
+		this.visitedInitParameters = new HashSet<>();
 	}
 
 	@Override
@@ -97,7 +97,7 @@ public class InitParameterServletContextConfigurer implements ServletContextInit
 
 			String paramName = servletContextInitParameter.value();
 
-			if (this.visitiedInitParameters.contains(paramName)) {
+			if (this.visitedInitParameters.contains(paramName)) {
 				log.debug("Not setting '{}' because it was already processed", paramName);
 				return;
 			}
@@ -114,7 +114,7 @@ public class InitParameterServletContextConfigurer implements ServletContextInit
 				log.debug("{} = {}", paramName, paramValue);
 				this.servletContext.setInitParameter(paramName, paramValue);
 			}
-			this.visitiedInitParameters.add(paramName);
+			this.visitedInitParameters.add(paramName);
 		}
 	}
 
