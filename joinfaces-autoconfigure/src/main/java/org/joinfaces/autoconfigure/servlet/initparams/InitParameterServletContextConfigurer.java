@@ -19,9 +19,9 @@ package org.joinfaces.autoconfigure.servlet.initparams;
 import java.lang.reflect.Field;
 import java.util.Collection;
 import java.util.HashSet;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 import javax.servlet.ServletContext;
 
@@ -121,21 +121,17 @@ public class InitParameterServletContextConfigurer implements ServletContextInit
 	private String convertToString(Field field, Object value) {
 
 		if (Collection.class.isAssignableFrom(field.getType())) {
+			Collection<?> collection = (Collection<?>) value;
 
-			if (((Collection) value).isEmpty()) {
+			if (collection.isEmpty()) {
 				return "";
 			}
 			else {
 				ServletContextInitParameter servletContextInitParameter = AnnotatedElementUtils.getMergedAnnotation(field, ServletContextInitParameter.class);
-				Iterator iterator = ((Collection) value).iterator();
-				String firstValue = convertToString(iterator.next());
 
-				StringBuilder sb = new StringBuilder(firstValue);
-				while (iterator.hasNext()) {
-					String nextValue = convertToString(iterator.next());
-					sb.append(servletContextInitParameter.listSeparator()).append(nextValue);
-				}
-				return sb.toString();
+				return collection.stream()
+						.map(this::convertToString)
+						.collect(Collectors.joining(servletContextInitParameter.listSeparator()));
 			}
 		}
 		else {
