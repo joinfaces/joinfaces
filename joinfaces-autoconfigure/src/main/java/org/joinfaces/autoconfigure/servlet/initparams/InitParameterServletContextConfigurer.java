@@ -17,8 +17,6 @@
 package org.joinfaces.autoconfigure.servlet.initparams;
 
 import java.lang.reflect.Field;
-import java.lang.reflect.ParameterizedType;
-import java.lang.reflect.Type;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Iterator;
@@ -121,11 +119,8 @@ public class InitParameterServletContextConfigurer implements ServletContextInit
 	}
 
 	private String convertToString(Field field, Object value) {
-		Class<?> targetType = field.getType();
 
 		if (Collection.class.isAssignableFrom(field.getType())) {
-			targetType = resolveCollectionItemType(field);
-
 
 			if (((Collection) value).isEmpty()) {
 				return "";
@@ -133,51 +128,35 @@ public class InitParameterServletContextConfigurer implements ServletContextInit
 			else {
 				ServletContextInitParameter servletContextInitParameter = AnnotatedElementUtils.getMergedAnnotation(field, ServletContextInitParameter.class);
 				Iterator iterator = ((Collection) value).iterator();
-				String firstValue = convertToString(targetType, iterator.next());
+				String firstValue = convertToString(iterator.next());
 
 				StringBuilder sb = new StringBuilder(firstValue);
 				while (iterator.hasNext()) {
-					String nextValue = convertToString(targetType, iterator.next());
+					String nextValue = convertToString(iterator.next());
 					sb.append(servletContextInitParameter.listSeparator()).append(nextValue);
 				}
 				return sb.toString();
 			}
 		}
 		else {
-			return convertToString(targetType, value);
+			return convertToString(value);
 		}
 	}
 
-	private String convertToString(Class<?> targetType, Object value) {
+	private String convertToString(Object value) {
 
-		if (String.class.isAssignableFrom(targetType)) {
+		if (value instanceof String) {
 			return (String) value;
 		}
 
-		if (targetType.isEnum()) {
+		if (value instanceof Enum) {
 			return ((Enum) value).name();
 		}
 
-		if (Class.class.isAssignableFrom(targetType)) {
+		if (value instanceof Class) {
 			return ((Class) value).getName();
 		}
 
 		return value.toString();
-	}
-
-	static Class<?> resolveCollectionItemType(Field field) {
-
-		Type genericFieldType = field.getGenericType();
-		if (genericFieldType instanceof Class) {
-			log.warn("Field {} uses a raw collection type. Assuming Object as item type", field);
-			return Object.class;
-		}
-
-		Type actualType = ((ParameterizedType) genericFieldType).getActualTypeArguments()[0];
-		if (actualType instanceof Class) {
-			return (Class<?>) actualType;
-		}
-
-		return (Class<?>) ((ParameterizedType) actualType).getRawType();
 	}
 }
