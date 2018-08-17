@@ -18,11 +18,11 @@ package org.joinfaces.autoconfigure.bootsfaces;
 
 import lombok.Data;
 import net.bootsfaces.C;
-import org.joinfaces.autoconfigure.servlet.initparams.NestedProperty;
 import org.joinfaces.autoconfigure.servlet.initparams.ServletContextInitParameter;
 import org.joinfaces.autoconfigure.servlet.initparams.ServletContextInitParameterProperties;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.boot.context.properties.NestedConfigurationProperty;
 
 /**
  * Configuration properties of BootsFaces.
@@ -43,7 +43,7 @@ public class BootsfacesProperties implements ServletContextInitParameterProperti
 
 	private static final String PREFFIX = "net.bootsfaces.";
 
-	@NestedProperty
+	@NestedConfigurationProperty
 	private Defaults defaults = new Defaults();
 
 	/**
