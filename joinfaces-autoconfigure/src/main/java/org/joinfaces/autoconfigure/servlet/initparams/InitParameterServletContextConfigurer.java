@@ -131,36 +131,37 @@ public class InitParameterServletContextConfigurer implements ServletContextInit
 			}
 			else {
 				return collection.stream()
-						.map(this::convertToString)
+						.map(InitParameterServletContextConfigurer::convertToString)
 						.collect(Collectors.joining(servletContextInitParameter.listSeparator()));
 			}
 		}
 		else if (Duration.class.isAssignableFrom(field.getType())) {
 			ChronoUnit chronoUnit = resolveChronoUnit(field);
-
-			Duration duration = (Duration) value;
-
-			switch (chronoUnit) {
-				case NANOS:
-					return String.valueOf(duration.toNanos());
-				case MILLIS:
-					return String.valueOf(duration.toMillis());
-				case SECONDS:
-					return String.valueOf(duration.getSeconds());
-				case MINUTES:
-					return String.valueOf(duration.toMinutes());
-				case HOURS:
-					return String.valueOf(duration.toHours());
-				default:
-					throw new IllegalStateException("Unsupported ChronoUnit: " + chronoUnit);
-			}
+			return convertToString((Duration) value, chronoUnit);
 		}
 		else {
 			return convertToString(value);
 		}
 	}
 
-	private String convertToString(Object value) {
+	static String convertToString(Duration duration, ChronoUnit chronoUnit) {
+		switch (chronoUnit) {
+			case NANOS:
+				return String.valueOf(duration.toNanos());
+			case MILLIS:
+				return String.valueOf(duration.toMillis());
+			case SECONDS:
+				return String.valueOf(duration.getSeconds());
+			case MINUTES:
+				return String.valueOf(duration.toMinutes());
+			case HOURS:
+				return String.valueOf(duration.toHours());
+			default:
+				throw new IllegalStateException("Unsupported ChronoUnit: " + chronoUnit);
+		}
+	}
+
+	static String convertToString(Object value) {
 
 		if (value instanceof String) {
 			return (String) value;

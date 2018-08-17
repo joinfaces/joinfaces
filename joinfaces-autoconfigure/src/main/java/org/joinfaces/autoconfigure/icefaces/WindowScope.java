@@ -73,7 +73,7 @@ public class WindowScope implements Scope {
 	}
 
 	@NonNull
-	private WindowScopeManager.ScopeMap getScopeMap() {
+	WindowScopeManager.ScopeMap getScopeMap() {
 		FacesContext facesContext = FacesContext.getCurrentInstance();
 		if (facesContext == null) {
 			throw new IllegalStateException("No FacesContext found");
