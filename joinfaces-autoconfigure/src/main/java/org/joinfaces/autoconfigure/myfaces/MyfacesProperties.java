@@ -42,11 +42,11 @@ import org.apache.myfaces.view.facelets.impl.FaceletCompositionContextImpl;
 import org.apache.myfaces.view.facelets.pool.ViewPool;
 import org.apache.myfaces.webapp.AbstractFacesInitializer;
 import org.apache.myfaces.webapp.FacesInitializer;
-import org.joinfaces.autoconfigure.servlet.initparams.NestedProperty;
 import org.joinfaces.autoconfigure.servlet.initparams.ServletContextInitParameter;
 import org.joinfaces.autoconfigure.servlet.initparams.ServletContextInitParameterProperties;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.boot.context.properties.NestedConfigurationProperty;
 
 /**
  * Configuration properties of MyFaces.
@@ -565,7 +565,7 @@ public class MyfacesProperties implements ServletContextInitParameterProperties 
 	@ServletContextInitParameter(FacesConfigValidator.VALIDATE_CONTEXT_PARAM)
 	private Boolean validate;
 
-	@NestedProperty
+	@NestedConfigurationProperty
 	private Annotation annotation = new Annotation();
 
 	/**
@@ -659,7 +659,7 @@ public class MyfacesProperties implements ServletContextInitParameterProperties 
 	@ServletContextInitParameter(PREFFIX + "SERVICE_PROVIDER_FINDER")
 	private Class<? extends ServiceProviderFinder> serviceProviderFinder;
 
-	@NestedProperty
+	@NestedConfigurationProperty
 	private Spi spi = new Spi();
 
 	/**
@@ -717,7 +717,7 @@ public class MyfacesProperties implements ServletContextInitParameterProperties 
 	@ServletContextInitParameter(ViewPool.INIT_PARAM_VIEW_POOL_DEFERRED_NAVIGATION)
 	private Boolean viewPoolDeferredNavigation;
 
-	@NestedProperty
+	@NestedConfigurationProperty
 	private Validator validator = new Validator();
 
 	/**

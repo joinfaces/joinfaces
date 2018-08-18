@@ -1,10 +1,20 @@
 # Contributing to Joinfaces
 
-## Project Structure
+## Using GitHub Issues
+We use GitHub issues to track bugs and enhancements. If you have a general usage question
+please ask on https://stackoverflow.com[Stack Overflow].
+
+If you are reporting a bug, please help to speed up problem diagnosis by providing as much
+information as possible. Ideally, that would include a small sample project that reproduces the
+problem.
+
+## Working with the Code
+
+### Project Structure
 
 This software is multi module [Maven](http://maven.apache.org) project and follows [Spring Boot Reference](http://docs.spring.io/spring-boot/docs/current/reference/html/boot-features-developing-auto-configuration.html) to create JSF Auto Configuration. [See what's inside each submodule.](https://github.com/joinfaces/joinfaces/wiki/Structure-of-the-software)
 
-## Branching
+### Branching
 
 This repository follows the same [branching model](https://github.com/spring-projects/spring-boot/wiki/Working-with-Git-branches) like the [_Spring Framework_](https://github.com/spring-projects/spring-framework) and [_Spring Boot_](https://github.com/spring-projects/spring-boot) repositories:
 
@@ -18,8 +28,8 @@ contains Joinfaces 2.x which targets _Spring Boot 1.5.x_.
 If you want to contribute to Joinfaces, make sure you start your work on the head of the correct branch.
 Make also sure, to select the same branch as _base_ when creating your pull request.
 
-## Code Conventions and Housekeeping
-> These section is mainly copied from https://github.com/spring-projects/spring-boot/blob/master/CONTRIBUTING.adoc
+### Code Conventions and Housekeeping
+> This section is mainly copied from https://github.com/spring-projects/spring-boot/blob/master/CONTRIBUTING.adoc
 
 None of these is essential for a pull request, but they will all help.  They can also be
 added after the original pull request but before a merge.
@@ -31,11 +41,3 @@ added after the original pull request but before a merge.
 * Add some Javadocs.
 * A few unit tests would help a lot as well -- someone has to do it.
 * When writing a commit message please follow [these conventions](http://tbaggery.com/2008/04/19/a-note-about-git-commit-messages.html).
-
-## Submitting issues
-
-Some tips are very useful to help problem solving on issues.
-
-* Provide sample github repository is great.
-* Describe joinfaces environment used: servlet container, jsf implementation, jar or war packaging, starters.
-

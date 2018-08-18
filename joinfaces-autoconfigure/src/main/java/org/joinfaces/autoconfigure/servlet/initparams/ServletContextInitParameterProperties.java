@@ -16,6 +16,8 @@
 
 package org.joinfaces.autoconfigure.servlet.initparams;
 
+import org.springframework.boot.context.properties.NestedConfigurationProperty;
+
 /**
  * Marker interface for all {@link org.springframework.boot.context.properties.ConfigurationProperties configuration properties}
  * which contain {@link ServletContextInitParameter init parameters} to be set on a {@link javax.servlet.ServletContext servlet context}.
@@ -23,12 +25,12 @@ package org.joinfaces.autoconfigure.servlet.initparams;
  * Classes implementing this interface should
  * <ul>
  * <li>be annotated with {@link org.springframework.boot.context.properties.ConfigurationProperties @ConfigurationProperties()} and</li>
- * <li>annotate their fields with either {@link ServletContextInitParameter @ServletContextInitParameter()} or {@link NestedProperty @NestedProperty}</li>
+ * <li>annotate their fields with either {@link ServletContextInitParameter @ServletContextInitParameter()} or {@link NestedConfigurationProperty @NestedConfigurationProperty}</li>
  * </ul>
  *
  * @author Lars Grefer
  * @see ServletContextInitParameter
- * @see NestedProperty
+ * @see NestedConfigurationProperty
  */
 public interface ServletContextInitParameterProperties {
 }
