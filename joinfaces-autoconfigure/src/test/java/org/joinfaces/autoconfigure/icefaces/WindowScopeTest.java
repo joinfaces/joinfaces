@@ -105,4 +105,15 @@ public class WindowScopeTest {
 		assertThat(this.windowScope.getConversationId())
 				.isEqualTo(this.scopeMap.getId());
 	}
+
+	@Test(expected = IllegalStateException.class)
+	public void testGetScopeMap_noScopeMap() {
+		new WindowScope().getScopeMap();
+	}
+
+	@Test(expected = IllegalStateException.class)
+	public void testGetScopeMap_noFacesContext() {
+		FacesContext.getCurrentInstance().release();
+		new WindowScope().getScopeMap();
+	}
 }
