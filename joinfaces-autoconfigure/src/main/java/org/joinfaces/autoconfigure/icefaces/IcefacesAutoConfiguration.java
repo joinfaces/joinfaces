@@ -16,13 +16,19 @@
 
 package org.joinfaces.autoconfigure.icefaces;
 
+import io.undertow.Undertow;
+import org.icefaces.impl.application.SessionExpiredListener;
 import org.icefaces.impl.application.WindowScopeManager;
+import org.icefaces.impl.push.servlet.ICEpushResourceHandlerLifecycle;
 import org.icefaces.util.EnvUtils;
 
 import org.springframework.beans.factory.config.CustomScopeConfigurer;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnWebApplication;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
+import org.springframework.boot.web.embedded.undertow.UndertowServletWebServerFactory;
+import org.springframework.boot.web.server.WebServerFactoryCustomizer;
+import org.springframework.boot.web.servlet.ServletContextInitializer;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -42,5 +48,25 @@ public class IcefacesAutoConfiguration {
 		CustomScopeConfigurer windowScopeConfigurer = new CustomScopeConfigurer();
 		windowScopeConfigurer.addScope(WindowScopeManager.ScopeName, new WindowScope());
 		return windowScopeConfigurer;
+	}
+
+	@Configuration
+	@ConditionalOnClass(Undertow.class)
+	public static class IcefacesUndertowAutoConfiguration {
+
+		/**
+		 * This {@link WebServerFactoryCustomizer} adds a {@link ServletContextInitializer} to the embedded undertow
+		 * which is equivalent to ICEfaces' {@code META-INF/core.tld}.
+		 *
+		 * @return ICEfaces undertow factory customizer
+		 */
+		@Bean
+		public WebServerFactoryCustomizer<UndertowServletWebServerFactory> icefacesUndertowFactoryCustomizer() {
+			return factory -> factory.addInitializers(servletContext -> {
+				servletContext.addListener(ICEpushResourceHandlerLifecycle.class);
+				servletContext.addListener(SessionExpiredListener.class);
+				servletContext.addListener(WindowScopeManager.SetupTimer.class);
+			});
+		}
 	}
 }
