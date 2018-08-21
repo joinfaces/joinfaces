@@ -17,10 +17,6 @@
         <main.basedir>${basedir}/..</main.basedir>
         
         <check.dir>../joinfaces-parent/src/checkconfig</check.dir>
-        <!-- ignore javax.persistence classes that exists at tomcat-embed-core -->
-        <!-- ignore javax.annotation classes that exists at tomcat-embed-core -->
-        <duplicate.ignoredClassPattern>(javax.annotation.*$|javax.faces.*$|javax.persistence.(PersistenceContext|PersistenceContextType|PersistenceContexts|PersistenceProperty|PersistenceUnit|PersistenceUnits|SynchronizationType)|(module-info))</duplicate.ignoredClassPattern>
-        <duplicate.ignoredResourcePattern>(javax/faces/Messages.*\.properties)|(about.html)</duplicate.ignoredResourcePattern>
     </properties>
 
     <build>
@@ -71,6 +67,13 @@
             <plugin>
                 <groupId>org.jacoco</groupId>
                 <artifactId>jacoco-maven-plugin</artifactId>
+            </plugin>
+            <plugin>
+                <groupId>org.basepom.maven</groupId>
+                <artifactId>duplicate-finder-maven-plugin</artifactId>
+                <configuration>
+                    <skip>true</skip>
+                </configuration>
             </plugin>
         </plugins>
     </build>
