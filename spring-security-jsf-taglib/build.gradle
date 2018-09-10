@@ -1,0 +1,24 @@
+apply plugin: "java"
+apply plugin: "findbugs"
+apply plugin: "checkstyle"
+apply plugin: "jacoco"
+apply plugin: "io.freefair.lombok"
+apply plugin: "io.freefair.maven-optional"
+apply plugin: "io.freefair.maven-publish-java"
+apply plugin: "io.freefair.maven-jars"
+
+description = 'Spring Security JSF Taglib'
+
+dependencies {
+    compile('org.springframework.boot:spring-boot-starter') {
+        exclude group: 'javax.annotation', module: 'javax.annotation-api'
+    }
+    compile 'org.springframework.boot:spring-boot-starter-web'
+    compile 'javax.faces:javax.faces-api'
+    compile('org.springframework.security:spring-security-taglibs') {
+        exclude group: 'aopalliance', module: 'aopalliance'
+    }
+
+    testCompile project(':joinfaces-test')
+    testCompile 'org.springframework.boot:spring-boot-starter-security'
+}

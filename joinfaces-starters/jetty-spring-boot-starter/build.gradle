@@ -1,0 +1,6 @@
+description = 'Jetty Spring Boot Starter'
+
+dependencies {
+    compile 'org.springframework.boot:spring-boot-starter-jetty'
+    compile 'org.eclipse.jetty:apache-jsp'
+}

@@ -1,0 +1,10 @@
+description = 'Joinfaces Undertow-MyFaces Test Project'
+
+dependencies {
+    compile(project(':joinfaces-starters:jsf-spring-boot-starter')) {
+        exclude module: "tomcat-spring-boot-starter"
+        exclude module: "mojarra-spring-boot-starter"
+    }
+    compile project(':joinfaces-starters:undertow-spring-boot-starter')
+    compile project(':joinfaces-starters:myfaces-spring-boot-starter')
+}

@@ -1,0 +1,6 @@
+description = 'RichFaces Spring Boot Starter'
+dependencies {
+    compile project(':joinfaces-starters:jsf-spring-boot-starter')
+    compile group: 'org.richfaces', name: 'richfaces', version: '4.5.17.Final'
+    compile group: 'org.richfaces', name: 'richfaces-a4j', version: '4.5.17.Final'
+}

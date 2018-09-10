@@ -1,0 +1,5 @@
+subprojects {
+    apply plugin: "java"
+    apply plugin: "io.freefair.maven-publish-java"
+    apply plugin: "io.freefair.maven-jars"
+}

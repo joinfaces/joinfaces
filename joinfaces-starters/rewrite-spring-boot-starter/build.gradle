@@ -1,0 +1,7 @@
+
+description = 'Rewrite Spring Boot Starter'
+dependencies {
+    compile group: 'org.ocpsoft.rewrite', name: 'rewrite-servlet', version:'3.4.2.Final'
+    compile group: 'org.ocpsoft.rewrite', name: 'rewrite-integration-spring', version:'3.4.2.Final'
+    compile group: 'org.ocpsoft.rewrite', name: 'rewrite-integration-faces', version:'3.4.2.Final'
+}

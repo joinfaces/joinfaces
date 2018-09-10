@@ -1,23 +1,21 @@
-dist: trusty
 language: java
 jdk:
   - openjdk8
   - openjdk10
+
+before_cache:
+  - rm -f  $HOME/.gradle/caches/modules-2/modules-2.lock
+  - rm -fr $HOME/.gradle/caches/*/plugin-resolution/
 cache:
   directories:
-  - $HOME/.m2
+    - $HOME/.gradle/caches/
+    - $HOME/.gradle/wrapper/
 
 env:
   global:
     - secure: "dd5QCUUYJ7DnR+/pk6fbW+czKHcU6bfiZndYeYdUwQXsckYv5cfzNO3e+Tudluwn7kWW0hOgDda8BtWhrXA8eOyZfJjVrEA+d3MO9+1Ab8ugg/yqYy+Fv9e2IsaHSfhDGKNoACgoZNxVsWRDV4qdNYsV2OunFDYf28//NBUtth25FIelA/54Yss+NnX/KdYtAwB1BaUwPmBR07IqZbpmdvA+rQMoi7LgXt5rHWBEhzrPRoEiId589w6igWsESSlZo6ytf2HEDzpjHFC2Y6bdP7JWB1Bnv8qfuy9vNUvAvvF33j3X3vz0uIJvMLFMm4bJUiUpKihpIuHQv679h6o6SHCW+auyHy/R+ZCdbM1SBuH61juJUbabIcadR2vIpJEFewaqhVpEmlmSibJPJYu3uL/H5dAxsxtRkIulr3U8a6lcWQR/tIubUKADI1SZkoV8pxQC6MRVp7Fk5utJyGXi/+Drb5CYxsaQFeum0mT8y6S8HpWqcBZpi5Hu61zcDQX9xTPRRvjAqulSCpMs5UtkhFj+FaFvzEKrm4Na3MbkxGmAqdzNKl6ycemz0tERP+asrwOL1X6vFZYyxqv2ZMllujGxGKxk7xV3BGRmetWs47lqRD3HXW7/Wb3NHnoquPD+IcTXQrocEa65pvDmQEtcb9IGcfwwdZ7cXgSGsq5O+0Q="
     - secure: "KPNVjcrLbhfStj9WHf1jrkw+cd43xt+w9fGI+RvoIFNZlvRt6OyjWNfs8Y7a1jNRdjyQUzS7wTxdwW66ajpCK9p2f3hNwVvZfbL263p8S/z4xK4rnmbIugPMDbTZ8vVQHeVzvg8AUi41kHHvwWYq3Z1Vd8hubi9dXvm9XGevWgZVrvUNSDM2A6qejbR0f4oPh+/NYexwLwJa6A+LVmprhQSS3p5YUHYSnV6XmQZ+emsrF8fPYymTexP/uHMTjGfBSzLP9v/K2iwTYRwUjISavgZNZ9oFq9HvXAPh/pO53lUKTir9oQuz7HhaxZDybgJPkM3fZbpMXdOW1SgiKLPWGjLr152XcVL7LEoPv5M3yB3brcAUGPpPcy9XKTgdFbs6eD0ut9dN6FKdSyhHOzhLXAOTaQUfKmQxwD2cZ0R1KgDIuX+L6tWV8k1NbxERvv1sXY16vnw4syqjvkOPvrMDjMKo8QpZOMpDDi7jl1P6B6bq8C1jC0kzLIA1VkdfDTOI3t1kfQWnAc7RYHp8l1f34dZ+nrCc3VPpN/5uE/3auVh1crfui6X3oh3HxhgFZelJoy1rDV5foIw6KgnRa1fKUM9TZKUslt2s+WKqKDXhKbZc4loqrlQOCWijQ+juFg1ihC+cOCU2ZwYQ7opVwdLQ6XEvK8jFClQo/Rd6I0izQ/s="
 
-install: ./mvnw -B clean validate
-
-script:
-  - ./mvnw -B -Pcheck-duplicate,check-checkstyle,check-cycles,check-cpd,check-pmd,check-findbugs verify
-
 after_success:
+  - ./gradlew jacocoTestReport
   - bash <(curl -s https://codecov.io/bash)
-  - "[[ ${TRAVIS_PULL_REQUEST} == 'false' ]] && ./mvnw -B org.eluder.coveralls:coveralls-maven-plugin:4.3.0:report"
-  - "[[ ${TRAVIS_PULL_REQUEST} == 'false' ]] && [[ ${TRAVIS_TAG} == '' ]] && ./mvnw --settings .travis.deploy-settings.xml -DskipTests=true -Pattach-test-jar,attach-source,attach-javadoc deploy"

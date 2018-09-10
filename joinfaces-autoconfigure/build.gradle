@@ -1,0 +1,105 @@
+apply plugin: "java"
+apply plugin: "findbugs"
+apply plugin: "checkstyle"
+apply plugin: "pmd"
+apply plugin: "jacoco"
+apply plugin: "io.freefair.lombok"
+apply plugin: "io.freefair.maven-optional"
+apply plugin: "io.freefair.maven-publish-java"
+apply plugin: "io.freefair.maven-jars"
+
+description = 'Joinfaces AutoConfigure'
+
+dependencies {
+
+    compile 'org.springframework.boot:spring-boot-autoconfigure'
+
+    optional 'org.springframework.boot:spring-boot-starter'
+    optional 'org.springframework.boot:spring-boot-starter-web'
+    optional 'org.springframework.boot:spring-boot-starter-tomcat'
+    optional 'org.springframework.boot:spring-boot-starter-jetty'
+    optional 'org.springframework.boot:spring-boot-starter-undertow'
+    optional 'org.springframework.boot:spring-boot-starter-data-jpa'
+    annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
+    annotationProcessor 'org.springframework.boot:spring-boot-autoconfigure-processor'
+    optional(group: 'javax.enterprise', name: 'cdi-api', version: '2.0') {
+        exclude(module: 'javax.el-api')
+    }
+    optional(group: 'org.jboss.weld.servlet', name: 'weld-servlet-core') {
+        exclude(module: 'jboss-el-api_3.0_spec')
+        exclude(module: 'jboss-logging')
+        exclude(module: 'jboss-interceptors-api_1.2_spec')
+    }
+    optional(group: 'org.eclipse.jetty', name: 'jetty-webapp', version: '9.4.11.v20180605') {
+        exclude(module: 'javax.servlet-api')
+    }
+    optional(group: 'io.undertow', name: 'undertow-servlet', version: '1.4.25.Final') {
+        exclude(module: 'jboss-servlet-api_3.1_spec')
+        exclude(module: 'jboss-annotations-api_1.2_spec')
+    }
+    implementation group: 'org.reflections', name: 'reflections'
+    optional(group: 'org.glassfish', name: 'javax.faces') {
+        exclude(module: 'javax.el')
+        exclude(module: 'javax.el-api')
+    }
+    optional group: 'org.apache.myfaces.core', name: 'myfaces-impl'
+    optional group: 'org.omnifaces', name: 'omnifaces', version: '1.14.1'
+    optional group: 'org.primefaces', name: 'primefaces'
+    optional group: 'net.bootsfaces', name: 'bootsfaces'
+    optional group: 'de.beyondjava', name: 'angularFaces-core'
+    optional group: 'org.butterfaces', name: 'components'
+    optional group: 'org.richfaces', name: 'richfaces-a4j'
+    optional group: 'org.richfaces', name: 'richfaces'
+    optional group: 'commons-fileupload', name: 'commons-fileupload'
+    optional group: 'org.ocpsoft.rewrite', name: 'rewrite-servlet'
+    optional group: 'org.ocpsoft.rewrite', name: 'rewrite-integration-spring'
+    optional group: 'org.glassfish.jaxb', name: 'jaxb-runtime'
+    optional group: 'org.glassfish.jaxb', name: 'jaxb-core'
+    optional group: 'javax.activation', name: 'activation'
+    testCompile group: 'org.springframework.boot', name: 'spring-boot-starter-test'
+    testCompile project(':joinfaces-test')
+    testCompile group: 'org.apache.tomcat.embed', name: 'tomcat-embed-jasper'
+    testRuntime "com.h2database:h2"
+
+    optional(group: 'com.github.adminfaces', name: 'admin-template') {
+        exclude(module: 'primefaces')
+        exclude(module: 'omnifaces')
+        exclude(module: 'admin-theme')
+    }
+    optional group: 'com.github.adminfaces', name: 'admin-theme'
+    optional group: 'javax.ejb', name: 'javax.ejb-api'
+}
+
+test {
+    include "**/*Test.class"
+}
+
+configurations {
+    mojarraIntegTestRuntime
+    myfacesIntegTestRuntime
+
+    mojarraIntegTestRuntime.extendsFrom testRuntimeClasspath
+    myfacesIntegTestRuntime.extendsFrom testRuntimeClasspath
+
+    mojarraIntegTestRuntime.exclude group: 'org.apache.myfaces.core'
+    myfacesIntegTestRuntime.exclude group: 'org.glassfish', module: 'javax.faces'
+}
+
+task mojarraIntegTest(type: Test) {
+    include "**/*IT.class"
+    exclude "**/myfaces/**.class"
+    classpath = configurations.mojarraIntegTestRuntime + sourceSets.main.output + sourceSets.test.output
+    shouldRunAfter test
+}
+
+task myfacesIntegTest(type: Test) {
+    include "**/*IT.class"
+    exclude "**/mojarra/**.class"
+    classpath = configurations.myfacesIntegTestRuntime + sourceSets.main.output + sourceSets.test.output
+    shouldRunAfter test
+}
+
+check.dependsOn mojarraIntegTest
+check.dependsOn myfacesIntegTest
+
+jacocoTestReport.executionData mojarraIntegTest, myfacesIntegTest

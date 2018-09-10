@@ -1,0 +1,11 @@
+allprojects {
+    group = "org.joinfaces.test"
+}
+
+subprojects {
+    apply plugin: "java"
+
+    dependencies {
+        testCompile "org.springframework.boot:spring-boot-starter-test"
+    }
+}

@@ -1,0 +1,222 @@
+buildscript {
+    repositories {
+        maven { url "https://plugins.gradle.org/m2/" }
+    }
+    dependencies {
+        classpath "org.springframework.boot:spring-boot-gradle-plugin:2.0.4.RELEASE"
+        classpath "io.freefair.gradle:lombok-plugin:2.6"
+        classpath "io.freefair.gradle:maven-plugin:2.6"
+    }
+}
+
+allprojects {
+    apply plugin: "io.spring.dependency-management"
+
+    group = 'org.joinfaces'
+    version = '3.2.5-SNAPSHOT'
+
+    repositories {
+        mavenCentral()
+    }
+
+    dependencyManagement {
+        imports {
+            mavenBom org.springframework.boot.gradle.plugin.SpringBootPlugin.BOM_COORDINATES
+        }
+
+        dependencies {
+            dependency 'javax.faces:javax.faces-api:2.3'
+
+            dependency('org.glassfish:javax.faces:2.3.6')
+
+            dependencySet('org.apache.myfaces.core:2.3.1') {
+                entry "myfaces-api"
+                entry("myfaces-impl") {
+                    exclude "commons-logging:commons-logging"
+                }
+            }
+
+            dependency('javax.enterprise:cdi-api:2.0') {
+                exclude "javax.el:javax.el-api"
+            }
+
+            dependency "org.apache.tomcat:tomcat-jasper:${importedProperties['tomcat.version']}"
+            dependency 'org.jboss.spec.javax.servlet.jsp:jboss-jsp-api_2.3_spec:1.0.3.Final'
+
+            dependency 'org.reflections:reflections:0.9.11'
+
+            dependency 'org.primefaces:primefaces:6.2'
+            dependencySet("org.primefaces.extensions:6.2.7") {
+                entry "primefaces-extensions"
+                entry "resources-ckeditor"
+            }
+
+            dependency 'net.bootsfaces:bootsfaces:1.3.0'
+            dependency('de.beyondjava:angularFaces-core:2.1.12') {
+                exclude "commons-logging:commons-logging"
+            }
+            dependency 'org.butterfaces:components:3.0.5'
+
+            dependencySet('org.richfaces:4.5.17.Final') {
+                entry "richfaces"
+                entry "richfaces-a4j"
+            }
+
+            dependency "commons-fileupload:commons-fileupload:1.3.3"
+
+            dependency('org.jboss.weld.servlet:weld-servlet-core:3.0.5.Final') {
+                exclude 'org.jboss.spec.javax.el:jboss-el-api_3.0_spec'
+                exclude 'org.jboss.logging:jboss-logging'
+                exclude 'org.jboss.spec.javax.interceptor:jboss-interceptors-api_1.2_spec'
+            }
+
+            dependencySet("org.ocpsoft.rewrite:3.4.2.Final") {
+                entry "rewrite-servlet"
+                entry "rewrite-config-prettyfaces"
+                entry "rewrite-integration-spring"
+                entry "rewrite-integration-faces"
+                entry "rewrite-integration-cdi"
+            }
+
+            dependencySet('org.glassfish.jaxb:2.3.0') {
+                entry "jaxb-runtime"
+                entry "jaxb-core"
+            }
+
+            dependency 'javax.activation:activation:1.1.1'
+
+            dependencySet('com.github.adminfaces:1.0.0-RC18') {
+                entry "admin-template"
+                entry "admin-theme"
+            }
+
+            dependency 'javax.ejb:javax.ejb-api:3.2.2'
+
+        }
+    }
+
+    plugins.withId("java") {
+        apply plugin: "io.freefair.lombok"
+
+        sourceCompatibility = 1.8
+        targetCompatibility = 1.8
+
+        tasks.withType(JavaCompile) {
+            options.encoding = 'UTF-8'
+        }
+
+        javadoc.failOnError = false
+    }
+
+    plugins.withId("checkstyle") {
+        checkstyle {
+            toolVersion = '8.12'
+        }
+    }
+
+    plugins.withId("pmd") {
+        pmd {
+            toolVersion = '6.4.0'
+            ruleSetFiles = files("config/pmd/pmd-ruleset.xml")
+        }
+        pmdTest.enabled = false
+    }
+
+    plugins.withId("jacoco") {
+        jacocoTestReport.reports.xml.enabled true
+    }
+
+    plugins.withId("maven-publish") {
+        apply plugin: "signing"
+
+        signing {
+            required { !version.endsWith('SNAPSHOT') && gradle.taskGraph.hasTask("publish") }
+        }
+
+        publishing {
+            publications.withType(MavenPublication) {
+                pom {
+                    url = 'http://joinfaces.org'
+                    name = provider { project.description }
+                    inceptionYear = '2016'
+                    licenses {
+                        license {
+                            name = 'The Apache License, Version 2.0'
+                            url = 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+                        }
+                    }
+                    organization {
+                        name = 'JoinFaces'
+                        url = 'http://joinfaces.org'
+                    }
+                    developers {
+                        developer {
+                            id = 'persapiens'
+                            name = 'Marcelo Romulo Fernandes'
+                            email = 'persapiens@gmail.com'
+                            timezone = '-3'
+                        }
+                        developer {
+                            id = 'larsgrefer'
+                            name = 'Lars Grefer'
+                            email = 'github@larsgrefer.de'
+                            timezone = 'Europe/Berlin'
+                        }
+                    }
+                    ciManagement {
+                        system = 'Travis CI'
+                        url = 'https://travis-ci.org/joinfaces/joinfaces/'
+                    }
+                    issueManagement {
+                        system = 'Github'
+                        url = 'https://github.com/joinfaces/joinfaces/issues'
+                    }
+                    scm {
+                        connection = 'scm:git:https://github.com/joinfaces/joinfaces.git'
+                        developerConnection = 'scm:git:git@github.com:joinfaces/joinfaces.git'
+                        url = 'https://github.com/joinfaces/joinfaces/'
+                    }
+                }
+            }
+
+            repositories {
+                maven {
+                    def snapshotsRepoUrl = 'https://oss.sonatype.org/content/repositories/snapshots'
+                    def releasesRepoUrl = 'https://oss.sonatype.org/service/local/staging/deploy/maven2/'
+                    url = version.endsWith('SNAPSHOT') ? snapshotsRepoUrl : releasesRepoUrl
+                    credentials {
+                        username = System.getenv('OSSRH_USER')
+                        password = System.getenv('OSSRH_PASS')
+                    }
+                }
+            }
+        }
+    }
+}
+
+apply plugin: "maven-publish"
+
+publishing {
+    publications {
+        bom(MavenPublication) {
+            artifactId = 'joinfaces-dependencies'
+
+            pom {
+                name = 'JoinFaces Dependencies'
+            }
+
+            pom.withXml {
+                rootProject.subprojects { p ->
+                    if (p.pluginManager.hasPlugin('maven-publish')) {
+                        def depNode = asNode().dependencyManagement.first().get('dependencies').first().appendNode('dependency')
+                        depNode.appendNode('groupId', p.group)
+                        depNode.appendNode('artifactId', p.name)
+                        depNode.appendNode('version', p.version)
+                    }
+                }
+            }
+        }
+    }
+}
+
+

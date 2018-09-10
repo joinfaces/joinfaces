@@ -1,0 +1,5 @@
+
+description = 'Omnifaces 1.x Spring Boot Starter'
+dependencies {
+    compile group: 'org.omnifaces', name: 'omnifaces', version:'1.14.1'
+}
