@@ -22,11 +22,12 @@ dependencies {
     optional 'org.springframework.boot:spring-boot-starter-tomcat'
     optional 'org.springframework.boot:spring-boot-starter-jetty'
     optional 'org.springframework.boot:spring-boot-starter-undertow'
-    optional 'org.springframework.boot:spring-boot-starter-data-jpa'
-    optional 'javax.enterprise:cdi-api:2.0'
+    optional 'org.hibernate:hibernate-core'
+    optional 'org.springframework:spring-orm'
+    optional 'javax.enterprise:cdi-api'
     optional 'org.jboss.weld.servlet:weld-servlet-core'
-    optional 'org.eclipse.jetty:jetty-webapp:9.4.11.v20180605'
-    optional 'io.undertow:undertow-servlet:1.4.25.Final'
+    optional 'org.eclipse.jetty:jetty-webapp'
+    optional 'io.undertow:undertow-servlet'
     optional 'org.glassfish:javax.faces'
     optional 'org.apache.myfaces.core:myfaces-impl'
     optional 'org.omnifaces:omnifaces:1.14.1'
@@ -45,7 +46,6 @@ dependencies {
     testCompile 'org.springframework.boot:spring-boot-starter-test'
     testCompile project(':joinfaces-test')
     testCompile 'org.apache.tomcat.embed:tomcat-embed-jasper'
-    testRuntime "com.h2database:h2"
 
     optional 'com.github.adminfaces:admin-template'
     optional 'com.github.adminfaces:admin-theme'
