@@ -19,3 +19,12 @@ env:
 after_success:
   - ./gradlew jacocoTestReport
   - bash <(curl -s https://codecov.io/bash)
+
+deploy:
+  provider: script
+  script: ./gradlew publish
+  on:
+    all_branches: true
+    jdk: openjdk10
+    tags: false
+    repo: joinfaces/joinfaces
