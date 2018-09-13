@@ -53,7 +53,7 @@ public class SpringBootExpressionLanguageProvider implements ExpressionLanguageP
 
 	@Override
 	public int priority() {
-		return 20;
+		return 19;
 	}
 
 	@SuppressFBWarnings("NP_NULL_ON_SOME_PATH_FROM_RETURN_VALUE")

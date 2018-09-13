@@ -74,6 +74,6 @@ public class SpringBootExpressionLanguageProviderTest {
 		new ApplicationContextProvider().setApplicationContext(null);
 
 		assertThat(this.springBootExpressionLanguageProvider.priority())
-				.isEqualTo(20);
+				.isEqualTo(19);
 	}
 }
