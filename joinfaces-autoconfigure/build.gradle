@@ -18,7 +18,7 @@ dependencies {
     implementation 'org.reflections:reflections'
 
     optional 'org.springframework.boot:spring-boot-starter'
-    optional 'org.springframework.boot:spring-boot-starter-web'
+    optional 'org.springframework:spring-web'
     optional 'org.springframework.boot:spring-boot-starter-tomcat'
     optional 'org.springframework.boot:spring-boot-starter-jetty'
     optional 'org.springframework.boot:spring-boot-starter-undertow'
