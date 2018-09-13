@@ -1,3 +1,5 @@
+import org.springframework.boot.gradle.plugin.SpringBootPlugin
+
 buildscript {
     repositories {
         maven { url "https://plugins.gradle.org/m2/" }
@@ -10,8 +12,6 @@ buildscript {
 }
 
 allprojects {
-    apply plugin: "io.spring.dependency-management"
-
     group = 'org.joinfaces'
     version = '3.2.5-SNAPSHOT'
 
@@ -19,9 +19,11 @@ allprojects {
         mavenCentral()
     }
 
+    apply plugin: "io.spring.dependency-management"
+
     dependencyManagement {
         imports {
-            mavenBom org.springframework.boot.gradle.plugin.SpringBootPlugin.BOM_COORDINATES
+            mavenBom SpringBootPlugin.BOM_COORDINATES
         }
 
         dependencies {
