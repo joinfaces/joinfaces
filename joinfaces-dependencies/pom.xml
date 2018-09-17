@@ -75,7 +75,7 @@
         <pmd.excludeFromFailureFile />
         <cpd.excludeFromFailureFile />
         <maven-enforcer-plugin.version>1.4.1</maven-enforcer-plugin.version>
-        <no-package-cycles-enforcer-rule.version>1.0.8</no-package-cycles-enforcer-rule.version>
+        <no-package-cycles-enforcer-rule.version>1.0.9</no-package-cycles-enforcer-rule.version>
         <maven-checkstyle-plugin.version>3.0.0</maven-checkstyle-plugin.version>
         <checkstyle.version>8.12</checkstyle.version>
         <checkstyle.configLocation>${checkstyle.dir}/checkstyle.xml</checkstyle.configLocation>
