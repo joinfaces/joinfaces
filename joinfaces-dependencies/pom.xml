@@ -86,7 +86,7 @@
         <duplicate.ignoredResourcePattern>about.html</duplicate.ignoredResourcePattern>
         <duplicate.ignoredClassPattern>none</duplicate.ignoredClassPattern>
 
-        <jacoco-maven-plugin.version>0.8.1</jacoco-maven-plugin.version>
+        <jacoco-maven-plugin.version>0.8.2</jacoco-maven-plugin.version>
 
         <argLine>-Xms32m -Xmx256m</argLine>
         <findbugs.jvmArgs>-Xms32m -Xmx256m</findbugs.jvmArgs>
