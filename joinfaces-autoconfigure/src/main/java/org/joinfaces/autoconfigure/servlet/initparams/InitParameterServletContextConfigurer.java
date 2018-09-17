@@ -17,6 +17,8 @@
 package org.joinfaces.autoconfigure.servlet.initparams;
 
 import java.lang.reflect.Field;
+import java.time.Duration;
+import java.time.temporal.ChronoUnit;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
@@ -31,9 +33,11 @@ import lombok.extern.slf4j.Slf4j;
 
 import org.springframework.aop.support.AopUtils;
 import org.springframework.boot.context.properties.NestedConfigurationProperty;
+import org.springframework.boot.convert.DurationUnit;
 import org.springframework.boot.web.servlet.ServletContextInitializer;
 import org.springframework.core.Ordered;
 import org.springframework.core.annotation.AnnotatedElementUtils;
+import org.springframework.core.annotation.AnnotationUtils;
 import org.springframework.util.ReflectionUtils;
 
 /**
@@ -119,7 +123,6 @@ public class InitParameterServletContextConfigurer implements ServletContextInit
 	}
 
 	private String convertToString(Field field, Object value, ServletContextInitParameter servletContextInitParameter) {
-
 		if (Collection.class.isAssignableFrom(field.getType())) {
 			Collection<?> collection = (Collection<?>) value;
 
@@ -128,16 +131,37 @@ public class InitParameterServletContextConfigurer implements ServletContextInit
 			}
 			else {
 				return collection.stream()
-						.map(this::convertToString)
+						.map(InitParameterServletContextConfigurer::convertToString)
 						.collect(Collectors.joining(servletContextInitParameter.listSeparator()));
 			}
+		}
+		else if (Duration.class.isAssignableFrom(field.getType())) {
+			ChronoUnit chronoUnit = resolveChronoUnit(field);
+			return convertToString((Duration) value, chronoUnit);
 		}
 		else {
 			return convertToString(value);
 		}
 	}
 
-	private String convertToString(Object value) {
+	static String convertToString(Duration duration, ChronoUnit chronoUnit) {
+		switch (chronoUnit) {
+			case NANOS:
+				return String.valueOf(duration.toNanos());
+			case MILLIS:
+				return String.valueOf(duration.toMillis());
+			case SECONDS:
+				return String.valueOf(duration.getSeconds());
+			case MINUTES:
+				return String.valueOf(duration.toMinutes());
+			case HOURS:
+				return String.valueOf(duration.toHours());
+			default:
+				throw new IllegalStateException("Unsupported ChronoUnit: " + chronoUnit);
+		}
+	}
+
+	static String convertToString(Object value) {
 
 		if (value instanceof String) {
 			return (String) value;
@@ -152,5 +176,13 @@ public class InitParameterServletContextConfigurer implements ServletContextInit
 		}
 
 		return value.toString();
+	}
+
+	static ChronoUnit resolveChronoUnit(Field field) {
+		DurationUnit annotation = AnnotationUtils.findAnnotation(field, DurationUnit.class);
+		if (annotation != null) {
+			return annotation.value();
+		}
+		return ChronoUnit.MILLIS;
 	}
 }

@@ -38,6 +38,8 @@
 
         <richfaces.version>4.5.17.Final</richfaces.version>
 
+        <icefaces.version>4.3.0</icefaces.version>
+
         <cdi.version>2.0</cdi.version>
         <weld.version>3.0.5.Final</weld.version>
         <reflections.version>0.9.11</reflections.version>
@@ -359,6 +361,16 @@
                 <artifactId>javax.ejb-api</artifactId>
                 <version>${javax.ejb-api.version}</version>
             </dependency>
+            <dependency>
+                <groupId>org.icefaces</groupId>
+                <artifactId>icefaces</artifactId>
+                <version>${icefaces.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.icefaces</groupId>
+                <artifactId>icefaces-ace</artifactId>
+                <version>${icefaces.version}</version>
+            </dependency>
 
             <dependency>
                 <groupId>org.joinfaces</groupId>
@@ -455,7 +467,12 @@
                 <groupId>org.joinfaces</groupId>
                 <artifactId>adminfaces-spring-boot-starter</artifactId>
                 <version>3.2.5-SNAPSHOT</version>
-            </dependency>			
+            </dependency>
+            <dependency>
+                <groupId>org.joinfaces</groupId>
+                <artifactId>icefaces-spring-boot-starter</artifactId>
+                <version>3.2.5-SNAPSHOT</version>
+            </dependency>
         </dependencies>
     </dependencyManagement>
 
