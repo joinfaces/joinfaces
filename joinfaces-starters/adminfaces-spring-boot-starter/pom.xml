@@ -5,7 +5,7 @@
     <parent>
         <groupId>org.joinfaces</groupId>
         <artifactId>joinfaces-starters</artifactId>
-        <version>3.2.5-SNAPSHOT</version>
+        <version>3.2.6-SNAPSHOT</version>
     </parent>
     
     <artifactId>adminfaces-spring-boot-starter</artifactId>
@@ -46,5 +46,9 @@
             <groupId>javax.enterprise</groupId>
             <artifactId>cdi-api</artifactId>
         </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-webmvc</artifactId>
+        </dependency>		
     </dependencies>
 </project>
