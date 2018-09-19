@@ -1,5 +1,6 @@
 # Auto Configure
 org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+org.joinfaces.autoconfigure.JoinfacesAutoConfiguration,\
 org.joinfaces.autoconfigure.tomcat.TomcatAutoConfiguration,\
 org.joinfaces.autoconfigure.jetty.JettyAutoConfiguration,\
 org.joinfaces.autoconfigure.undertow.UndertowAutoConfiguration,\
@@ -23,7 +24,8 @@ org.joinfaces.autoconfigure.javaxfaces.ProjectStageAutoConfiguration,\
 org.joinfaces.autoconfigure.servlet.initparams.ServletContextInitParameterPropertiesAutoConfiguration,\
 org.joinfaces.autoconfigure.weld.WeldSpringBootAutoConfiguration,\
 org.joinfaces.autoconfigure.rewrite.RewriteAutoConfiguration,\
-org.joinfaces.autoconfigure.adminfaces.AdminfacesAutoConfiguration
+org.joinfaces.autoconfigure.adminfaces.AdminfacesAutoConfiguration,\
+org.joinfaces.autoconfigure.icefaces.IcefacesAutoConfiguration
 
 org.springframework.context.ApplicationListener=\
   org.joinfaces.autoconfigure.JoinfacesApplicationAnalyzer

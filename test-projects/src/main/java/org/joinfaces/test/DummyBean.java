@@ -19,12 +19,14 @@ package org.joinfaces.test;
 import java.time.LocalDateTime;
 
 import org.springframework.stereotype.Component;
+import org.springframework.web.context.annotation.SessionScope;
 
 /**
  * Example spring bean which is accessed by JSF.
  *
  * @author Lars Grefer
  */
+@SessionScope
 @Component("dummy")
 public class DummyBean {
 
