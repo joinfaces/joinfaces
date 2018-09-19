@@ -1,5 +1,6 @@
 # Auto Configure
 org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+org.joinfaces.autoconfigure.JoinfacesAutoConfiguration,\
 org.joinfaces.autoconfigure.tomcat.TomcatAutoConfiguration,\
 org.joinfaces.autoconfigure.jetty.JettyAutoConfiguration,\
 org.joinfaces.autoconfigure.undertow.UndertowAutoConfiguration,\
