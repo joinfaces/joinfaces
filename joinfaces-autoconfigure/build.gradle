@@ -30,6 +30,8 @@ dependencies {
     optional 'org.apache.myfaces.core:myfaces-impl'
     optional 'org.omnifaces:omnifaces:1.14.1'
     optional 'org.primefaces:primefaces'
+    optional 'org.icefaces:icefaces'
+    optional 'org.icefaces:icefaces-ace'
     optional 'net.bootsfaces:bootsfaces'
     optional 'de.beyondjava:angularFaces-core'
     optional 'org.butterfaces:components'

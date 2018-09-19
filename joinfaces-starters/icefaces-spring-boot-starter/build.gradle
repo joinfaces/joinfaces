@@ -1,0 +1,6 @@
+description = 'ICEfaces Spring Boot Starter'
+
+dependencies {
+    compile project(':joinfaces-starters:jsf-spring-boot-starter')
+    compile 'org.icefaces:icefaces'
+}

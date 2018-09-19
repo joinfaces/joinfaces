@@ -64,6 +64,11 @@ allprojects {
                 entry "richfaces-a4j"
             }
 
+            dependencySet('org.icefaces:4.3.0') {
+                entry 'icefaces'
+                entry 'icefaces-ace'
+            }
+
             dependency "commons-fileupload:commons-fileupload:1.3.3"
 
             dependency('org.jboss.weld.servlet:weld-servlet-core:3.0.5.Final') {
