@@ -18,6 +18,13 @@ It also aims to solve [JSF](http://www.oracle.com/technetwork/java/javaee/javase
 
 [JoinFaces Example](https://github.com/joinfaces/joinfaces-maven-jar-example) shows JSF Spring Boot Starter usage. It may help you to choose the JSF Spring Boot Starter that fits your needs.
 
+### Official example projects
+
+|Build tool \ packaging| `jar` | `war`
+|---|---|---|
+|[Maven](https://maven.apache.org/)|[maven-jar-example](https://github.com/joinfaces/joinfaces-maven-jar-example)|[maven-war-example](https://github.com/joinfaces/joinfaces-maven-war-example)|
+|[Gradle](https://gradle.org/)|[gradle-jar-example](https://github.com/joinfaces/joinfaces-gradle-jar-example)|[gradle-war-example](https://github.com/joinfaces/joinfaces-gradle-war-example)|
+
 You can find more examples [here.](https://github.com/joinfaces/joinfaces/wiki/Examples-of-JoinFaces-usage)
 
 ## Key Features
