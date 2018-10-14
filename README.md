@@ -18,6 +18,13 @@ It also aims to solve [JSF](http://www.oracle.com/technetwork/java/javaee/javase
 
 [JoinFaces Example](https://github.com/joinfaces/joinfaces-maven-jar-example) shows JSF Spring Boot Starter usage. It may help you to choose the JSF Spring Boot Starter that fits your needs.
 
+### Official example projects
+
+|Build tool \ packaging| `jar` | `war`
+|---|---|---|
+|[Maven](https://maven.apache.org/)|[maven-jar-example](https://github.com/joinfaces/joinfaces-maven-jar-example)|[maven-war-example](https://github.com/joinfaces/joinfaces-maven-war-example)|
+|[Gradle](https://gradle.org/)|[gradle-jar-example](https://github.com/joinfaces/joinfaces-gradle-jar-example)|[gradle-war-example](https://github.com/joinfaces/joinfaces-gradle-war-example)|
+
 You can find more examples [here.](https://github.com/joinfaces/joinfaces/wiki/Examples-of-JoinFaces-usage)
 
 ## Key Features
@@ -82,7 +89,13 @@ Additional information in [#29](https://github.com/joinfaces/joinfaces/issues/29
 
 ## System Requirements
 
-By default, JoinFaces Starters requires [Java 8](http://java.com) and [Spring Boot 2.0.x](http://projects.spring.io/spring-boot/) and [JSF 2.x](https://javaserverfaces.github.io/). 
+Joinfaces | Java | Spring Boot | JSF
+----------|------|-------------|-----
+`2.x`     |`1.6` to `1.8`|`1.x`|`2.0` to `2.2`
+`3.0` to `3.2`|`1.8`|`2.0`|`2.0` to `2.3`
+`3.3`     |`1.8` to `11` |`2.1`|`2.0` to `2.3`
+
+This are the combinations we have tested and expect to work, but depending on the features you are using, other combinations might work, too.
 
 Additionnal information [here.](https://github.com/joinfaces/joinfaces/wiki/System-Requirements)
 
