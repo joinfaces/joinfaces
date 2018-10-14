@@ -134,6 +134,7 @@ allprojects {
 
     plugins.withId("jacoco") {
         jacocoTestReport.reports.xml.enabled true
+        jacoco.toolVersion = "0.8.2"
     }
 
     plugins.withId("maven-publish") {
