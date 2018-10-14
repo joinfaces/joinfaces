@@ -82,7 +82,13 @@ Additional information in [#29](https://github.com/joinfaces/joinfaces/issues/29
 
 ## System Requirements
 
-By default, JoinFaces Starters requires [Java 8](http://java.com) and [Spring Boot 2.0.x](http://projects.spring.io/spring-boot/) and [JSF 2.x](https://javaserverfaces.github.io/). 
+Joinfaces | Java | Spring Boot | JSF
+----------|------|-------------|-----
+`2.x`     |`1.6` to `1.8`|`1.x`|`2.0` to `2.2`
+`3.0` to `3.2`|`1.8`|`2.0`|`2.0` to `2.3`
+`3.3`     |`1.8` to `11` |`2.1`|`2.0` to `2.3`
+
+This are the combinations we have tested and expect to work, but depending on the features you are using, other combinations might work, too.
 
 Additionnal information [here.](https://github.com/joinfaces/joinfaces/wiki/System-Requirements)
 
