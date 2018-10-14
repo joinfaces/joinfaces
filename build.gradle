@@ -29,9 +29,9 @@ allprojects {
         dependencies {
             dependency 'javax.faces:javax.faces-api:2.3'
 
-            dependency('org.glassfish:javax.faces:2.3.6')
+            dependency('org.glassfish:javax.faces:2.3.7')
 
-            dependencySet('org.apache.myfaces.core:2.3.1') {
+            dependencySet('org.apache.myfaces.core:2.3.2') {
                 entry "myfaces-api"
                 entry("myfaces-impl") {
                     exclude "commons-logging:commons-logging"
@@ -48,7 +48,7 @@ allprojects {
             dependency 'org.reflections:reflections:0.9.11'
 
             dependency 'org.primefaces:primefaces:6.2'
-            dependencySet("org.primefaces.extensions:6.2.7") {
+            dependencySet("org.primefaces.extensions:6.2.9") {
                 entry "primefaces-extensions"
                 entry "resources-ckeditor"
             }
@@ -57,7 +57,7 @@ allprojects {
             dependency('de.beyondjava:angularFaces-core:2.1.12') {
                 exclude "commons-logging:commons-logging"
             }
-            dependency 'org.butterfaces:components:3.0.5'
+            dependency 'org.butterfaces:components:3.0.6'
 
             dependencySet('org.richfaces:4.5.17.Final') {
                 entry "richfaces"
