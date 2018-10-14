@@ -18,8 +18,8 @@
     <properties>
         <main.basedir>..</main.basedir>
 
-        <lombok-maven-plugin.version>1.18.0.0</lombok-maven-plugin.version>
-        <lombok.version>1.18.0</lombok.version>
+        <lombok-maven-plugin.version>1.18.2.0</lombok-maven-plugin.version>
+        <lombok.version>1.18.2</lombok.version>
 
         <javax.faces-api.version>2.3</javax.faces-api.version>
         <mojarra.version>2.3.7</mojarra.version>
