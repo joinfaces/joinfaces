@@ -1,3 +1,5 @@
+lombok.config
+
 .idea/*
 
 !.idea/checkstyle-idea.xml
