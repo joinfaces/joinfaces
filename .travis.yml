@@ -1,7 +1,7 @@
 language: java
 jdk:
   - openjdk8
-  - openjdk10
+  - openjdk11
 
 before_cache:
   - rm -f  $HOME/.gradle/caches/modules-2/modules-2.lock
@@ -25,6 +25,6 @@ deploy:
   script: ./gradlew publish
   on:
     all_branches: true
-    jdk: openjdk10
+    jdk: openjdk11
     tags: false
     repo: joinfaces/joinfaces
