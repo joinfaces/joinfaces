@@ -15,7 +15,7 @@ env:
 install: ./mvnw -B clean validate
 
 script:
-  - ./mvnw -B -Pcheck-duplicate,check-checkstyle,check-cycles,check-cpd,check-pmd,check-findbugs verify
+  - ./mvnw -B -Pcheck-duplicate,check-checkstyle,check-cycles,check-cpd,check-pmd,check-spotbugs verify
 
 after_success:
   - bash <(curl -s https://codecov.io/bash)
