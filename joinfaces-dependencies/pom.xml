@@ -5,42 +5,46 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>2.0.4.RELEASE</version>
+        <version>2.1.0.M4</version>
         <relativePath /> <!-- lookup parent from repository -->
     </parent>
     
     <groupId>org.joinfaces</groupId>
     <artifactId>joinfaces-dependencies</artifactId>
-    <version>3.2.5-SNAPSHOT</version>
+    <version>3.3.0-SNAPSHOT</version>
     <packaging>pom</packaging>
     <name>JoinFaces Dependencies</name>
 
     <properties>
         <main.basedir>..</main.basedir>
 
-        <lombok-maven-plugin.version>1.18.0.0</lombok-maven-plugin.version>
-        <lombok.version>1.18.0</lombok.version>
+        <lombok-maven-plugin.version>1.18.2.0</lombok-maven-plugin.version>
+        <lombok.version>1.18.2</lombok.version>
 
         <javax.faces-api.version>2.3</javax.faces-api.version>
-        <mojarra.version>2.3.6</mojarra.version>
-        <myfaces.version>2.3.1</myfaces.version>
+        <mojarra.version>2.3.7</mojarra.version>
+        <myfaces.version>2.3.2</myfaces.version>
 
         <omnifaces1.version>1.14.1</omnifaces1.version>
         <omnifaces3.version>3.2</omnifaces3.version>
 
         <primefaces.version>6.2</primefaces.version>
-        <primefaces-extensions.version>6.2.7</primefaces-extensions.version>
+        <primefaces-extensions.version>6.2.9</primefaces-extensions.version>
 
         <bootsfaces.version>1.3.0</bootsfaces.version>
         <angularfaces.version>2.1.12</angularfaces.version>
 
-        <butterfaces.version>3.0.5</butterfaces.version>
+        <butterfaces.version>3.0.6</butterfaces.version>
 
         <richfaces.version>4.5.17.Final</richfaces.version>
+
+        <icefaces.version>4.3.0</icefaces.version>
 
         <cdi.version>2.0</cdi.version>
         <weld.version>3.0.5.Final</weld.version>
         <reflections.version>0.9.11</reflections.version>
+
+        <adminfaces.version>1.0.0-RC19</adminfaces.version>
 
         <jboss-jsp-api_2.3_spec.version>1.0.3.Final</jboss-jsp-api_2.3_spec.version>
 
@@ -48,12 +52,12 @@
         
         <rewrite.version>3.4.2.Final</rewrite.version>
         
-        <findbugs-annotations.version>3.0.1u2</findbugs-annotations.version>
-        
+        <spotbugs.version>3.1.7</spotbugs.version>
+        <spotbugs-annotations.version>3.1.7</spotbugs-annotations.version>
+
         <activation.version>1.1.1</activation.version>
         <jaxb.version>2.3.0</jaxb.version>
 
-        <adminfaces.version>1.0.0-RC18</adminfaces.version>
         <hibernate-jpa-2.1-api.version>1.0.2.Final</hibernate-jpa-2.1-api.version>
         <javax.ejb-api.version>3.2.2</javax.ejb-api.version>
 
@@ -68,16 +72,15 @@
         <requireMaven.version>3.1.1</requireMaven.version>
         <requireJava.version>[1.8,)</requireJava.version>
 
-        <findbugs-maven-plugin.version>3.0.5</findbugs-maven-plugin.version>
+        <spotbugs-maven-plugin.version>3.1.6</spotbugs-maven-plugin.version>
         <jdepend-maven-plugin.version>2.0</jdepend-maven-plugin.version>
         <maven-pmd-plugin.version>3.10.0</maven-pmd-plugin.version>
         <pmd.ruleset>${pmd.dir}/pmd-ruleset.xml</pmd.ruleset>
         <pmd.excludeFromFailureFile />
         <cpd.excludeFromFailureFile />
-        <maven-enforcer-plugin.version>1.4.1</maven-enforcer-plugin.version>
-        <no-package-cycles-enforcer-rule.version>1.0.8</no-package-cycles-enforcer-rule.version>
+        <no-package-cycles-enforcer-rule.version>1.0.9</no-package-cycles-enforcer-rule.version>
         <maven-checkstyle-plugin.version>3.0.0</maven-checkstyle-plugin.version>
-        <checkstyle.version>8.11</checkstyle.version>
+        <checkstyle.version>8.12</checkstyle.version>
         <checkstyle.configLocation>${checkstyle.dir}/checkstyle.xml</checkstyle.configLocation>
         <checkstyle.suppressionsLocation>${checkstyle.dir}/checkstyle-suppressions.xml</checkstyle.suppressionsLocation>
         <checkstyle.headerLocation>${checkstyle.dir}/checkstyle-header.txt</checkstyle.headerLocation>
@@ -86,15 +89,27 @@
         <duplicate.ignoredResourcePattern>about.html</duplicate.ignoredResourcePattern>
         <duplicate.ignoredClassPattern>none</duplicate.ignoredClassPattern>
 
-        <jacoco-maven-plugin.version>0.8.1</jacoco-maven-plugin.version>
+        <jacoco-maven-plugin.version>0.8.2</jacoco-maven-plugin.version>
 
         <argLine>-Xms32m -Xmx256m</argLine>
-        <findbugs.jvmArgs>-Xms32m -Xmx256m</findbugs.jvmArgs>
 
         <maven-project-info-reports-plugin.version>3.0.0</maven-project-info-reports-plugin.version>
         <maven-jxr-plugin.version>2.5</maven-jxr-plugin.version>
         <maven-changelog-plugin.version>2.3</maven-changelog-plugin.version>
     </properties>
+
+    <repositories>
+        <repository>
+            <id>spring-milestones</id>
+            <url>https://repo.spring.io/milestone</url>
+        </repository>
+    </repositories>
+    <pluginRepositories>
+        <pluginRepository>
+            <id>spring-milestones</id>
+            <url>https://repo.spring.io/milestone</url>
+        </pluginRepository>
+    </pluginRepositories>
 
     <dependencyManagement>
         <dependencies>
@@ -273,9 +288,10 @@
             </dependency>
 
             <dependency>
-                <groupId>com.google.code.findbugs</groupId>
-                <artifactId>annotations</artifactId>
-                <version>${findbugs-annotations.version}</version>
+                <groupId>com.github.spotbugs</groupId>
+                <artifactId>spotbugs-annotations</artifactId>
+                <version>${spotbugs-annotations.version}</version>
+                <scope>provided</scope>
             </dependency>
                         
             <dependency>
@@ -359,103 +375,118 @@
                 <artifactId>javax.ejb-api</artifactId>
                 <version>${javax.ejb-api.version}</version>
             </dependency>
+            <dependency>
+                <groupId>org.icefaces</groupId>
+                <artifactId>icefaces</artifactId>
+                <version>${icefaces.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.icefaces</groupId>
+                <artifactId>icefaces-ace</artifactId>
+                <version>${icefaces.version}</version>
+            </dependency>
 
             <dependency>
                 <groupId>org.joinfaces</groupId>
                 <artifactId>spring-security-jsf-taglib</artifactId>
-                <version>3.2.5-SNAPSHOT</version>
+                <version>3.3.0-SNAPSHOT</version>
             </dependency>
             <dependency>
                 <groupId>org.joinfaces</groupId>
                 <artifactId>joinfaces-test</artifactId>
-                <version>3.2.5-SNAPSHOT</version>
+                <version>3.3.0-SNAPSHOT</version>
             </dependency>
             <dependency>
                 <groupId>org.joinfaces</groupId>
                 <artifactId>joinfaces-autoconfigure</artifactId>
-                <version>3.2.5-SNAPSHOT</version>
+                <version>3.3.0-SNAPSHOT</version>
             </dependency>
 
             <dependency>
                 <groupId>org.joinfaces</groupId>
                 <artifactId>tomcat-spring-boot-starter</artifactId>
-                <version>3.2.5-SNAPSHOT</version>
+                <version>3.3.0-SNAPSHOT</version>
             </dependency>
             <dependency>
                 <groupId>org.joinfaces</groupId>
                 <artifactId>jetty-spring-boot-starter</artifactId>
-                <version>3.2.5-SNAPSHOT</version>
+                <version>3.3.0-SNAPSHOT</version>
             </dependency>
             <dependency>
                 <groupId>org.joinfaces</groupId>
                 <artifactId>undertow-spring-boot-starter</artifactId>
-                <version>3.2.5-SNAPSHOT</version>
+                <version>3.3.0-SNAPSHOT</version>
             </dependency>
             <dependency>
                 <groupId>org.joinfaces</groupId>
                 <artifactId>mojarra-spring-boot-starter</artifactId>
-                <version>3.2.5-SNAPSHOT</version>
+                <version>3.3.0-SNAPSHOT</version>
             </dependency>
             <dependency>
                 <groupId>org.joinfaces</groupId>
                 <artifactId>myfaces-spring-boot-starter</artifactId>
-                <version>3.2.5-SNAPSHOT</version>
+                <version>3.3.0-SNAPSHOT</version>
             </dependency>
             <dependency>
                 <groupId>org.joinfaces</groupId>
                 <artifactId>omnifaces1-spring-boot-starter</artifactId>
-                <version>3.2.5-SNAPSHOT</version>
+                <version>3.3.0-SNAPSHOT</version>
             </dependency>
             <dependency>
                 <groupId>org.joinfaces</groupId>
                 <artifactId>omnifaces3-spring-boot-starter</artifactId>
-                <version>3.2.5-SNAPSHOT</version>
+                <version>3.3.0-SNAPSHOT</version>
             </dependency>
             <dependency>
                 <groupId>org.joinfaces</groupId>
                 <artifactId>jsf-spring-boot-starter</artifactId>
-                <version>3.2.5-SNAPSHOT</version>
+                <version>3.3.0-SNAPSHOT</version>
             </dependency>
             <dependency>
                 <groupId>org.joinfaces</groupId>
                 <artifactId>primefaces-spring-boot-starter</artifactId>
-                <version>3.2.5-SNAPSHOT</version>
+                <version>3.3.0-SNAPSHOT</version>
             </dependency>
             <dependency>
                 <groupId>org.joinfaces</groupId>
                 <artifactId>bootsfaces-spring-boot-starter</artifactId>
-                <version>3.2.5-SNAPSHOT</version>
+                <version>3.3.0-SNAPSHOT</version>
             </dependency>
             <dependency>
                 <groupId>org.joinfaces</groupId>
                 <artifactId>butterfaces-spring-boot-starter</artifactId>
-                <version>3.2.5-SNAPSHOT</version>
+                <version>3.3.0-SNAPSHOT</version>
             </dependency>
             <dependency>
                 <groupId>org.joinfaces</groupId>
                 <artifactId>angularfaces-spring-boot-starter</artifactId>
-                <version>3.2.5-SNAPSHOT</version>
+                <version>3.3.0-SNAPSHOT</version>
             </dependency>
             <dependency>
                 <groupId>org.joinfaces</groupId>
                 <artifactId>richfaces-spring-boot-starter</artifactId>
-                <version>3.2.5-SNAPSHOT</version>
+                <version>3.3.0-SNAPSHOT</version>
             </dependency>			
             <dependency>
                 <groupId>org.joinfaces</groupId>
                 <artifactId>weld-spring-boot-starter</artifactId>
-                <version>3.2.5-SNAPSHOT</version>
+                <version>3.3.0-SNAPSHOT</version>
             </dependency>			
             <dependency>
                 <groupId>org.joinfaces</groupId>
                 <artifactId>rewrite-spring-boot-starter</artifactId>
-                <version>3.2.5-SNAPSHOT</version>
+                <version>3.3.0-SNAPSHOT</version>
             </dependency>			
             <dependency>
                 <groupId>org.joinfaces</groupId>
                 <artifactId>adminfaces-spring-boot-starter</artifactId>
-                <version>3.2.5-SNAPSHOT</version>
-            </dependency>			
+                <version>3.3.0-SNAPSHOT</version>
+            </dependency>
+            <dependency>
+                <groupId>org.joinfaces</groupId>
+                <artifactId>icefaces-spring-boot-starter</artifactId>
+                <version>3.3.0-SNAPSHOT</version>
+            </dependency>
         </dependencies>
     </dependencyManagement>
 
@@ -510,14 +541,21 @@
                     </configuration>
                 </plugin>
                 <plugin>
-                    <groupId>org.codehaus.mojo</groupId>
-                    <artifactId>findbugs-maven-plugin</artifactId>
-                    <version>${findbugs-maven-plugin.version}</version>
+                    <groupId>com.github.spotbugs</groupId>
+                    <artifactId>spotbugs-maven-plugin</artifactId>
+                    <version>${spotbugs-maven-plugin.version}</version>
                     <configuration>
                         <includeTests>true</includeTests>
                         <xmlOutput>true</xmlOutput>
                         <effort>Max</effort>
                     </configuration>
+                    <dependencies>
+                        <dependency>
+                            <groupId>com.github.spotbugs</groupId>
+                            <artifactId>spotbugs</artifactId>
+                            <version>${spotbugs.version}</version>
+                        </dependency>
+                    </dependencies>
                 </plugin>
                 <plugin>
                     <groupId>org.codehaus.mojo</groupId>
@@ -538,11 +576,6 @@
                     <groupId>org.projectlombok</groupId>
                     <artifactId>lombok-maven-plugin</artifactId>
                     <version>${lombok-maven-plugin.version}</version>
-                </plugin>
-                <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-enforcer-plugin</artifactId>
-                    <version>${maven-enforcer-plugin.version}</version>
                 </plugin>
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>

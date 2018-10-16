@@ -17,8 +17,8 @@
         </properties>
     </action>
     <action>
-        <actionName>CUSTOM-duplicate-checkstyle-pmd-cpd-cycles-findbugs</actionName>
-        <displayName>duplicate-checkstyle-pmd-cpd-cycles-findbugs</displayName>
+        <actionName>CUSTOM-duplicate-checkstyle-pmd-cpd-cycles-spotbugs</actionName>
+        <displayName>duplicate-checkstyle-pmd-cpd-cycles-spotbugs</displayName>
         <goals>
             <goal>clean</goal>
             <goal>verify</goal>
@@ -29,7 +29,7 @@
             <activatedProfile>check-cycles</activatedProfile>
             <activatedProfile>check-cpd</activatedProfile>
             <activatedProfile>check-pmd</activatedProfile>
-            <activatedProfile>check-findbugs</activatedProfile>
+            <activatedProfile>check-spotbugs</activatedProfile>
         </activatedProfiles>
         <properties>
             <maven.test.skip>true</maven.test.skip>
@@ -56,7 +56,7 @@
             <activatedProfile>check-cycles</activatedProfile>
             <activatedProfile>check-cpd</activatedProfile>
             <activatedProfile>check-pmd</activatedProfile>
-            <activatedProfile>check-findbugs</activatedProfile>
+            <activatedProfile>check-spotbugs</activatedProfile>
             <activatedProfile>attach-test-jar</activatedProfile>
             <activatedProfile>attach-source</activatedProfile>
             <activatedProfile>attach-javadoc</activatedProfile>
@@ -76,7 +76,7 @@
             <activatedProfile>check-cycles</activatedProfile>
             <activatedProfile>check-cpd</activatedProfile>
             <activatedProfile>check-pmd</activatedProfile>
-            <activatedProfile>check-findbugs</activatedProfile>
+            <activatedProfile>check-spotbugs</activatedProfile>
             <activatedProfile>attach-test-jar</activatedProfile>
             <activatedProfile>attach-source</activatedProfile>
             <activatedProfile>attach-javadoc</activatedProfile>

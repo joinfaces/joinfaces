@@ -5,7 +5,7 @@
     <parent>
         <groupId>org.joinfaces</groupId>
         <artifactId>joinfaces-starters</artifactId>
-        <version>3.2.5-SNAPSHOT</version>
+        <version>3.3.0-SNAPSHOT</version>
     </parent>
     
     <artifactId>primefaces-spring-boot-starter</artifactId>

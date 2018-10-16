@@ -5,15 +5,22 @@
     <parent>
         <groupId>org.joinfaces</groupId>
         <artifactId>joinfaces-dependencies</artifactId>
-        <version>3.2.5-SNAPSHOT</version>
+        <version>3.3.0-SNAPSHOT</version>
         <relativePath>../joinfaces-dependencies</relativePath>
     </parent>
 
     <artifactId>joinfaces-parent</artifactId>
-    <version>3.2.5-SNAPSHOT</version>
+    <version>3.3.0-SNAPSHOT</version>
     <packaging>pom</packaging>
     <name>JoinFaces Parent</name>
-    <description>JoinFaces configuration for reports and quality checks: pmd, cpd, checkstyle, findbugs, cycles, duplicate.</description>
+    <description>JoinFaces configuration for reports and quality checks: pmd, cpd, checkstyle, spotbugs, cycles, duplicate.</description>
+
+    <repositories>
+        <repository>
+            <id>icesoft-releases</id>
+            <url>http://anonsvn.icesoft.org/repo/maven2/releases/</url>
+        </repository>
+    </repositories>
 
     <build>
         <plugins>
@@ -44,8 +51,8 @@
 
     <dependencies>
         <dependency>
-            <groupId>com.google.code.findbugs</groupId>
-            <artifactId>annotations</artifactId>
+            <groupId>com.github.spotbugs</groupId>
+            <artifactId>spotbugs-annotations</artifactId>
             <scope>provided</scope>
         </dependency>
     </dependencies>
@@ -69,8 +76,8 @@
                 </configuration>
             </plugin>
             <plugin>
-                <groupId>org.codehaus.mojo</groupId>
-                <artifactId>findbugs-maven-plugin</artifactId>
+                <groupId>com.github.spotbugs</groupId>
+                <artifactId>spotbugs-maven-plugin</artifactId>
             </plugin>
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
@@ -242,12 +249,12 @@
         </profile>
 
         <profile>
-            <id>check-findbugs</id>
+            <id>check-spotbugs</id>
             <build>
                 <plugins>
                     <plugin>
-                        <groupId>org.codehaus.mojo</groupId>
-                        <artifactId>findbugs-maven-plugin</artifactId>
+                        <groupId>com.github.spotbugs</groupId>
+                        <artifactId>spotbugs-maven-plugin</artifactId>
                         <executions>
                             <execution>
                                 <goals>

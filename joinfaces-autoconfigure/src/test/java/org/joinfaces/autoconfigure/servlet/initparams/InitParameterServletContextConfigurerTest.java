@@ -17,6 +17,8 @@
 package org.joinfaces.autoconfigure.servlet.initparams;
 
 import java.lang.annotation.RetentionPolicy;
+import java.time.Duration;
+import java.time.temporal.ChronoUnit;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
@@ -30,6 +32,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import org.springframework.boot.context.properties.NestedConfigurationProperty;
+import org.springframework.boot.convert.DurationUnit;
 import org.springframework.mock.web.MockServletContext;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -105,6 +108,16 @@ public class InitParameterServletContextConfigurerTest {
 		assertThat(this.servletContext.getInitParameter("test.INT")).isEqualTo("42");
 	}
 
+	@Test
+	public void testDuration() {
+		assertThat(this.servletContext.getInitParameter("test.duration")).isEqualTo("2000");
+	}
+
+	@Test
+	public void testDurationSec() {
+		assertThat(this.servletContext.getInitParameter("test.durationSec")).isEqualTo("2");
+	}
+
 	@Getter
 	@Setter
 	@NoArgsConstructor
@@ -147,6 +160,13 @@ public class InitParameterServletContextConfigurerTest {
 
 		@ServletContextInitParameter("test.INT")
 		private int testInt = 42;
+
+		@ServletContextInitParameter("test.duration")
+		private Duration testDuration = Duration.ofSeconds(2);
+
+		@ServletContextInitParameter("test.durationSec")
+		@DurationUnit(ChronoUnit.SECONDS)
+		private Duration testDurationSec = Duration.ofSeconds(2);
 
 		@Getter
 		@Setter
