@@ -16,12 +16,14 @@
 
 package org.joinfaces.autoconfigure.adminfaces;
 
+import java.io.Serializable;
+
 import lombok.Data;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
 /**
- * Configuration properties of BootsFaces.
+ * Configuration properties of AdminFaces.
  * <p>
  * Taken from
  * <ul>
@@ -33,7 +35,9 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
  */
 @Data
 @ConfigurationProperties(prefix = "jsf.adminfaces")
-public class AdminfacesProperties {
+public class AdminfacesProperties implements Serializable {
+
+	private static final long serialVersionUID = 1L;
 
 	/**
 	 * login page location (relative to webapp). It you only be used if you configure Admin Session.
@@ -154,6 +158,11 @@ public class AdminfacesProperties {
 	private String messagesHideTimeout;
 
 	/**
+	 * Enables material effect when icons (e.g modal close, calendar) are clicked.
+	 */
+	private Boolean iconsEffect;
+
+	/**
 	 * When true it will activate control sidebar component.
 	 */
 	private ControlSidebar controlSidebar = new ControlSidebar();
@@ -162,7 +171,9 @@ public class AdminfacesProperties {
 	 * ControlSidebar properties.
 	 */
 	@Data
-	public static class ControlSidebar {
+	public static class ControlSidebar implements Serializable {
+
+		private static final long serialVersionUID = 1L;
 
 		/**
 		 * When true control sidebar will be also rendered on mobile devices.

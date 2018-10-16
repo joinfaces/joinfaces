@@ -20,7 +20,6 @@ import javax.faces.application.ViewExpiredException;
 import javax.persistence.OptimisticLockException;
 
 import com.github.adminfaces.template.config.AdminConfig;
-import com.github.adminfaces.template.config.ControlSidebarConfig;
 import com.github.adminfaces.template.exception.AccessDeniedException;
 import com.github.adminfaces.template.session.AdminServletContextListener;
 import com.github.adminfaces.template.session.AdminSession;
@@ -129,116 +128,12 @@ public class AdminfacesAutoConfiguration {
 				log.warn("Changing primefaces fontAwesome from 'false' to 'true'.");
 				properties.setFontAwesome(true);
 			}
-			/* Waiting 1.0.0-RC19 release
 			if (bean instanceof AdminConfig) {
-				configureAdminConfig((AdminConfig) bean);
+				AdminConfigWrapper adminConfigWrapper = new AdminConfigWrapper();
+				adminConfigWrapper.setAdminfacesProperties(this.adminfacesProperties);
+				bean = adminConfigWrapper;
 			}
-			*/
 			return bean;
-		}
-
-		private void configureAdminConfig(AdminConfig adminConfig) {
-			if (this.adminfacesProperties.getLoginPage() != null) {
-				adminConfig.setLoginPage(this.adminfacesProperties.getLoginPage());
-			}
-			if (this.adminfacesProperties.getIndexPage() != null) {
-				adminConfig.setIndexPage(this.adminfacesProperties.getIndexPage());
-			}
-			if (this.adminfacesProperties.getDateFormat() != null) {
-				adminConfig.setDateFormat(this.adminfacesProperties.getDateFormat());
-			}
-			if (this.adminfacesProperties.getTemplatePath() != null) {
-				adminConfig.setTemplatePath(this.adminfacesProperties.getTemplatePath());
-			}
-			if (this.adminfacesProperties.getBreadcrumbSize() != null) {
-				adminConfig.setBreadCrumbMaxSize(this.adminfacesProperties.getBreadcrumbSize());
-			}
-			if (this.adminfacesProperties.getRenderMessages() != null) {
-				adminConfig.setRenderMessages(this.adminfacesProperties.getRenderMessages());
-			}
-			if (this.adminfacesProperties.getRenderAjaxStatus() != null) {
-				adminConfig.setRenderAjaxStatus(this.adminfacesProperties.getRenderAjaxStatus());
-			}
-			if (this.adminfacesProperties.getDisableFilter() != null) {
-				adminConfig.setDisableFilter(this.adminfacesProperties.getDisableFilter());
-			}
-			if (this.adminfacesProperties.getRenderBreadCrumb() != null) {
-				adminConfig.setRenderBreadCrumb(this.adminfacesProperties.getRenderBreadCrumb());
-			}
-			if (this.adminfacesProperties.getEnableSlideMenu() != null) {
-				adminConfig.setEnableSlideMenu(this.adminfacesProperties.getEnableSlideMenu());
-			}
-			if (this.adminfacesProperties.getEnableRipple() != null) {
-				adminConfig.setEnableRipple(this.adminfacesProperties.getEnableRipple());
-			}
-			if (this.adminfacesProperties.getRippleElements() != null) {
-				adminConfig.setRippleElements(this.adminfacesProperties.getRippleElements());
-			}
-			if (this.adminfacesProperties.getSkin() != null) {
-				adminConfig.setSkin(this.adminfacesProperties.getSkin());
-			}
-			if (this.adminfacesProperties.getAutoShowNavbar() != null) {
-				adminConfig.setAutoShowNavbar(this.adminfacesProperties.getAutoShowNavbar());
-			}
-			if (this.adminfacesProperties.getIgnoredResources() != null) {
-				adminConfig.setIgnoredResources(this.adminfacesProperties.getIgnoredResources());
-			}
-			if (this.adminfacesProperties.getLoadingImage() != null) {
-				adminConfig.setLoadingImage(this.adminfacesProperties.getLoadingImage());
-			}
-			if (this.adminfacesProperties.getExtensionLessUrls() != null) {
-				adminConfig.setExtensionLessUrls(this.adminfacesProperties.getExtensionLessUrls());
-			}
-			if (this.adminfacesProperties.getRenderControlSidebar() != null) {
-				adminConfig.setRenderControlSidebar(this.adminfacesProperties.getRenderControlSidebar());
-			}
-
-			Boolean showOnMobile = adminConfig.getControlSidebar().getShowOnMobile();
-			if (this.adminfacesProperties.getControlSidebar().getShowOnMobile() != null) {
-				showOnMobile = this.adminfacesProperties.getControlSidebar().getShowOnMobile();
-			}
-			Boolean fixedLayout = adminConfig.getControlSidebar().getFixedLayout();
-			if (this.adminfacesProperties.getControlSidebar().getFixedLayout() != null) {
-				fixedLayout = this.adminfacesProperties.getControlSidebar().getFixedLayout();
-			}
-			Boolean boxedLayout = adminConfig.getControlSidebar().getBoxedLayout();
-			if (this.adminfacesProperties.getControlSidebar().getBoxedLayout() != null) {
-				boxedLayout = this.adminfacesProperties.getControlSidebar().getBoxedLayout();
-			}
-			Boolean expandOnHover = adminConfig.getControlSidebar().getExpandOnHover();
-			if (this.adminfacesProperties.getControlSidebar().getExpandOnHover() != null) {
-				expandOnHover = this.adminfacesProperties.getControlSidebar().getExpandOnHover();
-			}
-			Boolean sidebarCollapsed = adminConfig.getControlSidebar().getSidebarCollapsed();
-			if (this.adminfacesProperties.getControlSidebar().getSidebarCollapsed() != null) {
-				sidebarCollapsed = this.adminfacesProperties.getControlSidebar().getSidebarCollapsed();
-			}
-			Boolean fixed = adminConfig.getControlSidebar().getFixed();
-			if (this.adminfacesProperties.getControlSidebar().getFixed() != null) {
-				fixed = this.adminfacesProperties.getControlSidebar().getFixed();
-			}
-			Boolean darkSkin = adminConfig.getControlSidebar().getDarkSkin();
-			if (this.adminfacesProperties.getControlSidebar().getDarkSkin() != null) {
-				darkSkin = this.adminfacesProperties.getControlSidebar().getDarkSkin();
-			}
-			adminConfig.setControlSidebar(new ControlSidebarConfig(showOnMobile, fixedLayout, boxedLayout, expandOnHover, sidebarCollapsed, fixed, darkSkin));
-
-			if (this.adminfacesProperties.getControlSidebar().getLeftMenuTemplate() != null) {
-				adminConfig.setLeftMenuTemplate(this.adminfacesProperties.getControlSidebar().getLeftMenuTemplate());
-			}
-
-			if (this.adminfacesProperties.getRippleMobileOnly() != null) {
-				adminConfig.setRippleMobileOnly(this.adminfacesProperties.getRippleMobileOnly());
-			}
-			if (this.adminfacesProperties.getRenderMenuSearch() != null) {
-				adminConfig.setRenderMenuSearch(this.adminfacesProperties.getRenderMenuSearch());
-			}
-			if (this.adminfacesProperties.getAutoHideMessages() != null) {
-				adminConfig.setAutoHideMessages(this.adminfacesProperties.getAutoHideMessages());
-			}
-			if (this.adminfacesProperties.getMessagesHideTimeout() != null) {
-				adminConfig.setMessagesHideTimeout(this.adminfacesProperties.getMessagesHideTimeout());
-			}
 		}
 	}
 
