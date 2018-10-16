@@ -95,7 +95,7 @@ allprojects {
 
             dependency 'javax.activation:activation:1.1.1'
 
-            dependencySet('com.github.adminfaces:1.0.0-RC18') {
+            dependencySet('com.github.adminfaces:1.0.0-RC19') {
                 entry "admin-template"
                 entry "admin-theme"
             }
