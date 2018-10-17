@@ -52,8 +52,8 @@
         
         <rewrite.version>3.4.2.Final</rewrite.version>
         
-        <spotbugs.version>3.1.7</spotbugs.version>
-        <spotbugs-annotations.version>3.1.7</spotbugs-annotations.version>
+        <spotbugs.version>3.1.8</spotbugs.version>
+        <spotbugs-annotations.version>3.1.8</spotbugs-annotations.version>
 
         <activation.version>1.1.1</activation.version>
         <jaxb.version>2.3.0</jaxb.version>
