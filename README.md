@@ -4,7 +4,6 @@ JoinFaces
 [![Build Status](https://travis-ci.org/joinfaces/joinfaces.svg?branch=master)](https://travis-ci.org/joinfaces/joinfaces)
 [![Coverage Status](https://coveralls.io/repos/github/joinfaces/joinfaces/badge.svg?branch=master)](https://coveralls.io/github/joinfaces/joinfaces?branch=master)
 [![codecov](https://codecov.io/gh/joinfaces/joinfaces/branch/master/graph/badge.svg)](https://codecov.io/gh/joinfaces/joinfaces)
-[![Dependency Status](https://www.versioneye.com/user/projects/5a8df1f00fb24f3b75808959/badge.svg?style=flat)](https://www.versioneye.com/user/projects/5a8df1f00fb24f3b75808959)
 [![Javadocs](http://javadoc.io/badge/org.joinfaces/joinfaces-build.svg)](http://javadoc.io/doc/org.joinfaces/joinfaces-build)
 [![License](http://img.shields.io/:license-apache-blue.svg)](http://www.apache.org/licenses/LICENSE-2.0.html)
 
@@ -44,6 +43,7 @@ standard (javax.faces) | jsf | `jsf.project-stage=development`
 [bootsfaces](http://bootsfaces.net/) | jsf.bootsfaces | `jsf.bootsfaces.usetheme=true`
 [butterfaces](http://butterfaces.org/) | jsf.butterfaces | `jsf.butterfaces.provide-j-query=true`
 [adminfaces](http://adminfaces.github.io/site/) | jsf.adminfaces | `jsf.adminfaces.skin=skin-blue`
+[icefaces](http://adminfaces.github.io/site/) | jsf.icefaces | `jsf.icefaces.compressDom=true`
 [richfaces](https://github.com/richfaces/richfaces) | jsf.richfaces | `jsf.richfaces.resource-default-ttl=86400`
 [omnifaces](http://omnifaces.org/) | jsf.omnifaces | `jsf.omnifaces.faces-views-enabled=true`
 [angularfaces](http://angularfaces.net/) | jsf.angularfaces | `jsf.angularfaces.add-labels=true`
