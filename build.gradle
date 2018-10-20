@@ -6,10 +6,10 @@ buildscript {
         maven { url "https://repo.spring.io/milestone" }
     }
     dependencies {
-        classpath "org.springframework.boot:spring-boot-gradle-plugin:2.1.0.M4"
+        classpath "org.springframework.boot:spring-boot-gradle-plugin:2.1.0.RC1"
         classpath "io.freefair.gradle:lombok-plugin:2.7.3"
         classpath "io.freefair.gradle:maven-plugin:2.7.3"
-        classpath "gradle.plugin.com.github.spotbugs:spotbugs-gradle-plugin:1.6.4"
+        classpath "gradle.plugin.com.github.spotbugs:spotbugs-gradle-plugin:1.6.5"
     }
 }
 

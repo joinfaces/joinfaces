@@ -19,19 +19,23 @@ package org.joinfaces.autoconfigure.adminfaces;
 import javax.faces.application.ViewExpiredException;
 import javax.persistence.OptimisticLockException;
 
+import com.github.adminfaces.template.config.AdminConfig;
 import com.github.adminfaces.template.exception.AccessDeniedException;
 import com.github.adminfaces.template.session.AdminServletContextListener;
 import com.github.adminfaces.template.session.AdminSession;
+import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
 import org.joinfaces.autoconfigure.primefaces.Primefaces4_0Properties;
 import org.joinfaces.autoconfigure.primefaces.Primefaces5_2Properties;
 import org.joinfaces.autoconfigure.primefaces.PrimefacesAutoConfiguration;
 
 import org.springframework.beans.BeansException;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.config.BeanPostProcessor;
 import org.springframework.boot.autoconfigure.AutoConfigureBefore;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnWebApplication;
+import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.boot.web.server.ErrorPage;
 import org.springframework.boot.web.server.WebServerFactoryCustomizer;
 import org.springframework.boot.web.servlet.ServletComponentScan;
@@ -52,8 +56,7 @@ import org.springframework.lang.Nullable;
  */
 @Slf4j
 @Configuration
-// will adminfaces autoconfigure via application.yml ?
-//@EnableConfigurationProperties(AdminfacesProperties.class)
+@EnableConfigurationProperties(AdminfacesProperties.class)
 @ComponentScan({"com.github.adminfaces.template.bean",
 	"com.github.adminfaces.template.config",
 	"com.github.adminfaces.template.security"})
@@ -64,9 +67,14 @@ import org.springframework.lang.Nullable;
 @ConditionalOnWebApplication(type = ConditionalOnWebApplication.Type.SERVLET)
 public class AdminfacesAutoConfiguration {
 
+	@Autowired
+	private AdminfacesProperties adminfacesProperties;
+
 	@Bean
 	public BeanPostProcessor adminfacesPrimeFacesPropertiesPostProcessor() {
-		return new PrimeFacesPropertiesPostProcessor();
+		PrimeFacesPropertiesPostProcessor result = new PrimeFacesPropertiesPostProcessor();
+		result.setAdminfacesProperties(this.adminfacesProperties);
+		return result;
 	}
 
 	// AdminSession does not contain @Named.
@@ -100,10 +108,14 @@ public class AdminfacesAutoConfiguration {
 
 	/**
 	 * Configures Primefaces to use admin theme.
+	 * Apply adminfaces configuration from adminfaces properties.
 	 *
 	 * @author Marcelo Fernandes
 	 */
 	static class PrimeFacesPropertiesPostProcessor implements BeanPostProcessor {
+		@Setter
+		private AdminfacesProperties adminfacesProperties;
+
 		@Override
 		public Object postProcessBeforeInitialization(@Nullable Object bean, @Nullable String beanName) throws BeansException {
 			if (bean instanceof Primefaces4_0Properties) {
@@ -115,6 +127,11 @@ public class AdminfacesAutoConfiguration {
 				Primefaces5_2Properties properties = (Primefaces5_2Properties) bean;
 				log.warn("Changing primefaces fontAwesome from 'false' to 'true'.");
 				properties.setFontAwesome(true);
+			}
+			if (bean instanceof AdminConfig) {
+				AdminConfigWrapper adminConfigWrapper = new AdminConfigWrapper();
+				adminConfigWrapper.setAdminfacesProperties(this.adminfacesProperties);
+				bean = adminConfigWrapper;
 			}
 			return bean;
 		}
