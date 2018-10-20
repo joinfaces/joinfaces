@@ -16,9 +16,7 @@
 
 package org.joinfaces.autoconfigure.myfaces;
 
-import java.io.IOException;
 import java.lang.annotation.Annotation;
-import java.net.URL;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
@@ -26,24 +24,11 @@ import java.util.Set;
 
 import javax.faces.convert.FacesConverter;
 
-import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import org.junit.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-@SuppressFBWarnings("DMI_COLLECTION_OF_URLS")
 public class JoinFacesAnnotationProviderTests {
-
-	@Test
-	public void testBaseUrls() throws IOException {
-		Set<URL> urls = new HashSet<>();
-		URL myurl = new URL("http://localhost:8080");
-		urls.add(myurl);
-		JoinFacesAnnotationProvider.setUrls(urls);
-
-		assertThat(new JoinFacesAnnotationProvider(null).getBaseUrls())
-			.contains(myurl);
-	}
 
 	@Test
 	public void testAnnotatedClasses() {
@@ -53,13 +38,6 @@ public class JoinFacesAnnotationProviderTests {
 
 		assertThat(new JoinFacesAnnotationProvider(null).getAnnotatedClasses(null).get(FacesConverter.class))
 			.isNotNull();
-	}
-
-	@Test
-	public void testGetBaseUrls() throws IOException {
-		JoinFacesAnnotationProvider joinFacesAnnotationProvider = new JoinFacesAnnotationProvider(null);
-
-		assertThat(joinFacesAnnotationProvider.getBaseUrls(null)).isEqualTo(joinFacesAnnotationProvider.getBaseUrls());
 	}
 
 }

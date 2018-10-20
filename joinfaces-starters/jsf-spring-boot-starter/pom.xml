@@ -67,10 +67,5 @@
                 </exclusion>
             </exclusions>
         </dependency>
-        <dependency>
-            <groupId>org.reflections</groupId>
-            <artifactId>reflections</artifactId>
-            <scope>runtime</scope>
-        </dependency>
     </dependencies>
 </project>

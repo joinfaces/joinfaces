@@ -16,11 +16,15 @@
 
 package org.joinfaces.autoconfigure.servlet.initializer;
 
+import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import javax.servlet.ServletContainerInitializer;
 import javax.servlet.annotation.HandlesTypes;
 
+import io.github.classgraph.ClassGraph;
+import io.github.classgraph.ScanResult;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
@@ -30,6 +34,7 @@ import org.springframework.boot.web.server.WebServerFactoryCustomizer;
 import org.springframework.boot.web.servlet.RegistrationBean;
 import org.springframework.boot.web.servlet.server.ConfigurableServletWebServerFactory;
 import org.springframework.core.annotation.AnnotationUtils;
+import org.springframework.lang.Nullable;
 
 /**
  * {@link RegistrationBean} for {@link ServletContainerInitializer}s.
@@ -63,8 +68,45 @@ public class ServletContainerInitializerRegistrationBean<T extends ServletContai
 		});
 	}
 
+	@Nullable
 	protected Set<Class<?>> getClasses(HandlesTypes handlesTypes) {
-		throw new UnsupportedOperationException("Can't handle " + handlesTypes + " for class " + servletContainerInitializerClass);
+		if (handlesTypes == null || handlesTypes.value().length == 0) {
+			return null;
+		}
+
+		Set<Class<?>> classes = new HashSet<>();
+
+		try (ScanResult scanResult = new ClassGraph()
+				.enableClassInfo()
+				.enableAnnotationInfo()
+				.enableExternalClasses()
+				.enableSystemPackages()    // Find classes in com.sun.faces and javax.faces
+				.blacklistPackages("java")
+				//.ignoreClassVisibility()
+				.scan()) {
+
+			for (Class<?> clazz : handlesTypes.value()) {
+				if (clazz.isAnnotation()) {
+					List<Class<?>> classList = scanResult.getClassesWithAnnotation(clazz.getName()).loadClasses();
+					classes.addAll(classList);
+				}
+				else if (clazz.isInterface()) {
+					List<Class<?>> classList = scanResult.getClassesImplementing(clazz.getName()).loadClasses();
+					classes.addAll(classList);
+				}
+				else {
+					List<Class<?>> classList = scanResult.getSubclasses(clazz.getName()).loadClasses();
+					classes.addAll(classList);
+				}
+			}
+
+			handleScanResult(scanResult);
+		}
+
+		return classes.isEmpty() ? null : classes;
 	}
 
+	protected void handleScanResult(ScanResult scanResult) {
+
+	}
 }

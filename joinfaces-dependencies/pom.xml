@@ -44,7 +44,6 @@
 
         <cdi.version>2.0</cdi.version>
         <weld.version>3.0.5.Final</weld.version>
-        <reflections.version>0.9.11</reflections.version>
 
         <jboss-jsp-api_2.3_spec.version>1.0.3.Final</jboss-jsp-api_2.3_spec.version>
 
@@ -225,9 +224,9 @@
                 <scope>runtime</scope>
             </dependency>
             <dependency>
-                <groupId>org.reflections</groupId>
-                <artifactId>reflections</artifactId>
-                <version>${reflections.version}</version>
+                <groupId>io.github.classgraph</groupId>
+                <artifactId>classgraph</artifactId>
+                <version>4.4.7</version>
             </dependency>
             <dependency>
                 <groupId>net.bootsfaces</groupId>
