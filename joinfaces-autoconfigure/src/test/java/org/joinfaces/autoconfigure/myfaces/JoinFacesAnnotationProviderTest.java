@@ -22,22 +22,45 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
+import javax.faces.context.ExternalContext;
 import javax.faces.convert.FacesConverter;
 
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
+import org.apache.myfaces.spi.AnnotationProvider;
+import org.junit.Before;
 import org.junit.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.BDDMockito.mock;
+import static org.mockito.BDDMockito.verify;
 
-public class JoinFacesAnnotationProviderTests {
+public class JoinFacesAnnotationProviderTest {
+
+	@Before
+	public void init() {
+		JoinFacesAnnotationProvider.setAnnotatedClasses(null);
+	}
 
 	@Test
-	public void testAnnotatedClasses() {
+	public void getAnnotatedClasses_set() {
 		Map<Class<? extends Annotation>, Set<Class<?>>> annotatedClasses = new HashMap<>();
 		annotatedClasses.put(FacesConverter.class, new HashSet<>());
 		JoinFacesAnnotationProvider.setAnnotatedClasses(annotatedClasses);
 
 		assertThat(new JoinFacesAnnotationProvider(null).getAnnotatedClasses(null).get(FacesConverter.class))
 			.isNotNull();
+	}
+
+	@Test
+	@SuppressFBWarnings("RV_RETURN_VALUE_IGNORED_NO_SIDE_EFFECT")
+	public void getAnnotatedClasses_notSet() {
+		AnnotationProvider annotationProvider = mock(AnnotationProvider.class);
+		JoinFacesAnnotationProvider joinFacesAnnotationProvider = new JoinFacesAnnotationProvider(annotationProvider);
+
+		joinFacesAnnotationProvider.getAnnotatedClasses(mock(ExternalContext.class));
+
+		verify(annotationProvider).getAnnotatedClasses(any());
 	}
 
 }
