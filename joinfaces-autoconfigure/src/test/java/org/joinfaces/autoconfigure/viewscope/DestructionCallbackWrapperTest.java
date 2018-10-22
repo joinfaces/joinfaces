@@ -16,8 +16,8 @@
 
 package org.joinfaces.autoconfigure.viewscope;
 
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.BDDMockito.mock;
@@ -28,7 +28,7 @@ public class DestructionCallbackWrapperTest {
 	private ViewScope.DestructionCallbackWrapper destructionCallbackWrapper;
 	private Runnable callback;
 
-	@Before
+	@BeforeEach
 	public void setUp() {
 		this.callback = mock(Runnable.class);
 		this.destructionCallbackWrapper = new ViewScope.DestructionCallbackWrapper("bean", this.callback);

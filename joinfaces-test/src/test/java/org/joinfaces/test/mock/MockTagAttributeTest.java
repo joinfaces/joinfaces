@@ -1,5 +1,5 @@
 /*
- * Copyright 2016-2017 the original author or authors.
+ * Copyright 2016-2018 the original author or authors.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -18,10 +18,11 @@ package org.joinfaces.test.mock;
 
 import javax.el.ValueExpression;
 
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 /**
  * @author Lars Grefer
@@ -31,49 +32,65 @@ public class MockTagAttributeTest {
 	private static final String FOO = "foo";
 	private MockTagAttribute mockTagAttribute;
 
-	@Before
+	@BeforeEach
 	public void setUp() {
 		this.mockTagAttribute = new MockTagAttribute(FOO);
 	}
 
-	@Test(expected = UnsupportedOperationException.class)
+	@Test
 	public void testGetBoolean() {
-		this.mockTagAttribute.getBoolean(null);
+		assertThrows(UnsupportedOperationException.class, () ->
+				this.mockTagAttribute.getBoolean(null)
+		);
 	}
 
-	@Test(expected = UnsupportedOperationException.class)
+	@Test
 	public void testGetInt() {
-		this.mockTagAttribute.getInt(null);
+		assertThrows(UnsupportedOperationException.class, () ->
+				this.mockTagAttribute.getInt(null)
+		);
 	}
 
-	@Test(expected = UnsupportedOperationException.class)
+	@Test
 	public void testGetLocalName() {
-		this.mockTagAttribute.getLocalName();
+		assertThrows(UnsupportedOperationException.class, () ->
+				this.mockTagAttribute.getLocalName()
+		);
 	}
 
-	@Test(expected = UnsupportedOperationException.class)
+	@Test
 	public void testGetLocation() {
-		this.mockTagAttribute.getLocation();
+		assertThrows(UnsupportedOperationException.class, () ->
+				this.mockTagAttribute.getLocation()
+		);
 	}
 
-	@Test(expected = UnsupportedOperationException.class)
+	@Test
 	public void testGetMethodExpression() {
-		this.mockTagAttribute.getMethodExpression(null, null, null);
+		assertThrows(UnsupportedOperationException.class, () ->
+				this.mockTagAttribute.getMethodExpression(null, null, null)
+		);
 	}
 
-	@Test(expected = UnsupportedOperationException.class)
+	@Test
 	public void testGetNamespace() {
-		this.mockTagAttribute.getNamespace();
+		assertThrows(UnsupportedOperationException.class, () ->
+				this.mockTagAttribute.getNamespace()
+		);
 	}
 
-	@Test(expected = UnsupportedOperationException.class)
+	@Test
 	public void testGetObject() {
-		this.mockTagAttribute.getObject(null);
+		assertThrows(UnsupportedOperationException.class, () ->
+				this.mockTagAttribute.getObject(null)
+		);
 	}
 
-	@Test(expected = UnsupportedOperationException.class)
+	@Test
 	public void testGetQName() {
-		this.mockTagAttribute.getQName();
+		assertThrows(UnsupportedOperationException.class, () ->
+				this.mockTagAttribute.getQName()
+		);
 	}
 
 	@Test
@@ -86,9 +103,11 @@ public class MockTagAttributeTest {
 		assertThat(this.mockTagAttribute.getValue(null)).isEqualTo(FOO);
 	}
 
-	@Test(expected = UnsupportedOperationException.class)
+	@Test
 	public void testGetObject1() {
-		this.mockTagAttribute.getObject(null, null);
+		assertThrows(UnsupportedOperationException.class, () ->
+				this.mockTagAttribute.getObject(null, null)
+		);
 	}
 
 	@Test
@@ -99,9 +118,11 @@ public class MockTagAttributeTest {
 		assertThat(valueExpression.getValue(null)).isEqualTo(FOO);
 	}
 
-	@Test(expected = UnsupportedOperationException.class)
+	@Test
 	public void testIsLiteral() {
-		this.mockTagAttribute.isLiteral();
+		assertThrows(UnsupportedOperationException.class, () ->
+				this.mockTagAttribute.isLiteral()
+		);
 	}
 
 }

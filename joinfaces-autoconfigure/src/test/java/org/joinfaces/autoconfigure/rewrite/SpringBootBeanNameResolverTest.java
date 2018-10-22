@@ -17,24 +17,27 @@
 package org.joinfaces.autoconfigure.rewrite;
 
 import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 public class SpringBootBeanNameResolverTest {
 
 	private SpringBootBeanNameResolver springBootBeanNameResolver;
 
-	@Before
+	@BeforeEach
 	public void setUp() {
 		this.springBootBeanNameResolver = new SpringBootBeanNameResolver();
 	}
 
 	@SuppressWarnings("ConstantConditions")
 	@SuppressFBWarnings("NP_NONNULL_PARAM_VIOLATION")
-	@Test(expected = IllegalStateException.class)
+	@Test
 	public void testNoApplicationContext() {
 		new ApplicationContextProvider().setApplicationContext(null);
 
-		this.springBootBeanNameResolver.getBeanName(Object.class);
+		Assertions.assertThrows(IllegalStateException.class, () ->
+				this.springBootBeanNameResolver.getBeanName(Object.class)
+		);
 	}
 }

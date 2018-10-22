@@ -32,8 +32,8 @@ import javax.faces.annotation.SessionMap;
 import javax.faces.annotation.ViewMap;
 import javax.inject.Inject;
 
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -49,7 +49,7 @@ public class JsfBeansAnnotationPostProcessorTest {
 	private JsfBeansAnnotationPostProcessor jsfBeansAnnotationPostProcessor;
 	private JsfBeansAutoConfiguration jsfBeansAutoConfiguration;
 
-	@Before
+	@BeforeEach
 	public void setUp() {
 		this.jsfBeansAutoConfiguration = mock(JsfBeansAutoConfiguration.class);
 

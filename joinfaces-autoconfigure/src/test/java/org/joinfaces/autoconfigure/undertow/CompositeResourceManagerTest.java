@@ -19,9 +19,10 @@ package org.joinfaces.autoconfigure.undertow;
 import java.io.IOException;
 
 import io.undertow.server.handlers.resource.ResourceManager;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.BDDMockito.mock;
 import static org.mockito.BDDMockito.verify;
 
@@ -58,14 +59,18 @@ public class CompositeResourceManagerTest {
 		assertThat(compositeResourceManager.isResourceChangeListenerSupported()).isFalse();
 	}
 
-	@Test(expected = IllegalArgumentException.class)
+	@Test
 	public void testRegisterResourceChangeListener() {
-		new CompositeResourceManager().registerResourceChangeListener(null);
+		assertThrows(IllegalArgumentException.class, () ->
+				new CompositeResourceManager().registerResourceChangeListener(null)
+		);
 	}
 
-	@Test(expected = IllegalArgumentException.class)
+	@Test
 	public void testRemoveResourceChangeListener() {
-		new CompositeResourceManager().removeResourceChangeListener(null);
+		assertThrows(IllegalArgumentException.class, () ->
+				new CompositeResourceManager().removeResourceChangeListener(null)
+		);
 	}
 
 }

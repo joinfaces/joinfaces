@@ -19,7 +19,7 @@ package org.joinfaces.security;
 import java.io.IOException;
 
 import org.joinfaces.test.mock.JsfIT;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
 
 import org.springframework.boot.test.context.SpringBootTest;

@@ -17,54 +17,63 @@
 package org.joinfaces.autoconfigure.rewrite;
 
 import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class SpringBootExpressionLanguageProviderTest {
 
 	private SpringBootExpressionLanguageProvider springBootExpressionLanguageProvider;
 
-	@Before
+	@BeforeEach
 	public void setUp() {
 		this.springBootExpressionLanguageProvider = new SpringBootExpressionLanguageProvider();
 	}
 
 	@SuppressWarnings("ConstantConditions")
 	@SuppressFBWarnings("NP_NONNULL_PARAM_VIOLATION")
-	@Test(expected = IllegalStateException.class)
+	@Test
 	public void testNoApplicationContextEvaluateMethodExpression() {
 		new ApplicationContextProvider().setApplicationContext(null);
 
-		this.springBootExpressionLanguageProvider.evaluateMethodExpression("");
+		assertThrows(IllegalStateException.class, () ->
+				this.springBootExpressionLanguageProvider.evaluateMethodExpression("")
+		);
 	}
 
 	@SuppressWarnings("ConstantConditions")
 	@SuppressFBWarnings("NP_NONNULL_PARAM_VIOLATION")
-	@Test(expected = UnsupportedOperationException.class)
+	@Test
 	public void testNoApplicationContextEvaluateMethodExpression2() {
 		new ApplicationContextProvider().setApplicationContext(null);
 
-		this.springBootExpressionLanguageProvider.evaluateMethodExpression("", "");
+		assertThrows(UnsupportedOperationException.class, () ->
+				this.springBootExpressionLanguageProvider.evaluateMethodExpression("", "")
+		);
 	}
 
 	@SuppressWarnings("ConstantConditions")
 	@SuppressFBWarnings("NP_NONNULL_PARAM_VIOLATION")
-	@Test(expected = IllegalStateException.class)
+	@Test
 	public void testNoApplicationContextRetrieveValue() {
 		new ApplicationContextProvider().setApplicationContext(null);
 
-		this.springBootExpressionLanguageProvider.retrieveValue("");
+		assertThrows(IllegalStateException.class, () ->
+				this.springBootExpressionLanguageProvider.retrieveValue("")
+		);
 	}
 
 	@SuppressWarnings("ConstantConditions")
 	@SuppressFBWarnings("NP_NONNULL_PARAM_VIOLATION")
-	@Test(expected = IllegalStateException.class)
+	@Test
 	public void testNoApplicationContextSubmitValue() {
 		new ApplicationContextProvider().setApplicationContext(null);
 
-		this.springBootExpressionLanguageProvider.submitValue("", "");
+		assertThrows(IllegalStateException.class, () ->
+				this.springBootExpressionLanguageProvider.submitValue("", "")
+		);
 	}
 
 	@SuppressWarnings("ConstantConditions")

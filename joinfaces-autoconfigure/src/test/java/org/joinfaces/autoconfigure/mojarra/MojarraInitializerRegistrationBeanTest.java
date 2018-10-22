@@ -25,8 +25,8 @@ import com.sun.faces.config.FacesInitializer;
 import com.sun.faces.facelets.compiler.UIText;
 import net.bootsfaces.component.tree.TreeRenderer;
 import org.joinfaces.autoconfigure.servlet.initializer.JsfClassFactory;
-import org.junit.BeforeClass;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
 import org.omnifaces.component.input.Form;
 import org.omnifaces.converter.SelectItemsIndexConverter;
 import org.omnifaces.validator.RequiredCheckboxValidator;
@@ -39,7 +39,7 @@ public class MojarraInitializerRegistrationBeanTest {
 
 	private static Set<Class<?>> classes;
 
-	@BeforeClass
+	@BeforeAll
 	public static void setupClasses() {
 		JsfClassFactory.Configuration configuration = JsfClassFactory.Configuration.builder()
 				.excludeScopedAnnotations(true)

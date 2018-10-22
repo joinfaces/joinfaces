@@ -22,7 +22,7 @@ import javax.faces.view.facelets.FaceletContext;
 
 import org.joinfaces.test.mock.JsfIT;
 import org.joinfaces.test.mock.MockTagAttribute;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
 
 import org.springframework.boot.test.context.SpringBootTest;
