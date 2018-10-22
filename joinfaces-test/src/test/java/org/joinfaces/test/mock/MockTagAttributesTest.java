@@ -16,11 +16,11 @@
 
 package org.joinfaces.test.mock;
 
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.assertThrows;
 
 /**
  * @author Lars Grefer
@@ -36,7 +36,7 @@ public class MockTagAttributesTest {
 
 	@Test
 	public void testGetAll() {
-		assertThrows(UnsupportedOperationException.class, () ->
+		Assertions.assertThrows(UnsupportedOperationException.class, () ->
 				this.mockTagAttributes.getAll()
 		);
 	}
@@ -48,21 +48,21 @@ public class MockTagAttributesTest {
 
 	@Test
 	public void testGet1() {
-		assertThrows(UnsupportedOperationException.class, () ->
+		Assertions.assertThrows(UnsupportedOperationException.class, () ->
 				this.mockTagAttributes.get(null, null)
 		);
 	}
 
 	@Test
 	public void testGetAll1() {
-		assertThrows(UnsupportedOperationException.class, () ->
+		Assertions.assertThrows(UnsupportedOperationException.class, () ->
 				this.mockTagAttributes.getAll(null)
 		);
 	}
 
 	@Test
 	public void testGetNamespaces() {
-		assertThrows(UnsupportedOperationException.class, () ->
+		Assertions.assertThrows(UnsupportedOperationException.class, () ->
 				this.mockTagAttributes.getNamespaces()
 		);
 	}

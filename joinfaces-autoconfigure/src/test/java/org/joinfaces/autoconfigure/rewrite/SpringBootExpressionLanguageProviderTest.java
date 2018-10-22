@@ -17,11 +17,11 @@
 package org.joinfaces.autoconfigure.rewrite;
 
 import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class SpringBootExpressionLanguageProviderTest {
 
@@ -38,7 +38,7 @@ public class SpringBootExpressionLanguageProviderTest {
 	public void testNoApplicationContextEvaluateMethodExpression() {
 		new ApplicationContextProvider().setApplicationContext(null);
 
-		assertThrows(IllegalStateException.class, () ->
+		Assertions.assertThrows(IllegalStateException.class, () ->
 				this.springBootExpressionLanguageProvider.evaluateMethodExpression("")
 		);
 	}
@@ -49,7 +49,7 @@ public class SpringBootExpressionLanguageProviderTest {
 	public void testNoApplicationContextEvaluateMethodExpression2() {
 		new ApplicationContextProvider().setApplicationContext(null);
 
-		assertThrows(UnsupportedOperationException.class, () ->
+		Assertions.assertThrows(UnsupportedOperationException.class, () ->
 				this.springBootExpressionLanguageProvider.evaluateMethodExpression("", "")
 		);
 	}
@@ -60,7 +60,7 @@ public class SpringBootExpressionLanguageProviderTest {
 	public void testNoApplicationContextRetrieveValue() {
 		new ApplicationContextProvider().setApplicationContext(null);
 
-		assertThrows(IllegalStateException.class, () ->
+		Assertions.assertThrows(IllegalStateException.class, () ->
 				this.springBootExpressionLanguageProvider.retrieveValue("")
 		);
 	}
@@ -71,7 +71,7 @@ public class SpringBootExpressionLanguageProviderTest {
 	public void testNoApplicationContextSubmitValue() {
 		new ApplicationContextProvider().setApplicationContext(null);
 
-		assertThrows(IllegalStateException.class, () ->
+		Assertions.assertThrows(IllegalStateException.class, () ->
 				this.springBootExpressionLanguageProvider.submitValue("", "")
 		);
 	}

@@ -22,11 +22,11 @@ import javax.el.FunctionMapper;
 import javax.el.VariableMapper;
 import javax.faces.context.FacesContext;
 
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.mock;
 
 /**
@@ -50,28 +50,28 @@ public class MockFaceletContextTest {
 
 	@Test
 	public void testGenerateUniqueId() {
-		assertThrows(UnsupportedOperationException.class, () ->
+		Assertions.assertThrows(UnsupportedOperationException.class, () ->
 				this.mockFaceletContext.generateUniqueId(null)
 		);
 	}
 
 	@Test
 	public void testGetExpressionFactory() {
-		assertThrows(UnsupportedOperationException.class, () ->
+		Assertions.assertThrows(UnsupportedOperationException.class, () ->
 				this.mockFaceletContext.getExpressionFactory()
 		);
 	}
 
 	@Test
 	public void testSetVariableMapper() {
-		assertThrows(UnsupportedOperationException.class, () ->
+		Assertions.assertThrows(UnsupportedOperationException.class, () ->
 				this.mockFaceletContext.setVariableMapper(mock(VariableMapper.class))
 		);
 	}
 
 	@Test
 	public void testSetFunctionMapper() {
-		assertThrows(UnsupportedOperationException.class, () ->
+		Assertions.assertThrows(UnsupportedOperationException.class, () ->
 				this.mockFaceletContext.setFunctionMapper(mock(FunctionMapper.class))
 		);
 	}
@@ -87,35 +87,35 @@ public class MockFaceletContextTest {
 
 	@Test
 	public void testIncludeFacelet_String() {
-		assertThrows(UnsupportedOperationException.class, () ->
+		Assertions.assertThrows(UnsupportedOperationException.class, () ->
 				this.mockFaceletContext.includeFacelet(null, (String) null)
 		);
 	}
 
 	@Test
 	public void testIncludeFacelet_URL() {
-		assertThrows(UnsupportedOperationException.class, () ->
+		Assertions.assertThrows(UnsupportedOperationException.class, () ->
 				this.mockFaceletContext.includeFacelet(null, (URL) null)
 		);
 	}
 
 	@Test
 	public void testGetELResolver() {
-		assertThrows(UnsupportedOperationException.class, () ->
+		Assertions.assertThrows(UnsupportedOperationException.class, () ->
 				this.mockFaceletContext.getELResolver()
 		);
 	}
 
 	@Test
 	public void testGetFunctionMapper() {
-		assertThrows(UnsupportedOperationException.class, () ->
+		Assertions.assertThrows(UnsupportedOperationException.class, () ->
 				this.mockFaceletContext.getFunctionMapper()
 		);
 	}
 
 	@Test
 	public void testGetVariableMapper() {
-		assertThrows(UnsupportedOperationException.class, () ->
+		Assertions.assertThrows(UnsupportedOperationException.class, () ->
 				this.mockFaceletContext.getVariableMapper()
 		);
 	}

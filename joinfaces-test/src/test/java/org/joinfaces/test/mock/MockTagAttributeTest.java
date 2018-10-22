@@ -18,11 +18,11 @@ package org.joinfaces.test.mock;
 
 import javax.el.ValueExpression;
 
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.assertThrows;
 
 /**
  * @author Lars Grefer
@@ -39,56 +39,56 @@ public class MockTagAttributeTest {
 
 	@Test
 	public void testGetBoolean() {
-		assertThrows(UnsupportedOperationException.class, () ->
+		Assertions.assertThrows(UnsupportedOperationException.class, () ->
 				this.mockTagAttribute.getBoolean(null)
 		);
 	}
 
 	@Test
 	public void testGetInt() {
-		assertThrows(UnsupportedOperationException.class, () ->
+		Assertions.assertThrows(UnsupportedOperationException.class, () ->
 				this.mockTagAttribute.getInt(null)
 		);
 	}
 
 	@Test
 	public void testGetLocalName() {
-		assertThrows(UnsupportedOperationException.class, () ->
+		Assertions.assertThrows(UnsupportedOperationException.class, () ->
 				this.mockTagAttribute.getLocalName()
 		);
 	}
 
 	@Test
 	public void testGetLocation() {
-		assertThrows(UnsupportedOperationException.class, () ->
+		Assertions.assertThrows(UnsupportedOperationException.class, () ->
 				this.mockTagAttribute.getLocation()
 		);
 	}
 
 	@Test
 	public void testGetMethodExpression() {
-		assertThrows(UnsupportedOperationException.class, () ->
+		Assertions.assertThrows(UnsupportedOperationException.class, () ->
 				this.mockTagAttribute.getMethodExpression(null, null, null)
 		);
 	}
 
 	@Test
 	public void testGetNamespace() {
-		assertThrows(UnsupportedOperationException.class, () ->
+		Assertions.assertThrows(UnsupportedOperationException.class, () ->
 				this.mockTagAttribute.getNamespace()
 		);
 	}
 
 	@Test
 	public void testGetObject() {
-		assertThrows(UnsupportedOperationException.class, () ->
+		Assertions.assertThrows(UnsupportedOperationException.class, () ->
 				this.mockTagAttribute.getObject(null)
 		);
 	}
 
 	@Test
 	public void testGetQName() {
-		assertThrows(UnsupportedOperationException.class, () ->
+		Assertions.assertThrows(UnsupportedOperationException.class, () ->
 				this.mockTagAttribute.getQName()
 		);
 	}
@@ -105,7 +105,7 @@ public class MockTagAttributeTest {
 
 	@Test
 	public void testGetObject1() {
-		assertThrows(UnsupportedOperationException.class, () ->
+		Assertions.assertThrows(UnsupportedOperationException.class, () ->
 				this.mockTagAttribute.getObject(null, null)
 		);
 	}
@@ -120,7 +120,7 @@ public class MockTagAttributeTest {
 
 	@Test
 	public void testIsLiteral() {
-		assertThrows(UnsupportedOperationException.class, () ->
+		Assertions.assertThrows(UnsupportedOperationException.class, () ->
 				this.mockTagAttribute.isLiteral()
 		);
 	}

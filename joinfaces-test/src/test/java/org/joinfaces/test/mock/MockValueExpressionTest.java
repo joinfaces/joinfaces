@@ -18,11 +18,11 @@ package org.joinfaces.test.mock;
 
 import javax.el.ELContext;
 
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.mock;
 
 /**
@@ -50,42 +50,42 @@ public class MockValueExpressionTest {
 
 	@Test
 	public void testSetValue() {
-		assertThrows(UnsupportedOperationException.class, () ->
+		Assertions.assertThrows(UnsupportedOperationException.class, () ->
 				this.mockValueExpression.setValue(null, null)
 		);
 	}
 
 	@Test
 	public void testIsReadOnly() {
-		assertThrows(UnsupportedOperationException.class, () ->
+		Assertions.assertThrows(UnsupportedOperationException.class, () ->
 				this.mockValueExpression.isReadOnly(null)
 		);
 	}
 
 	@Test
 	public void testGetType() {
-		assertThrows(UnsupportedOperationException.class, () ->
+		Assertions.assertThrows(UnsupportedOperationException.class, () ->
 				this.mockValueExpression.getType(null)
 		);
 	}
 
 	@Test
 	public void testGetExpectedType() {
-		assertThrows(UnsupportedOperationException.class, () ->
+		Assertions.assertThrows(UnsupportedOperationException.class, () ->
 				this.mockValueExpression.getExpectedType()
 		);
 	}
 
 	@Test
 	public void testGetExpressionString() {
-		assertThrows(UnsupportedOperationException.class, () ->
+		Assertions.assertThrows(UnsupportedOperationException.class, () ->
 				this.mockValueExpression.getExpressionString()
 		);
 	}
 
 	@Test
 	public void testIsLiteralText() {
-		assertThrows(UnsupportedOperationException.class, () ->
+		Assertions.assertThrows(UnsupportedOperationException.class, () ->
 				this.mockValueExpression.isLiteralText()
 		);
 	}

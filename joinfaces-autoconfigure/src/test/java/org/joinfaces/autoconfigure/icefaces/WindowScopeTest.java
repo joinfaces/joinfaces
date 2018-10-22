@@ -24,6 +24,7 @@ import javax.faces.context.FacesContext;
 
 import org.icefaces.impl.application.WindowScopeManager;
 import org.joinfaces.test.mock.FacesContextMocker;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -31,7 +32,6 @@ import org.springframework.lang.NonNull;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.fail;
-import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.BDDMockito.mock;
 import static org.mockito.BDDMockito.when;
 
@@ -109,7 +109,7 @@ public class WindowScopeTest {
 
 	@Test
 	public void testGetScopeMap_noScopeMap() {
-		assertThrows(IllegalStateException.class, () ->
+		Assertions.assertThrows(IllegalStateException.class, () ->
 				new WindowScope().getScopeMap()
 		);
 	}
@@ -117,7 +117,7 @@ public class WindowScopeTest {
 	@Test
 	public void testGetScopeMap_noFacesContext() {
 		FacesContext.getCurrentInstance().release();
-		assertThrows(IllegalStateException.class, () ->
+		Assertions.assertThrows(IllegalStateException.class, () ->
 				new WindowScope().getScopeMap()
 		);
 	}
