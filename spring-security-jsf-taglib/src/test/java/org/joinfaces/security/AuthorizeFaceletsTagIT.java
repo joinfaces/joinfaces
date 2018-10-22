@@ -18,17 +18,14 @@ package org.joinfaces.security;
 
 import org.joinfaces.test.mock.JsfIT;
 import org.junit.jupiter.api.Test;
-import org.junit.runner.RunWith;
 
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.junit4.SpringRunner;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 /**
  * Unit tests for {@link AuthorizeFaceletsTag}.
  */
-@RunWith(SpringRunner.class)
 @SpringBootTest(classes = SecurityConfiguration.class, webEnvironment = SpringBootTest.WebEnvironment.MOCK)
 public class AuthorizeFaceletsTagIT extends JsfIT {
 
