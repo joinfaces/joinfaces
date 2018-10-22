@@ -18,8 +18,8 @@ package org.joinfaces.autoconfigure.weld;
 
 import org.jboss.weld.environment.servlet.EnhancedListener;
 import org.joinfaces.autoconfigure.servlet.initializer.ServletContainerInitializerRegistrationBean;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -27,7 +27,7 @@ public class WeldSpringBootAutoConfigurationTest {
 
 	private WeldSpringBootAutoConfiguration weldSpringBootAutoConfiguration;
 
-	@Before
+	@BeforeEach
 	public void setUp() {
 		this.weldSpringBootAutoConfiguration = new WeldSpringBootAutoConfiguration();
 	}

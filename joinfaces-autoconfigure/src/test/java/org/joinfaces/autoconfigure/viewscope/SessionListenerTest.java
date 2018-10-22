@@ -16,8 +16,8 @@
 
 package org.joinfaces.autoconfigure.viewscope;
 
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.BDDMockito.mock;
@@ -28,7 +28,7 @@ public class SessionListenerTest {
 
 	private ViewScope.SessionListener sessionListener;
 
-	@Before
+	@BeforeEach
 	public void setUp() {
 		this.sessionListener = new ViewScope.SessionListener();
 	}

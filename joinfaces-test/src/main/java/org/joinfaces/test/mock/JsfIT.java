@@ -18,7 +18,7 @@ package org.joinfaces.test.mock;
 
 import lombok.Getter;
 import org.junit.After;
-import org.junit.Before;
+import org.junit.jupiter.api.BeforeEach;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
@@ -36,7 +36,7 @@ public class JsfIT {
 	@Autowired
 	private ApplicationContext applicationContext;
 
-	@Before
+	@BeforeEach
 	public void init() {
 		this.jsfMock = new JsfMock();
 		this.jsfMock.init(this.applicationContext);

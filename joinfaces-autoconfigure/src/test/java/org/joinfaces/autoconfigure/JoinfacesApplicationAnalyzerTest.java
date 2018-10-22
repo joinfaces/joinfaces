@@ -18,8 +18,8 @@ package org.joinfaces.autoconfigure;
 
 import javax.faces.bean.ManagedBean;
 
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import org.springframework.boot.context.event.ApplicationReadyEvent;
 import org.springframework.boot.test.context.runner.ApplicationContextRunner;
@@ -35,7 +35,7 @@ public class JoinfacesApplicationAnalyzerTest {
 	private JoinfacesApplicationAnalyzer joinfacesApplicationAnalyzer;
 	private ApplicationContextRunner applicationContextRunner;
 
-	@Before
+	@BeforeEach
 	public void setUp() {
 		this.joinfacesApplicationAnalyzer = new JoinfacesApplicationAnalyzer();
 		this.applicationContextRunner = new ApplicationContextRunner();

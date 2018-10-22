@@ -1,5 +1,5 @@
 /*
- * Copyright 2016-2017 the original author or authors.
+ * Copyright 2016-2018 the original author or authors.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -18,8 +18,9 @@ package org.joinfaces.test.mock;
 
 import javax.el.ELContext;
 
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.mock;
@@ -32,7 +33,7 @@ public class MockValueExpressionTest {
 	private static final String FOO = "foo";
 	private MockValueExpression mockValueExpression;
 
-	@Before
+	@BeforeEach
 	public void setUp() {
 		this.mockValueExpression = new MockValueExpression(FOO);
 	}
@@ -47,34 +48,46 @@ public class MockValueExpressionTest {
 		assertThat(this.mockValueExpression.getValue(mock(ELContext.class))).isEqualTo(FOO);
 	}
 
-	@Test(expected = UnsupportedOperationException.class)
+	@Test
 	public void testSetValue() {
-		this.mockValueExpression.setValue(null, null);
+		Assertions.assertThrows(UnsupportedOperationException.class, () ->
+				this.mockValueExpression.setValue(null, null)
+		);
 	}
 
-	@Test(expected = UnsupportedOperationException.class)
+	@Test
 	public void testIsReadOnly() {
-		this.mockValueExpression.isReadOnly(null);
+		Assertions.assertThrows(UnsupportedOperationException.class, () ->
+				this.mockValueExpression.isReadOnly(null)
+		);
 	}
 
-	@Test(expected = UnsupportedOperationException.class)
+	@Test
 	public void testGetType() {
-		this.mockValueExpression.getType(null);
+		Assertions.assertThrows(UnsupportedOperationException.class, () ->
+				this.mockValueExpression.getType(null)
+		);
 	}
 
-	@Test(expected = UnsupportedOperationException.class)
+	@Test
 	public void testGetExpectedType() {
-		this.mockValueExpression.getExpectedType();
+		Assertions.assertThrows(UnsupportedOperationException.class, () ->
+				this.mockValueExpression.getExpectedType()
+		);
 	}
 
-	@Test(expected = UnsupportedOperationException.class)
+	@Test
 	public void testGetExpressionString() {
-		this.mockValueExpression.getExpressionString();
+		Assertions.assertThrows(UnsupportedOperationException.class, () ->
+				this.mockValueExpression.getExpressionString()
+		);
 	}
 
-	@Test(expected = UnsupportedOperationException.class)
+	@Test
 	public void testIsLiteralText() {
-		this.mockValueExpression.isLiteralText();
+		Assertions.assertThrows(UnsupportedOperationException.class, () ->
+				this.mockValueExpression.isLiteralText()
+		);
 	}
 
 }

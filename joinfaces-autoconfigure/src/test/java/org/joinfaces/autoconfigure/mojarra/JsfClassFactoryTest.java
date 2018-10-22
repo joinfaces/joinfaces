@@ -24,8 +24,8 @@ import javax.servlet.annotation.HandlesTypes;
 import com.sun.faces.config.FacesInitializer;
 import com.sun.faces.facelets.compiler.UIText;
 import org.joinfaces.autoconfigure.servlet.initializer.JsfClassFactory;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import org.springframework.core.annotation.AnnotationUtils;
 
@@ -35,7 +35,7 @@ public class JsfClassFactoryTest {
 
 	private JsfClassFactory.Configuration configuration;
 
-	@Before
+	@BeforeEach
 	public void setUp() {
 		this.configuration = JsfClassFactory.Configuration.builder()
 				.excludeScopedAnnotations(false)

@@ -16,14 +16,17 @@
 
 package org.joinfaces.autoconfigure.omnifaces;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 public class Omnifaces2AutoConfigurationTest {
 
-	@Test(expected = ClassNotFoundException.class)
-	public void testOmnifaces2AutoConfiguration() throws ClassNotFoundException {
+	@Test
+	public void testOmnifaces2AutoConfiguration() {
 		OmnifacesAutoConfiguration.Omnifaces2AutoConfiguration configuration = new OmnifacesAutoConfiguration.Omnifaces2AutoConfiguration();
 
-		configuration.omnifacesServletContainerInitializer();
+		Assertions.assertThrows(ClassNotFoundException.class, () ->
+				configuration.omnifacesServletContainerInitializer()
+		);
 	}
 }

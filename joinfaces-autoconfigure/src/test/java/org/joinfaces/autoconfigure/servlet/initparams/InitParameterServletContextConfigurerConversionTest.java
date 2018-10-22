@@ -21,7 +21,8 @@ import java.time.temporal.ChronoUnit;
 
 import javax.faces.application.ProjectStage;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -71,8 +72,10 @@ public class InitParameterServletContextConfigurerConversionTest {
 				.isEqualTo("3600000000000");
 	}
 
-	@Test(expected = RuntimeException.class)
+	@Test
 	public void convertToString_Duration_Invalid() {
-		InitParameterServletContextConfigurer.convertToString(Duration.ZERO, ChronoUnit.YEARS);
+		Assertions.assertThrows(RuntimeException.class, () ->
+				InitParameterServletContextConfigurer.convertToString(Duration.ZERO, ChronoUnit.YEARS)
+		);
 	}
 }

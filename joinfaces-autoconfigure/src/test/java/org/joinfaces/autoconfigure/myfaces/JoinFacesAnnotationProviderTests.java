@@ -27,7 +27,7 @@ import java.util.Set;
 import javax.faces.convert.FacesConverter;
 
 import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
