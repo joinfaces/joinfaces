@@ -17,8 +17,8 @@
 package org.joinfaces.autoconfigure.butterfaces;
 
 import org.joinfaces.autoconfigure.bootsfaces.BootsfacesProperties;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -32,7 +32,7 @@ public class BootsfacesPropertiesCustomizerTest {
 	private ButterfacesAutoConfiguration.ButterfacesBootsfacesAutoConfiguration.BootsfacesPropertiesCustomizer bootsfacesPropertiesCustomizer;
 	private BootsfacesProperties bootsfacesProperties;
 
-	@Before
+	@BeforeEach
 	public void init() {
 		this.bootsfacesPropertiesCustomizer = new ButterfacesAutoConfiguration.ButterfacesBootsfacesAutoConfiguration.BootsfacesPropertiesCustomizer();
 		this.bootsfacesProperties = new BootsfacesProperties();

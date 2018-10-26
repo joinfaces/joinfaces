@@ -16,8 +16,8 @@
 
 package org.joinfaces.autoconfigure.rewrite;
 
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.ocpsoft.rewrite.servlet.config.HttpConfigurationProvider;
 
 import org.springframework.boot.autoconfigure.AutoConfigurations;
@@ -29,7 +29,7 @@ public class RewriteAutoConfigurationTest {
 
 	private WebApplicationContextRunner webApplicationContextRunner;
 
-	@Before
+	@BeforeEach
 	public void setUp() {
 		this.webApplicationContextRunner = new WebApplicationContextRunner()
 				.withConfiguration(AutoConfigurations.of(RewriteAutoConfiguration.class, FooConfiguration.class));

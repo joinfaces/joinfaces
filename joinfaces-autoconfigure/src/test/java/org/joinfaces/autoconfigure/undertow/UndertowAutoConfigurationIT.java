@@ -19,18 +19,15 @@ package org.joinfaces.autoconfigure.undertow;
 import java.io.IOException;
 
 import io.undertow.servlet.api.DeploymentInfo;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.Test;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.web.embedded.undertow.UndertowDeploymentInfoCustomizer;
 import org.springframework.boot.web.embedded.undertow.UndertowServletWebServerFactory;
-import org.springframework.test.context.junit4.SpringRunner;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-@RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.MOCK)
 public class UndertowAutoConfigurationIT {
 

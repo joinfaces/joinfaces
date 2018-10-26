@@ -25,8 +25,8 @@ import net.bootsfaces.component.tree.TreeRenderer;
 import org.apache.myfaces.ee.MyFacesContainerInitializer;
 import org.apache.myfaces.renderkit.html.HtmlGridRenderer;
 import org.joinfaces.autoconfigure.servlet.initializer.JsfClassFactory;
-import org.junit.BeforeClass;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
 import org.omnifaces.component.input.Form;
 import org.omnifaces.converter.SelectItemsIndexConverter;
 import org.omnifaces.validator.RequiredCheckboxValidator;
@@ -39,7 +39,7 @@ public class MyFacesInitializerRegistrationBeanTest {
 
 	private static Set<Class<?>> classes;
 
-	@BeforeClass
+	@BeforeAll
 	public static void setupClasses() {
 		JsfClassFactory.Configuration configuration = JsfClassFactory.Configuration.builder()
 				.handlesTypes(AnnotationUtils.findAnnotation(MyFacesContainerInitializer.class, HandlesTypes.class))

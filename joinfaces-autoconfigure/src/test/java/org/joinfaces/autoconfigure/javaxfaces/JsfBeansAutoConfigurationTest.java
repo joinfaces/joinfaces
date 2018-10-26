@@ -26,8 +26,8 @@ import javax.faces.context.FacesContext;
 import javax.faces.flow.FlowHandler;
 
 import org.joinfaces.test.mock.FacesContextMocker;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.BDDMockito.mock;
@@ -39,7 +39,7 @@ public class JsfBeansAutoConfigurationTest {
 	private JsfBeansAutoConfiguration jsfBeansAutoConfiguration;
 	private FacesContext facesContext;
 
-	@Before
+	@BeforeEach
 	public void setUp() {
 		this.jsfBeansAutoConfiguration = new JsfBeansAutoConfiguration();
 		this.facesContext = FacesContextMocker.mockFacesContext();

@@ -1,5 +1,5 @@
 /*
- * Copyright 2016-2017 the original author or authors.
+ * Copyright 2016-2018 the original author or authors.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,8 +16,9 @@
 
 package org.joinfaces.test.mock;
 
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -28,14 +29,16 @@ public class MockTagAttributesTest {
 
 	private MockTagAttributes mockTagAttributes;
 
-	@Before
+	@BeforeEach
 	public void setUp() {
 		this.mockTagAttributes = new MockTagAttributes();
 	}
 
-	@Test(expected = UnsupportedOperationException.class)
+	@Test
 	public void testGetAll() {
-		this.mockTagAttributes.getAll();
+		Assertions.assertThrows(UnsupportedOperationException.class, () ->
+				this.mockTagAttributes.getAll()
+		);
 	}
 
 	@Test
@@ -43,19 +46,25 @@ public class MockTagAttributesTest {
 		assertThat(this.mockTagAttributes.get("foo")).isNull();
 	}
 
-	@Test(expected = UnsupportedOperationException.class)
+	@Test
 	public void testGet1() {
-		this.mockTagAttributes.get(null, null);
+		Assertions.assertThrows(UnsupportedOperationException.class, () ->
+				this.mockTagAttributes.get(null, null)
+		);
 	}
 
-	@Test(expected = UnsupportedOperationException.class)
+	@Test
 	public void testGetAll1() {
-		this.mockTagAttributes.getAll(null);
+		Assertions.assertThrows(UnsupportedOperationException.class, () ->
+				this.mockTagAttributes.getAll(null)
+		);
 	}
 
-	@Test(expected = UnsupportedOperationException.class)
+	@Test
 	public void testGetNamespaces() {
-		this.mockTagAttributes.getNamespaces();
+		Assertions.assertThrows(UnsupportedOperationException.class, () ->
+				this.mockTagAttributes.getNamespaces()
+		);
 	}
 
 }

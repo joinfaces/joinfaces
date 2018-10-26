@@ -10,7 +10,10 @@ description = 'Joinfaces Test'
 
 dependencies {
     compile 'org.springframework.boot:spring-boot-starter-test'
+    compile 'org.junit.jupiter:junit-jupiter-api'
 
     optional 'org.springframework.boot:spring-boot-starter-web'
     optional 'org.glassfish:javax.faces'
+
+    testRuntime 'org.junit.jupiter:junit-jupiter-engine'
 }

@@ -16,8 +16,8 @@
 
 package org.joinfaces.autoconfigure.primefaces;
 
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.primefaces.webapp.filter.FileUploadFilter;
 
 import org.springframework.boot.autoconfigure.AutoConfigurations;
@@ -30,7 +30,7 @@ public class FileUploadFilterTest {
 
 	private WebApplicationContextRunner webApplicationContextRunner;
 
-	@Before
+	@BeforeEach
 	public void setUp() {
 		this.webApplicationContextRunner = new WebApplicationContextRunner()
 				.withConfiguration(AutoConfigurations.of(PrimefacesFileUploadServletContextAutoConfiguration.class, MultipartAutoConfiguration.class));

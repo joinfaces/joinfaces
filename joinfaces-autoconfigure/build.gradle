@@ -43,13 +43,18 @@ dependencies {
     optional 'org.glassfish.jaxb:jaxb-runtime'
     optional 'org.glassfish.jaxb:jaxb-core'
     optional 'javax.activation:activation'
-    testCompile 'org.springframework.boot:spring-boot-starter-test'
-    testCompile project(':joinfaces-test')
-    testCompile 'org.apache.tomcat.embed:tomcat-embed-jasper'
 
     optional 'com.github.adminfaces:admin-template'
     optional 'com.github.adminfaces:admin-theme'
     optional 'javax.ejb:javax.ejb-api'
+
+    testCompile('org.springframework.boot:spring-boot-starter-test') {
+        exclude group: "junit", module: "junit"
+    }
+    testCompile project(':joinfaces-test')
+    testCompile 'org.apache.tomcat.embed:tomcat-embed-jasper'
+    testCompile 'org.junit.jupiter:junit-jupiter-api'
+    testRuntime 'org.junit.jupiter:junit-jupiter-engine'
 }
 
 test {

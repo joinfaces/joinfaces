@@ -116,6 +116,10 @@ allprojects {
         }
 
         javadoc.failOnError = false
+
+        tasks.withType(Test) {
+            useJUnitPlatform()
+        }
     }
 
     plugins.withId("checkstyle") {

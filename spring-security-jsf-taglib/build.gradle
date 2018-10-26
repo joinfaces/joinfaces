@@ -22,4 +22,6 @@ dependencies {
     testCompile project(':joinfaces-test')
     testCompile 'org.springframework.boot:spring-boot-starter-security'
     testCompile 'org.springframework.boot:spring-boot-starter-web'
+    testCompile 'org.junit.jupiter:junit-jupiter-api'
+    testRuntime 'org.junit.jupiter:junit-jupiter-engine'
 }
