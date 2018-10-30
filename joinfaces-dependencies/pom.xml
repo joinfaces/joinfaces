@@ -87,7 +87,7 @@
         <checkstyle.excludes />
         <duplicate-finder-maven-plugin.version>1.3.0</duplicate-finder-maven-plugin.version>
         <duplicate.ignoredResourcePattern>about.html</duplicate.ignoredResourcePattern>
-        <duplicate.ignoredClassPattern>none</duplicate.ignoredClassPattern>
+        <duplicate.ignoredClassPattern>META-INF.versions.9.module-info</duplicate.ignoredClassPattern>
 
         <jacoco-maven-plugin.version>0.8.2</jacoco-maven-plugin.version>
 
