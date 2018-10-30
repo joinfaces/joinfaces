@@ -22,19 +22,16 @@ import javax.faces.view.facelets.FaceletContext;
 
 import org.joinfaces.test.mock.JsfIT;
 import org.joinfaces.test.mock.MockTagAttribute;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.Test;
 
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.security.core.Authentication;
-import org.springframework.test.context.junit4.SpringRunner;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 /**
  * Unit tests for {@link AuthorizeFaceletsTagHandler}.
  */
-@RunWith(SpringRunner.class)
 @SpringBootTest(classes = SecurityConfiguration.class, webEnvironment = SpringBootTest.WebEnvironment.MOCK)
 public class AuthorizeFaceletsTagHandlerIT extends JsfIT {
 

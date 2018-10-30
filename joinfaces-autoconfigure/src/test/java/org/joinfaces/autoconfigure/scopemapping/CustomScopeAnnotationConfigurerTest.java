@@ -17,7 +17,7 @@
 package org.joinfaces.autoconfigure.scopemapping;
 
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import org.springframework.core.Ordered;
 import org.springframework.core.type.AnnotationMetadata;

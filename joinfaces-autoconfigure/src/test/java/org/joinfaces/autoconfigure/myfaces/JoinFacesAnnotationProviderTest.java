@@ -27,8 +27,8 @@ import javax.faces.convert.FacesConverter;
 
 import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import org.apache.myfaces.spi.AnnotationProvider;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.ArgumentMatchers.any;
@@ -37,7 +37,7 @@ import static org.mockito.BDDMockito.verify;
 
 public class JoinFacesAnnotationProviderTest {
 
-	@Before
+	@BeforeEach
 	public void init() {
 		JoinFacesAnnotationProvider.setAnnotatedClasses(null);
 	}
@@ -49,7 +49,7 @@ public class JoinFacesAnnotationProviderTest {
 		JoinFacesAnnotationProvider.setAnnotatedClasses(annotatedClasses);
 
 		assertThat(new JoinFacesAnnotationProvider(null).getAnnotatedClasses(null).get(FacesConverter.class))
-			.isNotNull();
+				.isNotNull();
 	}
 
 	@Test

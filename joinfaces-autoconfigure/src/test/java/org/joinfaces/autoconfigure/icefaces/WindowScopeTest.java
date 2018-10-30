@@ -24,8 +24,9 @@ import javax.faces.context.FacesContext;
 
 import org.icefaces.impl.application.WindowScopeManager;
 import org.joinfaces.test.mock.FacesContextMocker;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import org.springframework.lang.NonNull;
 
@@ -44,7 +45,7 @@ public class WindowScopeTest {
 
 	private WindowScopeManager.ScopeMap scopeMap;
 
-	@Before
+	@BeforeEach
 	public void setUp() throws MalformedURLException {
 		FacesContext facesContext = FacesContextMocker.mockFacesContext();
 		ExternalContext externalContext = mock(ExternalContext.class);
@@ -106,14 +107,18 @@ public class WindowScopeTest {
 				.isEqualTo(this.scopeMap.getId());
 	}
 
-	@Test(expected = IllegalStateException.class)
+	@Test
 	public void testGetScopeMap_noScopeMap() {
-		new WindowScope().getScopeMap();
+		Assertions.assertThrows(IllegalStateException.class, () ->
+				new WindowScope().getScopeMap()
+		);
 	}
 
-	@Test(expected = IllegalStateException.class)
+	@Test
 	public void testGetScopeMap_noFacesContext() {
 		FacesContext.getCurrentInstance().release();
-		new WindowScope().getScopeMap();
+		Assertions.assertThrows(IllegalStateException.class, () ->
+				new WindowScope().getScopeMap()
+		);
 	}
 }

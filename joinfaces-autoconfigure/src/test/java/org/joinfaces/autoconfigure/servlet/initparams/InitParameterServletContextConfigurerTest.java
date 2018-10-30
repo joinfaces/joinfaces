@@ -28,8 +28,8 @@ import javax.servlet.ServletContext;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import org.springframework.boot.context.properties.NestedConfigurationProperty;
 import org.springframework.boot.convert.DurationUnit;
@@ -45,7 +45,7 @@ public class InitParameterServletContextConfigurerTest {
 	static final String FOO = "foo";
 	private ServletContext servletContext;
 
-	@Before
+	@BeforeEach
 	public void setUp() {
 		this.servletContext = new MockServletContext();
 

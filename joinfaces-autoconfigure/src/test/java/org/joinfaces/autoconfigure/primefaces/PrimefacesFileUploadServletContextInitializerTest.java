@@ -20,8 +20,8 @@ import javax.servlet.MultipartConfigElement;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
 import org.springframework.boot.web.servlet.ServletContextInitializer;
@@ -33,7 +33,7 @@ public class PrimefacesFileUploadServletContextInitializerTest {
 	private ServletContextInitializer servletContextInitializer;
 	private MultipartConfigElement multipartConfigElement;
 
-	@Before
+	@BeforeEach
 	public void setUp() {
 		this.multipartConfigElement = new MultipartConfigElement("myLocation");
 		this.servletContextInitializer =

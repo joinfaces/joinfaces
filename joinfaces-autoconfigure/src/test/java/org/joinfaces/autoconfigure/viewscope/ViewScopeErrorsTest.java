@@ -18,8 +18,9 @@ package org.joinfaces.autoconfigure.viewscope;
 
 import javax.faces.context.FacesContext;
 
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import org.springframework.lang.Nullable;
 
@@ -31,44 +32,54 @@ public class ViewScopeErrorsTest {
 
 	private ViewScope viewScope;
 
-	@Before
+	@BeforeEach
 	public void setUp() {
 		this.viewScope = new ViewScope();
 	}
 
-	@Test(expected = IllegalStateException.class)
+	@Test
 	public void testNoFacesContext_get() {
 		DummyFacesContext.setInstance(null);
 
-		this.viewScope.get(BEAN_NAME, Object::new);
+		Assertions.assertThrows(IllegalStateException.class, () ->
+				this.viewScope.get(BEAN_NAME, Object::new)
+		);
 	}
 
-	@Test(expected = IllegalStateException.class)
+	@Test
 	public void testNoFacesContext_remove() {
 		DummyFacesContext.setInstance(null);
 
-		this.viewScope.remove(BEAN_NAME);
+		Assertions.assertThrows(IllegalStateException.class, () ->
+				this.viewScope.remove(BEAN_NAME)
+		);
 	}
 
-	@Test(expected = IllegalStateException.class)
+	@Test
 	public void testNoFacesContext_getConversationId() {
 		DummyFacesContext.setInstance(null);
 
-		this.viewScope.getConversationId();
+		Assertions.assertThrows(IllegalStateException.class, () ->
+				this.viewScope.getConversationId()
+		);
 	}
 
-	@Test(expected = IllegalStateException.class)
+	@Test
 	public void testNoViewRoot_get() {
 		DummyFacesContext.setInstance(mock(FacesContext.class));
 
-		this.viewScope.get(BEAN_NAME, Object::new);
+		Assertions.assertThrows(IllegalStateException.class, () ->
+				this.viewScope.get(BEAN_NAME, Object::new)
+		);
 	}
 
-	@Test(expected = IllegalStateException.class)
+	@Test
 	public void testNoViewRoot_remove() {
 		DummyFacesContext.setInstance(mock(FacesContext.class));
 
-		this.viewScope.remove(BEAN_NAME);
+		Assertions.assertThrows(IllegalStateException.class, () ->
+				this.viewScope.remove(BEAN_NAME)
+		);
 	}
 
 	private static abstract class DummyFacesContext extends FacesContext {

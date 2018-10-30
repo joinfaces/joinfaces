@@ -18,8 +18,8 @@ package org.joinfaces.autoconfigure.javaxfaces;
 
 import javax.faces.application.ProjectStage;
 
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import org.springframework.boot.autoconfigure.AutoConfigurations;
 import org.springframework.boot.test.context.runner.WebApplicationContextRunner;
@@ -30,7 +30,7 @@ public class ProjectStageAutoConfigurationTest {
 
 	private WebApplicationContextRunner webApplicationContextRunner;
 
-	@Before
+	@BeforeEach
 	public void setUp() {
 		this.webApplicationContextRunner = new WebApplicationContextRunner()
 				.withConfiguration(AutoConfigurations.of(JavaxFacesAutoConfiguration.class, ProjectStageAutoConfiguration.class));

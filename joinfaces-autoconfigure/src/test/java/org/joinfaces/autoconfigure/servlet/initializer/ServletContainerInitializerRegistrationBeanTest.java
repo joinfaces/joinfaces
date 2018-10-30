@@ -19,8 +19,8 @@ package org.joinfaces.autoconfigure.servlet.initializer;
 import javax.servlet.annotation.HandlesTypes;
 
 import com.sun.faces.config.FacesInitializer;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.BDDMockito.mock;
@@ -30,7 +30,7 @@ public class ServletContainerInitializerRegistrationBeanTest {
 
 	private ServletContainerInitializerRegistrationBean<?> servletContainerInitializerRegistrationBean;
 
-	@Before
+	@BeforeEach
 	public void setUp() {
 		this.servletContainerInitializerRegistrationBean = new ServletContainerInitializerRegistrationBean<>(FacesInitializer.class);
 	}

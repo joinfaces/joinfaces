@@ -23,8 +23,8 @@ import javax.faces.context.FacesContext;
 import javax.faces.event.PreDestroyViewMapEvent;
 
 import org.joinfaces.test.mock.JsfIT;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import org.springframework.beans.factory.ObjectFactory;
 
@@ -40,7 +40,7 @@ public class ViewScopeTest extends JsfIT {
 
 	private ViewScope viewScope;
 
-	@Before
+	@BeforeEach
 	public void setUp() {
 		this.viewScope = new ViewScope();
 	}

@@ -26,7 +26,7 @@ import org.apache.catalina.webresources.DirResourceSet;
 import org.apache.catalina.webresources.JarResourceSet;
 import org.apache.catalina.webresources.JarWarResourceSet;
 import org.apache.catalina.webresources.StandardRoot;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
 import org.springframework.boot.context.event.ApplicationReadyEvent;
