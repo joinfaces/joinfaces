@@ -3,7 +3,7 @@ description = 'AngularFaces Spring Boot Starter'
 dependencies {
     compile project(':joinfaces-starters:jsf-spring-boot-starter')
 
-    compile('de.beyondjava:angularFaces-core:') {
+    compile('de.beyondjava:angularFaces-core') {
         exclude group: 'commons-logging', module: 'commons-logging'
     }
 }

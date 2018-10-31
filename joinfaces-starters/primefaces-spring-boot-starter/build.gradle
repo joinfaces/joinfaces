@@ -1,7 +1,8 @@
 description = 'PrimeFaces Spring Boot Starter'
+
 dependencies {
     compile project(':joinfaces-starters:jsf-spring-boot-starter')
-    compile group: 'org.primefaces', name: 'primefaces', version: '6.2'
-    compile group: 'org.primefaces.extensions', name: 'primefaces-extensions', version: '6.2.7'
-    runtime group: 'org.primefaces.extensions', name: 'resources-ckeditor', version: '6.2.7'
+    compile 'org.primefaces:primefaces'
+    compile 'org.primefaces.extensions:primefaces-extensions'
+    runtime 'org.primefaces.extensions:resources-ckeditor'
 }
