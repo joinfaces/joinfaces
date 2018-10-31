@@ -2,4 +2,7 @@ subprojects {
     apply plugin: "java"
     apply plugin: "io.freefair.maven-publish-java"
     apply plugin: "io.freefair.maven-jars"
+
+    // Starters should have a clean classpath.
+    gradleLint.criticalRules += ['transitive-duplicate-dependency-class', 'duplicate-dependency-class']
 }

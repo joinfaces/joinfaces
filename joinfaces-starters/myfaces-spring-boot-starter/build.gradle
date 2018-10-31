@@ -1,7 +1,7 @@
 description = 'MyFaces Spring Boot Starter'
 
 dependencies {
-    compile('org.apache.myfaces.core:myfaces-impl')
+    compile 'org.apache.myfaces.core:myfaces-impl'
     compile('javax.enterprise:cdi-api') {
         exclude(module: 'javax.el-api')
     }
