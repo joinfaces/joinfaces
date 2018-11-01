@@ -6,7 +6,7 @@ dependencies {
     compile('com.github.adminfaces:admin-template') {
         exclude group: "org.omnifaces", module: 'omnifaces'
     }
-    compile 'org.hibernate.javax.persistence:hibernate-jpa-2.1-api:1.0.2.Final'
+    compile 'javax.persistence:javax.persistence-api'
     compile 'javax.ejb:javax.ejb-api'
     compile 'javax.enterprise:cdi-api'
 }
