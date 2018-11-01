@@ -125,6 +125,21 @@ allprojects {
         tasks.withType(Test) {
             useJUnitPlatform()
         }
+
+        tasks.withType(JDepend) { jDepend ->
+            jDepend.group = "verification"
+            tasks.create("${jDepend.name}Cycles") {
+                dependsOn jDepend
+                check.dependsOn it
+                group = "verification"
+                inputs.file { jDepend.reports.xml.destination }
+                doLast {
+                    def reportFile = jDepend.reports.xml.destination
+                    def numberOfCycles = new XmlSlurper().parse(reportFile).Cycles.Package.size()
+                    assert numberOfCycles == 0, "We have detected $numberOfCyclesMain cycles. Checkout report file: $fileMain."
+                }
+            }
+        }
     }
 
     plugins.withId("checkstyle") {

@@ -6,6 +6,7 @@ apply plugin: "io.freefair.lombok"
 apply plugin: "io.freefair.maven-optional"
 apply plugin: "io.freefair.maven-publish-java"
 apply plugin: "io.freefair.maven-jars"
+apply plugin: 'jdepend'
 
 description = 'Spring Security JSF Taglib'
 
