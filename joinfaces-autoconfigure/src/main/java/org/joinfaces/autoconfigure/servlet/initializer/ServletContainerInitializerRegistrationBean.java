@@ -24,10 +24,13 @@ import javax.servlet.ServletContainerInitializer;
 import javax.servlet.annotation.HandlesTypes;
 
 import io.github.classgraph.ClassGraph;
+import io.github.classgraph.ClassInfoList;
 import io.github.classgraph.ScanResult;
+import io.github.classgraph.utils.JarUtils;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
+import lombok.extern.slf4j.Slf4j;
 
 import org.springframework.beans.BeanUtils;
 import org.springframework.boot.web.server.WebServerFactoryCustomizer;
@@ -35,6 +38,7 @@ import org.springframework.boot.web.servlet.RegistrationBean;
 import org.springframework.boot.web.servlet.server.ConfigurableServletWebServerFactory;
 import org.springframework.core.annotation.AnnotationUtils;
 import org.springframework.lang.Nullable;
+import org.springframework.util.StopWatch;
 
 /**
  * {@link RegistrationBean} for {@link ServletContainerInitializer}s.
@@ -48,6 +52,7 @@ import org.springframework.lang.Nullable;
 @RequiredArgsConstructor
 @Getter
 @Setter
+@Slf4j
 public class ServletContainerInitializerRegistrationBean<T extends ServletContainerInitializer> implements WebServerFactoryCustomizer<ConfigurableServletWebServerFactory> {
 
 	private final Class<T> servletContainerInitializerClass;
@@ -74,34 +79,43 @@ public class ServletContainerInitializerRegistrationBean<T extends ServletContai
 			return null;
 		}
 
+		StopWatch stopWatch = new StopWatch(getServletContainerInitializerClass().getSimpleName());
+		stopWatch.start("classpath scan");
+
 		Set<Class<?>> classes = new HashSet<>();
 
 		try (ScanResult scanResult = new ClassGraph()
 				.enableClassInfo()
 				.enableAnnotationInfo()
 				.enableExternalClasses()
-				.enableSystemPackages()    // Find classes in com.sun.faces and javax.faces
-				.blacklistPackages("java")
-				//.ignoreClassVisibility()
+				.enableSystemPackages() // Find classes in com.sun.faces and javax.faces
+				.blacklistPackages("java", "jdk")
+				.filterClasspathElements(path -> !JarUtils.getJreLibOrExtJars().contains(path))
 				.scan()) {
+			stopWatch.stop();
+			stopWatch.start("collection of results");
 
 			for (Class<?> clazz : handlesTypes.value()) {
+				ClassInfoList classInfos;
 				if (clazz.isAnnotation()) {
-					List<Class<?>> classList = scanResult.getClassesWithAnnotation(clazz.getName()).loadClasses();
-					classes.addAll(classList);
+					classInfos = scanResult.getClassesWithAnnotation(clazz.getName());
 				}
 				else if (clazz.isInterface()) {
-					List<Class<?>> classList = scanResult.getClassesImplementing(clazz.getName()).loadClasses();
-					classes.addAll(classList);
+					classInfos = scanResult.getClassesImplementing(clazz.getName());
 				}
 				else {
-					List<Class<?>> classList = scanResult.getSubclasses(clazz.getName()).loadClasses();
-					classes.addAll(classList);
+					classInfos = scanResult.getSubclasses(clazz.getName());
 				}
+				classes.addAll(classInfos.loadClasses());
 			}
 
 			handleScanResult(scanResult);
 		}
+
+		stopWatch.stop();
+
+		log.info("Classpath scan for {} took {}s", stopWatch.getId(), stopWatch.getTotalTimeSeconds());
+		log.debug(stopWatch.prettyPrint());
 
 		return classes.isEmpty() ? null : classes;
 	}

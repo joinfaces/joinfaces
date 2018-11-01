@@ -16,11 +16,18 @@
 
 package org.joinfaces.autoconfigure.servlet.initializer;
 
+import java.util.Set;
+
+import javax.faces.component.UIViewAction;
 import javax.servlet.annotation.HandlesTypes;
 
 import com.sun.faces.config.FacesInitializer;
+import com.sun.faces.renderkit.html_basic.MessageRenderer;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.primefaces.component.inputnumber.InputNumberRenderer;
+
+import org.springframework.core.annotation.AnnotationUtils;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.BDDMockito.mock;
@@ -33,6 +40,16 @@ public class ServletContainerInitializerRegistrationBeanTest {
 	@BeforeEach
 	public void setUp() {
 		this.servletContainerInitializerRegistrationBean = new ServletContainerInitializerRegistrationBean<>(FacesInitializer.class);
+	}
+
+	@Test
+	public void getClasses() {
+		HandlesTypes handlesTypes = AnnotationUtils.findAnnotation(FacesInitializer.class, HandlesTypes.class);
+		Set<Class<?>> classes = this.servletContainerInitializerRegistrationBean.getClasses(handlesTypes);
+
+		assertThat(classes).isNotEmpty();
+
+		assertThat(classes).contains(UIViewAction.class, MessageRenderer.class, InputNumberRenderer.class);
 	}
 
 	@Test
