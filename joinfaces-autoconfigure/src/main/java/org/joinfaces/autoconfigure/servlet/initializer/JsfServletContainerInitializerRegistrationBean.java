@@ -58,7 +58,9 @@ public class JsfServletContainerInitializerRegistrationBean<T extends ServletCon
 		}
 
 		if (jarName.startsWith("spring")) {
-			return jarName.startsWith("spring-web");
+			if (jarName.startsWith("spring-web")) {
+				return !jarName.startsWith("spring-webmvc");
+			}
 		}
 		return true;
 	}
@@ -66,7 +68,8 @@ public class JsfServletContainerInitializerRegistrationBean<T extends ServletCon
 	protected ClassGraph prepareClassgraph(ClassGraph classGraph) {
 		return super.prepareClassgraph(classGraph)
 				.blacklistPackages("io.github.classgraph")
-				.blacklistPackages("net.bytebuddy")
+				.blacklistPackages("org.springframework.boot", "org.yaml.snakeyaml")
+				.blacklistPackages("net.bytebuddy", "org.eclipse.jdt.internal")
 				.blacklistPackages("org.apache.catalina", "org.eclipse.jetty", "io.undertow")
 				.blacklistPackages("org.slf4j", "ch.qos.logback", "org.apache.logging.log4j")
 				.blacklistPackages("com.fasterxml.jackson")

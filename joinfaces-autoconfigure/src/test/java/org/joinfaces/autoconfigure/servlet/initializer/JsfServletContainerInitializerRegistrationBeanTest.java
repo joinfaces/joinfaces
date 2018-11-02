@@ -40,13 +40,6 @@ class JsfServletContainerInitializerRegistrationBeanTest {
 		assertThat(classes).isNotEmpty();
 
 		assertThat(classes).contains(UIViewAction.class, MessageRenderer.class, InputNumberRenderer.class, DelegatingPhaseListenerMulticaster.class);
-
-		classes.stream()
-				.map(Class::getPackage)
-				.map(Package::getName)
-				.distinct()
-				.sorted()
-				.forEach(System.out::println);
 	}
 
 	@Test
@@ -57,12 +50,5 @@ class JsfServletContainerInitializerRegistrationBeanTest {
 		assertThat(classes).isNotEmpty();
 
 		assertThat(classes).contains(UIViewAction.class, MessageRenderer.class, InputNumberRenderer.class);
-
-		classes.stream()
-				.map(Class::getPackage)
-				.map(Package::getName)
-				.distinct()
-				.sorted()
-				.forEach(System.out::println);
 	}
 }
