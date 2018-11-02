@@ -36,7 +36,6 @@ import javax.faces.validator.FacesValidator;
 import io.github.classgraph.ScanResult;
 import org.apache.myfaces.ee.MyFacesContainerInitializer;
 import org.joinfaces.autoconfigure.servlet.initializer.JsfServletContainerInitializerRegistrationBean;
-import org.joinfaces.autoconfigure.servlet.initializer.ServletContainerInitializerRegistrationBean;
 
 /**
  * Servlet context initializer of MyFaces.

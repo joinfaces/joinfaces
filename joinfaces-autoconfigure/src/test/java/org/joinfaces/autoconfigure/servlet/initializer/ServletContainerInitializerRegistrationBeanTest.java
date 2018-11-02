@@ -47,7 +47,8 @@ public class ServletContainerInitializerRegistrationBeanTest {
 		}
 	}
 
-	@HandlesTypes(value = {})
+	@HandlesTypes(value = {
+	})
 	public static class EmptyHandlesTypes implements ServletContainerInitializer {
 		@Override
 		public void onStartup(Set<Class<?>> c, ServletContext ctx) {
