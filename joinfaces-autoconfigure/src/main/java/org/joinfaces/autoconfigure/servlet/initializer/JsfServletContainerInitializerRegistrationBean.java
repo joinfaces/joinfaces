@@ -32,7 +32,7 @@ public class JsfServletContainerInitializerRegistrationBean<T extends ServletCon
 		super(servletContainerInitializerClass);
 	}
 
-	private boolean filterSpringJars(String path) {
+	private boolean filterJars(String path) {
 		if (!path.endsWith(".jar")) {
 			return true;
 		}
@@ -41,11 +41,19 @@ public class JsfServletContainerInitializerRegistrationBean<T extends ServletCon
 
 		String jarName = path.substring(index + 1);
 
-		if (jarName.startsWith("tomcat-embed")) {
+		if (jarName.startsWith("junit")) {
 			return false;
 		}
 
-		if (jarName.startsWith("junit")) {
+		if (jarName.startsWith("logback") || jarName.contains("slf4j")) {
+			return false;
+		}
+
+		if (jarName.startsWith("tomcat-embed")) {
+			return jarName.startsWith("tomcat-embed-websocket");
+		}
+
+		if (jarName.startsWith("classgraph")) {
 			return false;
 		}
 
@@ -58,9 +66,10 @@ public class JsfServletContainerInitializerRegistrationBean<T extends ServletCon
 	protected ClassGraph prepareClassgraph(ClassGraph classGraph) {
 		return super.prepareClassgraph(classGraph)
 				.blacklistPackages("io.github.classgraph")
-				.blacklistPackages("org.springframework.boot")
-				.blacklistPackages("org.eclipse.jdt.internal", "org.eclipse.jetty")
-				.blacklistPackages("org.slf4j", "org.apache.logging.log4j")
-				.filterClasspathElements(this::filterSpringJars);
+				.blacklistPackages("net.bytebuddy")
+				.blacklistPackages("org.apache.catalina", "org.eclipse.jetty", "io.undertow")
+				.blacklistPackages("org.slf4j", "ch.qos.logback", "org.apache.logging.log4j")
+				.blacklistPackages("com.fasterxml.jackson")
+				.filterClasspathElements(this::filterJars);
 	}
 }

@@ -32,6 +32,7 @@ import org.springframework.context.annotation.Configuration;
 
 /**
  * Spring Boot Auto Configuration of MyFaces.
+ *
  * @author Marcelo Fernandes
  */
 @Configuration

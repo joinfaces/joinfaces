@@ -103,7 +103,12 @@ public class ServletContainerInitializerRegistrationBean<T extends ServletContai
 
 		Set<Class<?>> classes = new HashSet<>();
 
-		try (ScanResult scanResult = classGraph.scan()) {
+		try (ScanResult scanResult = classGraph
+				.filterClasspathElements(path -> {
+					log.debug("Path {}", path);
+					return true;
+				})
+				.scan()) {
 
 			for (Class<?> handledType : handledTypes) {
 				ClassInfoList classInfos;
