@@ -16,6 +16,7 @@
 
 package org.joinfaces.autoconfigure.servlet.initializer;
 
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -45,7 +46,7 @@ import org.springframework.util.StopWatch;
  * This is implemented as {@link WebServerFactoryCustomizer} so its only applied to embedded servlet-containers.
  * When deployed as war file, the external servlet-container will handle the {@link ServletContainerInitializer}.
  *
- * @param <T> The type of the {@link ServletContainerInitializer}
+ * @param <T> Type of the actual {@link ServletContainerInitializer} implementation
  * @author Lars Grefer
  */
 @RequiredArgsConstructor
@@ -58,52 +59,62 @@ public class ServletContainerInitializerRegistrationBean<T extends ServletContai
 
 	@Override
 	public void customize(ConfigurableServletWebServerFactory factory) {
+
 		factory.addInitializers(servletContext -> {
-			HandlesTypes handlesTypes = AnnotationUtils.findAnnotation(getServletContainerInitializerClass(), HandlesTypes.class);
-
-			Set<Class<?>> classes = null;
-
-			if (handlesTypes != null) {
-				classes = getClasses(handlesTypes);
-			}
-
+			StopWatch stopWatch = new StopWatch(getServletContainerInitializerClass().getSimpleName());
+			stopWatch.start();
+			Set<Class<?>> classes;
+			classes = getClasses();
+			stopWatch.stop();
+			log.info("getClasses() for {} took {}s", getServletContainerInitializerClass().getSimpleName(), stopWatch.getTotalTimeSeconds());
 			BeanUtils.instantiateClass(getServletContainerInitializerClass())
 					.onStartup(classes, servletContext);
 		});
 	}
 
 	@Nullable
-	protected Set<Class<?>> getClasses(HandlesTypes handlesTypes) {
-		if (handlesTypes == null || handlesTypes.value().length == 0) {
+	protected Set<Class<?>> getClasses() {
+		HandlesTypes handlesTypes = AnnotationUtils.findAnnotation(getServletContainerInitializerClass(), HandlesTypes.class);
+
+		if (handlesTypes == null) {
 			return null;
 		}
 
-		StopWatch stopWatch = new StopWatch(getServletContainerInitializerClass().getSimpleName());
-		stopWatch.start("classpath scan");
+		Class<?>[] handledTypes = handlesTypes.value();
+		if (handledTypes.length == 0) {
+			return null;
+		}
+
+		ClassGraph classGraph = new ClassGraph()
+				.enableClassInfo();
+
+		// Only scan for Annotations if we have to
+		if (Arrays.stream(handledTypes).anyMatch(Class::isAnnotation)) {
+			classGraph = classGraph.enableAnnotationInfo();
+		}
+
+		classGraph = classGraph.enableExternalClasses()
+				.enableSystemPackages() // Find classes in javax.faces
+				.blacklistPackages("java", "jdk", "sun", "javafx", "oracle")
+				.blacklistPackages("javax.xml", "javax.el", "javax.persistence")
+				.filterClasspathElements(path -> !JarUtils.getJreLibOrExtJars().contains(path));
+
+		classGraph = prepareClassgraph(classGraph);
 
 		Set<Class<?>> classes = new HashSet<>();
 
-		try (ScanResult scanResult = new ClassGraph()
-				.enableClassInfo()
-				.enableAnnotationInfo()
-				.enableExternalClasses()
-				.enableSystemPackages() // Find classes in com.sun.faces and javax.faces
-				.blacklistPackages("java", "jdk")
-				.filterClasspathElements(path -> !JarUtils.getJreLibOrExtJars().contains(path))
-				.scan()) {
-			stopWatch.stop();
-			stopWatch.start("collection of results");
+		try (ScanResult scanResult = classGraph.scan()) {
 
-			for (Class<?> clazz : handlesTypes.value()) {
+			for (Class<?> handledType : handledTypes) {
 				ClassInfoList classInfos;
-				if (clazz.isAnnotation()) {
-					classInfos = scanResult.getClassesWithAnnotation(clazz.getName());
+				if (handledType.isAnnotation()) {
+					classInfos = scanResult.getClassesWithAnnotation(handledType.getName());
 				}
-				else if (clazz.isInterface()) {
-					classInfos = scanResult.getClassesImplementing(clazz.getName());
+				else if (handledType.isInterface()) {
+					classInfos = scanResult.getClassesImplementing(handledType.getName());
 				}
 				else {
-					classInfos = scanResult.getSubclasses(clazz.getName());
+					classInfos = scanResult.getSubclasses(handledType.getName());
 				}
 				classes.addAll(classInfos.loadClasses());
 			}
@@ -111,12 +122,19 @@ public class ServletContainerInitializerRegistrationBean<T extends ServletContai
 			handleScanResult(scanResult);
 		}
 
-		stopWatch.stop();
-
-		log.info("Classpath scan for {} took {}s", stopWatch.getId(), stopWatch.getTotalTimeSeconds());
-		log.debug(stopWatch.prettyPrint());
-
 		return classes.isEmpty() ? null : classes;
+	}
+
+	/**
+	 * This method stub enables subclasses to further manipulate the used {@link ClassGraph instance}.
+	 * For example blacklisting some packages or adding a {@link io.github.classgraph.ClassGraph.ClasspathElementFilter}
+	 * in order to improve the scan performance.
+	 *
+	 * @param classGraph The {@link ClassGraph} instance which will be used.
+	 * @return The {@link ClassGraph} instance which will be used. (For method chaining)
+	 */
+	protected ClassGraph prepareClassgraph(ClassGraph classGraph) {
+		return classGraph;
 	}
 
 	protected void handleScanResult(ScanResult scanResult) {

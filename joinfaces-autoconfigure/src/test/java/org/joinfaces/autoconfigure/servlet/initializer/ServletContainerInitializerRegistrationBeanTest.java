@@ -18,56 +18,40 @@ package org.joinfaces.autoconfigure.servlet.initializer;
 
 import java.util.Set;
 
-import javax.faces.component.UIViewAction;
+import javax.servlet.ServletContainerInitializer;
+import javax.servlet.ServletContext;
 import javax.servlet.annotation.HandlesTypes;
 
-import com.sun.faces.config.FacesInitializer;
-import com.sun.faces.renderkit.html_basic.MessageRenderer;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.primefaces.component.inputnumber.InputNumberRenderer;
-
-import org.springframework.core.annotation.AnnotationUtils;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.mockito.BDDMockito.mock;
-import static org.mockito.BDDMockito.when;
 
 public class ServletContainerInitializerRegistrationBeanTest {
 
-	private ServletContainerInitializerRegistrationBean<?> servletContainerInitializerRegistrationBean;
-
-	@BeforeEach
-	public void setUp() {
-		this.servletContainerInitializerRegistrationBean = new ServletContainerInitializerRegistrationBean<>(FacesInitializer.class);
-	}
-
-	@Test
-	public void getClasses() {
-		HandlesTypes handlesTypes = AnnotationUtils.findAnnotation(FacesInitializer.class, HandlesTypes.class);
-		Set<Class<?>> classes = this.servletContainerInitializerRegistrationBean.getClasses(handlesTypes);
-
-		assertThat(classes).isNotEmpty();
-
-		assertThat(classes).contains(UIViewAction.class, MessageRenderer.class, InputNumberRenderer.class);
-	}
-
 	@Test
 	public void getClasses_null() {
-		assertThat(this.servletContainerInitializerRegistrationBean.getClasses(null)).isNull();
+		ServletContainerInitializerRegistrationBean<NoHandlesTypes> bean = new ServletContainerInitializerRegistrationBean<>(NoHandlesTypes.class);
+		assertThat(bean.getClasses()).isNull();
 	}
 
 	@Test
 	public void getClasses_empty() {
-		HandlesTypes handlesTypes = mock(HandlesTypes.class);
-		when(handlesTypes.value()).thenReturn(new Class[0]);
-		assertThat(this.servletContainerInitializerRegistrationBean.getClasses(handlesTypes)).isNull();
+		ServletContainerInitializerRegistrationBean<EmptyHandlesTypes> bean = new ServletContainerInitializerRegistrationBean<>(EmptyHandlesTypes.class);
+		assertThat(bean.getClasses()).isNull();
 	}
 
-	@Test
-	public void getClasses_noneFound() {
-		HandlesTypes handlesTypes = mock(HandlesTypes.class);
-		when(handlesTypes.value()).thenReturn(new Class[]{this.getClass()});
-		assertThat(this.servletContainerInitializerRegistrationBean.getClasses(handlesTypes)).isNull();
+	public static class NoHandlesTypes implements ServletContainerInitializer {
+		@Override
+		public void onStartup(Set<Class<?>> c, ServletContext ctx) {
+
+		}
+	}
+
+	@HandlesTypes(value = {})
+	public static class EmptyHandlesTypes implements ServletContainerInitializer {
+		@Override
+		public void onStartup(Set<Class<?>> c, ServletContext ctx) {
+
+		}
 	}
 }
