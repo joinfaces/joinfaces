@@ -37,7 +37,7 @@ public class JsfServletContainerInitializerRegistrationBean<T extends ServletCon
 			return true;
 		}
 
-		int index = path.lastIndexOf("/");
+		int index = path.lastIndexOf('/');
 
 		String jarName = path.substring(index + 1);
 
