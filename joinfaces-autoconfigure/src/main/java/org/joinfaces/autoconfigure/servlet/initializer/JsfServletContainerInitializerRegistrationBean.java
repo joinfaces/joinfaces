@@ -32,47 +32,36 @@ public class JsfServletContainerInitializerRegistrationBean<T extends ServletCon
 		super(servletContainerInitializerClass);
 	}
 
-	private boolean filterJars(String path) {
-		if (!path.endsWith(".jar")) {
-			return true;
-		}
-
-		int index = path.lastIndexOf('/');
-
-		String jarName = path.substring(index + 1);
-
-		if (jarName.startsWith("junit")) {
-			return false;
-		}
-
-		if (jarName.startsWith("logback") || jarName.contains("slf4j")) {
-			return false;
-		}
-
-		if (jarName.startsWith("tomcat-embed")) {
-			return jarName.startsWith("tomcat-embed-websocket");
-		}
-
-		if (jarName.startsWith("classgraph")) {
-			return false;
-		}
-
-		if (jarName.startsWith("spring")) {
-			if (jarName.startsWith("spring-web")) {
-				return !jarName.startsWith("spring-webmvc");
-			}
-		}
-		return true;
-	}
-
 	protected ClassGraph prepareClassgraph(ClassGraph classGraph) {
 		return super.prepareClassgraph(classGraph)
 				.blacklistPackages("io.github.classgraph")
 				.blacklistPackages("org.springframework.boot", "org.yaml.snakeyaml")
+				.blacklistPackages("org.springframework.aop")
+				.blacklistPackages("org.springframework.asm")
+				.blacklistPackages("org.springframework.beans")
+				.blacklistPackages("org.springframework.cache")
+				.blacklistPackages("org.springframework.cglib")
+				.blacklistPackages("org.springframework.context")
+				.blacklistPackages("org.springframework.core")
+				.blacklistPackages("org.springframework.ejb")
+				.blacklistPackages("org.springframework.expression")
+				.blacklistPackages("org.springframework.format")
+				.blacklistPackages("org.springframework.http")
+				.blacklistPackages("org.springframework.instrument")
+				.blacklistPackages("org.springframework.jmx")
+				.blacklistPackages("org.springframework.jndi")
+				.blacklistPackages("org.springframework.lang")
+				.blacklistPackages("org.springframework.objenesis")
+				.blacklistPackages("org.springframework.remoting")
+				.blacklistPackages("org.springframework.scheduling")
+				.blacklistPackages("org.springframework.scripting")
+				.blacklistPackages("org.springframework.security")
+				.blacklistPackages("org.springframework.util")
+				.blacklistPackages("org.springframework.ui")
+				.blacklistPackages("org.springframework.validation")
 				.blacklistPackages("net.bytebuddy", "org.eclipse.jdt.internal")
 				.blacklistPackages("org.apache.catalina", "org.eclipse.jetty", "io.undertow")
 				.blacklistPackages("org.slf4j", "ch.qos.logback", "org.apache.logging.log4j")
-				.blacklistPackages("com.fasterxml.jackson")
-				.filterClasspathElements(this::filterJars);
+				.blacklistPackages("com.fasterxml.jackson");
 	}
 }

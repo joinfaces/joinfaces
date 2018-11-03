@@ -59,16 +59,9 @@ public class ServletContainerInitializerRegistrationBean<T extends ServletContai
 
 	@Override
 	public void customize(ConfigurableServletWebServerFactory factory) {
-
 		factory.addInitializers(servletContext -> {
-			StopWatch stopWatch = new StopWatch(getServletContainerInitializerClass().getSimpleName());
-			stopWatch.start();
-			Set<Class<?>> classes;
-			classes = getClasses();
-			stopWatch.stop();
-			log.info("getClasses() for {} took {}s", getServletContainerInitializerClass().getSimpleName(), stopWatch.getTotalTimeSeconds());
-			BeanUtils.instantiateClass(getServletContainerInitializerClass())
-					.onStartup(classes, servletContext);
+			T servletContextInitializer = BeanUtils.instantiateClass(getServletContainerInitializerClass());
+			servletContextInitializer.onStartup(getClasses(), servletContext);
 		});
 	}
 
@@ -85,6 +78,9 @@ public class ServletContainerInitializerRegistrationBean<T extends ServletContai
 			return null;
 		}
 
+		StopWatch stopWatch = new StopWatch(getServletContainerInitializerClass().getName());
+		stopWatch.start("prepare");
+
 		ClassGraph classGraph = new ClassGraph()
 				.enableClassInfo();
 
@@ -100,16 +96,21 @@ public class ServletContainerInitializerRegistrationBean<T extends ServletContai
 				.blacklistModules("java.*", "jdk.*")
 				.filterClasspathElements(path -> !JarUtils.getJreLibOrExtJars().contains(path));
 
-		classGraph = prepareClassgraph(classGraph);
-
-		Set<Class<?>> classes = new HashSet<>();
-
-		try (ScanResult scanResult = classGraph
+		classGraph = prepareClassgraph(classGraph)
 				.filterClasspathElements(path -> {
 					log.debug("Path {}", path);
 					return true;
-				})
-				.scan()) {
+				});
+
+		Set<Class<?>> classes = new HashSet<>();
+
+		stopWatch.stop();
+		stopWatch.start("classpath scan");
+
+		try (ScanResult scanResult = classGraph.scan()) {
+
+			stopWatch.stop();
+			stopWatch.start("collect results");
 
 			for (Class<?> handledType : handledTypes) {
 				ClassInfoList classInfos;
@@ -126,6 +127,13 @@ public class ServletContainerInitializerRegistrationBean<T extends ServletContai
 			}
 
 			handleScanResult(scanResult);
+		}
+		finally {
+			stopWatch.stop();
+			log.info("Resolving classes for {} took {}s", getServletContainerInitializerClass().getName(), stopWatch.getTotalTimeSeconds());
+			if (log.isDebugEnabled()) {
+				log.debug(stopWatch.prettyPrint());
+			}
 		}
 
 		return classes.isEmpty() ? null : classes;
