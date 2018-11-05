@@ -1,0 +1,20 @@
+apply plugin: "java"
+apply plugin: "com.github.spotbugs"
+apply plugin: "checkstyle"
+apply plugin: "io.freefair.lombok"
+apply plugin: "io.freefair.maven-optional"
+apply plugin: "io.freefair.maven-publish-java"
+apply plugin: "io.freefair.maven-jars"
+apply plugin: 'jdepend'
+
+description = 'Joinfaces Test'
+
+dependencies {
+    compile 'org.springframework.boot:spring-boot-starter-test'
+    compile 'org.junit.jupiter:junit-jupiter-api'
+
+    optional 'org.springframework.boot:spring-boot-starter-web'
+    optional 'org.glassfish:javax.faces'
+
+    testRuntime 'org.junit.jupiter:junit-jupiter-engine'
+}

@@ -1,0 +1,7 @@
+description = 'RichFaces Spring Boot Starter'
+
+dependencies {
+    compile project(':joinfaces-starters:jsf-spring-boot-starter')
+    compile 'org.richfaces:richfaces'
+    compile 'org.richfaces:richfaces-a4j'
+}
