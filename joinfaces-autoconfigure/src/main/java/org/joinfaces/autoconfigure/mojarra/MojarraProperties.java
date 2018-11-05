@@ -197,7 +197,7 @@ public class MojarraProperties implements ServletContextInitParameterProperties 
 	/**
 	 * If true, inlined JavaScript rendered by the HTML ResponseWriter
 	 * implementation will be rendered so that the script is hidden from older
-	 * browser implementations which does not recognize <script/> elements.
+	 * browser implementations which does not recognize {@code <script/>} elements.
 	 */
 	@ServletContextInitParameter(PREFIX + "enabledJSStyleHiding")
 	private Boolean enabledJsStyleHiding;

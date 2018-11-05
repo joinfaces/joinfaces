@@ -12,7 +12,7 @@ problem.
 
 ### Project Structure
 
-This software is multi module [Maven](http://maven.apache.org) project and follows [Spring Boot Reference](http://docs.spring.io/spring-boot/docs/current/reference/html/boot-features-developing-auto-configuration.html) to create JSF Auto Configuration. [See what's inside each submodule.](https://github.com/joinfaces/joinfaces/wiki/Structure-of-the-software)
+This software is multi module [Gradle](https://gradle.org/) project and follows [Spring Boot Reference](http://docs.spring.io/spring-boot/docs/current/reference/html/boot-features-developing-auto-configuration.html) to create JSF Auto Configuration. [See what's inside each submodule.](https://github.com/joinfaces/joinfaces/wiki/Structure-of-the-software)
 
 ### Branching
 

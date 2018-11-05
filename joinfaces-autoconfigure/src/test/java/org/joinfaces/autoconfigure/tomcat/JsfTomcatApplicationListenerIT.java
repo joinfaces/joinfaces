@@ -38,8 +38,8 @@ import static org.mockito.Mockito.mock;
 public class JsfTomcatApplicationListenerIT {
 
 	private static final String METAINF_RESOURCES = "/META-INF/resources";
-	private static final String TARGET = "target";
-	private static final String TEST_CLASSES = "test-classes";
+	private static final String TARGET = "build";
+	private static final String TEST_CLASSES = "resources/test";
 	private static final String INTERNAL_JAR = "internal.jar";
 	private static final String TEST = "/test";
 
@@ -69,7 +69,7 @@ public class JsfTomcatApplicationListenerIT {
 		String absolutePath = new File("").getAbsolutePath();
 		String internalPath = METAINF_RESOURCES;
 
-		String targetTestClassesBase = absolutePath + "/" + "target/test-classes";
+		String targetTestClassesBase = absolutePath + "/" + "build/resources/test";
 		File testClassesResources = new File(targetTestClassesBase + internalPath);
 		if (!testClassesResources.mkdirs()) {
 			throw new RuntimeException("Could not create dir: " + testClassesResources.toString());

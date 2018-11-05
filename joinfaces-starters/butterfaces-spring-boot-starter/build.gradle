@@ -1,0 +1,6 @@
+description = 'ButterFaces Spring Boot Starter'
+
+dependencies {
+    compile project(':joinfaces-starters:jsf-spring-boot-starter')
+    compile 'org.butterfaces:components'
+}

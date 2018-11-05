@@ -1,0 +1,5 @@
+description = 'Mojarra Spring Boot Starter'
+
+dependencies {
+    compile 'org.glassfish:javax.faces'
+}

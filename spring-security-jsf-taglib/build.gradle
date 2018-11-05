@@ -1,0 +1,28 @@
+apply plugin: "java"
+apply plugin: "com.github.spotbugs"
+apply plugin: "checkstyle"
+apply plugin: "jacoco"
+apply plugin: "io.freefair.lombok"
+apply plugin: "io.freefair.maven-optional"
+apply plugin: "io.freefair.maven-publish-java"
+apply plugin: "io.freefair.maven-jars"
+apply plugin: 'jdepend'
+
+description = 'Spring Security JSF Taglib'
+
+dependencies {
+    optional('org.springframework.boot:spring-boot-starter') {
+        exclude group: 'javax.annotation', module: 'javax.annotation-api'
+    }
+    optional 'org.springframework.boot:spring-boot-starter-web'
+    optional 'javax.faces:javax.faces-api'
+    optional('org.springframework.security:spring-security-taglibs') {
+        exclude group: 'aopalliance', module: 'aopalliance'
+    }
+
+    testCompile project(':joinfaces-test')
+    testCompile 'org.springframework.boot:spring-boot-starter-security'
+    testCompile 'org.springframework.boot:spring-boot-starter-web'
+    testCompile 'org.junit.jupiter:junit-jupiter-api'
+    testRuntime 'org.junit.jupiter:junit-jupiter-engine'
+}

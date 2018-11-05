@@ -1,0 +1,6 @@
+description = 'Omnifaces 3.x Spring Boot Starter'
+
+dependencies {
+    compile 'org.omnifaces:omnifaces:3.2'
+    compile project(':joinfaces-starters:weld-spring-boot-starter')
+}

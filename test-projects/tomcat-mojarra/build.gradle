@@ -1,0 +1,5 @@
+description = 'Joinfaces Tomcat-Mojarra Test Project'
+
+dependencies {
+    compile project(':joinfaces-starters:jsf-spring-boot-starter')
+}

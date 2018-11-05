@@ -1,0 +1,12 @@
+description = 'AdminFaces Spring Boot Starter'
+
+dependencies {
+    compile project(':joinfaces-starters:primefaces-spring-boot-starter')
+    compile project(':joinfaces-starters:omnifaces1-spring-boot-starter')
+    compile('com.github.adminfaces:admin-template') {
+        exclude group: "org.omnifaces", module: 'omnifaces'
+    }
+    compile 'javax.persistence:javax.persistence-api'
+    compile 'javax.ejb:javax.ejb-api'
+    compile 'javax.enterprise:cdi-api'
+}
