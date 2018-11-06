@@ -22,6 +22,7 @@ after_success:
 
 deploy:
   provider: script
+  skip_cleanup: true
   script: ./gradlew publish
   on:
     all_branches: true
