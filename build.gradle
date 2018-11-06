@@ -14,8 +14,6 @@ buildscript {
     }
 }
 
-println "Username Set: ${project.hasProperty("ossrhUser")}"
-
 allprojects {
     group = 'org.joinfaces'
     version = '3.3.0-SNAPSHOT'
@@ -222,8 +220,8 @@ allprojects {
                     def releasesRepoUrl = 'https://oss.sonatype.org/service/local/staging/deploy/maven2/'
                     url = version.endsWith('SNAPSHOT') ? snapshotsRepoUrl : releasesRepoUrl
                     credentials {
-                        username = properties.get('ossrhUser')
-                        password = properties.get('ossrhPass')
+                        username = findProperty('ossrhUser')
+                        password = findProperty('ossrhPass')
                     }
                 }
             }
