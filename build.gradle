@@ -220,8 +220,8 @@ allprojects {
                     def releasesRepoUrl = 'https://oss.sonatype.org/service/local/staging/deploy/maven2/'
                     url = version.endsWith('SNAPSHOT') ? snapshotsRepoUrl : releasesRepoUrl
                     credentials {
-                        username = System.getenv('OSSRH_USER')
-                        password = System.getenv('OSSRH_PASS')
+                        username = properties.get('ossrhUser')
+                        password = properties.get('ossrhPass')
                     }
                 }
             }
@@ -272,5 +272,3 @@ publishing {
         }
     }
 }
-
-
