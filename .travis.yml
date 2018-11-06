@@ -23,7 +23,7 @@ after_success:
 deploy:
   provider: script
   skip_cleanup: true
-  script: ./gradlew publish
+  script: ./gradlew publish -s
   on:
     all_branches: true
     jdk: openjdk11
