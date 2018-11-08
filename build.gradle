@@ -172,6 +172,7 @@ allprojects {
                 pom {
                     url = 'http://joinfaces.org'
                     name = provider { project.description }
+                    description = provider { project.description }
                     inceptionYear = '2016'
                     licenses {
                         license {
@@ -247,6 +248,7 @@ publishing {
 
             pom {
                 name = 'JoinFaces Dependencies'
+                description = 'JoinFaces Dependencies'
             }
 
             pom.withXml {
@@ -267,6 +269,7 @@ publishing {
 
             pom {
                 name = "JoinFaces"
+                description = "JoinFaces"
             }
 
             artifact aggregateJavadocJar
