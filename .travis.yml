@@ -28,7 +28,7 @@ deploy:
     repo: joinfaces/joinfaces
 - provider: script
   skip_cleanup: true
-  script: "./gradlew publish -s -Pversion=$TRAVIS_BRANCH-SNAPSHOT"
+  script: "./gradlew publish -s -Pversion=$TRAVIS_BRANCH-SNAPSHOT -Psigning.password=$SIGNING_PASSWORD"
   on:
     jdk: openjdk11
     tags: false
