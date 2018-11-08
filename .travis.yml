@@ -1,37 +1,35 @@
 language: java
 jdk:
-  - openjdk8
-  - openjdk11
-
+- openjdk8
+- openjdk11
 before_cache:
-  - rm -f  $HOME/.gradle/caches/modules-2/modules-2.lock
-  - rm -fr $HOME/.gradle/caches/*/plugin-resolution/
+- rm -f  $HOME/.gradle/caches/modules-2/modules-2.lock
+- rm -fr $HOME/.gradle/caches/*/plugin-resolution/
 cache:
   directories:
-    - $HOME/.gradle/caches/
-    - $HOME/.gradle/wrapper/
-
+  - "$HOME/.gradle/caches/"
+  - "$HOME/.gradle/wrapper/"
 env:
   global:
-    - secure: "dd5QCUUYJ7DnR+/pk6fbW+czKHcU6bfiZndYeYdUwQXsckYv5cfzNO3e+Tudluwn7kWW0hOgDda8BtWhrXA8eOyZfJjVrEA+d3MO9+1Ab8ugg/yqYy+Fv9e2IsaHSfhDGKNoACgoZNxVsWRDV4qdNYsV2OunFDYf28//NBUtth25FIelA/54Yss+NnX/KdYtAwB1BaUwPmBR07IqZbpmdvA+rQMoi7LgXt5rHWBEhzrPRoEiId589w6igWsESSlZo6ytf2HEDzpjHFC2Y6bdP7JWB1Bnv8qfuy9vNUvAvvF33j3X3vz0uIJvMLFMm4bJUiUpKihpIuHQv679h6o6SHCW+auyHy/R+ZCdbM1SBuH61juJUbabIcadR2vIpJEFewaqhVpEmlmSibJPJYu3uL/H5dAxsxtRkIulr3U8a6lcWQR/tIubUKADI1SZkoV8pxQC6MRVp7Fk5utJyGXi/+Drb5CYxsaQFeum0mT8y6S8HpWqcBZpi5Hu61zcDQX9xTPRRvjAqulSCpMs5UtkhFj+FaFvzEKrm4Na3MbkxGmAqdzNKl6ycemz0tERP+asrwOL1X6vFZYyxqv2ZMllujGxGKxk7xV3BGRmetWs47lqRD3HXW7/Wb3NHnoquPD+IcTXQrocEa65pvDmQEtcb9IGcfwwdZ7cXgSGsq5O+0Q="
-    - secure: "KPNVjcrLbhfStj9WHf1jrkw+cd43xt+w9fGI+RvoIFNZlvRt6OyjWNfs8Y7a1jNRdjyQUzS7wTxdwW66ajpCK9p2f3hNwVvZfbL263p8S/z4xK4rnmbIugPMDbTZ8vVQHeVzvg8AUi41kHHvwWYq3Z1Vd8hubi9dXvm9XGevWgZVrvUNSDM2A6qejbR0f4oPh+/NYexwLwJa6A+LVmprhQSS3p5YUHYSnV6XmQZ+emsrF8fPYymTexP/uHMTjGfBSzLP9v/K2iwTYRwUjISavgZNZ9oFq9HvXAPh/pO53lUKTir9oQuz7HhaxZDybgJPkM3fZbpMXdOW1SgiKLPWGjLr152XcVL7LEoPv5M3yB3brcAUGPpPcy9XKTgdFbs6eD0ut9dN6FKdSyhHOzhLXAOTaQUfKmQxwD2cZ0R1KgDIuX+L6tWV8k1NbxERvv1sXY16vnw4syqjvkOPvrMDjMKo8QpZOMpDDi7jl1P6B6bq8C1jC0kzLIA1VkdfDTOI3t1kfQWnAc7RYHp8l1f34dZ+nrCc3VPpN/5uE/3auVh1crfui6X3oh3HxhgFZelJoy1rDV5foIw6KgnRa1fKUM9TZKUslt2s+WKqKDXhKbZc4loqrlQOCWijQ+juFg1ihC+cOCU2ZwYQ7opVwdLQ6XEvK8jFClQo/Rd6I0izQ/s="
-
+  - secure: AVYPQIkSIv6xhjY3ojSaSYR7WIJ1vbMLwd46ArWeOK/NKKjAtRI6wCKjzmHd64FiI6Z+wLJlnnwx9b9bng2GwyXvcFGkkKGQmlv+D6B3D4oS9Y0nC31qWSpuANWQtuzWA/KP3uvqE+wNAQ6J0dE/iY5YhEa0ezU1WGjg39QFOOU76WXhp3WyzMW8WnRgUUld+hN6aJH0ZoaYxkl5jJQ2nBZcwz6YkhSj+Zo1Tv0ffEPrjBQp1A4sL5+v0nYzysAhlyPDIwKLiCrXYaqlYHKCKsAr7vFFmUWDn25LI1K4wgiKnWugOnOAMfSUxwl1HXYL+zqVIWFUKI3NOQx8iZxA1z0KrSzKu1I7mBvN9I7c69mvBi5OLbJjBiptB8R3sNimWhqUZAnk1pxedRvVbU3NzBJp+YB+cVO1R9gN7kmTw72WDA+ujxBNQwSy7xk0KOWJ6It81PFV8t06+muk26YJ2GwXLuAleDqmZp3kGimq6LnTwHinJ+9V9AaNt6Y+JNocwL/Q0zIil/hGtmdcVeTatb0CGblhm2Xs350nAVQBYd/1z3ZEGcusyJkzjbMCeEM1q6CzkqWuUxARaR17g9rl4kOACpo1LLRzwLXRsjOzQHvWksZwx8n7BJul37IO41Yxqgd+BxNmdoVfFyNsYDMpTo5+Cey8yRNugTg8Yy1ygbM=
 after_success:
-  - ./gradlew jacocoTestReport
-  - bash <(curl -s https://codecov.io/bash)
-
+- "./gradlew jacocoTestReport"
+- bash <(curl -s https://codecov.io/bash)
 deploy:
 - provider: script
   skip_cleanup: true
-  script: ./gradlew publish -s -Pversion=$TRAVIS_TAG
+  script: "./gradlew publish -s -Pversion=$TRAVIS_TAG -Psigning.password=$SIGNING_PASSWORD"
   on:
     jdk: openjdk11
     tags: true
     repo: joinfaces/joinfaces
 - provider: script
   skip_cleanup: true
-  script: ./gradlew publish -s -Pversion=$TRAVIS_BRANCH-SNAPSHOT
+  script: "./gradlew publish -s -Pversion=$TRAVIS_BRANCH-SNAPSHOT"
   on:
     jdk: openjdk11
     tags: false
     repo: joinfaces/joinfaces
+before_install:
+- openssl aes-256-cbc -K $encrypted_48012f6af75e_key -iv $encrypted_48012f6af75e_iv
+  -in secring.gpg.enc -out secring.gpg -d
