@@ -23,9 +23,8 @@ after_success:
 deploy:
   provider: script
   skip_cleanup: true
-  script: ./gradlew publish -s
+  script: ./gradlew publish -s -Pversion=$TRAVIS_TAG
   on:
-    all_branches: true
     jdk: openjdk11
-    tags: false
+    tags: true
     repo: joinfaces/joinfaces
