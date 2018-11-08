@@ -161,7 +161,7 @@ allprojects {
     }
 
     plugins.withId("maven-publish") {
-        apply plugin: "signing"
+        project.apply plugin: "signing"
 
         signing {
             required { !version.endsWith('SNAPSHOT') && gradle.taskGraph.hasTask("publish") }
