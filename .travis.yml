@@ -21,10 +21,17 @@ after_success:
   - bash <(curl -s https://codecov.io/bash)
 
 deploy:
-  provider: script
+- provider: script
   skip_cleanup: true
   script: ./gradlew publish -s -Pversion=$TRAVIS_TAG
   on:
     jdk: openjdk11
     tags: true
+    repo: joinfaces/joinfaces
+- provider: script
+  skip_cleanup: true
+  script: ./gradlew publish -s -Pversion=$TRAVIS_BRANCH-SNAPSHOT
+  on:
+    jdk: openjdk11
+    tags: false
     repo: joinfaces/joinfaces
