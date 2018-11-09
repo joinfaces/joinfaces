@@ -223,6 +223,7 @@ allprojects {
         nexusPublishing {
             username = findProperty('ossrhUser')
             password = findProperty('ossrhPass')
+            stagingProfileId = '9d2198adfd84d'
         }
     }
 }
