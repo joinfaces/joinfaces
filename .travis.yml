@@ -9,26 +9,23 @@ cache:
   directories:
   - "$HOME/.gradle/caches/"
   - "$HOME/.gradle/wrapper/"
-env:
-  global:
-  - secure: AVYPQIkSIv6xhjY3ojSaSYR7WIJ1vbMLwd46ArWeOK/NKKjAtRI6wCKjzmHd64FiI6Z+wLJlnnwx9b9bng2GwyXvcFGkkKGQmlv+D6B3D4oS9Y0nC31qWSpuANWQtuzWA/KP3uvqE+wNAQ6J0dE/iY5YhEa0ezU1WGjg39QFOOU76WXhp3WyzMW8WnRgUUld+hN6aJH0ZoaYxkl5jJQ2nBZcwz6YkhSj+Zo1Tv0ffEPrjBQp1A4sL5+v0nYzysAhlyPDIwKLiCrXYaqlYHKCKsAr7vFFmUWDn25LI1K4wgiKnWugOnOAMfSUxwl1HXYL+zqVIWFUKI3NOQx8iZxA1z0KrSzKu1I7mBvN9I7c69mvBi5OLbJjBiptB8R3sNimWhqUZAnk1pxedRvVbU3NzBJp+YB+cVO1R9gN7kmTw72WDA+ujxBNQwSy7xk0KOWJ6It81PFV8t06+muk26YJ2GwXLuAleDqmZp3kGimq6LnTwHinJ+9V9AaNt6Y+JNocwL/Q0zIil/hGtmdcVeTatb0CGblhm2Xs350nAVQBYd/1z3ZEGcusyJkzjbMCeEM1q6CzkqWuUxARaR17g9rl4kOACpo1LLRzwLXRsjOzQHvWksZwx8n7BJul37IO41Yxqgd+BxNmdoVfFyNsYDMpTo5+Cey8yRNugTg8Yy1ygbM=
 after_success:
 - "./gradlew jacocoTestReport"
 - bash <(curl -s https://codecov.io/bash)
 before_deploy:
 - openssl aes-256-cbc -K $encrypted_48012f6af75e_key -iv $encrypted_48012f6af75e_iv
-  -in secring.gpg.enc -out secring.gpg -d
+  -in secring.gpg.enc -out $TRAVIS_BUILD_DIR/secring.gpg -d
 deploy:
 - provider: script
   skip_cleanup: true
-  script: "./gradlew publish -s -Pversion=$TRAVIS_TAG -Psigning.password=$SIGNING_PASSWORD"
+  script: "./gradlew publish closeAndReleaseRepository -s -Pversion=$TRAVIS_TAG -Psigning.keyId=$SIGNING_KEY_ID -Psigning.password=$SIGNING_PASSWORD -Psigning.secretKeyRingFile=$TRAVIS_BUILD_DIR/secring.gpg"
   on:
     jdk: openjdk11
     tags: true
     repo: joinfaces/joinfaces
 - provider: script
   skip_cleanup: true
-  script: "./gradlew publish -s -Pversion=$TRAVIS_BRANCH-SNAPSHOT -Psigning.password=$SIGNING_PASSWORD"
+  script: "./gradlew publish -s -Pversion=$TRAVIS_BRANCH-SNAPSHOT -Psigning.keyId=$SIGNING_KEY_ID -Psigning.password=$SIGNING_PASSWORD -Psigning.secretKeyRingFile=$TRAVIS_BUILD_DIR/secring.gpg"
   on:
     jdk: openjdk11
     tags: false
