@@ -4,7 +4,7 @@ JoinFaces
 [![Build Status](https://travis-ci.org/joinfaces/joinfaces.svg?branch=master)](https://travis-ci.org/joinfaces/joinfaces)
 [![Coverage Status](https://coveralls.io/repos/github/joinfaces/joinfaces/badge.svg?branch=master)](https://coveralls.io/github/joinfaces/joinfaces?branch=master)
 [![codecov](https://codecov.io/gh/joinfaces/joinfaces/branch/master/graph/badge.svg)](https://codecov.io/gh/joinfaces/joinfaces)
-[![Javadocs](http://javadoc.io/badge/org.joinfaces/joinfaces-build.svg)](http://javadoc.io/doc/org.joinfaces/joinfaces-build)
+[![Javadocs](http://javadoc.io/badge/org.joinfaces/joinfaces.svg)](http://javadoc.io/doc/org.joinfaces/joinfaces)
 [![License](http://img.shields.io/:license-apache-blue.svg)](http://www.apache.org/licenses/LICENSE-2.0.html)
 
 This project enables [JSF](http://www.oracle.com/technetwork/java/javaee/javaserverfaces-139869.html) usage inside [Spring Boot](http://projects.spring.io/spring-boot/) Application.
