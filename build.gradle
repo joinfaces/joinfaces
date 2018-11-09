@@ -245,6 +245,7 @@ aggregateJavadoc.failOnError = false
 apply plugin: "io.codearte.nexus-staging"
 
 nexusStaging {
+    stagingProfileId = '9d2198adfd84d'
     username = findProperty('ossrhUser')
     password = findProperty('ossrhPass')
 }
