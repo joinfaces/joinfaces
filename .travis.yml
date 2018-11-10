@@ -18,14 +18,14 @@ before_deploy:
 deploy:
 - provider: script
   skip_cleanup: true
-  script: "./gradlew publish closeAndReleaseRepository -s -Pversion=$TRAVIS_TAG -Psigning.keyId=$SIGNING_KEY_ID -Psigning.password=$SIGNING_PASSWORD -Psigning.secretKeyRingFile=$TRAVIS_BUILD_DIR/secring.gpg"
+  script: "./gradlew publishToNexus closeAndReleaseRepository -s -Pversion=$TRAVIS_TAG -Psigning.keyId=$SIGNING_KEY_ID -Psigning.password=$SIGNING_PASSWORD -Psigning.secretKeyRingFile=$TRAVIS_BUILD_DIR/secring.gpg"
   on:
     jdk: openjdk11
     tags: true
     repo: joinfaces/joinfaces
 - provider: script
   skip_cleanup: true
-  script: "./gradlew publish -s -Pversion=$TRAVIS_BRANCH-SNAPSHOT -Psigning.keyId=$SIGNING_KEY_ID -Psigning.password=$SIGNING_PASSWORD -Psigning.secretKeyRingFile=$TRAVIS_BUILD_DIR/secring.gpg"
+  script: "./gradlew publishToNexus -s -Pversion=$TRAVIS_BRANCH-SNAPSHOT -Psigning.keyId=$SIGNING_KEY_ID -Psigning.password=$SIGNING_PASSWORD -Psigning.secretKeyRingFile=$TRAVIS_BUILD_DIR/secring.gpg"
   on:
     jdk: openjdk11
     tags: false
