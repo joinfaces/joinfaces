@@ -1,0 +1,41 @@
+plugins {
+    id "com.gradle.plugin-publish" version "0.10.0"
+    id "java-gradle-plugin"
+    id "io.freefair.lombok" version "2.8.1"
+}
+
+repositories {
+    jcenter()
+}
+
+group = "org.joinfaces"
+
+// Use java-gradle-plugin to generate plugin descriptors and specify plugin ids
+gradlePlugin {
+    plugins {
+        joinfaces {
+            id = 'org.joinfaces.joinfaces'
+            implementationClass = 'org.joinfaces.gradle.JoinfacesGradlePlugin'
+        }
+    }
+}
+
+pluginBundle {
+    website = 'https://github.com/joinfaces/joinfaces'
+    vcsUrl = 'https://github.com/joinfaces/joinfaces'
+
+    plugins {
+        joinfaces {
+            // id is captured from java-gradle-plugin configuration
+            displayName = 'Joinfaces Gradle Plugin'
+            description = 'Greetings from here!'
+            tags = ['greetings', 'salutations']
+        }
+    }
+}
+
+dependencies {
+    compile "io.github.classgraph:classgraph:4.4.12"
+
+    compileOnly "org.springframework.boot:spring-boot-gradle-plugin:2.1.0.RELEASE"
+}

@@ -6,6 +6,7 @@ buildscript {
         maven { url "https://jitpack.io" }
     }
     dependencies {
+        classpath "org.joinfaces:joinfaces-gradle-plugin"
         classpath "org.springframework.boot:spring-boot-gradle-plugin:2.1.0.RELEASE"
         classpath "io.freefair.gradle:lombok-plugin:2.8.1"
         classpath "io.freefair.gradle:maven-plugin:2.8.1"
