@@ -14,8 +14,12 @@ group = "org.joinfaces"
 gradlePlugin {
     plugins {
         joinfaces {
-            id = 'org.joinfaces.joinfaces'
-            implementationClass = 'org.joinfaces.gradle.JoinfacesGradlePlugin'
+            id = 'org.joinfaces'
+            implementationClass = 'org.joinfaces.gradle.JoinfacesPlugin'
+        }
+        sciScan {
+            id = 'org.joinfaces.sci-scan'
+            implementationClass = 'org.joinfaces.gradle.SciScanPlugin'
         }
     }
 }
@@ -23,13 +27,17 @@ gradlePlugin {
 pluginBundle {
     website = 'https://github.com/joinfaces/joinfaces'
     vcsUrl = 'https://github.com/joinfaces/joinfaces'
+    tags = ['joinfaces', 'jsf']
 
     plugins {
         joinfaces {
             // id is captured from java-gradle-plugin configuration
             displayName = 'Joinfaces Gradle Plugin'
-            description = 'Greetings from here!'
-            tags = ['greetings', 'salutations']
+            description = 'Joinfaces Gradle Plugin'
+        }
+        sciScan {
+            displayName = 'Joinfaces ServletContainerInitializer Scan Plugin'
+            description = 'Performs the classpath scan for ServletContainerInitializers at build-time for a faster application startup.'
         }
     }
 }

@@ -20,11 +20,15 @@ import java.io.File;
 
 import org.gradle.api.Plugin;
 import org.gradle.api.Project;
+import org.gradle.api.file.FileCollection;
+import org.gradle.api.plugins.JavaPlugin;
 import org.gradle.api.plugins.JavaPluginConvention;
 import org.gradle.api.tasks.SourceSet;
-import org.gradle.language.jvm.tasks.ProcessResources;
 
-public class JoinfacesGradlePlugin implements Plugin<Project> {
+/**
+ * @author Lars Grefer
+ */
+public class SciScanPlugin implements Plugin<Project> {
 
 	private Project project;
 
@@ -32,7 +36,7 @@ public class JoinfacesGradlePlugin implements Plugin<Project> {
 	public void apply(Project project) {
 		this.project = project;
 
-		project.getPlugins().withId("java", javaPlugin ->
+		project.getPlugins().withType(JavaPlugin.class, javaPlugin ->
 				project.getConvention()
 						.getPlugin(JavaPluginConvention.class)
 						.getSourceSets()
@@ -45,13 +49,12 @@ public class JoinfacesGradlePlugin implements Plugin<Project> {
 		File baseDir = new File(project.getBuildDir(), "joinfaces/" + sourceSet.getName());
 
 		ScanServletContainerInitializerClasses scanTask = project.getTasks().create(taskName, ScanServletContainerInitializerClasses.class);
-		scanTask.getClasspath().from(sourceSet.getRuntimeClasspath());
-		scanTask.getResultFile().set(new File(baseDir, "servlet-container-initializer-classes.properties"));
+		scanTask.getDestinationDir().set(baseDir);
 
-		project.getTasks().getByName(sourceSet.getProcessResourcesTaskName(),
-				processResources -> ((ProcessResources) processResources).into("META-INF/joinfaces",
-						copySpec -> copySpec.from(project.files(scanTask))
-				)
-		);
+		project.afterEvaluate(p -> {
+			FileCollection runtimeClasspath = sourceSet.getRuntimeClasspath();
+			scanTask.getClasspath().from(runtimeClasspath);
+			sourceSet.setRuntimeClasspath(runtimeClasspath.plus(project.files(scanTask)));
+		});
 	}
 }
