@@ -9,12 +9,6 @@ cache:
   directories:
   - "$HOME/.gradle/caches/"
   - "$HOME/.gradle/wrapper/"
-install:
-  - "cd joinfaces-gradle-plugin && ./gradlew --version"
-  - "./gradlew --version"
-script:
-  - "cd joinfaces-gradle-plugin && ./gradlew build"
-  - "./gradlew build"
 after_success:
 - "./gradlew jacocoTestReport"
 - bash <(curl -s https://codecov.io/bash)
