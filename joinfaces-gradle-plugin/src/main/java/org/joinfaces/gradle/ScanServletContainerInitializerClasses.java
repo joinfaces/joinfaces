@@ -131,15 +131,15 @@ public class ScanServletContainerInitializerClasses extends DefaultTask {
 			String name = handledType.getName();
 
 			if (handledType.isAnnotation()) {
-				scanResult.getClassesWithAnnotation(name).forEach(classInfo -> classes.add(classInfo.getName()));
-				scanResult.getClassesWithMethodAnnotation(name).forEach(classInfo -> classes.add(classInfo.getName()));
-				scanResult.getClassesWithFieldAnnotation(name).forEach(classInfo -> classes.add(classInfo.getName()));
+				classes.addAll(scanResult.getClassesWithAnnotation(name).getNames());
+				classes.addAll(scanResult.getClassesWithMethodAnnotation(name).getNames());
+				classes.addAll(scanResult.getClassesWithFieldAnnotation(name).getNames());
 			}
 			else if (handledType.isInterface()) {
-				scanResult.getClassesImplementing(name).forEach(classInfo -> classes.add(classInfo.getName()));
+				classes.addAll(scanResult.getClassesImplementing(name).getNames());
 			}
 			else {
-				scanResult.getSubclasses(name).forEach(classInfo -> classes.add(classInfo.getName()));
+				classes.addAll(scanResult.getSubclasses(name).getNames());
 			}
 
 		});

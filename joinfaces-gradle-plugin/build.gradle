@@ -1,16 +1,9 @@
 plugins {
     id "com.gradle.plugin-publish" version "0.10.0"
-    id "java-gradle-plugin"
-    id "io.freefair.lombok" version "2.8.1"
 }
+apply plugin: "java-gradle-plugin"
+apply plugin: "io.freefair.lombok"
 
-repositories {
-    jcenter()
-}
-
-group = "org.joinfaces"
-
-// Use java-gradle-plugin to generate plugin descriptors and specify plugin ids
 gradlePlugin {
     plugins {
         joinfaces {
@@ -31,7 +24,6 @@ pluginBundle {
 
     plugins {
         joinfaces {
-            // id is captured from java-gradle-plugin configuration
             displayName = 'Joinfaces Gradle Plugin'
             description = 'Joinfaces Gradle Plugin'
         }
@@ -43,7 +35,7 @@ pluginBundle {
 }
 
 dependencies {
-    compile "io.github.classgraph:classgraph:4.4.12"
+    compile "io.github.classgraph:classgraph"
 
     compileOnly "org.springframework.boot:spring-boot-gradle-plugin:2.1.0.RELEASE"
 }
