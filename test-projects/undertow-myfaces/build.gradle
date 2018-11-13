@@ -1,4 +1,4 @@
-description = 'Joinfaces Undertow-MyFaces Test Project'
+description = 'JoinFaces Undertow-MyFaces Test Project'
 
 dependencies {
     compile(project(':joinfaces-starters:jsf-spring-boot-starter')) {

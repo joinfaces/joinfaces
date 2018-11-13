@@ -1,4 +1,5 @@
 description = 'Rewrite Spring Boot Starter'
+jar.manifest.attributes('Automatic-Module-Name': 'joinfaces.starter.rewrite')
 
 dependencies {
     compile 'org.ocpsoft.rewrite:rewrite-servlet'

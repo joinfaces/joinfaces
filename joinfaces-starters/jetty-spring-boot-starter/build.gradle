@@ -1,4 +1,5 @@
 description = 'Jetty Spring Boot Starter'
+jar.manifest.attributes('Automatic-Module-Name': 'joinfaces.starter.jetty')
 
 dependencies {
     compile 'org.springframework.boot:spring-boot-starter-jetty'

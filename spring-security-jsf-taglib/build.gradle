@@ -9,6 +9,7 @@ apply plugin: "io.freefair.maven-jars"
 apply plugin: 'jdepend'
 
 description = 'Spring Security JSF Taglib'
+jar.manifest.attributes('Automatic-Module-Name': 'joinfaces.security.taglib')
 
 dependencies {
     optional('org.springframework.boot:spring-boot-starter') {

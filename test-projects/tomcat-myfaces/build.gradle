@@ -1,4 +1,4 @@
-description = 'Joinfaces Tomcat-MyFaces Test Project'
+description = 'JoinFaces Tomcat-MyFaces Test Project'
 
 dependencies {
     compile(project(':joinfaces-starters:jsf-spring-boot-starter')) {
