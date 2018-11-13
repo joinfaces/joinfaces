@@ -7,7 +7,8 @@ apply plugin: "io.freefair.maven-publish-java"
 apply plugin: "io.freefair.maven-jars"
 apply plugin: 'jdepend'
 
-description = 'Joinfaces Test'
+description = 'JoinFaces Test'
+jar.manifest.attributes('Automatic-Module-Name': 'joinfaces.test')
 
 dependencies {
     compile 'org.springframework.boot:spring-boot-starter-test'

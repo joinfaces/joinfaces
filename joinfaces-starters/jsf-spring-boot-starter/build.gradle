@@ -1,4 +1,5 @@
 description = 'JSF Spring Boot Starter'
+jar.manifest.attributes('Automatic-Module-Name': 'joinfaces.starter.jsf')
 
 dependencies {
     compile project(':joinfaces-autoconfigure')

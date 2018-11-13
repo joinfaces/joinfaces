@@ -1,4 +1,5 @@
 description = 'Omnifaces 3.x Spring Boot Starter'
+jar.manifest.attributes('Automatic-Module-Name': 'joinfaces.starter.omnifaces')
 
 dependencies {
     compile 'org.omnifaces:omnifaces:3.2'
