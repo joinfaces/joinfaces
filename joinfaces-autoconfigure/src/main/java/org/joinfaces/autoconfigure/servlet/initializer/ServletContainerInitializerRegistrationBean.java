@@ -74,7 +74,7 @@ public class ServletContainerInitializerRegistrationBean<T extends ServletContai
 		});
 	}
 
-	private Set<Class<?>> getClasses() {
+	protected Set<Class<?>> getClasses() {
 		return findPreparedScanResult().orElseGet(this::performClasspathScan);
 	}
 
