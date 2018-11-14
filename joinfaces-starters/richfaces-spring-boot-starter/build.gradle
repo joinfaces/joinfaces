@@ -1,4 +1,5 @@
 description = 'RichFaces Spring Boot Starter'
+jar.manifest.attributes('Automatic-Module-Name': 'joinfaces.starter.richfaces')
 
 dependencies {
     compile project(':joinfaces-starters:jsf-spring-boot-starter')

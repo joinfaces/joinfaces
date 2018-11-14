@@ -1,4 +1,5 @@
 description = 'Tomcat Spring Boot Starter'
+jar.manifest.attributes('Automatic-Module-Name': 'joinfaces.starter.tomcat')
 
 dependencies {
     compile 'org.springframework.boot:spring-boot-starter-tomcat'

@@ -128,6 +128,14 @@ allprojects {
             useJUnitPlatform()
         }
 
+        afterEvaluate {
+            jar.manifest {
+                attributes 'Implementation-Title': "$description",
+                        'Implementation-Version': "$version",
+                        'Implementation-Vendor': "JoinFaces"
+            }
+        }
+
         tasks.withType(JDepend) { jDepend ->
             jDepend.group = "verification"
             tasks.create("${jDepend.name}Cycles") {

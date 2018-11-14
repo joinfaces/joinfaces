@@ -1,4 +1,5 @@
 description = 'Mojarra Spring Boot Starter'
+jar.manifest.attributes('Automatic-Module-Name': 'joinfaces.starter.mojarra')
 
 dependencies {
     compile 'org.glassfish:javax.faces'

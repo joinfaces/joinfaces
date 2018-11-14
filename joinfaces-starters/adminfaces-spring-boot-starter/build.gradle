@@ -1,4 +1,5 @@
 description = 'AdminFaces Spring Boot Starter'
+jar.manifest.attributes('Automatic-Module-Name': 'joinfaces.starter.adminfaces')
 
 dependencies {
     compile project(':joinfaces-starters:primefaces-spring-boot-starter')

@@ -9,7 +9,8 @@ apply plugin: "io.freefair.maven-publish-java"
 apply plugin: "io.freefair.maven-jars"
 apply plugin: 'jdepend'
 
-description = 'Joinfaces AutoConfigure'
+description = 'JoinFaces AutoConfigure'
+jar.manifest.attributes('Automatic-Module-Name': 'joinfaces.autoconfigure')
 
 gradleLint.rules -= 'transitive-duplicate-dependency-class'
 

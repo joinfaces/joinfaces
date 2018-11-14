@@ -1,4 +1,5 @@
 description = 'Undertow Spring Boot Starter'
+jar.manifest.attributes('Automatic-Module-Name': 'joinfaces.starter.undertow')
 
 dependencies {
     compile 'org.springframework.boot:spring-boot-starter-undertow'
