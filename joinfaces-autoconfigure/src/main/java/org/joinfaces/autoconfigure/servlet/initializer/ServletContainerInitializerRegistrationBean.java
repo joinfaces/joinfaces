@@ -94,7 +94,7 @@ public class ServletContainerInitializerRegistrationBean<T extends ServletContai
 
 				try (BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(nextElement.openStream(), StandardCharsets.ISO_8859_1))) {
 					Optional<String> classesList = bufferedReader.lines()
-							.filter(l -> l.startsWith(prefix))
+							.filter(line -> line.startsWith(prefix))
 							.findFirst()
 							.map(line -> line.substring(prefix.length()));
 
