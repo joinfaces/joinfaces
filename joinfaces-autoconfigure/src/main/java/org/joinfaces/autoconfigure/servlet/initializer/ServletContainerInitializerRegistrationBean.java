@@ -16,8 +16,15 @@
 
 package org.joinfaces.autoconfigure.servlet.initializer;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.net.URL;
+import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
+import java.util.Enumeration;
 import java.util.HashSet;
+import java.util.Optional;
 import java.util.Set;
 
 import javax.servlet.ServletContainerInitializer;
@@ -39,6 +46,7 @@ import org.springframework.boot.web.servlet.server.ConfigurableServletWebServerF
 import org.springframework.core.annotation.AnnotationUtils;
 import org.springframework.lang.Nullable;
 import org.springframework.util.StopWatch;
+import org.springframework.util.StringUtils;
 
 /**
  * {@link RegistrationBean} for {@link ServletContainerInitializer}s.
@@ -56,6 +64,7 @@ import org.springframework.util.StopWatch;
 public class ServletContainerInitializerRegistrationBean<T extends ServletContainerInitializer> implements WebServerFactoryCustomizer<ConfigurableServletWebServerFactory> {
 
 	private final Class<T> servletContainerInitializerClass;
+	private boolean usePreparedScanResult;
 
 	@Override
 	public void customize(ConfigurableServletWebServerFactory factory) {
@@ -65,8 +74,62 @@ public class ServletContainerInitializerRegistrationBean<T extends ServletContai
 		});
 	}
 
+	private Set<Class<?>> getClasses() {
+		return findPreparedScanResult().orElseGet(this::performClasspathScan);
+	}
+
+	private Optional<Set<Class<?>>> findPreparedScanResult() {
+
+		if (!isUsePreparedScanResult()) {
+			return Optional.empty();
+		}
+
+		String prefix = getServletContainerInitializerClass().getName() + "=";
+
+		try {
+			Enumeration<URL> resources = getClass().getClassLoader().getResources("/META-INF/joinfaces/servlet-container-initializer-classes.properties");
+
+			while (resources.hasMoreElements()) {
+				URL nextElement = resources.nextElement();
+
+				try (BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(nextElement.openStream(), StandardCharsets.ISO_8859_1))) {
+					Optional<String> classesList = bufferedReader.lines()
+							.filter(l -> l.startsWith(prefix))
+							.findFirst()
+							.map(line -> line.substring(prefix.length()));
+
+					if (classesList.isPresent()) {
+						return Optional.of(loadClasses(classesList.get().split(",")));
+					}
+				}
+			}
+		}
+		catch (IOException e) {
+			log.info("Failed to load prepared scan results.", e);
+
+		}
+		return Optional.empty();
+	}
+
+	private Set<Class<?>> loadClasses(String[] classes) {
+		Set<Class<?>> result = new HashSet<>((int) (classes.length * 1.33), 0.75f);
+
+		Arrays.stream(classes)
+				.filter(StringUtils::hasText)
+				.forEach(className -> {
+					try {
+						result.add(Class.forName(className));
+					}
+					catch (ClassNotFoundException e) {
+						log.debug("Failed to load class {}", className, e);
+					}
+				});
+
+		return result;
+	}
+
 	@Nullable
-	protected Set<Class<?>> getClasses() {
+	protected Set<Class<?>> performClasspathScan() {
 		HandlesTypes handlesTypes = AnnotationUtils.findAnnotation(getServletContainerInitializerClass(), HandlesTypes.class);
 
 		if (handlesTypes == null) {
