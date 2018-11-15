@@ -20,11 +20,11 @@ import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
-import java.util.SortedMap;
 import java.util.SortedSet;
-import java.util.TreeMap;
 import java.util.TreeSet;
 import java.util.stream.Collectors;
 
@@ -42,6 +42,7 @@ import org.gradle.api.file.ConfigurableFileCollection;
 import org.gradle.api.file.DirectoryProperty;
 import org.gradle.api.tasks.Classpath;
 import org.gradle.api.tasks.InputFiles;
+import org.gradle.api.tasks.Internal;
 import org.gradle.api.tasks.OutputDirectory;
 import org.gradle.api.tasks.TaskAction;
 
@@ -50,10 +51,21 @@ import org.gradle.api.tasks.TaskAction;
  */
 @Getter
 @Setter
-public class ScanServletContainerInitializerClasses extends DefaultTask {
+public class ClasspathScan extends DefaultTask {
 
 	public static final String SERVLET_CONTAINER_INITIALIZER = "javax.servlet.ServletContainerInitializer";
 	public static final String HANDLES_TYPES = "javax.servlet.annotation.HandlesTypes";
+	public static final String MYFACES_ANNOTATION_PROVIDER = "org.apache.myfaces.spi.AnnotationProvider";
+	public static final List<String> MYFACES_ANNOTATIONS = Collections.unmodifiableList(Arrays.asList(
+			"javax.faces.bean.ManagedBean",
+			"javax.faces.component.FacesComponent",
+			"javax.faces.component.behavior.FacesBehavior",
+			"javax.faces.convert.FacesConverter",
+			"javax.faces.event.NamedEvent",
+			"javax.faces.render.FacesRenderer",
+			"javax.faces.render.FacesBehaviorRenderer",
+			"javax.faces.validator.FacesValidator"
+	));
 
 	@Classpath
 	@InputFiles
@@ -62,40 +74,57 @@ public class ScanServletContainerInitializerClasses extends DefaultTask {
 	@OutputDirectory
 	private final DirectoryProperty destinationDir = newOutputDirectory();
 
+	@Internal
+	private File getBaseDir() {
+		return destinationDir.dir("META-INF/joinfaces").get().getAsFile();
+	}
+
 	@TaskAction
 	public void scanClasses() throws IOException {
 
-		File resultFile = destinationDir.file("META-INF/joinfaces/servlet-container-initializer-classes.properties").get().getAsFile();
-		File parentFile = resultFile.getParentFile();
-
-		if (!parentFile.isDirectory() && !parentFile.mkdirs()) {
-			throw new IOException(parentFile + " isn't a directory and can't be created.");
-		}
-
-		SortedMap<String, SortedSet<String>> sciClasses = new TreeMap<>(String::compareTo);
-
 		ClassGraph classGraph = new ClassGraph()
 				.enableAllInfo()
+				.enableSystemPackages()
 				.overrideClasspath(classpath);
 
 		try (ScanResult scanResult = classGraph.scan()) {
+			processHandlesTypes(scanResult);
 
-			ClassInfoList scis = scanResult.getClassesImplementing(SERVLET_CONTAINER_INITIALIZER)
-					.filter(classInfo -> classInfo.hasAnnotation(HANDLES_TYPES));
+			processMyfacesAnnotationProvider(scanResult);
+		}
+	}
 
-			scis.forEach(classInfo -> {
-				List<ClassInfo> handledTypes = resolveHandledTypes(classInfo);
-
-				SortedSet<String> classes = findHandledClasses(scanResult, handledTypes);
-
-				sciClasses.put(classInfo.getName(), classes);
-			});
+	private void processMyfacesAnnotationProvider(ScanResult scanResult) throws IOException {
+		if (scanResult.getClassInfo(MYFACES_ANNOTATION_PROVIDER) == null) {
+			return;
 		}
 
-		try (PrintWriter writer = ResourceGroovyMethods.newPrintWriter(resultFile, StandardCharsets.ISO_8859_1.name())) {
-			sciClasses.forEach((sciClass, classes) -> {
-				writer.append(sciClass).append('=').append(String.join(",", classes)).println();
-			});
+		File resultFile = new File(getBaseDir(), MYFACES_ANNOTATION_PROVIDER + ".classes");
+
+		try (PrintWriter printWriter = ResourceGroovyMethods.newPrintWriter(resultFile, "UTF-8")) {
+			for (String myfacesAnnotation : MYFACES_ANNOTATIONS) {
+
+				printWriter.print(myfacesAnnotation);
+				printWriter.print("=");
+
+				ClassInfoList classesWithAnnotation = scanResult.getClassesWithAnnotation(myfacesAnnotation);
+				printWriter.println(String.join(",", classesWithAnnotation.getNames()));
+			}
+		}
+	}
+
+	private void processHandlesTypes(ScanResult scanResult) throws IOException {
+		ClassInfoList scis = scanResult.getClassesImplementing(SERVLET_CONTAINER_INITIALIZER)
+				.filter(classInfo -> classInfo.hasAnnotation(HANDLES_TYPES));
+
+		for (ClassInfo sciClassInfo : scis) {
+			List<ClassInfo> handledTypes = resolveHandledTypes(sciClassInfo);
+
+			SortedSet<String> classes = findHandledClasses(scanResult, handledTypes);
+
+			File resultFile = new File(getBaseDir(), sciClassInfo.getName() + ".classes");
+
+			Files.write(resultFile.toPath(), classes, StandardCharsets.UTF_8);
 		}
 	}
 

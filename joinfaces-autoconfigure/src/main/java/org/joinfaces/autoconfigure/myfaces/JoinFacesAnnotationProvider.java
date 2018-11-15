@@ -16,15 +16,27 @@
 
 package org.joinfaces.autoconfigure.myfaces;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.lang.annotation.Annotation;
+import java.nio.charset.StandardCharsets;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 import javax.faces.context.ExternalContext;
 
-import lombok.NoArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.myfaces.spi.AnnotationProvider;
 import org.apache.myfaces.spi.AnnotationProviderWrapper;
+
+import org.springframework.util.StringUtils;
 
 /**
  * Servlet context configurer of MyFaces.
@@ -34,7 +46,7 @@ import org.apache.myfaces.spi.AnnotationProviderWrapper;
  * @see org.apache.myfaces.spi.AnnotationProvider
  * @see MyFacesInitializerRegistrationBean
  */
-@NoArgsConstructor
+@Slf4j
 public class JoinFacesAnnotationProvider extends AnnotationProviderWrapper {
 
 	private static Map<Class<? extends Annotation>, Set<Class<?>>> annotatedClasses;
@@ -43,8 +55,13 @@ public class JoinFacesAnnotationProvider extends AnnotationProviderWrapper {
 		JoinFacesAnnotationProvider.annotatedClasses = annotatedClasses;
 	}
 
+	public JoinFacesAnnotationProvider() {
+		findPreparedScanResult();
+	}
+
 	public JoinFacesAnnotationProvider(AnnotationProvider delegate) {
 		super(delegate);
+		findPreparedScanResult();
 	}
 
 	@Override
@@ -55,5 +72,63 @@ public class JoinFacesAnnotationProvider extends AnnotationProviderWrapper {
 		else {
 			return super.getAnnotatedClasses(ctx);
 		}
+	}
+
+	private void findPreparedScanResult() {
+		String resourceName = "/META-INF/joinfaces/" + AnnotationProvider.class.getName() + ".classes";
+		InputStream resourceAsStream = getClass().getClassLoader().getResourceAsStream(resourceName);
+
+		if (resourceAsStream == null) {
+			return;
+		}
+
+		try (BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(resourceAsStream, StandardCharsets.UTF_8))) {
+			setAnnotatedClasses(readAnnotatedClassesMap(bufferedReader));
+		}
+		catch (IOException e) {
+			log.warn("Failed to load {}", resourceName, e);
+		}
+	}
+
+	private Map<Class<? extends Annotation>, Set<Class<?>>> readAnnotatedClassesMap(BufferedReader bufferedReader) {
+		Map<Class<? extends Annotation>, Set<Class<?>>> classes = new HashMap<>();
+
+		bufferedReader.lines().forEach(line -> {
+			String[] split = line.split("=", 2);
+			String annotationName = split[0];
+			String classNameList = split[1];
+
+			Class<? extends Annotation> annotation;
+			try {
+				annotation = (Class<? extends Annotation>) Class.forName(annotationName);
+			}
+			catch (ClassNotFoundException e) {
+				log.info("Failed to load annotation class {}", annotationName, e);
+				return;
+			}
+			Set<Class<?>> classSet;
+
+			if (StringUtils.hasText(annotationName)) {
+				classSet = Arrays.stream(classNameList.split(","))
+						.filter(StringUtils::hasText)
+						.map(className -> {
+							try {
+								return Class.forName(className);
+							}
+							catch (ClassNotFoundException e) {
+								log.debug("Failed to load class {}", className, e);
+								return null;
+							}
+						})
+						.filter(Objects::nonNull)
+						.collect(Collectors.toSet());
+			}
+			else {
+				classSet = Collections.emptySet();
+			}
+
+			classes.put(annotation, classSet);
+		});
+		return classes;
 	}
 }

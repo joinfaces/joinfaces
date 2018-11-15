@@ -26,7 +26,7 @@ public class JoinfacesPlugin implements Plugin<Project> {
 
 	@Override
 	public void apply(Project project) {
-		project.getPlugins().apply(SciScanPlugin.class);
+		project.getPlugins().apply(ClasspathScanPlugin.class);
 	}
 
 }

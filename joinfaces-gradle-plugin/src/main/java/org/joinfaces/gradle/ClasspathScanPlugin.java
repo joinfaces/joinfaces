@@ -28,7 +28,7 @@ import org.gradle.api.tasks.SourceSet;
 /**
  * @author Lars Grefer
  */
-public class SciScanPlugin implements Plugin<Project> {
+public class ClasspathScanPlugin implements Plugin<Project> {
 
 	private Project project;
 
@@ -45,10 +45,10 @@ public class SciScanPlugin implements Plugin<Project> {
 	}
 
 	private void configureClasspathScan(SourceSet sourceSet) {
-		String taskName = sourceSet.getTaskName("scan", "ServletContainerInitializerClasses");
+		String taskName = sourceSet.getTaskName("scan", "Classpath");
 		File baseDir = new File(project.getBuildDir(), "joinfaces/" + sourceSet.getName());
 
-		ScanServletContainerInitializerClasses scanTask = project.getTasks().create(taskName, ScanServletContainerInitializerClasses.class);
+		ClasspathScan scanTask = project.getTasks().create(taskName, ClasspathScan.class);
 		scanTask.getDestinationDir().set(baseDir);
 
 		project.afterEvaluate(p -> {
