@@ -10,4 +10,7 @@ apply plugin: 'jdepend'
 
 dependencies {
     compile "io.github.classgraph:classgraph"
+
+    testCompile 'org.junit.jupiter:junit-jupiter-api'
+    testRuntime 'org.junit.jupiter:junit-jupiter-engine'
 }
