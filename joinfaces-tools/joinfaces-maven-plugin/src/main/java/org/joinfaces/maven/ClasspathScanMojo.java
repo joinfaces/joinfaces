@@ -32,6 +32,12 @@ import org.apache.maven.plugins.annotations.ResolutionScope;
 import org.apache.maven.project.MavenProject;
 import org.joinfaces.tools.ClasspathScanner;
 
+/**
+ * {@link org.apache.maven.plugin.Mojo Mojo} which performs a classpath scan
+ * using {@link ClasspathScanner}.
+ *
+ * @author Lars Grefer
+ */
 @Mojo(
 		name = "classpath-scan",
 		defaultPhase = LifecyclePhase.GENERATE_RESOURCES,
@@ -51,8 +57,8 @@ public class ClasspathScanMojo extends AbstractMojo {
 		Set<String> classpath = new HashSet<>();
 
 		try {
-			classpath.addAll(project.getRuntimeClasspathElements());
-			classpath.addAll(project.getCompileClasspathElements());
+			classpath.addAll(this.project.getRuntimeClasspathElements());
+			classpath.addAll(this.project.getCompileClasspathElements());
 		}
 		catch (DependencyResolutionRequiredException e) {
 			throw new MojoExecutionException("classpath not present", e);
@@ -60,7 +66,7 @@ public class ClasspathScanMojo extends AbstractMojo {
 
 		try {
 			ClasspathScanner.builder()
-					.classpathRoot(outputDirectory)
+					.classpathRoot(this.outputDirectory)
 					.classGraphConfigurer(classGraph -> classGraph.overrideClasspath(classpath))
 					.build()
 					.scanClasses();

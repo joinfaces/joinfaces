@@ -30,6 +30,9 @@ import org.gradle.api.tasks.TaskAction;
 import org.joinfaces.tools.ClasspathScanner;
 
 /**
+ * {@link org.gradle.api.Task Gradle task} which performs a classpath scan
+ * using {@link ClasspathScanner}.
+ *
  * @author Lars Grefer
  */
 @Getter

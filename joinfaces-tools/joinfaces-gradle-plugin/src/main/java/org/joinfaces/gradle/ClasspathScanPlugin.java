@@ -26,6 +26,8 @@ import org.gradle.api.plugins.JavaPluginConvention;
 import org.gradle.api.tasks.SourceSet;
 
 /**
+ * {@link Plugin Gradle plugin} for classpath scanning at build-time.
+ *
  * @author Lars Grefer
  */
 public class ClasspathScanPlugin implements Plugin<Project> {
@@ -46,15 +48,15 @@ public class ClasspathScanPlugin implements Plugin<Project> {
 
 	private void configureClasspathScan(SourceSet sourceSet) {
 		String taskName = sourceSet.getTaskName("scan", "Classpath");
-		File baseDir = new File(project.getBuildDir(), "joinfaces/" + sourceSet.getName());
+		File baseDir = new File(this.project.getBuildDir(), "joinfaces/" + sourceSet.getName());
 
-		ClasspathScan scanTask = project.getTasks().create(taskName, ClasspathScan.class);
+		ClasspathScan scanTask = this.project.getTasks().create(taskName, ClasspathScan.class);
 		scanTask.getDestinationDir().set(baseDir);
 
-		project.afterEvaluate(p -> {
+		this.project.afterEvaluate(p -> {
 			FileCollection runtimeClasspath = sourceSet.getRuntimeClasspath();
 			scanTask.getClasspath().from(runtimeClasspath);
-			sourceSet.setRuntimeClasspath(runtimeClasspath.plus(project.files(scanTask)));
+			sourceSet.setRuntimeClasspath(runtimeClasspath.plus(this.project.files(scanTask)));
 		});
 	}
 }

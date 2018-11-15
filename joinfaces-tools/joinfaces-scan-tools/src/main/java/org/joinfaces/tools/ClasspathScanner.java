@@ -38,14 +38,19 @@ import io.github.classgraph.ScanResult;
 import lombok.Builder;
 import lombok.Data;
 
+/**
+ * {@link ClassGraph}-based classpath scanner highly tailored for JoinFaces.
+ *
+ * @author Lars Grefer
+ */
 @Data
 @Builder
 public class ClasspathScanner {
 
-	public static final String SERVLET_CONTAINER_INITIALIZER = "javax.servlet.ServletContainerInitializer";
-	public static final String HANDLES_TYPES = "javax.servlet.annotation.HandlesTypes";
-	public static final String MYFACES_ANNOTATION_PROVIDER = "org.apache.myfaces.spi.AnnotationProvider";
-	public static final List<String> MYFACES_ANNOTATIONS = Collections.unmodifiableList(Arrays.asList(
+	static final String SERVLET_CONTAINER_INITIALIZER = "javax.servlet.ServletContainerInitializer";
+	static final String HANDLES_TYPES = "javax.servlet.annotation.HandlesTypes";
+	static final String MYFACES_ANNOTATION_PROVIDER = "org.apache.myfaces.spi.AnnotationProvider";
+	static final List<String> MYFACES_ANNOTATIONS = Collections.unmodifiableList(Arrays.asList(
 			"javax.faces.bean.ManagedBean",
 			"javax.faces.component.FacesComponent",
 			"javax.faces.component.behavior.FacesBehavior",
@@ -60,7 +65,7 @@ public class ClasspathScanner {
 	private final Function<ClassGraph, ClassGraph> classGraphConfigurer;
 
 	private File getBaseDir() {
-		return new File(classpathRoot, "META-INF/joinfaces");
+		return new File(getClasspathRoot(), "META-INF/joinfaces");
 	}
 
 	public void scanClasses() throws IOException {
@@ -69,7 +74,7 @@ public class ClasspathScanner {
 				.enableAllInfo()
 				.enableSystemPackages();
 
-		classGraph = classGraphConfigurer.apply(classGraph);
+		classGraph = getClassGraphConfigurer().apply(classGraph);
 
 		try (ScanResult scanResult = classGraph.scan()) {
 			processHandlesTypes(scanResult);
@@ -115,9 +120,10 @@ public class ClasspathScanner {
 
 	/**
 	 * Resolves the {@link Class}[] of the {@code HandlesTypes}-annotations present on the given
-	 * {@code ServletContainerInitializer} implementation
+	 * {@code ServletContainerInitializer} implementation.
 	 *
 	 * @param servletContainerInitializerClassInfo The {@link ClassInfo} object representing the {@code ServletContainerInitializer} implementation
+	 * @return The classes listed in the {@code HandlesTypes} annotation of the given class.
 	 */
 	private List<ClassInfo> resolveHandledTypes(ClassInfo servletContainerInitializerClassInfo) {
 		AnnotationInfo handlesTypes = servletContainerInitializerClassInfo.getAnnotationInfo(HANDLES_TYPES);

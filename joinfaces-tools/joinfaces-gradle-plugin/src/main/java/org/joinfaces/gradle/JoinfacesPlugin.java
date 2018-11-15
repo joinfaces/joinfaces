@@ -20,6 +20,8 @@ import org.gradle.api.Plugin;
 import org.gradle.api.Project;
 
 /**
+ * {@link Plugin Gradle plugin} for JoinFaces projects.
+ *
  * @author Lars Grefer
  */
 public class JoinfacesPlugin implements Plugin<Project> {
