@@ -29,6 +29,7 @@ import java.util.TreeSet;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import io.github.classgraph.AnnotationClassRef;
 import io.github.classgraph.AnnotationInfo;
 import io.github.classgraph.ClassGraph;
@@ -68,6 +69,7 @@ public class ClasspathScanner {
 		return new File(getClasspathRoot(), "META-INF/joinfaces");
 	}
 
+	@SuppressFBWarnings(value = "RCN_REDUNDANT_NULLCHECK_WOULD_HAVE_BEEN_A_NPE", justification = "https://github.com/spotbugs/spotbugs/issues/756")
 	public void scanClasses() throws IOException {
 
 		ClassGraph classGraph = new ClassGraph()
