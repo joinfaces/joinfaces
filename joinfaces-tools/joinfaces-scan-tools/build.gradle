@@ -1,0 +1,9 @@
+apply plugin: "io.freefair.maven-publish-java"
+apply plugin: "io.freefair.maven-jars"
+
+dependencies {
+    compile "io.github.classgraph:classgraph"
+
+    testCompile 'org.junit.jupiter:junit-jupiter-api'
+    testRuntime 'org.junit.jupiter:junit-jupiter-engine'
+}

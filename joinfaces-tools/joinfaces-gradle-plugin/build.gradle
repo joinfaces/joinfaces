@@ -2,7 +2,6 @@ plugins {
     id "com.gradle.plugin-publish" version "0.10.0"
 }
 apply plugin: "java-gradle-plugin"
-apply plugin: "io.freefair.lombok"
 
 gradlePlugin {
     plugins {
@@ -35,7 +34,7 @@ pluginBundle {
 }
 
 dependencies {
-    compile project(":joinfaces-tools")
+    compile project(":joinfaces-tools:joinfaces-scan-tools")
 
     compileOnly "org.springframework.boot:spring-boot-gradle-plugin:2.1.0.RELEASE"
 }

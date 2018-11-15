@@ -1,10 +1,9 @@
-apply plugin: "java"
 apply plugin: "io.freefair.maven-publish-java"
 apply plugin: "io.freefair.maven-jars"
 apply plugin: "io.freefair.maven-plugin"
 
 dependencies {
-    compile project(":joinfaces-tools")
+    compile project(":joinfaces-tools:joinfaces-scan-tools")
 
     compile 'org.apache.maven:maven-core:3.0'
     compile 'org.apache.maven:maven-model:3.0'
