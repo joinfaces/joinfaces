@@ -10,9 +10,9 @@ gradlePlugin {
             id = 'org.joinfaces'
             implementationClass = 'org.joinfaces.gradle.JoinfacesPlugin'
         }
-        sciScan {
-            id = 'org.joinfaces.sci-scan'
-            implementationClass = 'org.joinfaces.gradle.SciScanPlugin'
+        classpathScan {
+            id = 'org.joinfaces.classpath-scan'
+            implementationClass = 'org.joinfaces.gradle.ClasspathScanPlugin'
         }
     }
 }
@@ -27,15 +27,15 @@ pluginBundle {
             displayName = 'Joinfaces Gradle Plugin'
             description = 'Joinfaces Gradle Plugin'
         }
-        sciScan {
-            displayName = 'Joinfaces ServletContainerInitializer Scan Plugin'
-            description = 'Performs the classpath scan for ServletContainerInitializers at build-time for a faster application startup.'
+        classpathScan {
+            displayName = 'Joinfaces classpath-scan Plugin'
+            description = 'Performs the classpath scan at build-time for a faster application startup.'
         }
     }
 }
 
 dependencies {
-    compile "io.github.classgraph:classgraph"
+    compile project(":joinfaces-tools")
 
     compileOnly "org.springframework.boot:spring-boot-gradle-plugin:2.1.0.RELEASE"
 }

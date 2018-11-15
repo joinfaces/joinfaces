@@ -1,0 +1,13 @@
+apply plugin: "java"
+apply plugin: "com.github.spotbugs"
+apply plugin: "checkstyle"
+apply plugin: "pmd"
+apply plugin: "jacoco"
+apply plugin: "io.freefair.lombok"
+apply plugin: "io.freefair.maven-publish-java"
+apply plugin: "io.freefair.maven-jars"
+apply plugin: 'jdepend'
+
+dependencies {
+    compile "io.github.classgraph:classgraph"
+}

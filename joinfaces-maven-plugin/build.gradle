@@ -1,0 +1,25 @@
+apply plugin: "java"
+apply plugin: "io.freefair.maven-publish-java"
+apply plugin: "io.freefair.maven-jars"
+
+// https://dev.liferay.com/de/develop/reference/-/knowledge_base/7-1/maven-plugin-builder-gradle-plugin
+apply plugin: "com.liferay.maven.plugin.builder"
+
+dependencies {
+    compile project(":joinfaces-tools")
+
+    compile 'org.apache.maven:maven-core:3.0'
+    compile 'org.apache.maven:maven-model:3.0'
+    compile 'org.apache.maven:maven-plugin-api:3.0'
+
+    compileOnly 'org.apache.maven.plugin-tools:maven-plugin-annotations:3.4'
+}
+
+buildPluginDescriptor {
+    goalPrefix = "joinfaces"
+    outputDir = new File(processResources.destinationDir, "META-INF/maven")
+    pomArtifactId = publishing.publications.mavenJava.artifactId
+}
+
+classes.dependsOn buildPluginDescriptor
+

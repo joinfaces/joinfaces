@@ -2,7 +2,9 @@ rootProject.name = 'joinfaces'
 
 enableFeaturePreview('STABLE_PUBLISHING')
 
+include ':joinfaces-tools'
 include ':joinfaces-gradle-plugin'
+include ':joinfaces-maven-plugin'
 
 include ':joinfaces-test'
 include ':spring-security-jsf-taglib'
