@@ -43,16 +43,16 @@ class ClasspathScannerTest {
 
 	@BeforeEach
 	void setUp() throws IOException {
-		file = Files.createTempDirectory(getClass().getName()).toFile();
-		classpathScanner = ClasspathScanner.builder()
+		this.file = Files.createTempDirectory(getClass().getName()).toFile();
+		this.classpathScanner = ClasspathScanner.builder()
 				.classGraphConfigurer(c -> c)
-				.classpathRoot(file)
+				.classpathRoot(this.file)
 				.build();
 	}
 
 	@AfterEach
 	void deleteTempDir() throws IOException {
-		Files.walkFileTree(file.toPath(), new SimpleFileVisitor<Path>() {
+		Files.walkFileTree(this.file.toPath(), new SimpleFileVisitor<Path>() {
 			@Override
 			public FileVisitResult visitFile(Path file, BasicFileAttributes attrs) throws IOException {
 				Files.delete(file);
@@ -65,22 +65,22 @@ class ClasspathScannerTest {
 				return FileVisitResult.CONTINUE;
 			}
 		});
-		Files.deleteIfExists(file.toPath());
+		Files.deleteIfExists(this.file.toPath());
 	}
 
 	@Test
 	void scanClasses() throws IOException {
-		classpathScanner.scanClasses();
+		this.classpathScanner.scanClasses();
 
-		assertThat(new File(file, "META-INF/joinfaces")).exists();
-		assertThat(new File(file, "META-INF/joinfaces")).isDirectory();
+		assertThat(new File(this.file, "META-INF/joinfaces")).exists();
+		assertThat(new File(this.file, "META-INF/joinfaces")).isDirectory();
 	}
 
 	@Test
 	void scanClasses_myfaces_sci() throws IOException {
-		classpathScanner.scanClasses();
+		this.classpathScanner.scanClasses();
 
-		File classesFile = new File(file, "META-INF/joinfaces/org.apache.myfaces.ee.MyFacesContainerInitializer.classes");
+		File classesFile = new File(this.file, "META-INF/joinfaces/org.apache.myfaces.ee.MyFacesContainerInitializer.classes");
 		assertThat(classesFile).isFile();
 
 		List<String> classNames = Files.lines(classesFile.toPath(), StandardCharsets.UTF_8)
@@ -92,9 +92,9 @@ class ClasspathScannerTest {
 
 	@Test
 	void scanClasses_mojarra_sci() throws IOException {
-		classpathScanner.scanClasses();
+		this.classpathScanner.scanClasses();
 
-		File classesFile = new File(file, "META-INF/joinfaces/com.sun.faces.config.FacesInitializer.classes");
+		File classesFile = new File(this.file, "META-INF/joinfaces/com.sun.faces.config.FacesInitializer.classes");
 		assertThat(classesFile).isFile();
 
 		List<String> classNames = Files.lines(classesFile.toPath(), StandardCharsets.UTF_8)
@@ -106,9 +106,9 @@ class ClasspathScannerTest {
 
 	@Test
 	void scanClasses_myFacesAnnotations() throws IOException {
-		classpathScanner.scanClasses();
+		this.classpathScanner.scanClasses();
 
-		File classesFile = new File(file, "META-INF/joinfaces/org.apache.myfaces.spi.AnnotationProvider.classes");
+		File classesFile = new File(this.file, "META-INF/joinfaces/org.apache.myfaces.spi.AnnotationProvider.classes");
 		assertThat(classesFile).isFile();
 
 		List<String> mapEntries = Files.lines(classesFile.toPath(), StandardCharsets.UTF_8)
