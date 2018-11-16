@@ -26,6 +26,7 @@ import org.gradle.api.file.DirectoryProperty;
 import org.gradle.api.tasks.Classpath;
 import org.gradle.api.tasks.InputFiles;
 import org.gradle.api.tasks.OutputDirectory;
+import org.gradle.api.tasks.SkipWhenEmpty;
 import org.gradle.api.tasks.TaskAction;
 import org.joinfaces.tools.ClasspathScanner;
 
@@ -41,6 +42,7 @@ public class ClasspathScan extends DefaultTask {
 
 	@Classpath
 	@InputFiles
+	@SkipWhenEmpty
 	private final ConfigurableFileCollection classpath = getProject().files();
 
 	@OutputDirectory

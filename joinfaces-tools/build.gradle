@@ -11,5 +11,6 @@ subprojects {
         testCompile 'org.assertj:assertj-core'
         testCompile 'org.junit.jupiter:junit-jupiter-api'
         testRuntime 'org.junit.jupiter:junit-jupiter-engine'
+        testCompile 'org.junit-pioneer:junit-pioneer:0.3.0'
     }
 }
