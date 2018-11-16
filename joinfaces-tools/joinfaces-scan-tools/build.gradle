@@ -3,7 +3,11 @@ apply plugin: "io.freefair.maven-jars"
 
 dependencies {
     compile "io.github.classgraph:classgraph"
+    compile "org.slf4j:slf4j-api"
 
-    testCompile 'org.junit.jupiter:junit-jupiter-api'
-    testRuntime 'org.junit.jupiter:junit-jupiter-engine'
+    testRuntimeOnly 'org.slf4j:slf4j-simple'
+    testRuntimeOnly 'org.apache.myfaces.core:myfaces-impl'
+    testRuntimeOnly 'org.glassfish:javax.faces'
+    testRuntimeOnly 'org.primefaces:primefaces'
+    testRuntimeOnly 'javax.annotation:javax.annotation-api'
 }

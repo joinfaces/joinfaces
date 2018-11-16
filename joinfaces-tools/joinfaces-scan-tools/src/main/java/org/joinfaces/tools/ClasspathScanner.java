@@ -24,6 +24,7 @@ import java.nio.file.Files;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+import java.util.Objects;
 import java.util.SortedSet;
 import java.util.TreeSet;
 import java.util.function.Function;
@@ -38,12 +39,14 @@ import io.github.classgraph.ClassInfoList;
 import io.github.classgraph.ScanResult;
 import lombok.Builder;
 import lombok.Data;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * {@link ClassGraph}-based classpath scanner highly tailored for JoinFaces.
  *
  * @author Lars Grefer
  */
+@Slf4j
 @Data
 @Builder
 public class ClasspathScanner {
@@ -74,6 +77,7 @@ public class ClasspathScanner {
 
 		ClassGraph classGraph = new ClassGraph()
 				.enableAllInfo()
+				.enableExternalClasses()
 				.enableSystemPackages();
 
 		classGraph = getClassGraphConfigurer().apply(classGraph);
@@ -88,6 +92,10 @@ public class ClasspathScanner {
 	private void processMyfacesAnnotationProvider(ScanResult scanResult) throws IOException {
 		if (scanResult.getClassInfo(MYFACES_ANNOTATION_PROVIDER) == null) {
 			return;
+		}
+
+		if (!getBaseDir().isDirectory() && !getBaseDir().mkdirs()) {
+			throw new IOException(getBaseDir() + " does not exist and could not be created");
 		}
 
 		File resultFile = new File(getBaseDir(), MYFACES_ANNOTATION_PROVIDER + ".classes");
@@ -116,7 +124,12 @@ public class ClasspathScanner {
 
 			File resultFile = new File(getBaseDir(), sciClassInfo.getName() + ".classes");
 
-			Files.write(resultFile.toPath(), classes, StandardCharsets.UTF_8);
+			if (getBaseDir().isDirectory() || getBaseDir().mkdirs()) {
+				Files.write(resultFile.toPath(), classes, StandardCharsets.UTF_8);
+			}
+			else {
+				throw new IOException(getBaseDir() + " does not exist and could not be created");
+			}
 		}
 	}
 
@@ -134,7 +147,14 @@ public class ClasspathScanner {
 
 		return Arrays.stream(value)
 				.map(AnnotationClassRef.class::cast)
-				.map(AnnotationClassRef::getClassInfo)
+				.map(annotationClassRef -> {
+					ClassInfo classInfo = annotationClassRef.getClassInfo();
+					if (classInfo == null) {
+						log.warn("{} not found in the scan result, but declared in the @HandlesTypes annotation of {}", annotationClassRef.getName(), servletContainerInitializerClassInfo.getName());
+					}
+					return classInfo;
+				})
+				.filter(Objects::nonNull)
 				.collect(Collectors.toList());
 	}
 
