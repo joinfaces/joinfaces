@@ -64,7 +64,7 @@ import org.springframework.util.StopWatch;
 public class ServletContainerInitializerRegistrationBean<T extends ServletContainerInitializer> implements WebServerFactoryCustomizer<ConfigurableServletWebServerFactory> {
 
 	private final Class<T> servletContainerInitializerClass;
-	private boolean usePreparedScanResult;
+	private boolean usePreparedScanResult = true;
 
 	@Override
 	public void customize(ConfigurableServletWebServerFactory factory) {
@@ -142,9 +142,7 @@ public class ServletContainerInitializerRegistrationBean<T extends ServletContai
 				.blacklistPackages("java", "jdk", "sun", "javafx", "oracle")
 				.blacklistPackages("javax.xml", "javax.el", "javax.persistence")
 				.blacklistModules("java.*", "jdk.*")
-				.filterClasspathElements(path -> !JarUtils.getJreLibOrExtJars().contains(path));
-
-		classGraph = prepareClassgraph(classGraph)
+				.filterClasspathElements(path -> !JarUtils.getJreLibOrExtJars().contains(path))
 				.filterClasspathElements(path -> {
 					log.debug("Path {}", path);
 					return true;
@@ -185,18 +183,6 @@ public class ServletContainerInitializerRegistrationBean<T extends ServletContai
 		}
 
 		return classes.isEmpty() ? null : classes;
-	}
-
-	/**
-	 * This method stub enables subclasses to further manipulate the used {@link ClassGraph instance}.
-	 * For example blacklisting some packages or adding a {@link io.github.classgraph.ClassGraph.ClasspathElementFilter}
-	 * in order to improve the scan performance.
-	 *
-	 * @param classGraph The {@link ClassGraph} instance which will be used.
-	 * @return The {@link ClassGraph} instance which will be used. (For method chaining)
-	 */
-	protected ClassGraph prepareClassgraph(ClassGraph classGraph) {
-		return classGraph;
 	}
 
 	protected void handleScanResult(ScanResult scanResult) {

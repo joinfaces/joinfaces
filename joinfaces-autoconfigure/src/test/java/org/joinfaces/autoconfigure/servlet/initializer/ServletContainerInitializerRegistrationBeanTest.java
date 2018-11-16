@@ -18,11 +18,18 @@ package org.joinfaces.autoconfigure.servlet.initializer;
 
 import java.util.Set;
 
+import javax.faces.component.UIViewAction;
 import javax.servlet.ServletContainerInitializer;
 import javax.servlet.ServletContext;
 import javax.servlet.annotation.HandlesTypes;
 
+import com.sun.faces.config.FacesInitializer;
+import com.sun.faces.renderkit.html_basic.MessageRenderer;
+import org.apache.myfaces.ee.MyFacesContainerInitializer;
 import org.junit.jupiter.api.Test;
+import org.primefaces.component.inputnumber.InputNumberRenderer;
+
+import org.springframework.web.jsf.DelegatingPhaseListenerMulticaster;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -45,6 +52,26 @@ public class ServletContainerInitializerRegistrationBeanTest {
 		public void onStartup(Set<Class<?>> c, ServletContext ctx) {
 
 		}
+	}
+
+	@Test
+	public void testMojarra() {
+		ServletContainerInitializerRegistrationBean<FacesInitializer> bean = new ServletContainerInitializerRegistrationBean<>(FacesInitializer.class);
+		Set<Class<?>> classes = bean.getClasses();
+
+		assertThat(classes).isNotEmpty();
+
+		assertThat(classes).contains(UIViewAction.class, MessageRenderer.class, InputNumberRenderer.class, DelegatingPhaseListenerMulticaster.class);
+	}
+
+	@Test
+	public void testMyfaces() {
+		ServletContainerInitializerRegistrationBean<MyFacesContainerInitializer> bean = new ServletContainerInitializerRegistrationBean<>(MyFacesContainerInitializer.class);
+		Set<Class<?>> classes = bean.getClasses();
+
+		assertThat(classes).isNotEmpty();
+
+		assertThat(classes).contains(UIViewAction.class, MessageRenderer.class, InputNumberRenderer.class);
 	}
 
 	@HandlesTypes({})

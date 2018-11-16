@@ -45,6 +45,6 @@ public class MojarraAutoConfiguration {
 
 	@Bean
 	public ServletContainerInitializerRegistrationBean<FacesInitializer> mojarraServletContainerInitializer() {
-		return new JsfServletContainerInitializerRegistrationBean<>(FacesInitializer.class);
+		return new ServletContainerInitializerRegistrationBean<>(FacesInitializer.class);
 	}
 }
