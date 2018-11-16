@@ -18,7 +18,6 @@ package org.joinfaces.autoconfigure.mojarra;
 
 import com.sun.faces.config.FacesInitializer;
 import org.joinfaces.autoconfigure.javaxfaces.JavaxFacesAutoConfiguration;
-import org.joinfaces.autoconfigure.servlet.initializer.JsfServletContainerInitializerRegistrationBean;
 import org.joinfaces.autoconfigure.servlet.initializer.ServletContainerInitializerRegistrationBean;
 
 import org.springframework.boot.autoconfigure.AutoConfigureAfter;
