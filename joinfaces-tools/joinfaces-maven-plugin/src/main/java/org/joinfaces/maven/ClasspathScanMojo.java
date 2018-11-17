@@ -56,27 +56,38 @@ public class ClasspathScanMojo extends AbstractMojo {
 
 	@Override
 	public void execute() throws MojoExecutionException, MojoFailureException {
-		if (!this.skip) {
-			Set<String> classpath = new HashSet<>();
+		if (this.skip) {
+			skipMojo();
+		}
+		else {
+			executeMojo();
+		}
+	}
 
-			try {
-				classpath.addAll(this.project.getRuntimeClasspathElements());
-				classpath.addAll(this.project.getCompileClasspathElements());
-			}
-			catch (DependencyResolutionRequiredException e) {
-				throw new MojoExecutionException("classpath not present", e);
-			}
+	private void skipMojo() {
+		getLog().info("Skipping JoinFaces execution because property joinfaces.skip is set.");
+	}
 
-			try {
-				ClasspathScanner.builder()
-					.classpathRoot(this.outputDirectory)
-					.classGraphConfigurer(classGraph -> classGraph.overrideClasspath(classpath))
-					.build()
-					.scanClasses();
-			}
-			catch (IOException e) {
-					throw new MojoFailureException("Classpath scan failed", e);
-			}
+	private void executeMojo() throws MojoExecutionException, MojoFailureException {
+		Set<String> classpath = new HashSet<>();
+
+		try {
+			classpath.addAll(this.project.getRuntimeClasspathElements());
+			classpath.addAll(this.project.getCompileClasspathElements());
+		}
+		catch (DependencyResolutionRequiredException e) {
+			throw new MojoExecutionException("classpath not present", e);
+		}
+
+		try {
+			ClasspathScanner.builder()
+				.classpathRoot(this.outputDirectory)
+				.classGraphConfigurer(classGraph -> classGraph.overrideClasspath(classpath))
+				.build()
+				.scanClasses();
+		}
+		catch (IOException e) {
+				throw new MojoFailureException("Classpath scan failed", e);
 		}
 	}
 }
