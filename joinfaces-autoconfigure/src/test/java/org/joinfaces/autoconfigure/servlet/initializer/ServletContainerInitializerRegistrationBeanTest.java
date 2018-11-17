@@ -47,13 +47,6 @@ public class ServletContainerInitializerRegistrationBeanTest {
 		assertThat(bean.getClasses()).isNull();
 	}
 
-	public static class NoHandlesTypes implements ServletContainerInitializer {
-		@Override
-		public void onStartup(Set<Class<?>> c, ServletContext ctx) {
-
-		}
-	}
-
 	@Test
 	public void testMojarra() {
 		ServletContainerInitializerRegistrationBean<FacesInitializer> bean = new ServletContainerInitializerRegistrationBean<>(FacesInitializer.class);
@@ -72,6 +65,13 @@ public class ServletContainerInitializerRegistrationBeanTest {
 		assertThat(classes).isNotEmpty();
 
 		assertThat(classes).contains(UIViewAction.class, MessageRenderer.class, InputNumberRenderer.class);
+	}
+
+	public static class NoHandlesTypes implements ServletContainerInitializer {
+		@Override
+		public void onStartup(Set<Class<?>> c, ServletContext ctx) {
+
+		}
 	}
 
 	@HandlesTypes({})

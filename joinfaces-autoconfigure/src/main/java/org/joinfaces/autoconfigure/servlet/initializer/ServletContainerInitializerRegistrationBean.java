@@ -84,13 +84,16 @@ public class ServletContainerInitializerRegistrationBean<T extends ServletContai
 			return Optional.empty();
 		}
 
-		String resourceName = "/META-INF/joinfaces/" + getServletContainerInitializerClass().getName() + ".classes";
+		String resourceName = "META-INF/joinfaces/" + getServletContainerInitializerClass().getName() + ".classes";
 		InputStream resourceAsStream = getClass().getClassLoader().getResourceAsStream(resourceName);
 
 		if (resourceAsStream == null) {
 			log.debug("No prepared scan-result found for {}", getServletContainerInitializerClass());
 			return Optional.empty();
 		}
+
+		StopWatch stopWatch = new StopWatch(getServletContainerInitializerClass().getName());
+		stopWatch.start("load scan-result");
 
 		try (BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(resourceAsStream, StandardCharsets.UTF_8))) {
 			Set<Class<?>> collect = bufferedReader.lines()
@@ -110,6 +113,13 @@ public class ServletContainerInitializerRegistrationBean<T extends ServletContai
 		catch (IOException e) {
 			log.warn("Failed to read prepared scan-result {}", resourceName, e);
 			return Optional.empty();
+		}
+		finally {
+			stopWatch.stop();
+			log.info("Load scan classes file for {} took {}s", getServletContainerInitializerClass().getName(), stopWatch.getTotalTimeSeconds());
+			if (log.isDebugEnabled()) {
+				log.debug(stopWatch.prettyPrint());
+			}
 		}
 	}
 
