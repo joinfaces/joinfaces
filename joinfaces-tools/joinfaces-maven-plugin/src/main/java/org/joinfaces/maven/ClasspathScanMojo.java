@@ -51,28 +51,32 @@ public class ClasspathScanMojo extends AbstractMojo {
 	@Parameter(defaultValue = "${project.build.outputDirectory}")
 	private File outputDirectory;
 
+	@Parameter(property = "joinfaces.skip", defaultValue = "false")
+	private boolean skip;
+
 	@Override
 	public void execute() throws MojoExecutionException, MojoFailureException {
+		if (!this.skip) {
+			Set<String> classpath = new HashSet<>();
 
-		Set<String> classpath = new HashSet<>();
+			try {
+				classpath.addAll(this.project.getRuntimeClasspathElements());
+				classpath.addAll(this.project.getCompileClasspathElements());
+			}
+			catch (DependencyResolutionRequiredException e) {
+				throw new MojoExecutionException("classpath not present", e);
+			}
 
-		try {
-			classpath.addAll(this.project.getRuntimeClasspathElements());
-			classpath.addAll(this.project.getCompileClasspathElements());
-		}
-		catch (DependencyResolutionRequiredException e) {
-			throw new MojoExecutionException("classpath not present", e);
-		}
-
-		try {
-			ClasspathScanner.builder()
+			try {
+				ClasspathScanner.builder()
 					.classpathRoot(this.outputDirectory)
 					.classGraphConfigurer(classGraph -> classGraph.overrideClasspath(classpath))
 					.build()
 					.scanClasses();
-		}
-		catch (IOException e) {
-			throw new MojoFailureException("Classpath scan failed", e);
+			}
+			catch (IOException e) {
+					throw new MojoFailureException("Classpath scan failed", e);
+			}
 		}
 	}
 }
