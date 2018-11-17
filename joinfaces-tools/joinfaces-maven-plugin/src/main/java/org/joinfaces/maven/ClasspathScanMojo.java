@@ -40,7 +40,7 @@ import org.joinfaces.tools.ClasspathScanner;
  */
 @Mojo(
 		name = "classpath-scan",
-		defaultPhase = LifecyclePhase.GENERATE_RESOURCES,
+		defaultPhase = LifecyclePhase.PROCESS_CLASSES,
 		requiresDependencyCollection = ResolutionScope.COMPILE_PLUS_RUNTIME
 )
 public class ClasspathScanMojo extends AbstractMojo {
