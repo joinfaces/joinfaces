@@ -2,7 +2,9 @@ description = 'Undertow Spring Boot Starter'
 jar.manifest.attributes('Automatic-Module-Name': 'joinfaces.starter.undertow')
 
 dependencies {
-    compile 'org.springframework.boot:spring-boot-starter-undertow'
+    compile('org.springframework.boot:spring-boot-starter-undertow') {
+        exclude group: 'org.jboss.spec.javax.annotation', module: 'jboss-annotations-api_1.2_spec'
+    }
     compile('org.jboss.spec.javax.servlet.jsp:jboss-jsp-api_2.3_spec') {
         exclude group: 'org.jboss.spec.javax.el', module: 'jboss-el-api_3.0_spec'
         exclude group: 'org.jboss.spec.javax.servlet', module: 'jboss-servlet-api_3.1_spec'
