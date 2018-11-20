@@ -35,7 +35,7 @@ allprojects {
         dependencies {
             dependency 'javax.faces:javax.faces-api:2.3'
 
-            dependency('org.glassfish:javax.faces:2.3.7')
+            dependency('org.glassfish:javax.faces:2.3.8')
 
             dependencySet('org.apache.myfaces.core:2.3.2') {
                 entry "myfaces-api"
