@@ -19,7 +19,7 @@ dependencies {
     annotationProcessor 'org.springframework.boot:spring-boot-autoconfigure-processor'
 
     compile 'org.springframework.boot:spring-boot-autoconfigure'
-    implementation 'org.reflections:reflections'
+    implementation 'io.github.classgraph:classgraph'
 
     optional 'org.springframework.boot:spring-boot-starter'
     optional 'org.springframework:spring-web'

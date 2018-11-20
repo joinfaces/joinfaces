@@ -16,39 +16,62 @@
 
 package org.joinfaces.autoconfigure.myfaces;
 
+import java.lang.annotation.Annotation;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
-import javax.servlet.annotation.HandlesTypes;
+import javax.annotation.ManagedBean;
+import javax.faces.component.FacesComponent;
+import javax.faces.component.behavior.FacesBehavior;
+import javax.faces.convert.FacesConverter;
+import javax.faces.event.NamedEvent;
+import javax.faces.render.FacesBehaviorRenderer;
+import javax.faces.render.FacesRenderer;
+import javax.faces.validator.FacesValidator;
 
+import io.github.classgraph.ScanResult;
 import org.apache.myfaces.ee.MyFacesContainerInitializer;
-import org.joinfaces.autoconfigure.servlet.initializer.JsfClassFactory;
 import org.joinfaces.autoconfigure.servlet.initializer.ServletContainerInitializerRegistrationBean;
 
 /**
  * Servlet context initializer of MyFaces.
+ *
  * @author Marcelo Fernandes
+ * @author Lars Grefer
+ * @see org.apache.myfaces.spi.AnnotationProvider
+ * @see org.apache.myfaces.config.annotation.AnnotationConfigurator
+ * @see JoinFacesAnnotationProvider
  */
 public class MyFacesInitializerRegistrationBean extends ServletContainerInitializerRegistrationBean<MyFacesContainerInitializer> {
-
-	/**
-	 * Constant of another faces config name of MyFaces.
-	 */
-	public static final String ANOTHER_CONFIG = "META-INF/myfaces-metadata.xml";
 
 	public MyFacesInitializerRegistrationBean() {
 		super(MyFacesContainerInitializer.class);
 	}
 
 	@Override
-	protected Set<Class<?>> getClasses(HandlesTypes handlesTypes) {
-		JsfClassFactory.Configuration configuration = JsfClassFactory.Configuration.builder()
-				.handlesTypes(handlesTypes)
-				.excludeScopedAnnotations(true)
-				.anotherConfig(ANOTHER_CONFIG)
-				.build();
-		JsfClassFactory jsfClassFactory = new JsfClassFactory(configuration);
-		JoinFacesAnnotationProvider.setAnnotatedClasses(jsfClassFactory.getAnnotatedClassMap());
-		JoinFacesAnnotationProvider.setUrls(jsfClassFactory.getURLs());
-		return jsfClassFactory.getAllClasses();
+	protected void handleScanResult(ScanResult scanResult) {
+		super.handleScanResult(scanResult);
+
+		Map<Class<? extends Annotation>, Set<Class<?>>> annotatedClasses = new HashMap<>();
+
+		Arrays.asList(
+				ManagedBean.class,
+				FacesComponent.class,
+				FacesBehavior.class,
+				FacesConverter.class,
+				NamedEvent.class,
+				FacesRenderer.class,
+				FacesBehaviorRenderer.class,
+				FacesValidator.class
+		).forEach(annotationClass -> {
+			List<Class<?>> classes = scanResult.getClassesWithAnnotation(annotationClass.getName()).loadClasses();
+			annotatedClasses.put(annotationClass, new HashSet<>(classes));
+		});
+
+		JoinFacesAnnotationProvider.setAnnotatedClasses(annotatedClasses);
 	}
 }

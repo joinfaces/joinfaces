@@ -1,0 +1,14 @@
+apply plugin: "io.freefair.maven-publish-java"
+apply plugin: "io.freefair.maven-jars"
+apply plugin: "io.freefair.maven-plugin"
+
+dependencies {
+    compile project(":joinfaces-tools:joinfaces-scan-tools")
+
+    compile 'org.apache.maven:maven-core:3.0'
+    compile 'org.apache.maven:maven-model:3.0'
+    compile 'org.apache.maven:maven-plugin-api:3.0'
+
+    compileOnly 'org.apache.maven.plugin-tools:maven-plugin-annotations:3.4'
+}
+

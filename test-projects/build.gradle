@@ -4,6 +4,7 @@ allprojects {
 
 subprojects {
     apply plugin: "java"
+    apply plugin: "org.springframework.boot"
 
     dependencies {
         testCompile('org.springframework.boot:spring-boot-starter-test') {

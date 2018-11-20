@@ -16,9 +16,11 @@
 
 package org.joinfaces.autoconfigure.tomcat;
 
+import java.io.IOException;
 import java.net.URISyntaxException;
 import java.net.URL;
 import java.nio.file.Paths;
+import java.util.Enumeration;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -27,7 +29,6 @@ import org.apache.catalina.WebResourceRoot;
 import org.apache.catalina.WebResourceSet;
 import org.apache.catalina.webresources.DirResourceSet;
 import org.apache.catalina.webresources.JarWarResourceSet;
-import org.reflections.util.ClasspathHelper;
 
 import org.springframework.boot.context.event.ApplicationReadyEvent;
 import org.springframework.context.ApplicationListener;
@@ -162,7 +163,7 @@ public class JsfTomcatApplicationListener implements ApplicationListener<Applica
 					case TEST: try {
 							addClasspathResourceSets(resources);
 						}
-						catch (URISyntaxException ex) {
+						catch (URISyntaxException | IOException ex) {
 							log.error(ex.getMessage());
 						}
 						break;
@@ -185,14 +186,22 @@ public class JsfTomcatApplicationListener implements ApplicationListener<Applica
 			webAppMount, base(mainFile(resources)), archivePath, bootInfPath + internalPath);
 	}
 
-	private void addClasspathResourceSets(WebResourceRoot resources) throws URISyntaxException {
+	private void addClasspathResourceSets(WebResourceRoot resources) throws URISyntaxException, IOException {
 		String webAppMount = "/";
 		String archivePath = null;
 		String internalPath = "/META-INF/resources";
 
-		for (URL url : ClasspathHelper.forResource("META-INF/resources/", this.getClass().getClassLoader())) {
+		Enumeration<URL> urlEnumeration = this.getClass().getClassLoader().getResources("META-INF/resources/");
+
+		while (urlEnumeration.hasMoreElements()) {
+			URL url = urlEnumeration.nextElement();
+			int index = url.toExternalForm().lastIndexOf("META-INF/resources/");
+			if (index != -1) {
+				// Add old url as contextUrl to support exotic url handlers
+				url = new URL(url, url.toExternalForm().substring(0, index));
+			}
 			resources.createWebResourceSet(WebResourceRoot.ResourceSetType.POST,
-				webAppMount, base(url), archivePath, internalPath);
+					webAppMount, base(url), archivePath, internalPath);
 		}
 	}
 }

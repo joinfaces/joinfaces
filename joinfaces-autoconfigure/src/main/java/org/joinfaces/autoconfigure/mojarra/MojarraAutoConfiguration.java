@@ -18,6 +18,7 @@ package org.joinfaces.autoconfigure.mojarra;
 
 import com.sun.faces.config.FacesInitializer;
 import org.joinfaces.autoconfigure.javaxfaces.JavaxFacesAutoConfiguration;
+import org.joinfaces.autoconfigure.servlet.initializer.ServletContainerInitializerRegistrationBean;
 
 import org.springframework.boot.autoconfigure.AutoConfigureAfter;
 import org.springframework.boot.autoconfigure.AutoConfigureBefore;
@@ -30,6 +31,7 @@ import org.springframework.context.annotation.Configuration;
 
 /**
  * Spring Boot Auto Configuration for Mojarra.
+ *
  * @author Marcelo Fernandes
  */
 @Configuration
@@ -41,7 +43,7 @@ import org.springframework.context.annotation.Configuration;
 public class MojarraAutoConfiguration {
 
 	@Bean
-	public MojarraInitializerRegistrationBean mojarraServletContainerInitializer() {
-		return new MojarraInitializerRegistrationBean();
+	public ServletContainerInitializerRegistrationBean<FacesInitializer> mojarraServletContainerInitializer() {
+		return new ServletContainerInitializerRegistrationBean<>(FacesInitializer.class);
 	}
 }

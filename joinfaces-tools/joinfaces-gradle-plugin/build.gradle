@@ -1,0 +1,38 @@
+apply plugin: "java-gradle-plugin"
+apply plugin: "com.gradle.plugin-publish"
+
+gradlePlugin {
+    plugins {
+        joinfaces {
+            id = 'org.joinfaces'
+            implementationClass = 'org.joinfaces.gradle.JoinfacesPlugin'
+        }
+        classpathScan {
+            id = 'org.joinfaces.classpath-scan'
+            implementationClass = 'org.joinfaces.gradle.ClasspathScanPlugin'
+        }
+    }
+}
+
+pluginBundle {
+    website = 'https://github.com/joinfaces/joinfaces'
+    vcsUrl = 'https://github.com/joinfaces/joinfaces'
+    tags = ['joinfaces', 'jsf']
+
+    plugins {
+        joinfaces {
+            displayName = 'Joinfaces Gradle Plugin'
+            description = 'Joinfaces Gradle Plugin'
+        }
+        classpathScan {
+            displayName = 'Joinfaces classpath-scan Plugin'
+            description = 'Performs the classpath scan at build-time for a faster application startup.'
+        }
+    }
+}
+
+dependencies {
+    compile project(":joinfaces-tools:joinfaces-scan-tools")
+
+    compileOnly "org.springframework.boot:spring-boot-gradle-plugin:2.1.0.RELEASE"
+}

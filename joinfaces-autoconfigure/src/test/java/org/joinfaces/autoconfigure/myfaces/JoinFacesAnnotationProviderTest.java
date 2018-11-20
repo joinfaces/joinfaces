@@ -16,50 +16,51 @@
 
 package org.joinfaces.autoconfigure.myfaces;
 
-import java.io.IOException;
 import java.lang.annotation.Annotation;
-import java.net.URL;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
+import javax.faces.context.ExternalContext;
 import javax.faces.convert.FacesConverter;
 
 import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
+import org.apache.myfaces.spi.AnnotationProvider;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.BDDMockito.mock;
+import static org.mockito.BDDMockito.verify;
 
-@SuppressFBWarnings("DMI_COLLECTION_OF_URLS")
-public class JoinFacesAnnotationProviderTests {
+public class JoinFacesAnnotationProviderTest {
 
-	@Test
-	public void testBaseUrls() throws IOException {
-		Set<URL> urls = new HashSet<>();
-		URL myurl = new URL("http://localhost:8080");
-		urls.add(myurl);
-		JoinFacesAnnotationProvider.setUrls(urls);
-
-		assertThat(new JoinFacesAnnotationProvider(null).getBaseUrls())
-			.contains(myurl);
+	@BeforeEach
+	public void init() {
+		JoinFacesAnnotationProvider.setAnnotatedClasses(null);
 	}
 
 	@Test
-	public void testAnnotatedClasses() {
+	public void getAnnotatedClasses_set() {
 		Map<Class<? extends Annotation>, Set<Class<?>>> annotatedClasses = new HashMap<>();
 		annotatedClasses.put(FacesConverter.class, new HashSet<>());
 		JoinFacesAnnotationProvider.setAnnotatedClasses(annotatedClasses);
 
 		assertThat(new JoinFacesAnnotationProvider(null).getAnnotatedClasses(null).get(FacesConverter.class))
-			.isNotNull();
+				.isNotNull();
 	}
 
 	@Test
-	public void testGetBaseUrls() throws IOException {
-		JoinFacesAnnotationProvider joinFacesAnnotationProvider = new JoinFacesAnnotationProvider(null);
+	@SuppressFBWarnings("RV_RETURN_VALUE_IGNORED_NO_SIDE_EFFECT")
+	public void getAnnotatedClasses_notSet() {
+		AnnotationProvider annotationProvider = mock(AnnotationProvider.class);
+		JoinFacesAnnotationProvider joinFacesAnnotationProvider = new JoinFacesAnnotationProvider(annotationProvider);
 
-		assertThat(joinFacesAnnotationProvider.getBaseUrls(null)).isEqualTo(joinFacesAnnotationProvider.getBaseUrls());
+		joinFacesAnnotationProvider.getAnnotatedClasses(mock(ExternalContext.class));
+
+		verify(annotationProvider).getAnnotatedClasses(any());
 	}
 
 }
