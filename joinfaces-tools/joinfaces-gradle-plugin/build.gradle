@@ -1,5 +1,7 @@
 apply plugin: "java-gradle-plugin"
 apply plugin: "com.gradle.plugin-publish"
+apply plugin: "maven-publish"
+apply plugin: "io.freefair.maven-jars"
 
 gradlePlugin {
     plugins {
@@ -35,4 +37,19 @@ dependencies {
     compile project(":joinfaces-tools:joinfaces-scan-tools")
 
     compileOnly "org.springframework.boot:spring-boot-gradle-plugin:2.1.0.RELEASE"
+}
+
+publishing {
+    publications {
+        pluginMaven(MavenPublication) {
+            artifact javadocJar
+            artifact sourcesJar
+        }
+    }
+}
+
+publishing {
+    publications.withType(MavenPublication) {
+        signing.sign it
+    }
 }
