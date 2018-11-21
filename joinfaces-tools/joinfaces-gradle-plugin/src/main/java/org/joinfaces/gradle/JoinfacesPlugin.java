@@ -16,6 +16,14 @@
 
 package org.joinfaces.gradle;
 
+import java.io.File;
+import java.io.IOException;
+import java.net.JarURLConnection;
+import java.net.URL;
+import java.net.URLConnection;
+import java.util.jar.Attributes;
+import java.util.jar.JarFile;
+
 import org.gradle.api.Plugin;
 import org.gradle.api.Project;
 
@@ -26,9 +34,43 @@ import org.gradle.api.Project;
  */
 public class JoinfacesPlugin implements Plugin<Project> {
 
+	private static final String JOINFACES_VERSION = determineJoinfacesVersion();
+
+	/**
+	 * The coordinates {@code (group:name:version)} of the {@code joinfaces-dependencies} bom.
+	 */
+	public static final String BOM_COORDINATES = "org.joinfaces:joinfaces-dependencies:" + JOINFACES_VERSION;
+
 	@Override
 	public void apply(Project project) {
 		project.getPlugins().apply(ClasspathScanPlugin.class);
+
+		project.getPlugins().withId("io.spring.dependency-management", plugin ->
+				project.getPlugins().apply(BomPlugin.class)
+		);
 	}
 
+	private static String determineJoinfacesVersion() {
+		String implementationVersion = BomPlugin.class.getPackage().getImplementationVersion();
+		if (implementationVersion != null) {
+			return implementationVersion;
+		}
+		URL codeSourceLocation = BomPlugin.class.getProtectionDomain().getCodeSource().getLocation();
+		try {
+			URLConnection connection = codeSourceLocation.openConnection();
+			if (connection instanceof JarURLConnection) {
+				return getImplementationVersion(((JarURLConnection) connection).getJarFile());
+			}
+			try (JarFile jarFile = new JarFile(new File(codeSourceLocation.toURI()))) {
+				return getImplementationVersion(jarFile);
+			}
+		}
+		catch (Exception ex) {
+			return null;
+		}
+	}
+
+	private static String getImplementationVersion(JarFile jarFile) throws IOException {
+		return jarFile.getManifest().getMainAttributes().getValue(Attributes.Name.IMPLEMENTATION_VERSION);
+	}
 }
