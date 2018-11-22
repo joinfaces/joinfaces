@@ -33,15 +33,15 @@ class BomPluginTest {
 	void setUp() {
 		this.project = ProjectBuilder.builder().build();
 
-		this.project.getRepositories().add(project.getRepositories().mavenCentral());
+		this.project.getRepositories().add(this.project.getRepositories().mavenCentral());
 	}
 
 	@Test
 	void apply() {
-		project.getPlugins().apply(BomPlugin.class);
+		this.project.getPlugins().apply(BomPlugin.class);
 
-		assertThat(project.getPlugins()).anyMatch(DependencyManagementPlugin.class::isInstance);
-		DependencyManagementExtension dependencyManagement = project.getExtensions().findByType(DependencyManagementExtension.class);
+		assertThat(this.project.getPlugins()).anyMatch(DependencyManagementPlugin.class::isInstance);
+		DependencyManagementExtension dependencyManagement = this.project.getExtensions().findByType(DependencyManagementExtension.class);
 
 		assertThat(dependencyManagement).isNotNull();
 	}

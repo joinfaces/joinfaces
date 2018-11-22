@@ -24,6 +24,8 @@ import java.net.URLConnection;
 import java.util.jar.Attributes;
 import java.util.jar.JarFile;
 
+import javax.annotation.Nullable;
+
 import org.gradle.api.Plugin;
 import org.gradle.api.Project;
 
@@ -50,6 +52,7 @@ public class JoinfacesPlugin implements Plugin<Project> {
 		);
 	}
 
+	@Nullable
 	private static String determineJoinfacesVersion() {
 		String implementationVersion = BomPlugin.class.getPackage().getImplementationVersion();
 		if (implementationVersion != null) {
