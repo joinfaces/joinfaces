@@ -27,6 +27,7 @@ import org.gradle.api.Project;
  * the {@code joinfaces-dependencies} bom.
  *
  * @author Lars Grefer
+ * @see org.springframework.boot.gradle.plugin.DependencyManagementPluginAction
  */
 public class BomPlugin implements Plugin<Project> {
 	@Override

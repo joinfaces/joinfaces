@@ -13,6 +13,10 @@ gradlePlugin {
             id = 'org.joinfaces.classpath-scan'
             implementationClass = 'org.joinfaces.gradle.ClasspathScanPlugin'
         }
+        bom {
+            id = 'org.joinfaces.dependency-management'
+            implementationClass = 'org.joinfaces.gradle.BomPlugin'
+        }
     }
 }
 
@@ -23,12 +27,16 @@ pluginBundle {
 
     plugins {
         joinfaces {
-            displayName = 'Joinfaces Gradle Plugin'
-            description = 'Joinfaces Gradle Plugin'
+            displayName = 'JoinFaces Gradle plugin'
+            description = 'JoinFaces Gradle Plugin'
         }
         classpathScan {
-            displayName = 'Joinfaces classpath-scan Plugin'
+            displayName = 'JoinFaces classpath-scan plugin'
             description = 'Performs the classpath scan at build-time for a faster application startup.'
+        }
+        bom {
+            displayName = 'JoinFaces dependency management plugin'
+            description = 'Adds the joinfaces-dependencies bom to the projects dependency management.'
         }
     }
 }
