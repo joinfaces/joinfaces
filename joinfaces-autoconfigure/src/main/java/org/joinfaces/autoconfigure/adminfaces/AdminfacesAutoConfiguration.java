@@ -16,6 +16,7 @@
 
 package org.joinfaces.autoconfigure.adminfaces;
 
+import javax.ejb.AccessLocalException;
 import javax.faces.application.ViewExpiredException;
 import javax.persistence.OptimisticLockException;
 
@@ -94,6 +95,7 @@ public class AdminfacesAutoConfiguration {
 		return factory -> {
 			factory.addErrorPages(new ErrorPage(HttpStatus.FORBIDDEN, "/403.jsf"),
 					new ErrorPage(AccessDeniedException.class, "/403.jsf"),
+					new ErrorPage(AccessLocalException.class, "/403.jsf"),
 					new ErrorPage(HttpStatus.NOT_FOUND, "/404.jsf"),
 					new ErrorPage(HttpStatus.INTERNAL_SERVER_ERROR, "/500.jsf"),
 					new ErrorPage(Throwable.class, "/500.jsf"),
