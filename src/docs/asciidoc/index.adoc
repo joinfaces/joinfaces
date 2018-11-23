@@ -1,6 +1,7 @@
 = JoinFaces Documentation
 Marcelo Fernandes <persapiens@gmail.com>; Lars Grefer <github@larsgrefer.de>
 :toc: left
+:source-highlighter: coderay
 :sectnums:
 :sectanchors:
 
@@ -34,9 +35,89 @@ Marcelo Fernandes <persapiens@gmail.com>; Lars Grefer <github@larsgrefer.de>
 
 This are the combinations we have tested and expect to work, but depending on the features you are using, other combinations might work, too.
 
+=== Dependency Management
 
-=== Maven Integration
+Each release of JoinFaces provides a curated list of dependencies that it supports.
+This list is an extension of
+https://docs.spring.io/spring-boot/docs/{spring-boot-version}/reference/htmlsingle/#using-boot-dependency-management[Spring Boot's dependency management] and therefore works exactly the same way.
 
-=== Gradle Integration
+The `joinfaces-dependencies` BOM also imports the `spring-boot-dependencies` BOM.
+If you want to override the imported Spring Boot version, make sure to specify the
+Spring Boot BOM after the JoinFaces one.
+
+=== Maven
+
+NOTE: Please also consult the official Spring Boot documentation: https://docs.spring.io/spring-boot/docs/{spring-boot-version}/reference/htmlsingle/#using-boot-maven[Link]
+
+[source,xml,subs=attributes+]
+----
+<project>
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>{spring-boot-version}</version>
+        <relativePath/> <!-- lookup parent from repository -->
+    </parent>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.joinfaces</groupId>
+                <artifactId>joinfaces-dependencies</artifactId>
+                <version>{project-version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+</project>
+----
+
+=== Gradle
+
+NOTE: Please also consult the official Spring Boot documentation: https://docs.spring.io/spring-boot/docs/{spring-boot-version}/reference/htmlsingle/#using-boot-gradle[Link]
+
+[source,groovy,subs=attributes+]
+----
+plugins {
+    id 'org.joinfaces' version '{revnumber}'
+    id 'org.springframework.boot' version '{spring-boot-version}'
+}
+apply plugin: 'java' //or 'war'
+apply plugin: 'io.spring.dependency-management'
+
+dependencies {
+    compile 'org.joinfaces:jsf-spring-boot-starter'
+}
+----
+
+==== Not using the JoinFaces gradle plugin
+
+[source,groovy,subs=attributes+]
+----
+plugins {
+    id 'org.springframework.boot' version '{spring-boot-version}'
+}
+apply plugin: 'java' //or 'war'
+apply plugin: 'io.spring.dependency-management'
+
+dependencyManagement {
+    imports {
+        mavenBom 'org.joinfaces:joinfaces-dependencies:{revnumber}'
+    }
+}
+
+dependencies {
+    compile 'org.joinfaces:jsf-spring-boot-starter'
+}
+----
 
 == Features

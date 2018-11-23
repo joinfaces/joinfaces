@@ -257,7 +257,8 @@ apply plugin: "org.asciidoctor.convert"
 asciidoctor {
     backends = ['html5']
     attributes 'icons': 'font',
-            revnumber: project.version
+            revnumber: project.version,
+            'spring-boot-version': org.springframework.boot.gradle.plugin.SpringBootPlugin.SPRING_BOOT_VERSION
 }
 
 task docsZip(type: Zip) {
