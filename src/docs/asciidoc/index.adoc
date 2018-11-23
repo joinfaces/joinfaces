@@ -1,0 +1,12 @@
+= JoinFaces Documentation
+Marcelo Fernandes <persapiens@gmail.com>; Lars Grefer <github@larsgrefer.de>
+:toc: left
+
+
+== Using JoinFaces
+
+=== System Requirements
+
+=== Maven Integration
+
+=== Gradle Integration
