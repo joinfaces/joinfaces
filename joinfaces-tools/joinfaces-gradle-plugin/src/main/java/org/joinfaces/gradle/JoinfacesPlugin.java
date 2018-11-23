@@ -19,6 +19,7 @@ package org.joinfaces.gradle;
 import java.io.File;
 import java.io.IOException;
 import java.net.JarURLConnection;
+import java.net.URISyntaxException;
 import java.net.URL;
 import java.net.URLConnection;
 import java.util.jar.Attributes;
@@ -68,7 +69,7 @@ public class JoinfacesPlugin implements Plugin<Project> {
 				return getImplementationVersion(jarFile);
 			}
 		}
-		catch (Exception ex) {
+		catch (IOException | URISyntaxException ex) {
 			return null;
 		}
 	}
