@@ -1,5 +1,5 @@
 = JoinFaces Documentation
-Marcelo Fernandes <persapiens@gmail.com>; Lars Grefer <github@larsgrefer.de>
+Marcelo Fernandes <persapiens@gmail.com>; Lars Grefer <larsgrefer@joinfaces.org>
 :toc: left
 :source-highlighter: coderay
 :sectnums:
