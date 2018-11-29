@@ -31,6 +31,8 @@ import org.gradle.api.GradleException;
 import org.gradle.api.file.RegularFileProperty;
 import org.gradle.api.provider.Property;
 import org.gradle.api.publish.plugins.PublishingPlugin;
+import org.gradle.api.tasks.Input;
+import org.gradle.api.tasks.InputFile;
 import org.gradle.api.tasks.TaskAction;
 
 /**
@@ -39,12 +41,16 @@ import org.gradle.api.tasks.TaskAction;
 @SuppressWarnings("UnstableApiUsage")
 public class UploadDocumentation extends DefaultTask {
 
+	@InputFile
 	private final RegularFileProperty inputFile = newInputFile();
 
+	@Input
 	private final Property<String> version = getProject().getObjects().property(String.class);
 
+	@Input
 	private final Property<String> username = getProject().getObjects().property(String.class);
 
+	@Input
 	private final Property<String> password = getProject().getObjects().property(String.class);
 
 	public UploadDocumentation() {
@@ -54,7 +60,7 @@ public class UploadDocumentation extends DefaultTask {
 
 	@TaskAction
 	public void upload() throws IOException {
-		HttpLoggingInterceptor loggingInterceptor = new HttpLoggingInterceptor(message -> getLogger().lifecycle(message.contains("Authorization") ? "Authorization" : message));
+		HttpLoggingInterceptor loggingInterceptor = new HttpLoggingInterceptor(message -> getLogger().info(message.contains("Authorization") ? "Authorization" : message));
 		loggingInterceptor.setLevel(HttpLoggingInterceptor.Level.HEADERS);
 
 		OkHttpClient okHttpClient = new OkHttpClient.Builder()
