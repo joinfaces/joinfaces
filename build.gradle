@@ -243,6 +243,7 @@ apply plugin: "maven-publish"
 apply plugin: "io.freefair.aggregate-javadoc-jar"
 
 aggregateJavadoc.failOnError = false
+aggregateJavadoc.title = "JoinFaces $version API"
 
 apply plugin: "io.codearte.nexus-staging"
 
