@@ -274,6 +274,13 @@ task docsZip(type: Zip) {
     }
 }
 
+task uploadDocs(type: org.joinfaces.build.UploadDocumentation) {
+    inputFile = docsZip.archivePath
+    dependsOn docsZip
+    username = findProperty("joinfacesDocsUser")
+    password = findProperty("joinfacesDocsPass")
+}
+
 publishing {
     publications {
         bom(MavenPublication) {

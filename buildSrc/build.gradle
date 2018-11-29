@@ -1,0 +1,10 @@
+apply plugin: "java"
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile 'com.squareup.okhttp3:okhttp:3.12.0'
+    compile 'com.squareup.okhttp3:logging-interceptor:3.12.0'
+}
