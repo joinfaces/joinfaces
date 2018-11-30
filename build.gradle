@@ -5,7 +5,7 @@ buildscript {
         maven { url "https://plugins.gradle.org/m2/" }
     }
     dependencies {
-        classpath "org.springframework.boot:spring-boot-gradle-plugin:2.1.0.RELEASE"
+        classpath "org.springframework.boot:spring-boot-gradle-plugin:2.1.1.RELEASE"
         classpath "io.freefair.gradle:lombok-plugin:2.9.1"
         classpath "io.freefair.gradle:maven-plugin:2.9.1"
         classpath "gradle.plugin.com.github.spotbugs:spotbugs-gradle-plugin:1.6.5"
@@ -180,6 +180,7 @@ allprojects {
     plugins.withId("maven-publish") {
         project.apply plugin: 'de.marcphilipp.nexus-publish'
         project.apply plugin: "signing"
+        project.apply plugin: "io.freefair.maven-central.validate-poms"
 
         signing {
             required { !version.endsWith('SNAPSHOT') && gradle.taskGraph.hasTask("publish") }

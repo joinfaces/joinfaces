@@ -2,6 +2,8 @@ apply plugin: "io.freefair.maven-publish-java"
 apply plugin: "io.freefair.maven-jars"
 apply plugin: "io.freefair.maven-plugin"
 
+description = "JoinFaces Maven Plugin"
+
 dependencies {
     compile project(":joinfaces-tools:joinfaces-scan-tools")
 
