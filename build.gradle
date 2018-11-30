@@ -18,8 +18,11 @@ buildscript {
     }
 }
 
+version = resolveVersion()
+
 allprojects {
     group = 'org.joinfaces'
+    version = rootProject.version
 
     repositories {
         mavenCentral()
@@ -318,4 +321,32 @@ publishing {
             signing.sign it
         }
     }
+}
+
+def resolveVersion() {
+    if (project.version != "unspecified") {
+        logger.info("Using explicit version $project.version")
+        return project.version
+    }
+    def travisTag = System.getenv('TRAVIS_TAG')
+    if (travisTag != null) {
+        logger.info("Using TRAVIS_TAG as version: $travisTag")
+        return travisTag
+    }
+    def travisBranch = System.getenv('TRAVIS_BRANCH')
+    if (travisBranch != null) {
+        travisBranch = travisBranch.replace("/", "-")
+        logger.info("Using TRAVIS_BRANCH as version: $travisBranch")
+        return "$travisBranch-SNAPSHOT"
+    }
+    try {
+        def gitBranch = "git symbolic-ref --short HEAD".execute().text.trim()
+        if (gitBranch != null) {
+            gitBranch = gitBranch.replace("/", "-")
+            logger.info("Using git branch as version: $gitBranch")
+            return "$gitBranch-SNAPSHOT"
+        }
+    } catch (Exception ignored) {
+    }
+    return project.version
 }
