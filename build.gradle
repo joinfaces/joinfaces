@@ -330,19 +330,19 @@ def resolveVersion() {
         return project.version
     }
     def travisTag = System.getenv('TRAVIS_TAG')
-    if (travisTag != null) {
+    if (travisTag) {
         logger.lifecycle("Using TRAVIS_TAG as version: $travisTag")
         return travisTag
     }
     def travisBranch = System.getenv('TRAVIS_BRANCH')
-    if (travisBranch != null) {
+    if (travisBranch) {
         travisBranch = travisBranch.replace("/", "-")
         logger.lifecycle("Using TRAVIS_BRANCH as version: $travisBranch-SNAPSHOT")
         return "$travisBranch-SNAPSHOT"
     }
     try {
         def gitBranch = "git symbolic-ref --short HEAD".execute().text.trim()
-        if (gitBranch != null) {
+        if (gitBranch) {
             gitBranch = gitBranch.replace("/", "-")
             logger.lifecycle("Using git branch as version: $gitBranch-SNAPSHOT")
             return "$gitBranch-SNAPSHOT"
