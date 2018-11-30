@@ -1,3 +1,5 @@
+import org.springframework.boot.gradle.plugin.SpringBootPlugin
+
 apply plugin: "java-gradle-plugin"
 apply plugin: "com.gradle.plugin-publish"
 apply plugin: "maven-publish"
@@ -46,7 +48,7 @@ pluginBundle {
 dependencies {
     compile project(":joinfaces-tools:joinfaces-scan-tools")
 
-    compile "org.springframework.boot:spring-boot-gradle-plugin:2.1.0.RELEASE"
+    compile "org.springframework.boot:spring-boot-gradle-plugin:${SpringBootPlugin.SPRING_BOOT_VERSION}"
 }
 
 publishing {
