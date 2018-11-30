@@ -3,6 +3,8 @@ apply plugin: "com.gradle.plugin-publish"
 apply plugin: "maven-publish"
 apply plugin: "io.freefair.maven-jars"
 
+description = "JoinFaces Gradle Plugin"
+
 gradlePlugin {
     plugins {
         joinfaces {
@@ -59,5 +61,14 @@ publishing {
 publishing {
     publications.withType(MavenPublication) {
         signing.sign it
+    }
+}
+
+afterEvaluate {
+    pluginBundle.plugins.each { plugin ->
+        publishing.publications.getByName("${plugin.name}PluginMarkerMaven") { publication ->
+            publication.pom.name = plugin.displayName
+            publication.pom.description = plugin.description
+        }
     }
 }

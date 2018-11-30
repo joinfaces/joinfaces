@@ -1,6 +1,8 @@
 apply plugin: "io.freefair.maven-publish-java"
 apply plugin: "io.freefair.maven-jars"
 
+description = "JoinFaces Scan Tools"
+
 dependencies {
     compile "io.github.classgraph:classgraph"
     compile "org.slf4j:slf4j-api"
