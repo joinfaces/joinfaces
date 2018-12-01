@@ -102,9 +102,12 @@ public class ServletContainerInitializerRegistrationBean<T extends ServletContai
 							return Class.forName(className);
 						}
 						catch (ClassNotFoundException e) {
-							log.debug("Failed to load class from prepared result", e);
-							return null;
+							log.debug("Failed to load class {} from prepared result", className, e);
 						}
+						catch (LinkageError e) {
+							log.info("Failed to load class {} from prepared result", className, e);
+						}
+						return null;
 					})
 					.filter(Objects::nonNull)
 					.collect(Collectors.toSet());
