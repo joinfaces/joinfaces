@@ -102,7 +102,7 @@ public class JoinFacesAnnotationProvider extends AnnotationProviderWrapper {
 			try {
 				annotation = (Class<? extends Annotation>) Class.forName(annotationName);
 			}
-			catch (ClassNotFoundException e) {
+			catch (ClassNotFoundException | LinkageError e) {
 				log.info("Failed to load annotation class {}", annotationName, e);
 				return;
 			}
@@ -117,8 +117,11 @@ public class JoinFacesAnnotationProvider extends AnnotationProviderWrapper {
 							}
 							catch (ClassNotFoundException e) {
 								log.debug("Failed to load class {}", className, e);
-								return null;
 							}
+							catch (LinkageError e) {
+								log.info("Failed to load class {}", className, e);
+							}
+							return null;
 						})
 						.filter(Objects::nonNull)
 						.collect(Collectors.toSet());
