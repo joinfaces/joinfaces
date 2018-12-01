@@ -75,15 +75,19 @@ public class JoinFacesAnnotationProvider extends AnnotationProviderWrapper {
 	}
 
 	private void findPreparedScanResult() {
-		String resourceName = "/META-INF/joinfaces/" + AnnotationProvider.class.getName() + ".classes";
+		String resourceName = "META-INF/joinfaces/" + AnnotationProvider.class.getName() + ".classes";
 		InputStream resourceAsStream = getClass().getClassLoader().getResourceAsStream(resourceName);
 
 		if (resourceAsStream == null) {
+			log.debug("No prepared scan result found.");
 			return;
 		}
 
+		long start = System.nanoTime();
 		try (BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(resourceAsStream, StandardCharsets.UTF_8))) {
 			setAnnotatedClasses(readAnnotatedClassesMap(bufferedReader));
+			double ms = (System.nanoTime() - start) / 1_000_000d;
+			log.info("Loading prepared scan result took {}ms", ms);
 		}
 		catch (IOException e) {
 			log.warn("Failed to load {}", resourceName, e);
