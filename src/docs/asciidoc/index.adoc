@@ -1,7 +1,8 @@
 = JoinFaces Documentation
 Marcelo Fernandes <persapiens@gmail.com>; Lars Grefer <larsgrefer@joinfaces.org>
 :toc: left
-:source-highlighter: coderay
+:stylesheet: asciidoctor.css
+:source-highlighter: prettify
 :sectnums:
 :sectanchors:
 
@@ -162,3 +163,8 @@ If you have any problems with the classpath scan, you can disable it:
 ----
 scanClasspath.enabled = false
 ----
+
+[appendix]
+== Properties
+
+include::generated/_properties.adoc[]

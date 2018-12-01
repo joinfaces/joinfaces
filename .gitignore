@@ -1,3 +1,5 @@
+src/docs/asciidoc/generated
+
 lombok.config
 
 .idea/*

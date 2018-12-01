@@ -259,8 +259,15 @@ nexusStaging {
 
 apply plugin: "org.asciidoctor.convert"
 
+task propertyDocs(type: org.joinfaces.build.PropertyDocumentation) {
+    inputFile = file("joinfaces-autoconfigure/build/classes/java/main/META-INF/spring-configuration-metadata.json")
+    outputFile = file("src/docs/asciidoc/generated/_properties.adoc")
+    dependsOn ":joinfaces-autoconfigure:classes"
+}
+
 asciidoctor {
     backends = ['html5']
+    dependsOn propertyDocs
     attributes 'icons': 'font',
             revnumber: project.version,
             'spring-boot-version': org.springframework.boot.gradle.plugin.SpringBootPlugin.SPRING_BOOT_VERSION
