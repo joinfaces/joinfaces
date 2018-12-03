@@ -43,11 +43,10 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 public class JavaxFaces2_3Properties implements ServletContextInitParameterProperties {
 
 	/**
-     * <p class="changed_modified_2_3">If this param is set, and calling
-     * toLowerCase().equals("true") on a
+     * If this param is set, and calling toLowerCase().equals("true") on a
      * String representation of its value returns true, validation
      * must be performed, even when there is no corresponding value for this
-     * component in the incoming request. See {@link #validate}.</p>
+     * component in the incoming request. See {@link #validate}.
      */
 	@ServletContextInitParameter(UIInput.ALWAYS_PERFORM_VALIDATION_WHEN_REQUIRED_IS_TRUE)
 	private Boolean alwaysPerformValidationWhenRequiredIsTrue;
@@ -65,12 +64,12 @@ public class JavaxFaces2_3Properties implements ServletContextInitParameterPrope
 	private Integer websocketEndpointPort;
 
 	/**
-     * <p class="changed_added_2_3">The <code>ServletContext</code> init
+     * The <code>ServletContext</code> init
      * parameter consulted by the runtime to tell if the automatic mapping
      * of the {@code FacesServlet} to the extension {@code *.xhtml}
      * should be disabled.  The implementation must disable this automatic
      * mapping if and only if the value of this parameter is equal, ignoring
-     * case, to {@code true}.</p>
+     * case, to {@code true}.
      *
      * <p>If this parameter is not specified, this automatic mapping is enabled
      * as specified above.</p>
@@ -79,12 +78,11 @@ public class JavaxFaces2_3Properties implements ServletContextInitParameterPrope
 	private Boolean disableFacesservletToXhtml;
 
 	/**
-     * <p class="changed_added_2_3">If this param is set, and calling
-     * toLowerCase().equals("true") on a
+     * If this param is set, and calling toLowerCase().equals("true") on a
      * String representation of its value returns true, exceptions thrown
      * by {@link PhaseListener}s installed on the {@code UIViewRoot} are
      * queued to the {@link javax.faces.context.ExceptionHandler} instead of
-     * being logged and swallowed.</p>
+     * being logged and swallowed.
      *
      * @since 2.3
      */
@@ -92,11 +90,10 @@ public class JavaxFaces2_3Properties implements ServletContextInitParameterPrope
 	private Boolean viewrootPhaseListenerQueuesExceptions;
 
 	/**
-     * <p class="changed_added_2_3">If this param is set, and calling
-     * toLowerCase().equals("true") on a
+     * If this param is set, and calling toLowerCase().equals("true") on a
      * String representation of its value returns {@code true} take
      * the additional actions relating to <code>&lt;validateWholeBean /&gt;</code>
-     * specified in {@link #validate}.</p>
+     * specified in {@link #validate}.
      *
      * @since 2.3
      */

@@ -150,8 +150,7 @@ public class JavaxFaces2_0Properties implements ServletContextInitParameterPrope
 	private String validateEmptyFields;
 
 	/**
-	 * <p class="changed_added_2_0">The context-param that allows the separator
-	 * char for clientId strings to be set on a per-web application basis.</p>
+	 * The context-param that allows the separator char for clientId strings to be set on a per-web application basis.
 	 *
 	 * @since 2.0
 	 */
@@ -162,8 +161,7 @@ public class JavaxFaces2_0Properties implements ServletContextInitParameterPrope
 	private Partial partial = new Partial();
 
 	/**
-	 * Controls if DateTimeConverter instances use the system timezone (if true)
-	 * or GMT (if false).
+	 * Controls if DateTimeConverter instances use the system timezone (if true) or GMT (if false).
 	 */
 	@ServletContextInitParameter(Converter.DATETIMECONVERTER_DEFAULT_TIMEZONE_IS_SYSTEM_TIMEZONE_PARAM_NAME)
 	private Boolean datetimeconverterDefaultTimezoneIsSystemTimezone;
@@ -172,8 +170,8 @@ public class JavaxFaces2_0Properties implements ServletContextInitParameterPrope
 	private Validator validator = new Validator();
 
 	/**
-	 * An implementation of javax.faces.view.facelets.ResourceResolver. See
-	 * javadoc for details.
+	 * An implementation of javax.faces.view.facelets.ResourceResolver.
+	 * See javadoc for details.
 	 */
 	@ServletContextInitParameter(ResourceResolver.FACELETS_RESOURCE_RESOLVER_PARAM_NAME)
 	private Class<? extends ResourceResolver> faceletsResourceResolver;
@@ -191,8 +189,7 @@ public class JavaxFaces2_0Properties implements ServletContextInitParameterPrope
 	private String lifecycleId;
 
 	/**
-	 * If true, consider empty UIInput values to be null instead of empty
-	 * string.
+	 * If true, consider empty UIInput values to be null instead of empty string.
 	 */
 	@ServletContextInitParameter(EMPTY_STRING_AS_NULL)
 	private Boolean interpretEmptyStringSubmittedValuesAsNull;
@@ -210,13 +207,12 @@ public class JavaxFaces2_0Properties implements ServletContextInitParameterPrope
 	public static class Partial {
 
 		/**
-		 * <p class="changed_added_2_0">
 		 * The request parameter name whose request parameter value is a
 		 * <code>Collection</code> of client identifiers identifying the
 		 * components that must be processed during the
 		 * <em>Apply Request Values</em>, <em>Process Validations</em>, and
 		 * <em>Update Model Values</em> phases of the request processing
-		 * lifecycle.</p>
+		 * lifecycle.
 		 *
 		 * @since 2.0
 		 */
@@ -224,12 +220,11 @@ public class JavaxFaces2_0Properties implements ServletContextInitParameterPrope
 		private Boolean execute;
 
 		/**
-		 * <p class="changed_added_2_0">
 		 * The request parameter name whose request parameter value is a
 		 * <code>Collection</code> of client identifiers identifying the
 		 * components that must be processed during the
 		 * <em>Render Response</em> phase of the request processing
-		 * lifecycle.</p>
+		 * lifecycle.
 		 *
 		 * @since 2.0
 		 */

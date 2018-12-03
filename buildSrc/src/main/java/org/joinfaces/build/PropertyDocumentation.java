@@ -71,7 +71,7 @@ public class PropertyDocumentation extends DefaultTask {
 										writer.print(property.getDefaultValue());
 									}
 									if (property.getShortDescription() != null) {
-										writer.print(" #");
+										writer.print(" # ");
 										writer.print(property.getShortDescription());
 									}
 									writer.println();
