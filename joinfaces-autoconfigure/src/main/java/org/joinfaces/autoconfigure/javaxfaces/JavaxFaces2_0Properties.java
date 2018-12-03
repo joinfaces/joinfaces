@@ -208,7 +208,7 @@ public class JavaxFaces2_0Properties implements ServletContextInitParameterPrope
 
 		/**
 		 * The request parameter name whose request parameter value is a
-		 * <code>Collection</code> of client identifiers identifying the
+		 * {@code Collection} of client identifiers identifying the
 		 * components that must be processed during the
 		 * <em>Apply Request Values</em>, <em>Process Validations</em>, and
 		 * <em>Update Model Values</em> phases of the request processing
@@ -221,7 +221,7 @@ public class JavaxFaces2_0Properties implements ServletContextInitParameterPrope
 
 		/**
 		 * The request parameter name whose request parameter value is a
-		 * <code>Collection</code> of client identifiers identifying the
+		 * {@code Collection} of client identifiers identifying the
 		 * components that must be processed during the
 		 * <em>Render Response</em> phase of the request processing
 		 * lifecycle.

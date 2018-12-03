@@ -35,8 +35,8 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 public class JavaxFaces2_1Properties implements ServletContextInitParameterProperties {
 
 	/**
-	 * The <code>ServletContext</code> init
-	 * parameter consulted by the <code>UIComponent</code> to tell whether or
+	 * The {@code ServletContext} init
+	 * parameter consulted by the {@code UIComponent} to tell whether or
 	 * not the {@link #CURRENT_COMPONENT} and
 	 * {@link #CURRENT_COMPOSITE_COMPONENT} attribute keys should be honored as
 	 * specified.

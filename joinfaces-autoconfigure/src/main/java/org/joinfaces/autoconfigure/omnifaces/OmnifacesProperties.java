@@ -159,7 +159,7 @@ public class OmnifacesProperties implements ServletContextInitParameterPropertie
 	/**
 	 * Set with a value greater than 0 to activate server-side caching of the combined resource files. The value is
 	 * interpreted as cache TTL (time to live) in seconds and is only effective when the JSF project stage is
-	 * <strong>not</strong> set to <code>Development</code>.
+	 * <strong>not</strong> set to {@code Development}.
 	 *
 	 * @see CombinedResourceHandler#PARAM_NAME_CACHE_TTL
 	 */
@@ -175,7 +175,7 @@ public class OmnifacesProperties implements ServletContextInitParameterPropertie
 	private Boolean combinedResourceHandlerDisabled;
 
 	/**
-	 * List of resource identifiers of <code>&lt;h:head&gt;</code> resources which needs to be excluded
+	 * List of resource identifiers of {@code <h:head>} resources which needs to be excluded
 	 * from combining.
 	 *
 	 * @see CombinedResourceHandler#PARAM_NAME_EXCLUDED_RESOURCES
@@ -184,7 +184,7 @@ public class OmnifacesProperties implements ServletContextInitParameterPropertie
 	private List<String> combinedResourceHandlerExcludedResources;
 
 	/**
-	 * Set to <code>true</code> if you want to render the combined CSS resources inline (embedded in HTML) instead of as a
+	 * Set to {@code true} if you want to render the combined CSS resources inline (embedded in HTML) instead of as a
 	 * resource.
 	 *
 	 * @see CombinedResourceHandler#PARAM_NAME_INLINE_CSS
@@ -193,7 +193,7 @@ public class OmnifacesProperties implements ServletContextInitParameterPropertie
 	private Boolean combinedResourceHandlerInlineCss;
 
 	/**
-	 * Set to <code>true</code> if you want to render the combined JS resources inline (embedded in HTML) instead of as a
+	 * Set to {@code true} if you want to render the combined JS resources inline (embedded in HTML) instead of as a
 	 * resource.
 	 *
 	 * @see CombinedResourceHandler#PARAM_NAME_INLINE_JS
@@ -202,7 +202,7 @@ public class OmnifacesProperties implements ServletContextInitParameterPropertie
 	private Boolean combinedResourceHandlerInlineJs;
 
 	/**
-	 * List of resource identifiers of <code>&lt;h:head&gt;</code> resources which needs to be suppressed
+	 * List of resource identifiers of {@code <h:head>} resources which needs to be suppressed
 	 * and removed.
 	 *
 	 * @see CombinedResourceHandler#PARAM_NAME_SUPPRESSED_RESOURCES

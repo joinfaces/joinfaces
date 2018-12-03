@@ -64,7 +64,7 @@ public class JavaxFaces2_3Properties implements ServletContextInitParameterPrope
 	private Integer websocketEndpointPort;
 
 	/**
-     * The <code>ServletContext</code> init
+     * The {@code ServletContext} init
      * parameter consulted by the runtime to tell if the automatic mapping
      * of the {@code FacesServlet} to the extension {@code *.xhtml}
      * should be disabled.  The implementation must disable this automatic
@@ -92,7 +92,7 @@ public class JavaxFaces2_3Properties implements ServletContextInitParameterPrope
 	/**
      * If this param is set, and calling toLowerCase().equals("true") on a
      * String representation of its value returns {@code true} take
-     * the additional actions relating to <code>&lt;validateWholeBean /&gt;</code>
+     * the additional actions relating to {@code <validateWholeBean />}
      * specified in {@link #validate}.
      *
      * @since 2.3
