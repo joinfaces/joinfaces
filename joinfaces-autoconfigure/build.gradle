@@ -61,6 +61,8 @@ dependencies {
     testRuntime 'org.junit.jupiter:junit-jupiter-engine'
 }
 
+compileJava.dependsOn(processResources)
+
 test {
     include "**/*Test.class"
 }

@@ -2,11 +2,16 @@
   "properties": [
     {
       "name": "jsf.faces-servlet.url-mappings",
-      "defaultValue": ["/faces/*", "*.jsf", "*.faces", "*.xhtml"]
+      "defaultValue": [
+        "/faces/*",
+        "*.jsf",
+        "*.faces",
+        "*.xhtml"
+      ]
     },
     {
       "name": "jsf.scope-configurer.jsf.enabled",
-      "defaultValue": "true",
+      "defaultValue": true,
       "type": "java.lang.Boolean"
     },
     {
@@ -16,7 +21,7 @@
     },
     {
       "name": "jsf.scope-configurer.cdi.enabled",
-      "defaultValue": "true",
+      "defaultValue": true,
       "type": "java.lang.Boolean"
     },
     {
@@ -26,7 +31,7 @@
     },
     {
       "name": "jsf.mojarra.disable-unicode-escaping",
-      "defaultValue": "false"
+      "defaultValue": false
     }
   ],
   "hints": [

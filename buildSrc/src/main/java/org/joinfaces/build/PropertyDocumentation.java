@@ -19,7 +19,9 @@ package org.joinfaces.build;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Arrays;
 import java.util.Comparator;
+import java.util.stream.Collectors;
 
 import org.codehaus.groovy.runtime.ResourceGroovyMethods;
 import org.gradle.api.DefaultTask;
@@ -60,28 +62,40 @@ public class PropertyDocumentation extends DefaultTask {
 			configurationMetadataRepository.getAllGroups().values().stream()
 					.sorted(Comparator.comparing(ConfigurationMetadataGroup::getId))
 					.forEach(group -> {
-						writer.printf("# %s\n", group.getId());
+						writer.printf("## %s\n", group.getId());
 
 						group.getProperties().values().stream()
 								.sorted(Comparator.comparing(ConfigurationMetadataProperty::getId))
-								.forEach(property -> {
-									writer.print(property.getId());
-									writer.print('=');
-									if (property.getDefaultValue() != null) {
-										writer.print(property.getDefaultValue());
-									}
-									if (property.getShortDescription() != null) {
-										writer.print(" # ");
-										writer.print(property.getShortDescription());
-									}
-									writer.println();
-								});
+								.forEach(property -> printProperty(writer, property));
 						writer.println();
 						writer.flush();
 					});
 
 			writer.println("----");
 		}
+	}
+
+	private void printProperty(PrintWriter writer, ConfigurationMetadataProperty property) {
+		writer.print(property.getId());
+		writer.print('=');
+
+		Object defaultValue = property.getDefaultValue();
+		if (defaultValue != null) {
+			if (defaultValue.getClass().isArray()) {
+				defaultValue = Arrays.stream((Object[]) defaultValue)
+						.map(String::valueOf)
+						.collect(Collectors.joining(","));
+			}
+
+			writer.print(defaultValue);
+		}
+
+		if (property.getShortDescription() != null) {
+			writer.print(" # ");
+			writer.print(property.getShortDescription());
+		}
+
+		writer.println();
 	}
 
 	public RegularFileProperty getInputFile() {
