@@ -1,5 +1,5 @@
 = JoinFaces Documentation
-Marcelo Fernandes <persapiens@gmail.com>; Lars Grefer <larsgrefer@joinfaces.org>
+Marcelo Fernandes <persapiens@joinfaces.org>; Lars Grefer <larsgrefer@joinfaces.org>
 :toc: left
 :stylesheet: asciidoctor.css
 :source-highlighter: prettify
@@ -12,7 +12,7 @@ IMPORTANT: This documentation is still under construction.
 
 .Official example projects
 |===
-|Build tool \ packaing |`jar` |`war`
+|Build tool \ packaging |`jar` |`war`
 
 |https://maven.apache.org/[Maven]
 |https://github.com/joinfaces/joinfaces-maven-jar-example[maven-jar-example]
@@ -81,6 +81,10 @@ NOTE: Please also consult the official Spring Boot documentation: https://docs.s
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
         </dependency>
+        <dependency>
+            <groupId>org.joinfaces</groupId>
+            <artifactId>jsf-spring-boot-starter</artifactId>
+        </dependency>
     </dependencies>
 </project>
 ----
@@ -99,6 +103,7 @@ apply plugin: 'org.springframework.boot'
 apply plugin: 'io.spring.dependency-management'
 
 dependencies {
+    testCompile 'org.springframework.boot:spring-boot-starter-test'
     compile 'org.joinfaces:jsf-spring-boot-starter'
 }
 ----
