@@ -203,8 +203,8 @@ If you have any problems with the classpath scan, you can disable it:
 scanClasspath.enabled = false
 ----
 
+[[properties]]
 [appendix]
-[#properties]
 == Properties
 
 This appendix contains a alphabetical list of all properties handled by JoinFaces.
