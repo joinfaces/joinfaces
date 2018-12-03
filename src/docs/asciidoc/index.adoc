@@ -126,6 +126,45 @@ dependencies {
 
 == Features
 
+=== Servlet-Context Init-Parameters
+
+JSF implementations and JSF component libraries are usually configured using servlet context init parameters in `web.xml`:
+
+[source,xml]
+----
+<context-param>
+    <param-name>javax.faces.PROJECT_STAGE</param-name>
+    <param-value>Development</param-value>
+</context-param>
+<context-param>
+    <param-name>primefaces.THEME</param-name>
+    <param-value>omega</param-value>
+</context-param>
+----
+
+_Spring Boot_ based applications -- especially when using `jar`-packaging -- usually don't have a `web.xml` file.
+Therefore JoinFaces maps these options to
+https://docs.spring.io/spring-boot/docs/{spring-boot-version}/reference/htmlsingle/#boot-features-external-config[_Spring Boot_ properties]:
+
+[source,properties]
+----
+jsf.project-stage=development
+jsf.primefaces.theme=omega
+----
+
+The full list of all properties can be found in the chapter <<properties>>.
+
+[TIP]
+====
+If you need a to set a parameter which isn't specially handled by JoinFaces, you can still set it using this generic way:
+
+[source,properties,subs="+quotes"]
+----
+server.servlet.context-parameters._javax.faces.PROJECT_STAGE_=Development
+server.servlet.context-parameters._primefaces.THEME_=omega
+----
+====
+
 == Maven Plugin
 
 == Gradle Plugin
@@ -165,6 +204,13 @@ scanClasspath.enabled = false
 ----
 
 [appendix]
+[#properties]
 == Properties
+
+This appendix contains a alphabetical list of all properties handled by JoinFaces.
+
+NOTE: The properties already supported by _Spring Boot_ itself aren't listed here again.
+They can be found https://docs.spring.io/spring-boot/docs/{spring-boot-version}/reference/htmlsingle/#common-application-properties[in
+the corresponding chapter of the _Spring Boot Reference Guide_]
 
 include::generated/_properties.adoc[]
