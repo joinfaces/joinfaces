@@ -1,14 +1,30 @@
-= JoinFaces Documentation
+= JoinFaces Reference Guide
 Marcelo Fernandes <persapiens@joinfaces.org>; Lars Grefer <larsgrefer@joinfaces.org>
 :toc: left
 :stylesheet: asciidoctor.css
 :source-highlighter: prettify
 :sectnums:
 :sectanchors:
+:hide-uri-scheme:
 
 IMPORTANT: This documentation is still under construction.
 
-== Using JoinFaces
+== About the Documentation
+
+The documentation of JoinFaces {revnumber} consists of two parts:
+
+- This Reference Guide
+- The Javadoc API
+
+The latest copy of the user gude is available at https://docs.joinfaces.org/current/reference +
+and the corresponding javadocs can be found at https://docs.joinfaces.org/current/api.
+
+Copies of this document may be made for your own use and for distribution to others, provided that you do not charge any fee for such copies and further provided that each copy contains this Copyright Notice, whether distributed in print or electronically.
+
+== Getting Started
+
+NOTE: If you're not familiar with _Spring Boot_, you should read its
+https://docs.spring.io/spring-boot/docs/current/reference/htmlsingle/#getting-started[Getting Started guide] first.
 
 .Official example projects
 |===
@@ -26,17 +42,10 @@ IMPORTANT: This documentation is still under construction.
 
 === System Requirements
 
-.System Requirements
-|===
-|Joinfaces |Java |Spring Boot |JSF
+Unless otherwise noted, JoinFaces has the same system requirements as
+https://docs.spring.io/spring-boot/docs/{spring-boot-version}/reference/htmlsingle/#getting-started-system-requirements[_Spring Boot_].
 
-|3.3        |1.8 to 11  |2.1    |2.0 to 2.3
-|3.0 to 3.2 |1.8        |2.0    |2.0 to 2.3
-|2.x        |1.6 to 1.8 |1.x    |2.0 to 2.2
-
-|===
-
-This are the combinations we have tested and expect to work, but depending on the features you are using, other combinations might work, too.
+When using Java 9 or higher, make sure to use JoinFaces only on the classpath and not on the modulepath.
 
 [#bom]
 === Dependency Management
@@ -164,7 +173,9 @@ dependencies {
 }
 ----
 
-== Maven Plugin
+== Build Tools integration
+
+=== Maven Plugin
 
 JoinFaces provides `org.joinfaces:joinfaces-maven-plugin` https://maven.apache.org[Maven] plugin to configure a classpath scan at build-time in order to reduce the startup time of applications which use an embedded servlet container.
 
@@ -175,20 +186,20 @@ If you have any problems with the classpath scan, you can remove it from plugin 
 ----
 
 
-== Gradle Plugin
+=== Gradle Plugin
 
 JoinFaces provides some https://gradle.org/[Gradle] plugins to simplify the development.
 
 NOTE: When using the JoinFaces Gradle plugins, you might want to use the https://docs.spring.io/spring-boot/docs/{spring-boot-version}/reference/htmlsingle/#using-boot-gradle[Spring Boot gradle plugin], too.
 
-=== `org.joinfaces`
+==== `org.joinfaces`
 
 The `org.joinfaces` plugin is the main plugin. It does nothing on it's own, but conditionally applies
 the other plugin in reaction to the plugins present in the project.
 
 TIP: If defaults in the `org.joinfaces` plugin don't work for you, you can just include the sub-plugins you need instead.
 
-=== `org.joinfaces.dependency-management`
+==== `org.joinfaces.dependency-management`
 
 This plugin is applied by the main plugin if the https://github.com/spring-gradle-plugins/dependency-management-plugin[`io.spring.dependency-management` plugin] is applied to the current project.
 If this plugin is applied directly it will apply the `io.spring.dependency-management` itself.
@@ -197,7 +208,7 @@ In both cases it configures the dependency management plugin to use the JoinFace
 
 This is similar to what the https://docs.spring.io/spring-boot/docs/{spring-boot-version}/gradle-plugin/reference/html/#managing-dependencies[Spring Boot Gradle plugin does].
 
-=== `org.joinfaces.classpath-scan`
+==== `org.joinfaces.classpath-scan`
 
 This plugin configures a classpath scan at build-time in order to reduce the startup time of applications which use an
 embedded servlet container.
@@ -211,9 +222,9 @@ If you have any problems with the classpath scan, you can disable it:
 scanClasspath.enabled = false
 ----
 
-== Features
+== JoinFaces Features
 
-=== JoinFaces Starters
+=== Starters
 
 There are seventeen JoinFaces Starters available: six basic starters, two utility starters, one meta starter, six component starters, one theme starter and one extra starter.
 
@@ -322,7 +333,6 @@ dependencies {
 }
 ----
 
-
 === Servlet-Context Init-Parameters
 
 JSF implementations and JSF component libraries are usually configured using servlet context init parameters in `web.xml`:
@@ -362,11 +372,11 @@ server.servlet.context-parameters._primefaces.THEME_=omega
 ----
 ====
 
-=== JSF and CDI annotations support
+=== JSF and CDI scope-annotations support
 
-JSF and CDI annotations are automatically supported.
+JSF and CDI scope-annotations are automatically supported.
 
-The following annotations can be used to mark the scope of the used Spring beans:
+The following annotations can be used to define the scope of Spring beans:
 
 ==== Spring's default annotations
 
@@ -375,17 +385,20 @@ The following annotations can be used to mark the scope of the used Spring beans
 - https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/web/context/annotation/SessionScope.html[`@org.springframework.web.context.annotation.SessionScope`] or https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/context/annotation/Scope.html[`@org.springframework.context.annotation.Scope("session")`]
 - https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/context/annotation/Scope.html[`@org.springframework.context.annotation.Scope("view")`]
 
+==== New JSF Scope annotation (JSF >= 2.2)
+
+- https://docs.oracle.com/javaee/7/api/javax/faces/view/ViewScoped.html[`@javax.faces.view.ViewScoped`] (mapped to Joinfaces' `view` scope)
+
 ==== Old JSF Scope annotations (JSF <= 2.1)
+
+CAUTION: The following annotations are only supported for backwards compatibility.
+New applications should only use the annotations above.
 
 - https://docs.oracle.com/javaee/7/api/javax/faces/bean/ApplicationScoped.html[`@javax.faces.bean.ApplicationScoped`] (mapped to Spring's `application` scope)
 - https://docs.oracle.com/javaee/7/api/javax/faces/bean/NoneScoped.html[`@javax.faces.bean.NoneScoped`] (mapped to Spring's `prototype` scope)
 - https://docs.oracle.com/javaee/7/api/javax/faces/bean/RequestScoped.html[`@javax.faces.bean.RequestScoped`] (mapped to Spring's `request` scope)
 - https://docs.oracle.com/javaee/7/api/javax/faces/bean/SessionScoped.html[`@javax.faces.bean.SessionScoped`] (mapped to Spring's `session` scope)
 - https://docs.oracle.com/javaee/7/api/javax/faces/bean/ViewScoped.html[`@javax.faces.bean.ViewScoped`] (mapped to Joinfaces' `view` scope)
-
-==== New JSF Scope annotation (JSF >= 2.2)
-
-- https://docs.oracle.com/javaee/7/api/javax/faces/view/ViewScoped.html[`@javax.faces.view.ViewScoped`] (mapped to Joinfaces' `view` scope)
 
 ==== CDI Annotations
 
