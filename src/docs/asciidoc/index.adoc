@@ -63,12 +63,16 @@ NOTE: Please also consult the official Spring Boot documentation: https://docs.s
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
 
+    <properties>
+        <joinfaces.version>{revnumber}</joinfaces.version>
+    </properties>
+
     <dependencyManagement>
         <dependencies>
             <dependency>
                 <groupId>org.joinfaces</groupId>
                 <artifactId>joinfaces-dependencies</artifactId>
-                <version>{project-version}</version>
+                <version>${joinfaces.version}</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
@@ -87,6 +91,33 @@ NOTE: Please also consult the official Spring Boot documentation: https://docs.s
             <scope>test</scope>
         </dependency>
     </dependencies>
+
+    <build>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>org.joinfaces</groupId>
+                    <artifactId>joinfaces-maven-plugin</artifactId>
+                    <version>${joinfaces.version}</version>
+                    <executions>
+                        <execution>
+                            <goals>
+                                <goal>classpath-scan</goal>
+                            </goals>
+                        </execution>
+                    </executions>
+                </plugin>
+            </plugins>
+        </pluginManagement>
+
+        <plugins>
+            <plugin>
+                <groupId>org.joinfaces</groupId>
+                <artifactId>joinfaces-maven-plugin</artifactId>
+            </plugin>
+        </plugins>
+    </build>
+
 </project>
 ----
 
@@ -175,6 +206,15 @@ server.servlet.context-parameters._primefaces.THEME_=omega
 ====
 
 == Maven Plugin
+
+JoinFaces provides this plugin to configure a classpath scan at build-time in order to reduce the startup time of applications which use an embedded servlet container.
+
+If you have any problems with the classpath scan, you can remove it from plugin section in your `pom.xml` or disable it:
+[source,groovy,subs=attributes+]
+----
+-Djoinfaces.skip = true
+----
+
 
 == Gradle Plugin
 
