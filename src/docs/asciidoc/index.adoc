@@ -169,9 +169,9 @@ dependencies {
 JoinFaces provides `org.joinfaces:joinfaces-maven-plugin` https://maven.apache.org[Maven] plugin to configure a classpath scan at build-time in order to reduce the startup time of applications which use an embedded servlet container.
 
 If you have any problems with the classpath scan, you can remove it from plugin section in your `pom.xml` or disable it:
-[source,groovy,subs=attributes+]
+[source,sh]
 ----
--Djoinfaces.skip = true
+-Djoinfaces.skip=true
 ----
 
 
@@ -206,7 +206,7 @@ For each source-set the `runtimeClasspath` configuration and the output of the c
 `scala` and `kotlin` will be scanned.
 
 If you have any problems with the classpath scan, you can disable it:
-[source,groovy,subs=attributes+]
+[source,groovy]
 ----
 scanClasspath.enabled = false
 ----
