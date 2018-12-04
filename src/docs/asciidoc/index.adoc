@@ -226,26 +226,60 @@ While most of the starters can be combined, some starters are mutually exclusive
 You can use the table below to discover the starters that fit your needs.
 
 .JoinFaces starters
-[options="header"]
+[%autowidth]
 |===========
-| Starter | Description
-| tomcat-spring-boot-starter | Basic starter for https://tomcat.apache.org/[Tomcat] servlet container.
-| jetty-spring-boot-starter | Basic starter for https://www.eclipse.org/jetty[Jetty] servlet container. 
-| undertow-spring-boot-starter | Basic starter for http://undertow.io[Undertow] servlet container.
-| mojarra-spring-boot-starter | Basic starter for https://javaee.github.io/javaserverfaces-spec/[Mojarra] JSF implementation.
-| myfaces-spring-boot-starter | Basic starter for https://myfaces.apache.org/[MyFaces] JSF implementation.
-| weld-spring-boot-starter | Basic starter for https://weld.cdi-spec.org/[Weld] CDI Reference Implementation.
-| omnifaces1-spring-boot-starter | Utility starter for https://omnifaces.org/[OmniFaces] JSF utility library.
-| omnifaces3-spring-boot-starter | Utility starter for https://omnifaces.org/[OmniFaces] JSF utility library. Pulls `weld-spring-boot-starter`.
-| jsf-spring-boot-starter | Meta starter that pulls `tomcat-spring-boot-starter`, `mojarra-spring-boot-starter` and `omnifaces1-spring-boot-starter`.
-| primefaces-spring-boot-starter | Component starter for https://primefaces.org[PrimeFaces], and https://primefaces-extensions.github.io/[PrimeFaces Extensions] JSF Component libraries. Pulls `jsf-spring-boot-starter`.
-| bootsfaces-spring-boot-starter | Component starter for https://bootsfaces.net[BootsFaces] JSF Component library. Pulls `jsf-spring-boot-starter`.
-| butterfaces-spring-boot-starter | Component starter for http://butterfaces.org[ButterFaces] JSF Component library. Pulls `jsf-spring-boot-starter`.
-| icefaces-spring-boot-starter | Component starter for https://www.icesoft.org/java/projects/ICEfaces/overview.jsf[IceFaces] JSF Component library. Pulls `jsf-spring-boot-starter`.
-| richfaces-spring-boot-starter | Component starter for https://github.com/richfaces/richfaces[RichFaces] JSF Component library. Pulls `jsf-spring-boot-starter`.
-| angularfaces-spring-boot-starter | Component starter for https://angularfaces.net[AngularFaces] JSF Component library. Pulls `jsf-spring-boot-starter`.
-| adminfaces-spring-boot-starter | Template and Theme starter for https://adminfaces.github.io/site/[AdminFaces]. Pulls `primefaces-spring-boot-starter`.
-| rewrite-spring-boot-starter | Extra starter for https://github.com/ocpsoft/rewrite[Ocpsoft Rewrite] URL Rewriting Tool.
+|Starter |Description
+
+|tomcat-spring-boot-starter
+|Basic starter for https://tomcat.apache.org/[Tomcat] servlet container.
+
+|jetty-spring-boot-starter
+|Basic starter for https://www.eclipse.org/jetty[Jetty] servlet container.
+
+|undertow-spring-boot-starter
+|Basic starter for http://undertow.io[Undertow] servlet container.
+
+|mojarra-spring-boot-starter
+|Basic starter for https://javaee.github.io/javaserverfaces-spec/[Mojarra] JSF implementation.
+
+|myfaces-spring-boot-starter
+|Basic starter for https://myfaces.apache.org/[MyFaces] JSF implementation.
+
+|weld-spring-boot-starter
+|Basic starter for https://weld.cdi-spec.org/[Weld] CDI Reference Implementation.
+
+|omnifaces1-spring-boot-starter
+|Utility starter for https://omnifaces.org/[OmniFaces] JSF utility library.
+
+|omnifaces3-spring-boot-starter
+|Utility starter for https://omnifaces.org/[OmniFaces] JSF utility library. Pulls `weld-spring-boot-starter`.
+
+|jsf-spring-boot-starter
+|Meta starter that pulls `tomcat-spring-boot-starter`, `mojarra-spring-boot-starter` and `omnifaces1-spring-boot-starter`.
+
+|primefaces-spring-boot-starter
+|Component starter for https://primefaces.org[PrimeFaces], and https://primefaces-extensions.github.io/[PrimeFaces Extensions] JSF Component libraries. Pulls `jsf-spring-boot-starter`.
+
+|bootsfaces-spring-boot-starter
+|Component starter for https://bootsfaces.net[BootsFaces] JSF Component library. Pulls `jsf-spring-boot-starter`.
+
+|butterfaces-spring-boot-starter
+|Component starter for http://butterfaces.org[ButterFaces] JSF Component library. Pulls `jsf-spring-boot-starter`.
+
+|icefaces-spring-boot-starter
+|Component starter for https://www.icesoft.org/java/projects/ICEfaces/overview.jsf[IceFaces] JSF Component library. Pulls `jsf-spring-boot-starter`.
+
+|richfaces-spring-boot-starter
+|Component starter for https://github.com/richfaces/richfaces[RichFaces] JSF Component library. Pulls `jsf-spring-boot-starter`.
+
+|angularfaces-spring-boot-starter
+|Component starter for https://angularfaces.net[AngularFaces] JSF Component library. Pulls `jsf-spring-boot-starter`.
+
+|adminfaces-spring-boot-starter
+|Template and Theme starter for https://adminfaces.github.io/site/[AdminFaces]. Pulls `primefaces-spring-boot-starter`.
+
+|rewrite-spring-boot-starter
+|Extra starter for https://github.com/ocpsoft/rewrite[Ocpsoft Rewrite] URL Rewriting Tool.
 |===========
 
 ==== Not using Tomcat or Mojarra
@@ -253,12 +287,12 @@ The `jsf-spring-boot-starter` pulls tomcat and mojarra as defaults. If you want 
 
 The principle behind this is the same as described here:
 
-- https://docs.spring.io/spring-boot/docs/{spring-boot-version}/reference/htmlsingle/#howto-use-another-web-server
-- https://docs.spring.io/spring-boot/docs/{spring-boot-version}/reference/htmlsingle/#howto-configure-log4j-for-logging
+- https://docs.spring.io/spring-boot/docs/{spring-boot-version}/reference/htmlsingle/#howto-use-another-web-server[Use Another Web Server]
+- https://docs.spring.io/spring-boot/docs/{spring-boot-version}/reference/htmlsingle/#howto-configure-log4j-for-logging[Configure Log4j for Logging]
 
 ===== Example: Using MyFaces instead of Mojarra
-
-```xml
+[source,xml]
+----
 <dependencies>
     <dependency>
         <groupId>org.joinfaces</groupId>
@@ -275,9 +309,10 @@ The principle behind this is the same as described here:
         <artifactId>myfaces-spring-boot-starter</artifactId>
     </dependency>
 </dependencies>
-```
+----
 
-```gradle
+[source,groovy]
+----
 dependencies {
     compile ("org.joinfaces:jsf-spring-boot-starter") {
         exclude module: "mojarra-spring-boot-starter"
@@ -285,7 +320,7 @@ dependencies {
     compile "org.joinfaces:myfaces-spring-boot-starter"
     // ...
 }
-```
+----
 
 
 === Servlet-Context Init-Parameters
