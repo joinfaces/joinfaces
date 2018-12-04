@@ -164,50 +164,9 @@ dependencies {
 }
 ----
 
-== Features
-
-=== Servlet-Context Init-Parameters
-
-JSF implementations and JSF component libraries are usually configured using servlet context init parameters in `web.xml`:
-
-[source,xml]
-----
-<context-param>
-    <param-name>javax.faces.PROJECT_STAGE</param-name>
-    <param-value>Development</param-value>
-</context-param>
-<context-param>
-    <param-name>primefaces.THEME</param-name>
-    <param-value>omega</param-value>
-</context-param>
-----
-
-_Spring Boot_ based applications -- especially when using `jar`-packaging -- usually don't have a `web.xml` file.
-Therefore JoinFaces maps these options to
-https://docs.spring.io/spring-boot/docs/{spring-boot-version}/reference/htmlsingle/#boot-features-external-config[_Spring Boot_ properties]:
-
-[source,properties]
-----
-jsf.project-stage=development
-jsf.primefaces.theme=omega
-----
-
-The full list of all properties can be found in the chapter <<properties>>.
-
-[TIP]
-====
-If you need a to set a parameter which isn't specially handled by JoinFaces, you can still set it using this generic way:
-
-[source,properties,subs="+quotes"]
-----
-server.servlet.context-parameters._javax.faces.PROJECT_STAGE_=Development
-server.servlet.context-parameters._primefaces.THEME_=omega
-----
-====
-
 == Maven Plugin
 
-JoinFaces provides this plugin to configure a classpath scan at build-time in order to reduce the startup time of applications which use an embedded servlet container.
+JoinFaces provides `org.joinfaces:joinfaces-maven-plugin` https://maven.apache.org[Maven] plugin to configure a classpath scan at build-time in order to reduce the startup time of applications which use an embedded servlet container.
 
 If you have any problems with the classpath scan, you can remove it from plugin section in your `pom.xml` or disable it:
 [source,groovy,subs=attributes+]
@@ -251,6 +210,47 @@ If you have any problems with the classpath scan, you can disable it:
 ----
 scanClasspath.enabled = false
 ----
+
+== Features
+
+=== Servlet-Context Init-Parameters
+
+JSF implementations and JSF component libraries are usually configured using servlet context init parameters in `web.xml`:
+
+[source,xml]
+----
+<context-param>
+    <param-name>javax.faces.PROJECT_STAGE</param-name>
+    <param-value>Development</param-value>
+</context-param>
+<context-param>
+    <param-name>primefaces.THEME</param-name>
+    <param-value>omega</param-value>
+</context-param>
+----
+
+_Spring Boot_ based applications -- especially when using `jar`-packaging -- usually don't have a `web.xml` file.
+Therefore JoinFaces maps these options to
+https://docs.spring.io/spring-boot/docs/{spring-boot-version}/reference/htmlsingle/#boot-features-external-config[_Spring Boot_ properties]:
+
+[source,properties]
+----
+jsf.project-stage=development
+jsf.primefaces.theme=omega
+----
+
+The full list of all properties can be found in the chapter <<properties>>.
+
+[TIP]
+====
+If you need a to set a parameter which isn't specially handled by JoinFaces, you can still set it using this generic way:
+
+[source,properties,subs="+quotes"]
+----
+server.servlet.context-parameters._javax.faces.PROJECT_STAGE_=Development
+server.servlet.context-parameters._primefaces.THEME_=omega
+----
+====
 
 [[properties]]
 [appendix]
