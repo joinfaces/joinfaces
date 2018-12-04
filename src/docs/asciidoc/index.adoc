@@ -225,9 +225,10 @@ While most of the starters can be combined, some starters are mutually exclusive
 
 You can use the table below to discover the starters that fit your needs.
 
+.JoinFaces starters
 [options="header"]
 |===========
-| JoinFaces Starter | Description
+| Starter | Description
 | tomcat-spring-boot-starter | Basic starter for https://tomcat.apache.org/[Tomcat] servlet container.
 | jetty-spring-boot-starter | Basic starter for https://www.eclipse.org/jetty[Jetty] servlet container. 
 | undertow-spring-boot-starter | Basic starter for http://undertow.io[Undertow] servlet container.
@@ -325,6 +326,39 @@ server.servlet.context-parameters._javax.faces.PROJECT_STAGE_=Development
 server.servlet.context-parameters._primefaces.THEME_=omega
 ----
 ====
+
+=== JSF and CDI annotations support
+
+JSF and CDI annotations are automatically supported.
+
+The following annotations can be used to mark the scope of the used Spring beans:
+
+==== Spring's default annotations
+
+- https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/web/context/annotation/ApplicationScope.html[`@org.springframework.web.context.annotation.ApplicationScope`] or https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/context/annotation/Scope.html[`@org.springframework.context.annotation.Scope("application")`]
+- https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/web/context/annotation/RequestScope.html[`@org.springframework.web.context.annotation.RequestScope`] or https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/context/annotation/Scope.html[`@org.springframework.context.annotation.Scope("request")`]
+- https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/web/context/annotation/SessionScope.html[`@org.springframework.web.context.annotation.SessionScope`] or https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/context/annotation/Scope.html[`@org.springframework.context.annotation.Scope("session")`]
+- https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/context/annotation/Scope.html[`@org.springframework.context.annotation.Scope("view")`]
+
+==== Old JSF Scope annotations (JSF <= 2.1)
+
+- https://docs.oracle.com/javaee/7/api/javax/faces/bean/ApplicationScoped.html[`@javax.faces.bean.ApplicationScoped`] (mapped to Spring's `application` scope)
+- https://docs.oracle.com/javaee/7/api/javax/faces/bean/NoneScoped.html[`@javax.faces.bean.NoneScoped`] (mapped to Spring's `prototype` scope)
+- https://docs.oracle.com/javaee/7/api/javax/faces/bean/RequestScoped.html[`@javax.faces.bean.RequestScoped`] (mapped to Spring's `request` scope)
+- https://docs.oracle.com/javaee/7/api/javax/faces/bean/SessionScoped.html[`@javax.faces.bean.SessionScoped`] (mapped to Spring's `session` scope)
+- https://docs.oracle.com/javaee/7/api/javax/faces/bean/ViewScoped.html[`@javax.faces.bean.ViewScoped`] (mapped to Joinfaces' `view` scope)
+
+==== New JSF Scope annotation (JSF >= 2.2)
+
+- https://docs.oracle.com/javaee/7/api/javax/faces/view/ViewScoped.html[`@javax.faces.view.ViewScoped`] (mapped to Joinfaces' `view` scope)
+
+==== CDI Annotations
+
+- https://docs.oracle.com/javaee/7/api/javax/enterprise/context/ApplicationScoped.html[`@javax.enterprise.context.ApplicationScoped`] (mapped to Spring's `application` scope)
+- https://docs.oracle.com/javaee/7/api/javax/enterprise/context/ConversationScoped.html[`@javax.enterprise.context.ConversationScoped`] (mapped to Spring's `session` scope)
+- https://docs.oracle.com/javaee/7/api/javax/enterprise/context/RequestScoped.html[`@javax.enterprise.context.RequestScoped`] (mapped to Spring's `request` scope)
+- https://docs.oracle.com/javaee/7/api/javax/enterprise/context/SessionScoped.html[`@javax.enterprise.context.SessionScoped`] (mapped to Spring's `session` scope)
+
 
 [[properties]]
 [appendix]
