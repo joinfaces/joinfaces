@@ -264,9 +264,17 @@ task propertyDocs(type: org.joinfaces.build.PropertyDocumentation) {
     dependsOn ":joinfaces-autoconfigure:classes"
 }
 
+task bomDocs(type: org.joinfaces.build.BomDocumentation) {
+    afterEvaluate {
+        dependsOn generatePomFileForBomPublication
+        inputFile = generatePomFileForBomPublication.destination
+    }
+    outputFile = file("src/docs/asciidoc/generated/_versions.adoc")
+}
+
 asciidoctor {
     backends = ['html5']
-    dependsOn propertyDocs
+    dependsOn propertyDocs, bomDocs
     attributes 'icons': 'font',
             revnumber: project.version,
             'spring-boot-version': org.springframework.boot.gradle.plugin.SpringBootPlugin.SPRING_BOOT_VERSION
