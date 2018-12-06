@@ -35,17 +35,16 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 public class JavaxFaces2_1Properties implements ServletContextInitParameterProperties {
 
 	/**
-	 * <p class="changed_added_2_1">The <code>ServletContext</code> init
-	 * parameter consulted by the <code>UIComponent</code> to tell whether or
+	 * The {@code ServletContext} init
+	 * parameter consulted by the {@code UIComponent} to tell whether or
 	 * not the {@link #CURRENT_COMPONENT} and
 	 * {@link #CURRENT_COMPOSITE_COMPONENT} attribute keys should be honored as
-	 * specified.</p>
-	 *
+	 * specified.
 	 * <p>
 	 * If this parameter is not specified, or is set to false, the contract
 	 * specified by the {@link #CURRENT_COMPONENT} and
 	 * {@link #CURRENT_COMPOSITE_COMPONENT} method is not honored. If this
-	 * parameter is set to true, the contract is honored.</p>
+	 * parameter is set to true, the contract is honored.
 	 */
 	@ServletContextInitParameter(UIComponent.HONOR_CURRENT_COMPONENT_ATTRIBUTES_PARAM_NAME)
 	private Boolean honorCurrentComponentAttributes;

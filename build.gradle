@@ -5,7 +5,6 @@ buildscript {
         maven { url "https://plugins.gradle.org/m2/" }
     }
     dependencies {
-        classpath "org.springframework.boot:spring-boot-gradle-plugin:2.1.1.RELEASE"
         classpath "io.freefair.gradle:lombok-plugin:2.9.1"
         classpath "io.freefair.gradle:maven-plugin:2.9.1"
         classpath "gradle.plugin.com.github.spotbugs:spotbugs-gradle-plugin:1.6.5"
@@ -259,8 +258,23 @@ nexusStaging {
 
 apply plugin: "org.asciidoctor.convert"
 
+task propertyDocs(type: org.joinfaces.build.PropertyDocumentation) {
+    inputFile = file("joinfaces-autoconfigure/build/classes/java/main/META-INF/spring-configuration-metadata.json")
+    outputFile = file("src/docs/asciidoc/generated/_properties.adoc")
+    dependsOn ":joinfaces-autoconfigure:classes"
+}
+
+task bomDocs(type: org.joinfaces.build.BomDocumentation) {
+    afterEvaluate {
+        dependsOn generatePomFileForBomPublication
+        inputFile = generatePomFileForBomPublication.destination
+    }
+    outputFile = file("src/docs/asciidoc/generated/_versions.adoc")
+}
+
 asciidoctor {
     backends = ['html5']
+    dependsOn propertyDocs, bomDocs
     attributes 'icons': 'font',
             revnumber: project.version,
             'spring-boot-version': org.springframework.boot.gradle.plugin.SpringBootPlugin.SPRING_BOOT_VERSION

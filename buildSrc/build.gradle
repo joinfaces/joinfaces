@@ -4,7 +4,12 @@ repositories {
     mavenCentral()
 }
 
+def springBootVersion = "2.1.1.RELEASE"
+
 dependencies {
-    compile 'com.squareup.okhttp3:okhttp:3.12.0'
-    compile 'com.squareup.okhttp3:logging-interceptor:3.12.0'
+    implementation 'com.squareup.okhttp3:okhttp:3.12.0'
+    implementation 'com.squareup.okhttp3:logging-interceptor:3.12.0'
+
+    compile "org.springframework.boot:spring-boot-gradle-plugin:$springBootVersion"
+    implementation "org.springframework.boot:spring-boot-configuration-metadata:$springBootVersion"
 }

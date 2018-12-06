@@ -43,15 +43,14 @@ import org.springframework.boot.context.properties.NestedConfigurationProperty;
 public class JavaxFaces2_2Properties implements ServletContextInitParameterProperties {
 
 	/**
-	 * <p class="changed_added_2_2">If a <code>&lt;context-param&gt;</code> with
-	 * the param name equal to the value of
+	 * If a {@code <context-param>} with the param name equal to the value of
 	 * {@link #WEBAPP_CONTRACTS_DIRECTORY_PARAM_NAME} exists, the runtime must
 	 * interpret its value as a path, relative to the web app root, where
 	 * resource library contracts are to be located. This param value must not
 	 * start with a "/", though it may contain "/" characters. If no such
-	 * <code>&lt;context-param&gt;</code> exists, or its value is invalid, the
+	 * {@code <context-param>} exists, or its value is invalid, the
 	 * value "contracts", without the quotes, must be used by the runtime as the
-	 * value.</p>
+	 * value.
 	 *
 	 * @since 2.2
 	 */
@@ -59,15 +58,14 @@ public class JavaxFaces2_2Properties implements ServletContextInitParameterPrope
 	private String webappContractsDirectory;
 
 	/**
-	 * <p class="changed_added_2_2">If a <code>&lt;context-param&gt;</code> with
-	 * the param name equal to the value of
+	 * If a {@code <context-param>} with the param name equal to the value of
 	 * {@link #WEBAPP_RESOURCES_DIRECTORY_PARAM_NAME} exists, the runtime must
 	 * interpret its value as a path, relative to the web app root, where
 	 * resources are to be located. This param value must not start with a "/",
 	 * though it may contain "/" characters. If no such
-	 * <code>&lt;context-param&gt;</code> exists, or its value is invalid, the
+	 * {@code <context-param>} exists, or its value is invalid, the
 	 * value "resources", without the quotes, must be used by the runtime as the
-	 * value.</p>
+	 * value.
 	 *
 	 * @since 2.2
 	 */
@@ -94,11 +92,10 @@ public class JavaxFaces2_2Properties implements ServletContextInitParameterPrope
 	private Flow flow = new Flow();
 
 	/**
-	 * <p class="changed_added_2_2">The context-param that controls the
-	 * operation of the <code>ClientWindow</code> feature. The runtime must
-	 * support the values "none" and "url", without the quotes, but other values
+	 * The context-param that controls the operation of the {@code ClientWindow} feature.
+	 * The runtime must support the values "none" and "url", without the quotes, but other values
 	 * are possible. If not specified, or the value is not understood by the
-	 * implementation, "none" is assumed.</p>
+	 * implementation, "none" is assumed.
 	 *
 	 * @since 2.2
 	 */
@@ -112,10 +109,9 @@ public class JavaxFaces2_2Properties implements ServletContextInitParameterPrope
 	public static class Partial {
 
 		/**
-		 * <p class="changed_added_2_2">
 		 * If the request parameter named by the value of this constant has a
-		 * parameter value of <code>true</code>, the implementation must return
-		 * <code>true</code> from {@link #isResetValues}.</p>
+		 * parameter value of {@code true}, the implementation must return
+		 * {@code true} from {@link #isResetValues}.
 		 *
 		 * @since 2.2
 		 */
@@ -130,12 +126,11 @@ public class JavaxFaces2_2Properties implements ServletContextInitParameterPrope
 	public static class Flow {
 
 		/**
-		 * <p class="changed_added_2_2">Components that are rendered by
-		 * <code>Renderers</code> of component-family
-		 * <code>javax.faces.OutcomeTarget</code> must use this constant as the
+		 * Components that are rendered by {@code Renderers} of component-family
+		 * {@code javax.faces.OutcomeTarget} must use this constant as the
 		 * value of the parameter named by
 		 * {@link #TO_FLOW_DOCUMENT_ID_REQUEST_PARAM_NAME} when returning from a
-		 * flow (without entering another flow) using such a component. </p>
+		 * flow (without entering another flow) using such a component.
 		 *
 		 * @since 2.2
 		 */
