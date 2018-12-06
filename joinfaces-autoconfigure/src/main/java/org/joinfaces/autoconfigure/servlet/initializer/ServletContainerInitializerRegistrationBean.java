@@ -34,7 +34,6 @@ import javax.servlet.annotation.HandlesTypes;
 import io.github.classgraph.ClassGraph;
 import io.github.classgraph.ClassInfoList;
 import io.github.classgraph.ScanResult;
-import io.github.classgraph.utils.JarUtils;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
@@ -155,7 +154,6 @@ public class ServletContainerInitializerRegistrationBean<T extends ServletContai
 				.blacklistPackages("java", "jdk", "sun", "javafx", "oracle")
 				.blacklistPackages("javax.xml", "javax.el", "javax.persistence")
 				.blacklistModules("java.*", "jdk.*")
-				.filterClasspathElements(path -> !JarUtils.getJreLibOrExtJars().contains(path))
 				.filterClasspathElements(path -> {
 					log.debug("Path {}", path);
 					return true;
