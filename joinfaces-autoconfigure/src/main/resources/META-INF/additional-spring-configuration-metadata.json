@@ -2,16 +2,19 @@
   "groups": [
     {
       "name": "joinfaces.view-scope",
-      "type": "org.joinfaces.autoconfigure.viewscope.ViewScopeAutoConfiguration"
+      "type": "org.joinfaces.autoconfigure.viewscope.ViewScopeAutoConfiguration",
+      "sourceType": "org.joinfaces.autoconfigure.viewscope.ViewScopeAutoConfiguration"
     },
     {
       "name": "joinfaces.scope-configurer.jsf",
       "type": "org.joinfaces.autoconfigure.scopemapping.JsfScopeAnnotationsAutoConfiguration",
+      "sourceType": "org.joinfaces.autoconfigure.scopemapping.JsfScopeAnnotationsAutoConfiguration",
       "description": "Support for JSF @xxxScoped annotations."
     },
     {
       "name": "joinfaces.scope-configurer.cdi",
       "type": "org.joinfaces.autoconfigure.scopemapping.CdiScopeAnnotationsAutoConfiguration",
+      "sourceType": "org.joinfaces.autoconfigure.scopemapping.CdiScopeAnnotationsAutoConfiguration",
       "description": "Support for CDI @javax.enterprise.context.xxxScoped annotations."
     },
     {
