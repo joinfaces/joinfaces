@@ -101,7 +101,6 @@ allprojects {
             }
 
             dependency 'javax.ejb:javax.ejb-api:3.2.2'
-
         }
     }
 
