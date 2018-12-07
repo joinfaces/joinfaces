@@ -95,18 +95,12 @@ allprojects {
                 entry "rewrite-integration-cdi"
             }
 
-            dependencySet('org.glassfish.jaxb:2.3.0') {
-                entry "jaxb-runtime"
-                entry "jaxb-core"
-            }
-
             dependencySet('com.github.adminfaces:1.0.0-RC20') {
                 entry "admin-template"
                 entry "admin-theme"
             }
 
             dependency 'javax.ejb:javax.ejb-api:3.2.2'
-
         }
     }
 
