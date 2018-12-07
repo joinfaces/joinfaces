@@ -64,13 +64,13 @@
       "sourceType": "org.joinfaces.autoconfigure.viewscope.ViewScopeAutoConfiguration"
     },
     {
-      "name": "jsf.mojarra.disable-unicode-escaping",
+      "name": "joinfaces.mojarra.disable-unicode-escaping",
       "defaultValue": false
     }
   ],
   "hints": [
     {
-      "name": "jsf.state-saving-method",
+      "name": "joinfaces.jsf.state-saving-method",
       "values": [
         {
           "value": "client",
@@ -83,7 +83,7 @@
       ]
     },
     {
-      "name": "jsf.client-window-mode",
+      "name": "joinfaces.jsf.client-window-mode",
       "values": [
         {
           "value": "none"
@@ -99,7 +99,7 @@
       ]
     },
     {
-      "name": "jsf.validate-empty-fields",
+      "name": "joinfaces.jsf.validate-empty-fields",
       "values": [
         {
           "value": "true"
@@ -115,7 +115,7 @@
       ]
     },
     {
-      "name": "jsf.mojarra.disable-unicode-escaping",
+      "name": "joinfaces.mojarra.disable-unicode-escaping",
       "values": [
         {
           "value": "auto",
@@ -132,7 +132,7 @@
       ]
     },
     {
-      "name": "jsf.mojarra.facelet-factory",
+      "name": "joinfaces.mojarra.facelet-factory",
       "providers": [
         {
           "name": "class-reference",
@@ -144,7 +144,7 @@
       ]
     },
     {
-      "name": "jsf.myfaces.el-resolver-predicate",
+      "name": "joinfaces.myfaces.el-resolver-predicate",
       "providers": [
         {
           "name": "class-reference",
@@ -163,7 +163,7 @@
       ]
     },
     {
-      "name": "jsf.omnifaces.cache-provider",
+      "name": "joinfaces.omnifaces.cache-provider",
       "providers": [
         {
           "name": "class-reference",
@@ -182,7 +182,7 @@
       ]
     },
     {
-      "name": "jsf.bootsfaces.get-bootstrap-from-cdn",
+      "name": "joinfaces.bootsfaces.get-bootstrap-from-cdn",
       "values": [
         {
           "value": "true",
@@ -200,7 +200,7 @@
       ]
     },
     {
-      "name": "jsf.bootsfaces.get-fontawesome-from-cdn",
+      "name": "joinfaces.bootsfaces.get-fontawesome-from-cdn",
       "values": [
         {
           "value": "true",
@@ -218,7 +218,7 @@
       ]
     },
     {
-      "name": "jsf.bootsfaces.get-jquery-from-cdn",
+      "name": "joinfaces.bootsfaces.get-jquery-from-cdn",
       "values": [
         {
           "value": "true",
@@ -236,7 +236,7 @@
       ]
     },
     {
-      "name": "jsf.bootsfaces.get-jqueryui-from-cdn",
+      "name": "joinfaces.bootsfaces.get-jqueryui-from-cdn",
       "values": [
         {
           "value": "true",
@@ -254,7 +254,7 @@
       ]
     },
     {
-      "name": "jsf.bootsfaces.block-ui",
+      "name": "joinfaces.bootsfaces.block-ui",
       "values": [
         {
           "value": "true"
@@ -270,7 +270,7 @@
       ]
     },
     {
-      "name": "jsf.bootsfaces.defaults.render-label",
+      "name": "joinfaces.bootsfaces.defaults.render-label",
       "values": [
         {
           "value": "true"
@@ -286,7 +286,7 @@
       ]
     },
     {
-      "name": "jsf.bootsfaces.usetheme",
+      "name": "joinfaces.bootsfaces.usetheme",
       "values": [
         {
           "value": "true",
@@ -303,7 +303,7 @@
       ]
     },
     {
-      "name": "jsf.bootsfaces.theme",
+      "name": "joinfaces.bootsfaces.theme",
       "values": [
         {
           "value": "custom"
@@ -316,7 +316,7 @@
       ]
     },
     {
-      "name": "jsf.primefaces.theme",
+      "name": "joinfaces.primefaces.theme",
       "values": [
         {
           "value": "afterdark"
@@ -449,7 +449,7 @@
       ]
     },
     {
-      "name": "jsf.primefaces.submit",
+      "name": "joinfaces.primefaces.submit",
       "values": [
         {
           "value": "full"
@@ -460,7 +460,7 @@
       ]
     },
     {
-      "name": "jsf.primefaces.dir",
+      "name": "joinfaces.primefaces.dir",
       "values": [
         {
           "value": "ltr",
@@ -473,7 +473,7 @@
       ]
     },
     {
-      "name": "jsf.primefaces.uploader",
+      "name": "joinfaces.primefaces.uploader",
       "values": [
         {
           "value": "auto",

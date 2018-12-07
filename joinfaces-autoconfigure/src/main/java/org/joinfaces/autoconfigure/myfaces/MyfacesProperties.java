@@ -56,7 +56,7 @@ import org.springframework.boot.context.properties.NestedConfigurationProperty;
  * @author Marcelo Fernandes
  */
 @Data
-@ConfigurationProperties(prefix = "jsf.myfaces")
+@ConfigurationProperties(prefix = "joinfaces.myfaces")
 public class MyfacesProperties implements ServletContextInitParameterProperties {
 
 	static final String PREFFIX = "org.apache.myfaces.";

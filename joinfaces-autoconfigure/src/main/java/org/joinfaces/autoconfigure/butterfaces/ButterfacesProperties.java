@@ -32,7 +32,7 @@ import org.springframework.boot.context.properties.NestedConfigurationProperty;
  * @author Marcelo Fernandes
  */
 @Data
-@ConfigurationProperties(prefix = "jsf.butterfaces")
+@ConfigurationProperties(prefix = "joinfaces.butterfaces")
 public class ButterfacesProperties implements ServletContextInitParameterProperties {
 
 	/**

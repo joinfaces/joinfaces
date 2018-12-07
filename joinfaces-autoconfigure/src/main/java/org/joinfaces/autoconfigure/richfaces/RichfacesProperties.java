@@ -35,7 +35,7 @@ import org.springframework.boot.context.properties.NestedConfigurationProperty;
  * @author Lars Grefer
  */
 @Data
-@ConfigurationProperties(prefix = "jsf.richfaces")
+@ConfigurationProperties(prefix = "joinfaces.richfaces")
 public class RichfacesProperties implements ServletContextInitParameterProperties {
 
 	// (defaultValue = "true", names = "org.richfaces.enableControlSkinning")

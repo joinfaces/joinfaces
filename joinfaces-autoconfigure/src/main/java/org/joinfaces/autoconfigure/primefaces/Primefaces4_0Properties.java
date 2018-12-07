@@ -35,7 +35,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
  */
 @Data
 @NoArgsConstructor
-@ConfigurationProperties("jsf.primefaces")
+@ConfigurationProperties("joinfaces.primefaces")
 public class Primefaces4_0Properties implements ServletContextInitParameterProperties {
 
 	/**

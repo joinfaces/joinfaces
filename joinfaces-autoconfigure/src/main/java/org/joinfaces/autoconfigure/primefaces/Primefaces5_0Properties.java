@@ -34,7 +34,7 @@ import org.springframework.boot.context.properties.NestedConfigurationProperty;
  * @author Lars Grefer
  */
 @Data
-@ConfigurationProperties("jsf.primefaces")
+@ConfigurationProperties("joinfaces.primefaces")
 public class Primefaces5_0Properties implements ServletContextInitParameterProperties {
 
 	@NestedConfigurationProperty

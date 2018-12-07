@@ -39,7 +39,7 @@ import org.springframework.boot.context.properties.NestedConfigurationProperty;
  * @see <a href="https://www.jcp.org/en/jsr/detail?id=344">JSR-344</a>
  */
 @Data
-@ConfigurationProperties(prefix = "jsf")
+@ConfigurationProperties(prefix = "joinfaces.jsf")
 public class JavaxFaces2_2Properties implements ServletContextInitParameterProperties {
 
 	/**

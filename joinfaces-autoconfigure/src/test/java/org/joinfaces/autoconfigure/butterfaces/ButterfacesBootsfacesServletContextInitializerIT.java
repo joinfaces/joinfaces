@@ -25,7 +25,7 @@ import org.springframework.web.context.WebApplicationContext;
 import static org.assertj.core.api.Assertions.assertThat;
 
 @SpringBootTest(
-		properties = "jsf.bootsfaces.get-jquery-from-cdn=false",
+		properties = "joinfaces.bootsfaces.get-jquery-from-cdn=false",
 		webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT
 )
 public class ButterfacesBootsfacesServletContextInitializerIT {

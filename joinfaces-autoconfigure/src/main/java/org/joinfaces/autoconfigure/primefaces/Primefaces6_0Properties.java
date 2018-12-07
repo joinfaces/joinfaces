@@ -31,7 +31,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
  * @author Lars Grefer
  */
 @Data
-@ConfigurationProperties("jsf.primefaces")
+@ConfigurationProperties("joinfaces.primefaces")
 public class Primefaces6_0Properties implements ServletContextInitParameterProperties {
 
 	@ServletContextInitParameter(Constants.ContextParams.EARLY_POST_PARAM_EVALUATION)
