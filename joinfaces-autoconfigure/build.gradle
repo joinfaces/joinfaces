@@ -45,7 +45,6 @@ dependencies {
     optional 'org.ocpsoft.rewrite:rewrite-servlet'
     optional 'org.ocpsoft.rewrite:rewrite-integration-spring'
     optional 'org.glassfish.jaxb:jaxb-runtime'
-    optional 'org.glassfish.jaxb:jaxb-core'
     optional 'javax.activation:javax.activation-api'
 
     optional 'com.github.adminfaces:admin-template'
