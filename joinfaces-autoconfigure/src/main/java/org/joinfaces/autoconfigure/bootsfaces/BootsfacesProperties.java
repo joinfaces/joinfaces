@@ -44,7 +44,7 @@ public class BootsfacesProperties implements ServletContextInitParameterProperti
 	private static final String PREFFIX = "net.bootsfaces.";
 
 	@NestedConfigurationProperty
-	private Defaults defaults = new Defaults();
+	private final Defaults defaults = new Defaults();
 
 	/**
 	 * deactivate FontAwesome support if the no-fa facet is found in the h:head

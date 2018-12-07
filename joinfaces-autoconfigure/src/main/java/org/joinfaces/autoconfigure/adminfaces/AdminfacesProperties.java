@@ -165,7 +165,7 @@ public class AdminfacesProperties implements Serializable {
 	/**
 	 * When true it will activate control sidebar component.
 	 */
-	private ControlSidebar controlSidebar = new ControlSidebar();
+	private final ControlSidebar controlSidebar = new ControlSidebar();
 
 	/**
 	 * ControlSidebar properties.

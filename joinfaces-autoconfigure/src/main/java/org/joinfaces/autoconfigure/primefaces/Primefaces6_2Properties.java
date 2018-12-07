@@ -35,6 +35,6 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 public class Primefaces6_2Properties implements ServletContextInitParameterProperties {
 
 	@ServletContextInitParameter(Constants.ContextParams.MOVE_SCRIPTS_TO_BOTTOM)
-	private boolean moveScriptsToBottom = false;
+	private Boolean moveScriptsToBottom;
 
 }

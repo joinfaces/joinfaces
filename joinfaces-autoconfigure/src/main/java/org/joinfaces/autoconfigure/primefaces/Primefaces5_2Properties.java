@@ -38,5 +38,5 @@ public class Primefaces5_2Properties implements ServletContextInitParameterPrope
 	 * Enabled font-awesome icons.
 	 */
 	@ServletContextInitParameter(Constants.ContextParams.FONT_AWESOME)
-	private boolean fontAwesome = false;
+	private Boolean fontAwesome;
 }

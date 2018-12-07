@@ -38,5 +38,5 @@ public class Primefaces5_1Properties implements ServletContextInitParameterPrope
 	 * Enables window scope so that widgets can be accessed using widgetVar.method() in addition to default PF namespace approach like PF('widgetVar').method().
 	 */
 	@ServletContextInitParameter(Constants.ContextParams.LEGACY_WIDGET_NAMESPACE)
-	private boolean legacyWidgetNamespace = false;
+	private Boolean legacyWidgetNamespace;
 }

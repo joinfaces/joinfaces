@@ -64,10 +64,10 @@ public class ButterfacesProperties implements ServletContextInitParameterPropert
 	private Boolean provideBootstrap;
 
 	@NestedConfigurationProperty
-	private Glyphicon glyphicon = new Glyphicon();
+	private final Glyphicon glyphicon = new Glyphicon();
 
 	@NestedConfigurationProperty
-	private Treebox treebox = new Treebox();
+	private final Treebox treebox = new Treebox();
 
 	/**
 	 * As default ButterFaces comes with an actual version of jQuery 2.x. To
@@ -110,7 +110,7 @@ public class ButterfacesProperties implements ServletContextInitParameterPropert
 	private Boolean useCompressedResources;
 
 	@NestedConfigurationProperty
-	private Integration integration = new Integration();
+	private final Integration integration = new Integration();
 
 	/**
 	 * Treebox class of specific tree box properties.
@@ -140,10 +140,10 @@ public class ButterfacesProperties implements ServletContextInitParameterPropert
 		private String refresh;
 
 		@NestedConfigurationProperty
-		private Order order = new Order();
+		private final Order order = new Order();
 
 		@NestedConfigurationProperty
-		private Sort sort = new Sort();
+		private final Sort sort = new Sort();
 
 		/**
 		 * Order class of left and right properties.
@@ -153,6 +153,7 @@ public class ButterfacesProperties implements ServletContextInitParameterPropert
 
 			@ServletContextInitParameter(WebXmlParameters.CTX_PARAM_ORDER_LEFT_GLYPHICON)
 			private String left;
+
 			@ServletContextInitParameter(WebXmlParameters.CTX_PARAM_ORDER_RIGHT_GLYPHICON)
 			private String right;
 		}
@@ -165,8 +166,10 @@ public class ButterfacesProperties implements ServletContextInitParameterPropert
 
 			@ServletContextInitParameter(WebXmlParameters.CTX_PARAM_SORT_ASC_GLYPHICON)
 			private String ascending;
+
 			@ServletContextInitParameter(WebXmlParameters.CTX_PARAM_SORT_DESC_GLYPHICON)
 			private String descending;
+
 			@ServletContextInitParameter(WebXmlParameters.CTX_PARAM_SORT_GLYPHICON)
 			private String none;
 		}
@@ -179,7 +182,7 @@ public class ButterfacesProperties implements ServletContextInitParameterPropert
 	public static class Integration {
 
 		@NestedConfigurationProperty
-		private Primefaces primefaces = new Primefaces();
+		private final Primefaces primefaces = new Primefaces();
 
 		/**
 		 * Primefaces class of disableJQuery properties.

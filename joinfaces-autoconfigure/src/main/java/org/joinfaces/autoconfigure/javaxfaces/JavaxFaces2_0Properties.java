@@ -158,7 +158,7 @@ public class JavaxFaces2_0Properties implements ServletContextInitParameterPrope
 	private String separatorChar;
 
 	@NestedConfigurationProperty
-	private Partial partial = new Partial();
+	private final Partial partial = new Partial();
 
 	/**
 	 * Controls if DateTimeConverter instances use the system timezone (if true) or GMT (if false).
@@ -167,7 +167,7 @@ public class JavaxFaces2_0Properties implements ServletContextInitParameterPrope
 	private Boolean datetimeconverterDefaultTimezoneIsSystemTimezone;
 
 	@NestedConfigurationProperty
-	private Validator validator = new Validator();
+	private final Validator validator = new Validator();
 
 	/**
 	 * An implementation of javax.faces.view.facelets.ResourceResolver.
@@ -191,14 +191,8 @@ public class JavaxFaces2_0Properties implements ServletContextInitParameterPrope
 	/**
 	 * If true, consider empty UIInput values to be null instead of empty string.
 	 */
-	@ServletContextInitParameter(EMPTY_STRING_AS_NULL)
+	@ServletContextInitParameter("javax.faces.INTERPRET_EMPTY_STRING_SUBMITTED_VALUES_AS_NULL")
 	private Boolean interpretEmptyStringSubmittedValuesAsNull;
-
-	/**
-	 * Interpret empty string submitted values as null constant.
-	 */
-	public static final String EMPTY_STRING_AS_NULL
-			= "javax.faces.INTERPRET_EMPTY_STRING_SUBMITTED_VALUES_AS_NULL";
 
 	/**
 	 * Partial class for execute, render and resetValues parameters.
