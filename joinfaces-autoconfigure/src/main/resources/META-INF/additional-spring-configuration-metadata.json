@@ -1,7 +1,27 @@
 {
+  "groups": [
+    {
+      "name": "joinfaces.view-scope",
+      "type": "org.joinfaces.autoconfigure.viewscope.ViewScopeAutoConfiguration"
+    },
+    {
+      "name": "joinfaces.scope-configurer.jsf",
+      "type": "org.joinfaces.autoconfigure.scopemapping.JsfScopeAnnotationsAutoConfiguration",
+      "description": "Support for JSF @xxxScoped annotations."
+    },
+    {
+      "name": "joinfaces.scope-configurer.cdi",
+      "type": "org.joinfaces.autoconfigure.scopemapping.CdiScopeAnnotationsAutoConfiguration",
+      "description": "Support for CDI @javax.enterprise.context.xxxScoped annotations."
+    },
+    {
+      "name": "joinfaces.faces-servlet",
+      "description": "Configures the FacesServlet handled by JoinFaces."
+    }
+  ],
   "properties": [
     {
-      "name": "jsf.faces-servlet.url-mappings",
+      "name": "joinfaces.faces-servlet.url-mappings",
       "defaultValue": [
         "/faces/*",
         "*.jsf",
@@ -10,24 +30,35 @@
       ]
     },
     {
-      "name": "jsf.scope-configurer.jsf.enabled",
+      "name": "joinfaces.scope-configurer.jsf.enabled",
       "defaultValue": true,
-      "type": "java.lang.Boolean"
+      "type": "java.lang.Boolean",
+      "sourceType": "org.joinfaces.autoconfigure.scopemapping.JsfScopeAnnotationsAutoConfiguration"
     },
     {
-      "name": "jsf.scope-configurer.jsf.order",
+      "name": "joinfaces.scope-configurer.jsf.order",
       "type": "java.lang.Integer",
-      "description": "The order of the BeanFactoryPostProcessor."
+      "description": "The order of the BeanFactoryPostProcessor.",
+      "sourceType": "org.joinfaces.autoconfigure.scopemapping.JsfScopeAnnotationsAutoConfiguration"
     },
     {
-      "name": "jsf.scope-configurer.cdi.enabled",
+      "name": "joinfaces.scope-configurer.cdi.enabled",
       "defaultValue": true,
-      "type": "java.lang.Boolean"
+      "type": "java.lang.Boolean",
+      "sourceType": "org.joinfaces.autoconfigure.scopemapping.CdiScopeAnnotationsAutoConfiguration"
     },
     {
-      "name": "jsf.scope-configurer.cdi.order",
+      "name": "joinfaces.scope-configurer.cdi.order",
       "type": "java.lang.Integer",
-      "description": "The order of the BeanFactoryPostProcessor."
+      "description": "The order of the BeanFactoryPostProcessor.",
+      "sourceType": "org.joinfaces.autoconfigure.scopemapping.CdiScopeAnnotationsAutoConfiguration"
+    },
+    {
+      "name": "joinfaces.view-scope.enabled",
+      "type": "java.lang.Boolean",
+      "defaultValue": true,
+      "description": "Enables the registration of JoinFaces view scope implementation.",
+      "sourceType": "org.joinfaces.autoconfigure.viewscope.ViewScopeAutoConfiguration"
     },
     {
       "name": "jsf.mojarra.disable-unicode-escaping",

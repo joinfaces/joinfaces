@@ -34,7 +34,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
  * @see FacesServletAutoConfiguration#facesServletRegistrationBean(FacesServletProperties)
  */
 @Data
-@ConfigurationProperties("jsf.faces-servlet")
+@ConfigurationProperties("joinfaces.faces-servlet")
 public class FacesServletProperties {
 
 	private String name = "FacesServlet";
