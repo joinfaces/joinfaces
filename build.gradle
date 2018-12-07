@@ -53,7 +53,7 @@ allprojects {
             dependency "org.apache.tomcat:tomcat-jasper:${importedProperties['tomcat.version']}"
             dependency 'org.jboss.spec.javax.servlet.jsp:jboss-jsp-api_2.3_spec:1.0.3.Final'
 
-            dependency 'io.github.classgraph:classgraph:4.4.12'
+            dependency 'io.github.classgraph:classgraph:4.6.3'
 
             dependency 'org.primefaces:primefaces:6.2'
             dependencySet("org.primefaces.extensions:6.2.10") {
