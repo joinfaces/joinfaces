@@ -49,7 +49,7 @@ public class AdminfacesAutoConfigurationTest {
 
 				Primefaces5_2Properties primefaces5_2Properties = context.getBean("joinfaces.primefaces-org.joinfaces.autoconfigure.primefaces.Primefaces5_2Properties",
 					Primefaces5_2Properties.class);
-				assertThat(primefaces5_2Properties.isFontAwesome())
+				assertThat(primefaces5_2Properties.getFontAwesome())
 					.isTrue();
 
 				assertThat(context.getBean("adminSession", AdminSession.class))
