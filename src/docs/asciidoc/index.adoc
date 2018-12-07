@@ -1,6 +1,7 @@
 = JoinFaces Reference Guide
 Marcelo Fernandes <persapiens@joinfaces.org>; Lars Grefer <larsgrefer@joinfaces.org>
 :toc: left
+:icons: font
 :stylesheet: asciidoctor.css
 :source-highlighter: prettify
 :sectnums:
@@ -360,6 +361,9 @@ jsf.primefaces.theme=omega
 ----
 
 The full list of all properties can be found in the chapter <<properties>>.
+
+NOTE: Most of these properties default to `null`, so the corresponding parameter isn't set to the servlet-context.
+This allows the underlying library to use their own default behaviour.
 
 [TIP]
 ====

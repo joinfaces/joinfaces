@@ -275,8 +275,7 @@ task bomDocs(type: org.joinfaces.build.BomDocumentation) {
 asciidoctor {
     backends = ['html5']
     dependsOn propertyDocs, bomDocs
-    attributes 'icons': 'font',
-            revnumber: project.version,
+    attributes revnumber: project.version,
             'spring-boot-version': org.springframework.boot.gradle.plugin.SpringBootPlugin.SPRING_BOOT_VERSION
 }
 
