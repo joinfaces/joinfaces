@@ -473,43 +473,71 @@ This section describes, what JoinFaces does for specific libraries.
 
 ==== AdminFaces
 
-- Configurations are mapped from the `joinfaces.adminfaces.*` properties.
-- Spring Component scan for selected `com.github.adminfaces.template.*`-packages.
-- `primefaces.THEME` is set to `admin`.
-- `primefaces.FONT_AWESOME` is set to `true`.
+* Configurations are mapped from the `joinfaces.adminfaces.*` properties.
+* Spring Component scan for selected `com.github.adminfaces.template.*`-packages.
+* `primefaces.THEME` is set to `admin`.
+* `primefaces.FONT_AWESOME` is set to `true`.
 
 ==== AngularFaces
 
-- `AngularFaces.\*` servlet-context init-parameters are mapped from `joinfaces.angularfaces.*` properties.
-- `AngularTagDecorator` is added to `javax.faces.FACELETS_DECORATORS`.
+* `AngularFaces.\*` servlet-context init-parameters are mapped from `joinfaces.angularfaces.*` properties.
+* `AngularTagDecorator` is added to `javax.faces.FACELETS_DECORATORS`.
 
 ==== BootsFaces
 
-- `net.bootsfaces.\*` servlet-context init-parameters are mapped from `joinfaces.bootsfaces.*` properties.
+* `net.bootsfaces.\*` servlet-context init-parameters are mapped from `joinfaces.bootsfaces.*` properties.
 
 ==== ButterFaces
 
-- `org.butterfaces.\*` servlet-context init-parameters are mapped from `joinfaces.butterfaces.*` properties.
-- `net.bootsfaces.get_jquery_from_cdn` is set to `true`.
+* `org.butterfaces.\*` servlet-context init-parameters are mapped from `joinfaces.butterfaces.*` properties.
+* `net.bootsfaces.get_jquery_from_cdn` is set to `true`.
 
 ==== ICEfaces
 
-- `org.icefaces.\*` servlet-context init-parameters are mapped from `joinfaces.icefaces.*` properties.
-- The scope `window` is added to the spring context, which is backend by `org.icefaces.impl.application.WindowScopeManager`.
-- ICEfaces `META-INF/core.tld` is re-implemented as ServletContextInitializer for the embedded Undertow.
+* `org.icefaces.\*` servlet-context init-parameters are mapped from `joinfaces.icefaces.*` properties.
+* The scope `window` is added to the spring context, which is backend by `org.icefaces.impl.application.WindowScopeManager`.
+* ICEfaces `META-INF/core.tld` is re-implemented as ServletContextInitializer for the embedded Undertow.
 
 ==== Mojarra
 
-- `com.sun.faces.\*` servlet-context init-parameters are mapped from `joinfaces.mojarra.*` properties.
-- `com.sun.faces.config.FacesInitializer` is executed for embedded servlet containers.
+* `com.sun.faces.\*` servlet-context init-parameters are mapped from `joinfaces.mojarra.*` properties.
+* `com.sun.faces.config.FacesInitializer` is executed for embedded servlet containers.
 
 ==== MyFaces
 
-- `org.apache.myfaces.\*` servlet-context init-parameters are mapped from `joinfaces.myfaces.*` properties.
-- `org.apache.myfaces.ee.MyFacesContainerInitializer` is executed for embedded servlet containers.
-- `org.apache.myfaces.webapp.StartupServletContextListener` is registered for embedded servlet containers.
-- A `org.apache.myfaces.spi.AnnotationProvider` implementation is provided for embedded servlet containers
+* `org.apache.myfaces.\*` servlet-context init-parameters are mapped from `joinfaces.myfaces.*` properties.
+* `org.apache.myfaces.ee.MyFacesContainerInitializer` is executed for embedded servlet containers.
+* `org.apache.myfaces.webapp.StartupServletContextListener` is registered for embedded servlet containers.
+* A `org.apache.myfaces.spi.AnnotationProvider` implementation is provided for embedded servlet containers
 which reuses the classpath-scan results from `MyFacesContainerInitializer`.
+
+==== OmniFaces
+
+* `org.omnifaces.\*` servlet-context init-parameters are mapped from `joinfaces.omnifaces.*` properties.
+* `org.omnifaces.facesviews.FacesViewsInitializer` or `org.omnifaces.ApplicationInitializer`
+are executed for embedded servlet containers.
+
+==== PrimeFaces
+
+* `primefaces.\*` servlet-context init-parameters are mapped from `joinfaces.primefaces.*` properties.
+
+==== Rewrite
+
+* `org.ocpsoft.rewrite.\*` servlet-context init-parameters are mapped from `joinfaces.rewrite.*` properties.
+* Rewrites `META-INF/web-fragment.xml` is re-implemented as ServletContextInitializer for embedded servlet containers.
+* _Spring Boot_ specific implementations for the following SPIs are provided:
+** `org.ocpsoft.rewrite.el.spi.BeanNameResolver`
+** `org.ocpsoft.rewrite.el.spi.ExpressionLanguageProvider`
+** `org.ocpsoft.common.spi.ServiceLocator`
+
+==== RichFaces
+
+* `org.richfaces.\*` servlet-context init-parameters are mapped from `joinfaces.richfaces.*` properties.
+* `org.richfaces.webapp.ServletsInitializer` is executed for embedded servlet containers.
+
+==== Weld
+
+* `org.jboss.weld.environment.servlet.EnhancedListener` is executed for embedded servlet containers.
 
 [[properties]]
 [appendix]
