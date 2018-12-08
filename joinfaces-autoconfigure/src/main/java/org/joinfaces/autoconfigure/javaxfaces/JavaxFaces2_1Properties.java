@@ -31,7 +31,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
  * @author Lars Grefer
  */
 @Data
-@ConfigurationProperties(prefix = "jsf")
+@ConfigurationProperties(prefix = "joinfaces.jsf")
 public class JavaxFaces2_1Properties implements ServletContextInitParameterProperties {
 
 	/**

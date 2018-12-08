@@ -39,7 +39,7 @@ import org.springframework.boot.context.properties.NestedConfigurationProperty;
  * @see <a href="https://www.jcp.org/en/jsr/detail?id=344">JSR-344</a>
  */
 @Data
-@ConfigurationProperties(prefix = "jsf")
+@ConfigurationProperties(prefix = "joinfaces.jsf")
 public class JavaxFaces2_2Properties implements ServletContextInitParameterProperties {
 
 	/**
@@ -86,10 +86,10 @@ public class JavaxFaces2_2Properties implements ServletContextInitParameterPrope
 	private Boolean serializeServerState;
 
 	@NestedConfigurationProperty
-	private Partial partial = new Partial();
+	private final Partial partial = new Partial();
 
 	@NestedConfigurationProperty
-	private Flow flow = new Flow();
+	private final Flow flow = new Flow();
 
 	/**
 	 * The context-param that controls the operation of the {@code ClientWindow} feature.

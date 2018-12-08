@@ -56,12 +56,12 @@ public class ProjectStageAutoConfigurationTest {
 	@Test
 	public void testExplicitMappingTakesPrecedence() {
 		this.webApplicationContextRunner
-				.withPropertyValues("jsf.project-stage=UnitTest")
+				.withPropertyValues("joinfaces.jsf.project-stage=UnitTest")
 				.run(context ->
 						assertThat(context.getBean(JavaxFaces2_0Properties.class).getProjectStage()).isEqualTo(ProjectStage.UnitTest)
 				);
 		this.webApplicationContextRunner
-				.withPropertyValues("debug", "jsf.project-stage=UnitTest")
+				.withPropertyValues("debug", "joinfaces.jsf.project-stage=UnitTest")
 				.run(context ->
 						assertThat(context.getBean(JavaxFaces2_0Properties.class).getProjectStage()).isEqualTo(ProjectStage.UnitTest)
 				);

@@ -44,11 +44,11 @@ import org.springframework.web.context.WebApplicationContext;
 public class CdiScopeAnnotationsAutoConfiguration {
 
 	@Bean
-	@ConditionalOnProperty(value = "jsf.scope-configurer.cdi.enabled", havingValue = "true", matchIfMissing = true)
+	@ConditionalOnProperty(value = "joinfaces.scope-configurer.cdi.enabled", havingValue = "true", matchIfMissing = true)
 	public static CustomScopeAnnotationConfigurer cdiScopeAnnotationsConfigurer(Environment environment) {
 		CustomScopeAnnotationConfigurer scopeAnnotationConfigurer = new CustomScopeAnnotationConfigurer();
 
-		scopeAnnotationConfigurer.setOrder(environment.getProperty("jsf.scope-configurer.cdi.order", Integer.class, Ordered.LOWEST_PRECEDENCE));
+		scopeAnnotationConfigurer.setOrder(environment.getProperty("joinfaces.scope-configurer.cdi.order", Integer.class, Ordered.LOWEST_PRECEDENCE));
 
 		scopeAnnotationConfigurer.addMapping(RequestScoped.class, WebApplicationContext.SCOPE_REQUEST);
 		scopeAnnotationConfigurer.addMapping(SessionScoped.class, WebApplicationContext.SCOPE_SESSION);

@@ -28,6 +28,7 @@ import org.primefaces.webapp.filter.FileUploadFilter;
 import org.springframework.boot.autoconfigure.AutoConfigureAfter;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnExpression;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.boot.autoconfigure.web.servlet.MultipartAutoConfiguration;
 import org.springframework.boot.autoconfigure.web.servlet.MultipartProperties;
 import org.springframework.boot.web.servlet.ServletContextInitializer;
@@ -64,7 +65,7 @@ public class PrimefacesFileUploadServletContextAutoConfiguration {
 	 * @param multipartConfigElement {@link MultipartAutoConfiguration#multipartConfigElement()}
 	 * @return primefaces file upload servlet context initializer
 	 */
-	@ConditionalOnExpression("'${jsf.primefaces.uploader}' != 'commons'")
+	@ConditionalOnExpression("'${joinfaces.primefaces.uploader}' != 'commons'")
 	@Bean
 	public ServletContextInitializer primefacesFileUploadServletContextInitializer(MultipartConfigElement multipartConfigElement) {
 		return servletContext -> {
@@ -79,8 +80,8 @@ public class PrimefacesFileUploadServletContextAutoConfiguration {
 	 * File upload filter is required only if commons fileupload is chosen.
 	 * @return file upload filter
 	 */
-	@ConditionalOnExpression("'${jsf.primefaces.uploader}' == 'commons'")
 	@Bean
+	@ConditionalOnProperty(value = "joinfaces.primefaces.uploader", havingValue = "commons")
 	public FileUploadFilter fileUploadFilter() {
 		return new FileUploadFilter();
 	}

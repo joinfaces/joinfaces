@@ -31,13 +31,13 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
  * @author Lars Grefer
  */
 @Data
-@ConfigurationProperties("jsf.primefaces")
+@ConfigurationProperties("joinfaces.primefaces")
 public class Primefaces6_0Properties implements ServletContextInitParameterProperties {
 
 	@ServletContextInitParameter(Constants.ContextParams.EARLY_POST_PARAM_EVALUATION)
-	private boolean earlyPostParamEvaluation = false;
+	private Boolean earlyPostParamEvaluation;
 
 	@ServletContextInitParameter(Constants.ContextParams.INTERPOLATE_CLIENT_SIDE_VALIDATION_MESSAGES)
-	private boolean interpolateClientSideValidationMessages = false;
+	private Boolean interpolateClientSideValidationMessages;
 
 }

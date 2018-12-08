@@ -31,8 +31,8 @@ import static org.assertj.core.api.Assertions.assertThat;
  */
 @SpringBootTest(
 		properties = {
-				"jsf.scope-configurer.cdi.enabled=false",
-				"jsf.scope-configurer.jsf.enabled=false"
+				"joinfaces.scope-configurer.cdi.enabled=false",
+				"joinfaces.scope-configurer.jsf.enabled=false"
 		},
 		webEnvironment = SpringBootTest.WebEnvironment.MOCK
 )

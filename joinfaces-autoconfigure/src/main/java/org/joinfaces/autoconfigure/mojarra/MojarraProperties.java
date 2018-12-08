@@ -33,7 +33,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
  * @author Marcelo Fernandes
  */
 @Data
-@ConfigurationProperties(prefix = "jsf.mojarra")
+@ConfigurationProperties(prefix = "joinfaces.mojarra")
 public class MojarraProperties implements ServletContextInitParameterProperties {
 
 	static final String PREFIX = "com.sun.faces.";

@@ -42,14 +42,14 @@ public class AdminfacesAutoConfigurationTest {
 	public void testConfigurationProvider() {
 		this.webApplicationContextRunner
 			.run(context -> {
-				Primefaces4_0Properties primefaces4_0Properties = context.getBean("jsf.primefaces-org.joinfaces.autoconfigure.primefaces.Primefaces4_0Properties",
+				Primefaces4_0Properties primefaces4_0Properties = context.getBean("joinfaces.primefaces-org.joinfaces.autoconfigure.primefaces.Primefaces4_0Properties",
 					Primefaces4_0Properties.class);
 				assertThat(primefaces4_0Properties.getTheme())
 					.isEqualTo("admin");
 
-				Primefaces5_2Properties primefaces5_2Properties = context.getBean("jsf.primefaces-org.joinfaces.autoconfigure.primefaces.Primefaces5_2Properties",
+				Primefaces5_2Properties primefaces5_2Properties = context.getBean("joinfaces.primefaces-org.joinfaces.autoconfigure.primefaces.Primefaces5_2Properties",
 					Primefaces5_2Properties.class);
-				assertThat(primefaces5_2Properties.isFontAwesome())
+				assertThat(primefaces5_2Properties.getFontAwesome())
 					.isTrue();
 
 				assertThat(context.getBean("adminSession", AdminSession.class))

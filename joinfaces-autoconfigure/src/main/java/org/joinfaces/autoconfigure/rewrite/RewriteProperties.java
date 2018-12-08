@@ -31,7 +31,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
  * @author Marcelo Fernandes
  */
 @Data
-@ConfigurationProperties(prefix = "rewrite")
+@ConfigurationProperties(prefix = "joinfaces.rewrite")
 public class RewriteProperties implements ServletContextInitParameterProperties {
 
 	/**

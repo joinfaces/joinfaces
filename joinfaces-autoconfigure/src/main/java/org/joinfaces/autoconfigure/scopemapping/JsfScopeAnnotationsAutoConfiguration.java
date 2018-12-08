@@ -49,11 +49,11 @@ import org.springframework.web.context.WebApplicationContext;
 public class JsfScopeAnnotationsAutoConfiguration {
 
 	@Bean
-	@ConditionalOnProperty(value = "jsf.scope-configurer.jsf.enabled", havingValue = "true", matchIfMissing = true)
+	@ConditionalOnProperty(value = "joinfaces.scope-configurer.jsf.enabled", havingValue = "true", matchIfMissing = true)
 	public static CustomScopeAnnotationConfigurer jsfScopeAnnotationsConfigurer(Environment environment) {
 		CustomScopeAnnotationConfigurer scopeAnnotationConfigurer = new CustomScopeAnnotationConfigurer();
 
-		scopeAnnotationConfigurer.setOrder(environment.getProperty("jsf.scope-configurer.jsf.order", Integer.class, Ordered.LOWEST_PRECEDENCE));
+		scopeAnnotationConfigurer.setOrder(environment.getProperty("joinfaces.scope-configurer.jsf.order", Integer.class, Ordered.LOWEST_PRECEDENCE));
 
 		scopeAnnotationConfigurer.addMapping(NoneScoped.class, ConfigurableBeanFactory.SCOPE_PROTOTYPE);
 		scopeAnnotationConfigurer.addMapping(RequestScoped.class, WebApplicationContext.SCOPE_REQUEST);

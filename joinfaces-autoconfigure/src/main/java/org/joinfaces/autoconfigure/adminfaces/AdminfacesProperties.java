@@ -34,7 +34,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
  * @author Marcelo Fernandes
  */
 @Data
-@ConfigurationProperties(prefix = "jsf.adminfaces")
+@ConfigurationProperties(prefix = "joinfaces.adminfaces")
 public class AdminfacesProperties implements Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -165,7 +165,7 @@ public class AdminfacesProperties implements Serializable {
 	/**
 	 * When true it will activate control sidebar component.
 	 */
-	private ControlSidebar controlSidebar = new ControlSidebar();
+	private final ControlSidebar controlSidebar = new ControlSidebar();
 
 	/**
 	 * ControlSidebar properties.
