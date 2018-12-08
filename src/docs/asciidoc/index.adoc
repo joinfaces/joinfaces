@@ -363,8 +363,8 @@ https://docs.spring.io/spring-boot/docs/{spring-boot-version}/reference/htmlsing
 
 [source,properties]
 ----
-jsf.project-stage=development
-jsf.primefaces.theme=omega
+joinfaces.jsf.project-stage=development
+joinfaces.primefaces.theme=omega
 ----
 
 The full list of all properties can be found in the chapter <<properties>>.
