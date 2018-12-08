@@ -8,8 +8,6 @@ Marcelo Fernandes <persapiens@joinfaces.org>; Lars Grefer <larsgrefer@joinfaces.
 :sectanchors:
 :hide-uri-scheme:
 
-IMPORTANT: This documentation is still under construction.
-
 == About the Documentation
 
 The documentation of JoinFaces {revnumber} consists of two parts:
