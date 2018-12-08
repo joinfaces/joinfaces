@@ -16,35 +16,45 @@
 
 package org.joinfaces.autoconfigure;
 
-import javax.faces.bean.ManagedBean;
+import java.lang.annotation.Annotation;
 
 import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import lombok.extern.slf4j.Slf4j;
 
 import org.springframework.boot.SpringApplication;
-import org.springframework.boot.context.event.ApplicationReadyEvent;
+import org.springframework.boot.context.event.ApplicationStartedEvent;
 import org.springframework.context.ApplicationListener;
 import org.springframework.context.ConfigurableApplicationContext;
 
 /**
- * This class analyzes the {@link SpringApplication} and its {@link ApplicationReadyEvent#getApplicationContext()}.
+ * This class analyzes the {@link SpringApplication} and its {@link ApplicationStartedEvent#getApplicationContext() context}.
  *
  * @author Lars Grefer
  */
 @Slf4j
-public class JoinfacesApplicationAnalyzer implements ApplicationListener<ApplicationReadyEvent> {
+public class JoinfacesApplicationAnalyzer implements ApplicationListener<ApplicationStartedEvent> {
 
+	@SuppressWarnings("unchecked")
 	@Override
-	public void onApplicationEvent(ApplicationReadyEvent event) {
-		warnAboutJsfManagedBeans(event.getApplicationContext());
+	public void onApplicationEvent(ApplicationStartedEvent event) {
+		try {
+			Class<? extends Annotation> managedBeanClass = (Class<? extends Annotation>) Class.forName("javax.faces.bean.ManagedBean");
+			warnAboutJsfManagedBeans(event.getApplicationContext(), managedBeanClass);
+		}
+		catch (ClassNotFoundException | LinkageError ignored) {
+		}
 	}
 
 	@SuppressFBWarnings(value = "NP_NULL_ON_SOME_PATH_FROM_RETURN_VALUE", justification = "getType() is always non-null when reached")
-	private void warnAboutJsfManagedBeans(ConfigurableApplicationContext applicationContext) {
-		String[] managedBeanNames = applicationContext.getBeanNamesForAnnotation(ManagedBean.class);
+	private void warnAboutJsfManagedBeans(ConfigurableApplicationContext applicationContext, Class<? extends Annotation> managedBeanClass) {
+		String[] managedBeanNames = applicationContext.getBeanNamesForAnnotation(managedBeanClass);
 
 		for (String managedBeanName : managedBeanNames) {
-			log.warn("The spring bean '{}' of type '{}' is also annotated with '@{}'. This may lead to unexpected behaviour.", managedBeanName, applicationContext.getType(managedBeanName).getName(), ManagedBean.class.getName());
+			log.warn(
+					"The spring bean '{}' of type '{}' is also annotated with '@javax.faces.bean.ManagedBean'. This may lead to unexpected behaviour.",
+					managedBeanName,
+					applicationContext.getType(managedBeanName).getName()
+			);
 		}
 	}
 }

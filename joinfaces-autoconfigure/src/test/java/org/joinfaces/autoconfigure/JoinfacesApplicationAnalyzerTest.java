@@ -21,7 +21,7 @@ import javax.faces.bean.ManagedBean;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import org.springframework.boot.context.event.ApplicationReadyEvent;
+import org.springframework.boot.context.event.ApplicationStartedEvent;
 import org.springframework.boot.test.context.runner.ApplicationContextRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -48,10 +48,10 @@ public class JoinfacesApplicationAnalyzerTest {
 				.run(context -> {
 					assertThat(context.getBeanNamesForAnnotation(ManagedBean.class)).isNotEmpty();
 
-					ApplicationReadyEvent applicationReadyEvent = mock(ApplicationReadyEvent.class);
-					when(applicationReadyEvent.getApplicationContext()).thenReturn(context.getSourceApplicationContext());
+					ApplicationStartedEvent applicationStartedEvent = mock(ApplicationStartedEvent.class);
+					when(applicationStartedEvent.getApplicationContext()).thenReturn(context.getSourceApplicationContext());
 
-					this.joinfacesApplicationAnalyzer.onApplicationEvent(applicationReadyEvent);
+					this.joinfacesApplicationAnalyzer.onApplicationEvent(applicationStartedEvent);
 				});
 	}
 
