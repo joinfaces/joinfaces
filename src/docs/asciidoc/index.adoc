@@ -18,9 +18,16 @@ The documentation of JoinFaces {revnumber} consists of two parts:
 The latest copy of the user guide is available at https://docs.joinfaces.org/current/reference +
 and the corresponding javadocs can be found at https://docs.joinfaces.org/current/api.
 
-Copies of this document may be made for your own use and for distribution to others, provided that you do not charge any fee for such copies and further provided that each copy contains this Copyright Notice, whether distributed in print or electronically.
+Copies of this document may be made for your own use and for distribution to others,
+provided that you do not charge any fee for such copies and further provided that each copy contains this Copyright Notice,
+whether distributed in print or electronically.
+
+NOTE: All of JoinFaces is open source, including this documentation.
+The source can be found on https://github.com/joinfaces/joinfaces[GitHub].
 
 == Getting Started
+
+JoinFaces enables JSF usage inside _Spring Boot_ Applications.
 
 NOTE: If you're not familiar with _Spring Boot_, you should read its
 https://docs.spring.io/spring-boot/docs/current/reference/htmlsingle/#getting-started[Getting Started guide] first.
@@ -56,6 +63,8 @@ https://docs.spring.io/spring-boot/docs/{spring-boot-version}/reference/htmlsing
 The `joinfaces-dependencies` BOM also imports the `spring-boot-dependencies` BOM.
 If you want to override the imported Spring Boot version, make sure to specify the
 Spring Boot BOM after the JoinFaces one.
+
+The complete list of managed versions can befound in the appendix <<versions>>.
 
 === Maven
 
@@ -458,6 +467,49 @@ Namespace: **http://www.springframework.org/security/tags**
 |returns true if the is not an anonymous or a remember-me user.
 |===========
 
+=== Library Specific Features
+
+This section describes, what JoinFaces does for specific libraries.
+
+==== AdminFaces
+
+- Configurations are mapped from the `joinfaces.adminfaces.*` properties.
+- Spring Component scan for selected `com.github.adminfaces.template.*`-packages.
+- `primefaces.THEME` is set to `admin`.
+- `primefaces.FONT_AWESOME` is set to `true`.
+
+==== AngularFaces
+
+- `AngularFaces.\*` servlet-context init-parameters are mapped from `joinfaces.angularfaces.*` properties.
+- `AngularTagDecorator` is added to `javax.faces.FACELETS_DECORATORS`.
+
+==== BootsFaces
+
+- `net.bootsfaces.\*` servlet-context init-parameters are mapped from `joinfaces.bootsfaces.*` properties.
+
+==== ButterFaces
+
+- `org.butterfaces.\*` servlet-context init-parameters are mapped from `joinfaces.butterfaces.*` properties.
+- `net.bootsfaces.get_jquery_from_cdn` is set to `true`.
+
+==== ICEfaces
+
+- `org.icefaces.\*` servlet-context init-parameters are mapped from `joinfaces.icefaces.*` properties.
+- The scope `window` is added to the spring context, which is backend by `org.icefaces.impl.application.WindowScopeManager`.
+- ICEfaces `META-INF/core.tld` is re-implemented as ServletContextInitializer for the embedded Undertow.
+
+==== Mojarra
+
+- `com.sun.faces.\*` servlet-context init-parameters are mapped from `joinfaces.mojarra.*` properties.
+- `com.sun.faces.config.FacesInitializer` is executed for embedded servlet containers.
+
+==== MyFaces
+
+- `org.apache.myfaces.\*` servlet-context init-parameters are mapped from `joinfaces.myfaces.*` properties.
+- `org.apache.myfaces.ee.MyFacesContainerInitializer` is executed for embedded servlet containers.
+- `org.apache.myfaces.webapp.StartupServletContextListener` is registered for embedded servlet containers.
+- A `org.apache.myfaces.spi.AnnotationProvider` implementation is provided for embedded servlet containers
+which reuses the classpath-scan results from `MyFacesContainerInitializer`.
 
 [[properties]]
 [appendix]
