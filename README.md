@@ -24,69 +24,9 @@ It also aims to solve [JSF](http://www.oracle.com/technetwork/java/javaee/javase
 |[Maven](https://maven.apache.org/)|[maven-jar-example](https://github.com/joinfaces/joinfaces-maven-jar-example)|[maven-war-example](https://github.com/joinfaces/joinfaces-maven-war-example)|
 |[Gradle](https://gradle.org/)|[gradle-jar-example](https://github.com/joinfaces/joinfaces-gradle-jar-example)|[gradle-war-example](https://github.com/joinfaces/joinfaces-gradle-war-example)|
 
-You can find more examples [here.](https://github.com/joinfaces/joinfaces/wiki/Examples-of-JoinFaces-usage)
-
 ## Key Features
 
-### Many JoinFaces Starters available
-
-There are many JSF Spring Boot Starters available: basic starters, utility starters, meta starter, component starters, theme starters and extra starters.
-
-See detailed starters [here](https://github.com/joinfaces/joinfaces/wiki/JoinFaces-Starters-3.x).
-
-### JSF properties configuration via application.properties or application.yml
-
-Library | Namespace | Example
------------- | ------------- | ---------
-standard (javax.faces) | jsf | `jsf.project-stage=development`
-[primefaces](http://primefaces.org/) | jsf.primefaces | `jsf.primefaces.theme=overcast`
-[bootsfaces](http://bootsfaces.net/) | jsf.bootsfaces | `jsf.bootsfaces.usetheme=true`
-[butterfaces](http://butterfaces.org/) | jsf.butterfaces | `jsf.butterfaces.provide-j-query=true`
-[adminfaces](http://adminfaces.github.io/site/) | jsf.adminfaces | `jsf.adminfaces.skin=skin-blue`
-[icefaces](http://adminfaces.github.io/site/) | jsf.icefaces | `jsf.icefaces.compressDom=true`
-[richfaces](https://github.com/richfaces/richfaces) | jsf.richfaces | `jsf.richfaces.resource-default-ttl=86400`
-[omnifaces](http://omnifaces.org/) | jsf.omnifaces | `jsf.omnifaces.faces-views-enabled=true`
-[angularfaces](http://angularfaces.net/) | jsf.angularfaces | `jsf.angularfaces.add-labels=true`
-[mojarra](https://javaserverfaces.java.net/) | jsf.mojarra | `jsf.mojarra.prefer-xhtml=true`
-[myfaces](http://myfaces.apache.org/) | jsf.myfaces | `jsf.myfaces.pretty-html=true`
-[jetty](http://www.eclipse.org/jetty) | jsf.jetty | `jsf.jetty.class-path-resource=META-INF/resources`
-[undertow](http://undertow.io) | jsf.undertow | `jsf.undertow.class-path-resource=META-INF/resources`
-[rewrite](https://www.ocpsoft.org/rewrite/) | rewrite | `rewrite.configReloading=true`
-
-Additional information in [#22](https://github.com/joinfaces/joinfaces/issues/22)
-
-### JSF and CDI annotations support automatically
-
-Annotation |
-------- |
-[@NoneScoped](http://docs.oracle.com/javaee/7/api/javax/faces/bean/NoneScoped.html) |
-[@RequestScoped](http://docs.oracle.com/javaee/7/api/javax/enterprise/context/RequestScoped.html) |
-[@ViewScoped](http://docs.oracle.com/javaee/7/api/javax/faces/view/ViewScoped.html) |
-[@SessionScoped](http://docs.oracle.com/javaee/7/api/javax/enterprise/context/SessionScoped.html) |
-[@ApplicationScoped](http://docs.oracle.com/javaee/7/api/javax/enterprise/context/ApplicationScoped.html) |
-
-### Spring Security JSF Facelet Tag support
-
-Namespace: **http://www.springframework.org/security/tags**
-
-Tag | Description
------------- | -------------
-`authorize` | perform Spring Security authorization decisions, using attributes: ifAnyGranted, ifAllGranted, ifNotGranted, access, url, method, var.
-`anonymous` | verify if the user is anonymous.
-`authenticated` | verify if the user is not anonymous.
-`fullyAuthenticated` | verify if the is not an anonymous or a remember-me user.
-
-Function | Description
------------- | -------------
-`areAllGranted` | returns true if the user has all of of the given authorities.
-`areAnyGranted` | returns true if the user has any of the given authorities.
-`areNotGranted` | returns true if the user does not have any of the given authorities.
-`isAllowed` | returns true if the user is allowed to access the given URL and HTTP method combination.
-`isAnonymous` | returns true if user is anonymous.
-`isAuthenticated` | returns true if the user is not anonymous.
-`isFullyAuthenticated` | returns true if the is not an anonymous or a remember-me user.
-
-Additional information in [#29](https://github.com/joinfaces/joinfaces/issues/29)
+Take a look at [Reference Guide](https://docs.joinfaces.org/master-SNAPSHOT/reference/) to see JoinFaces features: Starters, Servlet-Context Init Parameters, JSF and CDI scope-annotations support and Spring Security JSF Facelet Tag support.
 
 ## System Requirements
 
@@ -94,11 +34,10 @@ Joinfaces | Java | Spring Boot | JSF
 ----------|------|-------------|-----
 `2.x`     |`1.6` to `1.8`|`1.x`|`2.0` to `2.2`
 `3.0` to `3.2`|`1.8`|`2.0`|`2.0` to `2.3`
-`3.3`     |`1.8` to `11` |`2.1`|`2.0` to `2.3`
+`4.0`     |`1.8` to `11` |`2.1`|`2.0` to `2.3`
 
 This are the combinations we have tested and expect to work, but depending on the features you are using, other combinations might work, too.
-
-Additionnal information [here.](https://github.com/joinfaces/joinfaces/wiki/System-Requirements)
+When using Java 9 or higher, make sure to use JoinFaces only on the classpath and not on the modulepath.
 
 ## Getting Help
 
