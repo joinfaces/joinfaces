@@ -56,7 +56,7 @@ import org.springframework.boot.context.properties.NestedConfigurationProperty;
  * @author Marcelo Fernandes
  */
 @Data
-@ConfigurationProperties(prefix = "jsf.myfaces")
+@ConfigurationProperties(prefix = "joinfaces.myfaces")
 public class MyfacesProperties implements ServletContextInitParameterProperties {
 
 	static final String PREFFIX = "org.apache.myfaces.";
@@ -566,7 +566,7 @@ public class MyfacesProperties implements ServletContextInitParameterProperties 
 	private Boolean validate;
 
 	@NestedConfigurationProperty
-	private Annotation annotation = new Annotation();
+	private final Annotation annotation = new Annotation();
 
 	/**
 	 * If the flag is true, the algoritm skip jar scanning for faces-config
@@ -660,7 +660,7 @@ public class MyfacesProperties implements ServletContextInitParameterProperties 
 	private Class<? extends ServiceProviderFinder> serviceProviderFinder;
 
 	@NestedConfigurationProperty
-	private Spi spi = new Spi();
+	private final Spi spi = new Spi();
 
 	/**
 	 * Define how duplicate ids are checked when ProjectStage is Production, by
@@ -718,7 +718,7 @@ public class MyfacesProperties implements ServletContextInitParameterProperties 
 	private Boolean viewPoolDeferredNavigation;
 
 	@NestedConfigurationProperty
-	private Validator validator = new Validator();
+	private final Validator validator = new Validator();
 
 	/**
 	 * This parameter specifies the ExpressionFactory implementation to use.

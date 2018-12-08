@@ -31,8 +31,8 @@ import static org.assertj.core.api.Assertions.assertThat;
  */
 @SpringBootTest(
 		properties = {
-				"jsf.scope-configurer.cdi.order=100",
-				"jsf.scope-configurer.jsf.order=200"
+				"joinfaces.scope-configurer.cdi.order=100",
+				"joinfaces.scope-configurer.jsf.order=200"
 		},
 		webEnvironment = SpringBootTest.WebEnvironment.MOCK
 )

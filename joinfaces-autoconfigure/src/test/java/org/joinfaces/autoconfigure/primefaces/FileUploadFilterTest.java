@@ -39,7 +39,7 @@ public class FileUploadFilterTest {
 	@Test
 	public void testAddedWhenCommons() {
 		this.webApplicationContextRunner
-				.withPropertyValues("jsf.primefaces.uploader=commons")
+				.withPropertyValues("joinfaces.primefaces.uploader=commons")
 				.run(context -> {
 					assertThat(context).hasSingleBean(FileUploadFilter.class);
 				});

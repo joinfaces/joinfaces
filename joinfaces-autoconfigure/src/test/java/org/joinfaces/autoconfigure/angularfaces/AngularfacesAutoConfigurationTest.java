@@ -53,7 +53,7 @@ public class AngularfacesAutoConfigurationTest {
 	@Test
 	public void testTagDecoratorAlreadyPresent() {
 		this.webApplicationContextRunner
-				.withPropertyValues("jsf.facelets-decorators=de.beyondjava.angularFaces.core.tagTransformer.AngularTagDecorator")
+				.withPropertyValues("joinfaces.jsf.facelets-decorators=de.beyondjava.angularFaces.core.tagTransformer.AngularTagDecorator")
 				.run(context -> {
 					List<Class<? extends TagDecorator>> faceletsDecorators = context.getBean(JavaxFaces2_0Properties.class).getFaceletsDecorators();
 					assertThat(faceletsDecorators).containsOnlyOnce(AngularTagDecorator.class);

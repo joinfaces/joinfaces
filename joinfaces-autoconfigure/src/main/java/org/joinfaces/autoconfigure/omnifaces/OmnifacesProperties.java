@@ -40,7 +40,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
  * @author Lars Grefer
  */
 @Data
-@ConfigurationProperties(prefix = "jsf.omnifaces")
+@ConfigurationProperties(prefix = "joinfaces.omnifaces")
 public class OmnifacesProperties implements ServletContextInitParameterProperties {
 
 

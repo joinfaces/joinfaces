@@ -35,14 +35,14 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
  */
 @Data
 @NoArgsConstructor
-@ConfigurationProperties("jsf.primefaces")
+@ConfigurationProperties("joinfaces.primefaces")
 public class Primefaces4_0Properties implements ServletContextInitParameterProperties {
 
 	/**
 	 * Theme of the application.
 	 */
 	@ServletContextInitParameter(Constants.ContextParams.THEME)
-	private String theme = "aristo";
+	private String theme;
 
 	/**
 	 * Custom server url for PrimeFaces Push.
@@ -54,19 +54,19 @@ public class Primefaces4_0Properties implements ServletContextInitParameterPrope
 	 * Defines ajax submit mode, full or partial.
 	 */
 	@ServletContextInitParameter(Constants.ContextParams.SUBMIT)
-	private String submit = "full";
+	private String submit;
 
 	/**
 	 * Defines orientation, ltr or rtl.
 	 */
 	@ServletContextInitParameter(Constants.ContextParams.DIRECTION)
-	private String dir = "ltr";
+	private String dir;
 
 	/**
 	 * When enabled, ajax updated inputs are reset first.
 	 */
 	@ServletContextInitParameter(Constants.ContextParams.RESET_VALUES)
-	private boolean resetValues = false;
+	private Boolean resetValues;
 
 	/**
 	 * Secret key to encrypt-decrypt value expressions exposed in rendering StreamedContents.
@@ -78,23 +78,23 @@ public class Primefaces4_0Properties implements ServletContextInitParameterPrope
 	 * Controls client side validatation.
 	 */
 	@ServletContextInitParameter(Constants.ContextParams.PFV_KEY)
-	private boolean clientSideValidation = false;
+	private Boolean clientSideValidation;
 
 	/**
 	 * Defines uploader mode; auto, native or commons.
 	 */
 	@ServletContextInitParameter(Constants.ContextParams.UPLOADER)
-	private String uploader = "auto";
+	private String uploader;
 
 	/**
 	 * Private reCaptcha key.
 	 */
 	@ServletContextInitParameter(Captcha.PRIVATE_KEY)
-	private String privateCaptchaKey = null;
+	private String privateCaptchaKey;
 
 	/**
 	 * Public reCaptcha key.
 	 */
 	@ServletContextInitParameter(Captcha.PUBLIC_KEY)
-	private String publicCaptchaKey = null;
+	private String publicCaptchaKey;
 }

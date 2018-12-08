@@ -35,7 +35,7 @@ import org.springframework.boot.context.properties.NestedConfigurationProperty;
  * @author Lars Grefer
  */
 @Data
-@ConfigurationProperties(prefix = "jsf.richfaces")
+@ConfigurationProperties(prefix = "joinfaces.richfaces")
 public class RichfacesProperties implements ServletContextInitParameterProperties {
 
 	// (defaultValue = "true", names = "org.richfaces.enableControlSkinning")
@@ -67,26 +67,26 @@ public class RichfacesProperties implements ServletContextInitParameterPropertie
 	private String resourceDefaultVersion;
 
 	@NestedConfigurationProperty
-	private Cache cache = new Cache();
+	private final Cache cache = new Cache();
 
 	@NestedConfigurationProperty
-	private ResourceMapping resourceMapping = new ResourceMapping();
+	private final ResourceMapping resourceMapping = new ResourceMapping();
 
 	@NestedConfigurationProperty
-	private ResourceOptimization resourceOptimization = new ResourceOptimization();
+	private final ResourceOptimization resourceOptimization = new ResourceOptimization();
 
 	// (defaultValue = "true", names = "org.richfaces.executeAWTInitializer", literal = true)
 	@ServletContextInitParameter("org.richfaces.executeAWTInitializer")
 	private Boolean executeAwtInitializer;
 
 	@NestedConfigurationProperty
-	private Push push = new Push();
+	private final Push push = new Push();
 
 	@NestedConfigurationProperty
-	private Builtin builtin = new Builtin();
+	private final Builtin builtin = new Builtin();
 
 	@NestedConfigurationProperty
-	private Queue queue = new Queue();
+	private final Queue queue = new Queue();
 
 	// (defaultValue = "false", names = "org.richfaces.datatableUsesViewLocale")
 	@ServletContextInitParameter("org.richfaces.datatableUsesViewLocale")
@@ -160,14 +160,14 @@ public class RichfacesProperties implements ServletContextInitParameterPropertie
 		private String handlerMapping;
 
 		@NestedConfigurationProperty
-		private Jms jms = new Jms();
+		private final Jms jms = new Jms();
 
 		// (defaultValue = "false", names="org.richfaces.push.initializeOnStartup")
 		@ServletContextInitParameter("org.richfaces.push.initializeOnStartup")
 		private Boolean initializeOnStartup;
 
 		@NestedConfigurationProperty
-		private Session session = new Session();
+		private final Session session = new Session();
 
 		/**
 		 * Jms namespace.
@@ -216,10 +216,10 @@ public class RichfacesProperties implements ServletContextInitParameterPropertie
 	public static class Builtin {
 
 		@NestedConfigurationProperty
-		private Sort sort = new Sort();
+		private final Sort sort = new Sort();
 
 		@NestedConfigurationProperty
-		private Filter filter = new Filter();
+		private final Filter filter = new Filter();
 
 		/**
 		 * Sort namespace.

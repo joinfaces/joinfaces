@@ -31,12 +31,12 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
  * @author Lars Grefer
  */
 @Data
-@ConfigurationProperties("jsf.primefaces")
+@ConfigurationProperties("joinfaces.primefaces")
 public class Primefaces5_2Properties implements ServletContextInitParameterProperties {
 
 	/**
 	 * Enabled font-awesome icons.
 	 */
 	@ServletContextInitParameter(Constants.ContextParams.FONT_AWESOME)
-	private boolean fontAwesome = false;
+	private Boolean fontAwesome;
 }

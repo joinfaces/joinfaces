@@ -21,6 +21,7 @@ import javax.faces.context.FacesContext;
 
 import org.springframework.beans.factory.config.CustomScopeConfigurer;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnWebApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -37,6 +38,7 @@ import org.springframework.context.annotation.Configuration;
 public class ViewScopeAutoConfiguration {
 
 	@Bean
+	@ConditionalOnProperty(value = "joinfaces.view-scope.enabled", havingValue = "true", matchIfMissing = true)
 	public static CustomScopeConfigurer viewScopeConfigurer() {
 		CustomScopeConfigurer customScopeConfigurer = new CustomScopeConfigurer();
 		customScopeConfigurer.addScope(ViewScope.SCOPE_VIEW, new ViewScope());

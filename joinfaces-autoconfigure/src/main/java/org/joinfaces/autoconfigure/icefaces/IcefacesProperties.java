@@ -34,7 +34,7 @@ import org.springframework.boot.convert.DurationUnit;
  * @see <a href="http://www.icesoft.org/wiki/display/ICE/Configuration+Parameters">http://www.icesoft.org/wiki/display/ICE/Configuration+Parameters</a>
  */
 @Data
-@ConfigurationProperties("jsf.icefaces")
+@ConfigurationProperties("joinfaces.icefaces")
 public class IcefacesProperties {
 
 	/**

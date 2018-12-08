@@ -25,7 +25,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
  * @author Marcelo Fernandes
  */
 @Data
-@ConfigurationProperties("jsf.jetty")
+@ConfigurationProperties("joinfaces.jetty")
 public class JettyProperties {
 
 	/**

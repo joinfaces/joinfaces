@@ -33,7 +33,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
  * @author Lars Grefer
  */
 @Data
-@ConfigurationProperties("jsf.myfaces")
+@ConfigurationProperties("joinfaces.myfaces")
 public class MyFaces2_3Properties implements ServletContextInitParameterProperties {
 
 	/**

@@ -34,11 +34,11 @@ import org.springframework.boot.context.properties.NestedConfigurationProperty;
  * @author Lars Grefer
  */
 @Data
-@ConfigurationProperties("jsf.primefaces")
+@ConfigurationProperties("joinfaces.primefaces")
 public class Primefaces5_0Properties implements ServletContextInitParameterProperties {
 
 	@NestedConfigurationProperty
-	private Mobile mobile = new Mobile();
+	private final Mobile mobile = new Mobile();
 
 	@ServletContextInitParameter(Constants.ContextParams.AUTO_UPDATE)
 	private String autoUpdate;
@@ -47,7 +47,7 @@ public class Primefaces5_0Properties implements ServletContextInitParameterPrope
 	 * Transforms bean validation metadata to html attributes.
 	 */
 	@ServletContextInitParameter(Constants.ContextParams.TRANSFORM_METADATA)
-	private boolean transformMetadata = false;
+	private Boolean transformMetadata;
 
 	/**
 	 * A cache store is required to use the cache component, two different providers are supported as cache implementation;

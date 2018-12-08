@@ -34,6 +34,8 @@ import org.springframework.boot.configurationmetadata.ConfigurationMetadataGroup
 import org.springframework.boot.configurationmetadata.ConfigurationMetadataProperty;
 import org.springframework.boot.configurationmetadata.ConfigurationMetadataRepository;
 import org.springframework.boot.configurationmetadata.ConfigurationMetadataRepositoryJsonBuilder;
+import org.springframework.boot.configurationmetadata.ConfigurationMetadataSource;
+import org.springframework.util.StringUtils;
 
 /**
  * @author Lars Grefer
@@ -63,6 +65,12 @@ public class PropertyDocumentation extends DefaultTask {
 					.sorted(Comparator.comparing(ConfigurationMetadataGroup::getId))
 					.forEach(group -> {
 						writer.printf("## %s\n", group.getId());
+
+						group.getSources().values()
+								.stream()
+								.map(ConfigurationMetadataSource::getShortDescription)
+								.filter(StringUtils::hasText)
+								.forEach(d -> writer.printf("# %s\n", d));
 
 						group.getProperties().values().stream()
 								.sorted(Comparator.comparing(ConfigurationMetadataProperty::getId))
