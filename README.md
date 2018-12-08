@@ -24,8 +24,6 @@ It also aims to solve [JSF](http://www.oracle.com/technetwork/java/javaee/javase
 |[Maven](https://maven.apache.org/)|[maven-jar-example](https://github.com/joinfaces/joinfaces-maven-jar-example)|[maven-war-example](https://github.com/joinfaces/joinfaces-maven-war-example)|
 |[Gradle](https://gradle.org/)|[gradle-jar-example](https://github.com/joinfaces/joinfaces-gradle-jar-example)|[gradle-war-example](https://github.com/joinfaces/joinfaces-gradle-war-example)|
 
-You can find more examples [here.](https://github.com/joinfaces/joinfaces/wiki/Examples-of-JoinFaces-usage)
-
 ## Key Features
 
 ### Many JoinFaces Starters available
@@ -38,22 +36,20 @@ See detailed starters [here](https://github.com/joinfaces/joinfaces/wiki/JoinFac
 
 Library | Namespace | Example
 ------------ | ------------- | ---------
-standard (javax.faces) | jsf | `jsf.project-stage=development`
-[primefaces](http://primefaces.org/) | jsf.primefaces | `jsf.primefaces.theme=overcast`
-[bootsfaces](http://bootsfaces.net/) | jsf.bootsfaces | `jsf.bootsfaces.usetheme=true`
-[butterfaces](http://butterfaces.org/) | jsf.butterfaces | `jsf.butterfaces.provide-j-query=true`
-[adminfaces](http://adminfaces.github.io/site/) | jsf.adminfaces | `jsf.adminfaces.skin=skin-blue`
-[icefaces](http://adminfaces.github.io/site/) | jsf.icefaces | `jsf.icefaces.compressDom=true`
-[richfaces](https://github.com/richfaces/richfaces) | jsf.richfaces | `jsf.richfaces.resource-default-ttl=86400`
-[omnifaces](http://omnifaces.org/) | jsf.omnifaces | `jsf.omnifaces.faces-views-enabled=true`
-[angularfaces](http://angularfaces.net/) | jsf.angularfaces | `jsf.angularfaces.add-labels=true`
-[mojarra](https://javaserverfaces.java.net/) | jsf.mojarra | `jsf.mojarra.prefer-xhtml=true`
-[myfaces](http://myfaces.apache.org/) | jsf.myfaces | `jsf.myfaces.pretty-html=true`
-[jetty](http://www.eclipse.org/jetty) | jsf.jetty | `jsf.jetty.class-path-resource=META-INF/resources`
-[undertow](http://undertow.io) | jsf.undertow | `jsf.undertow.class-path-resource=META-INF/resources`
-[rewrite](https://www.ocpsoft.org/rewrite/) | rewrite | `rewrite.configReloading=true`
-
-Additional information in [#22](https://github.com/joinfaces/joinfaces/issues/22)
+[javax.faces](https://jcp.org/en/jsr/detail?id=372) | joinfaces.jsf | `joinfaces.jsf.project-stage=development`
+[primefaces](http://primefaces.org/) | joinfaces.primefaces | `joinfaces.primefaces.theme=overcast`
+[bootsfaces](http://bootsfaces.net/) | joinfaces.bootsfaces | `joinfaces.bootsfaces.usetheme=true`
+[butterfaces](http://butterfaces.org/) | joinfaces.butterfaces | `joinfaces.butterfaces.provide-j-query=true`
+[adminfaces](http://adminfaces.github.io/site/) | joinfaces.adminfaces | `joinfaces.adminfaces.skin=skin-blue`
+[icefaces](http://adminfaces.github.io/site/) | joinfaces.icefaces | `joinfaces.icefaces.compressDom=true`
+[richfaces](https://github.com/richfaces/richfaces) | joinfaces.richfaces | `joinfaces.richfaces.resource-default-ttl=86400`
+[omnifaces](http://omnifaces.org/) | joinfaces.omnifaces | `joinfaces.omnifaces.faces-views-enabled=true`
+[angularfaces](http://angularfaces.net/) | joinfaces.angularfaces | `joinfaces.angularfaces.add-labels=true`
+[mojarra](https://javaserverfaces.java.net/) | joinfaces.mojarra | `joinfaces.mojarra.prefer-xhtml=true`
+[myfaces](http://myfaces.apache.org/) | joinfaces.myfaces | `joinfaces.myfaces.pretty-html=true`
+[jetty](http://www.eclipse.org/jetty) | joinfaces.jetty | `joinfaces.jetty.class-path-resource=META-INF/resources`
+[undertow](http://undertow.io) | joinfaces.undertow | `joinfaces.undertow.class-path-resource=META-INF/resources`
+[rewrite](https://www.ocpsoft.org/rewrite/) | joinfaces.rewrite | `joinfaces.rewrite.configReloading=true`
 
 ### JSF and CDI annotations support automatically
 
@@ -86,19 +82,14 @@ Function | Description
 `isAuthenticated` | returns true if the user is not anonymous.
 `isFullyAuthenticated` | returns true if the is not an anonymous or a remember-me user.
 
-Additional information in [#29](https://github.com/joinfaces/joinfaces/issues/29)
-
 ## System Requirements
 
-Joinfaces | Java | Spring Boot | JSF
-----------|------|-------------|-----
-`2.x`     |`1.6` to `1.8`|`1.x`|`2.0` to `2.2`
-`3.0` to `3.2`|`1.8`|`2.0`|`2.0` to `2.3`
-`3.3`     |`1.8` to `11` |`2.1`|`2.0` to `2.3`
+Java | Spring Boot | JSF
+--------------|-----|------
+`1.8` to `11` |`2.1`|`2.0` to `2.3`
 
 This are the combinations we have tested and expect to work, but depending on the features you are using, other combinations might work, too.
-
-Additionnal information [here.](https://github.com/joinfaces/joinfaces/wiki/System-Requirements)
+When using Java 9 or higher, make sure to use JoinFaces only on the classpath and not on the modulepath.
 
 ## Getting Help
 
