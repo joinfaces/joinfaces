@@ -1,0 +1,48 @@
+== Build Tools integration
+
+=== Maven Plugin
+
+JoinFaces provides `org.joinfaces:joinfaces-maven-plugin` https://maven.apache.org[Maven] plugin to configure a classpath scan at build-time in order to reduce the startup time of applications which use an embedded servlet container.
+
+If you have any problems with the classpath scan, you can remove it from plugin section in your `pom.xml` or disable it:
+[source,sh]
+----
+-Djoinfaces.skip=true
+----
+
+
+=== Gradle Plugin
+
+JoinFaces provides some https://gradle.org/[Gradle] plugins to simplify the development.
+
+NOTE: When using the JoinFaces Gradle plugins, you might want to use the https://docs.spring.io/spring-boot/docs/{spring-boot-version}/reference/htmlsingle/#using-boot-gradle[Spring Boot gradle plugin], too.
+
+==== `org.joinfaces`
+
+The `org.joinfaces` plugin is the main plugin. It does nothing on it's own, but conditionally applies
+the other plugin in reaction to the plugins present in the project.
+
+TIP: If defaults in the `org.joinfaces` plugin don't work for you, you can just include the sub-plugins you need instead.
+
+==== `org.joinfaces.dependency-management`
+
+This plugin is applied by the main plugin if the https://github.com/spring-gradle-plugins/dependency-management-plugin[`io.spring.dependency-management` plugin] is applied to the current project.
+If this plugin is applied directly it will apply the `io.spring.dependency-management` itself.
+
+In both cases it configures the dependency management plugin to use the JoinFaces <<bom>>.
+
+This is similar to what the https://docs.spring.io/spring-boot/docs/{spring-boot-version}/gradle-plugin/reference/html/#managing-dependencies[Spring Boot Gradle plugin does].
+
+==== `org.joinfaces.classpath-scan`
+
+This plugin configures a classpath scan at build-time in order to reduce the startup time of applications which use an
+embedded servlet container.
+
+For each source-set the `runtimeClasspath` configuration and the output of the compile tasks for `java`, `groovy`,
+`scala` and `kotlin` will be scanned.
+
+If you have any problems with the classpath scan, you can disable it:
+[source,groovy]
+----
+scanClasspath.enabled = false
+----
