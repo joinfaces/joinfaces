@@ -2,6 +2,9 @@ description = 'Omnifaces 3.x Spring Boot Starter'
 jar.manifest.attributes('Automatic-Module-Name': 'joinfaces.starter.omnifaces')
 
 dependencies {
+    compile project(':joinfaces-starters:jsf-spring-boot-starter')
     compile 'org.omnifaces:omnifaces:3.2'
-    compile project(':joinfaces-starters:weld-spring-boot-starter')
+    compile(project(':joinfaces-starters:weld-spring-boot-starter')) {
+        exclude group: "org.jboss.spec.javax.annotation", module: "jboss-annotations-api_1.3_spec"
+    }
 }
