@@ -1,0 +1,308 @@
+== JoinFaces Features
+
+=== Starters
+
+There are seventeen JoinFaces Starters available: six basic starters, two utility starters, one meta starter, six component starters, one theme starter and one extra starter.
+
+While most of the starters can be combined, some starters are mutually exclusive:
+
+- `tomcat-spring-boot-starter`, `jetty-spring-boot-starter` and `undertow-spring-boot-starter`
+- `mojarra-spring-boot-starter` and `myfaces-spring-boot-starter`
+- `omnifaces1-spring-boot-starter` and `omnifaces3-spring-boot-starter`
+
+You can use the table below to discover the starters that fit your needs.
+
+.JoinFaces starters
+[%autowidth]
+|===========
+|Starter |Description
+
+|tomcat-spring-boot-starter
+|Basic starter for https://tomcat.apache.org/[Tomcat] servlet container.
+
+|jetty-spring-boot-starter
+|Basic starter for https://www.eclipse.org/jetty[Jetty] servlet container.
+
+|undertow-spring-boot-starter
+|Basic starter for http://undertow.io[Undertow] servlet container.
+
+|mojarra-spring-boot-starter
+|Basic starter for https://javaee.github.io/javaserverfaces-spec/[Mojarra] JSF implementation.
+
+|myfaces-spring-boot-starter
+|Basic starter for https://myfaces.apache.org/[MyFaces] JSF implementation.
+
+|weld-spring-boot-starter
+|Basic starter for https://weld.cdi-spec.org/[Weld] CDI Reference Implementation.
+
+|omnifaces1-spring-boot-starter
+|Utility starter for https://omnifaces.org/[OmniFaces] JSF utility library.
+
+|omnifaces3-spring-boot-starter
+|Utility starter for https://omnifaces.org/[OmniFaces] JSF utility library. Pulls `weld-spring-boot-starter`.
+
+|jsf-spring-boot-starter
+|Meta starter that pulls `tomcat-spring-boot-starter`, `mojarra-spring-boot-starter` and `omnifaces1-spring-boot-starter`.
+
+|primefaces-spring-boot-starter
+|Component starter for https://primefaces.org[PrimeFaces], and https://primefaces-extensions.github.io/[PrimeFaces Extensions] JSF Component libraries. Pulls `jsf-spring-boot-starter`.
+
+|bootsfaces-spring-boot-starter
+|Component starter for https://bootsfaces.net[BootsFaces] JSF Component library. Pulls `jsf-spring-boot-starter`.
+
+|butterfaces-spring-boot-starter
+|Component starter for http://butterfaces.org[ButterFaces] JSF Component library. Pulls `jsf-spring-boot-starter`.
+
+|icefaces-spring-boot-starter
+|Component starter for https://www.icesoft.org/java/projects/ICEfaces/overview.jsf[IceFaces] JSF Component library. Pulls `jsf-spring-boot-starter`.
+
+|richfaces-spring-boot-starter
+|Component starter for https://github.com/richfaces/richfaces[RichFaces] JSF Component library. Pulls `jsf-spring-boot-starter`.
+
+|angularfaces-spring-boot-starter
+|Component starter for https://angularfaces.net[AngularFaces] JSF Component library. Pulls `jsf-spring-boot-starter`.
+
+|adminfaces-spring-boot-starter
+|Template and Theme starter for https://adminfaces.github.io/site/[AdminFaces]. Pulls `primefaces-spring-boot-starter`.
+
+|rewrite-spring-boot-starter
+|Extra starter for https://github.com/ocpsoft/rewrite[Ocpsoft Rewrite] URL Rewriting Tool.
+|===========
+
+==== Not using Tomcat or Mojarra
+The `jsf-spring-boot-starter` pulls tomcat and mojarra as defaults. If you want to change this, you have to exclude one starter and pull another one instead.
+
+The principle behind this is the same as described here:
+
+- https://docs.spring.io/spring-boot/docs/{spring-boot-version}/reference/htmlsingle/#howto-use-another-web-server[Use Another Web Server]
+- https://docs.spring.io/spring-boot/docs/{spring-boot-version}/reference/htmlsingle/#howto-configure-log4j-for-logging[Configure Log4j for Logging]
+
+===== Example: Using MyFaces instead of Mojarra
+[source,xml]
+----
+<dependencies>
+    <dependency>
+        <groupId>org.joinfaces</groupId>
+        <artifactId>jsf-spring-boot-starter</artifactId>
+        <exclusions>
+            <exclusion>
+                <groupId>org.joinfaces</groupId>
+                <artifactId>mojarra-spring-boot-starter</artifactId>
+            </exclusion>
+        </exclusions>
+    </dependency>
+    <dependency>
+        <groupId>org.joinfaces</groupId>
+        <artifactId>myfaces-spring-boot-starter</artifactId>
+    </dependency>
+</dependencies>
+----
+
+[source,groovy]
+----
+dependencies {
+    compile ("org.joinfaces:jsf-spring-boot-starter") {
+        exclude module: "mojarra-spring-boot-starter"
+    }
+    compile "org.joinfaces:myfaces-spring-boot-starter"
+    // ...
+}
+----
+
+=== Servlet-Context Init-Parameters
+
+JSF implementations and JSF component libraries are usually configured using servlet context init parameters in `web.xml`:
+
+[source,xml]
+----
+<context-param>
+    <param-name>javax.faces.PROJECT_STAGE</param-name>
+    <param-value>Development</param-value>
+</context-param>
+<context-param>
+    <param-name>primefaces.THEME</param-name>
+    <param-value>omega</param-value>
+</context-param>
+----
+
+_Spring Boot_ based applications -- especially when using `jar`-packaging -- usually don't have a `web.xml` file.
+Therefore JoinFaces maps these options to
+https://docs.spring.io/spring-boot/docs/{spring-boot-version}/reference/htmlsingle/#boot-features-external-config[_Spring Boot_ properties]:
+
+[source,properties]
+----
+joinfaces.jsf.project-stage=development
+joinfaces.primefaces.theme=omega
+----
+
+The full list of all properties can be found in the chapter <<properties>>.
+
+NOTE: Most of these properties default to `null`, so the corresponding parameter isn't set to the servlet-context.
+This allows the underlying library to use their own default behaviour.
+
+[TIP]
+====
+If you need a to set a parameter which isn't specially handled by JoinFaces, you can still set it using this generic way:
+
+[source,properties,subs="+quotes"]
+----
+server.servlet.context-parameters._javax.faces.PROJECT_STAGE_=Development
+server.servlet.context-parameters._primefaces.THEME_=omega
+----
+====
+
+=== Library Specific Features
+
+This section describes, what JoinFaces does for specific libraries.
+
+==== AdminFaces
+
+* Configurations are mapped from the `joinfaces.adminfaces.*` properties.
+* Spring Component scan for selected `com.github.adminfaces.template.*`-packages.
+* `primefaces.THEME` is set to `admin`.
+* `primefaces.FONT_AWESOME` is set to `true`.
+
+==== AngularFaces
+
+* `AngularFaces.\*` servlet-context init-parameters are mapped from `joinfaces.angularfaces.*` properties.
+* `AngularTagDecorator` is added to `javax.faces.FACELETS_DECORATORS`.
+
+==== BootsFaces
+
+* `net.bootsfaces.\*` servlet-context init-parameters are mapped from `joinfaces.bootsfaces.*` properties.
+
+==== ButterFaces
+
+* `org.butterfaces.\*` servlet-context init-parameters are mapped from `joinfaces.butterfaces.*` properties.
+* `net.bootsfaces.get_jquery_from_cdn` is set to `true`.
+
+==== ICEfaces
+
+* `org.icefaces.\*` servlet-context init-parameters are mapped from `joinfaces.icefaces.*` properties.
+* The scope `window` is added to the spring context, which is backend by `org.icefaces.impl.application.WindowScopeManager`.
+* ICEfaces `META-INF/core.tld` is re-implemented as ServletContextInitializer for the embedded Undertow.
+
+==== Mojarra
+
+* `com.sun.faces.\*` servlet-context init-parameters are mapped from `joinfaces.mojarra.*` properties.
+* `com.sun.faces.config.FacesInitializer` is executed for embedded servlet containers.
+
+==== MyFaces
+
+* `org.apache.myfaces.\*` servlet-context init-parameters are mapped from `joinfaces.myfaces.*` properties.
+* `org.apache.myfaces.ee.MyFacesContainerInitializer` is executed for embedded servlet containers.
+* `org.apache.myfaces.webapp.StartupServletContextListener` is registered for embedded servlet containers.
+* A `org.apache.myfaces.spi.AnnotationProvider` implementation is provided for embedded servlet containers
+which reuses the classpath-scan results from `MyFacesContainerInitializer`.
+
+==== OmniFaces
+
+* `org.omnifaces.\*` servlet-context init-parameters are mapped from `joinfaces.omnifaces.*` properties.
+* `org.omnifaces.facesviews.FacesViewsInitializer` or `org.omnifaces.ApplicationInitializer`
+are executed for embedded servlet containers.
+
+==== PrimeFaces
+
+* `primefaces.\*` servlet-context init-parameters are mapped from `joinfaces.primefaces.*` properties.
+
+==== Rewrite
+
+* `org.ocpsoft.rewrite.\*` servlet-context init-parameters are mapped from `joinfaces.rewrite.*` properties.
+* Rewrites `META-INF/web-fragment.xml` is re-implemented as ServletContextInitializer for embedded servlet containers.
+* _Spring Boot_ specific implementations for the following SPIs are provided:
+** `org.ocpsoft.rewrite.el.spi.BeanNameResolver`
+** `org.ocpsoft.rewrite.el.spi.ExpressionLanguageProvider`
+** `org.ocpsoft.common.spi.ServiceLocator`
+
+==== RichFaces
+
+* `org.richfaces.\*` servlet-context init-parameters are mapped from `joinfaces.richfaces.*` properties.
+* `org.richfaces.webapp.ServletsInitializer` is executed for embedded servlet containers.
+
+==== Weld
+
+* `org.jboss.weld.environment.servlet.EnhancedListener` is executed for embedded servlet containers.
+
+=== JSF and CDI scope-annotations support
+
+JSF and CDI scope-annotations are automatically supported.
+
+The following annotations can be used to define the scope of Spring beans:
+
+==== Spring's default annotations
+
+- https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/web/context/annotation/ApplicationScope.html[`@org.springframework.web.context.annotation.ApplicationScope`] or https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/context/annotation/Scope.html[`@org.springframework.context.annotation.Scope("application")`]
+- https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/web/context/annotation/RequestScope.html[`@org.springframework.web.context.annotation.RequestScope`] or https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/context/annotation/Scope.html[`@org.springframework.context.annotation.Scope("request")`]
+- https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/web/context/annotation/SessionScope.html[`@org.springframework.web.context.annotation.SessionScope`] or https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/context/annotation/Scope.html[`@org.springframework.context.annotation.Scope("session")`]
+- https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/context/annotation/Scope.html[`@org.springframework.context.annotation.Scope("view")`]
+
+==== New JSF Scope annotation (JSF >= 2.2)
+
+- https://docs.oracle.com/javaee/7/api/javax/faces/view/ViewScoped.html[`@javax.faces.view.ViewScoped`] (mapped to Joinfaces' `view` scope)
+
+==== Old JSF Scope annotations (JSF <= 2.1)
+
+CAUTION: The following annotations are only supported for backwards compatibility.
+New applications should only use the annotations above.
+
+- https://docs.oracle.com/javaee/7/api/javax/faces/bean/ApplicationScoped.html[`@javax.faces.bean.ApplicationScoped`] (mapped to Spring's `application` scope)
+- https://docs.oracle.com/javaee/7/api/javax/faces/bean/NoneScoped.html[`@javax.faces.bean.NoneScoped`] (mapped to Spring's `prototype` scope)
+- https://docs.oracle.com/javaee/7/api/javax/faces/bean/RequestScoped.html[`@javax.faces.bean.RequestScoped`] (mapped to Spring's `request` scope)
+- https://docs.oracle.com/javaee/7/api/javax/faces/bean/SessionScoped.html[`@javax.faces.bean.SessionScoped`] (mapped to Spring's `session` scope)
+- https://docs.oracle.com/javaee/7/api/javax/faces/bean/ViewScoped.html[`@javax.faces.bean.ViewScoped`] (mapped to Joinfaces' `view` scope)
+
+==== CDI Annotations
+
+- https://docs.oracle.com/javaee/7/api/javax/enterprise/context/ApplicationScoped.html[`@javax.enterprise.context.ApplicationScoped`] (mapped to Spring's `application` scope)
+- https://docs.oracle.com/javaee/7/api/javax/enterprise/context/ConversationScoped.html[`@javax.enterprise.context.ConversationScoped`] (mapped to Spring's `session` scope)
+- https://docs.oracle.com/javaee/7/api/javax/enterprise/context/RequestScoped.html[`@javax.enterprise.context.RequestScoped`] (mapped to Spring's `request` scope)
+- https://docs.oracle.com/javaee/7/api/javax/enterprise/context/SessionScoped.html[`@javax.enterprise.context.SessionScoped`] (mapped to Spring's `session` scope)
+
+=== Spring Security JSF Facelet Tag support
+
+JoinFaces enables Spring Security JSF Facelet Tag support in order to secure JSF pages.
+
+Namespace: **http://www.springframework.org/security/tags**
+
+.Spring Security JSF Facelet Tags
+|===========
+|Tag |Description
+
+|`authorize`
+|perform Spring Security authorization decisions, using attributes: ifAnyGranted, ifAllGranted, ifNotGranted, access, url, method, var.
+
+|`anonymous`
+|verify if the user is anonymous.
+
+|`authenticated`
+|verify if the user is not anonymous.
+
+|`fullyAuthenticated`
+|verify if the is not an anonymous or a remember-me user.
+|===========
+
+.Spring Security JSF Facelet Functions
+|===========
+|Function |Description
+
+|`areAllGranted`
+|returns true if the user has all of of the given authorities.
+
+|`areAnyGranted`
+|returns true if the user has any of the given authorities.
+
+|`areNotGranted`
+|returns true if the user does not have any of the given authorities.
+
+|`isAllowed`
+|returns true if the user is allowed to access the given URL and HTTP method combination.
+
+|`isAnonymous`
+|returns true if user is anonymous.
+
+|`isAuthenticated`
+|returns true if the user is not anonymous.
+
+|`isFullyAuthenticated`
+|returns true if the is not an anonymous or a remember-me user.
+|===========
