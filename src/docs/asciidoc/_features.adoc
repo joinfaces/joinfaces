@@ -2,7 +2,7 @@
 
 === Starters
 
-There are seventeen JoinFaces Starters available: six basic starters, two utility starters, one meta starter, six component starters, one theme starter and one extra starter.
+There are seventeen JoinFaces Starters available: six basic starters, two utility starters, one meta starter, eight component starters, one theme starter and one extra starter.
 
 While most of the starters can be combined, some starters are mutually exclusive:
 
@@ -35,14 +35,8 @@ You can use the table below to discover the starters that fit your needs.
 |weld-spring-boot-starter
 |Basic starter for https://weld.cdi-spec.org/[Weld] CDI Reference Implementation.
 
-|omnifaces1-spring-boot-starter
-|Utility starter for https://omnifaces.org/[OmniFaces] JSF utility library.
-
-|omnifaces3-spring-boot-starter
-|Utility starter for https://omnifaces.org/[OmniFaces] JSF utility library. Pulls `weld-spring-boot-starter`.
-
 |jsf-spring-boot-starter
-|Meta starter that pulls `tomcat-spring-boot-starter`, `mojarra-spring-boot-starter` and `omnifaces1-spring-boot-starter`.
+|Meta starter that pulls `tomcat-spring-boot-starter` and `mojarra-spring-boot-starter`.
 
 |primefaces-spring-boot-starter
 |Component starter for https://primefaces.org[PrimeFaces], and https://primefaces-extensions.github.io/[PrimeFaces Extensions] JSF Component libraries. Pulls `jsf-spring-boot-starter`.
@@ -61,6 +55,12 @@ You can use the table below to discover the starters that fit your needs.
 
 |angularfaces-spring-boot-starter
 |Component starter for https://angularfaces.net[AngularFaces] JSF Component library. Pulls `jsf-spring-boot-starter`.
+
+|omnifaces1-spring-boot-starter
+|Component starter for https://omnifaces.org/[OmniFaces] JSF utility library. Pulls `jsf-spring-boot-starter`.
+
+|omnifaces3-spring-boot-starter
+|Component starter for https://omnifaces.org/[OmniFaces] JSF utility library. Pulls `jsf-spring-boot-starter` and `weld-spring-boot-starter`.
 
 |adminfaces-spring-boot-starter
 |Template and Theme starter for https://adminfaces.github.io/site/[AdminFaces]. Pulls `primefaces-spring-boot-starter`.
