@@ -260,7 +260,7 @@ New applications should only use the annotations above.
 
 === Spring Security JSF Facelet Tag support
 
-JoinFaces enables Spring Security JSF Facelet Tag support in order to secure JSF pages.
+JoinFaces enables Spring Security JSF Facelet Tag support in order to secure JSF pages. It will work if Spring Security is present at classpath.
 
 Namespace: **http://www.springframework.org/security/tags**
 
@@ -306,3 +306,5 @@ Namespace: **http://www.springframework.org/security/tags**
 |`isFullyAuthenticated`
 |returns true if the is not an anonymous or a remember-me user.
 |===========
+
+NOTE: https://docs.spring.io/spring-webflow/docs/current/reference/html/spring-faces.html#spring-faces-security-taglib[Spring Web Flow] has similar Spring Security JSF Facelet Tag, but tags and functions signatures differ than JoinFaces. More, JoinFaces does not requires additional configuration nor Spring Web Flow.
