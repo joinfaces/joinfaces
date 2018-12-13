@@ -1,0 +1,27 @@
+#Wed Aug 01 10:02:48 BRT 2018
+/home/marcelo/NetBeansProjects/joinfaces/joinfaces/spring-security-jsf-taglib/src/main/java/org/joinfaces/security/FullyAuthenticatedFaceletsTagHandler.java=1519247801000
+/home/marcelo/NetBeansProjects/joinfaces/joinfaces/spring-security-jsf-taglib/src/test/java/org/joinfaces/security/AuthorizeFaceletsTagHandlerIT.java=1519247801000
+/home/marcelo/NetBeansProjects/joinfaces/joinfaces/spring-security-jsf-taglib/src/test/java/org/joinfaces/security/AuthenticatedFaceletsTagIT.java=1519247801000
+/home/marcelo/NetBeansProjects/joinfaces/joinfaces/spring-security-jsf-taglib/src/main/java/org/joinfaces/security/AnonymousFaceletsTag.java=1519247801000
+/home/marcelo/NetBeansProjects/joinfaces/joinfaces/spring-security-jsf-taglib/src/test/java/org/joinfaces/security/FaceletsTagUtilsIT.java=1519247801000
+/home/marcelo/NetBeansProjects/joinfaces/joinfaces/spring-security-jsf-taglib/src/test/java/org/joinfaces/security/SecurityConfiguration.java=1519247801000
+/home/marcelo/NetBeansProjects/joinfaces/joinfaces/spring-security-jsf-taglib/src/test/java/org/joinfaces/security/FullyAuthenticatedFaceletsTagHandlerIT.java=1519247801000
+/home/marcelo/NetBeansProjects/joinfaces/joinfaces/spring-security-jsf-taglib/src/test/java/org/joinfaces/security/FullyAuthenticatedFaceletsTagIT.java=1519247801000
+/home/marcelo/NetBeansProjects/joinfaces/joinfaces/spring-security-jsf-taglib/src/main/java/org/joinfaces/security/package-info.java=1519247800000
+/home/marcelo/NetBeansProjects/joinfaces/joinfaces/spring-security-jsf-taglib/src/test/java/org/joinfaces/security/AuthorizeFaceletsTagIT.java=1519247801000
+module-resource*?\:file\:/home/marcelo/NetBeansProjects/joinfaces/joinfaces/spring-security-jsf-taglib/target/checkstyle-header.txt=2F98371A34E110F29E872D1E6E6000F0FEAD06B5
+/home/marcelo/NetBeansProjects/joinfaces/joinfaces/spring-security-jsf-taglib/src/main/java/org/joinfaces/security/AbstractFaceletsAuthorizeTag.java=1519247801000
+/home/marcelo/NetBeansProjects/joinfaces/joinfaces/spring-security-jsf-taglib/src/main/java/org/joinfaces/security/FullyAuthenticatedFaceletsTag.java=1519247801000
+/home/marcelo/NetBeansProjects/joinfaces/joinfaces/spring-security-jsf-taglib/src/test/java/org/joinfaces/security/Roles.java=1519247801000
+/home/marcelo/NetBeansProjects/joinfaces/joinfaces/spring-security-jsf-taglib/src/test/java/org/joinfaces/security/AnonymousFaceletsTagIT.java=1519247801000
+/home/marcelo/NetBeansProjects/joinfaces/joinfaces/spring-security-jsf-taglib/src/main/java/org/joinfaces/security/AuthorizeFaceletsTag.java=1519247801000
+/home/marcelo/NetBeansProjects/joinfaces/joinfaces/spring-security-jsf-taglib/src/main/java/org/joinfaces/security/AnonymousFaceletsTagHandler.java=1519247801000
+/home/marcelo/NetBeansProjects/joinfaces/joinfaces/spring-security-jsf-taglib/src/test/java/org/joinfaces/security/SpringSecurityMock.java=1519247801000
+/home/marcelo/NetBeansProjects/joinfaces/joinfaces/spring-security-jsf-taglib/src/main/java/org/joinfaces/security/FaceletsTagUtils.java=1519247801000
+/home/marcelo/NetBeansProjects/joinfaces/joinfaces/spring-security-jsf-taglib/src/test/java/org/joinfaces/security/AnonymousFaceletsTagHandlerIT.java=1519247801000
+configuration*?=77A895263FBCB97D8B037A5FF3871D5F78027F6A
+/home/marcelo/NetBeansProjects/joinfaces/joinfaces/spring-security-jsf-taglib/src/main/java/org/joinfaces/security/AuthenticatedFaceletsTag.java=1519247801000
+/home/marcelo/NetBeansProjects/joinfaces/joinfaces/spring-security-jsf-taglib/src/test/java/org/joinfaces/security/AuthenticationFactory.java=1519247801000
+/home/marcelo/NetBeansProjects/joinfaces/joinfaces/spring-security-jsf-taglib/src/test/java/org/joinfaces/security/AuthenticatedFaceletsTagHandlerIT.java=1519247801000
+/home/marcelo/NetBeansProjects/joinfaces/joinfaces/spring-security-jsf-taglib/src/main/java/org/joinfaces/security/AuthorizeFaceletsTagHandler.java=1519251556000
+/home/marcelo/NetBeansProjects/joinfaces/joinfaces/spring-security-jsf-taglib/src/main/java/org/joinfaces/security/AuthenticatedFaceletsTagHandler.java=1519247801000

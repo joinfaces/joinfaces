@@ -1,0 +1,13 @@
+org/joinfaces/security/AnonymousFaceletsTagIT.class
+org/joinfaces/security/Roles.class
+org/joinfaces/security/AuthorizeFaceletsTagHandlerIT.class
+org/joinfaces/security/FaceletsTagUtilsIT.class
+org/joinfaces/security/FullyAuthenticatedFaceletsTagIT.class
+org/joinfaces/security/AnonymousFaceletsTagHandlerIT.class
+org/joinfaces/security/AuthenticatedFaceletsTagIT.class
+org/joinfaces/security/AuthorizeFaceletsTagIT.class
+org/joinfaces/security/AuthenticationFactory.class
+org/joinfaces/security/SpringSecurityMock.class
+org/joinfaces/security/SecurityConfiguration.class
+org/joinfaces/security/FullyAuthenticatedFaceletsTagHandlerIT.class
+org/joinfaces/security/AuthenticatedFaceletsTagHandlerIT.class

@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="pt"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>FaceletsTagUtils.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Spring Security JSF Taglib</a> &gt; <a href="index.source.html" class="el_package">org.joinfaces.security</a> &gt; <span class="el_source">FaceletsTagUtils.java</span></div><h1>FaceletsTagUtils.java</h1><pre class="source lang-java linenums">/*
+ * Copyright 2016-2016 the original author or authors.
+ *
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+package org.joinfaces.security;
+
+import java.io.IOException;
+
+/**
+ * This class provides static methods that are registered as EL functions and
+ * available for use in Unified EL expressions in standard Facelets views.
+ * @author Marcelo Fernandes
+ */
+public final class FaceletsTagUtils {
+
+<span class="fc" id="L28">	protected FaceletsTagUtils() {</span>
+<span class="fc" id="L29">	}</span>
+
+	/**
+	 * Returns true if the user has all of of the given authorities.
+	 *
+	 * @param authorities a comma-separated list of user authorities.
+	 * @return computation if the user has all of of the given authorities
+	 * @throws IOException io exception
+	 */
+	public static boolean areAllGranted(String authorities) throws IOException {
+<span class="fc" id="L39">		AuthorizeFaceletsTag authorizeTag = new AuthorizeFaceletsTag();</span>
+<span class="fc" id="L40">		authorizeTag.setIfAllGranted(authorities);</span>
+<span class="fc" id="L41">		return authorizeTag.authorize();</span>
+	}
+
+	/**
+	 * Returns true if the user has any of the given authorities.
+	 *
+	 * @param authorities a comma-separated list of user authorities.
+	 * @return computation if the user has any of the given authorities.
+	 * @throws IOException io exception
+	 */
+	public static boolean areAnyGranted(String authorities) throws IOException {
+<span class="fc" id="L52">		AuthorizeFaceletsTag authorizeTag = new AuthorizeFaceletsTag();</span>
+<span class="fc" id="L53">		authorizeTag.setIfAnyGranted(authorities);</span>
+<span class="fc" id="L54">		return authorizeTag.authorize();</span>
+	}
+
+	/**
+	 * Returns true if the user does not have any of the given authorities.
+	 *
+	 * @param authorities a comma-separated list of user authorities.
+	 * @return computation if the user does not have any of the given authorities.
+	 * @throws IOException io exception
+	 */
+	public static boolean areNotGranted(String authorities) throws IOException {
+<span class="fc" id="L65">		AuthorizeFaceletsTag authorizeTag = new AuthorizeFaceletsTag();</span>
+<span class="fc" id="L66">		authorizeTag.setIfNotGranted(authorities);</span>
+<span class="fc" id="L67">		return authorizeTag.authorize();</span>
+	}
+
+	/**
+	 * Returns true if the user is allowed to access the given URL and HTTP
+	 * method combination. The HTTP method is optional and case insensitive.
+	 * @param url to be accessed.
+	 * @param method to be called.
+	 * @return computation if the user is allowed to access the given URL and HTTP method.
+	 * @throws IOException io exception
+	 */
+	public static boolean isAllowed(String url, String method) throws IOException {
+<span class="fc" id="L79">		AuthorizeFaceletsTag authorizeTag = new AuthorizeFaceletsTag();</span>
+<span class="fc" id="L80">		authorizeTag.setUrl(url);</span>
+<span class="fc" id="L81">		authorizeTag.setMethod(method);</span>
+<span class="fc" id="L82">		return authorizeTag.authorizeUsingUrlCheck();</span>
+	}
+
+	/**
+	 * Returns true if user is anonymous.
+	 * @return computation if the user is anonymous.
+	 * @throws IOException io exception
+	 */
+	public static boolean isAnonymous() throws IOException {
+<span class="fc" id="L91">		AnonymousFaceletsTag anonymousTag = new AnonymousFaceletsTag();</span>
+<span class="fc" id="L92">		return anonymousTag.authorize();</span>
+	}
+
+	/**
+	 * Returns true if the user is not anonymous.
+	 * @return computation if the user is not anonymous.
+	 * @throws IOException io exception
+	 */
+	public static boolean isAuthenticated() throws IOException {
+<span class="fc" id="L101">		AuthenticatedFaceletsTag authenticatedTag = new AuthenticatedFaceletsTag();</span>
+<span class="fc" id="L102">		return authenticatedTag.authorize();</span>
+	}
+
+	/**
+	 * Returns true if the is not an anonymous or a remember-me user.
+	 * @return computation if the user is not an anonymous or a remember-me user.
+	 * @throws IOException io exception
+	 */
+	public static boolean isFullyAuthenticated() throws IOException {
+<span class="fc" id="L111">		FullyAuthenticatedFaceletsTag authenticatedTag = new FullyAuthenticatedFaceletsTag();</span>
+<span class="fc" id="L112">		return authenticatedTag.authorize();</span>
+	}
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

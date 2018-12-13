@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="pt"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>AuthorizeFaceletsTagHandler.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Spring Security JSF Taglib</a> &gt; <a href="index.source.html" class="el_package">org.joinfaces.security</a> &gt; <span class="el_source">AuthorizeFaceletsTagHandler.java</span></div><h1>AuthorizeFaceletsTagHandler.java</h1><pre class="source lang-java linenums">/*
+ * Copyright 2016-2016 the original author or authors.
+ *
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+package org.joinfaces.security;
+
+import java.io.IOException;
+
+import javax.faces.component.UIComponent;
+import javax.faces.view.facelets.FaceletContext;
+import javax.faces.view.facelets.TagAttribute;
+import javax.faces.view.facelets.TagConfig;
+import javax.faces.view.facelets.TagHandler;
+
+import org.springframework.security.core.context.SecurityContextHolder;
+
+/**
+ * A standard Facelets {@link TagHandler} for performing Spring Security
+ * authorization decisions. The tag supports the following combinations
+ * attributes for authorization:
+ * &lt;ul&gt;
+ * &lt;li&gt;access&lt;/li&gt;
+ * &lt;li&gt;url, method&lt;/li&gt;
+ * &lt;li&gt;ifAllGranted, ifAnyGranted, ifNotGranted&lt;/li&gt;
+ * &lt;/ul&gt;
+ * The var attribute can be used to store the result of the authorization
+ * decision for later use in the view.
+ *
+ * @author Marcelo Fernandes
+ */
+public class AuthorizeFaceletsTagHandler extends TagHandler {
+
+	private final TagAttribute access;
+	private final TagAttribute url;
+	private final TagAttribute method;
+	private final TagAttribute ifAllGranted;
+	private final TagAttribute ifAnyGranted;
+	private final TagAttribute ifNotGranted;
+	private final TagAttribute var;
+
+	public AuthorizeFaceletsTagHandler(TagConfig config) {
+<span class="fc" id="L54">		super(config);</span>
+<span class="fc" id="L55">		this.access = this.getAttribute(&quot;access&quot;);</span>
+<span class="fc" id="L56">		this.url = this.getAttribute(&quot;url&quot;);</span>
+<span class="fc" id="L57">		this.method = this.getAttribute(&quot;method&quot;);</span>
+<span class="fc" id="L58">		this.ifAllGranted = this.getAttribute(&quot;ifAllGranted&quot;);</span>
+<span class="fc" id="L59">		this.ifAnyGranted = this.getAttribute(&quot;ifAnyGranted&quot;);</span>
+<span class="fc" id="L60">		this.ifNotGranted = this.getAttribute(&quot;ifNotGranted&quot;);</span>
+<span class="fc" id="L61">		this.var = this.getAttribute(&quot;var&quot;);</span>
+<span class="fc" id="L62">	}</span>
+
+	@Override
+	public void apply(FaceletContext faceletContext, UIComponent parent) throws IOException {
+<span class="fc bfc" id="L66" title="All 2 branches covered.">		if (SecurityContextHolder.getContext().getAuthentication() == null) {</span>
+<span class="fc" id="L67">			return;</span>
+		}
+
+<span class="fc" id="L70">		AuthorizeFaceletsTag authorizeTag = new AuthorizeFaceletsTag(faceletContext, this.access, this.url, this.method, this.ifAllGranted, this.ifAnyGranted, this.ifNotGranted);</span>
+
+<span class="fc" id="L72">		boolean isAuthorized = authorizeTag.authorize();</span>
+
+<span class="fc bfc" id="L74" title="All 2 branches covered.">		if (isAuthorized) {</span>
+<span class="fc" id="L75">			this.nextHandler.apply(faceletContext, parent);</span>
+		}
+
+<span class="fc bfc" id="L78" title="All 2 branches covered.">		if (this.var != null) {</span>
+<span class="fc" id="L79">			faceletContext.setAttribute(this.var.getValue(faceletContext), isAuthorized);</span>
+		}
+<span class="fc" id="L81">	}</span>
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

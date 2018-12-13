@@ -1,0 +1,135 @@
+<?xml version="1.0"?>
+<facelet-taglib xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-facelettaglibrary_2_2.xsd"
+    version="2.2" >
+	<namespace>http://www.springframework.org/security/tags</namespace>
+    
+	<tag>
+        <description>
+            A standard Facelets for performing Spring Security authorization decisions. 
+            The tag supports the following combinations attributes for authorization:
+            access; url and method; ifAllGranted and ifAnyGranted and ifNotGranted.
+            The var attribute can be used to store the result of the authorization decision for later use in the view.
+        </description>
+		<tag-name>authorize</tag-name>
+		<handler-class>org.joinfaces.security.AuthorizeFaceletsTagHandler</handler-class>
+        
+        <attribute>
+            <description>
+                A Spring-EL expression which is supported by the WebSecurityExpressionHandler
+                in the application context. The latter will be used to evaluate the expression.
+            </description>
+            <name>access</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+
+        <attribute>
+            <description>
+                A URL within the application. If the user has access to this URL (as determined by
+                the AccessDecisionManager), the tag body will be evaluated. If not, it will
+                be skipped.
+            </description>
+            <name>url</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+
+        <attribute>
+            <description>
+                Can be used to specify the HTTP method (typically GET or POST) which is used in combination
+                with the URL when consulting the AccessDecisionManager. Only has any meaning when used in combination
+                with the "url" attribute. Defaults to GET.
+            </description>
+            <name>method</name>
+            <required>false</required>
+            <rtexprvalue>false</rtexprvalue>
+        </attribute>
+
+        <attribute>
+            <description>
+                A page scoped variable into which the boolean result of the tag evaluation will be written, allowing the
+                same condition to be reused subsequently in the page without re-evaluation.
+            </description>
+            <name>var</name>
+            <required>false</required>
+            <rtexprvalue>false</rtexprvalue>
+        </attribute>
+        
+        <attribute>
+			<description>Check if authentication has any of authorities granted.</description>
+			<name>ifAnyGranted</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+        
+        <attribute>
+			<description>Check if authentication has all of authorities granted.</description>
+			<name>ifAllGranted</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+        
+        <attribute>
+			<description>Check if authentication has none of authorities granted.</description>
+			<name>ifNotGranted</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+    </tag>
+        
+	<tag>
+        <description>Verify if the user is anonymous.</description>
+		<tag-name>anonymous</tag-name>
+		<handler-class>org.joinfaces.security.AnonymousFaceletsTagHandler</handler-class>
+	</tag>
+        
+	<tag>
+        <description>Verify if the user is not anonymous.</description>
+		<tag-name>authenticated</tag-name>
+		<handler-class>org.joinfaces.security.AuthenticatedFaceletsTagHandler</handler-class>
+	</tag>
+        
+	<tag>
+        <description>Verify if the is not an anonymous or a remember-me user.</description>
+		<tag-name>fullyAuthenticated</tag-name>
+		<handler-class>org.joinfaces.security.FullyAuthenticatedFaceletsTagHandler</handler-class>
+	</tag>
+    
+	<function>
+		<function-name>areAllGranted</function-name>
+		<function-class>org.joinfaces.security.FaceletsTagUtils</function-class>
+		<function-signature>boolean areAllGranted(java.lang.String)</function-signature>
+	</function>
+	<function>
+		<function-name>areAnyGranted</function-name>
+		<function-class>org.joinfaces.security.FaceletsTagUtils</function-class>
+		<function-signature>boolean areAnyGranted(java.lang.String)</function-signature>
+	</function>
+	<function>
+		<function-name>areNotGranted</function-name>
+		<function-class>org.joinfaces.security.FaceletsTagUtils</function-class>
+		<function-signature>boolean areNotGranted(java.lang.String)</function-signature>
+	</function>
+	<function>
+		<function-name>isAllowed</function-name>
+		<function-class>org.joinfaces.security.FaceletsTagUtils</function-class>
+        <function-signature>boolean isAllowed(java.lang.String, java.lang.String)</function-signature>
+	</function>
+	<function>
+		<function-name>isAnonymous</function-name>
+		<function-class>org.joinfaces.security.FaceletsTagUtils</function-class>
+        <function-signature>boolean isAnonymous()</function-signature>
+	</function>
+	<function>
+		<function-name>isAuthenticated</function-name>
+		<function-class>org.joinfaces.security.FaceletsTagUtils</function-class>
+        <function-signature>boolean isAuthenticated()</function-signature>
+	</function>
+	<function>
+		<function-name>isFullyAuthenticated</function-name>
+		<function-class>org.joinfaces.security.FaceletsTagUtils</function-class>
+        <function-signature>boolean isFullyAuthenticated()</function-signature>
+	</function>
+</facelet-taglib>
