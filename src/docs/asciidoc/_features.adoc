@@ -39,7 +39,7 @@ You can use the table below to discover the starters that fit your needs.
 |Meta starter that pulls `tomcat-spring-boot-starter` and `mojarra-spring-boot-starter`.
 
 |security-spring-boot-starter
-|Security starter. Pulls `jsf-spring-boot-starter`, `spring-boot-starter-security` and `spring-security-jsb-taglib`.
+|Security starter. Pulls `jsf-spring-boot-starter`, `spring-boot-starter-security` and `joinfaces-security-taglib`.
 
 |primefaces-spring-boot-starter
 |Component starter for https://primefaces.org[PrimeFaces], and https://primefaces-extensions.github.io/[PrimeFaces Extensions] JSF Component libraries. Pulls `jsf-spring-boot-starter`.
