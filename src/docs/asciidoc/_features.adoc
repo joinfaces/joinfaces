@@ -2,7 +2,7 @@
 
 === Starters
 
-There are seventeen JoinFaces Starters available: six basic starters, two utility starters, one meta starter, eight component starters, one theme starter and one extra starter.
+There are many JoinFaces Starters available: six basic starters, meta starter, security starter,  component starters, theme starter and extra starter.
 
 While most of the starters can be combined, some starters are mutually exclusive:
 
@@ -37,6 +37,9 @@ You can use the table below to discover the starters that fit your needs.
 
 |jsf-spring-boot-starter
 |Meta starter that pulls `tomcat-spring-boot-starter` and `mojarra-spring-boot-starter`.
+
+|security-spring-boot-starter
+|Security starter. Pulls `jsf-spring-boot-starter`, `spring-boot-starter-security` and `spring-security-jsb-taglib`.
 
 |primefaces-spring-boot-starter
 |Component starter for https://primefaces.org[PrimeFaces], and https://primefaces-extensions.github.io/[PrimeFaces Extensions] JSF Component libraries. Pulls `jsf-spring-boot-starter`.
@@ -307,4 +310,4 @@ Namespace: **http://www.springframework.org/security/tags**
 |returns true if the is not an anonymous or a remember-me user.
 |===========
 
-NOTE: https://docs.spring.io/spring-webflow/docs/current/reference/html/spring-faces.html#spring-faces-security-taglib[Spring Web Flow] has similar Spring Security JSF Facelet Tag, but tags and functions signatures differ than JoinFaces. More, JoinFaces does not requires additional configuration nor Spring Web Flow.
+NOTE: https://docs.spring.io/spring-webflow/docs/current/reference/html/spring-faces.html#spring-faces-security-taglib[Spring Web Flow] has similar feature. JoinFaces Spring Security JSF Facelet Tag has different tags and functions signatures, does not requires additional configuration nor require Spring Web Flow.

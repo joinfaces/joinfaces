@@ -9,12 +9,4 @@ dependencies {
 
     compile project(':joinfaces-starters:tomcat-spring-boot-starter')
     compile project(':joinfaces-starters:mojarra-spring-boot-starter')
-
-    compile project(':spring-security-jsf-taglib')
-
-    runtime('org.springframework.security:spring-security-taglibs') {
-        exclude group: 'org.springframework.security', module: 'spring-security-acl'
-        exclude group: 'org.springframework.security', module: 'spring-security-web'
-        exclude group: 'org.springframework.security', module: 'spring-security-core'
-    }
 }
