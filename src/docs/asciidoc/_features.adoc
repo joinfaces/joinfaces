@@ -2,7 +2,7 @@
 
 === Starters
 
-There are seventeen JoinFaces Starters available: six basic starters, two utility starters, one meta starter, six component starters, one theme starter and one extra starter.
+There are many JoinFaces Starters available: six basic starters, meta starter, security starter,  component starters, theme starter and extra starter.
 
 While most of the starters can be combined, some starters are mutually exclusive:
 
@@ -35,14 +35,11 @@ You can use the table below to discover the starters that fit your needs.
 |weld-spring-boot-starter
 |Basic starter for https://weld.cdi-spec.org/[Weld] CDI Reference Implementation.
 
-|omnifaces1-spring-boot-starter
-|Utility starter for https://omnifaces.org/[OmniFaces] JSF utility library.
-
-|omnifaces3-spring-boot-starter
-|Utility starter for https://omnifaces.org/[OmniFaces] JSF utility library. Pulls `weld-spring-boot-starter`.
-
 |jsf-spring-boot-starter
-|Meta starter that pulls `tomcat-spring-boot-starter`, `mojarra-spring-boot-starter` and `omnifaces1-spring-boot-starter`.
+|Meta starter that pulls `tomcat-spring-boot-starter` and `mojarra-spring-boot-starter`.
+
+|security-spring-boot-starter
+|Security starter. Pulls `jsf-spring-boot-starter`, `spring-boot-starter-security` and `joinfaces-security-taglib`.
 
 |primefaces-spring-boot-starter
 |Component starter for https://primefaces.org[PrimeFaces], and https://primefaces-extensions.github.io/[PrimeFaces Extensions] JSF Component libraries. Pulls `jsf-spring-boot-starter`.
@@ -61,6 +58,12 @@ You can use the table below to discover the starters that fit your needs.
 
 |angularfaces-spring-boot-starter
 |Component starter for https://angularfaces.net[AngularFaces] JSF Component library. Pulls `jsf-spring-boot-starter`.
+
+|omnifaces1-spring-boot-starter
+|Component starter for https://omnifaces.org/[OmniFaces] JSF utility library. Pulls `jsf-spring-boot-starter`.
+
+|omnifaces3-spring-boot-starter
+|Component starter for https://omnifaces.org/[OmniFaces] JSF utility library. Pulls `jsf-spring-boot-starter` and `weld-spring-boot-starter`.
 
 |adminfaces-spring-boot-starter
 |Template and Theme starter for https://adminfaces.github.io/site/[AdminFaces]. Pulls `primefaces-spring-boot-starter`.
@@ -260,7 +263,7 @@ New applications should only use the annotations above.
 
 === Spring Security JSF Facelet Tag support
 
-JoinFaces enables Spring Security JSF Facelet Tag support in order to secure JSF pages.
+JoinFaces enables Spring Security JSF Facelet Tag support in order to secure JSF pages. It will work if Spring Security is present at classpath.
 
 Namespace: **http://www.springframework.org/security/tags**
 
@@ -306,3 +309,5 @@ Namespace: **http://www.springframework.org/security/tags**
 |`isFullyAuthenticated`
 |returns true if the is not an anonymous or a remember-me user.
 |===========
+
+NOTE: https://docs.spring.io/spring-webflow/docs/current/reference/html/spring-faces.html#spring-faces-security-taglib[Spring Web Flow] has similar feature. JoinFaces Spring Security JSF Facelet Tag has different tags and functions signatures, does not requires additional configuration nor require Spring Web Flow.
