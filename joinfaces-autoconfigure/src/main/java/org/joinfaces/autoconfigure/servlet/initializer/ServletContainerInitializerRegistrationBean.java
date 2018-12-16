@@ -23,10 +23,8 @@ import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
 import java.util.HashSet;
-import java.util.Objects;
 import java.util.Optional;
 import java.util.Set;
-import java.util.stream.Collectors;
 
 import javax.servlet.ServletContainerInitializer;
 import javax.servlet.annotation.HandlesTypes;
@@ -38,6 +36,7 @@ import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
+import org.joinfaces.autoconfigure.ClasspathScanUtil;
 
 import org.springframework.beans.BeanUtils;
 import org.springframework.boot.web.server.WebServerFactoryCustomizer;
@@ -95,22 +94,7 @@ public class ServletContainerInitializerRegistrationBean<T extends ServletContai
 		stopWatch.start("load scan-result");
 
 		try (BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(resourceAsStream, StandardCharsets.UTF_8))) {
-			Set<Class<?>> collect = bufferedReader.lines()
-					.map(className -> {
-						try {
-							return Class.forName(className);
-						}
-						catch (ClassNotFoundException e) {
-							log.debug("Failed to load class {} from prepared result", className, e);
-						}
-						catch (LinkageError e) {
-							log.info("Failed to load class {} from prepared result", className, e);
-						}
-						return null;
-					})
-					.filter(Objects::nonNull)
-					.collect(Collectors.toSet());
-			return Optional.of(collect);
+			return Optional.of(ClasspathScanUtil.getClasses(bufferedReader.lines()));
 		}
 		catch (IOException e) {
 			log.warn("Failed to read prepared scan-result {}", resourceName, e);

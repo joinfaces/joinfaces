@@ -26,15 +26,14 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Objects;
 import java.util.Set;
-import java.util.stream.Collectors;
 
 import javax.faces.context.ExternalContext;
 
 import lombok.extern.slf4j.Slf4j;
 import org.apache.myfaces.spi.AnnotationProvider;
 import org.apache.myfaces.spi.AnnotationProviderWrapper;
+import org.joinfaces.autoconfigure.ClasspathScanUtil;
 
 import org.springframework.util.StringUtils;
 
@@ -107,28 +106,13 @@ public class JoinFacesAnnotationProvider extends AnnotationProviderWrapper {
 				annotation = (Class<? extends Annotation>) Class.forName(annotationName);
 			}
 			catch (ClassNotFoundException | LinkageError e) {
-				log.info("Failed to load annotation class {}", annotationName, e);
+				log.warn("Failed to load annotation class {}", annotationName, e);
 				return;
 			}
 			Set<Class<?>> classSet;
 
 			if (StringUtils.hasText(annotationName)) {
-				classSet = Arrays.stream(classNameList.split(","))
-						.filter(StringUtils::hasText)
-						.map(className -> {
-							try {
-								return Class.forName(className);
-							}
-							catch (ClassNotFoundException e) {
-								log.debug("Failed to load class {}", className, e);
-							}
-							catch (LinkageError e) {
-								log.info("Failed to load class {}", className, e);
-							}
-							return null;
-						})
-						.filter(Objects::nonNull)
-						.collect(Collectors.toSet());
+				classSet = ClasspathScanUtil.getClasses(Arrays.stream(classNameList.split(",")));
 			}
 			else {
 				classSet = Collections.emptySet();
