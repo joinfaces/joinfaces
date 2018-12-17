@@ -46,7 +46,7 @@ allprojects {
                 }
             }
 
-            dependency('javax.enterprise:cdi-api:2.0') {
+            dependency('javax.enterprise:cdi-api:2.0.SP1') {
                 exclude "javax.el:javax.el-api"
             }
 
