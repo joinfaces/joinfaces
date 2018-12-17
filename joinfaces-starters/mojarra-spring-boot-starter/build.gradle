@@ -3,4 +3,8 @@ jar.manifest.attributes('Automatic-Module-Name': 'joinfaces.starter.mojarra')
 
 dependencies {
     compile 'org.glassfish:javax.faces'
+
+    runtime('javax.enterprise:cdi-api') {
+        exclude group: 'javax.el', module: 'javax.el-api'
+    }
 }
