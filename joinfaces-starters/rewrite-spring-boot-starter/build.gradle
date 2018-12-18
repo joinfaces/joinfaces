@@ -6,4 +6,5 @@ dependencies {
     compile 'org.ocpsoft.rewrite:rewrite-servlet'
     compile 'org.ocpsoft.rewrite:rewrite-integration-spring'
     compile 'org.ocpsoft.rewrite:rewrite-integration-faces'
+    compile 'org.ocpsoft.logging:logging-adapter-slf4j'
 }

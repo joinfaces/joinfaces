@@ -58,6 +58,7 @@ dependencies {
     testCompile 'org.apache.tomcat.embed:tomcat-embed-jasper'
     testCompile 'org.junit.jupiter:junit-jupiter-api'
     testRuntime 'org.junit.jupiter:junit-jupiter-engine'
+    testRuntime 'org.ocpsoft.logging:logging-adapter-slf4j'
 }
 
 compileJava.dependsOn(processResources)
