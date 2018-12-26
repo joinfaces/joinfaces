@@ -71,7 +71,7 @@ public class RewriteAutoConfiguration {
 
 	/**
 	 * This {@link SpringBootAnnotationConfigProvider} adds a
-	 * {@link org.ocpsoft.rewrite.servlet.config.HttpConfigurationProvider} which scans for Rewrite annotations within 
+	 * {@link org.ocpsoft.rewrite.servlet.config.HttpConfigurationProvider} which scans for Rewrite annotations within
 	 * the classpath.
 	 * @return rewrite annotation scanner
 	 */

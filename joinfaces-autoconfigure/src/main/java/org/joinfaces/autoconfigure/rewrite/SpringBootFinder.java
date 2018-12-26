@@ -16,23 +16,24 @@
 
 package org.joinfaces.autoconfigure.rewrite;
 
+import java.lang.annotation.Annotation;
+import java.util.Set;
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
 import org.ocpsoft.rewrite.annotation.api.ClassVisitor;
 import org.ocpsoft.rewrite.annotation.spi.ClassFinder;
+
 import org.springframework.beans.factory.config.BeanDefinition;
 import org.springframework.context.annotation.ClassPathScanningCandidateComponentProvider;
 import org.springframework.core.type.filter.AnnotationTypeFilter;
-
-import java.lang.annotation.Annotation;
-import java.util.Set;
 
 /**
  * Finds classes that contain the given annotations and match the given package.
  * <p>
  * Scans the classpath using Spring's {@link ClassPathScanningCandidateComponentProvider}.
- * 
+ *
  * @author Patrick Mentz
  */
 @Slf4j
@@ -55,10 +56,12 @@ public class SpringBootFinder implements ClassFinder {
 			log.debug("Found class {}", bd.getBeanClassName());
 			try {
 				visitor.visit(Class.forName(bd.getBeanClassName()));
-			} catch (final NoClassDefFoundError e) {
+			}
+			catch (final NoClassDefFoundError e) {
 				// reference to another class unknown to the classloader
 				log.warn("Could not load class '{}'", bd.getBeanClassName(), e);
-			} catch (final ClassNotFoundException e) {
+			}
+			catch (final ClassNotFoundException e) {
 				// should no happen, because we found the class on the classpath
 				throw new IllegalStateException("Unable to load class: " + bd.getBeanClassName(), e);
 			}
@@ -67,6 +70,6 @@ public class SpringBootFinder implements ClassFinder {
 
 	@Override
 	public int priority() {
-    return 100;
-  }
+		return 100;
+	}
 }

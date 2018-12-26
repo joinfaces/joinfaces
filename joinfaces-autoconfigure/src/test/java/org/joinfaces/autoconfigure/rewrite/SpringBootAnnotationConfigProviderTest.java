@@ -13,13 +13,14 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 package org.joinfaces.autoconfigure.rewrite;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.ocpsoft.rewrite.annotation.config.AnnotationConfigProvider;
 import org.ocpsoft.rewrite.config.Configuration;
-import org.ocpsoft.rewrite.servlet.config.HttpConfigurationProvider;
+
 import org.springframework.boot.autoconfigure.AutoConfigurations;
 import org.springframework.boot.test.context.runner.WebApplicationContextRunner;
 import org.springframework.mock.web.MockServletContext;

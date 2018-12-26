@@ -56,7 +56,7 @@ public class RewriteProperties implements ServletContextInitParameterProperties 
 	/**
 	 * Should classpath scanning for annotations be enabled (Joinfaces feature).
 	 */
-	@ServletContextInitParameter(value = SpringBootAnnotationConfigProvider.SCAN_CLASSPATH)
+	@ServletContextInitParameter(SpringBootAnnotationConfigProvider.SCAN_CLASSPATH)
 	private Boolean scanClasspath;
 
 }

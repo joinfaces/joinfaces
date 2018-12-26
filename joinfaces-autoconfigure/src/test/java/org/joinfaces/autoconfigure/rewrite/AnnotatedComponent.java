@@ -18,5 +18,5 @@ package org.joinfaces.autoconfigure.rewrite;
 
 import org.ocpsoft.rewrite.annotation.Join;
 
-@Join(path="/mapped", to="actual.jsf")
-public class AnnotatedComponent {}
+@Join(path = "/mapped", to = "actual.jsf")
+public class AnnotatedComponent { }

@@ -16,6 +16,16 @@
 
 package org.joinfaces.autoconfigure.rewrite;
 
+import java.lang.annotation.Annotation;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.LinkedHashSet;
+import java.util.List;
+import java.util.Optional;
+import java.util.Set;
+
+import javax.servlet.ServletContext;
+
 import lombok.extern.slf4j.Slf4j;
 import org.ocpsoft.common.services.ServiceLoader;
 import org.ocpsoft.rewrite.annotation.ClassVisitorImpl;
@@ -25,15 +35,6 @@ import org.ocpsoft.rewrite.annotation.spi.ClassFinder;
 import org.ocpsoft.rewrite.config.Configuration;
 import org.ocpsoft.rewrite.servlet.config.HttpConfigurationProvider;
 
-import javax.servlet.ServletContext;
-import java.lang.annotation.Annotation;
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.LinkedHashSet;
-import java.util.List;
-import java.util.Optional;
-import java.util.Set;
-
 /**
  * An {@link HttpConfigurationProvider} that scans classes in the classpath for
  * <a href="https://github.com/ocpsoft/rewrite/blob/master/documentation/src/main/asciidoc/configuration/annotations/index.asciidoc">Rewrite Annotastions</a>.
@@ -41,9 +42,9 @@ import java.util.Set;
  * Inspired by the {@code AnnotationConfigProvider}: Finds class' names and handles the rule evaluation via
  * {@link ClassVisitorImpl}.
  * <p>
- * Note: This scanner is disabled by default to stay compliant with the original behaviour and because the classpath 
+ * Note: This scanner is disabled by default to stay compliant with the original behaviour and because the classpath
  * scanning is very time costly if the packages are not narrowed down.
- * 
+ *
  * @author Patrick Mentz
  * @see AnnotationConfigProvider
  * @see org.ocpsoft.rewrite.annotation.scan.WebClassesFinder
@@ -67,14 +68,16 @@ public class SpringBootAnnotationConfigProvider extends HttpConfigurationProvide
 		if (packageFilters.equalsIgnoreCase("none")) {
 			log.debug("Annotation scanning is globally disabled!");
 			return null;
-		} else if (packageFilters.isEmpty()) {
+		}
+		else if (packageFilters.isEmpty()) {
 			log.warn("No base package defined, annotation scanning may be extremely slow");
 		}
-		
+
 		// Generate a list of all relevant annotations
 		final Set<Class<? extends Annotation>> annotationType = new LinkedHashSet<>();
 		final List<AnnotationHandler<Annotation>> annotationHandlers = new ArrayList<>();
-		@SuppressWarnings("unchecked") final Iterator<AnnotationHandler<Annotation>> handlerIterator = ServiceLoader.load(
+		@SuppressWarnings("unchecked")
+		final Iterator<AnnotationHandler<Annotation>> handlerIterator = ServiceLoader.load(
 				AnnotationHandler.class).iterator();
 		while (handlerIterator.hasNext()) {
 			final AnnotationHandler<Annotation> handler = handlerIterator.next();
