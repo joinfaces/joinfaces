@@ -56,7 +56,7 @@ public class RewriteAutoConfigurationTest {
 
 					SpringBootServiceLocator serviceLocator = new SpringBootServiceLocator();
 					assertThat(serviceLocator.locate(HttpConfigurationProvider.class))
-						.hasSize(2);
+						.hasSize(3);
 					assertThat(serviceLocator.locate(Foo1ConfigurationProvider.class))
 						.hasSize(1);
 					assertThat(serviceLocator.locate(Foo2ConfigurationProvider.class))

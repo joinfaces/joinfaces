@@ -53,4 +53,10 @@ public class RewriteProperties implements ServletContextInitParameterProperties 
 	@ServletContextInitParameter(value = AnnotationConfigProvider.CONFIG_BASE_PACKAGES, listSeparator = ",")
 	private List<String> basePackages;
 
+	/**
+	 * Should classpath scanning for annotations be enabled (Joinfaces feature).
+	 */
+	@ServletContextInitParameter(value = SpringBootAnnotationConfigProvider.SCAN_CLASSPATH)
+	private Boolean scanClasspath;
+
 }
