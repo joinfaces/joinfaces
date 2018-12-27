@@ -29,11 +29,15 @@ import javax.servlet.ServletContext;
 import lombok.extern.slf4j.Slf4j;
 import org.ocpsoft.common.services.ServiceLoader;
 import org.ocpsoft.rewrite.annotation.ClassVisitorImpl;
+import org.ocpsoft.rewrite.annotation.api.ClassVisitor;
 import org.ocpsoft.rewrite.annotation.config.AnnotationConfigProvider;
 import org.ocpsoft.rewrite.annotation.spi.AnnotationHandler;
-import org.ocpsoft.rewrite.annotation.spi.ClassFinder;
 import org.ocpsoft.rewrite.config.Configuration;
 import org.ocpsoft.rewrite.servlet.config.HttpConfigurationProvider;
+
+import org.springframework.beans.factory.config.BeanDefinition;
+import org.springframework.context.annotation.ClassPathScanningCandidateComponentProvider;
+import org.springframework.core.type.filter.AnnotationTypeFilter;
 
 /**
  * An {@link HttpConfigurationProvider} that scans classes in the classpath for
@@ -74,7 +78,7 @@ public class SpringBootAnnotationConfigProvider extends HttpConfigurationProvide
 		}
 
 		// Generate a list of all relevant annotations
-		final Set<Class<? extends Annotation>> annotationType = new LinkedHashSet<>();
+		final Set<Class<? extends Annotation>> ruleAnnotations = new LinkedHashSet<>();
 		final List<AnnotationHandler<Annotation>> annotationHandlers = new ArrayList<>();
 		@SuppressWarnings("unchecked")
 		final Iterator<AnnotationHandler<Annotation>> handlerIterator = ServiceLoader.load(
@@ -82,20 +86,13 @@ public class SpringBootAnnotationConfigProvider extends HttpConfigurationProvide
 		while (handlerIterator.hasNext()) {
 			final AnnotationHandler<Annotation> handler = handlerIterator.next();
 			annotationHandlers.add(handler);
-			annotationType.add(handler.handles());
+			ruleAnnotations.add(handler.handles());
 		}
 
-		final ClassVisitorImpl classVisitor = new ClassVisitorImpl(annotationHandlers, servletContext);
+		final ClassVisitorImpl ruleBuilderVisitor = new ClassVisitorImpl(annotationHandlers, servletContext);
 
-		final List<ClassFinder> classFinders = new ArrayList<>();
-		for (final String packageFilter : packageFilters.split("\\s*,\\s*")) {
-			classFinders.add(new SpringBootFinder(packageFilter.trim(), annotationType));
-		}
-
-		for (final ClassFinder finder : classFinders) {
-			finder.findClasses(classVisitor);
-		}
-		return classVisitor;
+		scanClasses(packageFilters.split("\\s*,\\s*"), ruleAnnotations, ruleBuilderVisitor);
+		return ruleBuilderVisitor;
 	}
 
 	@Override
@@ -103,4 +100,43 @@ public class SpringBootAnnotationConfigProvider extends HttpConfigurationProvide
 		return 100;
 	}
 
+	/**
+	 * Scans classes in the given package for one of the annotations given and calls the given visitor on them.
+	 *
+	 * @param basePackages the packages to scan
+	 * @param supportedAnnotations the annotations to search for
+	 * @param visitor the visitor to trigger with matching classes
+	 */
+	private void scanClasses(final String[] basePackages,
+			final Set<Class<? extends Annotation>> supportedAnnotations,
+			final ClassVisitor visitor) {
+		final ClassPathScanningCandidateComponentProvider scanner = new ClassPathScanningCandidateComponentProvider(false);
+		for (final Class<? extends Annotation> supportedAnnotation : supportedAnnotations) {
+			scanner.addIncludeFilter(new AnnotationTypeFilter(supportedAnnotation));
+		}
+
+		for (String basePackage : basePackages) {
+			log.debug("Scanning package '{}'", basePackage);
+			for (final BeanDefinition bd : scanner.findCandidateComponents(basePackage)) {
+				visitClass(bd.getBeanClassName(), visitor);
+			}
+		}
+	}
+
+	/**
+	 * Retrieves the given class by name and calls visitor on it.
+	 *
+	 * @param className the name of the class to visit
+	 * @param visitor the visitor instance to use
+	 */
+	private void visitClass(String className, ClassVisitor visitor) {
+		try {
+			log.debug("Found class {}", className);
+			visitor.visit(Class.forName(className));
+		}
+		catch (final ClassNotFoundException e) {
+			// should not happen, because we found the class on the classpath
+			throw new IllegalStateException("Unable to load class: " + className, e);
+		}
+	}
 }

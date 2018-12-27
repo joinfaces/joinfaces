@@ -62,4 +62,31 @@ public class SpringBootAnnotationConfigProviderTest {
 			assertThat(configuration).isNull();
 		});
 	}
+
+	@Test
+	void getConfiguration_annotationsDisabled() {
+		this.webApplicationContextRunner.run(context -> {
+			SpringBootAnnotationConfigProvider annotationConfigProvider = context.getBean(
+					SpringBootAnnotationConfigProvider.class);
+			assertThat(annotationConfigProvider).isNotNull();
+			MockServletContext servletContext = new MockServletContext();
+			servletContext.setInitParameter(SpringBootAnnotationConfigProvider.SCAN_CLASSPATH, "true");
+			servletContext.setInitParameter(AnnotationConfigProvider.CONFIG_BASE_PACKAGES, "none");
+			Configuration configuration = annotationConfigProvider.getConfiguration(servletContext);
+			assertThat(configuration).isNull();
+		});
+	}
+
+	@Test
+	void getConfiguration_noBasePackage() {
+		this.webApplicationContextRunner.run(context -> {
+			SpringBootAnnotationConfigProvider annotationConfigProvider = context.getBean(
+					SpringBootAnnotationConfigProvider.class);
+			assertThat(annotationConfigProvider).isNotNull();
+			MockServletContext servletContext = new MockServletContext();
+			servletContext.setInitParameter(SpringBootAnnotationConfigProvider.SCAN_CLASSPATH, "true");
+			Configuration configuration = annotationConfigProvider.getConfiguration(servletContext);
+			assertThat(configuration.getRules().isEmpty()).isFalse();
+		});
+	}
 }
