@@ -18,7 +18,7 @@ package org.joinfaces.autoconfigure.rewrite;
 
 import java.lang.annotation.Annotation;
 import java.util.ArrayList;
-import java.util.Iterator;
+import java.util.Arrays;
 import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Optional;
@@ -26,6 +26,9 @@ import java.util.Set;
 
 import javax.servlet.ServletContext;
 
+import io.github.classgraph.ClassGraph;
+import io.github.classgraph.ClassInfo;
+import io.github.classgraph.ScanResult;
 import lombok.extern.slf4j.Slf4j;
 import org.ocpsoft.common.services.ServiceLoader;
 import org.ocpsoft.rewrite.annotation.ClassVisitorImpl;
@@ -35,13 +38,9 @@ import org.ocpsoft.rewrite.annotation.spi.AnnotationHandler;
 import org.ocpsoft.rewrite.config.Configuration;
 import org.ocpsoft.rewrite.servlet.config.HttpConfigurationProvider;
 
-import org.springframework.beans.factory.config.BeanDefinition;
-import org.springframework.context.annotation.ClassPathScanningCandidateComponentProvider;
-import org.springframework.core.type.filter.AnnotationTypeFilter;
-
 /**
  * An {@link HttpConfigurationProvider} that scans classes in the classpath for
- * <a href="https://github.com/ocpsoft/rewrite/blob/master/documentation/src/main/asciidoc/configuration/annotations/index.asciidoc">Rewrite Annotastions</a>.
+ * <a href="https://github.com/ocpsoft/rewrite/blob/master/documentation/src/main/asciidoc/configuration/annotations/index.asciidoc">Rewrite Annotations</a>.
  * <p>
  * Inspired by the {@code AnnotationConfigProvider}: Finds class' names and handles the rule evaluation via
  * {@link ClassVisitorImpl}.
@@ -74,17 +73,14 @@ public class SpringBootAnnotationConfigProvider extends HttpConfigurationProvide
 			return null;
 		}
 		else if (packageFilters.isEmpty()) {
-			log.warn("No base package defined, annotation scanning may be extremely slow");
+			log.warn("No base package defined, annotation scanning may be slow");
 		}
 
 		// Generate a list of all relevant annotations
 		final Set<Class<? extends Annotation>> ruleAnnotations = new LinkedHashSet<>();
 		final List<AnnotationHandler<Annotation>> annotationHandlers = new ArrayList<>();
-		@SuppressWarnings("unchecked")
-		final Iterator<AnnotationHandler<Annotation>> handlerIterator = ServiceLoader.load(
-				AnnotationHandler.class).iterator();
-		while (handlerIterator.hasNext()) {
-			final AnnotationHandler<Annotation> handler = handlerIterator.next();
+		for (AnnotationHandler<Annotation> handler : (Iterable<AnnotationHandler<Annotation>>) ServiceLoader.load(
+				AnnotationHandler.class)) {
 			annotationHandlers.add(handler);
 			ruleAnnotations.add(handler.handles());
 		}
@@ -110,15 +106,16 @@ public class SpringBootAnnotationConfigProvider extends HttpConfigurationProvide
 	private void scanClasses(final String[] basePackages,
 			final Set<Class<? extends Annotation>> supportedAnnotations,
 			final ClassVisitor visitor) {
-		final ClassPathScanningCandidateComponentProvider scanner = new ClassPathScanningCandidateComponentProvider(false);
-		for (final Class<? extends Annotation> supportedAnnotation : supportedAnnotations) {
-			scanner.addIncludeFilter(new AnnotationTypeFilter(supportedAnnotation));
+		final ClassGraph classGraph = new ClassGraph().enableAllInfo();
+		if (!Arrays.asList(basePackages).contains("")) {
+			classGraph.whitelistPackages(basePackages);
 		}
-
-		for (String basePackage : basePackages) {
-			log.debug("Scanning package '{}'", basePackage);
-			for (final BeanDefinition bd : scanner.findCandidateComponents(basePackage)) {
-				visitClass(bd.getBeanClassName(), visitor);
+		try (ScanResult scanResult = classGraph.scan()) {
+			for (final Class<? extends Annotation> supportedAnnotation : supportedAnnotations) {
+				final String routeAnnotation = supportedAnnotation.getName();
+				for (final ClassInfo routeClassInfo : scanResult.getClassesWithAnnotation(routeAnnotation)) {
+					visitClass(routeClassInfo.getName(), visitor);
+				}
 			}
 		}
 	}
@@ -129,7 +126,7 @@ public class SpringBootAnnotationConfigProvider extends HttpConfigurationProvide
 	 * @param className the name of the class to visit
 	 * @param visitor the visitor instance to use
 	 */
-	private void visitClass(String className, ClassVisitor visitor) {
+	private void visitClass(final String className, final ClassVisitor visitor) {
 		try {
 			log.debug("Found class {}", className);
 			visitor.visit(Class.forName(className));
