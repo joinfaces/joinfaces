@@ -16,11 +16,14 @@
 
 package org.joinfaces.autoconfigure.rewrite;
 
+import java.io.IOException;
+import java.io.InputStream;
 import java.lang.annotation.Annotation;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.LinkedHashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
 
@@ -30,6 +33,7 @@ import io.github.classgraph.ClassGraph;
 import io.github.classgraph.ClassInfo;
 import io.github.classgraph.ScanResult;
 import lombok.extern.slf4j.Slf4j;
+import org.joinfaces.autoconfigure.ClasspathScanUtil;
 import org.ocpsoft.common.services.ServiceLoader;
 import org.ocpsoft.rewrite.annotation.ClassVisitorImpl;
 import org.ocpsoft.rewrite.annotation.api.ClassVisitor;
@@ -37,6 +41,8 @@ import org.ocpsoft.rewrite.annotation.config.AnnotationConfigProvider;
 import org.ocpsoft.rewrite.annotation.spi.AnnotationHandler;
 import org.ocpsoft.rewrite.config.Configuration;
 import org.ocpsoft.rewrite.servlet.config.HttpConfigurationProvider;
+
+import org.springframework.lang.Nullable;
 
 /**
  * An {@link HttpConfigurationProvider} that scans classes in the classpath for
@@ -99,13 +105,13 @@ public class SpringBootAnnotationConfigProvider extends HttpConfigurationProvide
 	/**
 	 * Scans classes in the given package for one of the annotations given and calls the given visitor on them.
 	 *
-	 * @param basePackages the packages to scan
+	 * @param basePackages         the packages to scan
 	 * @param supportedAnnotations the annotations to search for
-	 * @param visitor the visitor to trigger with matching classes
+	 * @param visitor              the visitor to trigger with matching classes
 	 */
 	private void scanClasses(final String[] basePackages,
-			final Set<Class<? extends Annotation>> supportedAnnotations,
-			final ClassVisitor visitor) {
+							 final Set<Class<? extends Annotation>> supportedAnnotations,
+							 final ClassVisitor visitor) {
 		final ClassGraph classGraph = new ClassGraph().enableAllInfo();
 		if (!Arrays.asList(basePackages).contains("")) {
 			classGraph.whitelistPackages(basePackages);
@@ -124,7 +130,7 @@ public class SpringBootAnnotationConfigProvider extends HttpConfigurationProvide
 	 * Retrieves the given class by name and calls visitor on it.
 	 *
 	 * @param className the name of the class to visit
-	 * @param visitor the visitor instance to use
+	 * @param visitor   the visitor instance to use
 	 */
 	private void visitClass(final String className, final ClassVisitor visitor) {
 		try {
@@ -135,5 +141,28 @@ public class SpringBootAnnotationConfigProvider extends HttpConfigurationProvide
 			// should not happen, because we found the class on the classpath
 			throw new IllegalStateException("Unable to load class: " + className, e);
 		}
+	}
+
+	@Nullable
+	private Map<Class<? extends Annotation>, Set<Class<?>>> findPreparedScanResult() {
+		String resourceName = "META-INF/joinfaces/" + AnnotationHandler.class.getName() + ".classes";
+		InputStream resourceAsStream = getClass().getClassLoader().getResourceAsStream(resourceName);
+
+		if (resourceAsStream == null) {
+			log.debug("No prepared scan result found.");
+			return null;
+		}
+
+		long start = System.nanoTime();
+		try (InputStream inputStream = resourceAsStream) {
+			Map<Class<? extends Annotation>, Set<Class<?>>> annotationClassMap = ClasspathScanUtil.readAnnotationClassMap(inputStream, getClass().getClassLoader());
+			double ms = (System.nanoTime() - start) / 1_000_000d;
+			log.info("Loading prepared scan result took {}ms", ms);
+			return annotationClassMap;
+		}
+		catch (IOException e) {
+			log.warn("Failed to load {}", resourceName, e);
+		}
+		return null;
 	}
 }

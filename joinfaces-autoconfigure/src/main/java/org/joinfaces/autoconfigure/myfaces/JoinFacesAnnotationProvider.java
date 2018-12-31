@@ -16,15 +16,9 @@
 
 package org.joinfaces.autoconfigure.myfaces;
 
-import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.lang.annotation.Annotation;
-import java.nio.charset.StandardCharsets;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
 
@@ -34,8 +28,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.apache.myfaces.spi.AnnotationProvider;
 import org.apache.myfaces.spi.AnnotationProviderWrapper;
 import org.joinfaces.autoconfigure.ClasspathScanUtil;
-
-import org.springframework.util.StringUtils;
 
 /**
  * Servlet context configurer of MyFaces.
@@ -83,43 +75,14 @@ public class JoinFacesAnnotationProvider extends AnnotationProviderWrapper {
 		}
 
 		long start = System.nanoTime();
-		try (BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(resourceAsStream, StandardCharsets.UTF_8))) {
-			setAnnotatedClasses(readAnnotatedClassesMap(bufferedReader));
+		try (InputStream inputStream = resourceAsStream) {
+			Map<Class<? extends Annotation>, Set<Class<?>>> annotationClassMap = ClasspathScanUtil.readAnnotationClassMap(inputStream, getClass().getClassLoader());
+			setAnnotatedClasses(annotationClassMap);
 			double ms = (System.nanoTime() - start) / 1_000_000d;
 			log.info("Loading prepared scan result took {}ms", ms);
 		}
 		catch (IOException e) {
 			log.warn("Failed to load {}", resourceName, e);
 		}
-	}
-
-	private Map<Class<? extends Annotation>, Set<Class<?>>> readAnnotatedClassesMap(BufferedReader bufferedReader) {
-		Map<Class<? extends Annotation>, Set<Class<?>>> classes = new HashMap<>();
-
-		bufferedReader.lines().forEach(line -> {
-			String[] split = line.split("=", 2);
-			String annotationName = split[0];
-			String classNameList = split[1];
-
-			Class<? extends Annotation> annotation;
-			try {
-				annotation = (Class<? extends Annotation>) Class.forName(annotationName);
-			}
-			catch (ClassNotFoundException | LinkageError e) {
-				log.warn("Failed to load annotation class {}", annotationName, e);
-				return;
-			}
-			Set<Class<?>> classSet;
-
-			if (StringUtils.hasText(annotationName)) {
-				classSet = ClasspathScanUtil.getClasses(Arrays.stream(classNameList.split(",")));
-			}
-			else {
-				classSet = Collections.emptySet();
-			}
-
-			classes.put(annotation, classSet);
-		});
-		return classes;
 	}
 }

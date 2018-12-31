@@ -16,6 +16,16 @@
 
 package org.joinfaces.autoconfigure;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.lang.annotation.Annotation;
+import java.nio.charset.StandardCharsets;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Objects;
 import java.util.Set;
 import java.util.concurrent.atomic.AtomicInteger;
@@ -24,6 +34,8 @@ import java.util.stream.Stream;
 
 import lombok.experimental.UtilityClass;
 import lombok.extern.slf4j.Slf4j;
+
+import org.springframework.util.StringUtils;
 
 /**
  * Utility class for handling classpath scan results.
@@ -34,14 +46,47 @@ import lombok.extern.slf4j.Slf4j;
 @UtilityClass
 public class ClasspathScanUtil {
 
-	public static Set<Class<?>> getClasses(Stream<String> classNames) {
+	public static Map<Class<? extends Annotation>, Set<Class<?>>> readAnnotationClassMap(InputStream inputStream, ClassLoader classLoader) throws IOException {
+
+		try (BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream, StandardCharsets.UTF_8))) {
+			Map<Class<? extends Annotation>, Set<Class<?>>> classes = new HashMap<>();
+
+			bufferedReader.lines().forEach(line -> {
+				String[] split = line.split("=", 2);
+				String annotationName = split[0];
+				String classNameList = split[1];
+
+				Class<? extends Annotation> annotation;
+				try {
+					annotation = (Class<? extends Annotation>) classLoader.loadClass(annotationName);
+				}
+				catch (ClassNotFoundException | LinkageError e) {
+					log.warn("Failed to load annotation class {}", annotationName, e);
+					return;
+				}
+				Set<Class<?>> classSet;
+
+				if (StringUtils.hasText(classNameList)) {
+					classSet = getClasses(Arrays.stream(classNameList.split(",")), classLoader);
+				}
+				else {
+					classSet = Collections.emptySet();
+				}
+
+				classes.put(annotation, classSet);
+			});
+			return classes;
+		}
+	}
+
+	public static Set<Class<?>> getClasses(Stream<String> classNames, ClassLoader classLoader) {
 		AtomicInteger missingClasses = new AtomicInteger();
 		AtomicInteger missingDependentClasses = new AtomicInteger();
 
 		Set<Class<?>> collect = classNames
 				.map(className -> {
 					try {
-						return Class.forName(className);
+						return classLoader.loadClass(className);
 					}
 					catch (ClassNotFoundException e) {
 						missingClasses.incrementAndGet();
