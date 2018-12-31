@@ -12,4 +12,6 @@ dependencies {
     testRuntimeOnly 'org.glassfish:javax.faces'
     testRuntimeOnly 'org.primefaces:primefaces'
     testRuntimeOnly 'javax.annotation:javax.annotation-api'
+    testRuntimeOnly 'org.ocpsoft.rewrite:rewrite-servlet'
+    testRuntimeOnly 'org.ocpsoft.rewrite:rewrite-integration-spring'
 }

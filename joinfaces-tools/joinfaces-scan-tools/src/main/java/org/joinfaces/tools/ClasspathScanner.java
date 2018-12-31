@@ -17,13 +17,18 @@
 package org.joinfaces.tools;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.io.UnsupportedEncodingException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.util.Arrays;
+import java.util.Collection;
 import java.util.Collections;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 import java.util.SortedSet;
 import java.util.TreeSet;
@@ -36,7 +41,11 @@ import io.github.classgraph.AnnotationInfo;
 import io.github.classgraph.ClassGraph;
 import io.github.classgraph.ClassInfo;
 import io.github.classgraph.ClassInfoList;
+import io.github.classgraph.ClassRefTypeSignature;
+import io.github.classgraph.MethodInfo;
+import io.github.classgraph.MethodTypeSignature;
 import io.github.classgraph.ScanResult;
+import io.github.classgraph.TypeArgument;
 import lombok.Builder;
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
@@ -64,6 +73,7 @@ public class ClasspathScanner {
 			"javax.faces.render.FacesBehaviorRenderer",
 			"javax.faces.validator.FacesValidator"
 	));
+	static final String REWRITE_ANNOTATION_HANDLER = "org.ocpsoft.rewrite.annotation.spi.AnnotationHandler";
 
 	private final File classpathRoot;
 	private final Function<ClassGraph, ClassGraph> classGraphConfigurer;
@@ -86,6 +96,43 @@ public class ClasspathScanner {
 			processHandlesTypes(scanResult);
 
 			processMyfacesAnnotationProvider(scanResult);
+
+			processRewriteAnnotationProvider(scanResult);
+		}
+	}
+
+	private void processRewriteAnnotationProvider(ScanResult scanResult) throws FileNotFoundException, UnsupportedEncodingException {
+		ClassInfoList annotationHandlers = scanResult.getClassesImplementing(REWRITE_ANNOTATION_HANDLER);
+
+		if (annotationHandlers.isEmpty()) {
+			return;
+		}
+
+		List<String> annotationClassNames = annotationHandlers.stream()
+				.map(classInfo -> classInfo.getDeclaredMethodInfo("handles"))
+				.flatMap(Collection::stream)
+				.map(MethodInfo::getTypeSignature)
+				.map(MethodTypeSignature::getResultType)
+				.filter(ClassRefTypeSignature.class::isInstance)
+				.map(ClassRefTypeSignature.class::cast)
+				.map(classRefTypeSignature -> classRefTypeSignature.getTypeArguments().get(0))
+				.map(TypeArgument::getTypeSignature)
+				.filter(ClassRefTypeSignature.class::isInstance)
+				.map(ClassRefTypeSignature.class::cast)
+				.map(ClassRefTypeSignature::getFullyQualifiedClassName)
+				.collect(Collectors.toList());
+
+		File resultFile = new File(getBaseDir(), REWRITE_ANNOTATION_HANDLER + ".classes");
+		try (PrintWriter printWriter = new PrintWriter(resultFile, "UTF-8")) {
+			for (String annotationClassName : annotationClassNames) {
+
+				printWriter.print(annotationClassName);
+				printWriter.print("=");
+
+				ClassInfoList classesWithAnnotation = scanResult.getClassesWithAnnotation(annotationClassName);
+
+				printWriter.println(String.join(",", classesWithAnnotation.getNames()));
+			}
 		}
 	}
 
