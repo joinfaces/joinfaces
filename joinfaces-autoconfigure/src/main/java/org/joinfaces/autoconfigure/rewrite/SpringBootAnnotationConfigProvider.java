@@ -110,8 +110,8 @@ public class SpringBootAnnotationConfigProvider extends HttpConfigurationProvide
 	 * @param visitor              the visitor to trigger with matching classes
 	 */
 	private void scanClasses(final String[] basePackages,
-							 final Set<Class<? extends Annotation>> supportedAnnotations,
-							 final ClassVisitor visitor) {
+							final Set<Class<? extends Annotation>> supportedAnnotations,
+							final ClassVisitor visitor) {
 		final ClassGraph classGraph = new ClassGraph().enableAllInfo();
 		if (!Arrays.asList(basePackages).contains("")) {
 			classGraph.whitelistPackages(basePackages);
