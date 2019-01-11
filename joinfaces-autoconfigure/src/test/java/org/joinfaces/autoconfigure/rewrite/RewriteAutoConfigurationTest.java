@@ -44,7 +44,7 @@ public class RewriteAutoConfigurationTest {
 					assertThat(fooConfigurationProvider)
 						.isNotNull();
 
-					SpringBootBeanNameResolver beanNameResolver = new SpringBootBeanNameResolver();
+					SpringBootBeanNameResolver beanNameResolver = new SpringBootBeanNameResolver(context);
 					assertThat(beanNameResolver.getBeanName(HttpConfigurationProvider.class))
 						.isNull();
 					assertThat(beanNameResolver.getBeanName(Foo1ConfigurationProvider.class))
