@@ -20,6 +20,7 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.ocpsoft.rewrite.el.spi.BeanNameResolver;
 
@@ -35,32 +36,35 @@ import org.springframework.lang.Nullable;
  * @see org.ocpsoft.rewrite.spring.SpringBeanNameResolver
  */
 @Slf4j
+@RequiredArgsConstructor
 public class SpringBootBeanNameResolver implements BeanNameResolver {
+
+	private final ApplicationContext context;
 
 	@Override
 	@Nullable
-	public String getBeanName(Class<?> clazz) {
-
-		// try to obtain the WebApplicationContext using ContextLoader
-		ApplicationContext context = ApplicationContextProvider.getApplicationContext();
-		if (context == null) {
-			throw new IllegalStateException("Unable to get current WebApplicationContext");
-		}
+	public String getBeanName(Class<?> clazz)
+	{
 
 		// obtain a map of bean names
-		Set<String> beanNames = resolveBeanNames(context, clazz);
+		Set<String> beanNames = resolveBeanNames(this.context, clazz);
 
 		// no beans of that type, nothing we can do
 		if (beanNames.size() == 0) {
 			return null;
-		} // more than one result -> warn the user
+		}
+
+		// more than one result -> warn the user
 		else if (beanNames.size() > 1) {
-			this.log.warn("Spring knows more than one bean of type [{}]", clazz.getName());
+			log.warn("Spring knows more than one bean of type [{}]", clazz.getName());
 			return null;
-		} // exactly one result -> we got a name
+		}
+
+		// exactly one result -> we got a name
 		else {
 			return beanNames.iterator().next();
 		}
+
 	}
 
 	/**
@@ -74,9 +78,11 @@ public class SpringBootBeanNameResolver implements BeanNameResolver {
 		final Set<String> result = new HashSet<String>();
 
 		Map<String, ?> beanMap = beanFactory.getBeansOfType(clazz);
-		for (String name : beanMap.keySet()) {
-			if (name != null && !name.startsWith("scopedTarget.")) {
-				result.add(name);
+		if (beanMap != null) {
+			for (String name : beanMap.keySet()) {
+				if (name != null && !name.startsWith("scopedTarget.")) {
+					result.add(name);
+				}
 			}
 		}
 

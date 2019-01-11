@@ -35,6 +35,7 @@ import org.springframework.boot.context.properties.EnableConfigurationProperties
 import org.springframework.boot.web.server.WebServerFactoryCustomizer;
 import org.springframework.boot.web.servlet.ServletContextInitializer;
 import org.springframework.boot.web.servlet.server.ConfigurableServletWebServerFactory;
+import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.DependsOn;
@@ -90,5 +91,10 @@ public class RewriteAutoConfiguration {
 	@Bean
 	public SpringExpressionLanguageProvider rewriteExpressionLanguageProvider() {
 		return new SpringExpressionLanguageProvider();
+	}
+
+	@Bean
+	public SpringBootBeanNameResolver rewriteBeanNameResolver(ApplicationContext applicationContext) {
+		return new SpringBootBeanNameResolver(applicationContext);
 	}
 }
