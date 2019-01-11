@@ -78,11 +78,9 @@ public class SpringBootBeanNameResolver implements BeanNameResolver {
 		final Set<String> result = new HashSet<String>();
 
 		Map<String, ?> beanMap = beanFactory.getBeansOfType(clazz);
-		if (beanMap != null) {
-			for (String name : beanMap.keySet()) {
-				if (name != null && !name.startsWith("scopedTarget.")) {
-					result.add(name);
-				}
+		for (String name : beanMap.keySet()) {
+			if (name != null && !name.startsWith("scopedTarget.")) {
+				result.add(name);
 			}
 		}
 
