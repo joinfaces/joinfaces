@@ -24,6 +24,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.SimpleFileVisitor;
 import java.nio.file.attribute.BasicFileAttributes;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
@@ -47,6 +48,7 @@ class ClasspathScannerTest {
 		this.classpathScanner = ClasspathScanner.builder()
 				.classGraphConfigurer(c -> c)
 				.classpathRoot(this.file)
+				.scanResultHandlers(new ArrayList<>())
 				.build();
 	}
 
@@ -69,15 +71,14 @@ class ClasspathScannerTest {
 	}
 
 	@Test
-	void scanClasses() throws IOException {
+	void scanClasses_noHandlers() throws IOException {
 		this.classpathScanner.scanClasses();
-
-		assertThat(new File(this.file, "META-INF/joinfaces")).exists();
-		assertThat(new File(this.file, "META-INF/joinfaces")).isDirectory();
 	}
 
 	@Test
 	void scanClasses_myfaces_sci() throws IOException {
+		this.classpathScanner.getScanResultHandlers().add(new ServletContainerInitializerHandler());
+
 		this.classpathScanner.scanClasses();
 
 		File classesFile = new File(this.file, "META-INF/joinfaces/org.apache.myfaces.ee.MyFacesContainerInitializer.classes");
@@ -92,6 +93,7 @@ class ClasspathScannerTest {
 
 	@Test
 	void scanClasses_mojarra_sci() throws IOException {
+		this.classpathScanner.getScanResultHandlers().add(new ServletContainerInitializerHandler());
 		this.classpathScanner.scanClasses();
 
 		File classesFile = new File(this.file, "META-INF/joinfaces/com.sun.faces.config.FacesInitializer.classes");
@@ -106,6 +108,7 @@ class ClasspathScannerTest {
 
 	@Test
 	void scanClasses_myFacesAnnotations() throws IOException {
+		this.classpathScanner.getScanResultHandlers().add(new MyFacesAnnotationProviderHandler());
 		this.classpathScanner.scanClasses();
 
 		File classesFile = new File(this.file, "META-INF/joinfaces/org.apache.myfaces.spi.AnnotationProvider.classes");
