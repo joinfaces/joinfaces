@@ -43,8 +43,7 @@ public class SpringBootBeanNameResolver implements BeanNameResolver {
 
 	@Override
 	@Nullable
-	public String getBeanName(Class<?> clazz)
-	{
+	public String getBeanName(Class<?> clazz) {
 
 		// obtain a map of bean names
 		Set<String> beanNames = resolveBeanNames(this.context, clazz);
@@ -69,8 +68,9 @@ public class SpringBootBeanNameResolver implements BeanNameResolver {
 
 	/**
 	 * Will ignore scoped proxy target bean names. https://github.com/ocpsoft/rewrite/issues/170
+	 *
 	 * @param beanFactory bean factory
-	 * @param clazz type
+	 * @param clazz       type
 	 * @return set of bean names
 	 */
 	private Set<String> resolveBeanNames(ListableBeanFactory beanFactory, Class<?> clazz) {
