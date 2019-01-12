@@ -25,6 +25,7 @@ import javax.servlet.FilterRegistration;
 import org.ocpsoft.rewrite.servlet.RewriteFilter;
 import org.ocpsoft.rewrite.servlet.impl.RewriteServletContextListener;
 import org.ocpsoft.rewrite.servlet.impl.RewriteServletRequestListener;
+import org.ocpsoft.rewrite.spring.SpringExpressionLanguageProvider;
 
 import org.springframework.boot.autoconfigure.AutoConfigureAfter;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
@@ -34,6 +35,7 @@ import org.springframework.boot.context.properties.EnableConfigurationProperties
 import org.springframework.boot.web.server.WebServerFactoryCustomizer;
 import org.springframework.boot.web.servlet.ServletContextInitializer;
 import org.springframework.boot.web.servlet.server.ConfigurableServletWebServerFactory;
+import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.DependsOn;
@@ -54,6 +56,7 @@ public class RewriteAutoConfiguration {
 	/**
 	 * This {@link WebServerFactoryCustomizer} adds a {@link ServletContextInitializer} to the embedded servlet-container
 	 * which is equivalent to rewrite's own {@code META-INF/web-fragment.xml}.
+	 *
 	 * @return rewrite web server factory customizer
 	 */
 	@DependsOn("applicationContextProvider")
@@ -72,5 +75,15 @@ public class RewriteAutoConfiguration {
 	@Bean
 	public ApplicationContextProvider applicationContextProvider() {
 		return new ApplicationContextProvider();
+	}
+
+	@Bean
+	public SpringExpressionLanguageProvider rewriteExpressionLanguageProvider() {
+		return new SpringExpressionLanguageProvider();
+	}
+
+	@Bean
+	public SpringBootBeanNameResolver rewriteBeanNameResolver(ApplicationContext applicationContext) {
+		return new SpringBootBeanNameResolver(applicationContext);
 	}
 }
