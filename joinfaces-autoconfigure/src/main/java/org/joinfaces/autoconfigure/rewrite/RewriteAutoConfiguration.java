@@ -72,17 +72,6 @@ public class RewriteAutoConfiguration {
 		});
 	}
 
-	/**
-	 * This {@link SpringBootAnnotationConfigProvider} adds a
-	 * {@link org.ocpsoft.rewrite.servlet.config.HttpConfigurationProvider} which scans for Rewrite annotations within
-	 * the classpath.
-	 * @return rewrite annotation scanner
-	 */
-	@Bean
-	public SpringBootAnnotationConfigProvider annotationConfigProvider() {
-		return new SpringBootAnnotationConfigProvider();
-	}
-
 	@Bean
 	public ApplicationContextProvider applicationContextProvider() {
 		return new ApplicationContextProvider();
@@ -96,5 +85,17 @@ public class RewriteAutoConfiguration {
 	@Bean
 	public SpringBootBeanNameResolver rewriteBeanNameResolver(ApplicationContext applicationContext) {
 		return new SpringBootBeanNameResolver(applicationContext);
+	}
+
+	/**
+	 * This {@link SpringBootAnnotationConfigProvider} adds a
+	 * {@link org.ocpsoft.rewrite.servlet.config.HttpConfigurationProvider} which scans for Rewrite annotations within
+	 * the classpath.
+	 *
+	 * @return rewrite annotation scanner
+	 */
+	@Bean
+	public SpringBootAnnotationConfigProvider rewriteAnnotationConfigProvider() {
+		return new SpringBootAnnotationConfigProvider();
 	}
 }
