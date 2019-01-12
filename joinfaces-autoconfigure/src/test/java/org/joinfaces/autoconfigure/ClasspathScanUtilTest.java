@@ -27,21 +27,21 @@ class ClasspathScanUtilTest {
 
 	@Test
 	void getClasses_empty() {
-		Set<Class<?>> classes = ClasspathScanUtil.getClasses(Stream.empty());
+		Set<Class<?>> classes = ClasspathScanUtil.getClasses(Stream.empty(), getClass().getClassLoader());
 
 		assertThat(classes).isEmpty();
 	}
 
 	@Test
 	void getClasses_notFound() {
-		Set<Class<?>> classes = ClasspathScanUtil.getClasses(Stream.of("foo.Bar"));
+		Set<Class<?>> classes = ClasspathScanUtil.getClasses(Stream.of("foo.Bar"), getClass().getClassLoader());
 
 		assertThat(classes).isEmpty();
 	}
 
 	@Test
 	void getClasses_one() {
-		Set<Class<?>> classes = ClasspathScanUtil.getClasses(Stream.of(this.getClass().getName()));
+		Set<Class<?>> classes = ClasspathScanUtil.getClasses(Stream.of(this.getClass().getName()), getClass().getClassLoader());
 
 		assertThat(classes).contains(this.getClass());
 	}

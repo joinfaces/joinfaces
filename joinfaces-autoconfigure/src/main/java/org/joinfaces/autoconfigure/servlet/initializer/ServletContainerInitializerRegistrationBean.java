@@ -16,11 +16,8 @@
 
 package org.joinfaces.autoconfigure.servlet.initializer;
 
-import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Optional;
@@ -93,8 +90,8 @@ public class ServletContainerInitializerRegistrationBean<T extends ServletContai
 		StopWatch stopWatch = new StopWatch(getServletContainerInitializerClass().getName());
 		stopWatch.start("load scan-result");
 
-		try (BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(resourceAsStream, StandardCharsets.UTF_8))) {
-			return Optional.of(ClasspathScanUtil.getClasses(bufferedReader.lines(), classLoader));
+		try {
+			return Optional.of(ClasspathScanUtil.readAnnotationClassSet(resourceAsStream, classLoader));
 		}
 		catch (IOException e) {
 			log.warn("Failed to read prepared scan-result {}", resourceName, e);

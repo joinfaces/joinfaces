@@ -46,6 +46,12 @@ import org.springframework.util.StringUtils;
 @UtilityClass
 public class ClasspathScanUtil {
 
+	public static Set<Class<?>> readAnnotationClassSet(InputStream inputStream, ClassLoader classLoader) throws IOException {
+		try (BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream, StandardCharsets.UTF_8))) {
+			return getClasses(bufferedReader.lines(), classLoader);
+		}
+	}
+
 	public static Map<Class<? extends Annotation>, Set<Class<?>>> readAnnotationClassMap(InputStream inputStream, ClassLoader classLoader) throws IOException {
 
 		try (BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream, StandardCharsets.UTF_8))) {

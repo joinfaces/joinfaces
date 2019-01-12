@@ -20,8 +20,12 @@ import java.io.File;
 import java.io.IOException;
 import java.util.Collection;
 import java.util.LinkedHashMap;
+import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
+import java.util.SortedSet;
+import java.util.TreeSet;
 import java.util.stream.Collectors;
 
 import io.github.classgraph.ClassInfoList;
@@ -64,12 +68,14 @@ public class RewriteAnnotationProviderHandler extends ScanResultHandler {
 
 		File resultFile = new File(joinfacesBaseDir, REWRITE_ANNOTATION_HANDLER + ".classes");
 
-		Map<String, List<String>> result = new LinkedHashMap<>();
+		SortedSet<String> result = new TreeSet<>(String::compareTo);
 
 		for (String annotationClassName : annotationClassNames) {
-			result.put(annotationClassName, scanResult.getClassesWithAnnotation(annotationClassName).getNames());
+			result.addAll(scanResult.getClassesWithAnnotation(annotationClassName).getNames());
+			result.addAll(scanResult.getClassesWithFieldAnnotation(annotationClassName).getNames());
+			result.addAll(scanResult.getClassesWithMethodAnnotation(annotationClassName).getNames());
 		}
 
-		writeClassMap(resultFile, result);
+		writeClassList(resultFile, result);
 	}
 }

@@ -27,6 +27,7 @@ import org.ocpsoft.rewrite.servlet.impl.RewriteServletContextListener;
 import org.ocpsoft.rewrite.servlet.impl.RewriteServletRequestListener;
 import org.ocpsoft.rewrite.spring.SpringExpressionLanguageProvider;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.AutoConfigureAfter;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnWebApplication;
@@ -52,6 +53,9 @@ import org.springframework.context.annotation.DependsOn;
 @AutoConfigureAfter(WebMvcAutoConfiguration.class)
 @ConditionalOnWebApplication(type = ConditionalOnWebApplication.Type.SERVLET)
 public class RewriteAutoConfiguration {
+
+	@Autowired
+	private RewriteProperties rewriteProperties;
 
 	/**
 	 * This {@link WebServerFactoryCustomizer} adds a {@link ServletContextInitializer} to the embedded servlet-container
@@ -96,6 +100,6 @@ public class RewriteAutoConfiguration {
 	 */
 	@Bean
 	public SpringBootAnnotationConfigProvider rewriteAnnotationConfigProvider() {
-		return new SpringBootAnnotationConfigProvider();
+		return new SpringBootAnnotationConfigProvider(this.rewriteProperties.getAnnotationConfigProvider());
 	}
 }

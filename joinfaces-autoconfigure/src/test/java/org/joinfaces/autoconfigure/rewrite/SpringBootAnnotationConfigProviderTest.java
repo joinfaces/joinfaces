@@ -44,8 +44,6 @@ public class SpringBootAnnotationConfigProviderTest {
 					SpringBootAnnotationConfigProvider.class);
 			assertThat(annotationConfigProvider).isNotNull();
 			MockServletContext servletContext = new MockServletContext();
-			servletContext.setInitParameter(SpringBootAnnotationConfigProvider.SCAN_CLASSPATH, "true");
-			servletContext.setInitParameter(AnnotationConfigProvider.CONFIG_BASE_PACKAGES, getClass().getPackage().getName());
 			Configuration configuration = annotationConfigProvider.getConfiguration(servletContext);
 			assertThat(configuration.getRules().size()).isEqualTo(1);
 		});
@@ -53,25 +51,13 @@ public class SpringBootAnnotationConfigProviderTest {
 
 	@Test
 	void getConfiguration_classpathScanningDisabled() {
-		this.webApplicationContextRunner.run(context -> {
+		this.webApplicationContextRunner
+				.withPropertyValues("joinfaces.rewrite.annotation-config-provider.enabled=false")
+				.run(context -> {
 			SpringBootAnnotationConfigProvider annotationConfigProvider = context.getBean(
 					SpringBootAnnotationConfigProvider.class);
 			assertThat(annotationConfigProvider).isNotNull();
 			MockServletContext servletContext = new MockServletContext();
-			Configuration configuration = annotationConfigProvider.getConfiguration(servletContext);
-			assertThat(configuration).isNull();
-		});
-	}
-
-	@Test
-	void getConfiguration_annotationsDisabled() {
-		this.webApplicationContextRunner.run(context -> {
-			SpringBootAnnotationConfigProvider annotationConfigProvider = context.getBean(
-					SpringBootAnnotationConfigProvider.class);
-			assertThat(annotationConfigProvider).isNotNull();
-			MockServletContext servletContext = new MockServletContext();
-			servletContext.setInitParameter(SpringBootAnnotationConfigProvider.SCAN_CLASSPATH, "true");
-			servletContext.setInitParameter(AnnotationConfigProvider.CONFIG_BASE_PACKAGES, "none");
 			Configuration configuration = annotationConfigProvider.getConfiguration(servletContext);
 			assertThat(configuration).isNull();
 		});
@@ -84,7 +70,6 @@ public class SpringBootAnnotationConfigProviderTest {
 					SpringBootAnnotationConfigProvider.class);
 			assertThat(annotationConfigProvider).isNotNull();
 			MockServletContext servletContext = new MockServletContext();
-			servletContext.setInitParameter(SpringBootAnnotationConfigProvider.SCAN_CLASSPATH, "true");
 			Configuration configuration = annotationConfigProvider.getConfiguration(servletContext);
 			assertThat(configuration.getRules().isEmpty()).isFalse();
 		});
