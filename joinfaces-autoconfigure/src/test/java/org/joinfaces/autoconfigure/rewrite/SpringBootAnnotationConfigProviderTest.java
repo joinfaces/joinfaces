@@ -18,7 +18,6 @@ package org.joinfaces.autoconfigure.rewrite;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.ocpsoft.rewrite.annotation.config.AnnotationConfigProvider;
 import org.ocpsoft.rewrite.config.Configuration;
 
 import org.springframework.boot.autoconfigure.AutoConfigurations;
@@ -32,7 +31,7 @@ public class SpringBootAnnotationConfigProviderTest {
 	private WebApplicationContextRunner webApplicationContextRunner;
 
 	@BeforeEach
-	public void setup() {
+	void setup() {
 		this.webApplicationContextRunner = new WebApplicationContextRunner().withConfiguration(
 				AutoConfigurations.of(RewriteAutoConfiguration.class, FooConfiguration.class));
 	}
