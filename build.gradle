@@ -5,8 +5,8 @@ buildscript {
         maven { url "https://plugins.gradle.org/m2/" }
     }
     dependencies {
-        classpath "io.freefair.gradle:lombok-plugin:2.9.2"
-        classpath "io.freefair.gradle:maven-plugin:2.9.2"
+        classpath "io.freefair.gradle:lombok-plugin:2.9.4"
+        classpath "io.freefair.gradle:maven-plugin:2.9.4"
         classpath "gradle.plugin.com.github.spotbugs:spotbugs-gradle-plugin:1.6.6"
         classpath "com.netflix.nebula:gradle-lint-plugin:10.3.3"
         classpath "de.aaschmid:gradle-cpd-plugin:1.1"
