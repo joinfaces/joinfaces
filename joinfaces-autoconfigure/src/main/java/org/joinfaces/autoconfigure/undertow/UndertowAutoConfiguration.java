@@ -19,7 +19,6 @@ package org.joinfaces.autoconfigure.undertow;
 import java.security.AccessController;
 import java.security.PrivilegedAction;
 
-import com.sun.faces.config.ConfigureListener;
 import io.undertow.Undertow;
 import io.undertow.server.handlers.resource.ClassPathResourceManager;
 import lombok.RequiredArgsConstructor;
@@ -61,23 +60,5 @@ public class UndertowAutoConfiguration {
 
 			log.info("Setting Undertow classLoader to {} directory", this.undertowProperties.getClassPathResource());
 		});
-	}
-
-	/**
-	 * Undertow can't scan JSP *.tld-files. So it doesn't find Mojarras {«link {@link ConfigureListener}} itself.
-	 * <p>
-	 * This is implemented as WebServerFactoryCustomizer, so it only applies to spring boots
-	 * embedded undertow.
-	 */
-	@Configuration
-	@ConditionalOnClass(ConfigureListener.class)
-	public static class UndertowMojarraAutoConfiguration {
-
-		@Bean
-		public WebServerFactoryCustomizer<UndertowServletWebServerFactory> mojarraUndertowFactoryCustomizer() {
-			return factory -> factory.addInitializers(servletContext ->
-					servletContext.addListener(ConfigureListener.class)
-			);
-		}
 	}
 }
