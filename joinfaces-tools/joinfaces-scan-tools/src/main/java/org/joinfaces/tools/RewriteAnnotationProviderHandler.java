@@ -38,7 +38,7 @@ import io.github.classgraph.TypeArgument;
  */
 public class RewriteAnnotationProviderHandler extends ScanResultHandler {
 
-	private static final String REWRITE_ANNOTATION_HANDLER = "org.ocpsoft.rewrite.annotation.spi.AnnotationHandler";
+	static final String REWRITE_ANNOTATION_HANDLER = "org.ocpsoft.rewrite.annotation.spi.AnnotationHandler";
 
 	@Override
 	public void handle(ScanResult scanResult, File joinfacesBaseDir) throws IOException {

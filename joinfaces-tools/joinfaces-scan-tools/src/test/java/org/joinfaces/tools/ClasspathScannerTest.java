@@ -126,9 +126,10 @@ class ClasspathScannerTest {
 
 	@Test
 	void scanClasses_rewriteAnnotations() throws IOException {
+		this.classpathScanner.getScanResultHandlers().add(new RewriteAnnotationProviderHandler());
 		this.classpathScanner.scanClasses();
 
-		File classesFile = new File(this.file, "META-INF/joinfaces/" + ClasspathScanner.REWRITE_ANNOTATION_HANDLER + ".classes");
+		File classesFile = new File(this.file, "META-INF/joinfaces/" + RewriteAnnotationProviderHandler.REWRITE_ANNOTATION_HANDLER + ".classes");
 
 		assertThat(classesFile).isFile();
 
@@ -136,9 +137,7 @@ class ClasspathScannerTest {
 				.peek(log::debug)
 				.collect(Collectors.toList());
 
-		assertThat(mapEntries).isNotEmpty();
-
-		Pattern pattern = Pattern.compile(".+=.?");
-		mapEntries.forEach(mapEntry -> assertThat(mapEntry).matches(pattern));
+		assertThat(mapEntries.size()).isEqualTo(1);
+		assertThat(mapEntries.get(0)).isEqualTo(AnnotatedComponent.class.getName());
 	}
 }
