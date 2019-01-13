@@ -24,6 +24,7 @@ import java.util.Set;
 
 import javax.faces.context.ExternalContext;
 
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.myfaces.spi.AnnotationProvider;
 import org.apache.myfaces.spi.AnnotationProviderWrapper;
@@ -65,6 +66,7 @@ public class JoinFacesAnnotationProvider extends AnnotationProviderWrapper {
 		}
 	}
 
+	@SuppressFBWarnings(value = "RCN_REDUNDANT_NULLCHECK_OF_NONNULL_VALUE", justification = "https://github.com/spotbugs/spotbugs/issues/259")
 	private void findPreparedScanResult() {
 		String resourceName = "META-INF/joinfaces/" + AnnotationProvider.class.getName() + ".classes";
 		InputStream resourceAsStream = getClass().getClassLoader().getResourceAsStream(resourceName);

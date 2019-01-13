@@ -26,6 +26,7 @@ import java.util.Set;
 
 import javax.servlet.ServletContext;
 
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import io.github.classgraph.ClassGraph;
 import io.github.classgraph.ScanResult;
 import lombok.RequiredArgsConstructor;
@@ -59,6 +60,7 @@ public class SpringBootAnnotationConfigProvider extends HttpConfigurationProvide
 	private final RewriteProperties.AnnotationConfigProviderProperties properties;
 
 	@Override
+	@Nullable
 	public Configuration getConfiguration(final ServletContext servletContext) {
 
 		if (!this.properties.isEnabled()) {
@@ -115,6 +117,7 @@ public class SpringBootAnnotationConfigProvider extends HttpConfigurationProvide
 	}
 
 	@Nullable
+	@SuppressFBWarnings(value = "RCN_REDUNDANT_NULLCHECK_OF_NONNULL_VALUE", justification = "https://github.com/spotbugs/spotbugs/issues/259")
 	private Set<Class<?>> findPreparedScanResult(ClassLoader classLoader) {
 		String resourceName = "META-INF/joinfaces/" + AnnotationHandler.class.getName() + ".classes";
 		InputStream resourceAsStream = classLoader.getResourceAsStream(resourceName);
