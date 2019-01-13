@@ -61,7 +61,7 @@ allprojects {
                 entry "resources-ckeditor"
             }
 
-            dependency 'net.bootsfaces:bootsfaces:1.4.0'
+            dependency 'net.bootsfaces:bootsfaces:1.4.1'
             dependency('de.beyondjava:angularFaces-core:2.1.12') {
                 exclude "commons-logging:commons-logging"
             }
