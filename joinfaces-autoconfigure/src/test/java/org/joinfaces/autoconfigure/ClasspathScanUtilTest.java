@@ -16,6 +16,11 @@
 
 package org.joinfaces.autoconfigure;
 
+import java.io.ByteArrayInputStream;
+import java.io.IOException;
+import java.lang.annotation.Annotation;
+import java.nio.charset.StandardCharsets;
+import java.util.Map;
 import java.util.Set;
 import java.util.stream.Stream;
 
@@ -44,5 +49,23 @@ class ClasspathScanUtilTest {
 		Set<Class<?>> classes = ClasspathScanUtil.getClasses(Stream.of(this.getClass().getName()), getClass().getClassLoader());
 
 		assertThat(classes).contains(this.getClass());
+	}
+
+	@Test
+	void readAnnotationClassMap() throws IOException {
+
+		String sb = Test.class.getName() +
+				"=" +
+				ClasspathScanUtil.class.getName() +
+				"," +
+				ClasspathScanUtilTest.class.getName() +
+				"\n";
+		ByteArrayInputStream in = new ByteArrayInputStream(sb.getBytes(StandardCharsets.UTF_8));
+
+		Map<Class<? extends Annotation>, Set<Class<?>>> map = ClasspathScanUtil.readAnnotationClassMap(in, this.getClass().getClassLoader());
+
+		assertThat(map).containsKey(Test.class);
+
+		assertThat(map.get(Test.class)).contains(ClasspathScanUtil.class, ClasspathScanUtilTest.class);
 	}
 }
