@@ -24,6 +24,8 @@ import java.util.Map;
 import java.util.Set;
 import java.util.stream.Stream;
 
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -52,20 +54,37 @@ class ClasspathScanUtilTest {
 	}
 
 	@Test
+	void readAnnotationClassSet() throws IOException {
+
+		String sb = Test.class.getName() + "\n"
+				+ ClasspathScanUtil.class.getName() + "\n"
+				+ ClasspathScanUtilTest.class.getName() + "\n";
+		ByteArrayInputStream in = new ByteArrayInputStream(sb.getBytes(StandardCharsets.UTF_8));
+
+		Set<Class<?>> set = ClasspathScanUtil.readAnnotationClassSet(in, this.getClass().getClassLoader());
+
+		assertThat(set).contains(Test.class, ClasspathScanUtil.class, ClasspathScanUtilTest.class);
+	}
+
+	@Test
 	void readAnnotationClassMap() throws IOException {
 
-		String sb = Test.class.getName() +
-				"=" +
-				ClasspathScanUtil.class.getName() +
-				"," +
-				ClasspathScanUtilTest.class.getName() +
-				"\n";
+		String sb = "org.junit.jupiter.api.Test=org.joinfaces.autoconfigure.ClasspathScanUtil,org.joinfaces.autoconfigure.ClasspathScanUtilTest\n";
+		sb += "non.loadable.Annotation=org.joinfaces.autoconfigure.ClasspathScanUtil\n";
+		sb += "org.junit.jupiter.api.BeforeEach=\n";
+		sb += "org.junit.jupiter.api.BeforeAll=non.loadable.Class,org.joinfaces.autoconfigure.ClasspathScanUtil\n";
+
 		ByteArrayInputStream in = new ByteArrayInputStream(sb.getBytes(StandardCharsets.UTF_8));
 
 		Map<Class<? extends Annotation>, Set<Class<?>>> map = ClasspathScanUtil.readAnnotationClassMap(in, this.getClass().getClassLoader());
 
 		assertThat(map).containsKey(Test.class);
+		assertThat(map).containsKey(BeforeEach.class);
+		assertThat(map).containsKey(BeforeAll.class);
+		assertThat(map).hasSize(3);
 
 		assertThat(map.get(Test.class)).contains(ClasspathScanUtil.class, ClasspathScanUtilTest.class);
+		assertThat(map.get(BeforeEach.class)).isEmpty();
+		assertThat(map.get(BeforeAll.class)).containsExactly(ClasspathScanUtil.class);
 	}
 }
