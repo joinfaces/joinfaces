@@ -17,15 +17,21 @@
 package org.joinfaces.autoconfigure.primefaces;
 
 import org.joinfaces.autoconfigure.javaxfaces.JavaxFacesAutoConfiguration;
+import org.primefaces.PrimeFaces;
 import org.primefaces.cache.CacheProvider;
 import org.primefaces.component.captcha.Captcha;
 import org.primefaces.util.Constants;
 
+import org.springframework.beans.factory.config.ConfigurableBeanFactory;
 import org.springframework.boot.autoconfigure.AutoConfigureBefore;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnWebApplication;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Scope;
+import org.springframework.context.annotation.ScopedProxyMode;
 
 /**
  * Spring Boot Auto Configuration for Primefaces.
@@ -87,5 +93,12 @@ public class PrimefacesAutoConfiguration {
 	@Configuration
 	@EnableConfigurationProperties(Primefaces6_2Properties.class)
 	public static class Primefaces6_2AutoConfiguration {
+	}
+	
+	@Bean("primefaces")
+	@ConditionalOnMissingBean(name = "primefaces")
+	@Scope(value = ConfigurableBeanFactory.SCOPE_PROTOTYPE, proxyMode = ScopedProxyMode.TARGET_CLASS)
+	public PrimeFaces primefaces() {
+		return PrimeFaces.current();
 	}
 }
