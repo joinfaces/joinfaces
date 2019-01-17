@@ -157,8 +157,8 @@ allprojects {
 
     plugins.withId("pmd") {
         pmd {
-            toolVersion = '6.4.0'
-            ruleSetFiles = files("config/pmd/pmd-ruleset.xml")
+            ruleSetConfig = resources.text.fromFile("$rootDir/config/pmd/pmd-ruleset.xml")
+            ruleSets = []
         }
         pmdTest.enabled = false
     }
