@@ -45,7 +45,7 @@ import org.springframework.context.annotation.ScopedProxyMode;
 @AutoConfigureBefore(JavaxFacesAutoConfiguration.class)
 public class PrimefacesAutoConfiguration {
 
-   /**
+	/**
 	 * Spring bean definition for the {@link PrimeFaces} context.
 	 *
 	 * @return The current {@link PrimeFaces#current() PrimeFaces}.
