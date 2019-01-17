@@ -25,7 +25,6 @@ import org.primefaces.util.Constants;
 import org.springframework.beans.factory.config.ConfigurableBeanFactory;
 import org.springframework.boot.autoconfigure.AutoConfigureBefore;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
-import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnWebApplication;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
@@ -44,6 +43,13 @@ import org.springframework.context.annotation.ScopedProxyMode;
 @ConditionalOnWebApplication(type = ConditionalOnWebApplication.Type.SERVLET)
 @AutoConfigureBefore(JavaxFacesAutoConfiguration.class)
 public class PrimefacesAutoConfiguration {
+
+	@Bean("primefaces")
+	@ConditionalOnClass(PrimeFaces.class)
+	@Scope(value = ConfigurableBeanFactory.SCOPE_PROTOTYPE, proxyMode = ScopedProxyMode.TARGET_CLASS)
+	public PrimeFaces primefaces() {
+		return PrimeFaces.current();
+	}
 
 	/**
 	 * Auto Configuration for Primefaces 4.0.
@@ -94,11 +100,5 @@ public class PrimefacesAutoConfiguration {
 	@EnableConfigurationProperties(Primefaces6_2Properties.class)
 	public static class Primefaces6_2AutoConfiguration {
 	}
-	
-	@Bean("primefaces")
-	@ConditionalOnMissingBean(name = "primefaces")
-	@Scope(value = ConfigurableBeanFactory.SCOPE_PROTOTYPE, proxyMode = ScopedProxyMode.TARGET_CLASS)
-	public PrimeFaces primefaces() {
-		return PrimeFaces.current();
-	}
+
 }
