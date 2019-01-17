@@ -5,7 +5,6 @@ apply plugin: "io.freefair.lombok"
 apply plugin: "io.freefair.maven-optional"
 apply plugin: "io.freefair.maven-publish-java"
 apply plugin: "io.freefair.maven-jars"
-apply plugin: 'jdepend'
 
 description = 'JoinFaces Test'
 jar.manifest.attributes('Automatic-Module-Name': 'joinfaces.test')

@@ -5,7 +5,6 @@ subprojects {
     apply plugin: "pmd"
     apply plugin: "jacoco"
     apply plugin: "io.freefair.lombok"
-    apply plugin: 'jdepend'
 
     dependencies {
         testCompile 'org.assertj:assertj-core'

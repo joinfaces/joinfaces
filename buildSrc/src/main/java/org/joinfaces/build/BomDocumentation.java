@@ -35,10 +35,10 @@ import org.gradle.api.tasks.TaskAction;
 public class BomDocumentation extends DefaultTask {
 
 	@OutputFile
-	private final RegularFileProperty outputFile = newOutputFile();
+	private final RegularFileProperty outputFile = getProject().getObjects().fileProperty();
 
 	@InputFile
-	private final RegularFileProperty inputFile = newInputFile();
+	private final RegularFileProperty inputFile = getProject().getObjects().fileProperty();
 
 	@TaskAction
 	public void generateBomDocumentation() throws IOException, XmlPullParserException {

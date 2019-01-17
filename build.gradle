@@ -132,21 +132,6 @@ allprojects {
                         'Implementation-Vendor': "JoinFaces"
             }
         }
-
-        tasks.withType(JDepend) { jDepend ->
-            jDepend.group = "verification"
-            tasks.create("${jDepend.name}Cycles") {
-                dependsOn jDepend
-                check.dependsOn it
-                group = "verification"
-                inputs.file { jDepend.reports.xml.destination }
-                doLast {
-                    def reportFile = jDepend.reports.xml.destination
-                    def numberOfCycles = new XmlSlurper().parse(reportFile).Cycles.Package.size()
-                    assert numberOfCycles == 0, "We have detected $numberOfCyclesMain cycles. Checkout report file: $fileMain."
-                }
-            }
-        }
     }
 
     plugins.withId("checkstyle") {
@@ -275,7 +260,7 @@ asciidoctor {
 
 task docsZip(type: Zip) {
     group = 'build'
-    classifier = 'docs'
+    archiveClassifier = 'docs'
     dependsOn asciidoctor
 
     into("api") {
@@ -287,7 +272,7 @@ task docsZip(type: Zip) {
 }
 
 task uploadDocs(type: org.joinfaces.build.UploadDocumentation) {
-    inputFile = docsZip.archivePath
+    inputFile = docsZip.archiveFile
     dependsOn docsZip
     username = findProperty("joinfacesDocsUser")
     password = findProperty("joinfacesDocsPass")

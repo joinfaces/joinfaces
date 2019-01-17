@@ -1,7 +1,5 @@
 rootProject.name = 'joinfaces'
 
-enableFeaturePreview('STABLE_PUBLISHING')
-
 include ':joinfaces-tools:joinfaces-scan-tools'
 include ':joinfaces-tools:joinfaces-gradle-plugin'
 include ':joinfaces-tools:joinfaces-maven-plugin'

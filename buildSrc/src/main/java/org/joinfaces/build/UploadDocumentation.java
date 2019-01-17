@@ -42,7 +42,7 @@ import org.gradle.api.tasks.TaskAction;
 public class UploadDocumentation extends DefaultTask {
 
 	@InputFile
-	private final RegularFileProperty inputFile = newInputFile();
+	private final RegularFileProperty inputFile = getProject().getObjects().fileProperty();
 
 	@Input
 	private final Property<String> version = getProject().getObjects().property(String.class);
