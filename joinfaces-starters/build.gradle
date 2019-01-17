@@ -4,5 +4,6 @@ subprojects {
     apply plugin: "io.freefair.maven-jars"
 
     // Starters should have a clean classpath.
-    gradleLint.criticalRules += ['transitive-duplicate-dependency-class', 'duplicate-dependency-class']
+    // Disabled because module-info conflict: https://github.com/nebula-plugins/gradle-lint-plugin/pull/223
+    //gradleLint.criticalRules += ['transitive-duplicate-dependency-class', 'duplicate-dependency-class']
 }
