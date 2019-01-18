@@ -20,11 +20,11 @@ import java.lang.annotation.Annotation;
 import java.util.ArrayList;
 import java.util.LinkedHashSet;
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 
 import javax.servlet.ServletContext;
 
-import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import io.github.classgraph.ClassGraph;
 import io.github.classgraph.ScanResult;
 import lombok.RequiredArgsConstructor;
@@ -68,19 +68,15 @@ public class SpringBootAnnotationConfigProvider extends HttpConfigurationProvide
 		// Generate a list of all relevant annotations
 		final Set<Class<? extends Annotation>> ruleAnnotations = new LinkedHashSet<>();
 		final List<AnnotationHandler<Annotation>> annotationHandlers = new ArrayList<>();
-		for (AnnotationHandler<Annotation> handler : (Iterable<AnnotationHandler<Annotation>>) ServiceLoader.load(
-				AnnotationHandler.class)) {
+		for (AnnotationHandler<Annotation> handler : (Iterable<AnnotationHandler<Annotation>>) ServiceLoader.load(AnnotationHandler.class)) {
 			annotationHandlers.add(handler);
 			ruleAnnotations.add(handler.handles());
 		}
 
 		final ClassVisitorImpl ruleBuilderVisitor = new ClassVisitorImpl(annotationHandlers, servletContext);
 
-		Set<Class<?>> scanResult = findPreparedScanResult(servletContext.getClassLoader());
-
-		if (scanResult == null) {
-			scanResult = scanClasses(ruleAnnotations);
-		}
+		Set<Class<?>> scanResult = findPreparedScanResult(servletContext.getClassLoader())
+				.orElseGet(() -> scanClasses(ruleAnnotations));
 
 		scanResult.forEach(ruleBuilderVisitor::visit);
 
@@ -114,11 +110,8 @@ public class SpringBootAnnotationConfigProvider extends HttpConfigurationProvide
 		return result;
 	}
 
-	@Nullable
-	@SuppressFBWarnings(value = "RCN_REDUNDANT_NULLCHECK_OF_NONNULL_VALUE", justification = "https://github.com/spotbugs/spotbugs/issues/259")
-	private Set<Class<?>> findPreparedScanResult(ClassLoader classLoader) {
+	private Optional<Set<Class<?>>> findPreparedScanResult(ClassLoader classLoader) {
 		String resourceName = "META-INF/joinfaces/" + AnnotationHandler.class.getName() + ".classes";
-
 		return ClasspathScanUtil.readClassSet(resourceName, classLoader);
 	}
 }

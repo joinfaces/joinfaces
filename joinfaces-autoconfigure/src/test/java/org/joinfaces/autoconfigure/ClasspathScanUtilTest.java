@@ -16,17 +16,22 @@
 
 package org.joinfaces.autoconfigure;
 
-import java.io.ByteArrayInputStream;
-import java.io.IOException;
+import java.io.BufferedReader;
+import java.io.StringReader;
 import java.lang.annotation.Annotation;
-import java.nio.charset.StandardCharsets;
 import java.util.Map;
+import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Stream;
+
+import javax.faces.context.FacesContext;
 
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -47,6 +52,13 @@ class ClasspathScanUtilTest {
 	}
 
 	@Test
+	void getClasses_notLoadable() {
+		Set<Class<?>> classes = ClasspathScanUtil.getClasses(Stream.of("org.springframework.boot.autoconfigure.mustache.MustacheEnvironmentCollector"), getClass().getClassLoader());
+
+		assertThat(classes).isEmpty();
+	}
+
+	@Test
 	void getClasses_one() {
 		Set<Class<?>> classes = ClasspathScanUtil.getClasses(Stream.of(this.getClass().getName()), getClass().getClassLoader());
 
@@ -54,27 +66,44 @@ class ClasspathScanUtilTest {
 	}
 
 	@Test
-	void readAnnotationClassSet() throws IOException {
+	void readClassSet() {
+		Optional<Set<Class<?>>> classes = ClasspathScanUtil.readClassSet("META-INF/joinfaces/test-list.classes", getClass().getClassLoader());
+
+		assertThat(classes).isPresent();
+		assertThat(classes.get()).contains(String.class, FacesContext.class);
+	}
+
+	@Test
+	void readAnnotationClassSet() {
 
 		String sb = Test.class.getName() + "\n"
 				+ ClasspathScanUtil.class.getName() + "\n"
 				+ ClasspathScanUtilTest.class.getName() + "\n";
-		ByteArrayInputStream in = new ByteArrayInputStream(sb.getBytes(StandardCharsets.UTF_8));
+		BufferedReader in = new BufferedReader(new StringReader(sb));
 
 		Set<Class<?>> set = ClasspathScanUtil.readClassSet(in, this.getClass().getClassLoader());
 
 		assertThat(set).contains(Test.class, ClasspathScanUtil.class, ClasspathScanUtilTest.class);
 	}
 
+
 	@Test
-	void readAnnotationClassMap() throws IOException {
+	void readClassMap() {
+		Optional<Map<Class<? extends Annotation>, Set<Class<?>>>> classes = ClasspathScanUtil.readClassMap("META-INF/joinfaces/test-map.classes", getClass().getClassLoader());
+
+		assertThat(classes).isPresent();
+		assertThat(classes.get()).containsKeys(Autowired.class, Qualifier.class);
+	}
+
+	@Test
+	void readAnnotationClassMap() {
 
 		String sb = "org.junit.jupiter.api.Test=org.joinfaces.autoconfigure.ClasspathScanUtil,org.joinfaces.autoconfigure.ClasspathScanUtilTest\n";
 		sb += "non.loadable.Annotation=org.joinfaces.autoconfigure.ClasspathScanUtil\n";
 		sb += "org.junit.jupiter.api.BeforeEach=\n";
 		sb += "org.junit.jupiter.api.BeforeAll=non.loadable.Class,org.joinfaces.autoconfigure.ClasspathScanUtil\n";
 
-		ByteArrayInputStream in = new ByteArrayInputStream(sb.getBytes(StandardCharsets.UTF_8));
+		BufferedReader in = new BufferedReader(new StringReader(sb));
 
 		Map<Class<? extends Annotation>, Set<Class<?>>> map = ClasspathScanUtil.readClassMap(in, this.getClass().getClassLoader());
 

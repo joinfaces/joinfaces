@@ -27,6 +27,7 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
+import java.util.Optional;
 import java.util.Set;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.function.BiFunction;
@@ -34,11 +35,9 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
-import lombok.SneakyThrows;
 import lombok.experimental.UtilityClass;
 import lombok.extern.slf4j.Slf4j;
 
-import org.springframework.lang.Nullable;
 import org.springframework.util.StringUtils;
 
 /**
@@ -50,84 +49,75 @@ import org.springframework.util.StringUtils;
 @UtilityClass
 public class ClasspathScanUtil {
 
-	@Nullable
-	public static Set<Class<?>> readClassSet(String resourceName, ClassLoader classLoader) {
+	public static Optional<Set<Class<?>>> readClassSet(String resourceName, ClassLoader classLoader) {
 		return readClasses(
 				resourceName, classLoader,
 				ClasspathScanUtil::readClassSet
 		);
 	}
 
-	@Nullable
-	public static Map<Class<? extends Annotation>, Set<Class<?>>> readClassMap(String resourceName, ClassLoader classLoader) {
+	public static Optional<Map<Class<? extends Annotation>, Set<Class<?>>>> readClassMap(String resourceName, ClassLoader classLoader) {
 		return readClasses(
 				resourceName, classLoader,
 				ClasspathScanUtil::readClassMap
 		);
 	}
 
-	@Nullable
-	@SuppressFBWarnings("RCN_REDUNDANT_NULLCHECK_OF_NONNULL_VALUE")
-	private static <T> T readClasses(String resourceName, ClassLoader classLoader, BiFunction<InputStream, ClassLoader, T> function) {
+	@SuppressFBWarnings(value = "RCN_REDUNDANT_NULLCHECK_OF_NONNULL_VALUE", justification = "https://github.com/spotbugs/spotbugs/issues/259")
+	private static <T> Optional<T> readClasses(String resourceName, ClassLoader classLoader, BiFunction<BufferedReader, ClassLoader, T> function) {
 		InputStream resourceAsStream = classLoader.getResourceAsStream(resourceName);
 
 		if (resourceAsStream == null) {
 			log.debug("No prepared scan result {} found.", resourceName);
-			return null;
+			return Optional.empty();
 		}
 
 		long start = System.nanoTime();
-		try (InputStream inputStream = resourceAsStream) {
-			T result = function.apply(inputStream, classLoader);
+		try (BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(resourceAsStream, StandardCharsets.UTF_8))) {
+			T result = function.apply(bufferedReader, classLoader);
 			double ms = (System.nanoTime() - start) / 1_000_000d;
 			log.info("Loading prepared scan result took {}ms", ms);
-			return result;
+			return Optional.ofNullable(result);
 		}
 		catch (IOException e) {
 			log.warn("Failed to read prepared scan-result {}", resourceName, e);
-		}
-		return null;
-	}
-
-	@SneakyThrows
-	static Set<Class<?>> readClassSet(InputStream inputStream, ClassLoader classLoader) {
-		try (BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream, StandardCharsets.UTF_8))) {
-			return getClasses(bufferedReader.lines(), classLoader);
+			return Optional.empty();
 		}
 	}
 
-	@SneakyThrows
-	static Map<Class<? extends Annotation>, Set<Class<?>>> readClassMap(InputStream inputStream, ClassLoader classLoader) {
+	static Set<Class<?>> readClassSet(BufferedReader bufferedReader, ClassLoader classLoader) {
+		return getClasses(bufferedReader.lines(), classLoader);
+	}
 
-		try (BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream, StandardCharsets.UTF_8))) {
-			Map<Class<? extends Annotation>, Set<Class<?>>> classes = new HashMap<>();
+	static Map<Class<? extends Annotation>, Set<Class<?>>> readClassMap(BufferedReader bufferedReader, ClassLoader classLoader) {
+		Map<Class<? extends Annotation>, Set<Class<?>>> classes = new HashMap<>();
 
-			bufferedReader.lines().forEach(line -> {
-				String[] split = line.split("=", 2);
-				String annotationName = split[0];
-				String classNameList = split[1];
+		bufferedReader.lines().forEach(line -> {
+			String[] split = line.split("=", 2);
+			String annotationName = split[0];
+			String classNameList = split[1];
 
-				Class<? extends Annotation> annotation;
-				try {
-					annotation = (Class<? extends Annotation>) classLoader.loadClass(annotationName);
-				}
-				catch (ClassNotFoundException | LinkageError e) {
-					log.warn("Failed to load annotation class {}", annotationName, e);
-					return;
-				}
-				Set<Class<?>> classSet;
+			Class<? extends Annotation> annotation;
+			try {
+				annotation = (Class<? extends Annotation>) classLoader.loadClass(annotationName);
+			}
+			catch (ClassNotFoundException | LinkageError e) {
+				log.warn("Failed to load annotation class {}", annotationName, e);
+				return;
+			}
+			Set<Class<?>> classSet;
 
-				if (StringUtils.hasText(classNameList)) {
-					classSet = getClasses(Arrays.stream(classNameList.split(",")), classLoader);
-				}
-				else {
-					classSet = Collections.emptySet();
-				}
+			if (StringUtils.hasText(classNameList)) {
+				classSet = getClasses(Arrays.stream(classNameList.split(",")), classLoader);
+			}
+			else {
+				classSet = Collections.emptySet();
+			}
 
-				classes.put(annotation, classSet);
-			});
-			return classes;
-		}
+			classes.put(annotation, classSet);
+		});
+		return classes;
+
 	}
 
 	static Set<Class<?>> getClasses(Stream<String> classNames, ClassLoader classLoader) {

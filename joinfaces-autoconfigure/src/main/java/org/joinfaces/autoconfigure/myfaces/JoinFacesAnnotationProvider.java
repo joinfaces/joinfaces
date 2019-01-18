@@ -60,9 +60,8 @@ public class JoinFacesAnnotationProvider extends AnnotationProviderWrapper {
 	}
 
 	private void findPreparedScanResult() {
-		Map<Class<? extends Annotation>, Set<Class<?>>> annotatedClasses = ClasspathScanUtil.readClassMap("META-INF/joinfaces/" + AnnotationProvider.class.getName() + ".classes", getClass().getClassLoader());
-		if (annotatedClasses != null) {
-			setAnnotatedClasses(annotatedClasses);
-		}
+		String resourceName = "META-INF/joinfaces/" + AnnotationProvider.class.getName() + ".classes";
+		ClasspathScanUtil.readClassMap(resourceName, getClass().getClassLoader())
+				.ifPresent(JoinFacesAnnotationProvider::setAnnotatedClasses);
 	}
 }
