@@ -33,6 +33,7 @@ import java.util.function.BiFunction;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import lombok.SneakyThrows;
 import lombok.experimental.UtilityClass;
 import lombok.extern.slf4j.Slf4j;
@@ -66,6 +67,7 @@ public class ClasspathScanUtil {
 	}
 
 	@Nullable
+	@SuppressFBWarnings("RCN_REDUNDANT_NULLCHECK_OF_NONNULL_VALUE")
 	private static <T> T readClasses(String resourceName, ClassLoader classLoader, BiFunction<InputStream, ClassLoader, T> function) {
 		InputStream resourceAsStream = classLoader.getResourceAsStream(resourceName);
 
