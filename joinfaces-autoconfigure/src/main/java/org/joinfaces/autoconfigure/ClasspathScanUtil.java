@@ -29,12 +29,15 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.Set;
 import java.util.concurrent.atomic.AtomicInteger;
+import java.util.function.BiFunction;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+import lombok.SneakyThrows;
 import lombok.experimental.UtilityClass;
 import lombok.extern.slf4j.Slf4j;
 
+import org.springframework.lang.Nullable;
 import org.springframework.util.StringUtils;
 
 /**
@@ -46,13 +49,53 @@ import org.springframework.util.StringUtils;
 @UtilityClass
 public class ClasspathScanUtil {
 
-	public static Set<Class<?>> readAnnotationClassSet(InputStream inputStream, ClassLoader classLoader) throws IOException {
+	@Nullable
+	public static Set<Class<?>> readClassSet(String resourceName, ClassLoader classLoader) {
+		return readClasses(
+				resourceName, classLoader,
+				ClasspathScanUtil::readClassSet
+		);
+	}
+
+	@Nullable
+	public static Map<Class<? extends Annotation>, Set<Class<?>>> readClassMap(String resourceName, ClassLoader classLoader) {
+		return readClasses(
+				resourceName, classLoader,
+				ClasspathScanUtil::readClassMap
+		);
+	}
+
+	@Nullable
+	private static <T> T readClasses(String resourceName, ClassLoader classLoader, BiFunction<InputStream, ClassLoader, T> function) {
+		InputStream resourceAsStream = classLoader.getResourceAsStream(resourceName);
+
+		if (resourceAsStream == null) {
+			log.debug("No prepared scan result {} found.", resourceName);
+			return null;
+		}
+
+		long start = System.nanoTime();
+		try (InputStream inputStream = resourceAsStream) {
+			T result = function.apply(inputStream, classLoader);
+			double ms = (System.nanoTime() - start) / 1_000_000d;
+			log.info("Loading prepared scan result took {}ms", ms);
+			return result;
+		}
+		catch (IOException e) {
+			log.warn("Failed to read prepared scan-result {}", resourceName, e);
+		}
+		return null;
+	}
+
+	@SneakyThrows
+	static Set<Class<?>> readClassSet(InputStream inputStream, ClassLoader classLoader) {
 		try (BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream, StandardCharsets.UTF_8))) {
 			return getClasses(bufferedReader.lines(), classLoader);
 		}
 	}
 
-	public static Map<Class<? extends Annotation>, Set<Class<?>>> readAnnotationClassMap(InputStream inputStream, ClassLoader classLoader) throws IOException {
+	@SneakyThrows
+	static Map<Class<? extends Annotation>, Set<Class<?>>> readClassMap(InputStream inputStream, ClassLoader classLoader) {
 
 		try (BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream, StandardCharsets.UTF_8))) {
 			Map<Class<? extends Annotation>, Set<Class<?>>> classes = new HashMap<>();
@@ -85,7 +128,7 @@ public class ClasspathScanUtil {
 		}
 	}
 
-	public static Set<Class<?>> getClasses(Stream<String> classNames, ClassLoader classLoader) {
+	static Set<Class<?>> getClasses(Stream<String> classNames, ClassLoader classLoader) {
 		AtomicInteger missingClasses = new AtomicInteger();
 		AtomicInteger missingDependentClasses = new AtomicInteger();
 

@@ -16,8 +16,6 @@
 
 package org.joinfaces.autoconfigure.servlet.initializer;
 
-import java.io.IOException;
-import java.io.InputStream;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Optional;
@@ -80,30 +78,7 @@ public class ServletContainerInitializerRegistrationBean<T extends ServletContai
 		}
 
 		String resourceName = "META-INF/joinfaces/" + getServletContainerInitializerClass().getName() + ".classes";
-		InputStream resourceAsStream = classLoader.getResourceAsStream(resourceName);
-
-		if (resourceAsStream == null) {
-			log.debug("No prepared scan-result found for {}", getServletContainerInitializerClass());
-			return Optional.empty();
-		}
-
-		StopWatch stopWatch = new StopWatch(getServletContainerInitializerClass().getName());
-		stopWatch.start("load scan-result");
-
-		try {
-			return Optional.of(ClasspathScanUtil.readAnnotationClassSet(resourceAsStream, classLoader));
-		}
-		catch (IOException e) {
-			log.warn("Failed to read prepared scan-result {}", resourceName, e);
-			return Optional.empty();
-		}
-		finally {
-			stopWatch.stop();
-			log.info("Load scan classes file for {} took {}s", getServletContainerInitializerClass().getName(), stopWatch.getTotalTimeSeconds());
-			if (log.isDebugEnabled()) {
-				log.debug(stopWatch.prettyPrint());
-			}
-		}
+		return Optional.ofNullable(ClasspathScanUtil.readClassSet(resourceName, classLoader));
 	}
 
 	@Nullable

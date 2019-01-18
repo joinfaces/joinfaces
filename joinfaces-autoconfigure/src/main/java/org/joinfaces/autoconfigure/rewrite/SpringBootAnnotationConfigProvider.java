@@ -16,8 +16,6 @@
 
 package org.joinfaces.autoconfigure.rewrite;
 
-import java.io.IOException;
-import java.io.InputStream;
 import java.lang.annotation.Annotation;
 import java.util.ArrayList;
 import java.util.LinkedHashSet;
@@ -120,23 +118,7 @@ public class SpringBootAnnotationConfigProvider extends HttpConfigurationProvide
 	@SuppressFBWarnings(value = "RCN_REDUNDANT_NULLCHECK_OF_NONNULL_VALUE", justification = "https://github.com/spotbugs/spotbugs/issues/259")
 	private Set<Class<?>> findPreparedScanResult(ClassLoader classLoader) {
 		String resourceName = "META-INF/joinfaces/" + AnnotationHandler.class.getName() + ".classes";
-		InputStream resourceAsStream = classLoader.getResourceAsStream(resourceName);
 
-		if (resourceAsStream == null) {
-			log.debug("No prepared scan result found.");
-			return null;
-		}
-
-		long start = System.nanoTime();
-		try (InputStream inputStream = resourceAsStream) {
-			Set<Class<?>> annotationClassSet = ClasspathScanUtil.readAnnotationClassSet(inputStream, classLoader);
-			double ms = (System.nanoTime() - start) / 1_000_000d;
-			log.info("Loading prepared scan result took {}ms", ms);
-			return annotationClassSet;
-		}
-		catch (IOException e) {
-			log.warn("Failed to read prepared scan-result {}", resourceName, e);
-		}
-		return null;
+		return ClasspathScanUtil.readClassSet(resourceName, classLoader);
 	}
 }

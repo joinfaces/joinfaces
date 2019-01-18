@@ -61,7 +61,7 @@ class ClasspathScanUtilTest {
 				+ ClasspathScanUtilTest.class.getName() + "\n";
 		ByteArrayInputStream in = new ByteArrayInputStream(sb.getBytes(StandardCharsets.UTF_8));
 
-		Set<Class<?>> set = ClasspathScanUtil.readAnnotationClassSet(in, this.getClass().getClassLoader());
+		Set<Class<?>> set = ClasspathScanUtil.readClassSet(in, this.getClass().getClassLoader());
 
 		assertThat(set).contains(Test.class, ClasspathScanUtil.class, ClasspathScanUtilTest.class);
 	}
@@ -76,7 +76,7 @@ class ClasspathScanUtilTest {
 
 		ByteArrayInputStream in = new ByteArrayInputStream(sb.getBytes(StandardCharsets.UTF_8));
 
-		Map<Class<? extends Annotation>, Set<Class<?>>> map = ClasspathScanUtil.readAnnotationClassMap(in, this.getClass().getClassLoader());
+		Map<Class<? extends Annotation>, Set<Class<?>>> map = ClasspathScanUtil.readClassMap(in, this.getClass().getClassLoader());
 
 		assertThat(map).containsKey(Test.class);
 		assertThat(map).containsKey(BeforeEach.class);

@@ -16,15 +16,12 @@
 
 package org.joinfaces.autoconfigure.myfaces;
 
-import java.io.IOException;
-import java.io.InputStream;
 import java.lang.annotation.Annotation;
 import java.util.Map;
 import java.util.Set;
 
 import javax.faces.context.ExternalContext;
 
-import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.myfaces.spi.AnnotationProvider;
 import org.apache.myfaces.spi.AnnotationProviderWrapper;
@@ -47,10 +44,6 @@ public class JoinFacesAnnotationProvider extends AnnotationProviderWrapper {
 		JoinFacesAnnotationProvider.annotatedClasses = annotatedClasses;
 	}
 
-	public JoinFacesAnnotationProvider() {
-		findPreparedScanResult();
-	}
-
 	public JoinFacesAnnotationProvider(AnnotationProvider delegate) {
 		super(delegate);
 		findPreparedScanResult();
@@ -66,25 +59,10 @@ public class JoinFacesAnnotationProvider extends AnnotationProviderWrapper {
 		}
 	}
 
-	@SuppressFBWarnings(value = "RCN_REDUNDANT_NULLCHECK_OF_NONNULL_VALUE", justification = "https://github.com/spotbugs/spotbugs/issues/259")
 	private void findPreparedScanResult() {
-		String resourceName = "META-INF/joinfaces/" + AnnotationProvider.class.getName() + ".classes";
-		InputStream resourceAsStream = getClass().getClassLoader().getResourceAsStream(resourceName);
-
-		if (resourceAsStream == null) {
-			log.debug("No prepared scan result found.");
-			return;
-		}
-
-		long start = System.nanoTime();
-		try (InputStream inputStream = resourceAsStream) {
-			Map<Class<? extends Annotation>, Set<Class<?>>> annotationClassMap = ClasspathScanUtil.readAnnotationClassMap(inputStream, getClass().getClassLoader());
-			setAnnotatedClasses(annotationClassMap);
-			double ms = (System.nanoTime() - start) / 1_000_000d;
-			log.info("Loading prepared scan result took {}ms", ms);
-		}
-		catch (IOException e) {
-			log.warn("Failed to load {}", resourceName, e);
+		Map<Class<? extends Annotation>, Set<Class<?>>> annotatedClasses = ClasspathScanUtil.readClassMap("META-INF/joinfaces/" + AnnotationProvider.class.getName() + ".classes", getClass().getClassLoader());
+		if (annotatedClasses != null) {
+			setAnnotatedClasses(annotatedClasses);
 		}
 	}
 }
