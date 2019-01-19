@@ -47,7 +47,8 @@ public class ClasspathScanner {
 	private List<ScanResultHandler> scanResultHandlers = new ArrayList<>(
 			Arrays.asList(
 					new ServletContainerInitializerHandler(),
-					new MyFacesAnnotationProviderHandler()
+					new MyFacesAnnotationProviderHandler(),
+					new RewriteAnnotationProviderHandler()
 			)
 	);
 

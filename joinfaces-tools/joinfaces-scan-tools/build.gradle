@@ -7,9 +7,12 @@ dependencies {
     compile "io.github.classgraph:classgraph"
     compile "org.slf4j:slf4j-api"
 
+    testCompile 'org.ocpsoft.rewrite:rewrite-servlet'
+    
     testRuntimeOnly 'org.slf4j:slf4j-simple'
     testRuntimeOnly 'org.apache.myfaces.core:myfaces-impl'
     testRuntimeOnly 'org.glassfish:javax.faces'
     testRuntimeOnly 'org.primefaces:primefaces'
     testRuntimeOnly 'javax.annotation:javax.annotation-api'
+    testRuntimeOnly 'org.ocpsoft.rewrite:rewrite-integration-spring'
 }

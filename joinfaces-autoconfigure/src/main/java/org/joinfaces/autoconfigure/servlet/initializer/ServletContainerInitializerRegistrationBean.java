@@ -16,11 +16,6 @@
 
 package org.joinfaces.autoconfigure.servlet.initializer;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Optional;
@@ -68,45 +63,22 @@ public class ServletContainerInitializerRegistrationBean<T extends ServletContai
 	public void customize(ConfigurableServletWebServerFactory factory) {
 		factory.addInitializers(servletContext -> {
 			T servletContextInitializer = BeanUtils.instantiateClass(getServletContainerInitializerClass());
-			servletContextInitializer.onStartup(getClasses(), servletContext);
+			servletContextInitializer.onStartup(getClasses(servletContext.getClassLoader()), servletContext);
 		});
 	}
 
-	protected Set<Class<?>> getClasses() {
-		return findPreparedScanResult().orElseGet(this::performClasspathScan);
+	protected Set<Class<?>> getClasses(ClassLoader classLoader) {
+		return findPreparedScanResult(classLoader).orElseGet(this::performClasspathScan);
 	}
 
-	protected Optional<Set<Class<?>>> findPreparedScanResult() {
+	protected Optional<Set<Class<?>>> findPreparedScanResult(ClassLoader classLoader) {
 
 		if (!isUsePreparedScanResult()) {
 			return Optional.empty();
 		}
 
 		String resourceName = "META-INF/joinfaces/" + getServletContainerInitializerClass().getName() + ".classes";
-		InputStream resourceAsStream = getClass().getClassLoader().getResourceAsStream(resourceName);
-
-		if (resourceAsStream == null) {
-			log.debug("No prepared scan-result found for {}", getServletContainerInitializerClass());
-			return Optional.empty();
-		}
-
-		StopWatch stopWatch = new StopWatch(getServletContainerInitializerClass().getName());
-		stopWatch.start("load scan-result");
-
-		try (BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(resourceAsStream, StandardCharsets.UTF_8))) {
-			return Optional.of(ClasspathScanUtil.getClasses(bufferedReader.lines()));
-		}
-		catch (IOException e) {
-			log.warn("Failed to read prepared scan-result {}", resourceName, e);
-			return Optional.empty();
-		}
-		finally {
-			stopWatch.stop();
-			log.info("Load scan classes file for {} took {}s", getServletContainerInitializerClass().getName(), stopWatch.getTotalTimeSeconds());
-			if (log.isDebugEnabled()) {
-				log.debug(stopWatch.prettyPrint());
-			}
-		}
+		return ClasspathScanUtil.readClassSet(resourceName, classLoader);
 	}
 
 	@Nullable

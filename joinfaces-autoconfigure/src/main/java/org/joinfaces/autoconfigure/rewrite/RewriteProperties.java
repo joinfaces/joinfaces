@@ -16,6 +16,8 @@
 
 package org.joinfaces.autoconfigure.rewrite;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import lombok.Data;
@@ -47,10 +49,19 @@ public class RewriteProperties implements ServletContextInitParameterProperties 
 	private Boolean scanLibDirectory;
 
 	/**
-	 * Retrieve the optional package filter configuration parameter. Users can
-	 * disable annotation scanning with value none.
+	 * Retrieve the optional package filter configuration parameter.
+	 * Users can disable annotation scanning with value none.
+	 * <p>
+	 * Defaults to {@code none} in favor of {@link SpringBootAnnotationConfigProvider}.
 	 */
-	@ServletContextInitParameter(value = AnnotationConfigProvider.CONFIG_BASE_PACKAGES, listSeparator = ",")
-	private List<String> basePackages;
+	@ServletContextInitParameter(AnnotationConfigProvider.CONFIG_BASE_PACKAGES)
+	private List<String> basePackages = new ArrayList<>(Collections.singletonList("none"));
 
+	private final AnnotationConfigProviderProperties annotationConfigProvider = new AnnotationConfigProviderProperties();
+
+	@Data
+	public static class AnnotationConfigProviderProperties {
+		private boolean enabled = true;
+		private List<String> basePackages;
+	}
 }

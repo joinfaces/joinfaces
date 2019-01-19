@@ -38,19 +38,19 @@ public class ServletContainerInitializerRegistrationBeanTest {
 	@Test
 	public void getClasses_null() {
 		ServletContainerInitializerRegistrationBean<NoHandlesTypes> bean = new ServletContainerInitializerRegistrationBean<>(NoHandlesTypes.class);
-		assertThat(bean.getClasses()).isNull();
+		assertThat(bean.getClasses(getClass().getClassLoader())).isNull();
 	}
 
 	@Test
 	public void getClasses_empty() {
 		ServletContainerInitializerRegistrationBean<EmptyHandlesTypes> bean = new ServletContainerInitializerRegistrationBean<>(EmptyHandlesTypes.class);
-		assertThat(bean.getClasses()).isNull();
+		assertThat(bean.getClasses(getClass().getClassLoader())).isNull();
 	}
 
 	@Test
 	public void testMojarra() {
 		ServletContainerInitializerRegistrationBean<FacesInitializer> bean = new ServletContainerInitializerRegistrationBean<>(FacesInitializer.class);
-		Set<Class<?>> classes = bean.getClasses();
+		Set<Class<?>> classes = bean.getClasses(getClass().getClassLoader());
 
 		assertThat(classes).isNotEmpty();
 
@@ -60,7 +60,7 @@ public class ServletContainerInitializerRegistrationBeanTest {
 	@Test
 	public void testMyfaces() {
 		ServletContainerInitializerRegistrationBean<MyFacesContainerInitializer> bean = new ServletContainerInitializerRegistrationBean<>(MyFacesContainerInitializer.class);
-		Set<Class<?>> classes = bean.getClasses();
+		Set<Class<?>> classes = bean.getClasses(getClass().getClassLoader());
 
 		assertThat(classes).isNotEmpty();
 
