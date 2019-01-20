@@ -28,8 +28,9 @@ import org.gradle.testkit.runner.BuildResult;
 import org.gradle.testkit.runner.BuildTask;
 import org.gradle.testkit.runner.GradleRunner;
 import org.gradle.testkit.runner.TaskOutcome;
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 import org.junitpioneer.jupiter.TempDirectory;
 import org.junitpioneer.jupiter.TempDirectory.TempDir;
 
@@ -38,8 +39,9 @@ import static org.assertj.core.api.Assertions.assertThat;
 @ExtendWith(TempDirectory.class)
 class JoinfacesPluginIT {
 
-	@Test
-	public void build(@TempDir Path projectDir) throws IOException {
+	@ParameterizedTest
+	@ValueSource(strings = {"4.8", "4.10.3", "5.1.1"})
+	public void build(String gradleVersion, @TempDir Path projectDir) throws IOException {
 		Files.write(projectDir.resolve("settings.gradle"), Collections.singleton("rootProject.name = 'dummy'"));
 
 		Files.write(projectDir.resolve("build.gradle"), Arrays.asList(
@@ -60,6 +62,7 @@ class JoinfacesPluginIT {
 				.withPluginClasspath()
 				.withArguments("jar", "-s", "--info")
 				.withDebug(true)
+				.withGradleVersion(gradleVersion)
 				.build();
 
 		BuildTask scanClasspath = buildResult.task(":scanClasspath");

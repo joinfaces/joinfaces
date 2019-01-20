@@ -9,6 +9,7 @@ subprojects {
     dependencies {
         testCompile 'org.assertj:assertj-core'
         testCompile 'org.junit.jupiter:junit-jupiter-api'
+        testCompile 'org.junit.jupiter:junit-jupiter-params'
         testRuntime 'org.junit.jupiter:junit-jupiter-engine'
         testCompile 'org.junit-pioneer:junit-pioneer:0.3.0'
     }
