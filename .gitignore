@@ -5,7 +5,7 @@ lombok.config
 .idea/*
 
 !.idea/checkstyle-idea.xml
-!.idea/codeStyleSettings.xml
+!.idea/codeStyles
 !.idea/externalDependencies.xml
 !.idea/copyright
 
