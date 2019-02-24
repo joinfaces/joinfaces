@@ -76,7 +76,6 @@ under the License.
     <rule ref="category/java/errorprone.xml/FinalizeOnlyCallsSuperFinalize" />
     <rule ref="category/java/errorprone.xml/FinalizeOverloaded" />
     <rule ref="category/java/errorprone.xml/FinalizeShouldBeProtected" />
-    <rule ref="category/java/errorprone.xml/MissingSerialVersionUID" />
     <rule ref="category/java/errorprone.xml/AvoidDuplicateLiterals" />
     <rule ref="category/java/errorprone.xml/StringBufferInstantiationWithChar" />
     <rule ref="category/java/errorprone.xml/UnnecessaryCaseChange" />
@@ -105,10 +104,6 @@ under the License.
     <rule ref="category/java/codestyle.xml/DuplicateImports" />
     <rule ref="category/java/codestyle.xml/TooManyStaticImports" />
     <rule ref="category/java/codestyle.xml/UnnecessaryFullyQualifiedName" />
-    <rule ref="category/java/codestyle.xml/ForLoopsMustUseBraces" />
-    <rule ref="category/java/codestyle.xml/IfElseStmtsMustUseBraces" />
-    <rule ref="category/java/codestyle.xml/IfStmtsMustUseBraces" />
-    <rule ref="category/java/codestyle.xml/WhileLoopsMustUseBraces" />
 
     <rule ref="category/java/performance.xml/BigIntegerInstantiation" />
     <rule ref="category/java/performance.xml/BooleanInstantiation" />
@@ -135,12 +130,7 @@ under the License.
         <property name="minimum" value="57"/>
       </properties>
     </rule>
-    <rule ref="category/java/design.xml/ModifiedCyclomaticComplexity" />
-    <rule ref="category/java/design.xml/NcssConstructorCount" />
-    <rule ref="category/java/design.xml/NcssMethodCount" />
-    <rule ref="category/java/design.xml/NcssTypeCount" />
     <rule ref="category/java/design.xml/NPathComplexity" />
-    <rule ref="category/java/design.xml/StdCyclomaticComplexity" />
     <rule ref="category/java/design.xml/TooManyFields" >
       <properties>
         <property name="maxfields" value="101"/>

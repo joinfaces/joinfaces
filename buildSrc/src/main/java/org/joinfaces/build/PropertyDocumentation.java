@@ -43,10 +43,10 @@ import org.springframework.util.StringUtils;
 public class PropertyDocumentation extends DefaultTask {
 
 	@InputFile
-	private final RegularFileProperty inputFile = newInputFile();
+	private final RegularFileProperty inputFile = getProject().getObjects().fileProperty();
 
 	@OutputFile
-	private final RegularFileProperty outputFile = newOutputFile();
+	private final RegularFileProperty outputFile = getProject().getObjects().fileProperty();
 
 	@TaskAction
 	public void generatePropertyDocumentation() throws IOException {

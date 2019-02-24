@@ -5,11 +5,11 @@ subprojects {
     apply plugin: "pmd"
     apply plugin: "jacoco"
     apply plugin: "io.freefair.lombok"
-    apply plugin: 'jdepend'
 
     dependencies {
         testCompile 'org.assertj:assertj-core'
         testCompile 'org.junit.jupiter:junit-jupiter-api'
+        testCompile 'org.junit.jupiter:junit-jupiter-params'
         testRuntime 'org.junit.jupiter:junit-jupiter-engine'
         testCompile 'org.junit-pioneer:junit-pioneer:0.3.0'
     }

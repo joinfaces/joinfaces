@@ -5,15 +5,15 @@ buildscript {
         maven { url "https://plugins.gradle.org/m2/" }
     }
     dependencies {
-        classpath "io.freefair.gradle:lombok-plugin:2.9.5"
-        classpath "io.freefair.gradle:maven-plugin:2.9.5"
+        classpath "io.freefair.gradle:lombok-plugin:3.1.2"
+        classpath "io.freefair.gradle:maven-plugin:3.1.2"
         classpath "gradle.plugin.com.github.spotbugs:spotbugs-gradle-plugin:1.6.9"
-        classpath "com.netflix.nebula:gradle-lint-plugin:10.3.5"
-        classpath "de.aaschmid:gradle-cpd-plugin:1.1"
-        classpath "com.gradle.publish:plugin-publish-plugin:0.10.0"
-        classpath "io.codearte.gradle.nexus:gradle-nexus-staging-plugin:0.12.0"
-        classpath "de.marcphilipp.gradle:nexus-publish-plugin:0.1.1"
-        classpath "org.asciidoctor:asciidoctor-gradle-plugin:1.5.8"
+        classpath "com.netflix.nebula:gradle-lint-plugin:10.4.2"
+        classpath "de.aaschmid:gradle-cpd-plugin:1.2"
+        classpath "com.gradle.publish:plugin-publish-plugin:0.10.1"
+        classpath "io.codearte.gradle.nexus:gradle-nexus-staging-plugin:0.20.0"
+        classpath "de.marcphilipp.gradle:nexus-publish-plugin:0.2.0"
+        classpath "org.asciidoctor:asciidoctor-gradle-plugin:1.5.9.2"
     }
 }
 
@@ -132,21 +132,6 @@ allprojects {
                         'Implementation-Vendor': "JoinFaces"
             }
         }
-
-        tasks.withType(JDepend) { jDepend ->
-            jDepend.group = "verification"
-            tasks.create("${jDepend.name}Cycles") {
-                dependsOn jDepend
-                check.dependsOn it
-                group = "verification"
-                inputs.file { jDepend.reports.xml.destination }
-                doLast {
-                    def reportFile = jDepend.reports.xml.destination
-                    def numberOfCycles = new XmlSlurper().parse(reportFile).Cycles.Package.size()
-                    assert numberOfCycles == 0, "We have detected $numberOfCyclesMain cycles. Checkout report file: $fileMain."
-                }
-            }
-        }
     }
 
     plugins.withId("checkstyle") {
@@ -157,8 +142,8 @@ allprojects {
 
     plugins.withId("pmd") {
         pmd {
-            toolVersion = '6.4.0'
-            ruleSetFiles = files("config/pmd/pmd-ruleset.xml")
+            ruleSetConfig = resources.text.fromFile("$rootDir/config/pmd/pmd-ruleset.xml")
+            ruleSets = []
         }
         pmdTest.enabled = false
     }
@@ -275,7 +260,7 @@ asciidoctor {
 
 task docsZip(type: Zip) {
     group = 'build'
-    classifier = 'docs'
+    archiveClassifier = 'docs'
     dependsOn asciidoctor
 
     into("api") {
@@ -287,7 +272,7 @@ task docsZip(type: Zip) {
 }
 
 task uploadDocs(type: org.joinfaces.build.UploadDocumentation) {
-    inputFile = docsZip.archivePath
+    inputFile = docsZip.archiveFile
     dependsOn docsZip
     username = findProperty("joinfacesDocsUser")
     password = findProperty("joinfacesDocsPass")
