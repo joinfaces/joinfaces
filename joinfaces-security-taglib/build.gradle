@@ -15,7 +15,7 @@ dependencies {
         exclude group: 'javax.annotation', module: 'javax.annotation-api'
     }
     optional 'org.springframework.boot:spring-boot-starter-web'
-    optional 'javax.faces:javax.faces-api'
+    optional 'org.glassfish:jakarta.faces'
     optional('org.springframework.security:spring-security-taglibs') {
         exclude group: 'aopalliance', module: 'aopalliance'
     }
