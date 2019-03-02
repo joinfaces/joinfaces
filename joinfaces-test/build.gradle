@@ -14,7 +14,7 @@ dependencies {
     compile 'org.junit.jupiter:junit-jupiter-api'
 
     optional 'org.springframework.boot:spring-boot-starter-web'
-    optional 'org.glassfish:javax.faces'
+    optional 'org.glassfish:jakarta.faces'
 
     testRuntime 'org.junit.jupiter:junit-jupiter-engine'
 }

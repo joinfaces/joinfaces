@@ -29,7 +29,7 @@ dependencies {
     optional 'org.springframework:spring-orm'
     optional 'javax.enterprise:cdi-api'
     optional 'org.jboss.weld.servlet:weld-servlet-core'
-    optional 'org.glassfish:javax.faces'
+    optional 'org.glassfish:jakarta.faces'
     optional 'org.apache.myfaces.core:myfaces-impl'
     optional 'org.omnifaces:omnifaces:1.14.1'
     optional 'org.primefaces:primefaces'
