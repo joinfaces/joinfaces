@@ -2,9 +2,10 @@ apply plugin: "java"
 
 repositories {
     mavenCentral()
+    maven { url 'https://repo.spring.io/milestone' }
 }
 
-def springBootVersion = "2.1.3.RELEASE"
+def springBootVersion = "2.2.0.M1"
 
 dependencies {
     implementation 'com.squareup.okhttp3:okhttp:3.13.1'
