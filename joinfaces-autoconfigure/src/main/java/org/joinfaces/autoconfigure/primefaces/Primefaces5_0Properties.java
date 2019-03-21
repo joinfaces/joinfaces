@@ -40,7 +40,7 @@ public class Primefaces5_0Properties implements ServletContextInitParameterPrope
 	@NestedConfigurationProperty
 	private final Mobile mobile = new Mobile();
 
-	@ServletContextInitParameter(Constants.ContextParams.AUTO_UPDATE)
+	@ServletContextInitParameter("primefaces.AUTO_UPDATE")
 	private String autoUpdate;
 
 	/**
@@ -66,7 +66,7 @@ public class Primefaces5_0Properties implements ServletContextInitParameterPrope
 		/**
 		 * Theme of the mobile application.
 		 */
-		@ServletContextInitParameter(Constants.ContextParams.MOBILE_THEME)
+		@ServletContextInitParameter("primefaces.mobile.THEME")
 		private String theme;
 	}
 }

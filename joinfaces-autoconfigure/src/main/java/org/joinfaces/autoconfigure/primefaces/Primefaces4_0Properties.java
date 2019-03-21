@@ -47,7 +47,7 @@ public class Primefaces4_0Properties implements ServletContextInitParameterPrope
 	/**
 	 * Custom server url for PrimeFaces Push.
 	 */
-	@ServletContextInitParameter(Constants.ContextParams.PUSH_SERVER_URL)
+	@ServletContextInitParameter("primefaces.PUSH_SERVER_URL")
 	private String pushServerUrl;
 
 	/**
@@ -71,7 +71,7 @@ public class Primefaces4_0Properties implements ServletContextInitParameterPrope
 	/**
 	 * Secret key to encrypt-decrypt value expressions exposed in rendering StreamedContents.
 	 */
-	@ServletContextInitParameter(Constants.ContextParams.SECRET_KEY)
+	@ServletContextInitParameter("primefaces.SECRET")
 	private String secret = "primefaces";
 
 	/**
