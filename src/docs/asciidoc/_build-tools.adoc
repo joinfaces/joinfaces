@@ -15,7 +15,7 @@ If you have any problems with the classpath scan, you can remove it from plugin 
 
 JoinFaces provides some https://gradle.org/[Gradle] plugins to simplify the development.
 
-NOTE: When using the JoinFaces Gradle plugins, you might want to use the https://docs.spring.io/spring-boot/docs/{spring-boot-version}/reference/htmlsingle/#using-boot-gradle[Spring Boot gradle plugin], too.
+NOTE: When using the JoinFaces Gradle plugins, you might want to use the https://docs.spring.io/spring-boot/docs/{spring-boot-version}/reference/html/using-spring-boot.html#using-boot-gradle[Spring Boot gradle plugin], too.
 
 ==== `org.joinfaces`
 

@@ -40,7 +40,7 @@ include::_how-to-faq.adoc[]
 This appendix contains a alphabetical list of all properties handled by JoinFaces.
 
 NOTE: The properties already supported by _Spring Boot_ itself aren't listed here again.
-They can be found https://docs.spring.io/spring-boot/docs/{spring-boot-version}/reference/htmlsingle/#common-application-properties[in
+They can be found https://docs.spring.io/spring-boot/docs/{spring-boot-version}/reference/html/appendix.html#common-application-properties[in
 the corresponding chapter of the _Spring Boot Reference Guide_].
 
 include::generated/_properties.adoc[]
@@ -51,7 +51,7 @@ include::generated/_properties.adoc[]
 
 NOTE: The versions already handled by the dependency management of _Spring Boot_ aren't listed here again.
 The can be found in
-https://docs.spring.io/spring-boot/docs/{spring-boot-version}/reference/htmlsingle/#appendix-dependency-versions[the
+https://docs.spring.io/spring-boot/docs/{spring-boot-version}/reference/html/appendix.html#appendix-dependency-versions[the
 corresponding chapter of the _Spring Boot Reference Guide_].
 
 include::generated/_versions.adoc[]
