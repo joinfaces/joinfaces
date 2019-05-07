@@ -70,7 +70,7 @@ public class ServletContainerInitializerHandler extends ScanResultHandler {
 	private List<ClassInfo> resolveHandledTypes(ClassInfo servletContainerInitializerClassInfo) {
 		AnnotationInfo handlesTypes = servletContainerInitializerClassInfo.getAnnotationInfo(HANDLES_TYPES);
 
-		Object[] value = (Object[]) handlesTypes.getParameterValues().get("value");
+		Object[] value = (Object[]) handlesTypes.getParameterValues().get("value").getValue();
 
 		return Arrays.stream(value)
 				.map(AnnotationClassRef.class::cast)
