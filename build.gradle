@@ -69,7 +69,7 @@ allprojects {
             dependency('de.beyondjava:angularFaces-core:2.1.12') {
                 exclude "commons-logging:commons-logging"
             }
-            dependency 'org.butterfaces:components:3.1.0'
+            dependency 'org.butterfaces:components:3.1.1'
 
             dependencySet('org.richfaces:4.5.17.Final') {
                 entry "richfaces"
@@ -97,7 +97,7 @@ allprojects {
             }
             dependency 'org.ocpsoft.logging:logging-adapter-slf4j:1.0.5.Final'
 
-            dependencySet('com.github.adminfaces:1.0.0-RC21') {
+            dependencySet('com.github.adminfaces:1.0.0') {
                 entry "admin-template"
                 entry "admin-theme"
             }
