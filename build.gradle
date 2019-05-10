@@ -20,6 +20,7 @@ buildscript {
 
 plugins {
     id 'org.asciidoctor.convert' version '2.0.0-rc.1'
+    id 'io.freefair.aggregate-jacoco-report' version '3.4.0'
 }
 
 version = resolveVersion()
@@ -164,8 +165,9 @@ allprojects {
     }
 
     plugins.withId("jacoco") {
-        jacocoTestReport.reports.xml.enabled true
-        jacoco.toolVersion = "0.8.2"
+        tasks.withType(JacocoReport).configureEach {
+            reports.xml.enabled true
+        }
     }
 
     plugins.withId("maven-publish") {

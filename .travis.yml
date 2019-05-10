@@ -11,7 +11,7 @@ cache:
     - "$HOME/.gradle/caches/"
     - "$HOME/.gradle/wrapper/"
 after_success:
-  - "./gradlew jacocoTestReport"
+  - "./gradlew jacocoTestReport aggregateJacocoReport"
   - bash <(curl -s https://codecov.io/bash)
 before_deploy:
   - openssl aes-256-cbc -K $encrypted_48012f6af75e_key -iv $encrypted_48012f6af75e_iv
