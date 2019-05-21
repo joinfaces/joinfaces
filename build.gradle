@@ -205,6 +205,8 @@ apply plugin: "io.freefair.github.base"
 github {
     slug = "joinfaces/joinfaces"
     travis = true
+    username = findProperty('githubUsername')
+    token = findProperty('githubToken')
 }
 
 apply plugin: "de.aaschmid.cpd"
