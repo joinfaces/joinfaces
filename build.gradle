@@ -5,9 +5,10 @@ buildscript {
         maven { url "https://plugins.gradle.org/m2/" }
     }
     dependencies {
-        classpath "io.freefair.gradle:lombok-plugin:3.3.0"
-        classpath "io.freefair.gradle:maven-plugin:3.3.0"
-        classpath "io.freefair.gradle:maven-plugin-plugin:3.3.0"
+        classpath "io.freefair.gradle:lombok-plugin:3.6.4"
+        classpath "io.freefair.gradle:maven-plugin:3.6.4"
+        classpath "io.freefair.gradle:maven-plugin-plugin:3.6.4"
+        classpath "io.freefair.gradle:github-plugin:3.6.4"
         classpath "gradle.plugin.com.github.spotbugs:spotbugs-gradle-plugin:1.7.1"
         classpath "com.netflix.nebula:gradle-lint-plugin:11.5.0"
         classpath "de.aaschmid:gradle-cpd-plugin:1.3"
@@ -163,6 +164,7 @@ allprojects {
         project.apply plugin: 'de.marcphilipp.nexus-publish'
         project.apply plugin: "signing"
         project.apply plugin: "io.freefair.maven-central.validate-poms"
+        project.apply plugin: "io.freefair.github.pom"
 
         signing {
             required { !version.endsWith('SNAPSHOT') && gradle.taskGraph.hasTask("publish") }
@@ -171,19 +173,12 @@ allprojects {
         publishing {
             publications.withType(MavenPublication) {
                 pom {
-                    url = 'http://joinfaces.org'
                     name = provider { project.description }
-                    description = provider { project.description }
-                    inceptionYear = '2016'
                     licenses {
                         license {
                             name = 'The Apache License, Version 2.0'
                             url = 'http://www.apache.org/licenses/LICENSE-2.0.txt'
                         }
-                    }
-                    organization {
-                        name = 'JoinFaces'
-                        url = 'http://joinfaces.org'
                     }
                     developers {
                         developer {
@@ -199,23 +194,17 @@ allprojects {
                             timezone = 'Europe/Berlin'
                         }
                     }
-                    ciManagement {
-                        system = 'Travis CI'
-                        url = 'https://travis-ci.org/joinfaces/joinfaces/'
-                    }
-                    issueManagement {
-                        system = 'Github'
-                        url = 'https://github.com/joinfaces/joinfaces/issues'
-                    }
-                    scm {
-                        connection = 'scm:git:https://github.com/joinfaces/joinfaces.git'
-                        developerConnection = 'scm:git:git@github.com:joinfaces/joinfaces.git'
-                        url = 'https://github.com/joinfaces/joinfaces/'
-                    }
                 }
             }
         }
     }
+}
+
+apply plugin: "io.freefair.github.base"
+
+github {
+    slug = "joinfaces/joinfaces"
+    travis = true
 }
 
 apply plugin: "de.aaschmid.cpd"
