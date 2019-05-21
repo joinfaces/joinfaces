@@ -5,7 +5,7 @@ repositories {
     maven { url 'https://repo.spring.io/milestone' }
 }
 
-def springBootVersion = "2.2.0.M2"
+def springBootVersion = "2.2.0.M3"
 
 dependencies {
     implementation 'com.squareup.okhttp3:okhttp:3.13.1'
