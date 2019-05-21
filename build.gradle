@@ -105,6 +105,15 @@ allprojects {
             }
 
             dependency 'javax.ejb:javax.ejb-api:3.2.2'
+
+            dependencySet('org.apache.myfaces.tobago:4.4.0') {
+                entry 'tobago-core'
+                entry 'tobago-theme-standard'
+                entry 'tobago-theme-speyside'
+                entry 'tobago-theme-scarborough'
+                entry 'tobago-theme-richmond'
+                entry 'tobago-theme-charlotteville'
+            }
         }
     }
 

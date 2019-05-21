@@ -24,7 +24,8 @@ org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
   org.joinfaces.autoconfigure.weld.WeldSpringBootAutoConfiguration,\
   org.joinfaces.autoconfigure.rewrite.RewriteAutoConfiguration,\
   org.joinfaces.autoconfigure.adminfaces.AdminfacesAutoConfiguration,\
-  org.joinfaces.autoconfigure.icefaces.IcefacesAutoConfiguration
+  org.joinfaces.autoconfigure.icefaces.IcefacesAutoConfiguration,\
+  org.joinfaces.autoconfigure.tobago.TobagoAutoConfiguration
 
 org.springframework.context.ApplicationListener=\
   org.joinfaces.autoconfigure.JoinfacesApplicationAnalyzer
