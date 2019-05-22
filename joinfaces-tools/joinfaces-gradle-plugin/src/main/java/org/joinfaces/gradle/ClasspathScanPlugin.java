@@ -16,16 +16,18 @@
 
 package org.joinfaces.gradle;
 
-import java.io.File;
 import java.util.Collections;
+import java.util.concurrent.Callable;
 
 import org.gradle.api.Plugin;
 import org.gradle.api.Project;
+import org.gradle.api.file.FileCollection;
 import org.gradle.api.plugins.GroovyPlugin;
 import org.gradle.api.plugins.JavaPlugin;
 import org.gradle.api.plugins.JavaPluginConvention;
 import org.gradle.api.plugins.scala.ScalaBasePlugin;
 import org.gradle.api.tasks.SourceSet;
+import org.gradle.api.tasks.TaskProvider;
 
 /**
  * {@link Plugin Gradle plugin} for classpath scanning at build-time.
@@ -41,35 +43,45 @@ public class ClasspathScanPlugin implements Plugin<Project> {
 		this.project = project;
 
 		project.getPlugins().withType(JavaPlugin.class, javaPlugin ->
-				project.getConvention()
-						.getPlugin(JavaPluginConvention.class)
-						.getSourceSets()
-						.all(this::configureClasspathScan)
+			project.getConvention()
+				.getPlugin(JavaPluginConvention.class)
+				.getSourceSets()
+				.all(this::configureClasspathScan)
 		);
 	}
 
 	private void configureClasspathScan(SourceSet sourceSet) {
 		String taskName = sourceSet.getTaskName("scan", "Classpath");
-		File baseDir = new File(this.project.getBuildDir(), "joinfaces/" + sourceSet.getName());
 
-		ClasspathScan scanTask = this.project.getTasks().create(taskName, ClasspathScan.class);
-		scanTask.getDestinationDir().set(baseDir);
+		TaskProvider<ClasspathScan> scanTaskProvider = this.project.getTasks().register(taskName, ClasspathScan.class, scanTask -> {
+			scanTask.getDestinationDir().set(this.project.getLayout().getBuildDirectory().dir("joinfaces/" + sourceSet.getName()));
 
-		this.project.afterEvaluate(p -> {
-			scanTask.getClasspath().from(p.getConfigurations().getByName(sourceSet.getRuntimeClasspathConfigurationName()));
-			scanTask.getClasspath().from(p.getTasks().getByName(sourceSet.getCompileJavaTaskName()));
+			scanTask.getClasspath().from((Callable<FileCollection>) () -> this.project.getConfigurations().getByName(sourceSet.getRuntimeClasspathConfigurationName()));
+			scanTask.getClasspath().from(this.project.getTasks().named(sourceSet.getCompileJavaTaskName()));
 
-			p.getPlugins().withType(GroovyPlugin.class, groovyPlugin ->
-					scanTask.getClasspath().from(p.getTasks().getByName(sourceSet.getCompileTaskName("groovy")))
-			);
-			p.getPlugins().withType(ScalaBasePlugin.class, scalaBasePlugin ->
-					scanTask.getClasspath().from(p.getTasks().getByName(sourceSet.getCompileTaskName("scala")))
-			);
-			if (p.getPlugins().hasPlugin("kotlin") || p.getPlugins().hasPlugin("org.jetbrains.kotlin.jvm")) {
-				scanTask.getClasspath().from(p.getTasks().getByName(sourceSet.getCompileTaskName("kotlin")));
-			}
-
-			sourceSet.getOutput().dir(Collections.singletonMap("builtBy", scanTask), scanTask.getDestinationDir());
 		});
+
+		this.project.getPlugins().withType(GroovyPlugin.class, groovyPlugin ->
+			scanTaskProvider.configure(scanTask ->
+				scanTask.getClasspath().from(this.project.getTasks().named(sourceSet.getCompileTaskName("groovy")))
+			)
+		);
+		this.project.getPlugins().withType(ScalaBasePlugin.class, scalaBasePlugin ->
+			scanTaskProvider.configure(scanTask ->
+				scanTask.getClasspath().from(this.project.getTasks().named(sourceSet.getCompileTaskName("scala")))
+			)
+		);
+		this.project.getPlugins().withId("kotlin", kotlinPlugin ->
+			scanTaskProvider.configure(scanTask ->
+				scanTask.getClasspath().from(this.project.getTasks().named(sourceSet.getCompileTaskName("kotlin")))
+			)
+		);
+		this.project.getPlugins().withId("org.jetbrains.kotlin.jvm", kotlinPlugin ->
+			scanTaskProvider.configure(scanTask ->
+				scanTask.getClasspath().from(this.project.getTasks().named(sourceSet.getCompileTaskName("kotlin")))
+			)
+		);
+
+		sourceSet.getOutput().dir(Collections.singletonMap("builtBy", scanTaskProvider), scanTaskProvider.flatMap(ClasspathScan::getDestinationDir));
 	}
 }
