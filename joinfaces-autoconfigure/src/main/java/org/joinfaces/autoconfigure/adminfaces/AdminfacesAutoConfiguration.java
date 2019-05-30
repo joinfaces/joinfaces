@@ -29,6 +29,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.joinfaces.autoconfigure.primefaces.Primefaces4_0Properties;
 import org.joinfaces.autoconfigure.primefaces.Primefaces5_2Properties;
 import org.joinfaces.autoconfigure.primefaces.PrimefacesAutoConfiguration;
+import org.joinfaces.autoconfigure.servlet.WebFragmentRegistrationBean;
 
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,10 +39,7 @@ import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnWebApplication;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.boot.web.server.ErrorPage;
-import org.springframework.boot.web.server.WebServerFactoryCustomizer;
 import org.springframework.boot.web.servlet.ServletComponentScan;
-import org.springframework.boot.web.servlet.ServletContextInitializer;
-import org.springframework.boot.web.servlet.server.ConfigurableServletWebServerFactory;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -86,26 +84,44 @@ public class AdminfacesAutoConfiguration {
 	}
 
 	/**
-	 * This {@link WebServerFactoryCustomizer} adds a {@link ServletContextInitializer} to the embedded servlet-container
-	 * which is equivalent to adminfaces's own {@code META-INF/web-fragment.xml}.
-	 * @return adminfaces web server factory customizer
+	 * This {@link WebFragmentRegistrationBean} is equivalent to the
+	 * {@code META-INF/web-fragment.xml} of the {@code admin-template.jar}.
+	 *
+	 * @return adminTemplateWebFragmentRegistrationBean
 	 */
 	@Bean
-	public WebServerFactoryCustomizer<ConfigurableServletWebServerFactory> adminfacesWebServerFactoryCustomizer() {
-		return factory -> {
-			factory.addErrorPages(new ErrorPage(HttpStatus.FORBIDDEN, "/403.jsf"),
-					new ErrorPage(AccessDeniedException.class, "/403.jsf"),
-					new ErrorPage(AccessLocalException.class, "/403.jsf"),
-					new ErrorPage(HttpStatus.NOT_FOUND, "/404.jsf"),
-					new ErrorPage(HttpStatus.INTERNAL_SERVER_ERROR, "/500.jsf"),
-					new ErrorPage(Throwable.class, "/500.jsf"),
-					new ErrorPage(ViewExpiredException.class, "/expired.jsf"),
-					new ErrorPage(OptimisticLockException.class, "/optimistic.jsf")
-			);
-			factory.addInitializers(servletContext -> {
-				servletContext.addListener(new AdminServletContextListener());
-			});
-		};
+	public WebFragmentRegistrationBean adminTemplateWebFragmentRegistrationBean() {
+		WebFragmentRegistrationBean bean = new WebFragmentRegistrationBean();
+
+		bean.getContextParams().put("primefaces.THEME", "admin");
+
+		bean.getErrorPages().add(new ErrorPage(HttpStatus.FORBIDDEN, "/403.xhtml"));
+		bean.getErrorPages().add(new ErrorPage(AccessDeniedException.class, "/403.xhtml"));
+		bean.getErrorPages().add(new ErrorPage(AccessLocalException.class, "/403.xhtml"));
+		bean.getErrorPages().add(new ErrorPage(HttpStatus.NOT_FOUND, "/404.xhtml"));
+		bean.getErrorPages().add(new ErrorPage(HttpStatus.INTERNAL_SERVER_ERROR, "/500.xhtml"));
+		bean.getErrorPages().add(new ErrorPage(Throwable.class, "/500.xhtml"));
+		bean.getErrorPages().add(new ErrorPage(ViewExpiredException.class, "/expired.xhtml"));
+		bean.getErrorPages().add(new ErrorPage(OptimisticLockException.class, "/optimistic.xhtml"));
+
+		bean.getListeners().add(AdminServletContextListener.class);
+
+		return bean;
+	}
+
+	/**
+	 * This {@link WebFragmentRegistrationBean} is equivalent to the
+	 * {@code META-INF/web-fragment.xml} of the {@code admin-theme.jar}.
+	 *
+	 * @return adminThemeWebFragmentRegistrationBean
+	 */
+	@Bean
+	public WebFragmentRegistrationBean adminThemeWebFragmentRegistrationBean() {
+		WebFragmentRegistrationBean bean = new WebFragmentRegistrationBean();
+
+		bean.getContextParams().put("primefaces.FONT_AWESOME", "true");
+
+		return bean;
 	}
 
 	/**
