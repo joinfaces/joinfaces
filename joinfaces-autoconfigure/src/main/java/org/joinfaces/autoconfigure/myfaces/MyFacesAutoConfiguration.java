@@ -17,7 +17,9 @@
 package org.joinfaces.autoconfigure.myfaces;
 
 import org.apache.myfaces.ee.MyFacesContainerInitializer;
+import org.apache.myfaces.webapp.StartupServletContextListener;
 import org.joinfaces.autoconfigure.javaxfaces.JavaxFacesAutoConfiguration;
+import org.joinfaces.autoconfigure.servlet.WebFragmentRegistrationBean;
 
 import org.springframework.boot.autoconfigure.AutoConfigureAfter;
 import org.springframework.boot.autoconfigure.AutoConfigureBefore;
@@ -25,8 +27,6 @@ import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnWebApplication;
 import org.springframework.boot.autoconfigure.web.servlet.WebMvcAutoConfiguration;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
-import org.springframework.boot.web.server.WebServerFactoryCustomizer;
-import org.springframework.boot.web.servlet.server.ConfigurableServletWebServerFactory;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -48,11 +48,17 @@ public class MyFacesAutoConfiguration {
 		return new MyFacesInitializerRegistrationBean();
 	}
 
+	/**
+	 * This {@link WebFragmentRegistrationBean} is equivalent to the
+	 * {@code META-INF/web-fragment.xml} of the {@code myfaces-impl.jar}.
+	 *
+	 * @return myFacesWebFragmentRegistrationBean
+	 */
 	@Bean
 	@ConditionalOnClass(name = "org.apache.myfaces.webapp.StartupServletContextListener")
-	public WebServerFactoryCustomizer<ConfigurableServletWebServerFactory> myFacesStartupServletContextListener() {
-		return factory -> factory.addInitializers(servletContext ->
-				servletContext.addListener("org.apache.myfaces.webapp.StartupServletContextListener")
-		);
+	public WebFragmentRegistrationBean myFacesWebFragmentRegistrationBean() {
+		WebFragmentRegistrationBean webFragmentRegistrationBean = new WebFragmentRegistrationBean();
+		webFragmentRegistrationBean.getListeners().add(StartupServletContextListener.class);
+		return webFragmentRegistrationBean;
 	}
 }
