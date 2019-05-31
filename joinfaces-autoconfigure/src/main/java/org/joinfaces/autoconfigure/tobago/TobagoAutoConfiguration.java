@@ -18,12 +18,10 @@ package org.joinfaces.autoconfigure.tobago;
 
 import org.apache.myfaces.tobago.webapp.SecretSessionListener;
 import org.apache.myfaces.tobago.webapp.TobagoServletContextListener;
+import org.joinfaces.autoconfigure.servlet.WebFragmentRegistrationBean;
 
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnWebApplication;
-import org.springframework.boot.web.server.WebServerFactoryCustomizer;
-import org.springframework.boot.web.servlet.ServletContextInitializer;
-import org.springframework.boot.web.servlet.server.ConfigurableServletWebServerFactory;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -39,16 +37,16 @@ import org.springframework.context.annotation.Configuration;
 public class TobagoAutoConfiguration {
 
 	/**
-	 * This {@link WebServerFactoryCustomizer} adds a {@link ServletContextInitializer} to the embedded servlet-container
-	 * which is equivalent to tobagos's own {@code META-INF/web-fragment.xml}.
+	 * This {@link WebFragmentRegistrationBean} is equivalent to the
+	 * {@code META-INF/web-fragment.xml} of the {@code tobago-core.jar}.
 	 *
-	 * @return tobago web server factory customizer
+	 * @return tobagoWebFragmentRegistrationBean
 	 */
 	@Bean
-	public WebServerFactoryCustomizer<ConfigurableServletWebServerFactory> tobagoWebServerFactoryCustomizer() {
-		return factory -> factory.addInitializers(servletContext -> {
-			servletContext.addListener(new TobagoServletContextListener());
-			servletContext.addListener(new SecretSessionListener());
-		});
+	public WebFragmentRegistrationBean tobagoWebFragmentRegistrationBean() {
+		WebFragmentRegistrationBean bean = new WebFragmentRegistrationBean();
+		bean.getListeners().add(TobagoServletContextListener.class);
+		bean.getListeners().add(SecretSessionListener.class);
+		return bean;
 	}
 }
