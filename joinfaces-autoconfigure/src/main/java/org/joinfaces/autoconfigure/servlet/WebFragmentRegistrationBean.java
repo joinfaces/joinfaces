@@ -46,7 +46,7 @@ import org.springframework.boot.web.servlet.server.ConfigurableServletWebServerF
  * {@link org.springframework.boot.web.servlet.RegistrationBean RegistrationBean} for {@code web-fragment.xml} files.
  * <p>
  * This is implemented as {@link WebServerFactoryCustomizer} so it only applies to embedded servlet-containers.
- * When deployed as war file, the external servelt-container will find the {@code web-fragment.xml} file.
+ * When deployed as war file, the external servlet-container will find the {@code web-fragment.xml} file.
  * <p>
  * The main feature of this class is the way it registers listeners.
  * They will be treated as if they were declared in a {@code web-fragment.xml} and therefore aren't affected by the
