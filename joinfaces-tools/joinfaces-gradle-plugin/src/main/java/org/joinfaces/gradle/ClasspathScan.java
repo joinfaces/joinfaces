@@ -23,6 +23,7 @@ import lombok.Setter;
 import org.gradle.api.DefaultTask;
 import org.gradle.api.file.ConfigurableFileCollection;
 import org.gradle.api.file.DirectoryProperty;
+import org.gradle.api.tasks.CacheableTask;
 import org.gradle.api.tasks.Classpath;
 import org.gradle.api.tasks.InputFiles;
 import org.gradle.api.tasks.OutputDirectory;
@@ -38,6 +39,7 @@ import org.joinfaces.tools.ClasspathScanner;
  */
 @Getter
 @Setter
+@CacheableTask
 public class ClasspathScan extends DefaultTask {
 
 	@Classpath
@@ -46,7 +48,7 @@ public class ClasspathScan extends DefaultTask {
 	private final ConfigurableFileCollection classpath = getProject().files();
 
 	@OutputDirectory
-	private final DirectoryProperty destinationDir = newOutputDirectory();
+	private final DirectoryProperty destinationDir = getProject().getObjects().directoryProperty();
 
 	@TaskAction
 	public void scanClasses() throws IOException {
