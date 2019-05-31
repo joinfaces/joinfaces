@@ -80,7 +80,9 @@ allprojects {
             }
 
             dependencySet('org.icefaces:4.3.0') {
-                entry 'icefaces'
+                entry('icefaces') {
+                    exclude "org.glassfish:javax.faces"
+                }
                 entry 'icefaces-ace'
             }
 
