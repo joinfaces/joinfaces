@@ -39,7 +39,7 @@ allprojects {
 
             dependency('org.glassfish:javax.faces:2.3.8')
 
-            dependencySet('org.apache.myfaces.core:2.3.3') {
+            dependencySet('org.apache.myfaces.core:2.3.4') {
                 entry "myfaces-api"
                 entry("myfaces-impl") {
                     exclude "commons-logging:commons-logging"
