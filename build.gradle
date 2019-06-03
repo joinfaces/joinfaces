@@ -19,7 +19,7 @@ buildscript {
 }
 
 plugins {
-    id 'org.asciidoctor.convert' version '2.0.0-rc.1'
+    id "org.asciidoctor.jvm.convert" version "2.2.0"
     id 'io.freefair.aggregate-jacoco-report' version '3.6.4'
 }
 
@@ -269,7 +269,7 @@ task bomDocs(type: org.joinfaces.build.BomDocumentation) {
 }
 
 asciidoctor {
-    backends = ['html5']
+    baseDirFollowsSourceDir()
     dependsOn propertyDocs, bomDocs
     attributes revnumber: project.version,
             'spring-boot-version': org.springframework.boot.gradle.plugin.SpringBootPlugin.SPRING_BOOT_VERSION
@@ -283,7 +283,7 @@ task docsZip(type: Zip) {
     into("api") {
         from aggregateJavadoc
     }
-    from ("$asciidoctor.outputDir/html5") {
+    from ("$asciidoctor.outputDir") {
         into "reference"
     }
 }
