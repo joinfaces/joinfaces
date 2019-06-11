@@ -26,6 +26,7 @@ import org.joinfaces.autoconfigure.servlet.WebFragmentRegistrationBean;
 import org.ocpsoft.rewrite.servlet.RewriteFilter;
 import org.ocpsoft.rewrite.servlet.impl.RewriteServletContextListener;
 import org.ocpsoft.rewrite.servlet.impl.RewriteServletRequestListener;
+import org.ocpsoft.rewrite.spring.SpringExpressionLanguageProvider;
 
 import org.springframework.boot.autoconfigure.AutoConfigureAfter;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
@@ -81,5 +82,10 @@ public class RewriteAutoConfiguration {
 	@Bean
 	public ApplicationContextProvider applicationContextProvider() {
 		return new ApplicationContextProvider();
+	}
+
+	@Bean
+	public SpringExpressionLanguageProvider rewriteExpressionLanguageProvider() {
+		return new SpringExpressionLanguageProvider();
 	}
 }
