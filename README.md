@@ -5,7 +5,7 @@ JoinFaces
 [![codecov](https://codecov.io/gh/joinfaces/joinfaces/branch/master/graph/badge.svg)](https://codecov.io/gh/joinfaces/joinfaces)
 [![](http://img.shields.io/badge/javadoc-stable-green.svg)](https://docs.joinfaces.org/current/api)
 [![](http://img.shields.io/badge/reference%20guide-stable-green.svg)](https://docs.joinfaces.org/current/reference)
-[![License](http://img.shields.io/:license-apache-blue.svg)](http://www.apache.org/licenses/LICENSE-2.0.html)
+[![GitHub license](https://img.shields.io/github/license/joinfaces/joinfaces.svg)](https://github.com/joinfaces/joinfaces/blob/master/LICENSE.txt)
 
 This project enables [JSF](http://www.oracle.com/technetwork/java/javaee/javaserverfaces-139869.html) usage inside [Spring Boot](http://projects.spring.io/spring-boot/) Application.
 
