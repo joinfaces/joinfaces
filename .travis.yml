@@ -31,3 +31,4 @@ deploy:
       jdk: openjdk11
       tags: false
       repo: joinfaces/joinfaces
+      all_branches: true
