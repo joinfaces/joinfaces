@@ -130,7 +130,7 @@ public class MyfacesProperties implements ServletContextInitParameterProperties 
 	private Boolean renderViewstateId;
 
 	/**
-	 * Use "&amp;" entity instead a plain "&" character within HTML.
+	 * Use {@code &amp;} entity instead a plain {@code &} character within HTML.
 	 */
 	@ServletContextInitParameter(PREFFIX + "STRICT_XHTML_LINKS")
 	private Boolean strictXhtmlLinks;
@@ -577,13 +577,13 @@ public class MyfacesProperties implements ServletContextInitParameterProperties 
 	private Boolean initializeSkipJarFacesConfigScan;
 
 	/**
-	 * The Class of an Comparator<ELResolver/> implementation.
+	 * The Class of an {@code Comparator<ELResolver/>} implementation.
 	 */
 	@ServletContextInitParameter(ResolverBuilderBase.EL_RESOLVER_COMPARATOR)
 	private Class<? extends Comparator<ELResolver>> elResolverComparator;
 
 	/**
-	 * The {@link Class} of an Predicate&lt;ELResolver&gt; implementation.
+	 * The {@link Class} of an {@code Predicate<ELResolver>} implementation.
 	 * If used and returns true for a ELResolver instance, such resolver will not be installed in ELResolvers chain.
 	 * Use with caution - can break functionality defined in JSF specification 'ELResolver Instances Provided by Faces'.
 	 *
