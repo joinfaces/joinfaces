@@ -18,6 +18,7 @@ package org.joinfaces.autoconfigure.javaxfaces;
 
 import javax.faces.component.UIInput;
 import javax.faces.component.UIViewRoot;
+import javax.faces.event.PhaseListener;
 import javax.faces.push.PushContext;
 import javax.faces.validator.BeanValidator;
 import javax.faces.webapp.FacesServlet;
@@ -34,7 +35,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
  * JavaxFaces standard properties.
  * Taken from
  * https://javaee.github.io/javaee-spec/javadocs/constant-values.html#javax.faces
- * and com.sun.faces.config.WebConfiguration class
+ * and {@link com.sun.faces.config.WebConfiguration} class
  * @author Marcelo Fernandes
  * @see <a href="https://www.jcp.org/en/jsr/detail?id=344">JSR-344</a>
  */
@@ -46,7 +47,7 @@ public class JavaxFaces2_3Properties implements ServletContextInitParameterPrope
      * If this param is set, and calling toLowerCase().equals("true") on a
      * String representation of its value returns true, validation
      * must be performed, even when there is no corresponding value for this
-     * component in the incoming request. See {@link #validate}.
+     * component in the incoming request. See {@link BeanValidator#validate(javax.faces.context.FacesContext, javax.faces.component.UIComponent, java.lang.Object)}.
      */
 	@ServletContextInitParameter(UIInput.ALWAYS_PERFORM_VALIDATION_WHEN_REQUIRED_IS_TRUE)
 	private Boolean alwaysPerformValidationWhenRequiredIsTrue;
@@ -93,7 +94,7 @@ public class JavaxFaces2_3Properties implements ServletContextInitParameterPrope
      * If this param is set, and calling toLowerCase().equals("true") on a
      * String representation of its value returns {@code true} take
      * the additional actions relating to {@code <validateWholeBean />}
-     * specified in {@link #validate}.
+     * specified in {@link BeanValidator#validate(javax.faces.context.FacesContext, javax.faces.component.UIComponent, java.lang.Object)}.
      *
      * @since 2.3
      */
