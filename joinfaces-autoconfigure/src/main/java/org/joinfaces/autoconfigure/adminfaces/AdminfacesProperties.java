@@ -88,7 +88,7 @@ public class AdminfacesProperties implements Serializable {
 
 	/**
 	 * If true will make left menu touch enable (can be closed or opened via touch).
-	 * Can be enable/disabled per page with <ui:param name="enableSlideMenu" value="false" />.
+	 * Can be enable/disabled per page with {@code <ui:param name="enableSlideMenu" value="false" />}.
 	 */
 	private Boolean enableSlideMenu;
 
@@ -110,7 +110,7 @@ public class AdminfacesProperties implements Serializable {
 
 	/**
 	 * Automatic shows navbar when users scrolls page up (on small screens).
-	 * Can be enable/disabled per page with <ui:param name="autoShowNavbar" value="false" />.
+	 * Can be enable/disabled per page with {@code <ui:param name="autoShowNavbar" value="false" />}.
 	 */
 	private Boolean autoShowNavbar;
 

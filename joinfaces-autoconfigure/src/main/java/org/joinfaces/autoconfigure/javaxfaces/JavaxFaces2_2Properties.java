@@ -44,7 +44,7 @@ public class JavaxFaces2_2Properties implements ServletContextInitParameterPrope
 
 	/**
 	 * If a {@code <context-param>} with the param name equal to the value of
-	 * {@link #WEBAPP_CONTRACTS_DIRECTORY_PARAM_NAME} exists, the runtime must
+	 * {@link ResourceHandler#WEBAPP_CONTRACTS_DIRECTORY_PARAM_NAME} exists, the runtime must
 	 * interpret its value as a path, relative to the web app root, where
 	 * resource library contracts are to be located. This param value must not
 	 * start with a "/", though it may contain "/" characters. If no such
@@ -59,7 +59,7 @@ public class JavaxFaces2_2Properties implements ServletContextInitParameterPrope
 
 	/**
 	 * If a {@code <context-param>} with the param name equal to the value of
-	 * {@link #WEBAPP_RESOURCES_DIRECTORY_PARAM_NAME} exists, the runtime must
+	 * {@link ResourceHandler#WEBAPP_RESOURCES_DIRECTORY_PARAM_NAME} exists, the runtime must
 	 * interpret its value as a path, relative to the web app root, where
 	 * resources are to be located. This param value must not start with a "/",
 	 * though it may contain "/" characters. If no such
@@ -111,7 +111,7 @@ public class JavaxFaces2_2Properties implements ServletContextInitParameterPrope
 		/**
 		 * If the request parameter named by the value of this constant has a
 		 * parameter value of {@code true}, the implementation must return
-		 * {@code true} from {@link #isResetValues}.
+		 * {@code true} from {@link PartialViewContext#isResetValues()}.
 		 *
 		 * @since 2.2
 		 */
@@ -129,7 +129,7 @@ public class JavaxFaces2_2Properties implements ServletContextInitParameterPrope
 		 * Components that are rendered by {@code Renderers} of component-family
 		 * {@code javax.faces.OutcomeTarget} must use this constant as the
 		 * value of the parameter named by
-		 * {@link #TO_FLOW_DOCUMENT_ID_REQUEST_PARAM_NAME} when returning from a
+		 * {@link FlowHandler#TO_FLOW_DOCUMENT_ID_REQUEST_PARAM_NAME} when returning from a
 		 * flow (without entering another flow) using such a component.
 		 *
 		 * @since 2.2

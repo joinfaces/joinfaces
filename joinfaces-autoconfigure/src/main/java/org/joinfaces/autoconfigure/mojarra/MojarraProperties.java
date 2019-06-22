@@ -309,7 +309,7 @@ public class MojarraProperties implements ServletContextInitParameterProperties 
 	 * If true, signal JSF that the application is deployed to a clustered
 	 * environment, so that session dirtying will be explicitly performed,
 	 * hereby forcing session replication. This is automatically true when
-	 * <distributable /> entry is present in web.xml.
+	 * &lt;distributable /&gt; entry is present in web.xml.
 	 */
 	@ServletContextInitParameter(PREFIX + "enableDistributable")
 	private Boolean enableDistributable;

@@ -37,13 +37,13 @@ public class JavaxFaces2_1Properties implements ServletContextInitParameterPrope
 	/**
 	 * The {@code ServletContext} init
 	 * parameter consulted by the {@code UIComponent} to tell whether or
-	 * not the {@link #CURRENT_COMPONENT} and
-	 * {@link #CURRENT_COMPOSITE_COMPONENT} attribute keys should be honored as
+	 * not the {@link UIComponent#CURRENT_COMPONENT} and
+	 * {@link UIComponent#CURRENT_COMPOSITE_COMPONENT} attribute keys should be honored as
 	 * specified.
 	 * <p>
 	 * If this parameter is not specified, or is set to false, the contract
-	 * specified by the {@link #CURRENT_COMPONENT} and
-	 * {@link #CURRENT_COMPOSITE_COMPONENT} method is not honored. If this
+	 * specified by the {@link UIComponent#CURRENT_COMPONENT} and
+	 * {@link UIComponent#CURRENT_COMPOSITE_COMPONENT} method is not honored. If this
 	 * parameter is set to true, the contract is honored.
 	 */
 	@ServletContextInitParameter(UIComponent.HONOR_CURRENT_COMPONENT_ATTRIBUTES_PARAM_NAME)
