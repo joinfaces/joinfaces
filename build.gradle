@@ -136,8 +136,6 @@ allprojects {
             options.encoding = 'UTF-8'
         }
 
-        javadoc.failOnError = false
-
         tasks.withType(Test) {
             useJUnitPlatform()
         }
@@ -239,11 +237,10 @@ cpdCheck {
 
 apply plugin: "maven-publish"
 apply plugin: "io.freefair.aggregate-javadoc-jar"
+apply plugin: "io.freefair.javadoc-links"
 
 aggregateJavadoc.failOnError = false
 aggregateJavadoc.title = "JoinFaces $version API"
-aggregateJavadoc.options.links "https://docs.oracle.com/javase/10/docs/api/"
-aggregateJavadoc.options.links "https://docs.spring.io/spring-boot/docs/${org.springframework.boot.gradle.plugin.SpringBootPlugin.SPRING_BOOT_VERSION}/api/"
 
 apply plugin: "io.codearte.nexus-staging"
 
