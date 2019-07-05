@@ -1,8 +1,7 @@
 # Contributing to Joinfaces
 
 ## Using GitHub Issues
-We use GitHub issues to track bugs and enhancements. If you have a general usage question
-please ask on https://stackoverflow.com[Stack Overflow].
+We use GitHub issues to track bugs and enhancements.
 
 If you are reporting a bug, please help to speed up problem diagnosis by providing as much
 information as possible. Ideally, that would include a small sample project that reproduces the
