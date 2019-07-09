@@ -1,5 +1,5 @@
 /*
- * Copyright 2016-2016 the original author or authors.
+ * Copyright 2016-2019 the original author or authors.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package org.joinfaces.security;
+package org.joinfaces.security.taglib;
 
 import java.io.IOException;
 
@@ -22,37 +22,39 @@ import org.joinfaces.test.mock.JsfIT;
 import org.junit.jupiter.api.Test;
 
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.security.test.context.support.WithAnonymousUser;
+import org.springframework.security.test.context.support.WithMockUser;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 /**
- * Unit tests for {@link AnonymousFaceletsTag}.
+ * Unit tests for {@link AuthenticatedFaceletsTagHandler}.
  */
 @SpringBootTest(classes = SecurityConfiguration.class, webEnvironment = SpringBootTest.WebEnvironment.MOCK)
-public class AnonymousFaceletsTagIT extends JsfIT {
+class AuthenticatedFaceletsTagHandlerIT extends JsfIT {
 
 	@Test
-	public void testAnonymous() {
-		AnonymousFaceletsTag tag = new AnonymousFaceletsTag();
-		assertThat(tag.getAccess())
-			.isEqualTo("isAnonymous()");
-	}
+	@WithAnonymousUser
+	void testNotAuthorize() throws IOException {
+		AuthenticatedFaceletsTagHandler tag = new AuthenticatedFaceletsTagHandler(
+			getJsfMock().getMockTagConfig());
 
-	@Test
-	public void testNotAuthorize() throws IOException {
-		new SpringSecurityMock().init(null);
+		tag.apply(null, null);
 
-		AnonymousFaceletsTag tag = new AnonymousFaceletsTag();
-		assertThat(tag.authorize())
+		assertThat(getJsfMock().getMockFaceletHandler().isApplied())
 			.isFalse();
 	}
 
 	@Test
-	public void testAuthorize() throws IOException {
-		new SpringSecurityMock().init(AuthenticationFactory.anonymous(Roles.ROLE_A));
+	@WithMockUser(username = "user")
+	void testAuthorize() throws IOException {
 
-		AnonymousFaceletsTag tag = new AnonymousFaceletsTag();
-		assertThat(tag.authorize())
+		AuthenticatedFaceletsTagHandler tag = new AuthenticatedFaceletsTagHandler(
+			getJsfMock().getMockTagConfig());
+
+		tag.apply(null, null);
+
+		assertThat(getJsfMock().getMockFaceletHandler().isApplied())
 			.isTrue();
 	}
 

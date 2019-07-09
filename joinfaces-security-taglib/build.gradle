@@ -16,13 +16,17 @@ dependencies {
     }
     optional 'org.springframework.boot:spring-boot-starter-web'
     optional 'org.glassfish:jakarta.faces'
-    optional('org.springframework.security:spring-security-taglibs') {
-        exclude group: 'aopalliance', module: 'aopalliance'
+    compile('org.springframework.security:spring-security-taglibs') {
+        exclude group: 'org.springframework.security', module: 'spring-security-acl'
     }
+
+    //For javadoc references
+    compileOnly 'org.springframework.webflow:spring-faces:2.5.1.RELEASE'
 
     testCompile project(':joinfaces-test')
     testCompile 'org.springframework.boot:spring-boot-starter-security'
     testCompile 'org.springframework.boot:spring-boot-starter-web'
+    testCompile 'org.springframework.security:spring-security-test'
     testCompile 'org.junit.jupiter:junit-jupiter-api'
     testRuntime 'org.junit.jupiter:junit-jupiter-engine'
 }

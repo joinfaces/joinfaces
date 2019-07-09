@@ -1,5 +1,5 @@
 /*
- * Copyright 2016-2016 the original author or authors.
+ * Copyright 2016-2019 the original author or authors.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,17 +14,10 @@
  * limitations under the License.
  */
 
-package org.joinfaces.security;
-
 /**
- * Roles contants for tests
+ * Classes to Spring Security JSF Facelet Tag support.
+ *
+ * @see <a href="https://docs.spring.io/spring-webflow/docs/current/reference/html/spring-faces.html#spring-faces-security-taglib">Using the Spring Security Facelets Tag Library</a>
+ * @see <a href="https://github.com/domdorn/spring-security-facelets-taglib">domdorn/spring-security-facelets-taglib</a>
  */
-public final class Roles {
-
-	private Roles() {
-	}
-
-	public static final String ROLE_A = "ROLE_A";
-	public static final String ROLE_B = "ROLE_B";
-	public static final String ROLE_C = "ROLE_C";
-}
+package org.joinfaces.security.taglib;

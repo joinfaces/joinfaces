@@ -1,5 +1,5 @@
 /*
- * Copyright 2016-2016 the original author or authors.
+ * Copyright 2016-2019 the original author or authors.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package org.joinfaces.security;
+package org.joinfaces.security.taglib;
 
 import java.io.IOException;
 
@@ -39,8 +39,9 @@ import org.springframework.security.core.context.SecurityContextHolder;
  * decision for later use in the view.
  *
  * @author Marcelo Fernandes
+ * @see org.springframework.faces.security.FaceletsAuthorizeTagHandler
  */
-public class AuthorizeFaceletsTagHandler extends TagHandler {
+public class FaceletsAuthorizeTagHandler extends TagHandler {
 
 	private final TagAttribute access;
 	private final TagAttribute url;
@@ -50,7 +51,7 @@ public class AuthorizeFaceletsTagHandler extends TagHandler {
 	private final TagAttribute ifNotGranted;
 	private final TagAttribute var;
 
-	public AuthorizeFaceletsTagHandler(TagConfig config) {
+	public FaceletsAuthorizeTagHandler(TagConfig config) {
 		super(config);
 		this.access = this.getAttribute("access");
 		this.url = this.getAttribute("url");
@@ -67,7 +68,7 @@ public class AuthorizeFaceletsTagHandler extends TagHandler {
 			return;
 		}
 
-		AuthorizeFaceletsTag authorizeTag = new AuthorizeFaceletsTag(faceletContext, this.access, this.url, this.method, this.ifAllGranted, this.ifAnyGranted, this.ifNotGranted);
+		FaceletsAuthorizeTag authorizeTag = new FaceletsAuthorizeTag(faceletContext, this.access, this.url, this.method, this.ifAllGranted, this.ifAnyGranted, this.ifNotGranted);
 
 		boolean isAuthorized = authorizeTag.authorize();
 

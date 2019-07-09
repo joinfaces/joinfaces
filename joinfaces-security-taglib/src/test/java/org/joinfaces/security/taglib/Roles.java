@@ -1,5 +1,5 @@
 /*
- * Copyright 2016-2016 the original author or authors.
+ * Copyright 2016-2019 the original author or authors.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,9 +14,17 @@
  * limitations under the License.
  */
 
+package org.joinfaces.security.taglib;
+
+import lombok.experimental.UtilityClass;
+
 /**
- * Classes to Spring Security JSF Facelet Tag support.
- *
- * @see org.joinfaces.security.AuthorizeFaceletsTagHandler
+ * Roles contants for tests
  */
-package org.joinfaces.security;
+@UtilityClass
+final class Roles {
+
+	static final String ROLE_A = "ROLE_A";
+	static final String ROLE_B = "ROLE_B";
+	static final String ROLE_C = "ROLE_C";
+}

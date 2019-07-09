@@ -1,5 +1,5 @@
 /*
- * Copyright 2016-2016 the original author or authors.
+ * Copyright 2016-2019 the original author or authors.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package org.joinfaces.security;
+package org.joinfaces.security.taglib;
 
 import java.io.IOException;
 
@@ -25,21 +25,19 @@ import org.joinfaces.test.mock.MockTagAttribute;
 import org.junit.jupiter.api.Test;
 
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.security.core.Authentication;
+import org.springframework.security.test.context.support.WithMockUser;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 /**
- * Unit tests for {@link AuthorizeFaceletsTagHandler}.
+ * Unit tests for {@link FaceletsAuthorizeTagHandler}.
  */
 @SpringBootTest(classes = SecurityConfiguration.class, webEnvironment = SpringBootTest.WebEnvironment.MOCK)
-public class AuthorizeFaceletsTagHandlerIT extends JsfIT {
+class FaceletsAuthorizeTagHandlerIT extends JsfIT {
 
 	@Test
-	public void testApplyFalse() throws IOException {
-		new SpringSecurityMock().init(null);
-
-		AuthorizeFaceletsTagHandler tag = new AuthorizeFaceletsTagHandler(
+	void testApplyFalse() throws IOException {
+		FaceletsAuthorizeTagHandler tag = new FaceletsAuthorizeTagHandler(
 			getJsfMock().getMockTagConfig());
 
 		tag.apply(null, null);
@@ -49,14 +47,12 @@ public class AuthorizeFaceletsTagHandlerIT extends JsfIT {
 	}
 
 	@Test
-	public void testApplyAccessFalse() throws IOException {
-		Authentication authentication = AuthenticationFactory.authentication(Roles.ROLE_A);
-		new SpringSecurityMock().init(authentication);
-
+	@WithMockUser(roles = "A")
+	void testApplyAccessFalse() throws IOException {
 		getJsfMock().getMockTagAttributes().getTagAttributes().put(
 			"access", new MockTagAttribute("hasAnyRole('ROLE_B')"));
 
-		AuthorizeFaceletsTagHandler tag = new AuthorizeFaceletsTagHandler(
+		FaceletsAuthorizeTagHandler tag = new FaceletsAuthorizeTagHandler(
 			getJsfMock().getMockTagConfig());
 
 		tag.apply(null, null);
@@ -66,14 +62,12 @@ public class AuthorizeFaceletsTagHandlerIT extends JsfIT {
 	}
 
 	@Test
-	public void testApplyAccess() throws IOException {
-		Authentication authentication = AuthenticationFactory.authentication(Roles.ROLE_A);
-		new SpringSecurityMock().init(authentication);
-
+	@WithMockUser(roles = "A")
+	void testApplyAccess() throws IOException {
 		getJsfMock().getMockTagAttributes().getTagAttributes().put(
 			"access", new MockTagAttribute("hasAnyRole('ROLE_A')"));
 
-		AuthorizeFaceletsTagHandler tag = new AuthorizeFaceletsTagHandler(
+		FaceletsAuthorizeTagHandler tag = new FaceletsAuthorizeTagHandler(
 			getJsfMock().getMockTagConfig());
 
 		tag.apply(null, null);
@@ -83,14 +77,12 @@ public class AuthorizeFaceletsTagHandlerIT extends JsfIT {
 	}
 
 	@Test
-	public void testApplyIfAllGranted() throws IOException {
-		Authentication authentication = AuthenticationFactory.authentication(Roles.ROLE_A);
-		new SpringSecurityMock().init(authentication);
-
+	@WithMockUser(roles = "A")
+	void testApplyIfAllGranted() throws IOException {
 		getJsfMock().getMockTagAttributes().getTagAttributes().put(
 			"ifAllGranted", new MockTagAttribute(Roles.ROLE_A));
 
-		AuthorizeFaceletsTagHandler tag = new AuthorizeFaceletsTagHandler(
+		FaceletsAuthorizeTagHandler tag = new FaceletsAuthorizeTagHandler(
 			getJsfMock().getMockTagConfig());
 
 		tag.apply(getJsfMock().getMockFaceletContext(), null);
@@ -100,10 +92,8 @@ public class AuthorizeFaceletsTagHandlerIT extends JsfIT {
 	}
 
 	@Test
-	public void testApplyVar() throws IOException {
-		Authentication authentication = AuthenticationFactory.authentication(Roles.ROLE_A);
-		new SpringSecurityMock().init(authentication);
-
+	@WithMockUser(roles = "A")
+	void testApplyVar() throws IOException {
 		MockTagAttribute myVariableTagAttribute = new MockTagAttribute("myVariable");
 		getJsfMock().getMockTagAttributes().getTagAttributes().put(
 			"var", myVariableTagAttribute);
@@ -112,7 +102,7 @@ public class AuthorizeFaceletsTagHandlerIT extends JsfIT {
 
 		FaceletContext mockFaceletContext = getJsfMock().getMockFaceletContext();
 
-		AuthorizeFaceletsTagHandler tag = new AuthorizeFaceletsTagHandler(
+		FaceletsAuthorizeTagHandler tag = new FaceletsAuthorizeTagHandler(
 			getJsfMock().getMockTagConfig());
 
 		tag.apply(mockFaceletContext, null);
