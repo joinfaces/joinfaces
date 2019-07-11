@@ -16,10 +16,11 @@
 
 package org.joinfaces.autoconfigure.rewrite;
 
+import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Collections;
 import java.util.stream.Collectors;
 
+import lombok.extern.slf4j.Slf4j;
 import org.ocpsoft.common.spi.ServiceEnricher;
 
 import org.springframework.context.ApplicationContext;
@@ -33,6 +34,7 @@ import org.springframework.context.ApplicationContext;
  * @author Lars Grefer
  * @see org.ocpsoft.rewrite.spring.SpringServiceEnricher
  */
+@Slf4j
 public class SpringBootServiceEnricher implements ServiceEnricher {
 
 	@Override
@@ -40,7 +42,8 @@ public class SpringBootServiceEnricher implements ServiceEnricher {
 		ApplicationContext applicationContext = ApplicationContextProvider.getApplicationContext();
 
 		if (applicationContext == null) {
-			return Collections.emptyList();
+			log.info("No application context found. Can't produce services of type {}", type);
+			return new ArrayList<>();
 		}
 
 		return applicationContext.getBeanProvider(type)
