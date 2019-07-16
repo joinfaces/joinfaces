@@ -16,12 +16,6 @@
 
 package org.joinfaces.autoconfigure.rewrite;
 
-
-import java.util.EnumSet;
-
-import javax.servlet.DispatcherType;
-import javax.servlet.FilterRegistration;
-
 import org.joinfaces.autoconfigure.servlet.WebFragmentRegistrationBean;
 import org.ocpsoft.rewrite.servlet.RewriteFilter;
 import org.ocpsoft.rewrite.servlet.impl.RewriteServletContextListener;
@@ -32,9 +26,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.AutoConfigureAfter;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnWebApplication;
+import org.springframework.boot.autoconfigure.web.servlet.ConditionalOnMissingFilterBean;
 import org.springframework.boot.autoconfigure.web.servlet.WebMvcAutoConfiguration;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
-import org.springframework.boot.web.servlet.server.ConfigurableServletWebServerFactory;
+import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -47,7 +42,7 @@ import org.springframework.context.annotation.DependsOn;
  * @author Lars Grefer
  */
 @Configuration
-@EnableConfigurationProperties(RewriteProperties.class)
+@EnableConfigurationProperties({RewriteProperties.class, RewriteFilterProperties.class})
 @ConditionalOnClass(RewriteFilter.class)
 @AutoConfigureAfter(WebMvcAutoConfiguration.class)
 @ConditionalOnWebApplication(type = ConditionalOnWebApplication.Type.SERVLET)
@@ -65,23 +60,30 @@ public class RewriteAutoConfiguration {
 	@Bean
 	@DependsOn("applicationContextProvider")
 	public WebFragmentRegistrationBean rewriteWebFragmentRegistrationBean() {
-		WebFragmentRegistrationBean bean = new WebFragmentRegistrationBean() {
-			@Override
-			public void customize(ConfigurableServletWebServerFactory factory) {
-				super.customize(factory);
-				factory.addInitializers(servletContext -> {
-
-					FilterRegistration.Dynamic rewriteFilterRegistration = servletContext.addFilter("OCPsoft Rewrite Filter", RewriteFilter.class);
-					rewriteFilterRegistration.setAsyncSupported(true);
-					rewriteFilterRegistration.addMappingForUrlPatterns(EnumSet.allOf(DispatcherType.class), false, "/*");
-				});
-			}
-		};
+		WebFragmentRegistrationBean bean = new WebFragmentRegistrationBean();
 
 		bean.getListeners().add(RewriteServletRequestListener.class);
 		bean.getListeners().add(RewriteServletContextListener.class);
 
 		return bean;
+	}
+
+	@Bean
+	@DependsOn("applicationContextProvider")
+	@ConditionalOnMissingFilterBean
+	public FilterRegistrationBean<RewriteFilter> rewriteFilterRegistrationBean(RewriteFilterProperties rewriteFilterProperties) {
+		FilterRegistrationBean<RewriteFilter> rewriteFilterRegistrationBean = new FilterRegistrationBean<>(new RewriteFilter());
+
+		// The same name as in the META-INF/web-fragment.xml of the rewrite-servlet.jar
+		// so it purposely clashes on war deployments.
+		rewriteFilterRegistrationBean.setName("OCPsoft Rewrite Filter");
+
+		rewriteFilterRegistrationBean.setEnabled(rewriteFilterProperties.isEnabled());
+		rewriteFilterRegistrationBean.setOrder(rewriteFilterProperties.getOrder());
+		rewriteFilterRegistrationBean.setUrlPatterns(rewriteFilterProperties.getUrlPatterns());
+		rewriteFilterRegistrationBean.setDispatcherTypes(rewriteFilterProperties.getDispatcherTypes());
+
+		return rewriteFilterRegistrationBean;
 	}
 
 	@Bean
