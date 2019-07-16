@@ -224,6 +224,16 @@ joinfaces.rewrite.scan-classpath=true
 joinfaces.rewrite.base-packages=package.with.annotated.components
 ----
 
+[WARNING]
+====
+Be careful when using _Rewrite_ in combination with _Spring Security_:
+
+- When Rewrite is running after the `springSecurityFilterChain` (the default behaviour) you need to secure both
+the rewritten and the original path.
+- When Rewrite is running before the `springSecurityFilterChain`, the latter will not see the request at all.
+(The `springSecurityFilterChain` doesn't handle `FORWARD` requests in the default configuration)
+====
+
 ==== RichFaces
 
 * `org.richfaces.\*` servlet-context init-parameters are mapped from `joinfaces.richfaces.*` properties.
