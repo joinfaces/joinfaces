@@ -68,7 +68,7 @@ public class FaceletsAuthorizeTag extends AbstractFaceletsAuthorizeTag {
 		String[] roles = StringUtils.tokenizeToStringArray(ifAllGranted, ",");
 		if (!ObjectUtils.isEmpty(roles)) {
 			String expression = toHasRoleExpression(roles);
-			setAccess(getAccess() != null ? getAccess() + " and " + expression: expression);
+			setAccess(getAccess() != null ? getAccess() + " and " + expression : expression);
 		}
 	}
 
@@ -76,7 +76,7 @@ public class FaceletsAuthorizeTag extends AbstractFaceletsAuthorizeTag {
 		String[] roles = StringUtils.tokenizeToStringArray(ifAnyGranted, ",");
 		if (!ObjectUtils.isEmpty(roles)) {
 			String expression = toHasAnyRoleExpression(roles, false);
-			setAccess(getAccess() != null ? getAccess() + " and " + expression: expression);
+			setAccess(getAccess() != null ? getAccess() + " and " + expression : expression);
 		}
 	}
 
@@ -84,7 +84,7 @@ public class FaceletsAuthorizeTag extends AbstractFaceletsAuthorizeTag {
 		String[] roles = StringUtils.tokenizeToStringArray(ifNotGranted, ",");
 		if (!ObjectUtils.isEmpty(roles)) {
 			String expression = toHasAnyRoleExpression(roles, true);
-			setAccess(getAccess() != null ? getAccess() + " and " + expression: expression);
+			setAccess(getAccess() != null ? getAccess() + " and " + expression : expression);
 		}
 	}
 
