@@ -11,16 +11,16 @@ description = 'Spring Security JSF Taglib'
 jar.manifest.attributes('Automatic-Module-Name': 'joinfaces.security.taglib')
 
 dependencies {
-    optional('org.springframework.boot:spring-boot-starter') {
-        exclude group: 'javax.annotation', module: 'javax.annotation-api'
-    }
-    optional 'org.springframework.boot:spring-boot-starter-web'
-    optional 'org.glassfish:jakarta.faces'
-    optional('org.springframework.security:spring-security-taglibs') {
-        exclude group: 'aopalliance', module: 'aopalliance'
+    compile('org.springframework.security:spring-security-taglibs') {
+        exclude group: 'org.springframework.security', module: 'spring-security-acl'
     }
 
+    compileOnly 'jakarta.faces:jakarta.faces-api'
+    compileOnly 'jakarta.servlet:jakarta.servlet-api'
+    compileOnly 'jakarta.el:jakarta.el-api'
+
     testCompile project(':joinfaces-test')
+    testCompile 'org.glassfish:jakarta.faces'
     testCompile 'org.springframework.boot:spring-boot-starter-security'
     testCompile 'org.springframework.boot:spring-boot-starter-web'
     testCompile 'org.junit.jupiter:junit-jupiter-api'
