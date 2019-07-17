@@ -99,6 +99,7 @@ allprojects {
             }
 
             dependency 'javax.ejb:javax.ejb-api:3.2.2'
+            dependency 'javax.el:javax.el-api:3.0.0'
         }
     }
 

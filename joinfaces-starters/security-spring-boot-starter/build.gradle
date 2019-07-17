@@ -6,8 +6,4 @@ dependencies {
     compile project(':joinfaces-security-taglib')
 
     compile 'org.springframework.boot:spring-boot-starter-security'
-
-    runtime('org.springframework.security:spring-security-taglibs') {
-        exclude group: 'org.springframework.security', module: 'spring-security-acl'
-    }
 }
