@@ -43,10 +43,10 @@ public abstract class ScanResultHandler {
 	 * Handles the {@link ScanResult} produced by {@link ClasspathScanner}.
 	 *
 	 * @param scanResult       The result of the classpath scan.
-	 * @param joinfacesBaseDir The base dir for result files. This is usually "${classpathRoot}/META-INF/joinfaces"
+	 * @param classpathRoot The base dir for result files. This is usually a classpath root directory.
 	 * @throws IOException when the result file(s) could not be written.
 	 */
-	public abstract void handle(ScanResult scanResult, File joinfacesBaseDir) throws IOException;
+	public abstract void handle(ScanResult scanResult, File classpathRoot) throws IOException;
 
 	/**
 	 * Helper method which writes a list of class names to the given file.

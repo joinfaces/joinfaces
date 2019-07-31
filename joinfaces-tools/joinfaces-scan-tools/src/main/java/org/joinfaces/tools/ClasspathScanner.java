@@ -52,10 +52,6 @@ public class ClasspathScanner {
 			)
 	);
 
-	private File getBaseDir() {
-		return new File(getClasspathRoot(), "META-INF/joinfaces");
-	}
-
 	@SuppressFBWarnings(value = "RCN_REDUNDANT_NULLCHECK_WOULD_HAVE_BEEN_A_NPE", justification = "https://github.com/spotbugs/spotbugs/issues/756")
 	public void scanClasses() throws IOException {
 
@@ -68,7 +64,7 @@ public class ClasspathScanner {
 
 		try (ScanResult scanResult = classGraph.scan()) {
 			for (ScanResultHandler scanResultHandler : this.scanResultHandlers) {
-				scanResultHandler.handle(scanResult, getBaseDir());
+				scanResultHandler.handle(scanResult, getClasspathRoot());
 			}
 		}
 	}
