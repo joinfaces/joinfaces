@@ -41,7 +41,7 @@ public class RewriteAnnotationProviderHandler extends ScanResultHandler {
 	static final String REWRITE_ANNOTATION_HANDLER = "org.ocpsoft.rewrite.annotation.spi.AnnotationHandler";
 
 	@Override
-	public void handle(ScanResult scanResult, File joinfacesBaseDir) throws IOException {
+	public void handle(ScanResult scanResult, File classpathRoot) throws IOException {
 		ClassInfoList annotationHandlers = scanResult.getClassesImplementing(REWRITE_ANNOTATION_HANDLER);
 
 		if (annotationHandlers.isEmpty()) {
@@ -62,7 +62,7 @@ public class RewriteAnnotationProviderHandler extends ScanResultHandler {
 				.map(ClassRefTypeSignature::getFullyQualifiedClassName)
 				.collect(Collectors.toList());
 
-		File resultFile = new File(joinfacesBaseDir, REWRITE_ANNOTATION_HANDLER + ".classes");
+		File resultFile = new File(classpathRoot, "META-INF/joinfaces/" + REWRITE_ANNOTATION_HANDLER + ".classes");
 
 		SortedSet<String> result = new TreeSet<>(String::compareTo);
 
