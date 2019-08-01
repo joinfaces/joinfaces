@@ -18,9 +18,7 @@ package org.joinfaces.tools;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.ServiceLoader;
 import java.util.function.Function;
 
 import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
@@ -43,14 +41,6 @@ public class ClasspathScanner {
 
 	private final File classpathRoot;
 	private final Function<ClassGraph, ClassGraph> classGraphConfigurer;
-	@Builder.Default
-	private List<ScanResultHandler> scanResultHandlers = new ArrayList<>(
-			Arrays.asList(
-					new ServletContainerInitializerHandler(),
-					new MyFacesAnnotationProviderHandler(),
-					new RewriteAnnotationProviderHandler()
-			)
-	);
 
 	@SuppressFBWarnings(value = "RCN_REDUNDANT_NULLCHECK_WOULD_HAVE_BEEN_A_NPE", justification = "https://github.com/spotbugs/spotbugs/issues/756")
 	public void scanClasses() throws IOException {
@@ -63,7 +53,7 @@ public class ClasspathScanner {
 		classGraph = getClassGraphConfigurer().apply(classGraph);
 
 		try (ScanResult scanResult = classGraph.scan()) {
-			for (ScanResultHandler scanResultHandler : this.scanResultHandlers) {
+			for (ScanResultHandler scanResultHandler : ServiceLoader.load(ScanResultHandler.class)) {
 				scanResultHandler.handle(scanResult, getClasspathRoot());
 			}
 		}
