@@ -49,7 +49,6 @@ dependencies {
 
     optional 'com.github.adminfaces:admin-template'
     optional 'com.github.adminfaces:admin-theme'
-    optional 'javax.ejb:javax.ejb-api'
 
     testCompile('org.springframework.boot:spring-boot-starter-test') {
         exclude group: "junit", module: "junit"

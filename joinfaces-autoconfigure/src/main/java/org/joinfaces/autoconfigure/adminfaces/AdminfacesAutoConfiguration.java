@@ -16,9 +16,7 @@
 
 package org.joinfaces.autoconfigure.adminfaces;
 
-import javax.ejb.AccessLocalException;
 import javax.faces.application.ViewExpiredException;
-import javax.persistence.OptimisticLockException;
 
 import com.github.adminfaces.template.config.AdminConfig;
 import com.github.adminfaces.template.exception.AccessDeniedException;
@@ -97,12 +95,22 @@ public class AdminfacesAutoConfiguration {
 
 		bean.getErrorPages().add(new ErrorPage(HttpStatus.FORBIDDEN, "/403.xhtml"));
 		bean.getErrorPages().add(new ErrorPage(AccessDeniedException.class, "/403.xhtml"));
-		bean.getErrorPages().add(new ErrorPage(AccessLocalException.class, "/403.xhtml"));
+		try {
+			Class<? extends RuntimeException> accessLocalException = (Class<? extends RuntimeException>) Class.forName("javax.ejb.AccessLocalException");
+			bean.getErrorPages().add(new ErrorPage(accessLocalException, "/403.xhtml"));
+		}
+		catch (ClassNotFoundException ignored) {
+		}
 		bean.getErrorPages().add(new ErrorPage(HttpStatus.NOT_FOUND, "/404.xhtml"));
 		bean.getErrorPages().add(new ErrorPage(HttpStatus.INTERNAL_SERVER_ERROR, "/500.xhtml"));
 		bean.getErrorPages().add(new ErrorPage(Throwable.class, "/500.xhtml"));
 		bean.getErrorPages().add(new ErrorPage(ViewExpiredException.class, "/expired.xhtml"));
-		bean.getErrorPages().add(new ErrorPage(OptimisticLockException.class, "/optimistic.xhtml"));
+		try {
+			Class<? extends RuntimeException> optimisticLockException = (Class<? extends RuntimeException>) Class.forName("javax.persistence.OptimisticLockException");
+			bean.getErrorPages().add(new ErrorPage(optimisticLockException, "/optimistic.xhtml"));
+		}
+		catch (ClassNotFoundException ignored) {
+		}
 
 		bean.getListeners().add(AdminServletContextListener.class);
 
