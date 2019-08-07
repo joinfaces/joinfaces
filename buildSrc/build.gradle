@@ -8,9 +8,6 @@ repositories {
 def springBootVersion = "2.2.0.M5"
 
 dependencies {
-    implementation 'com.squareup.okhttp3:okhttp:3.13.1'
-    implementation 'com.squareup.okhttp3:logging-interceptor:3.13.1'
-
     compile "org.springframework.boot:spring-boot-gradle-plugin:$springBootVersion"
     implementation "org.springframework.boot:spring-boot-configuration-metadata:$springBootVersion"
 }
