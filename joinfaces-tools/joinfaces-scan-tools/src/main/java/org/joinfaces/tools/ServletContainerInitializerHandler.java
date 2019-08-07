@@ -45,7 +45,7 @@ public class ServletContainerInitializerHandler extends ScanResultHandler {
 	private static final String HANDLES_TYPES = "javax.servlet.annotation.HandlesTypes";
 
 	@Override
-	public void handle(ScanResult scanResult, File joinfacesBaseDir) throws IOException {
+	public void handle(ScanResult scanResult, File classpathRoot) throws IOException {
 		ClassInfoList scis = scanResult.getClassesImplementing(SERVLET_CONTAINER_INITIALIZER)
 				.filter(classInfo -> classInfo.hasAnnotation(HANDLES_TYPES));
 
@@ -54,7 +54,7 @@ public class ServletContainerInitializerHandler extends ScanResultHandler {
 
 			SortedSet<String> classes = findHandledClasses(scanResult, handledTypes);
 
-			File resultFile = new File(joinfacesBaseDir, sciClassInfo.getName() + ".classes");
+			File resultFile = new File(classpathRoot, "META-INF/joinfaces/" + sciClassInfo.getName() + ".classes");
 
 			writeClassList(resultFile, classes);
 		}

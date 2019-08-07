@@ -46,7 +46,7 @@ public class MyFacesAnnotationProviderHandler extends ScanResultHandler {
 	));
 
 	@Override
-	public void handle(ScanResult scanResult, File joinfacesBaseDir) throws IOException {
+	public void handle(ScanResult scanResult, File classpathRoot) throws IOException {
 		if (scanResult.getClassInfo(MYFACES_ANNOTATION_PROVIDER) == null) {
 			return;
 		}
@@ -57,7 +57,7 @@ public class MyFacesAnnotationProviderHandler extends ScanResultHandler {
 			result.put(myfacesAnnotation, scanResult.getClassesWithAnnotation(myfacesAnnotation).getNames());
 		}
 
-		File resultFile = new File(joinfacesBaseDir, MYFACES_ANNOTATION_PROVIDER + ".classes");
+		File resultFile = new File(classpathRoot, "META-INF/joinfaces/" + MYFACES_ANNOTATION_PROVIDER + ".classes");
 
 		writeClassMap(resultFile, result);
 
