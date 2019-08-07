@@ -1,5 +1,5 @@
 /*
- * Copyright 2016-2016 the original author or authors.
+ * Copyright 2016-2019 the original author or authors.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,18 +14,20 @@
  * limitations under the License.
  */
 
-package org.joinfaces.security;
+package org.joinfaces.security.taglib;
 
 import java.io.IOException;
 
 /**
  * This class provides static methods that are registered as EL functions and
  * available for use in Unified EL expressions in standard Facelets views.
+ *
  * @author Marcelo Fernandes
+ * @see org.springframework.faces.security.FaceletsAuthorizeTagUtils
  */
-public final class FaceletsTagUtils {
+public final class FaceletsAuthorizeTagUtils {
 
-	protected FaceletsTagUtils() {
+	protected FaceletsAuthorizeTagUtils() {
 	}
 
 	/**
@@ -36,7 +38,7 @@ public final class FaceletsTagUtils {
 	 * @throws IOException io exception
 	 */
 	public static boolean areAllGranted(String authorities) throws IOException {
-		AuthorizeFaceletsTag authorizeTag = new AuthorizeFaceletsTag();
+		FaceletsAuthorizeTag authorizeTag = new FaceletsAuthorizeTag();
 		authorizeTag.setIfAllGranted(authorities);
 		return authorizeTag.authorize();
 	}
@@ -49,7 +51,7 @@ public final class FaceletsTagUtils {
 	 * @throws IOException io exception
 	 */
 	public static boolean areAnyGranted(String authorities) throws IOException {
-		AuthorizeFaceletsTag authorizeTag = new AuthorizeFaceletsTag();
+		FaceletsAuthorizeTag authorizeTag = new FaceletsAuthorizeTag();
 		authorizeTag.setIfAnyGranted(authorities);
 		return authorizeTag.authorize();
 	}
@@ -62,7 +64,7 @@ public final class FaceletsTagUtils {
 	 * @throws IOException io exception
 	 */
 	public static boolean areNotGranted(String authorities) throws IOException {
-		AuthorizeFaceletsTag authorizeTag = new AuthorizeFaceletsTag();
+		FaceletsAuthorizeTag authorizeTag = new FaceletsAuthorizeTag();
 		authorizeTag.setIfNotGranted(authorities);
 		return authorizeTag.authorize();
 	}
@@ -76,7 +78,7 @@ public final class FaceletsTagUtils {
 	 * @throws IOException io exception
 	 */
 	public static boolean isAllowed(String url, String method) throws IOException {
-		AuthorizeFaceletsTag authorizeTag = new AuthorizeFaceletsTag();
+		FaceletsAuthorizeTag authorizeTag = new FaceletsAuthorizeTag();
 		authorizeTag.setUrl(url);
 		authorizeTag.setMethod(method);
 		return authorizeTag.authorizeUsingUrlCheck();

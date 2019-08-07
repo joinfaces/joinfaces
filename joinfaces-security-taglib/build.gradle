@@ -19,10 +19,14 @@ dependencies {
     compileOnly 'jakarta.servlet:jakarta.servlet-api'
     compileOnly 'jakarta.el:jakarta.el-api'
 
+    //For javadoc references
+    compileOnly 'org.springframework.webflow:spring-faces:2.5.1.RELEASE'
+
     testCompile project(':joinfaces-test')
     testCompile 'org.glassfish:jakarta.faces'
     testCompile 'org.springframework.boot:spring-boot-starter-security'
     testCompile 'org.springframework.boot:spring-boot-starter-web'
+    testCompile 'org.springframework.security:spring-security-test'
     testCompile 'org.junit.jupiter:junit-jupiter-api'
     testRuntime 'org.junit.jupiter:junit-jupiter-engine'
 }

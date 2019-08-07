@@ -1,5 +1,5 @@
 /*
- * Copyright 2016-2016 the original author or authors.
+ * Copyright 2016-2019 the original author or authors.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package org.joinfaces.security;
+package org.joinfaces.security.taglib;
 
 import javax.el.ValueExpression;
 import javax.faces.view.facelets.FaceletContext;
@@ -28,16 +28,16 @@ import org.springframework.util.StringUtils;
 /**
  * A concrete implementation of {@link AbstractAuthorizeTag} for use with
  * standard Facelets rendering technology.
+ *
  * @author Marcelo Fernandes
+ * @see org.springframework.faces.security.FaceletsAuthorizeTag
  */
-public class AuthorizeFaceletsTag extends AbstractFaceletsAuthorizeTag {
+public class FaceletsAuthorizeTag extends AbstractFaceletsAuthorizeTag {
 
 	/**
-	 * A class constructor for use in a {@link TagHandler}. Accepts all possible
-	 * tag attributes as {@link TagAttribute} instances. The constructor
-	 * extracts the attribute values by evaluating them as Unified EL
-	 * expressions. This excludes the access attribute, which is expected to be
-	 * a Spring EL expression.
+	 * A class constructor for use in a {@link TagHandler}. Accepts all possible tag attributes as {@link TagAttribute}
+	 * instances. The constructor extracts the attribute values by evaluating them as Unified EL expressions. This
+	 * excludes the access attribute, which is expected to be a Spring EL expression.
 	 *
 	 * @param faceletContext the current FaceletContext
 	 * @param access the access attribute or null
@@ -47,7 +47,8 @@ public class AuthorizeFaceletsTag extends AbstractFaceletsAuthorizeTag {
 	 * @param ifAnyGranted the ifAnyGranted attribute or null
 	 * @param ifNotGranted the ifNotGranted attribute or null
 	 */
-	public AuthorizeFaceletsTag(FaceletContext faceletContext, TagAttribute access, TagAttribute url, TagAttribute method, TagAttribute ifAllGranted, TagAttribute ifAnyGranted, TagAttribute ifNotGranted) {
+	public FaceletsAuthorizeTag(FaceletContext faceletContext, TagAttribute access, TagAttribute url,
+								TagAttribute method, TagAttribute ifAllGranted, TagAttribute ifAnyGranted, TagAttribute ifNotGranted) {
 		setAccess(getAttributeValue(faceletContext, access, false));
 		setUrl(getAttributeValue(faceletContext, url, true));
 		setMethod(getAttributeValue(faceletContext, method, true));
@@ -57,20 +58,17 @@ public class AuthorizeFaceletsTag extends AbstractFaceletsAuthorizeTag {
 	}
 
 	/**
-	 * A default constructor. Callers of this constructor are responsible for
-	 * setting one or more of the tag attributes in
-	 * {@link AbstractAuthorizeTag}.
+	 * A default constructor. Callers of this constructor are responsible for setting one or more of the tag attributes
+	 * in {@link AbstractAuthorizeTag}.
 	 */
-	public AuthorizeFaceletsTag() {
+	public FaceletsAuthorizeTag() {
 	}
-
-	private static final String AND = " and ";
 
 	void setIfAllGranted(String ifAllGranted) {
 		String[] roles = StringUtils.tokenizeToStringArray(ifAllGranted, ",");
 		if (!ObjectUtils.isEmpty(roles)) {
 			String expression = toHasRoleExpression(roles);
-			setAccess(getAccess() != null ? getAccess() + AND + expression : expression);
+			setAccess(getAccess() != null ? getAccess() + " and " + expression : expression);
 		}
 	}
 
@@ -78,7 +76,7 @@ public class AuthorizeFaceletsTag extends AbstractFaceletsAuthorizeTag {
 		String[] roles = StringUtils.tokenizeToStringArray(ifAnyGranted, ",");
 		if (!ObjectUtils.isEmpty(roles)) {
 			String expression = toHasAnyRoleExpression(roles, false);
-			setAccess(getAccess() != null ? getAccess() + AND + expression : expression);
+			setAccess(getAccess() != null ? getAccess() + " and " + expression : expression);
 		}
 	}
 
@@ -86,7 +84,7 @@ public class AuthorizeFaceletsTag extends AbstractFaceletsAuthorizeTag {
 		String[] roles = StringUtils.tokenizeToStringArray(ifNotGranted, ",");
 		if (!ObjectUtils.isEmpty(roles)) {
 			String expression = toHasAnyRoleExpression(roles, true);
-			setAccess(getAccess() != null ? getAccess() + AND + expression : expression);
+			setAccess(getAccess() != null ? getAccess() + " and " + expression : expression);
 		}
 	}
 
@@ -94,7 +92,7 @@ public class AuthorizeFaceletsTag extends AbstractFaceletsAuthorizeTag {
 		StringBuilder expression = new StringBuilder();
 		boolean insertSeparator = false;
 		for (String role : roles) {
-			expression.append(insertSeparator ? AND : "");
+			expression.append(insertSeparator ? " and " : "");
 			expression.append("hasRole('").append(role).append("')");
 			insertSeparator = true;
 		}
@@ -103,12 +101,12 @@ public class AuthorizeFaceletsTag extends AbstractFaceletsAuthorizeTag {
 
 	private static String toHasAnyRoleExpression(String[] roles, boolean negate) {
 		StringBuilder expression = new StringBuilder();
-		expression = expression.append(negate ? "!" : "");
-		expression = expression.append("hasAnyRole(");
+		expression.append(negate ? "!" : "");
+		expression.append("hasAnyRole(");
 		boolean insertSeparator = false;
 		for (String role : roles) {
 			expression.append(insertSeparator ? "," : "");
-			expression.append('\'').append(role).append('\'');
+			expression.append("'").append(role).append("'");
 			insertSeparator = true;
 		}
 		return expression.append(")").toString();

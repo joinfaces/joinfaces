@@ -1,5 +1,5 @@
 /*
- * Copyright 2016-2016 the original author or authors.
+ * Copyright 2016-2019 the original author or authors.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package org.joinfaces.security;
+package org.joinfaces.security.taglib;
 
 import java.io.IOException;
 
@@ -24,20 +24,19 @@ import javax.faces.view.facelets.TagConfig;
 import javax.faces.view.facelets.TagHandler;
 
 /**
- * TagHandler of fully authenticated user.
+ * TagHandler of anonymous user.
  * @author Marcelo Fernandes
  */
-public class FullyAuthenticatedFaceletsTagHandler extends TagHandler {
+public class AnonymousFaceletsTagHandler extends TagHandler {
 
-	public FullyAuthenticatedFaceletsTagHandler(TagConfig config) {
+	public AnonymousFaceletsTagHandler(TagConfig config) {
 		super(config);
 	}
 
-	@Override
 	public void apply(FaceletContext faceletContext, UIComponent parent) throws IOException {
-		FullyAuthenticatedFaceletsTag fullyAuthenticatedTag = new FullyAuthenticatedFaceletsTag();
+		AnonymousFaceletsTag anonymousTag = new AnonymousFaceletsTag();
 
-		boolean isAuthorized = fullyAuthenticatedTag.authorize();
+		boolean isAuthorized = anonymousTag.authorize();
 
 		if (isAuthorized) {
 			this.nextHandler.apply(faceletContext, parent);
