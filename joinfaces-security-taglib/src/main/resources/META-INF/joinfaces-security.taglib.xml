@@ -5,6 +5,7 @@
                 version="2.3">
 
     <namespace>https://joinfaces.org/security</namespace>
+    <short-name>sec</short-name>
 
     <tag>
         <description>
