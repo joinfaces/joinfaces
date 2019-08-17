@@ -20,7 +20,6 @@ import org.springframework.boot.autoconfigure.condition.ConditionalOnWebApplicat
 import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.support.MessageSourceAccessor;
 
 /**
  * {@link org.springframework.boot.autoconfigure.EnableAutoConfiguration Auto configuration} for {@link MessageSourceBridge}.
