@@ -22,9 +22,8 @@ import org.junit.jupiter.api.Test;
 import org.springframework.context.support.MessageSourceAccessor;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
+import static org.mockito.BDDMockito.mock;
+import static org.mockito.BDDMockito.when;
 
 class MessageSourceBridgeTest {
 
@@ -34,13 +33,13 @@ class MessageSourceBridgeTest {
 	@BeforeEach
 	void setUp() {
 		this.messageSourceAccessor = mock(MessageSourceAccessor.class);
-		this.messageSourceBridge = new MessageSourceBridge(messageSourceAccessor);
+		this.messageSourceBridge = new MessageSourceBridge(this.messageSourceAccessor);
 	}
 
 	@Test
 	void testGet() {
-		when(messageSourceAccessor.getMessage("foo")).thenReturn("bar");
+		when(this.messageSourceAccessor.getMessage("foo")).thenReturn("bar");
 
-		assertThat(messageSourceBridge.get("foo")).isEqualTo("bar");
+		assertThat(this.messageSourceBridge.get("foo")).isEqualTo("bar");
 	}
 }
