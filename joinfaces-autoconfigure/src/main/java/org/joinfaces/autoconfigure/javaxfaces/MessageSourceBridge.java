@@ -20,8 +20,10 @@ import java.util.AbstractMap;
 import java.util.Set;
 
 import lombok.AllArgsConstructor;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
 
 import org.springframework.context.MessageSource;
 import org.springframework.context.support.MessageSourceAccessor;
@@ -35,6 +37,8 @@ import org.springframework.lang.NonNull;
  */
 @NoArgsConstructor
 @AllArgsConstructor
+@EqualsAndHashCode(callSuper = false)
+@ToString
 public class MessageSourceBridge extends AbstractMap<String, String> {
 
 	@Setter
