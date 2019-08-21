@@ -262,7 +262,9 @@ task bomDocs(type: org.joinfaces.build.BomDocumentation) {
 asciidoctor {
     baseDirFollowsSourceDir()
     dependsOn propertyDocs, bomDocs
+    inputs.dir("src/docs/asciidoc")
     attributes revnumber: project.version,
+            'spring-version': dependencyManagement.importedProperties['spring-framework.version'],
             'spring-boot-version': org.springframework.boot.gradle.plugin.SpringBootPlugin.SPRING_BOOT_VERSION
 }
 
