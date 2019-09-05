@@ -282,7 +282,7 @@ New applications should only use the annotations above.
 
 JoinFaces enables Spring Security JSF Facelet Tag support in order to secure JSF pages. It will work if Spring Security is present at classpath.
 
-Namespace: **http://www.springframework.org/security/tags**
+Namespace: **https://joinfaces.org/security**
 
 .Spring Security JSF Facelet Tags
 |===========
