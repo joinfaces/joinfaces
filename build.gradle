@@ -179,19 +179,19 @@ allprojects {
         publishing {
             publications.withType(MavenPublication) {
                 pom {
-                    url = 'http://joinfaces.org'
+                    url = provider { 'https://docs.joinfaces.org/' + project.version + '/reference/' }
                     name = provider { project.description }
                     description = provider { project.description }
                     inceptionYear = '2016'
                     licenses {
                         license {
                             name = 'The Apache License, Version 2.0'
-                            url = 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+                            url = 'https://www.apache.org/licenses/LICENSE-2.0.txt'
                         }
                     }
                     organization {
                         name = 'JoinFaces'
-                        url = 'http://joinfaces.org'
+                        url = 'https://github.com/joinfaces'
                     }
                     developers {
                         developer {
