@@ -57,8 +57,8 @@ class ClasspathScanPluginTest {
 	}
 
 	private void checkForGeneratedTasks() {
-		Task scanClasspath = this.project.getTasks().getByName("scanClasspath");
-		Task scanTestClasspath = this.project.getTasks().getByName("scanTestClasspath");
+		Task scanClasspath = this.project.getTasks().getByName("scanJoinfacesClasspath");
+		Task scanTestClasspath = this.project.getTasks().getByName("scanJoinfacesTestClasspath");
 
 		assertThat(scanClasspath).isNotNull();
 		assertThat(scanClasspath).isInstanceOf(ClasspathScan.class);
