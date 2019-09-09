@@ -65,7 +65,7 @@ class JoinfacesPluginIT {
 				.withGradleVersion(gradleVersion)
 				.build();
 
-		BuildTask scanClasspath = buildResult.task(":scanClasspath");
+		BuildTask scanClasspath = buildResult.task(":scanJoinfacesClasspath");
 		assertThat(scanClasspath).isNotNull();
 		assertThat(scanClasspath.getOutcome()).isEqualTo(TaskOutcome.SUCCESS);
 

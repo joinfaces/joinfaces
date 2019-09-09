@@ -51,7 +51,7 @@ public class ClasspathScanPlugin implements Plugin<Project> {
 	}
 
 	private void configureClasspathScan(SourceSet sourceSet) {
-		String taskName = sourceSet.getTaskName("scan", "Classpath");
+		String taskName = sourceSet.getTaskName("scan", "JoinfacesClasspath");
 
 		TaskProvider<ClasspathScan> scanTaskProvider = this.project.getTasks().register(taskName, ClasspathScan.class, scanTask -> {
 			scanTask.getDestinationDir().set(this.project.getLayout().getBuildDirectory().dir("joinfaces/" + sourceSet.getName()));
