@@ -5,7 +5,7 @@ repositories {
     maven { url 'https://repo.spring.io/milestone' }
 }
 
-def springBootVersion = "2.2.0.M6"
+def springBootVersion = "2.2.0.RC1"
 
 dependencies {
     compile "org.springframework.boot:spring-boot-gradle-plugin:$springBootVersion"
