@@ -109,7 +109,7 @@ allprojects {
             dependency 'javax.ejb:javax.ejb-api:3.2.2'
             dependency 'jakarta.el:jakarta.el-api:3.0.2'
 
-            dependencySet('org.apache.myfaces.tobago:4.4.0') {
+            dependencySet('org.apache.myfaces.tobago:4.4.1') {
                 entry 'tobago-core'
                 entry 'tobago-theme-standard'
                 entry 'tobago-theme-speyside'
