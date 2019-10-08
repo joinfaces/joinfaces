@@ -107,7 +107,7 @@ allprojects {
             }
 
             dependency 'jakarta.ejb:jakarta.ejb-api:3.2.6'
-            dependency 'jakarta.el:jakarta.el-api:3.0.2'
+            dependency 'jakarta.el:jakarta.el-api:3.0.3'
 
             dependencySet('org.apache.myfaces.tobago:4.4.1') {
                 entry 'tobago-core'
