@@ -106,7 +106,7 @@ allprojects {
                 entry "admin-theme"
             }
 
-            dependency 'javax.ejb:javax.ejb-api:3.2.2'
+            dependency 'jakarta.ejb:jakarta.ejb-api:3.2.6'
             dependency 'jakarta.el:jakarta.el-api:3.0.2'
 
             dependencySet('org.apache.myfaces.tobago:4.4.0') {

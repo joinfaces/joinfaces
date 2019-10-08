@@ -8,6 +8,6 @@ dependencies {
         exclude group: "org.omnifaces", module: 'omnifaces'
     }
     compile 'javax.persistence:javax.persistence-api'
-    compile 'javax.ejb:javax.ejb-api'
+    compile 'jakarta.ejb:jakarta.ejb-api'
     compile 'javax.enterprise:cdi-api'
 }
