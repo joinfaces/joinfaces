@@ -70,7 +70,7 @@ allprojects {
             dependency('de.beyondjava:angularFaces-core:2.1.12') {
                 exclude "commons-logging:commons-logging"
             }
-            dependency 'org.butterfaces:components:3.1.2'
+            dependency 'org.butterfaces:components:3.1.3'
 
             dependencySet('org.richfaces:4.5.17.Final') {
                 entry "richfaces"
