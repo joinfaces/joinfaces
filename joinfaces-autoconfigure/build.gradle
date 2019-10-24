@@ -25,6 +25,7 @@ dependencies {
     optional 'org.springframework.boot:spring-boot-starter-tomcat'
     optional 'org.springframework.boot:spring-boot-starter-jetty'
     optional 'org.springframework.boot:spring-boot-starter-undertow'
+    optional 'org.springframework.session:spring-session-core'
     optional 'org.hibernate:hibernate-core'
     optional 'org.springframework:spring-orm'
     optional 'javax.enterprise:cdi-api'
