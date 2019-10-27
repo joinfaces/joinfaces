@@ -34,12 +34,12 @@ class SpringSessionFixAutoConfigurationTest {
 
 	@BeforeEach
 	void setUp() {
-		contextRunner = new WebApplicationContextRunner();
+		this.contextRunner = new WebApplicationContextRunner();
 	}
 
 	@Test
 	void noSessionRepository() {
-		contextRunner.withConfiguration(AutoConfigurations.of(SpringSessionFixAutoConfiguration.class))
+		this.contextRunner.withConfiguration(AutoConfigurations.of(SpringSessionFixAutoConfiguration.class))
 			.run(context -> {
 				assertThat(context).doesNotHaveBean("springSessionFixFilterRegistrationBean");
 			});
@@ -47,7 +47,7 @@ class SpringSessionFixAutoConfigurationTest {
 
 	@Test
 	void withSessionRepository() {
-		contextRunner.withConfiguration(AutoConfigurations.of(SpringSessionFixAutoConfiguration.class))
+		this.contextRunner.withConfiguration(AutoConfigurations.of(SpringSessionFixAutoConfiguration.class))
 			.withUserConfiguration(Config.class)
 			.run(context -> {
 				assertThat(context).hasBean("springSessionFixFilterRegistrationBean");
