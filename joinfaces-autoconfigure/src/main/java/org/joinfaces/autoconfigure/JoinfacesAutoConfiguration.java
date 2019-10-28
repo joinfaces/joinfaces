@@ -19,6 +19,7 @@ package org.joinfaces.autoconfigure;
 import org.springframework.boot.autoconfigure.AutoConfigureAfter;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnWebApplication;
+import org.springframework.boot.autoconfigure.web.servlet.ConditionalOnMissingFilterBean;
 import org.springframework.boot.autoconfigure.web.servlet.WebMvcAutoConfiguration;
 import org.springframework.boot.web.servlet.filter.OrderedRequestContextFilter;
 import org.springframework.context.annotation.Bean;
@@ -44,6 +45,7 @@ public class JoinfacesAutoConfiguration {
 	 */
 	@Bean
 	@ConditionalOnMissingBean({ RequestContextListener.class, RequestContextFilter.class })
+	@ConditionalOnMissingFilterBean(RequestContextFilter.class)
 	public static RequestContextFilter requestContextFilter() {
 		return new OrderedRequestContextFilter();
 	}
