@@ -31,7 +31,7 @@ import org.springframework.context.annotation.Configuration;
  *
  * @author Marcelo Fernandes
  */
-@Configuration
+@Configuration(proxyBeanMethods = false)
 @ConditionalOnClass(Context.class)
 @ConditionalOnWebApplication(type = ConditionalOnWebApplication.Type.SERVLET)
 public class TomcatAutoConfiguration {

@@ -36,7 +36,7 @@ import org.springframework.context.annotation.Configuration;
  *
  * @author Marcelo Fernandes
  */
-@Configuration
+@Configuration(proxyBeanMethods = false)
 @ConditionalOnClass(FacesViews.class)
 @ConditionalOnWebApplication(type = ConditionalOnWebApplication.Type.SERVLET)
 @EnableConfigurationProperties(OmnifacesProperties.class)
@@ -49,7 +49,7 @@ public class OmnifacesAutoConfiguration {
 	 *
 	 * @author Lars Grefer
 	 */
-	@Configuration
+	@Configuration(proxyBeanMethods = false)
 	@ConditionalOnClass(name = "org.omnifaces.facesviews.FacesViewsInitializer")
 	public static class Omnifaces1AutoConfiguration {
 
@@ -67,7 +67,7 @@ public class OmnifacesAutoConfiguration {
 	 *
 	 * @author Lars Grefer
 	 */
-	@Configuration
+	@Configuration(proxyBeanMethods = false)
 	@ConditionalOnClass(name = "org.omnifaces.ApplicationInitializer")
 	public static class Omnifaces2AutoConfiguration {
 

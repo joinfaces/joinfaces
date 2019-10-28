@@ -46,7 +46,7 @@ import org.springframework.core.io.ClassPathResource;
  * @author Marcelo Fernandes
  */
 @Slf4j
-@Configuration
+@Configuration(proxyBeanMethods = false)
 @RequiredArgsConstructor
 @EnableConfigurationProperties(JettyProperties.class)
 @ConditionalOnClass(Server.class)

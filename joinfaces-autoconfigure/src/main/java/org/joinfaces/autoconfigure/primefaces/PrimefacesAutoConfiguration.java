@@ -36,7 +36,7 @@ import org.springframework.context.annotation.Configuration;
  * @author Marcelo Fernandes
  * @author Lars Grefer
  */
-@Configuration
+@Configuration(proxyBeanMethods = false)
 @ConditionalOnClass(Constants.class)
 @ConditionalOnWebApplication(type = ConditionalOnWebApplication.Type.SERVLET)
 @AutoConfigureBefore(JavaxFacesAutoConfiguration.class)
@@ -56,7 +56,7 @@ public class PrimefacesAutoConfiguration {
 	/**
 	 * Auto Configuration for Primefaces 4.0.
 	 */
-	@Configuration
+	@Configuration(proxyBeanMethods = false)
 	@EnableConfigurationProperties(Primefaces4_0Properties.class)
 	@ConditionalOnClass(Captcha.class)
 	public static class Primefaces4_0AutoConfiguration {
@@ -65,7 +65,7 @@ public class PrimefacesAutoConfiguration {
 	/**
 	 * Auto Configuration for Primefaces 5.0.
 	 */
-	@Configuration
+	@Configuration(proxyBeanMethods = false)
 	@EnableConfigurationProperties(Primefaces5_0Properties.class)
 	@ConditionalOnClass(CacheProvider.class)
 	public static class Primefaces5_0AutoConfiguration {
@@ -74,7 +74,7 @@ public class PrimefacesAutoConfiguration {
 	/**
 	 * Auto Configuration for Primefaces 5.1.
 	 */
-	@Configuration
+	@Configuration(proxyBeanMethods = false)
 	@EnableConfigurationProperties(Primefaces5_1Properties.class)
 	public static class Primefaces5_1AutoConfiguration {
 	}
@@ -82,7 +82,7 @@ public class PrimefacesAutoConfiguration {
 	/**
 	 * Auto Configuration for Primefaces 5.2+.
 	 */
-	@Configuration
+	@Configuration(proxyBeanMethods = false)
 	@EnableConfigurationProperties(Primefaces5_2Properties.class)
 	public static class Primefaces5_2AutoConfiguration {
 	}
@@ -90,7 +90,7 @@ public class PrimefacesAutoConfiguration {
 	/**
 	 * Auto Configuration for Primefaces 6.0.
 	 */
-	@Configuration
+	@Configuration(proxyBeanMethods = false)
 	@EnableConfigurationProperties(Primefaces6_0Properties.class)
 	public static class Primefaces6_0AutoConfiguration {
 	}
@@ -98,7 +98,7 @@ public class PrimefacesAutoConfiguration {
 	/**
 	 * Auto Configuration for Primefaces 6.2+.
 	 */
-	@Configuration
+	@Configuration(proxyBeanMethods = false)
 	@EnableConfigurationProperties(Primefaces6_2Properties.class)
 	public static class Primefaces6_2AutoConfiguration {
 	}

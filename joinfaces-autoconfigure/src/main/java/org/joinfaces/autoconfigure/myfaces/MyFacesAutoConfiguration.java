@@ -35,7 +35,7 @@ import org.springframework.context.annotation.Configuration;
  *
  * @author Marcelo Fernandes
  */
-@Configuration
+@Configuration(proxyBeanMethods = false)
 @EnableConfigurationProperties({MyfacesProperties.class, MyFaces2_3Properties.class})
 @ConditionalOnClass(MyFacesContainerInitializer.class)
 @AutoConfigureBefore(WebMvcAutoConfiguration.class)

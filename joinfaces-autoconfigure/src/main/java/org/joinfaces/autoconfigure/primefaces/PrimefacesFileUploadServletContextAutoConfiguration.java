@@ -51,7 +51,7 @@ import org.springframework.context.annotation.Configuration;
  *
  * @author Nurettin Yilmaz
  */
-@Configuration
+@Configuration(proxyBeanMethods = false)
 @ConditionalOnClass(MultipartRequest.class)
 @AutoConfigureAfter(JavaxFacesAutoConfiguration.class)
 public class PrimefacesFileUploadServletContextAutoConfiguration {

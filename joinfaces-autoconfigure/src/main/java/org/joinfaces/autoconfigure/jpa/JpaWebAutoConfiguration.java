@@ -37,7 +37,7 @@ import org.springframework.orm.jpa.support.OpenEntityManagerInViewFilter;
  * @author Lars Grefer
  * @see org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration
  */
-@Configuration
+@Configuration(proxyBeanMethods = false)
 @ConditionalOnWebApplication(type = ConditionalOnWebApplication.Type.SERVLET)
 @ConditionalOnClass(name = {
 		"javax.persistence.EntityManager",

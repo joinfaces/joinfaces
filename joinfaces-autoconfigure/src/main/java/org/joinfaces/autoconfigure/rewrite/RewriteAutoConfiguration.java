@@ -22,7 +22,6 @@ import org.ocpsoft.rewrite.servlet.impl.RewriteServletContextListener;
 import org.ocpsoft.rewrite.servlet.impl.RewriteServletRequestListener;
 import org.ocpsoft.rewrite.spring.SpringExpressionLanguageProvider;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.AutoConfigureAfter;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnWebApplication;
@@ -41,15 +40,12 @@ import org.springframework.context.annotation.DependsOn;
  * @author Marcelo Fernandes
  * @author Lars Grefer
  */
-@Configuration
+@Configuration(proxyBeanMethods = false)
 @EnableConfigurationProperties({RewriteProperties.class, RewriteFilterProperties.class})
 @ConditionalOnClass(RewriteFilter.class)
 @AutoConfigureAfter(WebMvcAutoConfiguration.class)
 @ConditionalOnWebApplication(type = ConditionalOnWebApplication.Type.SERVLET)
 public class RewriteAutoConfiguration {
-
-	@Autowired
-	private RewriteProperties rewriteProperties;
 
 	/**
 	 * This {@link WebFragmentRegistrationBean} is equivalent to the
@@ -106,10 +102,11 @@ public class RewriteAutoConfiguration {
 	 * {@link org.ocpsoft.rewrite.servlet.config.HttpConfigurationProvider} which scans for Rewrite annotations within
 	 * the classpath.
 	 *
+	 * @param rewriteProperties The {@link org.springframework.boot.context.properties.ConfigurationProperties} for Rewrite.
 	 * @return rewrite annotation scanner
 	 */
 	@Bean
-	public SpringBootAnnotationConfigProvider rewriteAnnotationConfigProvider() {
-		return new SpringBootAnnotationConfigProvider(this.rewriteProperties.getAnnotationConfigProvider());
+	public SpringBootAnnotationConfigProvider rewriteAnnotationConfigProvider(RewriteProperties rewriteProperties) {
+		return new SpringBootAnnotationConfigProvider(rewriteProperties.getAnnotationConfigProvider());
 	}
 }

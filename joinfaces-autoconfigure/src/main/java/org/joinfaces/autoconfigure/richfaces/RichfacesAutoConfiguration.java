@@ -34,7 +34,7 @@ import org.springframework.context.annotation.Configuration;
  * @author Jamillo Santos
  * @author Renato Soares
  */
-@Configuration
+@Configuration(proxyBeanMethods = false)
 @EnableConfigurationProperties(RichfacesProperties.class)
 @ConditionalOnClass(CoreConfiguration.class)
 @AutoConfigureBefore(JavaxFacesAutoConfiguration.class)

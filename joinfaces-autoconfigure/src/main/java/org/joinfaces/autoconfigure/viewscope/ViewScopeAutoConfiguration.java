@@ -32,7 +32,7 @@ import org.springframework.context.annotation.Configuration;
  *
  * @author Lars Grefer
  */
-@Configuration
+@Configuration(proxyBeanMethods = false)
 @ConditionalOnWebApplication
 @ConditionalOnClass({FacesContext.class, UIViewRoot.class})
 public class ViewScopeAutoConfiguration {

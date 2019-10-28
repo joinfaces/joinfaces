@@ -30,7 +30,7 @@ import org.springframework.context.annotation.Configuration;
  *
  * @author Lars Grefer
  */
-@Configuration
+@Configuration(proxyBeanMethods = false)
 @ConditionalOnWebApplication
 public class ServletContextInitParameterPropertiesAutoConfiguration {
 

@@ -43,7 +43,7 @@ import org.springframework.web.context.WebApplicationContext;
  * @author Diego Diez
  * @author Lars Grefer
  */
-@Configuration
+@Configuration(proxyBeanMethods = false)
 @ConditionalOnClass(RequestScoped.class)
 @ConditionalOnWebApplication(type = ConditionalOnWebApplication.Type.SERVLET)
 public class JsfScopeAnnotationsAutoConfiguration {

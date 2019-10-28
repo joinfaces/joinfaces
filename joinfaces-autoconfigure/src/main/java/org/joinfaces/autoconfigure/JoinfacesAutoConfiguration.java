@@ -31,7 +31,7 @@ import org.springframework.web.filter.RequestContextFilter;
  *
  * @author Lars Grefer
  */
-@Configuration
+@Configuration(proxyBeanMethods = false)
 @ConditionalOnWebApplication(type = ConditionalOnWebApplication.Type.SERVLET)
 @AutoConfigureAfter(WebMvcAutoConfiguration.class)
 public class JoinfacesAutoConfiguration {

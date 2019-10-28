@@ -29,7 +29,7 @@ import org.springframework.context.annotation.Configuration;
  * Spring Boot Auto Configuration of BootsFaces.
  * @author Marcelo Fernandes
  */
-@Configuration
+@Configuration(proxyBeanMethods = false)
 @EnableConfigurationProperties(BootsfacesProperties.class)
 @ConditionalOnClass(C.class)
 @AutoConfigureBefore(JavaxFacesAutoConfiguration.class)
