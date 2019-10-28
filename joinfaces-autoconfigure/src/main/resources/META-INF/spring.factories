@@ -1,33 +1,33 @@
 org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
   org.joinfaces.autoconfigure.JoinfacesAutoConfiguration,\
-  org.joinfaces.autoconfigure.tomcat.TomcatAutoConfiguration,\
-  org.joinfaces.autoconfigure.jetty.JettyAutoConfiguration,\
-  org.joinfaces.autoconfigure.undertow.UndertowAutoConfiguration,\
-  org.joinfaces.autoconfigure.viewscope.ViewScopeAutoConfiguration,\
-  org.joinfaces.autoconfigure.scopemapping.CdiScopeAnnotationsAutoConfiguration,\
-  org.joinfaces.autoconfigure.scopemapping.JsfScopeAnnotationsAutoConfiguration,\
+  org.joinfaces.autoconfigure.adminfaces.AdminfacesAutoConfiguration,\
+  org.joinfaces.autoconfigure.angularfaces.AngularfacesAutoConfiguration,\
+  org.joinfaces.autoconfigure.bootsfaces.BootsfacesAutoConfiguration,\
+  org.joinfaces.autoconfigure.butterfaces.ButterfacesAutoConfiguration,\
+  org.joinfaces.autoconfigure.icefaces.IcefacesAutoConfiguration,\
   org.joinfaces.autoconfigure.javaxfaces.FacesServletAutoConfiguration,\
   org.joinfaces.autoconfigure.javaxfaces.JavaxFacesAutoConfiguration,\
   org.joinfaces.autoconfigure.javaxfaces.JsfBeansAutoConfiguration,\
+  org.joinfaces.autoconfigure.javaxfaces.ProjectStageAutoConfiguration,\
   org.joinfaces.autoconfigure.javaxfaces.MessageSourceBridgeAutoConfiguration,\
+  org.joinfaces.autoconfigure.jetty.JettyAutoConfiguration,\
+  org.joinfaces.autoconfigure.jpa.JpaWebAutoConfiguration,\
   org.joinfaces.autoconfigure.mojarra.MojarraAutoConfiguration,\
   org.joinfaces.autoconfigure.myfaces.MyFacesAutoConfiguration,\
   org.joinfaces.autoconfigure.omnifaces.OmnifacesAutoConfiguration,\
   org.joinfaces.autoconfigure.primefaces.PrimefacesAutoConfiguration,\
   org.joinfaces.autoconfigure.primefaces.PrimefacesFileUploadServletContextAutoConfiguration,\
-  org.joinfaces.autoconfigure.bootsfaces.BootsfacesAutoConfiguration,\
-  org.joinfaces.autoconfigure.angularfaces.AngularfacesAutoConfiguration,\
-  org.joinfaces.autoconfigure.butterfaces.ButterfacesAutoConfiguration,\
+  org.joinfaces.autoconfigure.rewrite.RewriteAutoConfiguration,\
   org.joinfaces.autoconfigure.richfaces.RichfacesAutoConfiguration,\
-  org.joinfaces.autoconfigure.jpa.JpaWebAutoConfiguration,\
-  org.joinfaces.autoconfigure.javaxfaces.ProjectStageAutoConfiguration,\
+  org.joinfaces.autoconfigure.scopemapping.CdiScopeAnnotationsAutoConfiguration,\
+  org.joinfaces.autoconfigure.scopemapping.JsfScopeAnnotationsAutoConfiguration,\
   org.joinfaces.autoconfigure.servlet.initparams.ServletContextInitParameterPropertiesAutoConfiguration,\
   org.joinfaces.autoconfigure.session.SpringSessionFixAutoConfiguration,\
-  org.joinfaces.autoconfigure.weld.WeldSpringBootAutoConfiguration,\
-  org.joinfaces.autoconfigure.rewrite.RewriteAutoConfiguration,\
-  org.joinfaces.autoconfigure.adminfaces.AdminfacesAutoConfiguration,\
-  org.joinfaces.autoconfigure.icefaces.IcefacesAutoConfiguration,\
-  org.joinfaces.autoconfigure.tobago.TobagoAutoConfiguration
+  org.joinfaces.autoconfigure.tobago.TobagoAutoConfiguration,\
+  org.joinfaces.autoconfigure.tomcat.TomcatAutoConfiguration,\
+  org.joinfaces.autoconfigure.undertow.UndertowAutoConfiguration,\
+  org.joinfaces.autoconfigure.viewscope.ViewScopeAutoConfiguration,\
+  org.joinfaces.autoconfigure.weld.WeldSpringBootAutoConfiguration
 
 org.springframework.context.ApplicationListener=\
   org.joinfaces.autoconfigure.JoinfacesApplicationAnalyzer
