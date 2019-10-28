@@ -22,6 +22,7 @@ org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
   org.joinfaces.autoconfigure.jpa.JpaWebAutoConfiguration,\
   org.joinfaces.autoconfigure.javaxfaces.ProjectStageAutoConfiguration,\
   org.joinfaces.autoconfigure.servlet.initparams.ServletContextInitParameterPropertiesAutoConfiguration,\
+  org.joinfaces.autoconfigure.session.SpringSessionFixAutoConfiguration,\
   org.joinfaces.autoconfigure.weld.WeldSpringBootAutoConfiguration,\
   org.joinfaces.autoconfigure.rewrite.RewriteAutoConfiguration,\
   org.joinfaces.autoconfigure.adminfaces.AdminfacesAutoConfiguration,\
