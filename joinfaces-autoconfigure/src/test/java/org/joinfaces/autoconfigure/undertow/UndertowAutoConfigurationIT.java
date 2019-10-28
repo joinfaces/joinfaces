@@ -22,23 +22,26 @@ import io.undertow.servlet.api.DeploymentInfo;
 import org.junit.jupiter.api.Test;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.web.embedded.undertow.UndertowDeploymentInfoCustomizer;
 import org.springframework.boot.web.embedded.undertow.UndertowServletWebServerFactory;
+import org.springframework.boot.web.server.WebServerFactoryCustomizer;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.MOCK)
-public class UndertowAutoConfigurationIT {
+class UndertowAutoConfigurationIT {
 
 	@Autowired
-	private UndertowAutoConfiguration undertowAutoConfiguration;
+	@Qualifier("jsfUndertowFactoryCustomizer")
+	private WebServerFactoryCustomizer<UndertowServletWebServerFactory> jsfUndertowFactoryCustomizer;
 
 	@Test
-	public void customize() throws IOException {
+	void customize() throws IOException {
 		UndertowServletWebServerFactory factory = new UndertowServletWebServerFactory();
 
-		this.undertowAutoConfiguration.jsfUndertowFactoryCustomizer().customize(factory);
+		this.jsfUndertowFactoryCustomizer.customize(factory);
 
 		UndertowDeploymentInfoCustomizer undertowDeploymentInfoCustomizer
 			= factory.getDeploymentInfoCustomizers().iterator().next();
