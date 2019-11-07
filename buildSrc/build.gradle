@@ -4,7 +4,7 @@ repositories {
     mavenCentral()
 }
 
-def springBootVersion = "2.1.9.RELEASE"
+def springBootVersion = "2.1.10.RELEASE"
 
 dependencies {
     implementation 'com.squareup.okhttp3:okhttp:3.14.2'
