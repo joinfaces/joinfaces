@@ -36,7 +36,7 @@ import org.springframework.context.annotation.Configuration;
  *
  * @author Marcelo Fernandes
  */
-@Configuration
+@Configuration(proxyBeanMethods = false)
 @EnableConfigurationProperties(MojarraProperties.class)
 @ConditionalOnClass(FacesInitializer.class)
 @AutoConfigureBefore(WebMvcAutoConfiguration.class)

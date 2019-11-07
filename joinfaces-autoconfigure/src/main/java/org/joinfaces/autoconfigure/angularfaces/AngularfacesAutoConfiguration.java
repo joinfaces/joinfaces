@@ -38,7 +38,7 @@ import org.springframework.lang.Nullable;
  *
  * @author Marcelo Fernandes
  */
-@Configuration
+@Configuration(proxyBeanMethods = false)
 @EnableConfigurationProperties(AngularfacesProperties.class)
 @ConditionalOnClass(ELTools.class)
 @AutoConfigureBefore(JavaxFacesAutoConfiguration.class)

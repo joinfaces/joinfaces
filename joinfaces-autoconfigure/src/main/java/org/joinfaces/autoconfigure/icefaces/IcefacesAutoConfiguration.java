@@ -34,7 +34,7 @@ import org.springframework.context.annotation.Configuration;
  *
  * @author Lars Grefer
  */
-@Configuration
+@Configuration(proxyBeanMethods = false)
 @ConditionalOnWebApplication(type = ConditionalOnWebApplication.Type.SERVLET)
 @ConditionalOnClass({EnvUtils.class, WindowScopeManager.class})
 @EnableConfigurationProperties(IcefacesProperties.class)

@@ -54,7 +54,7 @@ import org.springframework.lang.Nullable;
  * @author Marcelo Fernandes
  */
 @Slf4j
-@Configuration
+@Configuration(proxyBeanMethods = false)
 @EnableConfigurationProperties(AdminfacesProperties.class)
 @ComponentScan({"com.github.adminfaces.template.bean",
 	"com.github.adminfaces.template.config",

@@ -21,7 +21,6 @@ import java.security.PrivilegedAction;
 
 import io.undertow.Undertow;
 import io.undertow.server.handlers.resource.ClassPathResourceManager;
-import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
@@ -38,27 +37,24 @@ import org.springframework.context.annotation.Configuration;
  * @author Marcelo Fernandes
  */
 @Slf4j
-@RequiredArgsConstructor
-@Configuration
+@Configuration(proxyBeanMethods = false)
 @EnableConfigurationProperties(UndertowProperties.class)
 @ConditionalOnClass(Undertow.class)
 @ConditionalOnWebApplication(type = ConditionalOnWebApplication.Type.SERVLET)
 public class UndertowAutoConfiguration {
 
-	private final UndertowProperties undertowProperties;
-
 	@Bean
-	public WebServerFactoryCustomizer<UndertowServletWebServerFactory> jsfUndertowFactoryCustomizer() {
+	public WebServerFactoryCustomizer<UndertowServletWebServerFactory> jsfUndertowFactoryCustomizer(UndertowProperties undertowProperties) {
 		return factory -> factory.addDeploymentInfoCustomizers(deploymentInfo -> {
 			AccessController.doPrivileged((PrivilegedAction<Void>) () -> {
 				deploymentInfo.setResourceManager(new CompositeResourceManager(
-					new ClassPathResourceManager(deploymentInfo.getClassLoader(), this.undertowProperties.getClassPathResource()),
+					new ClassPathResourceManager(deploymentInfo.getClassLoader(), undertowProperties.getClassPathResource()),
 					deploymentInfo.getResourceManager()));
 
 				return null;
 			});
 
-			log.info("Setting Undertow classLoader to {} directory", this.undertowProperties.getClassPathResource());
+			log.info("Setting Undertow classLoader to {} directory", undertowProperties.getClassPathResource());
 		});
 	}
 }

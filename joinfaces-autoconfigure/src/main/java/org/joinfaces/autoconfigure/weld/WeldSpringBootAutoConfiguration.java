@@ -29,7 +29,7 @@ import org.springframework.context.annotation.Configuration;
  *
  * @author classicPintus
  */
-@Configuration
+@Configuration(proxyBeanMethods = false)
 @ConditionalOnClass(EnhancedListener.class)
 @ConditionalOnWebApplication(type = ConditionalOnWebApplication.Type.SERVLET)
 public class WeldSpringBootAutoConfiguration {

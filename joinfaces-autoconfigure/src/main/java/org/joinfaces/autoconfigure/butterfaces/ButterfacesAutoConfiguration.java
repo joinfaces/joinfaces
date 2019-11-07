@@ -38,7 +38,7 @@ import org.springframework.lang.Nullable;
  *
  * @author Marcelo Fernandes
  */
-@Configuration
+@Configuration(proxyBeanMethods = false)
 @EnableConfigurationProperties(ButterfacesProperties.class)
 @ConditionalOnClass(ReflectionUtil.class)
 @AutoConfigureBefore(JavaxFacesAutoConfiguration.class)
@@ -52,7 +52,7 @@ public class ButterfacesAutoConfiguration {
 	 * @author Lars Grefer
 	 * @see <a href="https://github.com/ButterFaces/bootsfaces-integration/blob/6e9d45978590fa72361cf3c98bec77d863f02aea/README.md">ButterFaces/bootsfaces-integration</a>
 	 */
-	@Configuration
+	@Configuration(proxyBeanMethods = false)
 	@ConditionalOnClass(C.class)
 	@AutoConfigureBefore(BootsfacesAutoConfiguration.class)
 	public static class ButterfacesBootsfacesAutoConfiguration {

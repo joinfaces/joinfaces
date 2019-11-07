@@ -29,6 +29,7 @@ import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnWebApplication;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 
 /**
  * Auto configuration of JSF {@link ProjectStage}.
@@ -36,6 +37,7 @@ import org.springframework.context.annotation.Bean;
  * @author Lars Grefer
  */
 @Slf4j
+@Configuration(proxyBeanMethods = false)
 @ConditionalOnClass(ProjectStage.class)
 @AutoConfigureBefore(JavaxFacesAutoConfiguration.class)
 @ConditionalOnWebApplication(type = ConditionalOnWebApplication.Type.SERVLET)

@@ -41,7 +41,7 @@ import org.springframework.orm.jpa.support.OpenEntityManagerInViewInterceptor;
  * @author Lars Grefer
  * @see org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration
  */
-@Configuration
+@Configuration(proxyBeanMethods = false)
 @ConditionalOnWebApplication(type = ConditionalOnWebApplication.Type.SERVLET)
 @ConditionalOnClass({EntityManager.class, OpenEntityManagerInViewFilter.class})
 @ConditionalOnProperty(prefix = "spring.jpa", name = "open-in-view", havingValue = "true", matchIfMissing = true)

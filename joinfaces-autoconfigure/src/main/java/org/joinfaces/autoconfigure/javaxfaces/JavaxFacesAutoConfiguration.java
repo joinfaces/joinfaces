@@ -38,7 +38,7 @@ import org.springframework.core.PriorityOrdered;
  *
  * @author Marcelo Fernandes
  */
-@Configuration
+@Configuration(proxyBeanMethods = false)
 @ConditionalOnClass(FacesContext.class)
 @ConditionalOnWebApplication(type = ConditionalOnWebApplication.Type.SERVLET)
 public class JavaxFacesAutoConfiguration {
@@ -46,7 +46,7 @@ public class JavaxFacesAutoConfiguration {
 	/**
 	 * Auto configuration for JSF 2.0.
 	 */
-	@Configuration
+	@Configuration(proxyBeanMethods = false)
 	@EnableConfigurationProperties(JavaxFaces2_0Properties.class)
 	public static class JavaxFaces2_0AutoConfiguration {
 	}
@@ -54,7 +54,7 @@ public class JavaxFacesAutoConfiguration {
 	/**
 	 * Auto configuration for JSF 2.1.
 	 */
-	@Configuration
+	@Configuration(proxyBeanMethods = false)
 	@EnableConfigurationProperties(JavaxFaces2_1Properties.class)
 	public static class JavaxFaces2_1AutoConfiguration {
 	}
@@ -62,7 +62,7 @@ public class JavaxFacesAutoConfiguration {
 	/**
 	 * Auto configuration for JSF 2.2.
 	 */
-	@Configuration
+	@Configuration(proxyBeanMethods = false)
 	@EnableConfigurationProperties(JavaxFaces2_2Properties.class)
 	@ConditionalOnClass(FlowHandler.class)
 	public static class JavaxFaces2_2AutoConfiguration {
@@ -71,7 +71,7 @@ public class JavaxFacesAutoConfiguration {
 	/**
 	 * Auto configuration for JSF 2.3.
 	 */
-	@Configuration
+	@Configuration(proxyBeanMethods = false)
 	@EnableConfigurationProperties(JavaxFaces2_3Properties.class)
 	@ConditionalOnClass(PushContext.class)
 	public static class JavaxFaces2_3AutoConfiguration {
