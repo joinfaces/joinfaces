@@ -2,11 +2,15 @@ apply plugin: "java"
 
 repositories {
     mavenCentral()
+    maven { url "https://repo.spring.io/milestone" }
+    maven { url "https://repo.spring.io/snapshot" }
 }
 
-def springBootVersion = "2.2.4.RELEASE"
+def springBootVersion = "2.3.0.BUILD-SNAPSHOT"
 
 dependencies {
     compile "org.springframework.boot:spring-boot-gradle-plugin:$springBootVersion"
     implementation "org.springframework.boot:spring-boot-configuration-metadata:$springBootVersion"
+
+    compile 'org.apache.maven:maven-model:3.6.3'
 }
