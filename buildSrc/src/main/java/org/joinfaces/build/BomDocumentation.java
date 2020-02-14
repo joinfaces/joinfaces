@@ -21,10 +21,10 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Comparator;
 
-import io.spring.gradle.dependencymanagement.org.apache.maven.model.Dependency;
-import io.spring.gradle.dependencymanagement.org.apache.maven.model.Model;
-import io.spring.gradle.dependencymanagement.org.apache.maven.model.io.xpp3.MavenXpp3Reader;
-import io.spring.gradle.dependencymanagement.org.codehaus.plexus.util.xml.pull.XmlPullParserException;
+import org.apache.maven.model.Dependency;
+import org.apache.maven.model.Model;
+import org.apache.maven.model.io.xpp3.MavenXpp3Reader;
+import org.codehaus.plexus.util.xml.pull.XmlPullParserException;
 import org.codehaus.groovy.runtime.ResourceGroovyMethods;
 import org.gradle.api.DefaultTask;
 import org.gradle.api.file.RegularFileProperty;

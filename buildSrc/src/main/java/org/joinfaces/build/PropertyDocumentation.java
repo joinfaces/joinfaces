@@ -35,7 +35,6 @@ import org.springframework.boot.configurationmetadata.ConfigurationMetadataPrope
 import org.springframework.boot.configurationmetadata.ConfigurationMetadataRepository;
 import org.springframework.boot.configurationmetadata.ConfigurationMetadataRepositoryJsonBuilder;
 import org.springframework.boot.configurationmetadata.ConfigurationMetadataSource;
-import org.springframework.util.StringUtils;
 
 /**
  * @author Lars Grefer
@@ -69,7 +68,7 @@ public class PropertyDocumentation extends DefaultTask {
 						group.getSources().values()
 								.stream()
 								.map(ConfigurationMetadataSource::getShortDescription)
-								.filter(StringUtils::hasText)
+								.filter(s -> s != null && !s.isEmpty())
 								.forEach(d -> writer.printf("# %s\n", d));
 
 						group.getProperties().values().stream()

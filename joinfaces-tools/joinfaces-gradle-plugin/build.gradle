@@ -49,6 +49,7 @@ dependencies {
     compile project(":joinfaces-tools:joinfaces-scan-tools")
 
     compile "org.springframework.boot:spring-boot-gradle-plugin:${SpringBootPlugin.SPRING_BOOT_VERSION}"
+    compile "io.spring.gradle:dependency-management-plugin"
 }
 
 publishing {
