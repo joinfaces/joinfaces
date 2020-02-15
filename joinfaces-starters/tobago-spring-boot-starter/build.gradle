@@ -18,7 +18,7 @@ description = 'Apache MyFaces Tobago Spring Boot Starter'
 jar.manifest.attributes('Automatic-Module-Name': 'joinfaces.starter.tobago')
 
 dependencies {
-    compile project(':joinfaces-starters:jsf-spring-boot-starter')
-    compile 'org.apache.myfaces.tobago:tobago-core'
-    compile 'org.apache.myfaces.tobago:tobago-theme-standard'
+    api project(':joinfaces-starters:jsf-spring-boot-starter')
+    api 'org.apache.myfaces.tobago:tobago-core'
+    api 'org.apache.myfaces.tobago:tobago-theme-standard'
 }

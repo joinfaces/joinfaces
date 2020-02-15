@@ -1,4 +1,4 @@
-apply plugin: "java"
+apply plugin: "java-library"
 
 repositories {
     mavenCentral()
@@ -8,8 +8,8 @@ repositories {
 def springBootVersion = "2.3.0.M2"
 
 dependencies {
-    compile "org.springframework.boot:spring-boot-gradle-plugin:$springBootVersion"
+    api "org.springframework.boot:spring-boot-gradle-plugin:$springBootVersion"
     implementation "org.springframework.boot:spring-boot-configuration-metadata:$springBootVersion"
 
-    compile 'org.apache.maven:maven-model:3.6.3'
+    implementation 'org.apache.maven:maven-model:3.6.3'
 }

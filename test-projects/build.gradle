@@ -7,13 +7,13 @@ subprojects {
     apply plugin: "org.springframework.boot"
 
     dependencies {
-        compile project(":joinfaces-security-taglib")
-        compile 'org.springframework.boot:spring-boot-starter-security'
+        implementation project(":joinfaces-security-taglib")
+        implementation 'org.springframework.boot:spring-boot-starter-security'
 
-        testCompile('org.springframework.boot:spring-boot-starter-test') {
+        testImplementation('org.springframework.boot:spring-boot-starter-test') {
             exclude group: 'junit', module: 'junit'
         }
-        testCompile 'org.junit.jupiter:junit-jupiter-api'
-        testRuntime 'org.junit.jupiter:junit-jupiter-engine'
+        testImplementation 'org.junit.jupiter:junit-jupiter-api'
+        testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine'
     }
 }

@@ -2,6 +2,6 @@ description = 'ICEfaces Spring Boot Starter'
 jar.manifest.attributes('Automatic-Module-Name': 'joinfaces.starter.icefaces')
 
 dependencies {
-    compile project(':joinfaces-starters:jsf-spring-boot-starter')
-    compile 'org.icefaces:icefaces'
+    api project(':joinfaces-starters:jsf-spring-boot-starter')
+    api 'org.icefaces:icefaces'
 }

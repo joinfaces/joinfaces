@@ -1,8 +1,8 @@
 description = 'JoinFaces Tomcat-MyFaces Test Project'
 
 dependencies {
-    compile(project(':joinfaces-starters:jsf-spring-boot-starter')) {
+    implementation(project(':joinfaces-starters:jsf-spring-boot-starter')) {
         exclude module: "mojarra-spring-boot-starter"
     }
-    compile project(':joinfaces-starters:myfaces-spring-boot-starter')
+    implementation project(':joinfaces-starters:myfaces-spring-boot-starter')
 }

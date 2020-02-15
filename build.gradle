@@ -133,6 +133,11 @@ allprojects {
         sourceCompatibility = 1.8
         targetCompatibility = 1.8
 
+        java {
+            withSourcesJar()
+            withJavadocJar()
+        }
+
         tasks.withType(JavaCompile) {
             options.encoding = 'UTF-8'
         }

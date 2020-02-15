@@ -1,5 +1,5 @@
 subprojects {
-    apply plugin: "java"
+    apply plugin: "java-library"
     apply plugin: "com.github.spotbugs"
     apply plugin: "checkstyle"
     apply plugin: "pmd"
@@ -7,10 +7,10 @@ subprojects {
     apply plugin: "io.freefair.lombok"
 
     dependencies {
-        testCompile 'org.assertj:assertj-core'
-        testCompile 'org.junit.jupiter:junit-jupiter-api'
-        testCompile 'org.junit.jupiter:junit-jupiter-params'
-        testRuntime 'org.junit.jupiter:junit-jupiter-engine'
-        testCompile 'org.junit-pioneer:junit-pioneer:0.3.0'
+        testImplementation 'org.assertj:assertj-core'
+        testImplementation 'org.junit.jupiter:junit-jupiter-api'
+        testImplementation 'org.junit.jupiter:junit-jupiter-params'
+        testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine'
+        testImplementation 'org.junit-pioneer:junit-pioneer:0.3.0'
     }
 }
