@@ -19,10 +19,10 @@ buildscript {
 }
 
 plugins {
-    id 'io.freefair.git-version' version '4.1.5'
+    id 'io.freefair.git-version' version '5.0.0-rc2'
     id "org.asciidoctor.jvm.convert" version "2.2.0"
-    id 'io.freefair.aggregate-jacoco-report' version '4.1.5'
-    id 'io.freefair.okhttp' version '4.1.5'
+    id 'io.freefair.aggregate-jacoco-report' version '5.0.0-rc2'
+    id 'io.freefair.okhttp' version '5.0.0-rc2'
 }
 
 allprojects {
