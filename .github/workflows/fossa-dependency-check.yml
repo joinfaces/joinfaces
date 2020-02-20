@@ -1,0 +1,15 @@
+name: "Fossa Dependency Check"
+on: [push, pull_request]
+
+jobs:
+  validation:
+    name: "Analyze"
+    runs-on: ubuntu-latest
+    env:
+      FOSSA_API_KEY: 7a6e836540221471e08bbc6bad22b785
+    steps:
+      - uses: actions/checkout@v2
+      - name: Download Fossa CLI
+        run: "curl -H \'Cache-Control: no-cache\' https://raw.githubusercontent.com/fossas/fossa-cli/master/install.sh | bash"
+      - run: "fossa init"
+      - run: "fossa analyze"
