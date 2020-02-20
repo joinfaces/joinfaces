@@ -9,6 +9,15 @@ cache:
   directories:
     - "$HOME/.gradle/caches/"
     - "$HOME/.gradle/wrapper/"
+
+before_script:
+  - "curl -H 'Cache-Control: no-cache' https://raw.githubusercontent.com/fossas/fossa-cli/master/install.sh | sudo bash"
+
+script:
+  - "./gradlew check"
+  - fossa init
+  - fossa analyze
+
 after_success:
   - "./gradlew jacocoTestReport aggregateJacocoReport"
   - bash <(curl -s https://codecov.io/bash) -f "jacoco*.xml" -f "*Jacoco*.xml"
