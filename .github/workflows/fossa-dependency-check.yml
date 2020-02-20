@@ -11,5 +11,6 @@ jobs:
       - uses: actions/checkout@v2
       - name: Download Fossa CLI
         run: "curl -H \'Cache-Control: no-cache\' https://raw.githubusercontent.com/fossas/fossa-cli/master/install.sh | bash"
+      - run: "./gradlew dependencies"
       - run: "fossa init"
       - run: "fossa analyze"
