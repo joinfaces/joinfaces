@@ -123,7 +123,8 @@ allprojects {
     apply plugin: 'nebula.lint'
 
     gradleLint {
-        rules = ['transitive-duplicate-dependency-class', 'duplicate-dependency-class']
+        //https://github.com/nebula-plugins/gradle-lint-plugin/issues/263
+        //rules = ['transitive-duplicate-dependency-class', 'duplicate-dependency-class']
         criticalRules = ['dependency-parentheses']
     }
 
