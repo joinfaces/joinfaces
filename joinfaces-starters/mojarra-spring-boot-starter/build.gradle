@@ -2,9 +2,9 @@ description = 'Mojarra Spring Boot Starter'
 jar.manifest.attributes('Automatic-Module-Name': 'joinfaces.starter.mojarra')
 
 dependencies {
-    compile 'org.glassfish:jakarta.faces'
+    api 'org.glassfish:jakarta.faces'
 
-    runtime('javax.enterprise:cdi-api') {
+    runtimeOnly('javax.enterprise:cdi-api') {
         exclude group: 'javax.el', module: 'javax.el-api'
     }
 }

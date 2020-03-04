@@ -2,8 +2,8 @@ description = 'Security Spring Boot Starter'
 jar.manifest.attributes('Automatic-Module-Name': 'joinfaces.starter.security')
 
 dependencies {
-    compile project(':joinfaces-starters:jsf-spring-boot-starter')
-    compile project(':joinfaces-security-taglib')
+    api project(':joinfaces-starters:jsf-spring-boot-starter')
+    api project(':joinfaces-security-taglib')
 
-    compile 'org.springframework.boot:spring-boot-starter-security'
+    api 'org.springframework.boot:spring-boot-starter-security'
 }

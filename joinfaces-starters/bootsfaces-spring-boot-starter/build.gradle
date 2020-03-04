@@ -2,6 +2,6 @@ description = 'BootsFaces Spring Boot Starter'
 jar.manifest.attributes('Automatic-Module-Name': 'joinfaces.starter.bootsfaces')
 
 dependencies {
-    compile project(':joinfaces-starters:jsf-spring-boot-starter')
-    compile 'net.bootsfaces:bootsfaces'
+    api project(':joinfaces-starters:jsf-spring-boot-starter')
+    api 'net.bootsfaces:bootsfaces'
 }

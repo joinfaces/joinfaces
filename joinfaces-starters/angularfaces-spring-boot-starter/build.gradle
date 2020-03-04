@@ -2,9 +2,9 @@ description = 'AngularFaces Spring Boot Starter'
 jar.manifest.attributes('Automatic-Module-Name': 'joinfaces.starter.angularfaces')
 
 dependencies {
-    compile project(':joinfaces-starters:jsf-spring-boot-starter')
+    api project(':joinfaces-starters:jsf-spring-boot-starter')
 
-    compile('de.beyondjava:angularFaces-core') {
+    api('de.beyondjava:angularFaces-core') {
         exclude group: 'commons-logging', module: 'commons-logging'
     }
 }

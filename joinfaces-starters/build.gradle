@@ -1,7 +1,6 @@
 subprojects {
-    apply plugin: "java"
+    apply plugin: "java-library"
     apply plugin: "io.freefair.maven-publish-java"
-    apply plugin: "io.freefair.maven-jars"
 
     // Starters should have a clean classpath.
     // Disabled because module-info conflict: https://github.com/nebula-plugins/gradle-lint-plugin/pull/223

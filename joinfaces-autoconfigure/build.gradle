@@ -1,4 +1,4 @@
-apply plugin: "java"
+apply plugin: "java-library"
 apply plugin: "com.github.spotbugs"
 apply plugin: "checkstyle"
 apply plugin: "pmd"
@@ -6,7 +6,6 @@ apply plugin: "jacoco"
 apply plugin: "io.freefair.lombok"
 apply plugin: "io.freefair.maven-optional"
 apply plugin: "io.freefair.maven-publish-java"
-apply plugin: "io.freefair.maven-jars"
 
 description = 'JoinFaces AutoConfigure'
 jar.manifest.attributes('Automatic-Module-Name': 'joinfaces.autoconfigure')
@@ -17,7 +16,7 @@ dependencies {
     annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
     annotationProcessor 'org.springframework.boot:spring-boot-autoconfigure-processor'
 
-    compile 'org.springframework.boot:spring-boot-autoconfigure'
+    api 'org.springframework.boot:spring-boot-autoconfigure'
     implementation 'io.github.classgraph:classgraph'
 
     optional 'org.springframework.boot:spring-boot-starter'
@@ -54,14 +53,14 @@ dependencies {
     optional 'org.apache.myfaces.tobago:tobago-core'
     optional 'org.apache.myfaces.tobago:tobago-theme-standard'
 
-    testCompile('org.springframework.boot:spring-boot-starter-test') {
+    testImplementation('org.springframework.boot:spring-boot-starter-test') {
         exclude group: "junit", module: "junit"
     }
-    testCompile project(':joinfaces-test')
-    testCompile 'org.apache.tomcat.embed:tomcat-embed-jasper'
-    testCompile 'org.junit.jupiter:junit-jupiter-api'
-    testRuntime 'org.junit.jupiter:junit-jupiter-engine'
-    testRuntime 'org.ocpsoft.logging:logging-adapter-slf4j'
+    testImplementation project(':joinfaces-test')
+    testImplementation 'org.apache.tomcat.embed:tomcat-embed-jasper'
+    testImplementation 'org.junit.jupiter:junit-jupiter-api'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine'
+    testRuntimeOnly 'org.ocpsoft.logging:logging-adapter-slf4j'
 }
 
 compileJava.dependsOn(processResources)

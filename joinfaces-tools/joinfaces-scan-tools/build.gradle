@@ -1,17 +1,16 @@
 apply plugin: "io.freefair.maven-publish-java"
-apply plugin: "io.freefair.maven-jars"
 
 description = "JoinFaces Scan Tools"
 
 dependencies {
-    compile "io.github.classgraph:classgraph"
-    compile "org.slf4j:slf4j-api"
+    api "io.github.classgraph:classgraph"
+    implementation "org.slf4j:slf4j-api"
 
     compileOnly 'org.ocpsoft.rewrite:rewrite-servlet'
     compileOnly 'org.apache.myfaces.core:myfaces-impl'
     compileOnly 'jakarta.servlet:jakarta.servlet-api'
 
-    testCompile 'org.ocpsoft.rewrite:rewrite-servlet'
+    testImplementation 'org.ocpsoft.rewrite:rewrite-servlet'
 
     testRuntimeOnly 'org.slf4j:slf4j-simple'
     testRuntimeOnly 'org.apache.myfaces.core:myfaces-impl'

@@ -2,9 +2,9 @@ description = 'MyFaces Spring Boot Starter'
 jar.manifest.attributes('Automatic-Module-Name': 'joinfaces.starter.myfaces')
 
 dependencies {
-    compile 'org.apache.myfaces.core:myfaces-impl'
+    api 'org.apache.myfaces.core:myfaces-impl'
 
-    runtime('javax.enterprise:cdi-api') {
+    runtimeOnly('javax.enterprise:cdi-api') {
         exclude group: 'javax.el', module: 'javax.el-api'
     }
 }

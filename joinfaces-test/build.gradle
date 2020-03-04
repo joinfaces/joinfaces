@@ -1,20 +1,19 @@
-apply plugin: "java"
+apply plugin: "java-library"
 apply plugin: "com.github.spotbugs"
 apply plugin: "checkstyle"
 apply plugin: "io.freefair.lombok"
 apply plugin: "io.freefair.maven-optional"
 apply plugin: "io.freefair.maven-publish-java"
-apply plugin: "io.freefair.maven-jars"
 
 description = 'JoinFaces Test'
 jar.manifest.attributes('Automatic-Module-Name': 'joinfaces.test')
 
 dependencies {
-    compile 'org.springframework.boot:spring-boot-starter-test'
-    compile 'org.junit.jupiter:junit-jupiter-api'
+    api 'org.springframework.boot:spring-boot-starter-test'
+    api 'org.junit.jupiter:junit-jupiter-api'
 
     optional 'org.springframework.boot:spring-boot-starter-web'
     optional 'org.glassfish:jakarta.faces'
 
-    testRuntime 'org.junit.jupiter:junit-jupiter-engine'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine'
 }

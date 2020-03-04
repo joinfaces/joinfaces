@@ -1,17 +1,16 @@
-apply plugin: "java"
+apply plugin: "java-library"
 apply plugin: "com.github.spotbugs"
 apply plugin: "checkstyle"
 apply plugin: "jacoco"
 apply plugin: "io.freefair.lombok"
 apply plugin: "io.freefair.maven-optional"
 apply plugin: "io.freefair.maven-publish-java"
-apply plugin: "io.freefair.maven-jars"
 
 description = 'Spring Security JSF Taglib'
 jar.manifest.attributes('Automatic-Module-Name': 'joinfaces.security.taglib')
 
 dependencies {
-    compile('org.springframework.security:spring-security-taglibs') {
+    api('org.springframework.security:spring-security-taglibs') {
         exclude group: 'org.springframework.security', module: 'spring-security-acl'
     }
 
@@ -22,11 +21,11 @@ dependencies {
     //For javadoc references
     compileOnly 'org.springframework.webflow:spring-faces:2.5.1.RELEASE'
 
-    testCompile project(':joinfaces-test')
-    testCompile 'org.glassfish:jakarta.faces'
-    testCompile 'org.springframework.boot:spring-boot-starter-security'
-    testCompile 'org.springframework.boot:spring-boot-starter-web'
-    testCompile 'org.springframework.security:spring-security-test'
-    testCompile 'org.junit.jupiter:junit-jupiter-api'
-    testRuntime 'org.junit.jupiter:junit-jupiter-engine'
+    testImplementation project(':joinfaces-test')
+    testImplementation 'org.glassfish:jakarta.faces'
+    testImplementation 'org.springframework.boot:spring-boot-starter-security'
+    testImplementation 'org.springframework.boot:spring-boot-starter-web'
+    testImplementation 'org.springframework.security:spring-security-test'
+    testImplementation 'org.junit.jupiter:junit-jupiter-api'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine'
 }

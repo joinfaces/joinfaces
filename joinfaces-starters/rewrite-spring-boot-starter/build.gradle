@@ -2,9 +2,9 @@ description = 'Rewrite Spring Boot Starter'
 jar.manifest.attributes('Automatic-Module-Name': 'joinfaces.starter.rewrite')
 
 dependencies {
-    compile project(':joinfaces-autoconfigure')
-    compile 'org.ocpsoft.rewrite:rewrite-servlet'
-    compile 'org.ocpsoft.rewrite:rewrite-integration-spring'
-    compile 'org.ocpsoft.rewrite:rewrite-integration-faces'
-    compile 'org.ocpsoft.logging:logging-adapter-slf4j'
+    api project(':joinfaces-autoconfigure')
+    api 'org.ocpsoft.rewrite:rewrite-servlet'
+    api 'org.ocpsoft.rewrite:rewrite-integration-spring'
+    api 'org.ocpsoft.rewrite:rewrite-integration-faces'
+    api 'org.ocpsoft.logging:logging-adapter-slf4j'
 }

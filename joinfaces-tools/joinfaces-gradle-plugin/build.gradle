@@ -3,7 +3,6 @@ import org.springframework.boot.gradle.plugin.SpringBootPlugin
 apply plugin: "java-gradle-plugin"
 apply plugin: "com.gradle.plugin-publish"
 apply plugin: "maven-publish"
-apply plugin: "io.freefair.maven-jars"
 
 description = "JoinFaces Gradle Plugin"
 
@@ -46,10 +45,10 @@ pluginBundle {
 }
 
 dependencies {
-    compile project(":joinfaces-tools:joinfaces-scan-tools")
+    api project(":joinfaces-tools:joinfaces-scan-tools")
 
-    compile "org.springframework.boot:spring-boot-gradle-plugin:${SpringBootPlugin.SPRING_BOOT_VERSION}"
-    compile "io.spring.gradle:dependency-management-plugin"
+    api "org.springframework.boot:spring-boot-gradle-plugin:${SpringBootPlugin.SPRING_BOOT_VERSION}"
+    api "io.spring.gradle:dependency-management-plugin"
 }
 
 publishing {

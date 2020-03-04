@@ -2,8 +2,8 @@ description = 'PrimeFaces Spring Boot Starter'
 jar.manifest.attributes('Automatic-Module-Name': 'joinfaces.starter.primefaces')
 
 dependencies {
-    compile project(':joinfaces-starters:jsf-spring-boot-starter')
-    compile 'org.primefaces:primefaces'
-    compile 'org.primefaces.extensions:primefaces-extensions'
-    runtime 'org.primefaces.extensions:resources-ckeditor'
+    api project(':joinfaces-starters:jsf-spring-boot-starter')
+    api 'org.primefaces:primefaces'
+    api 'org.primefaces.extensions:primefaces-extensions'
+    runtimeOnly 'org.primefaces.extensions:resources-ckeditor'
 }
