@@ -5,24 +5,24 @@ buildscript {
         maven { url "https://plugins.gradle.org/m2/" }
     }
     dependencies {
-        classpath "io.freefair.gradle:lombok-plugin:5.0.0-rc2"
-        classpath "io.freefair.gradle:maven-plugin:5.0.0-rc2"
-        classpath "io.freefair.gradle:maven-plugin-plugin:5.0.0-rc2"
+        classpath "io.freefair.gradle:lombok-plugin:5.0.0-rc4"
+        classpath "io.freefair.gradle:maven-plugin:5.0.0-rc4"
+        classpath "io.freefair.gradle:maven-plugin-plugin:5.0.0-rc4"
         classpath "gradle.plugin.com.github.spotbugs:spotbugs-gradle-plugin:2.0.0"
-        classpath "com.netflix.nebula:gradle-lint-plugin:16.0.2"
+        classpath "com.netflix.nebula:gradle-lint-plugin:16.2.3"
         classpath "de.aaschmid:gradle-cpd-plugin:3.1"
         classpath "com.gradle.publish:plugin-publish-plugin:0.10.1"
-        classpath "io.codearte.gradle.nexus:gradle-nexus-staging-plugin:0.20.0"
+        classpath "io.codearte.gradle.nexus:gradle-nexus-staging-plugin:0.21.2"
         classpath "de.marcphilipp.gradle:nexus-publish-plugin:0.4.0"
         classpath 'com.google.guava:guava:27.1-jre'
     }
 }
 
 plugins {
-    id 'io.freefair.git-version' version '5.0.0-rc2'
-    id "org.asciidoctor.jvm.convert" version "2.2.0"
-    id 'io.freefair.aggregate-jacoco-report' version '5.0.0-rc2'
-    id 'io.freefair.okhttp' version '5.0.0-rc2'
+    id 'io.freefair.git-version' version '5.0.0-rc4'
+    id "org.asciidoctor.jvm.convert" version "3.1.0"
+    id 'io.freefair.aggregate-jacoco-report' version '5.0.0-rc4'
+    id 'io.freefair.okhttp' version '5.0.0-rc4'
 }
 
 allprojects {
