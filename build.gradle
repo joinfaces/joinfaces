@@ -101,7 +101,7 @@ allprojects {
             }
             dependency 'org.ocpsoft.logging:logging-adapter-slf4j:1.0.5.Final'
 
-            dependencySet('com.github.adminfaces:1.0.2') {
+            dependencySet('com.github.adminfaces:1.1.0') {
                 entry "admin-template"
                 entry "admin-theme"
             }
