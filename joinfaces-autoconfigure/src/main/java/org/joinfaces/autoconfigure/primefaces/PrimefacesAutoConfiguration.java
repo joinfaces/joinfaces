@@ -102,7 +102,7 @@ public class PrimefacesAutoConfiguration {
 	@EnableConfigurationProperties(Primefaces6_2Properties.class)
 	public static class Primefaces6_2AutoConfiguration {
 	}
-	
+
 	/**
 	 * Auto Configuration for Primefaces 8.0+.
 	 */
