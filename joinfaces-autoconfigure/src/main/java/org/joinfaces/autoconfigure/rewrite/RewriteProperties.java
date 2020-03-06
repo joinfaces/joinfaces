@@ -43,6 +43,12 @@ public class RewriteProperties implements ServletContextInitParameterProperties 
 	private Boolean configReloading;
 
 	/**
+	 * Does the user not want to scan the WEB-INF/classes directory.
+	 */
+	@ServletContextInitParameter(AnnotationConfigProvider.CONFIG_SCAN_CLASSES_DIR)
+	private Boolean scanClassesDirectory;
+
+	/**
 	 * Does the user want to scan the WEB-INF/lib directory.
 	 */
 	@ServletContextInitParameter(AnnotationConfigProvider.CONFIG_SCAN_LIB_DIR)

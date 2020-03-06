@@ -92,7 +92,7 @@ allprojects {
                 exclude 'org.jboss.spec.javax.interceptor:jboss-interceptors-api_1.2_spec'
             }
 
-            dependencySet("org.ocpsoft.rewrite:3.4.2.Final") {
+            dependencySet("org.ocpsoft.rewrite:3.4.4.Final") {
                 entry "rewrite-servlet"
                 entry "rewrite-config-prettyfaces"
                 entry "rewrite-integration-spring"
