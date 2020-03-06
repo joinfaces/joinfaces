@@ -36,5 +36,8 @@ public class Primefaces8_0Properties implements ServletContextInitParameterPrope
 
 	@ServletContextInitParameter(Constants.ContextParams.CSP)
 	private Boolean csp;
+	
+	@ServletContextInitParameter(Constants.ContextParams.CSP_POLICY)
+	private String cspPolicy;
 
 }
