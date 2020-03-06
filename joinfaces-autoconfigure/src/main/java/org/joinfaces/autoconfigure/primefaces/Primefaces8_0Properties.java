@@ -24,7 +24,7 @@ import org.primefaces.util.Constants;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
 /**
- * Configuration properties for Primefaces 6.2+.
+ * Configuration properties for Primefaces 8.0+.
  *
  * Values taken from https://primefaces.github.io/primefaces/8_0/#/core/contentsecuritypolicy.
  *
