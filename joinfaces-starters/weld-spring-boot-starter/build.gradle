@@ -4,5 +4,9 @@ jar.manifest.attributes('Automatic-Module-Name': 'joinfaces.starter.weld')
 dependencies {
     api project(':joinfaces-autoconfigure')
 
-    api 'org.jboss.weld.servlet:weld-servlet-core'
+    api('org.jboss.weld.servlet:weld-servlet-core') {
+        exclude group: 'org.jboss.spec.javax.el', module: 'jboss-el-api_3.0_spec'
+        exclude group: 'org.jboss.spec.javax.annotation', module: 'jboss-annotations-api_1.3_spec'
+        exclude group: 'org.jboss.spec.javax.interceptor', module: 'jboss-interceptors-api_1.2_spec'
+    }
 }

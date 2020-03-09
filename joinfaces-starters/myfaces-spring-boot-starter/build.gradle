@@ -2,7 +2,9 @@ description = 'MyFaces Spring Boot Starter'
 jar.manifest.attributes('Automatic-Module-Name': 'joinfaces.starter.myfaces')
 
 dependencies {
-    api 'org.apache.myfaces.core:myfaces-impl'
+    api('org.apache.myfaces.core:myfaces-impl') {
+        exclude group: "commons-logging", module: "commons-logging"
+    }
 
     runtimeOnly('javax.enterprise:cdi-api') {
         exclude group: 'javax.el', module: 'javax.el-api'

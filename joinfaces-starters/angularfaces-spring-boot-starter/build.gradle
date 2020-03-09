@@ -5,6 +5,6 @@ dependencies {
     api project(':joinfaces-starters:jsf-spring-boot-starter')
 
     api('de.beyondjava:angularFaces-core') {
-        exclude group: 'commons-logging', module: 'commons-logging'
+        exclude group: "commons-logging", module: "commons-logging"
     }
 }

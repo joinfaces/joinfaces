@@ -47,14 +47,10 @@ allprojects {
 
             dependencySet('org.apache.myfaces.core:2.3.6') {
                 entry "myfaces-api"
-                entry("myfaces-impl") {
-                    exclude "commons-logging:commons-logging"
-                }
+                entry "myfaces-impl"
             }
 
-            dependency('javax.enterprise:cdi-api:2.0.SP1') {
-                exclude "javax.el:javax.el-api"
-            }
+            dependency 'javax.enterprise:cdi-api:2.0.SP1'
 
             dependency "org.apache.tomcat:tomcat-jasper:${importedProperties['tomcat.version']}"
             dependency 'org.jboss.spec.javax.servlet.jsp:jboss-jsp-api_2.3_spec:2.0.0.Final'
@@ -68,9 +64,7 @@ allprojects {
             }
 
             dependency 'net.bootsfaces:bootsfaces:1.4.2'
-            dependency('de.beyondjava:angularFaces-core:2.1.12') {
-                exclude "commons-logging:commons-logging"
-            }
+            dependency 'de.beyondjava:angularFaces-core:2.1.12'
             dependency 'org.butterfaces:components:3.3.2'
 
             dependencySet('org.richfaces:4.5.17.Final') {
@@ -79,18 +73,13 @@ allprojects {
             }
 
             dependencySet('org.icefaces:4.3.0') {
-                entry('icefaces') {
-                    exclude "org.glassfish:javax.faces"
-                }
+                entry 'icefaces'
                 entry 'icefaces-ace'
             }
 
             dependency "commons-fileupload:commons-fileupload:1.4"
 
-            dependency('org.jboss.weld.servlet:weld-servlet-core:3.1.2.Final') {
-                exclude 'org.jboss.spec.javax.el:jboss-el-api_3.0_spec'
-                exclude 'org.jboss.spec.javax.interceptor:jboss-interceptors-api_1.2_spec'
-            }
+            dependency 'org.jboss.weld.servlet:weld-servlet-core:3.1.2.Final'
 
             dependencySet("org.ocpsoft.rewrite:3.4.4.Final") {
                 entry "rewrite-servlet"
