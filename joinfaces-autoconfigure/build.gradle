@@ -13,6 +13,10 @@ jar.manifest.attributes('Automatic-Module-Name': 'joinfaces.autoconfigure')
 gradleLint.rules -= 'transitive-duplicate-dependency-class'
 
 dependencies {
+
+    optional platform(project(':joinfaces-dependencies'))
+    annotationProcessor platform(project(':joinfaces-dependencies'))
+
     annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
     annotationProcessor 'org.springframework.boot:spring-boot-autoconfigure-processor'
 

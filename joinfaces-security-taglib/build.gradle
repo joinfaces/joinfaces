@@ -10,6 +10,9 @@ description = 'Spring Security JSF Taglib'
 jar.manifest.attributes('Automatic-Module-Name': 'joinfaces.security.taglib')
 
 dependencies {
+    api platform(project(':joinfaces-dependencies'))
+    compileOnly platform(project(':joinfaces-dependencies'))
+
     api('org.springframework.security:spring-security-taglibs') {
         exclude group: 'org.springframework.security', module: 'spring-security-acl'
     }

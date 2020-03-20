@@ -1,4 +1,4 @@
-apply plugin: "java-library"
+apply plugin: "java-gradle-plugin"
 
 repositories {
     mavenCentral()
@@ -13,3 +13,13 @@ dependencies {
 
     implementation 'org.apache.maven:maven-model:3.6.3'
 }
+
+gradlePlugin {
+    plugins {
+        simplePlugin {
+            id = 'org.joinfaces.build.spring-boot-versions'
+            implementationClass = 'org.joinfaces.build.SpringBootVersionsPlugin'
+        }
+    }
+}
+

@@ -1,5 +1,3 @@
-import org.springframework.boot.gradle.plugin.SpringBootPlugin
-
 buildscript {
     repositories {
         maven { url "https://plugins.gradle.org/m2/" }
@@ -31,82 +29,6 @@ allprojects {
     repositories {
         mavenCentral()
         maven { url "https://repo.spring.io/milestone" }
-    }
-
-    apply plugin: "io.spring.dependency-management"
-
-    dependencyManagement {
-        imports {
-            mavenBom SpringBootPlugin.BOM_COORDINATES
-        }
-
-        dependencies {
-            dependency 'jakarta.faces:jakarta.faces-api:2.3.2'
-
-            dependency 'org.glassfish:jakarta.faces:2.3.14'
-
-            dependencySet('org.apache.myfaces.core:2.3.6') {
-                entry "myfaces-api"
-                entry "myfaces-impl"
-            }
-
-            dependency 'javax.enterprise:cdi-api:2.0.SP1'
-
-            dependency "org.apache.tomcat:tomcat-jasper:${importedProperties['tomcat.version']}"
-            dependency 'org.jboss.spec.javax.servlet.jsp:jboss-jsp-api_2.3_spec:2.0.0.Final'
-
-            dependency 'io.github.classgraph:classgraph:4.8.65'
-
-            dependency 'org.primefaces:primefaces:8.0'
-            dependencySet("org.primefaces.extensions:8.0") {
-                entry "primefaces-extensions"
-                entry "resources-ckeditor"
-            }
-
-            dependency 'net.bootsfaces:bootsfaces:1.4.2'
-            dependency 'de.beyondjava:angularFaces-core:2.1.12'
-            dependency 'org.butterfaces:components:3.3.2'
-
-            dependencySet('org.richfaces:4.5.17.Final') {
-                entry "richfaces"
-                entry "richfaces-a4j"
-            }
-
-            dependencySet('org.icefaces:4.3.0') {
-                entry 'icefaces'
-                entry 'icefaces-ace'
-            }
-
-            dependency "commons-fileupload:commons-fileupload:1.4"
-
-            dependency 'org.jboss.weld.servlet:weld-servlet-core:3.1.2.Final'
-
-            dependencySet("org.ocpsoft.rewrite:3.4.4.Final") {
-                entry "rewrite-servlet"
-                entry "rewrite-config-prettyfaces"
-                entry "rewrite-integration-spring"
-                entry "rewrite-integration-faces"
-                entry "rewrite-integration-cdi"
-            }
-            dependency 'org.ocpsoft.logging:logging-adapter-slf4j:1.0.5.Final'
-
-            dependencySet('com.github.adminfaces:1.1.0') {
-                entry "admin-template"
-                entry "admin-theme"
-            }
-
-            dependency 'jakarta.ejb:jakarta.ejb-api:3.2.6'
-            dependency 'jakarta.el:jakarta.el-api:3.0.3'
-
-            dependencySet('org.apache.myfaces.tobago:4.4.1') {
-                entry 'tobago-core'
-                entry 'tobago-theme-standard'
-                entry 'tobago-theme-speyside'
-                entry 'tobago-theme-scarborough'
-                entry 'tobago-theme-richmond'
-                entry 'tobago-theme-charlotteville'
-            }
-        }
     }
 
     apply plugin: 'nebula.lint'
@@ -256,18 +178,20 @@ task propertyDocs(type: org.joinfaces.build.PropertyDocumentation) {
 
 task bomDocs(type: org.joinfaces.build.BomDocumentation) {
     afterEvaluate {
-        dependsOn generatePomFileForBomPublication
-        inputFile = generatePomFileForBomPublication.destination
+        dependsOn "joinfaces-dependencies:generatePomFileForBomPublication"
+        inputFile = tasks.findByPath("joinfaces-dependencies:generatePomFileForBomPublication").destination
     }
     outputFile = file("src/docs/asciidoc/generated/_versions.adoc")
 }
+
+apply plugin: "org.joinfaces.build.spring-boot-versions"
 
 asciidoctor {
     baseDirFollowsSourceDir()
     dependsOn propertyDocs, bomDocs
     inputs.dir("src/docs/asciidoc")
     attributes revnumber: project.version,
-            'spring-version': dependencyManagement.importedProperties['spring-framework.version'],
+            'spring-version': springBootBomProperties['spring-framework.version'],
             'spring-boot-version': org.springframework.boot.gradle.plugin.SpringBootPlugin.SPRING_BOOT_VERSION
 }
 
@@ -294,27 +218,6 @@ task uploadDocs(type: io.freefair.gradle.plugins.okhttp.tasks.UploadFile) {
 
 publishing {
     publications {
-        bom(MavenPublication) {
-            artifactId = 'joinfaces-dependencies'
-
-            pom {
-                name = 'JoinFaces Dependencies'
-                description = 'JoinFaces Dependencies'
-            }
-
-            pom.withXml {
-                rootProject.subprojects { p ->
-                    if (p.pluginManager.hasPlugin('maven-publish')) {
-                        def depNode = asNode().dependencyManagement.first().get('dependencies').first().appendNode('dependency')
-                        depNode.appendNode('groupId', p.group)
-                        depNode.appendNode('artifactId', p.name)
-                        depNode.appendNode('version', p.version)
-                    }
-                }
-            }
-
-            signing.sign it
-        }
         javadoc(MavenPublication) {
             artifactId = 'joinfaces'
 

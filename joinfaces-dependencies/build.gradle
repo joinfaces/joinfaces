@@ -1,0 +1,99 @@
+import org.springframework.boot.gradle.plugin.SpringBootPlugin
+
+plugins {
+    id "java-platform"
+    id "maven-publish"
+    id "org.joinfaces.build.spring-boot-versions"
+}
+
+javaPlatform {
+    allowDependencies()
+}
+
+
+dependencies {
+    api platform(SpringBootPlugin.BOM_COORDINATES)
+
+    constraints {
+
+        api 'jakarta.faces:jakarta.faces-api:2.3.2'
+
+        api 'org.glassfish:jakarta.faces:2.3.14'
+
+        def myfacesVersion = '2.3.6'
+        api "org.apache.myfaces.core:myfaces-api:$myfacesVersion"
+        api "org.apache.myfaces.core:myfaces-impl:$myfacesVersion"
+
+        api 'javax.enterprise:cdi-api:2.0.SP1'
+
+        api "org.apache.tomcat:tomcat-jasper:${springBootBomProperties['tomcat.version']}"
+        api 'org.jboss.spec.javax.servlet.jsp:jboss-jsp-api_2.3_spec:2.0.0.Final'
+
+        api 'io.github.classgraph:classgraph:4.8.65'
+
+        api 'org.primefaces:primefaces:8.0'
+        def primefacesExtensionVersion = '8.0'
+        api "org.primefaces.extensions:primefaces-extensions:$primefacesExtensionVersion"
+        api "org.primefaces.extensions:resources-ckeditor:$primefacesExtensionVersion"
+
+        api 'net.bootsfaces:bootsfaces:1.4.2'
+        api 'de.beyondjava:angularFaces-core:2.1.12'
+        api 'org.butterfaces:components:3.3.2'
+
+        def richfacesVersion = '4.5.17.Final'
+        api "org.richfaces:richfaces:$richfacesVersion"
+        api "org.richfaces:richfaces-a4j:$richfacesVersion"
+
+        def icefacesVersion = '4.3.0'
+        api "org.icefaces:icefaces:$icefacesVersion"
+        api "org.icefaces:icefaces-ace:$icefacesVersion"
+
+        api "commons-fileupload:commons-fileupload:1.4"
+
+        api 'org.jboss.weld.servlet:weld-servlet-core:3.1.2.Final'
+
+        def rewriteVersion = "3.4.4.Final"
+        api "org.ocpsoft.rewrite:rewrite-servlet:$rewriteVersion"
+        api "org.ocpsoft.rewrite:rewrite-config-prettyfaces:$rewriteVersion"
+        api "org.ocpsoft.rewrite:rewrite-integration-spring:$rewriteVersion"
+        api "org.ocpsoft.rewrite:rewrite-integration-faces:$rewriteVersion"
+        api "org.ocpsoft.rewrite:rewrite-integration-cdi:$rewriteVersion"
+
+        api 'org.ocpsoft.logging:logging-adapter-slf4j:1.0.5.Final'
+
+        def adminfacesVersion = '1.1.0'
+        api "com.github.adminfaces:admin-template:$adminfacesVersion"
+        api "com.github.adminfaces:admin-theme:$adminfacesVersion"
+
+        api 'jakarta.ejb:jakarta.ejb-api:3.2.6'
+        api 'jakarta.el:jakarta.el-api:3.0.3'
+
+        def tobagoVersion = '4.4.1'
+        api "org.apache.myfaces.tobago:tobago-core:$tobagoVersion"
+        api "org.apache.myfaces.tobago:tobago-theme-standard:$tobagoVersion"
+        api "org.apache.myfaces.tobago:tobago-theme-speyside:$tobagoVersion"
+        api "org.apache.myfaces.tobago:tobago-theme-scarborough:$tobagoVersion"
+        api "org.apache.myfaces.tobago:tobago-theme-richmond:$tobagoVersion"
+        api "org.apache.myfaces.tobago:tobago-theme-charlotteville:$tobagoVersion"
+
+        project(":joinfaces-starters").subprojects { sub ->
+            api sub
+        }
+    }
+}
+
+publishing {
+    publications {
+        bom(MavenPublication) {
+            from components.javaPlatform
+            artifactId = 'joinfaces-dependencies'
+
+            pom {
+                name = 'JoinFaces Dependencies'
+                description = 'JoinFaces Dependencies'
+            }
+
+            signing.sign it
+        }
+    }
+}
