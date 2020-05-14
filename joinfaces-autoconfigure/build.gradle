@@ -54,7 +54,7 @@ dependencies {
     optional 'org.apache.myfaces.tobago:tobago-theme-standard'
 
     testImplementation('org.springframework.boot:spring-boot-starter-test') {
-        exclude group: "junit", module: "junit"
+        exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
     }
     testImplementation project(':joinfaces-test')
     testImplementation 'org.apache.tomcat.embed:tomcat-embed-jasper'
