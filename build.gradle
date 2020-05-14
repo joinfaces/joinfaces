@@ -156,6 +156,10 @@ allprojects {
         }
     }
 
+    tasks.withType(Javadoc) {
+        failOnError = false
+    }
+
     plugins.withId("pmd") {
         pmd {
             ruleSetConfig = resources.text.fromFile("$rootDir/config/pmd/pmd-ruleset.xml")
@@ -247,7 +251,6 @@ apply plugin: "maven-publish"
 apply plugin: "io.freefair.aggregate-javadoc-jar"
 apply plugin: "io.freefair.javadoc-links"
 
-aggregateJavadoc.failOnError = false
 aggregateJavadoc.title = "JoinFaces $version API"
 
 apply plugin: "io.codearte.nexus-staging"
