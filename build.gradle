@@ -5,9 +5,13 @@ buildscript {
         maven { url "https://plugins.gradle.org/m2/" }
     }
     dependencies {
-        classpath "io.freefair.gradle:lombok-plugin:5.0.1"
-        classpath "io.freefair.gradle:maven-plugin:5.0.1"
-        classpath "io.freefair.gradle:maven-plugin-plugin:5.0.1"
+        def freefairGradleVersion = "5.1.0"
+        classpath "io.freefair.gradle:lombok-plugin:$freefairGradleVersion"
+        classpath "io.freefair.gradle:maven-plugin:$freefairGradleVersion"
+        classpath "io.freefair.gradle:maven-plugin-plugin:$freefairGradleVersion"
+        classpath "io.freefair.gradle:git-plugin:$freefairGradleVersion"
+        classpath "io.freefair.gradle:okhttp-plugin:$freefairGradleVersion"
+        classpath "io.freefair.gradle:jacoco-plugin:$freefairGradleVersion"
         classpath "gradle.plugin.com.github.spotbugs.snom:spotbugs-gradle-plugin:4.0.8"
         classpath "com.netflix.nebula:gradle-lint-plugin:16.2.3"
         classpath "de.aaschmid:gradle-cpd-plugin:3.1"
@@ -19,11 +23,11 @@ buildscript {
 }
 
 plugins {
-    id 'io.freefair.git-version' version '5.0.1'
     id "org.asciidoctor.jvm.convert" version "3.1.0"
-    id 'io.freefair.aggregate-jacoco-report' version '5.0.1'
-    id 'io.freefair.okhttp' version '5.0.1'
 }
+
+apply plugin: 'io.freefair.git-version'
+apply plugin: 'io.freefair.aggregate-jacoco-report'
 
 allprojects {
     group = 'org.joinfaces'
@@ -296,6 +300,8 @@ task docsZip(type: Zip) {
         into "reference"
     }
 }
+
+apply plugin: 'io.freefair.okhttp'
 
 task uploadDocs(type: io.freefair.gradle.plugins.okhttp.tasks.UploadFile) {
     dependsOn docsZip
