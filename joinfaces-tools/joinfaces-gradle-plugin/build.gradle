@@ -52,15 +52,6 @@ dependencies {
 }
 
 publishing {
-    publications {
-        pluginMaven(MavenPublication) {
-            artifact javadocJar
-            artifact sourcesJar
-        }
-    }
-}
-
-publishing {
     publications.withType(MavenPublication) {
         signing.sign it
     }
