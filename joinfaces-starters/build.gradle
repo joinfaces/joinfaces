@@ -4,5 +4,6 @@ subprojects {
 
     // Starters should have a clean classpath.
     // Disabled because module-info conflict: https://github.com/nebula-plugins/gradle-lint-plugin/pull/223
+    // https://github.com/nebula-plugins/gradle-lint-plugin/issues/263
     //gradleLint.criticalRules += ['transitive-duplicate-dependency-class', 'duplicate-dependency-class']
 }
