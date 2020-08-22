@@ -52,6 +52,6 @@ public class JpaWebAutoConfiguration {
 	@ConditionalOnMissingBean({OpenEntityManagerInViewInterceptor.class, OpenEntityManagerInViewFilter.class})
 	@ConditionalOnMissingFilterBean(OpenEntityManagerInViewFilter.class)
 	public OpenEntityManagerInViewFilter openEntityManagerInViewFilter() {
-		return new OpenEntityManagerInViewFilter();
+		return new OrderedOpenEntityManagerInViewFilter();
 	}
 }
