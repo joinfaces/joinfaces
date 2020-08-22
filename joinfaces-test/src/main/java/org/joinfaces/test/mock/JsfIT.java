@@ -17,7 +17,7 @@
 package org.joinfaces.test.mock;
 
 import lombok.Getter;
-import org.junit.After;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,7 +42,7 @@ public class JsfIT {
 		this.jsfMock.init(this.applicationContext);
 	}
 
-	@After
+	@AfterEach
 	public void release() {
 		this.jsfMock.release();
 	}
