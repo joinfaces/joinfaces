@@ -168,6 +168,21 @@ public class AdminfacesProperties implements Serializable {
 	private final ControlSidebar controlSidebar = new ControlSidebar();
 
 	/**
+	 * When true, the asterisk on required form elements is rendered.
+	 */
+	private Boolean renderFormAsterisks;
+
+	/**
+	 * When true, closeable loading is enabled.
+	 */
+	private Boolean closableLoading;
+
+	/**
+	 * When true, the mobile header is enabled.
+	 */
+	private Boolean enableMobileHeader;
+
+	/**
 	 * ControlSidebar properties.
 	 */
 	@Data

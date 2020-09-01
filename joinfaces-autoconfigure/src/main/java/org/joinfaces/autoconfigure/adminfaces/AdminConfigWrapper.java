@@ -86,6 +86,10 @@ public class AdminConfigWrapper extends AdminConfig {
 		setMessagesHideTimeout(getAdminFacesStringProperty(getMessagesHideTimeout(), this.adminfacesProperties.getMessagesHideTimeout()));
 		setIconsEffect(getAdminFacesBooleanProperty(isIconsEffect(), this.adminfacesProperties.getIconsEffect()));
 
+		setRenderFormAsterisks(getAdminFacesBooleanProperty(isRenderFormAsterisks(), this.adminfacesProperties.getRenderFormAsterisks()));
+		setClosableLoading(getAdminFacesBooleanProperty(isClosableLoading(), this.adminfacesProperties.getClosableLoading()));
+		setEnableMobileHeader(getAdminFacesBooleanProperty(isEnableMobileHeader(), this.adminfacesProperties.getEnableMobileHeader()));
+
 		configControlSideBar();
 	}
 
