@@ -2,9 +2,10 @@ apply plugin: "java-library"
 
 repositories {
     mavenCentral()
+    maven { url 'https://repo.spring.io/milestone' }
 }
 
-def springBootVersion = "2.3.3.RELEASE"
+def springBootVersion = "2.4.0-M2"
 
 dependencies {
     api "org.springframework.boot:spring-boot-gradle-plugin:$springBootVersion"
