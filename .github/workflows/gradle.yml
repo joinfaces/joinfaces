@@ -20,7 +20,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        java: [ 8, 11, 15 ]
+        java: [ 8, 11 ]
     steps:
       - uses: actions/checkout@v2
 
@@ -34,7 +34,6 @@ jobs:
           java -version
           ./gradlew --version
 
-      - run: ./gradlew assemble
       - run: ./gradlew check
       - run: ./gradlew jacocoTestReport aggregateJacocoReport
       - name: Upload coverage report
