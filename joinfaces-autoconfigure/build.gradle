@@ -64,7 +64,7 @@ dependencies {
     testRuntime 'org.ocpsoft.logging:logging-adapter-slf4j'
 }
 
-compileJava.dependsOn(processResources)
+compileJava.inputs.files(processResources)
 
 test {
     include "**/*Test.class"
