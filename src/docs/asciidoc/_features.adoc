@@ -216,13 +216,9 @@ are executed for embedded servlet containers.
 ** `org.ocpsoft.rewrite.el.spi.BeanNameResolver`
 ** `org.ocpsoft.rewrite.el.spi.ExpressionLanguageProvider`
 ** `org.ocpsoft.common.spi.ServiceLocator`
-* Annotation scanning for none-WARs can be enabled. Make sure to define packages to scan for to decrease the statup time. 
-
-[source,properties]
-----
-joinfaces.rewrite.scan-classpath=true
-joinfaces.rewrite.base-packages=package.with.annotated.components
-----
+* Rewrites own annotation scanning mechanism is disabled by default (`org.ocpsoft.rewrite.annotation.BASE_PACKAGES` is set to `none`),
+because it can not handle jar-packaged applications. JoinFaces provides its own annotation scanning provider instead,
+which can be configured through the `joinfaces.rewrite.annotation-config-provider.*` properties.
 
 [WARNING]
 ====
