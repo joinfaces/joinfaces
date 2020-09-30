@@ -39,3 +39,5 @@ jobs:
       - run: ./gradlew jacocoTestReport aggregateJacocoReport
       - name: Upload coverage report
         uses: codecov/codecov-action@v1
+        with:
+          files: jacoco*.xml,*Jacoco*.xml
