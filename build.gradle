@@ -5,15 +5,15 @@ buildscript {
         maven { url "https://plugins.gradle.org/m2/" }
     }
     dependencies {
-        def freefairGradleVersion = "5.2.1"
+        def freefairGradleVersion = "5.3.0"
         classpath "io.freefair.gradle:lombok-plugin:$freefairGradleVersion"
         classpath "io.freefair.gradle:maven-plugin:$freefairGradleVersion"
         classpath "io.freefair.gradle:maven-plugin-plugin:$freefairGradleVersion"
         classpath "io.freefair.gradle:git-plugin:$freefairGradleVersion"
         classpath "io.freefair.gradle:okhttp-plugin:$freefairGradleVersion"
         classpath "io.freefair.gradle:jacoco-plugin:$freefairGradleVersion"
-        classpath "gradle.plugin.com.github.spotbugs.snom:spotbugs-gradle-plugin:4.5.0"
-        classpath "com.netflix.nebula:gradle-lint-plugin:16.9.1"
+        classpath "gradle.plugin.com.github.spotbugs.snom:spotbugs-gradle-plugin:4.5.1"
+        classpath "com.netflix.nebula:gradle-lint-plugin:16.15.6"
         classpath "de.aaschmid:gradle-cpd-plugin:3.1"
         classpath "com.gradle.publish:plugin-publish-plugin:0.12.0"
         classpath "io.codearte.gradle.nexus:gradle-nexus-staging-plugin:0.22.0"
