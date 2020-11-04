@@ -268,7 +268,7 @@ public class MojarraProperties implements ServletContextInitParameterProperties 
 	 * the default value of 604800000 is 7 days).
 	 */
 	@ServletContextInitParameter(PREFIX + "defaultResourceMaxAge")
-	private Integer defaultResourceMaxAge;
+	private Long defaultResourceMaxAge;
 
 	/**
 	 * See issue 3684 for details.
