@@ -16,6 +16,8 @@
 
 package org.joinfaces.autoconfigure.omnifaces;
 
+import java.time.Duration;
+import java.time.temporal.ChronoUnit;
 import java.util.List;
 
 import lombok.Data;
@@ -30,6 +32,7 @@ import org.omnifaces.resourcehandler.CDNResourceHandler;
 import org.omnifaces.resourcehandler.CombinedResourceHandler;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.boot.convert.DurationUnit;
 
 /**
  * Configuration properties of OmniFaces.
@@ -163,8 +166,9 @@ public class OmnifacesProperties implements ServletContextInitParameterPropertie
 	 *
 	 * @see CombinedResourceHandler#PARAM_NAME_CACHE_TTL
 	 */
+	@DurationUnit(ChronoUnit.SECONDS)
 	@ServletContextInitParameter("org.omnifaces.COMBINED_RESOURCE_HANDLER_CACHE_TTL")
-	private Integer combinedResourceHandlerCacheTtl;
+	private Duration combinedResourceHandlerCacheTtl;
 
 	/**
 	 * org.omnifaces.COMBINED_RESOURCE_HANDLER_DISABLED.
@@ -228,8 +232,9 @@ public class OmnifacesProperties implements ServletContextInitParameterPropertie
 	 * @see CacheInitializerListener#CACHE_PROVIDER_SETTING_INIT_PARAM_PREFIX
 	 * @see CacheInstancePerScopeProvider#APP_TTL_PARAM_NAME
 	 */
+	@DurationUnit(ChronoUnit.SECONDS)
 	@ServletContextInitParameter("org.omnifaces.CACHE_SETTING_APPLICATION_TTL")
-	private Integer cacheSettingApplicationTtl;
+	private Duration cacheSettingApplicationTtl;
 
 	/**
 	 * Sets the maximum number of elements that will be stored per session.
@@ -249,8 +254,9 @@ public class OmnifacesProperties implements ServletContextInitParameterPropertie
 	 * @see CacheInitializerListener#CACHE_PROVIDER_SETTING_INIT_PARAM_PREFIX
 	 * @see CacheInstancePerScopeProvider#SESSION_TTL_PARAM_NAME
 	 */
+	@DurationUnit(ChronoUnit.SECONDS)
 	@ServletContextInitParameter("org.omnifaces.CACHE_SETTING_SESSION_TTL")
-	private Integer cacheSettingSessionTtl;
+	private Duration cacheSettingSessionTtl;
 
 	/**
 	 * Boolean that when true installs a Servlet Filter (Servlet 3.0+ only) that works in conjunction with the useBuffer attribute of the Cache component to enable an alternative way to grab the content that needs to be cached.

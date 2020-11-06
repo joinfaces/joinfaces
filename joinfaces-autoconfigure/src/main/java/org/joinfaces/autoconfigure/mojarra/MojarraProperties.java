@@ -16,6 +16,9 @@
 
 package org.joinfaces.autoconfigure.mojarra;
 
+import java.time.Duration;
+import java.time.temporal.ChronoUnit;
+
 import javax.el.ExpressionFactory;
 
 import com.sun.faces.spi.InjectionProvider;
@@ -25,6 +28,10 @@ import org.joinfaces.autoconfigure.servlet.initparams.ServletContextInitParamete
 import org.joinfaces.autoconfigure.servlet.initparams.ServletContextInitParameterProperties;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.boot.convert.DataSizeUnit;
+import org.springframework.boot.convert.DurationUnit;
+import org.springframework.util.unit.DataSize;
+import org.springframework.util.unit.DataUnit;
 
 /**
  * Configuration properties of Mojarra.
@@ -47,8 +54,9 @@ public class MojarraProperties implements ServletContextInitParameterProperties 
 	 * are recieved with view state produced from a previous version, the
 	 * ViewExpiredException will be thrown immediately.
 	 */
+	@DurationUnit(ChronoUnit.SECONDS)
 	@ServletContextInitParameter(PREFIX + "clientStateTimeout")
-	private Integer clientStateTimeout;
+	private Duration clientStateTimeout;
 
 	/**
 	 * The size, in bytes, of the buffer that is used to write client state. It
@@ -57,8 +65,9 @@ public class MojarraProperties implements ServletContextInitParameterProperties 
 	 * for example, if the default, 8192, is used, then 4096 of that is used for
 	 * the bytes, and the other 4096 is used for the Base64 encoded characters.
 	 */
+	@DataSizeUnit(DataUnit.BYTES)
 	@ServletContextInitParameter(PREFIX + "clientStateWriteBufferSize")
-	private Integer clientStateWriteBufferSize;
+	private DataSize clientStateWriteBufferSize;
 
 	/**
 	 * When true, the view is compressed after it is serialized and before
@@ -239,8 +248,9 @@ public class MojarraProperties implements ServletContextInitParameterProperties 
 	 * ignored when Facelets is used. For Facelets, use
 	 * javax.faces.FACELETS_BUFFER_SIZE instead.
 	 */
+	@DataSizeUnit(DataUnit.BYTES)
 	@ServletContextInitParameter(PREFIX + "responseBufferSize")
-	private Integer responseBufferSize;
+	private DataSize responseBufferSize;
 
 	/**
 	 * If true, cache the modification time of the resource and use the cached
@@ -267,8 +277,9 @@ public class MojarraProperties implements ServletContextInitParameterProperties 
 	 * amount of time that a Resource is valid. The value is in milliseconds (so
 	 * the default value of 604800000 is 7 days).
 	 */
+	@DurationUnit(ChronoUnit.MILLIS)
 	@ServletContextInitParameter(PREFIX + "defaultResourceMaxAge")
-	private Integer defaultResourceMaxAge;
+	private Duration defaultResourceMaxAge;
 
 	/**
 	 * See issue 3684 for details.
@@ -294,8 +305,9 @@ public class MojarraProperties implements ServletContextInitParameterProperties 
 	 * option is -1, the cache will never be cleared and new resources will not
 	 * be picked up. The value is in minutes.
 	 */
+	@DurationUnit(ChronoUnit.MINUTES)
 	@ServletContextInitParameter(PREFIX + "resourceUpdateCheckPeriod")
-	private Integer resourceUpdateCheckPeriod;
+	private Duration resourceUpdateCheckPeriod;
 
 	/**
 	 * If true, makes it so every session attribute is touched in for every

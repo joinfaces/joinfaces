@@ -16,6 +16,9 @@
 
 package org.joinfaces.autoconfigure.richfaces;
 
+import java.time.Duration;
+import java.time.temporal.ChronoUnit;
+
 import lombok.Data;
 import org.joinfaces.autoconfigure.servlet.initparams.ServletContextInitParameter;
 import org.joinfaces.autoconfigure.servlet.initparams.ServletContextInitParameterProperties;
@@ -23,6 +26,7 @@ import org.richfaces.application.CoreConfiguration;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.boot.context.properties.NestedConfigurationProperty;
+import org.springframework.boot.convert.DurationUnit;
 
 /**
  * Configuration properties of RichFaces.
@@ -55,8 +59,9 @@ public class RichfacesProperties implements ServletContextInitParameterPropertie
 	private String baseSkin;
 
 	// (defaultValue = "86400" /* 24 * 60 * 60 */, names = "org.richfaces.resourceDefaultTTL", literal = true)
+	@DurationUnit(ChronoUnit.SECONDS)
 	@ServletContextInitParameter("org.richfaces.resourceDefaultTTL")
-	private Integer resourceDefaultTtl;
+	private Duration resourceDefaultTtl;
 
 	// (defaultValue = "512", names = "org.richfaces.resourceCacheSize", literal = true)
 	@ServletContextInitParameter(CoreConfiguration.RESOURCES_CACHE_SIZE_PARAM_NAME)
@@ -203,8 +208,9 @@ public class RichfacesProperties implements ServletContextInitParameterPropertie
 		public static class Session {
 
 			// (defaultValue = "300000", names="org.richfaces.push.session.maxInactiveInterval")
+			@DurationUnit(ChronoUnit.MILLIS)
 			@ServletContextInitParameter("org.richfaces.push.session.maxInactiveInterval")
-			private Integer maxInactiveInterval;
+			private Duration maxInactiveInterval;
 		}
 
 	}

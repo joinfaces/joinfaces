@@ -16,6 +16,9 @@
 
 package org.joinfaces.autoconfigure.myfaces;
 
+import java.security.SecureRandom;
+import java.time.Duration;
+import java.time.temporal.ChronoUnit;
 import java.util.Comparator;
 import java.util.List;
 
@@ -48,6 +51,10 @@ import org.joinfaces.autoconfigure.servlet.initparams.ServletContextInitParamete
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.boot.context.properties.NestedConfigurationProperty;
+import org.springframework.boot.convert.DataSizeUnit;
+import org.springframework.boot.convert.DurationUnit;
+import org.springframework.util.unit.DataSize;
+import org.springframework.util.unit.DataUnit;
 
 /**
  * Configuration properties of MyFaces.
@@ -114,8 +121,9 @@ public class MyfacesProperties implements ServletContextInitParameterProperties 
 	/**
 	 * Set the time in seconds that check for updates of web.
 	 */
+	@DurationUnit(ChronoUnit.SECONDS)
 	@ServletContextInitParameter(PREFFIX + "CONFIG_REFRESH_PERIOD")
-	private Integer configRefreshPeriod;
+	private Duration configRefreshPeriod;
 
 	/**
 	 * Set the view state using a javascript function instead a hidden input
@@ -356,8 +364,9 @@ public class MyfacesProperties implements ServletContextInitParameterProperties 
 	 * Set the max time in miliseconds set on the "Expires" header for a
 	 * resource rendered by the default ResourceHandler.
 	 */
+	@DurationUnit(ChronoUnit.MILLIS)
 	@ServletContextInitParameter(PREFFIX + "RESOURCE_MAX_TIME_EXPIRES")
-	private Integer resourceMaxTimeExpires;
+	private Duration resourceMaxTimeExpires;
 
 	/**
 	 * Controls the size of the cache used to check if a resource exists or not.
@@ -462,8 +471,9 @@ public class MyfacesProperties implements ServletContextInitParameterProperties 
 	/**
 	 * Define the default buffer size that is used between Resource.
 	 */
+	@DataSizeUnit(DataUnit.BYTES)
 	@ServletContextInitParameter(ResourceHandlerImpl.INIT_PARAM_RESOURCE_BUFFER_SIZE)
-	private Integer resourceBufferSize;
+	private DataSize resourceBufferSize;
 
 	/**
 	 * Defines how to generate the csrf session token.
@@ -499,8 +509,9 @@ public class MyfacesProperties implements ServletContextInitParameterProperties 
 	 * Define the time in minutes where the view state is valid when client side
 	 * state saving is used.
 	 */
+	@DurationUnit(ChronoUnit.MINUTES)
 	@ServletContextInitParameter(PREFFIX + "CLIENT_VIEW_STATE_TIMEOUT")
-	private Integer clientViewStateTimeout;
+	private Duration clientViewStateTimeout;
 
 	/**
 	 * Indicate if the state should be serialized before save it on the session.
@@ -546,7 +557,7 @@ public class MyfacesProperties implements ServletContextInitParameterProperties 
 	 * Sets the random class to initialize the secure random id generator.
 	 */
 	@ServletContextInitParameter(PREFFIX + "RANDOM_KEY_IN_VIEW_STATE_SESSION_TOKEN_SECURE_RANDOM_CLASS")
-	private String randomKeyInViewStateSessionTokenSecureRandomClass;
+	private Class<? extends SecureRandom> randomKeyInViewStateSessionTokenSecureRandomClass;
 
 	/**
 	 * Sets the random provider to initialize the secure random id generator.

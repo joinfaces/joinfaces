@@ -33,12 +33,15 @@ import lombok.extern.slf4j.Slf4j;
 
 import org.springframework.aop.support.AopUtils;
 import org.springframework.boot.context.properties.NestedConfigurationProperty;
+import org.springframework.boot.convert.DataSizeUnit;
 import org.springframework.boot.convert.DurationUnit;
 import org.springframework.boot.web.servlet.ServletContextInitializer;
 import org.springframework.core.Ordered;
 import org.springframework.core.annotation.AnnotatedElementUtils;
 import org.springframework.core.annotation.AnnotationUtils;
 import org.springframework.util.ReflectionUtils;
+import org.springframework.util.unit.DataSize;
+import org.springframework.util.unit.DataUnit;
 
 /**
  * A ServletContextInitializer which looks for all {@link ServletContextInitParameter init parameters}
@@ -139,6 +142,10 @@ public class InitParameterServletContextConfigurer implements ServletContextInit
 			ChronoUnit chronoUnit = resolveChronoUnit(field);
 			return convertToString((Duration) value, chronoUnit);
 		}
+		else if (DataSize.class.isAssignableFrom(field.getType())) {
+			DataUnit dataUnit = resolveDataSizeUnit(field);
+			return convertToString((DataSize) value, dataUnit);
+		}
 		else {
 			return convertToString(value);
 		}
@@ -161,6 +168,23 @@ public class InitParameterServletContextConfigurer implements ServletContextInit
 		}
 	}
 
+	static String convertToString(DataSize dataSize, DataUnit dataUnit) {
+		switch (dataUnit) {
+			case BYTES:
+				return String.valueOf(dataSize.toBytes());
+			case KILOBYTES:
+				return String.valueOf(dataSize.toKilobytes());
+			case MEGABYTES:
+				return String.valueOf(dataSize.toMegabytes());
+			case GIGABYTES:
+				return String.valueOf(dataSize.toGigabytes());
+			case TERABYTES:
+				return String.valueOf(dataSize.toTerabytes());
+			default:
+				throw new IllegalStateException("Unsupported DataUnit: " + dataUnit);
+		}
+	}
+
 	static String convertToString(Object value) {
 
 		if (value instanceof String) {
@@ -168,11 +192,11 @@ public class InitParameterServletContextConfigurer implements ServletContextInit
 		}
 
 		if (value instanceof Enum) {
-			return ((Enum) value).name();
+			return ((Enum<?>) value).name();
 		}
 
 		if (value instanceof Class) {
-			return ((Class) value).getName();
+			return ((Class<?>) value).getName();
 		}
 
 		return value.toString();
@@ -184,5 +208,13 @@ public class InitParameterServletContextConfigurer implements ServletContextInit
 			return annotation.value();
 		}
 		return ChronoUnit.MILLIS;
+	}
+
+	static DataUnit resolveDataSizeUnit(Field field) {
+		DataSizeUnit annotation = AnnotationUtils.findAnnotation(field, DataSizeUnit.class);
+		if (annotation != null) {
+			return annotation.value();
+		}
+		return DataUnit.BYTES;
 	}
 }

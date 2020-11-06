@@ -32,8 +32,11 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import org.springframework.boot.context.properties.NestedConfigurationProperty;
+import org.springframework.boot.convert.DataSizeUnit;
 import org.springframework.boot.convert.DurationUnit;
 import org.springframework.mock.web.MockServletContext;
+import org.springframework.util.unit.DataSize;
+import org.springframework.util.unit.DataUnit;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -118,6 +121,17 @@ public class InitParameterServletContextConfigurerTest {
 		assertThat(this.servletContext.getInitParameter("test.durationSec")).isEqualTo("2");
 	}
 
+	@Test
+	public void testDurationNegativeMinutes() {
+		assertThat(this.servletContext.getInitParameter("test.durationNegMin")).isEqualTo("-1");
+	}
+
+	@Test
+	public void testDataSize() {
+		assertThat(this.servletContext.getInitParameter("test.dataSize")).isEqualTo("1024");
+		assertThat(this.servletContext.getInitParameter("test.dataSizeKilo")).isEqualTo("1");
+	}
+
 	@Getter
 	@Setter
 	@NoArgsConstructor
@@ -167,6 +181,18 @@ public class InitParameterServletContextConfigurerTest {
 		@ServletContextInitParameter("test.durationSec")
 		@DurationUnit(ChronoUnit.SECONDS)
 		private Duration testDurationSec = Duration.ofSeconds(2);
+
+		@ServletContextInitParameter("test.durationNegMin")
+		@DurationUnit(ChronoUnit.MINUTES)
+		private Duration testDurationNegMin = Duration.ofMinutes(-1);
+
+		@DataSizeUnit(DataUnit.BYTES)
+		@ServletContextInitParameter("test.dataSize")
+		private DataSize testDataSize = DataSize.ofKilobytes(1);
+
+		@DataSizeUnit(DataUnit.KILOBYTES)
+		@ServletContextInitParameter("test.dataSizeKilo")
+		private DataSize testDataSizeKilo = DataSize.ofKilobytes(1);
 
 		@Getter
 		@Setter
