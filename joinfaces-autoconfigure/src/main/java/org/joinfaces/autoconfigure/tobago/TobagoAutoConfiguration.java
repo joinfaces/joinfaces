@@ -16,7 +16,8 @@
 
 package org.joinfaces.autoconfigure.tobago;
 
-import org.apache.myfaces.tobago.webapp.SecretSessionListener;
+import java.util.EventListener;
+
 import org.apache.myfaces.tobago.webapp.TobagoServletContextListener;
 import org.joinfaces.autoconfigure.servlet.WebFragmentRegistrationBean;
 
@@ -24,17 +25,22 @@ import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnWebApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.util.ClassUtils;
 
 /**
  * {@link org.springframework.boot.autoconfigure.EnableAutoConfiguration Auto configuration}
  * for Apache MyFaces Tobago.
  *
  * @author Lars Grefer
+ * @author Carsten Dimmek
  */
 @Configuration(proxyBeanMethods = false)
 @ConditionalOnClass(TobagoServletContextListener.class)
 @ConditionalOnWebApplication(type = ConditionalOnWebApplication.Type.SERVLET)
 public class TobagoAutoConfiguration {
+
+
+	private static final String SECRET_SESSION_LISTENER = "org.apache.myfaces.tobago.webapp.SecretSessionListener";
 
 	/**
 	 * This {@link WebFragmentRegistrationBean} is equivalent to the
@@ -43,10 +49,13 @@ public class TobagoAutoConfiguration {
 	 * @return tobagoWebFragmentRegistrationBean
 	 */
 	@Bean
-	public WebFragmentRegistrationBean tobagoWebFragmentRegistrationBean() {
+	public WebFragmentRegistrationBean tobagoWebFragmentRegistrationBean() throws ClassNotFoundException {
 		WebFragmentRegistrationBean bean = new WebFragmentRegistrationBean();
 		bean.getListeners().add(TobagoServletContextListener.class);
-		bean.getListeners().add(SecretSessionListener.class);
+		ClassLoader classLoader = TobagoAutoConfiguration.class.getClassLoader();
+		if (ClassUtils.isPresent(SECRET_SESSION_LISTENER, classLoader)) {
+			bean.getListeners().add((Class<? extends EventListener>) ClassUtils.forName(SECRET_SESSION_LISTENER, classLoader));
+		}
 		return bean;
 	}
 }
