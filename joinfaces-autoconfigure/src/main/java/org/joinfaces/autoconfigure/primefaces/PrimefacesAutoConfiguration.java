@@ -111,4 +111,12 @@ public class PrimefacesAutoConfiguration {
 	public static class Primefaces8_0AutoConfiguration {
 	}
 
+	/**
+	 * Auto Configuration for Primefaces 10.0.0+.
+	 */
+	@Configuration(proxyBeanMethods = false)
+	@EnableConfigurationProperties(Primefaces10_0_0Properties.class)
+	public static class Primefaces10_0_0AutoConfiguration {
+	}
+
 }
