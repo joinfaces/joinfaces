@@ -67,6 +67,7 @@ public class AdminConfigWrapper extends AdminConfig {
 		setTemplatePath(getAdminFacesStringProperty(getTemplatePath(), this.adminfacesProperties.getTemplatePath()));
 		setBreadCrumbMaxSize(getAdminFacesIntegerProperty(getBreadCrumbMaxSize(), this.adminfacesProperties.getBreadcrumbSize()));
 		setRenderMessages(getAdminFacesBooleanProperty(isRenderMessages(), this.adminfacesProperties.getRenderMessages()));
+		setSkipMessageDetailIfEqualsSummary(getAdminFacesBooleanProperty(isSkipMessageDetailIfEqualsSummary(), this.adminfacesProperties.getSkipDetailIfEqualsSummary()));
 		setRenderAjaxStatus(getAdminFacesBooleanProperty(isRenderAjaxStatus(), this.adminfacesProperties.getRenderAjaxStatus()));
 		setDisableFilter(getAdminFacesBooleanProperty(isDisableFilter(), this.adminfacesProperties.getDisableFilter()));
 		setRenderBreadCrumb(getAdminFacesBooleanProperty(isRenderBreadCrumb(), this.adminfacesProperties.getRenderBreadCrumb()));
