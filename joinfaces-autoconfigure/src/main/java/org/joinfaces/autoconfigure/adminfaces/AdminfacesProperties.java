@@ -72,7 +72,7 @@ public class AdminfacesProperties implements Serializable {
 	/**
 	 * When true, p:message will not show details if equals to summary.
 	 */
-	private Boolean skipDetailIfEqualsSummary;
+	private Boolean skipMessageDetailIfEqualsSummary;
 
 	/**
 	 * When false ajaxStatus, which triggers the loading bar on every ajax request,
