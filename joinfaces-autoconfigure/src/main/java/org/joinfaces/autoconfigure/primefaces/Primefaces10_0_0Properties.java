@@ -42,6 +42,12 @@ public class Primefaces10_0_0Properties implements ServletContextInitParameterPr
 	@ServletContextInitParameter(Constants.ContextParams.MARK_INPUT_AS_INVALID_ON_ERROR_MSG)
 	private Boolean markInputAsInvalidOnErrorMessage;
 
+	@ServletContextInitParameter(Constants.ContextParams.PRIME_ICONS)
+	private Boolean primeIcons;
+
+	@ServletContextInitParameter(Constants.ContextParams.CLIENT_SIDE_LOCALISATION)
+	private Boolean clientSideLocalisation;
+
 	@ServletContextInitParameter(Constants.ContextParams.COOKIES_SAME_SITE)
 	private String cookiesSameSite;
 
