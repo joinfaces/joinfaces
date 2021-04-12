@@ -18,7 +18,7 @@ buildscript {
         classpath "com.gradle.publish:plugin-publish-plugin:0.13.0"
         classpath "io.codearte.gradle.nexus:gradle-nexus-staging-plugin:0.30.0"
         classpath "de.marcphilipp.gradle:nexus-publish-plugin:0.4.0"
-        classpath 'com.google.guava:guava:30.1-jre'
+        classpath 'com.google.guava:guava:30.1.1-jre'
     }
 }
 
@@ -109,7 +109,7 @@ allprojects {
             dependency "com.github.adminfaces:admin-template:1.2.0"
             dependency "com.github.adminfaces:admin-theme:1.2.0"
 
-            dependency 'jakarta.ejb:jakarta.ejb-api:3.2.6'
+            dependency 'jakarta.ejb:jakarta.ejb-api:4.0.0'
             dependency 'jakarta.el:jakarta.el-api:3.0.3'
 
             dependencySet('org.apache.myfaces.tobago:4.5.3') {
