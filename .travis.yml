@@ -1,6 +1,9 @@
 os: linux
 dist: bionic
 language: java
+branches:
+  except:
+    - /^dependabot.*$/
 jdk:
   - openjdk8
   - openjdk11
