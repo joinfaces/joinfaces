@@ -15,7 +15,7 @@ buildscript {
         classpath "gradle.plugin.com.github.spotbugs.snom:spotbugs-gradle-plugin:4.6.0"
         classpath "com.netflix.nebula:gradle-lint-plugin:16.22.0"
         classpath "de.aaschmid:gradle-cpd-plugin:3.2"
-        classpath "com.gradle.publish:plugin-publish-plugin:0.12.0"
+        classpath "com.gradle.publish:plugin-publish-plugin:0.14.0"
         classpath "io.codearte.gradle.nexus:gradle-nexus-staging-plugin:0.22.0"
         classpath "de.marcphilipp.gradle:nexus-publish-plugin:0.4.0"
         classpath 'com.google.guava:guava:30.1.1-jre'
