@@ -7,7 +7,7 @@ buildscript {
     dependencies {
         classpath "io.freefair.gradle:lombok-plugin:4.1.5"
         classpath "io.freefair.gradle:maven-plugin:4.1.5"
-        classpath "io.freefair.gradle:maven-plugin-plugin:4.1.5"
+        classpath "io.freefair.gradle:maven-plugin-plugin:5.3.3.3"
         classpath "gradle.plugin.com.github.spotbugs:spotbugs-gradle-plugin:2.0.0"
         classpath "com.netflix.nebula:gradle-lint-plugin:11.5.0"
         classpath "de.aaschmid:gradle-cpd-plugin:1.3"
