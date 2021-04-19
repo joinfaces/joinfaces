@@ -6,7 +6,7 @@ description = "JoinFaces Maven Plugin"
 dependencies {
     api project(":joinfaces-tools:joinfaces-scan-tools")
 
-    api 'org.apache.maven:maven-core:3.0'
+    api 'org.apache.maven:maven-core:3.5.4'
     api 'org.apache.maven:maven-plugin-api:3.0'
 
     compileOnly 'org.apache.maven.plugin-tools:maven-plugin-annotations:3.4'
