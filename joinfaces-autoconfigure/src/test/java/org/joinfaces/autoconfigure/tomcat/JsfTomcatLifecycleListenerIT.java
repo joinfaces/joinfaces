@@ -1,5 +1,5 @@
 /*
- * Copyright 2016-2017 the original author or authors.
+ * Copyright 2016-2021 the original author or authors.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -20,28 +20,36 @@ import java.io.File;
 
 import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import org.apache.catalina.Context;
+import org.apache.catalina.Lifecycle;
+import org.apache.catalina.LifecycleEvent;
 import org.apache.catalina.LifecycleException;
 import org.apache.catalina.WebResourceRoot;
 import org.apache.catalina.webresources.DirResourceSet;
 import org.apache.catalina.webresources.JarResourceSet;
 import org.apache.catalina.webresources.JarWarResourceSet;
 import org.apache.catalina.webresources.StandardRoot;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
-
-import org.springframework.boot.context.event.ApplicationReadyEvent;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.mock;
 
 @SuppressFBWarnings(value = "DMI_HARDCODED_ABSOLUTE_FILENAME", justification = "Tests")
-public class JsfTomcatApplicationListenerIT {
+public class JsfTomcatLifecycleListenerIT {
 
 	private static final String METAINF_RESOURCES = "/META-INF/resources";
 	private static final String TARGET = "build";
 	private static final String TEST_CLASSES = "resources/test";
 	private static final String INTERNAL_JAR = "internal.jar";
 	private static final String TEST = "/test";
+
+	private LifecycleEvent lifecycleEvent;
+
+	@BeforeEach
+	void init() {
+		this.lifecycleEvent = new LifecycleEvent(mock(Lifecycle.class), Lifecycle.CONFIGURE_START_EVENT, null);
+	}
 
 	@Test
 	public void customize() {
@@ -50,11 +58,8 @@ public class JsfTomcatApplicationListenerIT {
 		Mockito.when(standardContext.getResources()).thenReturn(webResourceRoot);
 		Mockito.when(standardContext.getAddWebinfClassesResources()).thenReturn(Boolean.FALSE);
 
-		JsfTomcatContextCustomizer jsfTomcatContextCustomizer = new JsfTomcatContextCustomizer();
-		jsfTomcatContextCustomizer.customize(standardContext);
-
-		JsfTomcatApplicationListener jsfTomcatApplicationListener = new JsfTomcatApplicationListener(jsfTomcatContextCustomizer.getContext());
-		jsfTomcatApplicationListener.onApplicationEvent(mock(ApplicationReadyEvent.class));
+		JsfTomcatLifecycleListener jsfTomcatLifecycleListener = new JsfTomcatLifecycleListener(standardContext);
+		jsfTomcatLifecycleListener.lifecycleEvent(this.lifecycleEvent);
 		assertThat(webResourceRoot.getPostResources().length)
 			.isGreaterThanOrEqualTo(9);
 	}
@@ -75,12 +80,9 @@ public class JsfTomcatApplicationListenerIT {
 			throw new RuntimeException("Could not create dir: " + testClassesResources.toString());
 		}
 
-		JsfTomcatContextCustomizer jsfTomcatContextCustomizer = new JsfTomcatContextCustomizer();
-		jsfTomcatContextCustomizer.customize(standardContext);
+		JsfTomcatLifecycleListener jsfTomcatLifecycleListener = new JsfTomcatLifecycleListener(standardContext);
 
-		JsfTomcatApplicationListener jsfTomcatApplicationListener = new JsfTomcatApplicationListener(jsfTomcatContextCustomizer.getContext());
-
-		jsfTomcatApplicationListener.onApplicationEvent(mock(ApplicationReadyEvent.class));
+		jsfTomcatLifecycleListener.lifecycleEvent(this.lifecycleEvent);
 		if (!testClassesResources.delete()) {
 			throw new RuntimeException("Could not delete dir: " + testClassesResources.toString());
 		}
@@ -89,27 +91,15 @@ public class JsfTomcatApplicationListenerIT {
 	}
 
 	@Test
-	public void contextNull() {
-		JsfTomcatApplicationListener jsfTomcatApplicationListener = new JsfTomcatApplicationListener(null);
-		jsfTomcatApplicationListener.onApplicationEvent(mock(ApplicationReadyEvent.class));
-
-		assertThat(jsfTomcatApplicationListener)
-			.isNotNull();
-	}
-
-	@Test
 	public void resourcesNull() {
 		Context standardContext = mock(Context.class);
 		Mockito.when(standardContext.getResources()).thenReturn(null);
 		Mockito.when(standardContext.getAddWebinfClassesResources()).thenReturn(Boolean.FALSE);
 
-		JsfTomcatContextCustomizer jsfTomcatContextCustomizer = new JsfTomcatContextCustomizer();
-		jsfTomcatContextCustomizer.customize(standardContext);
+		JsfTomcatLifecycleListener jsfTomcatLifecycleListener = new JsfTomcatLifecycleListener(standardContext);
+		jsfTomcatLifecycleListener.lifecycleEvent(this.lifecycleEvent);
 
-		JsfTomcatApplicationListener jsfTomcatApplicationListener = new JsfTomcatApplicationListener(jsfTomcatContextCustomizer.getContext());
-		jsfTomcatApplicationListener.onApplicationEvent(mock(ApplicationReadyEvent.class));
-
-		assertThat(jsfTomcatApplicationListener)
+		assertThat(jsfTomcatLifecycleListener)
 			.isNotNull();
 	}
 
@@ -121,13 +111,10 @@ public class JsfTomcatApplicationListenerIT {
 		Mockito.when(standardContext.getAddWebinfClassesResources()).thenReturn(Boolean.FALSE);
 		Mockito.when(webResourceRoot.getJarResources()).thenReturn(null);
 
-		JsfTomcatContextCustomizer jsfTomcatContextCustomizer = new JsfTomcatContextCustomizer();
-		jsfTomcatContextCustomizer.customize(standardContext);
+		JsfTomcatLifecycleListener jsfTomcatLifecycleListener = new JsfTomcatLifecycleListener(standardContext);
+		jsfTomcatLifecycleListener.lifecycleEvent(this.lifecycleEvent);
 
-		JsfTomcatApplicationListener jsfTomcatApplicationListener = new JsfTomcatApplicationListener(jsfTomcatContextCustomizer.getContext());
-		jsfTomcatApplicationListener.onApplicationEvent(mock(ApplicationReadyEvent.class));
-
-		assertThat(jsfTomcatApplicationListener)
+		assertThat(jsfTomcatLifecycleListener)
 			.isNotNull();
 	}
 
@@ -247,10 +234,7 @@ public class JsfTomcatApplicationListenerIT {
 	}
 
 	private void callApplicationEvent(ContextMock contextMock) {
-		JsfTomcatContextCustomizer jsfTomcatContextCustomizer = new JsfTomcatContextCustomizer();
-		jsfTomcatContextCustomizer.customize(contextMock.getStandardContext());
-
-		JsfTomcatApplicationListener jsfTomcatApplicationListener = new JsfTomcatApplicationListener(jsfTomcatContextCustomizer.getContext());
-		jsfTomcatApplicationListener.onApplicationEvent(mock(ApplicationReadyEvent.class));
+		JsfTomcatLifecycleListener jsfTomcatLifecycleListener = new JsfTomcatLifecycleListener(contextMock.getStandardContext());
+		jsfTomcatLifecycleListener.lifecycleEvent(this.lifecycleEvent);
 	}
 }
