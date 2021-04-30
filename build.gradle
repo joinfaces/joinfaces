@@ -106,7 +106,7 @@ allprojects {
             dependency 'org.ocpsoft.logging:logging-adapter-slf4j:1.0.5.Final'
 
             dependency "com.github.adminfaces:admin-template:1.1.1"
-            dependency "com.github.adminfaces:admin-theme:1.1.0"
+            dependency "com.github.adminfaces:admin-theme:1.3.0"
 
             dependency 'jakarta.ejb:jakarta.ejb-api:3.2.6'
             dependency 'jakarta.el:jakarta.el-api:3.0.3'
