@@ -38,8 +38,6 @@ dependencies {
     optional 'net.bootsfaces:bootsfaces'
     optional 'de.beyondjava:angularFaces-core'
     optional 'org.butterfaces:components'
-    optional 'org.richfaces:richfaces-a4j'
-    optional 'org.richfaces:richfaces'
     optional 'com.github.albfernandez.richfaces:richfaces-a4j'
     optional 'com.github.albfernandez.richfaces:richfaces'
     optional 'commons-fileupload:commons-fileupload'
