@@ -56,6 +56,9 @@ You can use the table below to discover the starters that fit your needs.
 |richfaces-spring-boot-starter
 |Component starter for https://github.com/richfaces/richfaces[RichFaces] JSF Component library. Pulls `jsf-spring-boot-starter`.
 
+|richfaces-ayg-spring-boot-starter
+|Component starter for https://github.com/albfernandez/richfaces[RichFaces] JSF Component library. Pulls `jsf-spring-boot-starter`.
+
 |angularfaces-spring-boot-starter
 |Component starter for https://angularfaces.net[AngularFaces] JSF Component library. Pulls `jsf-spring-boot-starter`.
 
@@ -231,6 +234,11 @@ the rewritten and the original path.
 ====
 
 ==== RichFaces
+
+* `org.richfaces.\*` servlet-context init-parameters are mapped from `joinfaces.richfaces.*` properties.
+* `org.richfaces.webapp.ServletsInitializer` is executed for embedded servlet containers.
+
+==== RichFaces AYG
 
 * `org.richfaces.\*` servlet-context init-parameters are mapped from `joinfaces.richfaces.*` properties.
 * `org.richfaces.webapp.ServletsInitializer` is executed for embedded servlet containers.

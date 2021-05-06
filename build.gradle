@@ -83,6 +83,11 @@ allprojects {
                 entry "richfaces-a4j"
             }
 
+            dependencySet('com.github.albfernandez.richfaces:4.6.13.ayg') {
+                entry "richfaces"
+                entry "richfaces-a4j"
+            }
+
             dependencySet('org.icefaces:4.3.0') {
                 entry('icefaces') {
                     exclude "org.glassfish:javax.faces"
