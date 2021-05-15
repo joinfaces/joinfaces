@@ -19,7 +19,3 @@ updates:
     target-branch: "4.1.x"
     schedule:
       interval: "daily"
-  - package-ecosystem: "github-actions"
-    directory: "/"
-    schedule:
-      interval: "daily"
