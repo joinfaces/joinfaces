@@ -36,8 +36,6 @@ jobs:
           ./gradlew --version
 
       - run: ./gradlew check
-      - run: cat /home/runner/work/joinfaces/joinfaces/joinfaces-autoconfigure/build/reports/spotbugs/main.xml
-        if: ${{ failure() }}
       - run: ./gradlew jacocoTestReport aggregateJacocoReport
       - name: Upload coverage report
         uses: codecov/codecov-action@v1
