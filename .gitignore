@@ -1,7 +1,5 @@
 src/docs/asciidoc/generated
 
-lombok.config
-
 .idea/*
 
 !.idea/checkstyle-idea.xml
