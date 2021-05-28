@@ -53,7 +53,7 @@ class JoinfacesPluginIT {
 				"}",
 				"repositories { mavenCentral() }",
 				"dependencies {",
-				"    compile 'org.apache.myfaces.core:myfaces-impl:2.3.2'",
+				"    implementation 'org.apache.myfaces.core:myfaces-impl:2.3.2'",
 				"}"
 		));
 
