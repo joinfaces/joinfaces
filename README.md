@@ -1,7 +1,7 @@
 JoinFaces
 =============================
 [![Maven Central](https://maven-badges.herokuapp.com/maven-central/org.joinfaces/jsf-spring-boot-starter/badge.svg)](https://maven-badges.herokuapp.com/maven-central/org.joinfaces/jsf-spring-boot-starter)
-[![Build Status](https://travis-ci.org/joinfaces/joinfaces.svg?branch=master)](https://travis-ci.org/joinfaces/joinfaces)
+[![Build Status](https://github.com/joinfaces/joinfaces/actions/workflows/gradle.yml/badge.svg)](https://github.com/joinfaces/joinfaces/actions/workflows/gradle.yml)
 [![codecov](https://codecov.io/gh/joinfaces/joinfaces/branch/master/graph/badge.svg)](https://codecov.io/gh/joinfaces/joinfaces)
 [![](http://img.shields.io/badge/javadoc-stable-green.svg)](https://docs.joinfaces.org/current/api)
 [![](http://img.shields.io/badge/reference%20guide-stable-green.svg)](https://docs.joinfaces.org/current/reference)
