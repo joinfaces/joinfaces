@@ -225,11 +225,11 @@ allprojects {
                         }
                     }
                     ciManagement {
-                        system = 'Travis CI'
-                        url = 'https://travis-ci.org/joinfaces/joinfaces/'
+                        system = 'GitHub Actions'
+                        url = 'https://github.com/joinfaces/joinfaces/actions'
                     }
                     issueManagement {
-                        system = 'Github'
+                        system = 'GitHub Issues'
                         url = 'https://github.com/joinfaces/joinfaces/issues'
                     }
                     scm {
