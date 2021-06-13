@@ -21,6 +21,9 @@ import org.apache.catalina.Context;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnWebApplication;
 import org.springframework.boot.web.embedded.tomcat.TomcatContextCustomizer;
+import org.springframework.boot.web.embedded.tomcat.TomcatServletWebServerFactory;
+import org.springframework.boot.web.server.WebServerFactory;
+import org.springframework.boot.web.server.WebServerFactoryCustomizer;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -37,7 +40,20 @@ import org.springframework.context.annotation.Configuration;
 public class TomcatAutoConfiguration {
 
 	@Bean
-	public TomcatContextCustomizer jsfTomcatContextCustomizer() {
-		return context -> context.addLifecycleListener(new JsfTomcatLifecycleListener(context));
+	public WebServerFactoryCustomizer joinfacesWebServletFactoryCustomizer() {
+		return new WebServerFactoryCustomizer() {
+			@Override
+			public void customize(WebServerFactory webServerFactory) {
+				if (webServerFactory instanceof TomcatServletWebServerFactory) {
+					TomcatServletWebServerFactory tomcatServletWebServerFactory = (TomcatServletWebServerFactory) webServerFactory;
+					tomcatServletWebServerFactory.addContextCustomizers(new TomcatContextCustomizer() {
+						@Override
+						public void customize(Context context) {
+							context.addLifecycleListener(new JsfTomcatLifecycleListener(context));
+						}
+					});
+				}
+			}
+		};
 	}
 }
