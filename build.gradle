@@ -64,7 +64,7 @@ allprojects {
             dependency 'io.github.classgraph:classgraph:4.8.109'
 
             dependency 'org.primefaces:primefaces:10.0.0'
-            dependencySet("org.primefaces.extensions:10.0.1") {
+            dependencySet("org.primefaces.extensions:10.0.2") {
                 entry "primefaces-extensions"
                 entry "resources-ckeditor"
                 entry "resources-monacoeditor"
