@@ -2,6 +2,12 @@ version: 2
 updates:
   - package-ecosystem: "gradle"
     directory: "/"
+    target-branch: "4.6.x"
+    schedule:
+      interval: "daily"
+  - package-ecosystem: "gradle"
+    directory: "/"
+    target-branch: "4.5.x"
     schedule:
       interval: "daily"
   - package-ecosystem: "gradle"
