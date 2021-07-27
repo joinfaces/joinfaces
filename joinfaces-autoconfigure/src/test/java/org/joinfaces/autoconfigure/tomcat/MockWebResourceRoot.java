@@ -22,7 +22,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import lombok.Getter;
+import lombok.Setter;
 import org.apache.catalina.Context;
 import org.apache.catalina.LifecycleListener;
 import org.apache.catalina.LifecycleState;
@@ -34,6 +36,7 @@ import org.apache.catalina.WebResourceSet;
 @Getter
 public class MockWebResourceRoot implements WebResourceRoot {
 
+	@Setter
 	private Context context;
 
 	private int createWebResourceSetCalls = 0;
@@ -128,11 +131,6 @@ public class MockWebResourceRoot implements WebResourceRoot {
 	@Override
 	public WebResourceSet[] getPostResources() {
 		throw new UnsupportedOperationException(NOT_SUPPORTED_YET);
-	}
-
-	@Override
-	public void setContext(Context context) {
-		this.context = context;
 	}
 
 	@Override

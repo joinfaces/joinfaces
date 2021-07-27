@@ -17,6 +17,7 @@
 package org.joinfaces.autoconfigure.myfaces;
 
 import java.lang.annotation.Annotation;
+import java.util.Collections;
 import java.util.Map;
 import java.util.Set;
 
@@ -52,7 +53,7 @@ public class JoinFacesAnnotationProvider extends AnnotationProviderWrapper {
 	@Override
 	public Map<Class<? extends Annotation>, Set<Class<?>>> getAnnotatedClasses(ExternalContext ctx) {
 		if (annotatedClasses != null) {
-			return annotatedClasses;
+			return Collections.unmodifiableMap(annotatedClasses);
 		}
 		else {
 			return super.getAnnotatedClasses(ctx);
