@@ -19,6 +19,7 @@ package org.joinfaces.autoconfigure.servlet.initparams;
 import java.lang.reflect.Field;
 import java.time.Duration;
 import java.time.temporal.ChronoUnit;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
@@ -27,6 +28,7 @@ import java.util.stream.Collectors;
 
 import javax.servlet.ServletContext;
 
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
@@ -62,11 +64,12 @@ public class InitParameterServletContextConfigurer implements ServletContextInit
 	private int order;
 
 	public InitParameterServletContextConfigurer(List<ServletContextInitParameterProperties> initParameterProperties) {
-		this.initParameterProperties = initParameterProperties;
+		this.initParameterProperties = new ArrayList<>(initParameterProperties);
 		this.visitedInitParameters = new HashSet<>();
 	}
 
 	@Override
+	@SuppressFBWarnings("EI_EXPOSE_REP2")
 	public void onStartup(ServletContext servletContext) {
 		this.servletContext = servletContext;
 		for (ServletContextInitParameterProperties properties : this.initParameterProperties) {

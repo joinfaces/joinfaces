@@ -19,6 +19,7 @@ package org.joinfaces.gradle;
 import java.util.Collections;
 import java.util.concurrent.Callable;
 
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import org.gradle.api.Plugin;
 import org.gradle.api.Project;
 import org.gradle.api.file.FileCollection;
@@ -39,6 +40,7 @@ public class ClasspathScanPlugin implements Plugin<Project> {
 	private Project project;
 
 	@Override
+	@SuppressFBWarnings("EI_EXPOSE_REP2")
 	public void apply(Project project) {
 		this.project = project;
 
