@@ -40,7 +40,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 class JoinfacesPluginIT {
 
 	@ParameterizedTest
-	@ValueSource(strings = {"7.0", "7.0.2"})
+	@ValueSource(strings = {"6.8", "7.1.1"})
 	public void build(String gradleVersion, @TempDir Path projectDir) throws IOException {
 		Files.write(projectDir.resolve("settings.gradle"), Collections.singleton("rootProject.name = 'dummy'"));
 
