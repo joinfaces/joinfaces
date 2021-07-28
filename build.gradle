@@ -112,7 +112,7 @@ allprojects {
             dependency "com.github.adminfaces:admin-template:1.3.0"
             dependency "com.github.adminfaces:admin-theme:1.3.0"
 
-            dependency 'jakarta.ejb:jakarta.ejb-api:3.2.6'
+            dependency 'jakarta.ejb:jakarta.ejb-api:4.0.0'
             dependency 'jakarta.el:jakarta.el-api:3.0.3'
 
             dependencySet('org.apache.myfaces.tobago:4.5.4') {
