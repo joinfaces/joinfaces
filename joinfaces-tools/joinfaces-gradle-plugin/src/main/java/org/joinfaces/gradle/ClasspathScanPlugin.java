@@ -26,7 +26,6 @@ import org.gradle.api.file.FileCollection;
 import org.gradle.api.plugins.GroovyPlugin;
 import org.gradle.api.plugins.JavaPlugin;
 import org.gradle.api.plugins.JavaPluginConvention;
-import org.gradle.api.plugins.JavaPluginExtension;
 import org.gradle.api.plugins.scala.ScalaBasePlugin;
 import org.gradle.api.tasks.SourceSet;
 import org.gradle.api.tasks.TaskProvider;
@@ -46,8 +45,8 @@ public class ClasspathScanPlugin implements Plugin<Project> {
 		this.project = project;
 
 		project.getPlugins().withType(JavaPlugin.class, javaPlugin ->
-			project.getExtensions()
-				.getByType(JavaPluginExtension.class)
+			project.getConvention()
+				.getPlugin(JavaPluginConvention.class)
 				.getSourceSets()
 				.all(this::configureClasspathScan)
 		);
