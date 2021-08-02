@@ -185,6 +185,25 @@
       ]
     },
     {
+      "name": "joinfaces.myfaces.serial-factory",
+      "providers": [
+        {
+          "name": "class-reference",
+          "parameters": {
+            "target": "org.apache.myfaces.shared.util.serial.SerialFactory",
+            "concrete": true
+          }
+        },
+        {
+          "name": "class-reference",
+          "parameters": {
+            "target": "org.apache.myfaces.spi.SerialFactory",
+            "concrete": true
+          }
+        }
+      ]
+    },
+    {
       "name": "joinfaces.omnifaces.cache-provider",
       "providers": [
         {

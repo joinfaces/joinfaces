@@ -36,7 +36,6 @@ import org.apache.myfaces.lifecycle.ClientWindowFactoryImpl;
 import org.apache.myfaces.renderkit.ErrorPageWriter;
 import org.apache.myfaces.renderkit.html.HtmlResponseStateManager;
 import org.apache.myfaces.resource.InternalClassLoaderResourceLoader;
-import org.apache.myfaces.shared.util.serial.SerialFactory;
 import org.apache.myfaces.spi.ServiceProviderFinder;
 import org.apache.myfaces.view.facelets.DefaultFaceletsStateManagementStrategy;
 import org.apache.myfaces.view.facelets.ELExpressionCacheMode;
@@ -425,7 +424,7 @@ public class MyfacesProperties implements ServletContextInitParameterProperties 
 	 * state returned by state manager into a byte array.
 	 */
 	@ServletContextInitParameter(PREFFIX + "SERIAL_FACTORY")
-	private Class<? extends SerialFactory> serialFactory;
+	private Class<?> serialFactory;
 
 	/**
 	 * Indicate if the view state should be compressed before

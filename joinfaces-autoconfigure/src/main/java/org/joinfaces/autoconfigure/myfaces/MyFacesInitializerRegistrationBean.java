@@ -32,9 +32,9 @@ import javax.faces.event.NamedEvent;
 import javax.faces.render.FacesBehaviorRenderer;
 import javax.faces.render.FacesRenderer;
 import javax.faces.validator.FacesValidator;
+import javax.servlet.ServletContainerInitializer;
 
 import io.github.classgraph.ScanResult;
-import org.apache.myfaces.ee.MyFacesContainerInitializer;
 import org.joinfaces.autoconfigure.servlet.initializer.ServletContainerInitializerRegistrationBean;
 
 /**
@@ -46,10 +46,10 @@ import org.joinfaces.autoconfigure.servlet.initializer.ServletContainerInitializ
  * @see org.apache.myfaces.config.annotation.AnnotationConfigurator
  * @see JoinFacesAnnotationProvider
  */
-public class MyFacesInitializerRegistrationBean extends ServletContainerInitializerRegistrationBean<MyFacesContainerInitializer> {
+public class MyFacesInitializerRegistrationBean<T extends ServletContainerInitializer> extends ServletContainerInitializerRegistrationBean<T> {
 
-	public MyFacesInitializerRegistrationBean() {
-		super(MyFacesContainerInitializer.class);
+	public MyFacesInitializerRegistrationBean(Class<T> servletContainerInitializerClass) {
+		super(servletContainerInitializerClass);
 	}
 
 	@Override
