@@ -20,8 +20,3 @@ updates:
     target-branch: "4.3.x"
     schedule:
       interval: "daily"
-  - package-ecosystem: "gradle"
-    directory: "/"
-    target-branch: "4.1.x"
-    schedule:
-      interval: "daily"
