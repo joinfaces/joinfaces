@@ -1,9 +1,18 @@
-description = 'MyFaces Spring Boot Starter'
+description = 'MyFaces Next Spring Boot Starter'
 jar.manifest.attributes('Automatic-Module-Name': 'joinfaces.starter.myfaces-next')
 
+dependencyManagement {
+    dependencies {
+        dependencySet("org.apache.myfaces.core:$myfacesNextVersion") {
+            entry "myfaces-api"
+            entry "myfaces-impl"
+        }
+    }
+}
+
 dependencies {
-    api 'org.apache.myfaces.core:myfaces-api:2.3-next-M6'
-    api 'org.apache.myfaces.core:myfaces-impl:2.3-next-M6'
+    api "org.apache.myfaces.core:myfaces-api:$myfacesNextVersion"
+    implementation "org.apache.myfaces.core:myfaces-impl:$myfacesNextVersion"
 /*
     runtimeOnly('javax.enterprise:cdi-api') {
         exclude group: 'javax.el', module: 'javax.el-api'
