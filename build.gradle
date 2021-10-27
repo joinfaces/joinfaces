@@ -5,17 +5,17 @@ buildscript {
         maven { url "https://plugins.gradle.org/m2/" }
     }
     dependencies {
-        def freefairGradleVersion = "6.1.0"
+        def freefairGradleVersion = "6.2.0"
         classpath "io.freefair.gradle:lombok-plugin:$freefairGradleVersion"
         classpath "io.freefair.gradle:maven-plugin:$freefairGradleVersion"
         classpath "io.freefair.gradle:maven-plugin-plugin:$freefairGradleVersion"
         classpath "io.freefair.gradle:git-plugin:$freefairGradleVersion"
         classpath "io.freefair.gradle:okhttp-plugin:$freefairGradleVersion"
         classpath "io.freefair.gradle:jacoco-plugin:$freefairGradleVersion"
-        classpath "gradle.plugin.com.github.spotbugs.snom:spotbugs-gradle-plugin:4.7.3"
-        classpath "com.netflix.nebula:gradle-lint-plugin:17.1.1"
-        classpath "de.aaschmid:gradle-cpd-plugin:3.2"
-        classpath "com.gradle.publish:plugin-publish-plugin:0.15.0"
+        classpath "gradle.plugin.com.github.spotbugs.snom:spotbugs-gradle-plugin:4.7.5"
+        classpath "com.netflix.nebula:gradle-lint-plugin:17.2.3"
+        classpath "de.aaschmid:gradle-cpd-plugin:3.3"
+        classpath "com.gradle.publish:plugin-publish-plugin:0.16.0"
     }
 }
 
@@ -54,10 +54,10 @@ allprojects {
             dependency "org.apache.tomcat:tomcat-jasper:${importedProperties['tomcat.version']}"
             dependency 'org.jboss.spec.javax.servlet.jsp:jboss-jsp-api_2.3_spec:2.0.0.Final'
 
-            dependency 'io.github.classgraph:classgraph:4.8.115'
+            dependency 'io.github.classgraph:classgraph:4.8.128'
 
             dependency 'org.primefaces:primefaces:10.0.0'
-            dependencySet("org.primefaces.extensions:10.0.4") {
+            dependencySet("org.primefaces.extensions:10.0.5") {
                 entry "primefaces-extensions"
                 entry "resources-ckeditor"
                 entry "resources-monacoeditor"
