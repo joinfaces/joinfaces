@@ -35,6 +35,7 @@ import javax.inject.Inject;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import org.springframework.beans.factory.BeanFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.util.ReflectionUtils;
@@ -53,7 +54,11 @@ public class JsfBeansAnnotationPostProcessorTest {
 	public void setUp() {
 		this.jsfBeansAutoConfiguration = mock(JsfBeansAutoConfiguration.class);
 
+		BeanFactory beanFactory = mock(BeanFactory.class);
+		when(beanFactory.getBean(JsfBeansAutoConfiguration.class)).thenReturn(this.jsfBeansAutoConfiguration);
+
 		this.jsfBeansAnnotationPostProcessor = new JsfBeansAnnotationPostProcessor();
+		this.jsfBeansAnnotationPostProcessor.setBeanFactory(beanFactory);
 	}
 
 	@Test
