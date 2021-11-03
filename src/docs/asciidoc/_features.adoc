@@ -24,7 +24,7 @@ You can use the table below to discover the starters that fit your needs.
 |Basic starter for https://www.eclipse.org/jetty[Jetty] servlet container.
 
 |undertow-spring-boot-starter
-|Basic starter for http://undertow.io[Undertow] servlet container.
+|Basic starter for https://undertow.io[Undertow] servlet container.
 
 |mojarra-spring-boot-starter
 |Basic starter for https://javaee.github.io/javaserverfaces-spec/[Mojarra] JSF implementation.

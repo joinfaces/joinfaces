@@ -3,15 +3,15 @@ JoinFaces
 [![Maven Central](https://maven-badges.herokuapp.com/maven-central/org.joinfaces/jsf-spring-boot-starter/badge.svg)](https://maven-badges.herokuapp.com/maven-central/org.joinfaces/jsf-spring-boot-starter)
 [![Build Status](https://github.com/joinfaces/joinfaces/actions/workflows/gradle.yml/badge.svg)](https://github.com/joinfaces/joinfaces/actions/workflows/gradle.yml)
 [![codecov](https://codecov.io/gh/joinfaces/joinfaces/branch/master/graph/badge.svg)](https://codecov.io/gh/joinfaces/joinfaces)
-[![](http://img.shields.io/badge/javadoc-stable-green.svg)](https://docs.joinfaces.org/current/api)
-[![](http://img.shields.io/badge/reference%20guide-stable-green.svg)](https://docs.joinfaces.org/current/reference)
+[![](https://img.shields.io/badge/javadoc-stable-green.svg)](https://docs.joinfaces.org/current/api)
+[![](https://img.shields.io/badge/reference%20guide-stable-green.svg)](https://docs.joinfaces.org/current/reference)
 [![GitHub license](https://img.shields.io/github/license/joinfaces/joinfaces.svg)](https://github.com/joinfaces/joinfaces/blob/master/LICENSE.txt)
 
-This project enables [JSF](http://www.oracle.com/technetwork/java/javaee/javaserverfaces-139869.html) usage inside [Spring Boot](http://projects.spring.io/spring-boot/) Application.
+This project enables [JSF](https://www.oracle.com/technetwork/java/javaee/javaserverfaces-139869.html) usage inside [Spring Boot](https://projects.spring.io/spring-boot/) Application.
 
-It autoconfigures [PrimeFaces](http://primefaces.org/), [PrimeFaces Extensions](http://primefaces-extensions.github.io/), [AdminFaces](https://adminfaces.github.io/site/), [BootsFaces](http://bootsfaces.net/), [ButterFaces](http://butterfaces.org/), [IceFaces](http://www.icesoft.org/java/projects/ICEfaces/overview.jsf), [RichFaces](https://github.com/richfaces/richfaces), [RichFaces-AYG](https://github.com/albfernandez/richfaces), [OmniFaces](http://omnifaces.org/), [AngularFaces](http://angularfaces.net/), [Mojarra](https://javaserverfaces.java.net/) and [MyFaces](http://myfaces.apache.org/) libraries to run at embedded [Tomcat](http://tomcat.apache.org/), [Jetty](http://www.eclipse.org/jetty) or [Undertow](http://undertow.io) servlet containers. It autoconfigures [Weld](http://weld.cdi-spec.org) and [Rewrite](https://www.ocpsoft.org/rewrite/) too.
+It autoconfigures [PrimeFaces](https://primefaces.org/), [PrimeFaces Extensions](http://primefaces-extensions.github.io/), [AdminFaces](https://adminfaces.github.io/site/), [BootsFaces](http://bootsfaces.net/), [ButterFaces](http://butterfaces.org/), [IceFaces](http://www.icesoft.org/java/projects/ICEfaces/overview.jsf), [RichFaces](https://github.com/richfaces/richfaces), [RichFaces-AYG](https://github.com/albfernandez/richfaces), [OmniFaces](http://omnifaces.org/), [AngularFaces](http://angularfaces.net/), [Mojarra](https://javaserverfaces.java.net/) and [MyFaces](http://myfaces.apache.org/) libraries to run at embedded [Tomcat](http://tomcat.apache.org/), [Jetty](http://www.eclipse.org/jetty) or [Undertow](http://undertow.io) servlet containers. It autoconfigures [Weld](http://weld.cdi-spec.org) and [Rewrite](https://www.ocpsoft.org/rewrite/) too.
 
-It also aims to solve [JSF](http://www.oracle.com/technetwork/java/javaee/javaserverfaces-139869.html) and [Spring Boot](http://projects.spring.io/spring-boot/) integration features. Current version includes [JSF](http://www.oracle.com/technetwork/java/javaee/javaserverfaces-139869.html) and [CDI](http://www.cdi-spec.org/) annotations support and [Spring Security](http://projects.spring.io/spring-security/) JSF Facelet Tag support.
+It also aims to solve [JSF](https://www.oracle.com/technetwork/java/javaee/javaserverfaces-139869.html) and [Spring Boot](https://projects.spring.io/spring-boot/) integration features. Current version includes [JSF](https://www.oracle.com/technetwork/java/javaee/javaserverfaces-139869.html) and [CDI](https://www.cdi-spec.org/) annotations support and [Spring Security](https://projects.spring.io/spring-security/) JSF Facelet Tag support.
 
 ## How to use
 

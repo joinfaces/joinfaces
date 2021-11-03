@@ -11,7 +11,7 @@ problem.
 
 ### Project Structure
 
-This software is multi module [Gradle](https://gradle.org/) project and follows [Spring Boot Reference](http://docs.spring.io/spring-boot/docs/current/reference/html/boot-features-developing-auto-configuration.html) to create JSF Auto Configuration. [See what's inside each submodule.](https://github.com/joinfaces/joinfaces/wiki/Structure-of-the-software)
+This software is multi module [Gradle](https://gradle.org/) project and follows [Spring Boot Reference](https://docs.spring.io/spring-boot/docs/current/reference/html/boot-features-developing-auto-configuration.html) to create JSF Auto Configuration. [See what's inside each submodule.](https://github.com/joinfaces/joinfaces/wiki/Structure-of-the-software)
 
 ### Branching
 
@@ -39,4 +39,4 @@ added after the original pull request but before a merge.
 * Add yourself as an `@author` to the `.java` files that you modify substantially (more than cosmetic changes).
 * Add some Javadocs.
 * A few unit tests would help a lot as well -- someone has to do it.
-* When writing a commit message please follow [these conventions](http://tbaggery.com/2008/04/19/a-note-about-git-commit-messages.html).
+* When writing a commit message please follow [these conventions](https://tbaggery.com/2008/04/19/a-note-about-git-commit-messages.html).

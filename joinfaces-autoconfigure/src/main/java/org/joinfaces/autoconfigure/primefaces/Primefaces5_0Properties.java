@@ -5,7 +5,7 @@
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *      http://www.apache.org/licenses/LICENSE-2.0
+ *      https://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -28,7 +28,7 @@ import org.springframework.boot.context.properties.NestedConfigurationProperty;
 /**
  * Configuration properties for Primefaces 5.0.
  *
- * Values taken from http://www.primefaces.org/docs/guide/primefaces_user_guide_5_0.pdf
+ * Values taken from https://www.primefaces.org/docs/guide/primefaces_user_guide_5_0.pdf
  * pages 13, 42, 55.
  *
  * @author Lars Grefer

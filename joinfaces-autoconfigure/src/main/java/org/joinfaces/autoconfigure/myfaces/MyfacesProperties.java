@@ -5,7 +5,7 @@
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *      http://www.apache.org/licenses/LICENSE-2.0
+ *      https://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -59,7 +59,7 @@ import org.springframework.util.unit.DataUnit;
  * Configuration properties of MyFaces.
  * Taken from https://myfaces.apache.org/core22/myfaces-impl/webconfig.html and
  * from
- * http://myfaces.apache.org/core22/myfaces-impl/apidocs/constant-values.html
+ * https://myfaces.apache.org/core22/myfaces-impl/apidocs/constant-values.html
  * @author Marcelo Fernandes
  */
 @Data

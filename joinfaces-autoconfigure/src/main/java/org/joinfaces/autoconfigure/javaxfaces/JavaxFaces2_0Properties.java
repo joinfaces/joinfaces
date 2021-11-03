@@ -5,7 +5,7 @@
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *      http://www.apache.org/licenses/LICENSE-2.0
+ *      https://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -44,7 +44,7 @@ import org.springframework.boot.context.properties.NestedConfigurationProperty;
  * @author Marcelo Fernandes
  * @author Lars Grefer
  * @see <a href="https://www.jcp.org/en/jsr/detail?id=314">JSR-314</a>
- * @see <a href="http://stackoverflow.com/a/17341945/3574494">http://stackoverflow.com/a/17341945/3574494</a>
+ * @see <a href="https://stackoverflow.com/a/17341945/3574494">https://stackoverflow.com/a/17341945/3574494</a>
  */
 @Data
 @ConfigurationProperties(prefix = "joinfaces.jsf")

@@ -5,7 +5,7 @@
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *      http://www.apache.org/licenses/LICENSE-2.0
+ *      https://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -29,7 +29,7 @@ import org.springframework.boot.context.properties.NestedConfigurationProperty;
  * <p>
  * Taken from
  * <ul>
- * <li>http://search.maven.org/remotecontent?filepath=net/bootsfaces/bootsfaces/0.8.6/bootsfaces-0.8.6-javadoc.jar</li>
+ * <li>https://search.maven.org/remotecontent?filepath=net/bootsfaces/bootsfaces/0.8.6/bootsfaces-0.8.6-javadoc.jar</li>
  * <li>https://github.com/TheCoder4eu/BootsFaces-OSP</li>
  * <li>https://showcase.bootsfaces.net/miscellaneous/Configuration.jsf</li>
  * </ul>
