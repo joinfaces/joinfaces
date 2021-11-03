@@ -4,7 +4,10 @@ allprojects {
 
 subprojects {
     apply plugin: "java"
+    apply plugin: "application"
     apply plugin: "org.springframework.boot"
+
+    mainClassName = "org.joinfaces.test.JoinfacesTestApplication"
 
     dependencies {
         implementation project(":joinfaces-security-taglib")

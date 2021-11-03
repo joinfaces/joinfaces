@@ -7,7 +7,7 @@ There are many JoinFaces Starters available: six basic starters, meta starter, s
 While most of the starters can be combined, some starters are mutually exclusive:
 
 - `tomcat-spring-boot-starter`, `jetty-spring-boot-starter` and `undertow-spring-boot-starter`
-- `mojarra-spring-boot-starter` and `myfaces-spring-boot-starter`
+- `mojarra-spring-boot-starter`, `myfaces-spring-boot-starter` and `myfaces-next-spring-boot-starter`
 - `omnifaces1-spring-boot-starter` and `omnifaces3-spring-boot-starter`
 
 You can use the table below to discover the starters that fit your needs.
@@ -31,6 +31,9 @@ You can use the table below to discover the starters that fit your needs.
 
 |myfaces-spring-boot-starter
 |Basic starter for https://myfaces.apache.org/[MyFaces] JSF implementation.
+
+|myfaces-next-spring-boot-starter
+|Basic starter for https://myfaces.apache.org/#/core23next[MyFaces Next] JSF implementation.
 
 |weld-spring-boot-starter
 |Basic starter for https://weld.cdi-spec.org/[Weld] CDI Reference Implementation.
