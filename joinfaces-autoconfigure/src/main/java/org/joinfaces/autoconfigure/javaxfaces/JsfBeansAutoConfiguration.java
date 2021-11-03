@@ -25,6 +25,7 @@ import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import javax.faces.context.Flash;
 
+import org.springframework.beans.factory.BeanFactory;
 import org.springframework.beans.factory.config.ConfigurableBeanFactory;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
@@ -192,8 +193,8 @@ public class JsfBeansAutoConfiguration {
 	public static class Jsf2_3AutoConfiguration {
 
 		@Bean
-		public static JsfBeansAnnotationPostProcessor jsfBeansAnnotationPostProcessor() {
-			return new JsfBeansAnnotationPostProcessor();
+		public static JsfBeansAnnotationPostProcessor jsfBeansAnnotationPostProcessor(BeanFactory beanFactory) {
+			return new JsfBeansAnnotationPostProcessor(beanFactory);
 		}
 	}
 }

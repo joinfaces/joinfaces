@@ -57,8 +57,7 @@ public class JsfBeansAnnotationPostProcessorTest {
 		BeanFactory beanFactory = mock(BeanFactory.class);
 		when(beanFactory.getBean(JsfBeansAutoConfiguration.class)).thenReturn(this.jsfBeansAutoConfiguration);
 
-		this.jsfBeansAnnotationPostProcessor = new JsfBeansAnnotationPostProcessor();
-		this.jsfBeansAnnotationPostProcessor.setBeanFactory(beanFactory);
+		this.jsfBeansAnnotationPostProcessor = new JsfBeansAnnotationPostProcessor(beanFactory);
 	}
 
 	@Test

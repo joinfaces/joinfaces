@@ -38,7 +38,6 @@ import javax.faces.annotation.ViewMap;
 
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.BeanFactory;
-import org.springframework.beans.factory.BeanFactoryAware;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.beans.factory.config.BeanPostProcessor;
@@ -52,14 +51,15 @@ import org.springframework.util.ReflectionUtils;
  * @author Lars Grefer
  * @see javax.faces.annotation
  */
-public class JsfBeansAnnotationPostProcessor implements BeanPostProcessor, BeanFactoryAware {
+public class JsfBeansAnnotationPostProcessor implements BeanPostProcessor {
 
 	private final Set<Class<? extends Annotation>> autowiredAnnotationTypes = new LinkedHashSet<>();
 	private final Map<Class<? extends Annotation>, Function<JsfBeansAutoConfiguration, ?>> mappers = new HashMap<>();
 
-	private BeanFactory beanFactory;
+	private final BeanFactory beanFactory;
 
-	public JsfBeansAnnotationPostProcessor() {
+	public JsfBeansAnnotationPostProcessor(BeanFactory beanFactory) {
+		this.beanFactory = beanFactory;
 
 		this.autowiredAnnotationTypes.add(Autowired.class);
 		this.autowiredAnnotationTypes.add(Value.class);
@@ -83,11 +83,6 @@ public class JsfBeansAnnotationPostProcessor implements BeanPostProcessor, BeanF
 		this.mappers.put(SessionMap.class, JsfBeansAutoConfiguration::sessionMap);
 		this.mappers.put(ViewMap.class, JsfBeansAutoConfiguration::viewMap);
 
-	}
-
-	@Override
-	public void setBeanFactory(BeanFactory beanFactory) throws BeansException {
-		this.beanFactory = beanFactory;
 	}
 
 	@Override
