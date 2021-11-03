@@ -83,8 +83,8 @@ The `jsf-spring-boot-starter` pulls tomcat and mojarra as defaults. If you want 
 
 The principle behind this is the same as described here:
 
-- https://docs.spring.io/spring-boot/docs/{spring-boot-version}/reference/html/howto.html#howto-use-another-web-server[Use Another Web Server]
-- https://docs.spring.io/spring-boot/docs/{spring-boot-version}/reference/html/howto.html#howto-configure-log4j-for-logging[Configure Log4j for Logging]
+- https://docs.spring.io/spring-boot/docs/{spring-boot-version}/reference/html/howto.html#howto.webserver.use-another[Use Another Web Server]
+- https://docs.spring.io/spring-boot/docs/{spring-boot-version}/reference/html/howto.html#howto.logging.log4j[Configure Log4j for Logging]
 
 ===== Example: Using MyFaces instead of Mojarra
 [source,xml]
@@ -136,7 +136,7 @@ JSF implementations and JSF component libraries are usually configured using ser
 
 _Spring Boot_ based applications -- especially when using `jar`-packaging -- usually don't have a `web.xml` file.
 Therefore JoinFaces maps these options to
-https://docs.spring.io/spring-boot/docs/{spring-boot-version}/reference/html/spring-boot-features.html#boot-features-external-config[_Spring Boot_ properties]:
+https://docs.spring.io/spring-boot/docs/{spring-boot-version}/reference/html/features.html#features.external-config[_Spring Boot_ properties]:
 
 [source,properties]
 ----

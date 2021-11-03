@@ -22,7 +22,7 @@ https://docs.spring.io/spring-boot/docs/{spring-boot-version}/reference/html/get
 === System Requirements
 
 Unless otherwise noted, JoinFaces has the same system requirements as
-https://docs.spring.io/spring-boot/docs/{spring-boot-version}/reference/html/getting-started.html#getting-started-system-requirements[_Spring Boot {spring-boot-version}_].
+https://docs.spring.io/spring-boot/docs/{spring-boot-version}/reference/html/getting-started.html#getting-started.system-requirements[_Spring Boot {spring-boot-version}_].
 
 When using Java 9 or higher, make sure to use JoinFaces only on the classpath and not on the modulepath.
 
@@ -31,7 +31,7 @@ When using Java 9 or higher, make sure to use JoinFaces only on the classpath an
 
 Each release of JoinFaces provides a curated list of dependencies that it supports.
 This list is an extension of
-https://docs.spring.io/spring-boot/docs/{spring-boot-version}/reference/html/using-spring-boot.html#using-boot-dependency-management[Spring Boot's dependency management] and therefore works exactly the same way.
+https://docs.spring.io/spring-boot/docs/{spring-boot-version}/reference/html/using.html#using.build-systems.dependency-management[Spring Boot's dependency management] and therefore works exactly the same way.
 
 The `joinfaces-dependencies` BOM also imports the `spring-boot-dependencies` BOM.
 If you want to override the imported Spring Boot version, make sure to specify the
@@ -41,7 +41,7 @@ The complete list of managed versions can befound in the appendix <<versions>>.
 
 === Maven
 
-NOTE: Please also consult the official Spring Boot documentation: https://docs.spring.io/spring-boot/docs/{spring-boot-version}/reference/html/using-spring-boot.html#using-boot-maven[Link]
+NOTE: Please also consult the official Spring Boot documentation: https://docs.spring.io/spring-boot/docs/{spring-boot-version}/reference/html/using.html#using.build-systems.maven[Link]
 
 [source,xml,subs=attributes+]
 ----
@@ -113,7 +113,7 @@ NOTE: Please also consult the official Spring Boot documentation: https://docs.s
 
 === Gradle
 
-NOTE: Please also consult the official Spring Boot documentation: https://docs.spring.io/spring-boot/docs/{spring-boot-version}/reference/html/using-spring-boot.html#using-boot-gradle[Link]
+NOTE: Please also consult the official Spring Boot documentation: https://docs.spring.io/spring-boot/docs/{spring-boot-version}/reference/html/using.html#using.build-systems.gradle[Link]
 
 [source,groovy,subs=attributes+]
 ----
