@@ -55,7 +55,7 @@ import org.springframework.util.ReflectionUtils;
 public class JsfBeansAnnotationPostProcessor implements BeanPostProcessor, BeanFactoryAware {
 
 	private final Set<Class<? extends Annotation>> autowiredAnnotationTypes = new LinkedHashSet<>();
-	private final Map<Class<? extends Annotation>, Function<JsfBeansAutoConfiguration,?>> mappers = new HashMap<>();
+	private final Map<Class<? extends Annotation>, Function<JsfBeansAutoConfiguration, ?>> mappers = new HashMap<>();
 
 	private BeanFactory beanFactory;
 
@@ -96,7 +96,7 @@ public class JsfBeansAnnotationPostProcessor implements BeanPostProcessor, BeanF
 				field -> this.mappers.forEach((annotation, mapper) -> {
 					if (AnnotatedElementUtils.hasAnnotation(field, annotation)) {
 						ReflectionUtils.makeAccessible(field);
-						JsfBeansAutoConfiguration jsfBeanConfiguration = beanFactory.getBean(JsfBeansAutoConfiguration.class);
+						JsfBeansAutoConfiguration jsfBeanConfiguration = this.beanFactory.getBean(JsfBeansAutoConfiguration.class);
 						ReflectionUtils.setField(field, bean, mapper.apply(jsfBeanConfiguration));
 					}
 				}),
