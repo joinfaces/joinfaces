@@ -53,7 +53,7 @@ public class JsfBeansAnnotationPostProcessorTest {
 	public void setUp() {
 		this.jsfBeansAutoConfiguration = mock(JsfBeansAutoConfiguration.class);
 
-		this.jsfBeansAnnotationPostProcessor = new JsfBeansAnnotationPostProcessor(this.jsfBeansAutoConfiguration);
+		this.jsfBeansAnnotationPostProcessor = new JsfBeansAnnotationPostProcessor();
 	}
 
 	@Test

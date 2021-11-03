@@ -42,7 +42,7 @@ import org.springframework.context.annotation.ScopedProxyMode;
  * @author Lars Grefer
  * @see <a href="http://arjan-tijms.omnifaces.org/p/jsf-23.html#1316">http://arjan-tijms.omnifaces.org/p/jsf-23.html#1316</a>
  */
-@Configuration(proxyBeanMethods = false)
+@Configuration
 @ConditionalOnWebApplication(type = ConditionalOnWebApplication.Type.SERVLET)
 @ConditionalOnClass(FacesContext.class)
 public class JsfBeansAutoConfiguration {
@@ -192,8 +192,8 @@ public class JsfBeansAutoConfiguration {
 	public static class Jsf2_3AutoConfiguration {
 
 		@Bean
-		public JsfBeansAnnotationPostProcessor jsfBeansAnnotationPostProcessor(JsfBeansAutoConfiguration jsfBeansAutoConfiguration) {
-			return new JsfBeansAnnotationPostProcessor(jsfBeansAutoConfiguration);
+		public static JsfBeansAnnotationPostProcessor jsfBeansAnnotationPostProcessor() {
+			return new JsfBeansAnnotationPostProcessor();
 		}
 	}
 }

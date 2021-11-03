@@ -22,7 +22,7 @@ import java.util.HashMap;
 import java.util.LinkedHashSet;
 import java.util.Map;
 import java.util.Set;
-import java.util.function.Supplier;
+import java.util.function.Function;
 
 import javax.faces.annotation.ApplicationMap;
 import javax.faces.annotation.FlowMap;
@@ -37,6 +37,8 @@ import javax.faces.annotation.SessionMap;
 import javax.faces.annotation.ViewMap;
 
 import org.springframework.beans.BeansException;
+import org.springframework.beans.factory.BeanFactory;
+import org.springframework.beans.factory.BeanFactoryAware;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.beans.factory.config.BeanPostProcessor;
@@ -50,12 +52,14 @@ import org.springframework.util.ReflectionUtils;
  * @author Lars Grefer
  * @see javax.faces.annotation
  */
-public class JsfBeansAnnotationPostProcessor implements BeanPostProcessor {
+public class JsfBeansAnnotationPostProcessor implements BeanPostProcessor, BeanFactoryAware {
 
 	private final Set<Class<? extends Annotation>> autowiredAnnotationTypes = new LinkedHashSet<>();
-	private final Map<Class<? extends Annotation>, Supplier<?>> suppliers = new HashMap<>();
+	private final Map<Class<? extends Annotation>, Function<JsfBeansAutoConfiguration,?>> mappers = new HashMap<>();
 
-	public JsfBeansAnnotationPostProcessor(JsfBeansAutoConfiguration jsfBeansAutoConfiguration) {
+	private BeanFactory beanFactory;
+
+	public JsfBeansAnnotationPostProcessor() {
 
 		this.autowiredAnnotationTypes.add(Autowired.class);
 		this.autowiredAnnotationTypes.add(Value.class);
@@ -67,27 +71,33 @@ public class JsfBeansAnnotationPostProcessor implements BeanPostProcessor {
 			// JSR-330 API not available - simply skip.
 		}
 
-		this.suppliers.put(ApplicationMap.class, jsfBeansAutoConfiguration::applicationMap);
-		this.suppliers.put(FlowMap.class, jsfBeansAutoConfiguration::flowScope);
-		this.suppliers.put(HeaderMap.class, jsfBeansAutoConfiguration::headerMap);
-		this.suppliers.put(HeaderValuesMap.class, jsfBeansAutoConfiguration::headerValuesMap);
-		this.suppliers.put(InitParameterMap.class, jsfBeansAutoConfiguration::initParameterMap);
-		this.suppliers.put(RequestCookieMap.class, jsfBeansAutoConfiguration::requestCookieMap);
-		this.suppliers.put(RequestMap.class, jsfBeansAutoConfiguration::requestMap);
-		this.suppliers.put(RequestParameterMap.class, jsfBeansAutoConfiguration::requestParameterMap);
-		this.suppliers.put(RequestParameterValuesMap.class, jsfBeansAutoConfiguration::requestParameterValuesMap);
-		this.suppliers.put(SessionMap.class, jsfBeansAutoConfiguration::sessionMap);
-		this.suppliers.put(ViewMap.class, jsfBeansAutoConfiguration::viewMap);
+		this.mappers.put(ApplicationMap.class, JsfBeansAutoConfiguration::applicationMap);
+		this.mappers.put(FlowMap.class, JsfBeansAutoConfiguration::flowScope);
+		this.mappers.put(HeaderMap.class, JsfBeansAutoConfiguration::headerMap);
+		this.mappers.put(HeaderValuesMap.class, JsfBeansAutoConfiguration::headerValuesMap);
+		this.mappers.put(InitParameterMap.class, JsfBeansAutoConfiguration::initParameterMap);
+		this.mappers.put(RequestCookieMap.class, JsfBeansAutoConfiguration::requestCookieMap);
+		this.mappers.put(RequestMap.class, JsfBeansAutoConfiguration::requestMap);
+		this.mappers.put(RequestParameterMap.class, JsfBeansAutoConfiguration::requestParameterMap);
+		this.mappers.put(RequestParameterValuesMap.class, JsfBeansAutoConfiguration::requestParameterValuesMap);
+		this.mappers.put(SessionMap.class, JsfBeansAutoConfiguration::sessionMap);
+		this.mappers.put(ViewMap.class, JsfBeansAutoConfiguration::viewMap);
 
+	}
+
+	@Override
+	public void setBeanFactory(BeanFactory beanFactory) throws BeansException {
+		this.beanFactory = beanFactory;
 	}
 
 	@Override
 	public Object postProcessBeforeInitialization(Object bean, String beanName) throws BeansException {
 		ReflectionUtils.doWithFields(bean.getClass(),
-				field -> this.suppliers.forEach((annotation, supplier) -> {
+				field -> this.mappers.forEach((annotation, mapper) -> {
 					if (AnnotatedElementUtils.hasAnnotation(field, annotation)) {
 						ReflectionUtils.makeAccessible(field);
-						ReflectionUtils.setField(field, bean, supplier.get());
+						JsfBeansAutoConfiguration jsfBeanConfiguration = beanFactory.getBean(JsfBeansAutoConfiguration.class);
+						ReflectionUtils.setField(field, bean, mapper.apply(jsfBeanConfiguration));
 					}
 				}),
 				this::isAutowiredField);
@@ -102,5 +112,4 @@ public class JsfBeansAnnotationPostProcessor implements BeanPostProcessor {
 		}
 		return false;
 	}
-
 }
