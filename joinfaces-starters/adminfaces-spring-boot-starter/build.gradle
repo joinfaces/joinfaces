@@ -9,5 +9,5 @@ dependencies {
     }
     api 'javax.persistence:javax.persistence-api'
     api 'jakarta.ejb:jakarta.ejb-api'
-    api 'javax.enterprise:cdi-api'
+    api 'jakarta.enterprise:jakarta.enterprise.cdi-api'
 }

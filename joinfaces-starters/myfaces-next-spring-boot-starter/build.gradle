@@ -14,8 +14,8 @@ dependencies {
     api "org.apache.myfaces.core:myfaces-api:$myfacesNextVersion"
     implementation "org.apache.myfaces.core:myfaces-impl:$myfacesNextVersion"
 /*
-    runtimeOnly('javax.enterprise:cdi-api') {
-        exclude group: 'javax.el', module: 'javax.el-api'
+    runtimeOnly('jakarta.enterprise:jakarta.enterprise.cdi-api') {
+        exclude group: 'jakarta.el', module: 'jakarta.el-api'
     }
     */
 }

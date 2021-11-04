@@ -16,7 +16,7 @@ dependencies {
         exclude group: 'commons-logging', module: 'commons-logging'
     }
 
-    runtimeOnly('javax.enterprise:cdi-api') {
-        exclude group: 'javax.el', module: 'javax.el-api'
+    runtimeOnly('jakarta.enterprise:jakarta.enterprise.cdi-api') {
+        exclude group: 'jakarta.el', module: 'jakarta.el-api'
     }
 }

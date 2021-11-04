@@ -27,7 +27,7 @@ dependencies {
     optional 'org.springframework.session:spring-session-core'
     optional 'org.hibernate:hibernate-core'
     optional 'org.springframework:spring-orm'
-    optional 'javax.enterprise:cdi-api'
+    optional 'jakarta.enterprise:jakarta.enterprise.cdi-api'
     optional 'org.jboss.weld.servlet:weld-servlet-core'
     optional 'org.glassfish:jakarta.faces'
     optional "org.apache.myfaces.core:myfaces-impl:$myfacesVersion"

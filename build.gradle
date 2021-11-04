@@ -47,8 +47,8 @@ allprojects {
 
             dependency 'org.glassfish:jakarta.faces:2.3.16'
 
-            dependency('javax.enterprise:cdi-api:2.0.SP1') {
-                exclude "javax.el:javax.el-api"
+            dependency('jakarta.enterprise:jakarta.enterprise.cdi-api:2.0.2') {
+                exclude "jakarta.el:jakarta.el-api"
             }
 
             dependency "org.apache.tomcat:tomcat-jasper:${importedProperties['tomcat.version']}"
