@@ -45,7 +45,7 @@ public class MyFaces2_3Properties implements ServletContextInitParameterProperti
 	 * @see MyfacesConfig#INIT_PARAM_SUPPORT_MANAGED_BEANS
 	 */
 	@ServletContextInitParameter(MyfacesConfig.INIT_PARAM_SUPPORT_MANAGED_BEANS)
-	private Boolean supportManagedBeans;
+	private Boolean supportManagedBeans = false;
 
 	/**
 	 * When CLEAR_INPUT_WHEN_SUBMITTED_VALUE_IS_NULL_OR_EMPTY is enabled, input fields will be cleared when null or empty values are submitted.
