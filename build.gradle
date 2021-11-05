@@ -49,6 +49,7 @@ allprojects {
 
             dependency('jakarta.enterprise:jakarta.enterprise.cdi-api:2.0.2') {
                 exclude "jakarta.el:jakarta.el-api"
+                exclude "jakarta.ejb:jakarta.ejb-api"
             }
 
             dependency "org.apache.tomcat:tomcat-jasper:${importedProperties['tomcat.version']}"

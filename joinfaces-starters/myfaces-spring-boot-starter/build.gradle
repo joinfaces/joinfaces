@@ -18,5 +18,6 @@ dependencies {
 
     runtimeOnly('jakarta.enterprise:jakarta.enterprise.cdi-api') {
         exclude group: 'jakarta.el', module: 'jakarta.el-api'
+        exclude group: 'jakarta.ejb', module: 'jakarta.ejb-api'
     }
 }
