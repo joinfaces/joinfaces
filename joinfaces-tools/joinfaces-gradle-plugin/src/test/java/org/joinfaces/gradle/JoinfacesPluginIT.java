@@ -28,6 +28,8 @@ import org.gradle.testkit.runner.BuildResult;
 import org.gradle.testkit.runner.BuildTask;
 import org.gradle.testkit.runner.GradleRunner;
 import org.gradle.testkit.runner.TaskOutcome;
+import org.junit.jupiter.api.condition.EnabledForJreRange;
+import org.junit.jupiter.api.condition.JRE;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
@@ -41,7 +43,18 @@ class JoinfacesPluginIT {
 
 	@ParameterizedTest
 	@ValueSource(strings = {"6.8", "7.1.1"})
-	public void build(String gradleVersion, @TempDir Path projectDir) throws IOException {
+	@EnabledForJreRange(min = JRE.JAVA_8, max = JRE.JAVA_16)
+	public void preJdk17Build(String gradleVersion, @TempDir Path projectDir) throws IOException {
+		build(gradleVersion, projectDir);
+	}
+
+	@ParameterizedTest
+	@ValueSource(strings = {"7.3"})
+	public void postJdk17Build(String gradleVersion, @TempDir Path projectDir) throws IOException {
+		build(gradleVersion, projectDir);
+	}
+
+	void build(String gradleVersion, @TempDir Path projectDir) throws IOException {
 		Files.write(projectDir.resolve("settings.gradle"), Collections.singleton("rootProject.name = 'dummy'"));
 
 		Files.write(projectDir.resolve("build.gradle"), Arrays.asList(
