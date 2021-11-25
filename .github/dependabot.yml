@@ -15,3 +15,9 @@ updates:
     target-branch: "4.4.x"
     schedule:
       interval: "daily"
+
+  # Maintain dependencies for GitHub Actions
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "weekly"
