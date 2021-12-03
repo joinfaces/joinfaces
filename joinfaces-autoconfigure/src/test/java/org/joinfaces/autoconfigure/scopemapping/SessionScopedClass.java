@@ -16,7 +16,7 @@
 
 package org.joinfaces.autoconfigure.scopemapping;
 
-import javax.faces.bean.SessionScoped;
+import jakarta.faces.bean.SessionScoped;
 
 @SessionScoped
 public class SessionScopedClass {

@@ -16,11 +16,10 @@
 
 package org.joinfaces.autoconfigure.scopemapping;
 
-
-import javax.enterprise.context.ApplicationScoped;
-import javax.enterprise.context.ConversationScoped;
-import javax.enterprise.context.RequestScoped;
-import javax.enterprise.context.SessionScoped;
+import jakarta.enterprise.context.ApplicationScoped;
+import jakarta.enterprise.context.ConversationScoped;
+import jakarta.enterprise.context.RequestScoped;
+import jakarta.enterprise.context.SessionScoped;
 
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;

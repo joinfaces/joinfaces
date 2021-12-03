@@ -16,8 +16,8 @@
 
 package org.joinfaces.autoconfigure.viewscope;
 
-import javax.faces.component.UIViewRoot;
-import javax.faces.context.FacesContext;
+import jakarta.faces.component.UIViewRoot;
+import jakarta.faces.context.FacesContext;
 
 import org.springframework.beans.factory.config.CustomScopeConfigurer;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;

@@ -16,8 +16,6 @@
 
 package org.joinfaces.autoconfigure.myfaces;
 
-import javax.servlet.ServletContainerInitializer;
-
 import org.apache.myfaces.ee.MyFacesContainerInitializer;
 import org.apache.myfaces.webapp.StartupServletContextListener;
 import org.joinfaces.autoconfigure.javaxfaces.JavaxFacesAutoConfiguration;
@@ -26,7 +24,6 @@ import org.joinfaces.autoconfigure.servlet.WebFragmentRegistrationBean;
 import org.springframework.boot.autoconfigure.AutoConfigureAfter;
 import org.springframework.boot.autoconfigure.AutoConfigureBefore;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
-import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingClass;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnWebApplication;
 import org.springframework.boot.autoconfigure.web.servlet.WebMvcAutoConfiguration;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;

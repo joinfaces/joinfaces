@@ -16,11 +16,11 @@
 
 package org.joinfaces.autoconfigure.javaxfaces;
 
-import javax.faces.application.ResourceHandler;
-import javax.faces.application.StateManager;
-import javax.faces.context.PartialViewContext;
-import javax.faces.flow.FlowHandler;
-import javax.faces.lifecycle.ClientWindow;
+import jakarta.faces.application.ResourceHandler;
+import jakarta.faces.application.StateManager;
+import jakarta.faces.context.PartialViewContext;
+import jakarta.faces.flow.FlowHandler;
+import jakarta.faces.lifecycle.ClientWindow;
 
 import lombok.Data;
 import org.joinfaces.autoconfigure.servlet.initparams.ServletContextInitParameter;

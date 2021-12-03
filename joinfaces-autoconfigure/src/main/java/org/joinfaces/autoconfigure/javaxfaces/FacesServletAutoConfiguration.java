@@ -16,9 +16,9 @@
 
 package org.joinfaces.autoconfigure.javaxfaces;
 
-import javax.faces.webapp.FacesServlet;
-import javax.servlet.ServletContext;
-import javax.servlet.ServletRegistration;
+import jakarta.faces.webapp.FacesServlet;
+import jakarta.servlet.ServletContext;
+import jakarta.servlet.ServletRegistration;
 
 import org.springframework.boot.autoconfigure.AutoConfigureAfter;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;

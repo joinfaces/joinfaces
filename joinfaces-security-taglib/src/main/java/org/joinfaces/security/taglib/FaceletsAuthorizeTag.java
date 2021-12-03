@@ -16,10 +16,10 @@
 
 package org.joinfaces.security.taglib;
 
-import javax.el.ValueExpression;
-import javax.faces.view.facelets.FaceletContext;
-import javax.faces.view.facelets.TagAttribute;
-import javax.faces.view.facelets.TagHandler;
+import jakarta.el.ValueExpression;
+import jakarta.faces.view.facelets.FaceletContext;
+import jakarta.faces.view.facelets.TagAttribute;
+import jakarta.faces.view.facelets.TagHandler;
 
 import org.springframework.security.taglibs.authz.AbstractAuthorizeTag;
 import org.springframework.util.ObjectUtils;

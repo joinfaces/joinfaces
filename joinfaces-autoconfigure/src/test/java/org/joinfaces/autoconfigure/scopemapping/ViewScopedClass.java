@@ -16,7 +16,7 @@
 
 package org.joinfaces.autoconfigure.scopemapping;
 
-import javax.faces.bean.ViewScoped;
+import jakarta.faces.bean.ViewScoped;
 
 @ViewScoped
 public class ViewScopedClass {

@@ -16,11 +16,9 @@
 
 package org.joinfaces.autoconfigure.omnifaces;
 
-import javax.servlet.ServletContainerInitializer;
-
 import org.joinfaces.autoconfigure.javaxfaces.JavaxFacesAutoConfiguration;
 import org.joinfaces.autoconfigure.servlet.initializer.ServletContainerInitializerRegistrationBean;
-import org.omnifaces.facesviews.FacesViews;
+import org.omnifaces.ApplicationInitializer;
 
 import org.springframework.boot.autoconfigure.AutoConfigureBefore;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
@@ -37,48 +35,18 @@ import org.springframework.context.annotation.Configuration;
  * @author Marcelo Fernandes
  */
 @Configuration(proxyBeanMethods = false)
-@ConditionalOnClass(FacesViews.class)
+@ConditionalOnClass(ApplicationInitializer.class)
 @ConditionalOnWebApplication(type = ConditionalOnWebApplication.Type.SERVLET)
 @EnableConfigurationProperties(OmnifacesProperties.class)
 @AutoConfigureBefore(JavaxFacesAutoConfiguration.class)
 @ServletComponentScan("org.omnifaces")
 public class OmnifacesAutoConfiguration {
 
-	/**
-	 * {@link EnableAutoConfiguration Auto Configuration} for Omnifaces 1.x.
-	 *
-	 * @author Lars Grefer
-	 */
-	@Configuration(proxyBeanMethods = false)
-	@ConditionalOnClass(name = "org.omnifaces.facesviews.FacesViewsInitializer")
-	public static class Omnifaces1AutoConfiguration {
-
-		@Bean
-		public ServletContainerInitializerRegistrationBean<?> omnifacesServletContainerInitializer() throws ClassNotFoundException {
-			@SuppressWarnings("unchecked")
-			Class<? extends ServletContainerInitializer> facesViewsInitializerClass = (Class<? extends ServletContainerInitializer>) Class.forName("org.omnifaces.facesviews.FacesViewsInitializer");
-
-			return new ServletContainerInitializerRegistrationBean<>(facesViewsInitializerClass);
-		}
+	@Bean
+	public ServletContainerInitializerRegistrationBean<ApplicationInitializer> omnifacesServletContainerInitializer() {
+		return new ServletContainerInitializerRegistrationBean<>(ApplicationInitializer.class);
 	}
 
-	/**
-	 * {@link EnableAutoConfiguration Auto Configuration} for Omnifaces 2.x and 3.x.
-	 *
-	 * @author Lars Grefer
-	 */
-	@Configuration(proxyBeanMethods = false)
-	@ConditionalOnClass(name = "org.omnifaces.ApplicationInitializer")
-	public static class Omnifaces2AutoConfiguration {
-
-		@Bean
-		public ServletContainerInitializerRegistrationBean<?> omnifacesServletContainerInitializer() throws ClassNotFoundException {
-			@SuppressWarnings("unchecked")
-			Class<? extends ServletContainerInitializer> applicationInitializerClass = (Class<? extends ServletContainerInitializer>) Class.forName("org.omnifaces.ApplicationInitializer");
-
-			return new ServletContainerInitializerRegistrationBean<>(applicationInitializerClass);
-		}
-	}
 }
 
 

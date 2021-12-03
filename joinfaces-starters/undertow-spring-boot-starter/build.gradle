@@ -2,21 +2,5 @@ description = 'Undertow Spring Boot Starter'
 jar.manifest.attributes('Automatic-Module-Name': 'joinfaces.starter.undertow')
 
 dependencies {
-    api('org.springframework.boot:spring-boot-starter-undertow') {
-        exclude group: 'org.jboss.spec.javax.annotation', module: 'jboss-annotations-api_1.2_spec'
-    }
-    api('org.jboss.spec.javax.servlet.jsp:jboss-jsp-api_2.3_spec') {
-        exclude group: 'org.jboss.spec.javax.el', module: 'jboss-el-api_3.0_spec'
-        exclude group: 'org.jboss.spec.javax.servlet', module: 'jboss-servlet-api_3.1_spec'
-    }
-    runtimeOnly('org.apache.tomcat:tomcat-jasper') {
-        exclude group: 'org.apache.tomcat', module: 'tomcat-jsp-api'
-        exclude group: 'org.apache.tomcat', module: 'tomcat-el-api'
-        exclude group: 'org.apache.tomcat', module: 'tomcat-jasper-el'
-        exclude group: 'org.apache.tomcat', module: 'tomcat-servlet-api'
-        exclude group: 'org.apache.tomcat', module: 'tomcat-juli'
-        exclude group: 'org.apache.tomcat', module: 'tomcat-api'
-        exclude group: 'org.apache.tomcat', module: 'tomcat-util-scan'
-        exclude group: 'org.eclipse.jdt', module: 'ecj'
-    }
+    api 'org.springframework.boot:spring-boot-starter-undertow'
 }

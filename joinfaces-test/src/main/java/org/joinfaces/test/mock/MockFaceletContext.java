@@ -20,13 +20,13 @@ import java.net.URL;
 import java.util.HashMap;
 import java.util.Map;
 
-import javax.el.ELResolver;
-import javax.el.ExpressionFactory;
-import javax.el.FunctionMapper;
-import javax.el.VariableMapper;
-import javax.faces.component.UIComponent;
-import javax.faces.context.FacesContext;
-import javax.faces.view.facelets.FaceletContext;
+import jakarta.el.ELResolver;
+import jakarta.el.ExpressionFactory;
+import jakarta.el.FunctionMapper;
+import jakarta.el.VariableMapper;
+import jakarta.faces.component.UIComponent;
+import jakarta.faces.context.FacesContext;
+import jakarta.faces.view.facelets.FaceletContext;
 
 import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import lombok.AllArgsConstructor;

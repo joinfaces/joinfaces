@@ -25,7 +25,7 @@ import lombok.Data;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
 /**
- * {@link ConfigurationProperties} for the {@link javax.faces.webapp.FacesServlet FacesServlet}-registration.
+ * {@link ConfigurationProperties} for the {@link jakarta.faces.webapp.FacesServlet FacesServlet}-registration.
  *
  * The properties of this class are directly mapped to the
  * {@link org.springframework.boot.web.servlet.ServletRegistrationBean ServletRegistrationBean}

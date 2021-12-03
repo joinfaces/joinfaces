@@ -23,13 +23,13 @@ import java.util.List;
 import lombok.Data;
 import org.joinfaces.autoconfigure.servlet.initparams.ServletContextInitParameter;
 import org.joinfaces.autoconfigure.servlet.initparams.ServletContextInitParameterProperties;
-import org.omnifaces.component.output.cache.CacheInitializerListener;
-import org.omnifaces.component.output.cache.CacheInstancePerScopeProvider;
 import org.omnifaces.exceptionhandler.FullAjaxExceptionHandler;
 import org.omnifaces.facesviews.FacesViews;
-import org.omnifaces.renderkit.Html5RenderKit;
 import org.omnifaces.resourcehandler.CDNResourceHandler;
 import org.omnifaces.resourcehandler.CombinedResourceHandler;
+import org.omnifaces.util.cache.CacheInitializer;
+import org.omnifaces.util.cache.CacheInstancePerScopeProvider;
+import org.omnifaces.util.cache.CacheProvider;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.boot.convert.DurationUnit;
@@ -50,10 +50,10 @@ public class OmnifacesProperties implements ServletContextInitParameterPropertie
 	/**
 	 * org.omnifaces.CACHE_PROVIDER.
 	 *
-	 * @see CacheInitializerListener#CACHE_PROVIDER_INIT_PARAM_NAME
+	 * @see CacheInitializer#CACHE_PROVIDER_INIT_PARAM_NAME
 	 */
 	@ServletContextInitParameter("org.omnifaces.CACHE_PROVIDER")
-	private Class<?> cacheProvider;
+	private Class<? extends CacheProvider> cacheProvider;
 
 	/**
 	 * org.omnifaces.defaultcache.
@@ -218,7 +218,7 @@ public class OmnifacesProperties implements ServletContextInitParameterPropertie
 	 * Sets the maximum number of elements that will be stored per web module (application scope).
 	 * Default: no limit
 	 *
-	 * @see CacheInitializerListener#CACHE_PROVIDER_SETTING_INIT_PARAM_PREFIX
+	 * @see CacheInitializer#CACHE_PROVIDER_SETTING_INIT_PARAM_PREFIX
 	 * @see CacheInstancePerScopeProvider#APP_MAX_CAP_PARAM_NAME
 	 */
 	@ServletContextInitParameter("org.omnifaces.CACHE_SETTING_APPLICATION_MAX_CAPACITY")

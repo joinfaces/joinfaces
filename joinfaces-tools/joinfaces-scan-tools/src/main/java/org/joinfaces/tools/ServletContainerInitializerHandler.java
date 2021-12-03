@@ -33,16 +33,16 @@ import io.github.classgraph.ScanResult;
 import lombok.extern.slf4j.Slf4j;
 
 /**
- * {@link ScanResultHandler} for the {@link javax.servlet.annotation.HandlesTypes} annotation
- * of {@link javax.servlet.ServletContainerInitializer}s.
+ * {@link ScanResultHandler} for the {@link jakarta.servlet.annotation.HandlesTypes} annotation
+ * of {@link jakarta.servlet.ServletContainerInitializer}s.
  *
  * @author Lars Grefer
  */
 @Slf4j
 public class ServletContainerInitializerHandler extends ScanResultHandler {
 
-	private static final String SERVLET_CONTAINER_INITIALIZER = "javax.servlet.ServletContainerInitializer";
-	private static final String HANDLES_TYPES = "javax.servlet.annotation.HandlesTypes";
+	private static final String SERVLET_CONTAINER_INITIALIZER = "jakarta.servlet.ServletContainerInitializer";
+	private static final String HANDLES_TYPES = "jakarta.servlet.annotation.HandlesTypes";
 
 	@Override
 	public void handle(ScanResult scanResult, File classpathRoot) throws IOException {

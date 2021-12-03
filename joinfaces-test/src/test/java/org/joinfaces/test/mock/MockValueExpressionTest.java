@@ -16,7 +16,7 @@
 
 package org.joinfaces.test.mock;
 
-import javax.el.ELContext;
+import jakarta.el.ELContext;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;

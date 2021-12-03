@@ -24,17 +24,17 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Function;
 
-import javax.faces.annotation.ApplicationMap;
-import javax.faces.annotation.FlowMap;
-import javax.faces.annotation.HeaderMap;
-import javax.faces.annotation.HeaderValuesMap;
-import javax.faces.annotation.InitParameterMap;
-import javax.faces.annotation.RequestCookieMap;
-import javax.faces.annotation.RequestMap;
-import javax.faces.annotation.RequestParameterMap;
-import javax.faces.annotation.RequestParameterValuesMap;
-import javax.faces.annotation.SessionMap;
-import javax.faces.annotation.ViewMap;
+import jakarta.faces.annotation.ApplicationMap;
+import jakarta.faces.annotation.FlowMap;
+import jakarta.faces.annotation.HeaderMap;
+import jakarta.faces.annotation.HeaderValuesMap;
+import jakarta.faces.annotation.InitParameterMap;
+import jakarta.faces.annotation.RequestCookieMap;
+import jakarta.faces.annotation.RequestMap;
+import jakarta.faces.annotation.RequestParameterMap;
+import jakarta.faces.annotation.RequestParameterValuesMap;
+import jakarta.faces.annotation.SessionMap;
+import jakarta.faces.annotation.ViewMap;
 
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.BeanFactory;
@@ -65,7 +65,7 @@ public class JsfBeansAnnotationPostProcessor implements BeanPostProcessor {
 		this.autowiredAnnotationTypes.add(Value.class);
 		try {
 			this.autowiredAnnotationTypes.add((Class<? extends Annotation>)
-					ClassUtils.forName("javax.inject.Inject", JsfBeansAnnotationPostProcessor.class.getClassLoader()));
+					ClassUtils.forName("jakarta.inject.Inject", JsfBeansAnnotationPostProcessor.class.getClassLoader()));
 		}
 		catch (ClassNotFoundException ex) {
 			// JSR-330 API not available - simply skip.

@@ -19,11 +19,11 @@ package org.joinfaces.autoconfigure.javaxfaces;
 import java.util.Collections;
 import java.util.Map;
 
-import javax.faces.application.Application;
-import javax.faces.component.UIViewRoot;
-import javax.faces.context.ExternalContext;
-import javax.faces.context.FacesContext;
-import javax.faces.flow.FlowHandler;
+import jakarta.faces.application.Application;
+import jakarta.faces.component.UIViewRoot;
+import jakarta.faces.context.ExternalContext;
+import jakarta.faces.context.FacesContext;
+import jakarta.faces.flow.FlowHandler;
 
 import org.joinfaces.test.mock.FacesContextMocker;
 import org.junit.jupiter.api.BeforeEach;

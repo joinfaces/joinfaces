@@ -16,7 +16,7 @@
 
 package org.joinfaces.autoconfigure.jpa;
 
-import javax.persistence.EntityManager;
+import jakarta.persistence.EntityManager;
 
 import org.springframework.boot.autoconfigure.AutoConfigureBefore;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;

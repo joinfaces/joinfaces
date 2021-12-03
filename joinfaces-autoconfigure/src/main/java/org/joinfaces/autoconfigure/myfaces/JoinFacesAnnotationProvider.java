@@ -21,7 +21,7 @@ import java.util.Collections;
 import java.util.Map;
 import java.util.Set;
 
-import javax.faces.context.ExternalContext;
+import jakarta.faces.context.ExternalContext;
 
 import lombok.extern.slf4j.Slf4j;
 import org.apache.myfaces.spi.AnnotationProvider;

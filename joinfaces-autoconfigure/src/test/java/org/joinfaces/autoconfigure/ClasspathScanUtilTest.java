@@ -24,7 +24,7 @@ import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Stream;
 
-import javax.faces.context.FacesContext;
+import jakarta.faces.context.FacesContext;
 
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;

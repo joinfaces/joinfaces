@@ -26,7 +26,7 @@ import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-import javax.servlet.ServletContext;
+import jakarta.servlet.ServletContext;
 
 import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import lombok.Getter;

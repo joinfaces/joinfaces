@@ -18,9 +18,9 @@ package org.joinfaces.autoconfigure.viewscope;
 
 import java.util.concurrent.atomic.AtomicInteger;
 
-import javax.faces.component.UIViewRoot;
-import javax.faces.context.FacesContext;
-import javax.faces.event.PreDestroyViewMapEvent;
+import jakarta.faces.component.UIViewRoot;
+import jakarta.faces.context.FacesContext;
+import jakarta.faces.event.PreDestroyViewMapEvent;
 
 import org.joinfaces.test.mock.JsfIT;
 import org.junit.jupiter.api.BeforeEach;

@@ -35,14 +35,14 @@ public class MyFacesAnnotationProviderHandler extends ScanResultHandler {
 
 	private static final String MYFACES_ANNOTATION_PROVIDER = "org.apache.myfaces.spi.AnnotationProvider";
 	private static final List<String> MYFACES_ANNOTATIONS = Collections.unmodifiableList(Arrays.asList(
-			"javax.faces.bean.ManagedBean",
-			"javax.faces.component.FacesComponent",
-			"javax.faces.component.behavior.FacesBehavior",
-			"javax.faces.convert.FacesConverter",
-			"javax.faces.event.NamedEvent",
-			"javax.faces.render.FacesRenderer",
-			"javax.faces.render.FacesBehaviorRenderer",
-			"javax.faces.validator.FacesValidator"
+			"jakarta.faces.bean.ManagedBean",
+			"jakarta.faces.component.FacesComponent",
+			"jakarta.faces.component.behavior.FacesBehavior",
+			"jakarta.faces.convert.FacesConverter",
+			"jakarta.faces.event.NamedEvent",
+			"jakarta.faces.render.FacesRenderer",
+			"jakarta.faces.render.FacesBehaviorRenderer",
+			"jakarta.faces.validator.FacesValidator"
 	));
 
 	@Override

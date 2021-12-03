@@ -16,10 +16,10 @@
 
 package org.joinfaces.security.taglib;
 
-import javax.faces.context.FacesContext;
-import javax.servlet.ServletContext;
-import javax.servlet.ServletRequest;
-import javax.servlet.ServletResponse;
+import jakarta.faces.context.FacesContext;
+import jakarta.servlet.ServletContext;
+import jakarta.servlet.ServletRequest;
+import jakarta.servlet.ServletResponse;
 
 import org.springframework.security.taglibs.authz.AbstractAuthorizeTag;
 

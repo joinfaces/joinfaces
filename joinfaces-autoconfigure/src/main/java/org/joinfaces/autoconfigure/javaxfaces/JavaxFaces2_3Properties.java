@@ -16,12 +16,12 @@
 
 package org.joinfaces.autoconfigure.javaxfaces;
 
-import javax.faces.component.UIInput;
-import javax.faces.component.UIViewRoot;
-import javax.faces.event.PhaseListener;
-import javax.faces.push.PushContext;
-import javax.faces.validator.BeanValidator;
-import javax.faces.webapp.FacesServlet;
+import jakarta.faces.component.UIInput;
+import jakarta.faces.component.UIViewRoot;
+import jakarta.faces.event.PhaseListener;
+import jakarta.faces.push.PushContext;
+import jakarta.faces.validator.BeanValidator;
+import jakarta.faces.webapp.FacesServlet;
 
 import lombok.Data;
 import org.joinfaces.autoconfigure.servlet.initparams.ServletContextInitParameter;
@@ -47,7 +47,7 @@ public class JavaxFaces2_3Properties implements ServletContextInitParameterPrope
      * If this param is set, and calling toLowerCase().equals("true") on a
      * String representation of its value returns true, validation
      * must be performed, even when there is no corresponding value for this
-     * component in the incoming request. See {@link BeanValidator#validate(javax.faces.context.FacesContext, javax.faces.component.UIComponent, java.lang.Object)}.
+     * component in the incoming request. See {@link BeanValidator#validate(jakarta.faces.context.FacesContext, jakarta.faces.component.UIComponent, java.lang.Object)}.
      */
 	@ServletContextInitParameter(UIInput.ALWAYS_PERFORM_VALIDATION_WHEN_REQUIRED_IS_TRUE)
 	private Boolean alwaysPerformValidationWhenRequiredIsTrue;
@@ -82,7 +82,7 @@ public class JavaxFaces2_3Properties implements ServletContextInitParameterPrope
      * If this param is set, and calling toLowerCase().equals("true") on a
      * String representation of its value returns true, exceptions thrown
      * by {@link PhaseListener}s installed on the {@code UIViewRoot} are
-     * queued to the {@link javax.faces.context.ExceptionHandler} instead of
+     * queued to the {@link jakarta.faces.context.ExceptionHandler} instead of
      * being logged and swallowed.
      *
      * @since 2.3
@@ -94,7 +94,7 @@ public class JavaxFaces2_3Properties implements ServletContextInitParameterPrope
      * If this param is set, and calling toLowerCase().equals("true") on a
      * String representation of its value returns {@code true} take
      * the additional actions relating to {@code <validateWholeBean />}
-     * specified in {@link BeanValidator#validate(javax.faces.context.FacesContext, javax.faces.component.UIComponent, java.lang.Object)}.
+     * specified in {@link BeanValidator#validate(jakarta.faces.context.FacesContext, jakarta.faces.component.UIComponent, java.lang.Object)}.
      *
      * @since 2.3
      */

@@ -21,8 +21,8 @@ import java.util.HashSet;
 import java.util.Optional;
 import java.util.Set;
 
-import javax.servlet.ServletContainerInitializer;
-import javax.servlet.annotation.HandlesTypes;
+import jakarta.servlet.ServletContainerInitializer;
+import jakarta.servlet.annotation.HandlesTypes;
 
 import io.github.classgraph.ClassGraph;
 import io.github.classgraph.ClassInfoList;

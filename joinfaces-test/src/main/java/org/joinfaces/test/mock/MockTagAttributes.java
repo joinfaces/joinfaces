@@ -19,8 +19,8 @@ package org.joinfaces.test.mock;
 import java.util.HashMap;
 import java.util.Map;
 
-import javax.faces.view.facelets.TagAttribute;
-import javax.faces.view.facelets.TagAttributes;
+import jakarta.faces.view.facelets.TagAttribute;
+import jakarta.faces.view.facelets.TagAttributes;
 
 import lombok.Getter;
 

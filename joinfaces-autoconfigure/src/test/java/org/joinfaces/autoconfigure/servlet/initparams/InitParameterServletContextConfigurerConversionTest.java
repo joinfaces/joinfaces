@@ -19,7 +19,7 @@ package org.joinfaces.autoconfigure.servlet.initparams;
 import java.time.Duration;
 import java.time.temporal.ChronoUnit;
 
-import javax.faces.application.ProjectStage;
+import jakarta.faces.application.ProjectStage;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;

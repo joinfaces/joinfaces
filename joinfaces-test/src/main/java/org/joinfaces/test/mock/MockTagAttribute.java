@@ -16,11 +16,11 @@
 
 package org.joinfaces.test.mock;
 
-import javax.el.MethodExpression;
-import javax.el.ValueExpression;
-import javax.faces.view.Location;
-import javax.faces.view.facelets.FaceletContext;
-import javax.faces.view.facelets.TagAttribute;
+import jakarta.el.MethodExpression;
+import jakarta.el.ValueExpression;
+import jakarta.faces.view.Location;
+import jakarta.faces.view.facelets.FaceletContext;
+import jakarta.faces.view.facelets.TagAttribute;
 
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;

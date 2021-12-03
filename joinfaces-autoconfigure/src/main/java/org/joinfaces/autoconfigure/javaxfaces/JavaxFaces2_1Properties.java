@@ -16,7 +16,7 @@
 
 package org.joinfaces.autoconfigure.javaxfaces;
 
-import javax.faces.component.UIComponent;
+import jakarta.faces.component.UIComponent;
 
 import lombok.Data;
 import org.joinfaces.autoconfigure.servlet.initparams.ServletContextInitParameter;

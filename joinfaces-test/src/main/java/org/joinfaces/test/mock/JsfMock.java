@@ -22,15 +22,15 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 
-import javax.faces.application.Application;
-import javax.faces.component.UIViewRoot;
-import javax.faces.context.ExternalContext;
-import javax.faces.context.FacesContext;
-import javax.faces.view.facelets.Tag;
-import javax.faces.view.facelets.TagConfig;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
+import jakarta.faces.application.Application;
+import jakarta.faces.component.UIViewRoot;
+import jakarta.faces.context.ExternalContext;
+import jakarta.faces.context.FacesContext;
+import jakarta.faces.view.facelets.Tag;
+import jakarta.faces.view.facelets.TagConfig;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 
 import lombok.Getter;
 import org.mockito.Mockito;

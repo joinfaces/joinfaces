@@ -18,10 +18,10 @@ package org.joinfaces.autoconfigure.servlet.initializer;
 
 import java.util.Set;
 
-import javax.faces.component.UIViewAction;
-import javax.servlet.ServletContainerInitializer;
-import javax.servlet.ServletContext;
-import javax.servlet.annotation.HandlesTypes;
+import jakarta.faces.component.UIViewAction;
+import jakarta.servlet.ServletContainerInitializer;
+import jakarta.servlet.ServletContext;
+import jakarta.servlet.annotation.HandlesTypes;
 
 import com.sun.faces.config.FacesInitializer;
 import com.sun.faces.renderkit.html_basic.MessageRenderer;

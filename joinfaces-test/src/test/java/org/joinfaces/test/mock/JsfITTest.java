@@ -16,7 +16,7 @@
 
 package org.joinfaces.test.mock;
 
-import javax.faces.context.FacesContext;
+import jakarta.faces.context.FacesContext;
 
 import org.junit.jupiter.api.Test;
 

@@ -18,18 +18,18 @@ package org.joinfaces.autoconfigure.javaxfaces;
 
 import java.util.List;
 
-import javax.faces.application.ProjectStage;
-import javax.faces.application.ResourceHandler;
-import javax.faces.application.StateManager;
-import javax.faces.application.ViewHandler;
-import javax.faces.component.UIInput;
-import javax.faces.component.UINamingContainer;
-import javax.faces.context.PartialViewContext;
-import javax.faces.convert.Converter;
-import javax.faces.validator.BeanValidator;
-import javax.faces.view.facelets.ResourceResolver;
-import javax.faces.view.facelets.TagDecorator;
-import javax.faces.webapp.FacesServlet;
+import jakarta.faces.application.ProjectStage;
+import jakarta.faces.application.ResourceHandler;
+import jakarta.faces.application.StateManager;
+import jakarta.faces.application.ViewHandler;
+import jakarta.faces.component.UIInput;
+import jakarta.faces.component.UINamingContainer;
+import jakarta.faces.context.PartialViewContext;
+import jakarta.faces.convert.Converter;
+import jakarta.faces.validator.BeanValidator;
+import jakarta.faces.view.facelets.ResourceResolver;
+import jakarta.faces.view.facelets.TagDecorator;
+import jakarta.faces.webapp.FacesServlet;
 
 import lombok.Data;
 import org.joinfaces.autoconfigure.servlet.initparams.ServletContextInitParameter;

@@ -16,10 +16,10 @@
 
 package org.joinfaces.autoconfigure.primefaces;
 
-import javax.faces.webapp.FacesServlet;
-import javax.servlet.MultipartConfigElement;
-import javax.servlet.ServletRegistration;
-import javax.servlet.annotation.MultipartConfig;
+import jakarta.faces.webapp.FacesServlet;
+import jakarta.servlet.MultipartConfigElement;
+import jakarta.servlet.ServletRegistration;
+import jakarta.servlet.annotation.MultipartConfig;
 
 import org.joinfaces.autoconfigure.javaxfaces.JavaxFacesAutoConfiguration;
 import org.primefaces.webapp.MultipartRequest;

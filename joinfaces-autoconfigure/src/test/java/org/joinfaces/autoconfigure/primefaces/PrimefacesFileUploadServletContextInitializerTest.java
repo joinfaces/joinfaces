@@ -16,9 +16,9 @@
 
 package org.joinfaces.autoconfigure.primefaces;
 
-import javax.servlet.MultipartConfigElement;
-import javax.servlet.ServletContext;
-import javax.servlet.ServletException;
+import jakarta.servlet.MultipartConfigElement;
+import jakarta.servlet.ServletContext;
+import jakarta.servlet.ServletException;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

@@ -16,7 +16,7 @@
 
 package org.joinfaces.autoconfigure;
 
-import javax.faces.bean.ManagedBean;
+import jakarta.faces.bean.ManagedBean;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

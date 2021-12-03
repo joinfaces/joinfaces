@@ -3,9 +3,10 @@ apply plugin: "java-library"
 repositories {
     mavenCentral()
     maven { url 'https://repo.spring.io/milestone' }
+    maven { url 'https://repo.spring.io/snapshot' }
 }
 
-def springBootVersion = "2.6.1"
+def springBootVersion = "3.0.0-SNAPSHOT"
 
 dependencies {
     api "org.springframework.boot:spring-boot-gradle-plugin:$springBootVersion"

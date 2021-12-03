@@ -16,8 +16,8 @@
 
 package org.joinfaces.autoconfigure.scopemapping;
 
-import javax.enterprise.context.SessionScoped;
-import javax.faces.view.ViewScoped;
+import jakarta.enterprise.context.SessionScoped;
+import jakarta.faces.view.ViewScoped;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

@@ -16,9 +16,9 @@
 
 package org.joinfaces.autoconfigure.javaxfaces;
 
-import javax.faces.context.FacesContext;
-import javax.faces.flow.FlowHandler;
-import javax.faces.push.PushContext;
+import jakarta.faces.context.FacesContext;
+import jakarta.faces.flow.FlowHandler;
+import jakarta.faces.push.PushContext;
 
 import lombok.RequiredArgsConstructor;
 

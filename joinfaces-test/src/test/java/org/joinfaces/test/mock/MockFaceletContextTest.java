@@ -18,9 +18,9 @@ package org.joinfaces.test.mock;
 
 import java.net.URL;
 
-import javax.el.FunctionMapper;
-import javax.el.VariableMapper;
-import javax.faces.context.FacesContext;
+import jakarta.el.FunctionMapper;
+import jakarta.el.VariableMapper;
+import jakarta.faces.context.FacesContext;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;

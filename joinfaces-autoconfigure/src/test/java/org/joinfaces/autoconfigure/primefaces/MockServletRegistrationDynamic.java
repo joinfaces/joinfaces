@@ -18,8 +18,8 @@ package org.joinfaces.autoconfigure.primefaces;
 
 import java.util.Set;
 
-import javax.servlet.ServletRegistration;
-import javax.servlet.ServletSecurityElement;
+import jakarta.servlet.ServletRegistration;
+import jakarta.servlet.ServletSecurityElement;
 
 public class MockServletRegistrationDynamic extends MockServletRegistration
 	implements ServletRegistration.Dynamic {

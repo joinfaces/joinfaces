@@ -20,8 +20,8 @@ import java.util.Collection;
 import java.util.Map;
 import java.util.Set;
 
-import javax.servlet.MultipartConfigElement;
-import javax.servlet.ServletRegistration;
+import jakarta.servlet.MultipartConfigElement;
+import jakarta.servlet.ServletRegistration;
 
 public class MockServletRegistration implements ServletRegistration {
 	protected static final String NOT_SUPPORTED_YET = "Not supported yet.";

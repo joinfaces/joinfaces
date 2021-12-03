@@ -19,11 +19,12 @@ package org.joinfaces.autoconfigure.mojarra;
 import java.time.Duration;
 import java.time.temporal.ChronoUnit;
 
-import javax.el.ExpressionFactory;
+import jakarta.el.ExpressionFactory;
 
 import com.sun.faces.spi.InjectionProvider;
 import com.sun.faces.spi.SerializationProvider;
 import lombok.Data;
+import org.apache.el.ExpressionFactoryImpl;
 import org.joinfaces.autoconfigure.servlet.initparams.ServletContextInitParameter;
 import org.joinfaces.autoconfigure.servlet.initparams.ServletContextInitParameterProperties;
 
@@ -422,7 +423,7 @@ public class MojarraProperties implements ServletContextInitParameterProperties 
 	 * This parameter specifies a class that implements the ExpressionFactory.
 	 */
 	@ServletContextInitParameter(PREFIX + "expressionFactory")
-	private Class<? extends ExpressionFactory> expressionFactory;
+	private Class<? extends ExpressionFactory> expressionFactory = ExpressionFactoryImpl.class;
 
 	/**
 	 * If true, then the flash cookie will always be written, regardless of

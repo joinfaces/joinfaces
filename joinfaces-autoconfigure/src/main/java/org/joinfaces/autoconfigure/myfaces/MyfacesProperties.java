@@ -22,8 +22,8 @@ import java.time.temporal.ChronoUnit;
 import java.util.Comparator;
 import java.util.List;
 
-import javax.el.ELResolver;
-import javax.el.ExpressionFactory;
+import jakarta.el.ELResolver;
+import jakarta.el.ExpressionFactory;
 
 import lombok.Data;
 import org.apache.myfaces.application.ResourceHandlerImpl;
@@ -259,7 +259,7 @@ public class MyfacesProperties implements ServletContextInitParameterProperties 
 	 * is true.
 	 */
 	@ServletContextInitParameter(PREFFIX + "SUPPORT_JSP_AND_FACES_EL")
-	private Boolean supportJspAndFacesEl;
+	private Boolean supportJspAndFacesEl = false;
 
 	/**
 	 * When the application runs inside Google Application Engine container

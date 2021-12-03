@@ -16,7 +16,7 @@
 
 package org.joinfaces.autoconfigure.javaxfaces;
 
-import javax.faces.application.ProjectStage;
+import jakarta.faces.application.ProjectStage;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

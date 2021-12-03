@@ -16,10 +16,10 @@
 
 package org.joinfaces.autoconfigure.javaxfaces;
 
-import javax.faces.webapp.FacesServlet;
-import javax.servlet.Servlet;
-import javax.servlet.ServletContext;
-import javax.servlet.ServletRegistration;
+import jakarta.faces.webapp.FacesServlet;
+import jakarta.servlet.Servlet;
+import jakarta.servlet.ServletContext;
+import jakarta.servlet.ServletRegistration;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

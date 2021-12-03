@@ -18,12 +18,12 @@ package org.joinfaces.autoconfigure.javaxfaces;
 
 import java.util.Map;
 
-import javax.faces.annotation.ApplicationMap;
-import javax.faces.application.ResourceHandler;
-import javax.faces.component.UIViewRoot;
-import javax.faces.context.ExternalContext;
-import javax.faces.context.FacesContext;
-import javax.faces.context.Flash;
+import jakarta.faces.annotation.ApplicationMap;
+import jakarta.faces.application.ResourceHandler;
+import jakarta.faces.component.UIViewRoot;
+import jakarta.faces.context.ExternalContext;
+import jakarta.faces.context.FacesContext;
+import jakarta.faces.context.Flash;
 
 import org.springframework.beans.factory.BeanFactory;
 import org.springframework.beans.factory.config.ConfigurableBeanFactory;

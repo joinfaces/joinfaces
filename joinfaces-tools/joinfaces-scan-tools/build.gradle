@@ -13,5 +13,5 @@ dependencies {
     testRuntimeOnly "org.apache.myfaces.core:myfaces-impl:$myfacesVersion"
     testRuntimeOnly 'org.glassfish:jakarta.faces'
     testRuntimeOnly 'org.primefaces:primefaces'
-    testRuntimeOnly 'javax.annotation:javax.annotation-api'
+    testRuntimeOnly 'jakarta.annotation:jakarta.annotation-api'
 }

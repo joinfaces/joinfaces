@@ -16,7 +16,7 @@
 
 package org.joinfaces.autoconfigure.viewscope;
 
-import javax.faces.context.FacesContext;
+import jakarta.faces.context.FacesContext;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;

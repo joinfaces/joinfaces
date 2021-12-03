@@ -23,7 +23,7 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
-import javax.servlet.ServletContext;
+import jakarta.servlet.ServletContext;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;

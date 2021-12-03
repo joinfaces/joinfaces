@@ -20,13 +20,13 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
-import javax.faces.component.UIViewRoot;
-import javax.faces.context.FacesContext;
-import javax.faces.event.PreDestroyViewMapEvent;
-import javax.faces.event.SystemEvent;
-import javax.faces.event.ViewMapListener;
-import javax.servlet.http.HttpSessionBindingEvent;
-import javax.servlet.http.HttpSessionBindingListener;
+import jakarta.faces.component.UIViewRoot;
+import jakarta.faces.context.FacesContext;
+import jakarta.faces.event.PreDestroyViewMapEvent;
+import jakarta.faces.event.SystemEvent;
+import jakarta.faces.event.ViewMapListener;
+import jakarta.servlet.http.HttpSessionBindingEvent;
+import jakarta.servlet.http.HttpSessionBindingListener;
 
 import lombok.AccessLevel;
 import lombok.Getter;

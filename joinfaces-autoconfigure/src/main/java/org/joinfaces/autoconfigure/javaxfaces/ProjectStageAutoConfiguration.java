@@ -16,7 +16,7 @@
 
 package org.joinfaces.autoconfigure.javaxfaces;
 
-import javax.faces.application.ProjectStage;
+import jakarta.faces.application.ProjectStage;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

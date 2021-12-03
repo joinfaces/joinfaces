@@ -16,6 +16,8 @@
 
 package org.joinfaces.autoconfigure.jetty;
 
+import java.io.IOException;
+
 import org.eclipse.jetty.server.Handler;
 import org.eclipse.jetty.server.Server;
 import org.eclipse.jetty.webapp.WebAppContext;
@@ -35,7 +37,7 @@ public class JettyAutoConfigurationIT {
 	private JettyAutoConfiguration jettyAutoConfiguration;
 
 	@Test
-	public void customize() {
+	public void customize() throws IOException {
 		JettyServletWebServerFactory factory = new JettyServletWebServerFactory();
 
 		this.jettyAutoConfiguration.jsfJettyFactoryCustomizer().customize(factory);

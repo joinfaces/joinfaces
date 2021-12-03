@@ -1,9 +1,9 @@
-description = 'Omnifaces 3.x Spring Boot Starter'
+description = 'Omnifaces Spring Boot Starter'
 jar.manifest.attributes('Automatic-Module-Name': 'joinfaces.starter.omnifaces')
 
 dependencies {
     api project(':joinfaces-starters:jsf-spring-boot-starter')
-    api 'org.omnifaces:omnifaces:3.11.2'
+    api 'org.omnifaces:omnifaces:4.0-M12'
     api(project(':joinfaces-starters:weld-spring-boot-starter')) {
         exclude group: "org.jboss.spec.javax.annotation", module: "jboss-annotations-api_1.3_spec"
     }

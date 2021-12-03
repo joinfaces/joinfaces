@@ -1,2 +1,2 @@
-org.springframework.beans.factory.annotation.Autowired=javax.faces.context.FacesContext,java.lang.String
+org.springframework.beans.factory.annotation.Autowired=jakarta.faces.context.FacesContext,java.lang.String
 org.springframework.beans.factory.annotation.Qualifier=org.springframework.beans.factory.annotation.InjectionMetadata,org.primefaces.component.commandlink.CommandLink
