@@ -35,8 +35,6 @@ dependencies {
     optional 'org.primefaces:primefaces'
     optional 'net.bootsfaces:bootsfaces'
     optional 'org.butterfaces:components'
-    optional 'com.github.albfernandez.richfaces:richfaces-a4j'
-    optional 'com.github.albfernandez.richfaces:richfaces'
     optional 'commons-fileupload:commons-fileupload'
     optional 'org.glassfish.jaxb:jaxb-runtime'
     optional 'javax.activation:javax.activation-api'

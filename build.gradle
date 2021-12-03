@@ -68,16 +68,6 @@ allprojects {
 
             dependency 'org.butterfaces:components:3.5.0'
 
-            dependencySet('org.richfaces:4.5.17.Final') {
-                entry "richfaces"
-                entry "richfaces-a4j"
-            }
-
-            dependencySet('com.github.albfernandez.richfaces:4.6.14.ayg') {
-                entry "richfaces"
-                entry "richfaces-a4j"
-            }
-
             dependency "commons-fileupload:commons-fileupload:1.4"
 
             dependency('org.jboss.weld.servlet:weld-servlet-core:3.1.8.Final') {

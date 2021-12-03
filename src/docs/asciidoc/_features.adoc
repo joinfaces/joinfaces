@@ -53,12 +53,6 @@ You can use the table below to discover the starters that fit your needs.
 |butterfaces-spring-boot-starter
 |Component starter for http://butterfaces.org[ButterFaces] JSF Component library. Pulls `jsf-spring-boot-starter`.
 
-|richfaces-spring-boot-starter
-|Component starter for https://github.com/richfaces/richfaces[RichFaces] JSF Component library. Pulls `jsf-spring-boot-starter`.
-
-|richfaces-ayg-spring-boot-starter
-|Component starter for https://github.com/albfernandez/richfaces[RichFaces] JSF Component library. Pulls `jsf-spring-boot-starter`.
-
 |omnifaces1-spring-boot-starter
 |Component starter for https://omnifaces.org/[OmniFaces] JSF utility library. Pulls `jsf-spring-boot-starter`.
 
@@ -194,16 +188,6 @@ are executed for embedded servlet containers.
 ==== PrimeFaces
 
 * `primefaces.\*` servlet-context init-parameters are mapped from `joinfaces.primefaces.*` properties.
-
-==== RichFaces
-
-* `org.richfaces.\*` servlet-context init-parameters are mapped from `joinfaces.richfaces.*` properties.
-* `org.richfaces.webapp.ServletsInitializer` is executed for embedded servlet containers.
-
-==== RichFaces AYG
-
-* `org.richfaces.\*` servlet-context init-parameters are mapped from `joinfaces.richfaces.*` properties.
-* `org.richfaces.webapp.ServletsInitializer` is executed for embedded servlet containers.
 
 ==== Weld
 

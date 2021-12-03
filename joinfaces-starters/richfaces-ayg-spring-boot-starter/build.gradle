@@ -1,8 +1,0 @@
-description = 'RichFaces AYG Spring Boot Starter'
-jar.manifest.attributes('Automatic-Module-Name': 'joinfaces.starter.richfaces.ayg')
-
-dependencies {
-    api project(':joinfaces-starters:jsf-spring-boot-starter')
-    api 'com.github.albfernandez.richfaces:richfaces'
-    api 'com.github.albfernandez.richfaces:richfaces-a4j'
-}
