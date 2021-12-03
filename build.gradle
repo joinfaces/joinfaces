@@ -65,9 +65,7 @@ allprojects {
             }
 
             dependency 'net.bootsfaces:bootsfaces:1.5.0'
-            dependency('de.beyondjava:angularFaces-core:2.1.12') {
-                exclude "commons-logging:commons-logging"
-            }
+
             dependency 'org.butterfaces:components:3.5.0'
 
             dependencySet('org.richfaces:4.5.17.Final') {

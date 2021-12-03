@@ -59,9 +59,6 @@ You can use the table below to discover the starters that fit your needs.
 |richfaces-ayg-spring-boot-starter
 |Component starter for https://github.com/albfernandez/richfaces[RichFaces] JSF Component library. Pulls `jsf-spring-boot-starter`.
 
-|angularfaces-spring-boot-starter
-|Component starter for https://angularfaces.net[AngularFaces] JSF Component library. Pulls `jsf-spring-boot-starter`.
-
 |omnifaces1-spring-boot-starter
 |Component starter for https://omnifaces.org/[OmniFaces] JSF utility library. Pulls `jsf-spring-boot-starter`.
 
@@ -165,11 +162,6 @@ This section describes, what JoinFaces does for specific libraries.
 * Spring Component scan for selected `com.github.adminfaces.template.*`-packages.
 * `primefaces.THEME` is set to `admin`.
 * `primefaces.FONT_AWESOME` is set to `true`.
-
-==== AngularFaces
-
-* `AngularFaces.\*` servlet-context init-parameters are mapped from `joinfaces.angularfaces.*` properties.
-* `AngularTagDecorator` is added to `javax.faces.FACELETS_DECORATORS`.
 
 ==== BootsFaces
 
