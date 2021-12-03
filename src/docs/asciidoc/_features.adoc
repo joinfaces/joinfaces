@@ -53,9 +53,6 @@ You can use the table below to discover the starters that fit your needs.
 |butterfaces-spring-boot-starter
 |Component starter for http://butterfaces.org[ButterFaces] JSF Component library. Pulls `jsf-spring-boot-starter`.
 
-|icefaces-spring-boot-starter
-|Component starter for https://www.icesoft.org/java/projects/ICEfaces/overview.jsf[IceFaces] JSF Component library. Pulls `jsf-spring-boot-starter`.
-
 |richfaces-spring-boot-starter
 |Component starter for https://github.com/richfaces/richfaces[RichFaces] JSF Component library. Pulls `jsf-spring-boot-starter`.
 
@@ -184,12 +181,6 @@ This section describes, what JoinFaces does for specific libraries.
 
 * `org.butterfaces.\*` servlet-context init-parameters are mapped from `joinfaces.butterfaces.*` properties.
 * `net.bootsfaces.get_jquery_from_cdn` is set to `true`.
-
-==== ICEfaces
-
-* `org.icefaces.\*` servlet-context init-parameters are mapped from `joinfaces.icefaces.*` properties.
-* The scope `window` is added to the spring context, which is backend by `org.icefaces.impl.application.WindowScopeManager`.
-* ICEfaces `META-INF/core.tld` is re-implemented as ServletContextInitializer for the embedded Undertow.
 
 ==== Mojarra
 

@@ -80,13 +80,6 @@ allprojects {
                 entry "richfaces-a4j"
             }
 
-            dependencySet('org.icefaces:4.3.0') {
-                entry('icefaces') {
-                    exclude "org.glassfish:javax.faces"
-                }
-                entry 'icefaces-ace'
-            }
-
             dependency "commons-fileupload:commons-fileupload:1.4"
 
             dependency('org.jboss.weld.servlet:weld-servlet-core:3.1.8.Final') {
