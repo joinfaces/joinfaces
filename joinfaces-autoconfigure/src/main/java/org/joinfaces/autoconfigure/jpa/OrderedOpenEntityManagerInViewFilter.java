@@ -32,7 +32,7 @@ public class OrderedOpenEntityManagerInViewFilter extends OpenEntityManagerInVie
 	/**
 	 * The order of this filter.
 	 * <p>
-	 * Before the springSecurityFilterChain and possibly {@link org.ocpsoft.rewrite.servlet.RewriteFilter}
+	 * Before the springSecurityFilterChain
 	 */
 	@Getter
 	@Setter

@@ -71,8 +71,6 @@ You can use the table below to discover the starters that fit your needs.
 |adminfaces-spring-boot-starter
 |Template and Theme starter for https://adminfaces.github.io/site/[AdminFaces]. Pulls `primefaces-spring-boot-starter`.
 
-|rewrite-spring-boot-starter
-|Extra starter for https://github.com/ocpsoft/rewrite[Ocpsoft Rewrite] URL Rewriting Tool.
 |===========
 
 ==== Not using Tomcat or Mojarra
@@ -204,28 +202,6 @@ are executed for embedded servlet containers.
 ==== PrimeFaces
 
 * `primefaces.\*` servlet-context init-parameters are mapped from `joinfaces.primefaces.*` properties.
-
-==== Rewrite
-
-* `org.ocpsoft.rewrite.\*` servlet-context init-parameters are mapped from `joinfaces.rewrite.*` properties.
-* Rewrites `META-INF/web-fragment.xml` is re-implemented as ServletContextInitializer for embedded servlet containers.
-* _Spring Boot_ specific implementations for the following SPIs are provided:
-** `org.ocpsoft.rewrite.el.spi.BeanNameResolver`
-** `org.ocpsoft.rewrite.el.spi.ExpressionLanguageProvider`
-** `org.ocpsoft.common.spi.ServiceLocator`
-* Rewrites own annotation scanning mechanism is disabled by default (`org.ocpsoft.rewrite.annotation.BASE_PACKAGES` is set to `none`),
-because it can not handle jar-packaged applications. JoinFaces provides its own annotation scanning provider instead,
-which can be configured through the `joinfaces.rewrite.annotation-config-provider.*` properties.
-
-[WARNING]
-====
-Be careful when using _Rewrite_ in combination with _Spring Security_:
-
-- When Rewrite is running after the `springSecurityFilterChain` (the default behaviour) you need to secure both
-the rewritten and the original path.
-- When Rewrite is running before the `springSecurityFilterChain`, the latter will not see the request at all.
-(The `springSecurityFilterChain` doesn't handle `FORWARD` requests in the default configuration)
-====
 
 ==== RichFaces
 

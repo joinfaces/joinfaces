@@ -39,8 +39,6 @@ dependencies {
     optional 'com.github.albfernandez.richfaces:richfaces-a4j'
     optional 'com.github.albfernandez.richfaces:richfaces'
     optional 'commons-fileupload:commons-fileupload'
-    optional 'org.ocpsoft.rewrite:rewrite-servlet'
-    optional 'org.ocpsoft.rewrite:rewrite-integration-spring'
     optional 'org.glassfish.jaxb:jaxb-runtime'
     optional 'javax.activation:javax.activation-api'
 
@@ -58,7 +56,6 @@ dependencies {
     testImplementation 'org.apache.tomcat.embed:tomcat-embed-jasper'
     testImplementation 'org.junit.jupiter:junit-jupiter-api'
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine'
-    testRuntimeOnly 'org.ocpsoft.logging:logging-adapter-slf4j'
 }
 
 compileJava.inputs.files(processResources)

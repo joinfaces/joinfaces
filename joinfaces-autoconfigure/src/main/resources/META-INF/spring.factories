@@ -16,7 +16,6 @@ org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
   org.joinfaces.autoconfigure.omnifaces.OmnifacesAutoConfiguration,\
   org.joinfaces.autoconfigure.primefaces.PrimefacesAutoConfiguration,\
   org.joinfaces.autoconfigure.primefaces.PrimefacesFileUploadServletContextAutoConfiguration,\
-  org.joinfaces.autoconfigure.rewrite.RewriteAutoConfiguration,\
   org.joinfaces.autoconfigure.richfaces.RichfacesAutoConfiguration,\
   org.joinfaces.autoconfigure.scopemapping.CdiScopeAnnotationsAutoConfiguration,\
   org.joinfaces.autoconfigure.scopemapping.JsfScopeAnnotationsAutoConfiguration,\
