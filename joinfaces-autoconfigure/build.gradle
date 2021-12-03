@@ -33,7 +33,6 @@ dependencies {
     optional "org.apache.myfaces.core:myfaces-impl:$myfacesVersion"
     optional 'org.omnifaces:omnifaces:1.14.1'
     optional 'org.primefaces:primefaces'
-    optional 'net.bootsfaces:bootsfaces'
     optional 'org.butterfaces:components'
     optional 'commons-fileupload:commons-fileupload'
     optional 'org.glassfish.jaxb:jaxb-runtime'

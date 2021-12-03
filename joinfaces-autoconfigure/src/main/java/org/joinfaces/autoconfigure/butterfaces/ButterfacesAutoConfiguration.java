@@ -17,21 +17,14 @@
 package org.joinfaces.autoconfigure.butterfaces;
 
 import lombok.extern.slf4j.Slf4j;
-import net.bootsfaces.C;
 import org.butterfaces.util.ReflectionUtil;
-import org.joinfaces.autoconfigure.bootsfaces.BootsfacesAutoConfiguration;
-import org.joinfaces.autoconfigure.bootsfaces.BootsfacesProperties;
 import org.joinfaces.autoconfigure.javaxfaces.JavaxFacesAutoConfiguration;
 
-import org.springframework.beans.BeansException;
-import org.springframework.beans.factory.config.BeanPostProcessor;
 import org.springframework.boot.autoconfigure.AutoConfigureBefore;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnWebApplication;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
-import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.lang.Nullable;
 
 /**
  * Spring Boot Auto Configuration of ButterFaces.
@@ -46,46 +39,4 @@ import org.springframework.lang.Nullable;
 @Slf4j
 public class ButterfacesAutoConfiguration {
 
-	/**
-	 * Special auto configuration for butterfaces and bootsfaces in combination.
-	 *
-	 * @author Lars Grefer
-	 * @see <a href="https://github.com/ButterFaces/bootsfaces-integration/blob/6e9d45978590fa72361cf3c98bec77d863f02aea/README.md">ButterFaces/bootsfaces-integration</a>
-	 */
-	@Configuration(proxyBeanMethods = false)
-	@ConditionalOnClass(C.class)
-	@AutoConfigureBefore(BootsfacesAutoConfiguration.class)
-	public static class ButterfacesBootsfacesAutoConfiguration {
-
-		@Bean
-		public BeanPostProcessor butterfacesBootsfacesPropertiesPostProcessor() {
-			return new BootsfacesPropertiesCustomizer();
-		}
-
-		/**
-		 * Configures Bootsfaces to work with Butterfaces.
-		 *
-		 * @author Lars Grefer
-		 * @see description at https://github.com/ButterFaces/bootsfaces-integration/blob/6e9d45978590fa72361cf3c98bec77d863f02aea/README.md
-		 */
-		static class BootsfacesPropertiesCustomizer implements BeanPostProcessor {
-
-			@Override
-			public Object postProcessBeforeInitialization(@Nullable Object bean, @Nullable String beanName) throws BeansException {
-
-				if (bean instanceof BootsfacesProperties) {
-					BootsfacesProperties properties = (BootsfacesProperties) bean;
-					String getJqueryFromCdn = properties.getGetJqueryFromCdn();
-					if (getJqueryFromCdn == null || getJqueryFromCdn.equalsIgnoreCase("false")) {
-						log.info("Setting 'net.bootsfaces.get_jquery_from_cdn' to 'true'");
-						log.info("See: https://github.com/ButterFaces/bootsfaces-integration/blob/6e9d45978590fa72361cf3c98bec77d863f02aea/README.md");
-
-						properties.setGetJqueryFromCdn("true");
-					}
-				}
-
-				return bean;
-			}
-		}
-	}
 }
