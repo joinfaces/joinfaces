@@ -22,3 +22,8 @@ jobs:
           java-version: 17
           distribution: 'temurin'
       - run: ./gradlew uploadDocs -s
+      - run: ./gradlew publish
+        if: ${{ github.event_name == 'push' && github.ref_type == 'branch' }}
+        env:
+          ORG_GRADLE_PROJECT_sonatypeUsername: ${{ secrets.OSSRH_USERNAME }}
+          ORG_GRADLE_PROJECT_sonatypePassword: ${{ secrets.OSSRH_PASSWORD }}
