@@ -47,16 +47,8 @@ import org.springframework.context.annotation.Configuration;
 public class MyFacesAutoConfiguration {
 
 	@Bean
-	@ConditionalOnMissingClass("org.apache.myfaces.webapp.MyFacesContainerInitializer")
-	public MyFacesInitializerRegistrationBean<?> myFacesServletContainerInitializer() {
-		return new MyFacesInitializerRegistrationBean<>(MyFacesContainerInitializer.class);
-	}
-
-	@Bean
-	@ConditionalOnClass(name = "org.apache.myfaces.webapp.MyFacesContainerInitializer")
-	public MyFacesInitializerRegistrationBean<?> myFacesNextServletContainerInitializer() throws ClassNotFoundException {
-		Class<? extends ServletContainerInitializer> clazz = Class.forName("org.apache.myfaces.webapp.MyFacesContainerInitializer").asSubclass(ServletContainerInitializer.class);
-		return new MyFacesInitializerRegistrationBean<>(clazz);
+	public MyFacesInitializerRegistrationBean myFacesServletContainerInitializer() {
+		return new MyFacesInitializerRegistrationBean();
 	}
 
 	/**
