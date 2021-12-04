@@ -40,6 +40,7 @@ Joinfaces | Java | Spring Boot | JSF
 `4.4.x`   |`1.8` to `15` |`2.4`|`2.0` to `2.3`
 `4.5.x`   |`1.8` to `16` |`2.5`|`2.0` to `2.3`
 `4.6.x`   |`1.8` to `16` |`2.6`|`2.0` to `2.3`
+`5.0.x`   |`17`          |`3.0`|`3.0`
 
 This are the combinations we have tested and expect to work, but depending on the features you are using, other combinations might work, too.
 When using Java 9 or higher, make sure to use JoinFaces only on the classpath and not on the modulepath.
