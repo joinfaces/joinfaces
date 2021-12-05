@@ -4,6 +4,6 @@ jar.manifest.attributes('Automatic-Module-Name': 'joinfaces.starter.primefaces')
 dependencies {
     api project(':joinfaces-starters:jsf-spring-boot-starter')
     api 'org.primefaces:primefaces::jakarta'
-    api 'org.primefaces.extensions:primefaces-extensions'
+    api 'org.primefaces.extensions:primefaces-extensions::jakarta'
     runtimeOnly 'org.primefaces.extensions:resources-ckeditor'
 }
