@@ -16,6 +16,7 @@
 
 package org.joinfaces.autoconfigure.viewscope;
 
+import org.joinfaces.viewscope.ViewScope;
 import org.junit.jupiter.api.Test;
 
 import org.springframework.beans.factory.annotation.Autowired;

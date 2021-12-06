@@ -16,7 +16,7 @@
 
 package org.joinfaces.autoconfigure.scopemapping;
 
-import org.joinfaces.autoconfigure.viewscope.ViewScope;
+import org.joinfaces.viewscope.ViewScope;
 import org.junit.jupiter.api.Test;
 
 import org.springframework.beans.factory.annotation.AnnotatedGenericBeanDefinition;

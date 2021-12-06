@@ -19,6 +19,7 @@ dependencies {
     api 'org.springframework.boot:spring-boot-autoconfigure'
     implementation 'io.github.classgraph:classgraph'
 
+    optional project(":joinfaces")
     optional 'org.springframework.boot:spring-boot-starter'
     optional 'org.springframework:spring-web'
     optional 'org.springframework.boot:spring-boot-starter-tomcat'

@@ -22,7 +22,7 @@ import jakarta.faces.bean.RequestScoped;
 import jakarta.faces.bean.SessionScoped;
 import jakarta.faces.bean.ViewScoped;
 
-import org.joinfaces.autoconfigure.viewscope.ViewScope;
+import org.joinfaces.viewscope.ViewScope;
 
 import org.springframework.beans.factory.config.ConfigurableBeanFactory;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;

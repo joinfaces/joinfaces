@@ -18,6 +18,7 @@ package org.joinfaces.autoconfigure.viewscope;
 
 import jakarta.faces.component.UIViewRoot;
 import jakarta.faces.context.FacesContext;
+import org.joinfaces.viewscope.ViewScope;
 
 import org.springframework.beans.factory.config.CustomScopeConfigurer;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
@@ -34,7 +35,7 @@ import org.springframework.context.annotation.Configuration;
  */
 @Configuration(proxyBeanMethods = false)
 @ConditionalOnWebApplication
-@ConditionalOnClass({FacesContext.class, UIViewRoot.class})
+@ConditionalOnClass({FacesContext.class, UIViewRoot.class, ViewScope.class})
 public class ViewScopeAutoConfiguration {
 
 	@Bean
