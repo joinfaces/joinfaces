@@ -20,6 +20,7 @@ import java.util.EnumSet;
 import java.util.stream.Collectors;
 
 import jakarta.servlet.DispatcherType;
+import org.joinfaces.session.SpringSessionFixFilter;
 
 import org.springframework.boot.autoconfigure.AutoConfigureAfter;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnBean;

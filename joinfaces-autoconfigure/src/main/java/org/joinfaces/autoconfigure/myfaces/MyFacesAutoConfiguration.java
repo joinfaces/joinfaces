@@ -19,7 +19,7 @@ package org.joinfaces.autoconfigure.myfaces;
 import org.apache.myfaces.ee.MyFacesContainerInitializer;
 import org.apache.myfaces.webapp.StartupServletContextListener;
 import org.joinfaces.autoconfigure.javaxfaces.JavaxFacesAutoConfiguration;
-import org.joinfaces.autoconfigure.servlet.WebFragmentRegistrationBean;
+import org.joinfaces.servlet.WebFragmentRegistrationBean;
 
 import org.springframework.boot.autoconfigure.AutoConfigureAfter;
 import org.springframework.boot.autoconfigure.AutoConfigureBefore;

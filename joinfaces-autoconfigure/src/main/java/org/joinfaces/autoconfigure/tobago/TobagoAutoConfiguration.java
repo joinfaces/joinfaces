@@ -19,7 +19,7 @@ package org.joinfaces.autoconfigure.tobago;
 import java.util.EventListener;
 
 import org.apache.myfaces.tobago.webapp.TobagoServletContextListener;
-import org.joinfaces.autoconfigure.servlet.WebFragmentRegistrationBean;
+import org.joinfaces.servlet.WebFragmentRegistrationBean;
 
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnWebApplication;

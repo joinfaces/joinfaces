@@ -1,5 +1,5 @@
 /*
- * Copyright 2016-2018 the original author or authors.
+ * Copyright 2016-2021 the original author or authors.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package org.joinfaces.autoconfigure;
+package org.joinfaces;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -34,7 +34,6 @@ import java.util.function.BiFunction;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import lombok.experimental.UtilityClass;
 import lombok.extern.slf4j.Slf4j;
 
@@ -63,7 +62,6 @@ public class ClasspathScanUtil {
 		);
 	}
 
-	@SuppressFBWarnings(value = "RCN_REDUNDANT_NULLCHECK_OF_NONNULL_VALUE", justification = "https://github.com/spotbugs/spotbugs/issues/259")
 	private static <T> Optional<T> readClasses(String resourceName, ClassLoader classLoader, BiFunction<BufferedReader, ClassLoader, T> function) {
 		InputStream resourceAsStream = classLoader.getResourceAsStream(resourceName);
 

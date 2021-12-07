@@ -26,7 +26,7 @@ import jakarta.faces.context.ExternalContext;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.myfaces.spi.AnnotationProvider;
 import org.apache.myfaces.spi.AnnotationProviderWrapper;
-import org.joinfaces.autoconfigure.ClasspathScanUtil;
+import org.joinfaces.ClasspathScanUtil;
 
 /**
  * Servlet context configurer of MyFaces.

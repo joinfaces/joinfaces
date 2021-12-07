@@ -1,5 +1,5 @@
 /*
- * Copyright 2016-2018 the original author or authors.
+ * Copyright 2016-2021 the original author or authors.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package org.joinfaces.autoconfigure;
+package org.joinfaces;
 
 import java.io.BufferedReader;
 import java.io.StringReader;
@@ -98,10 +98,10 @@ class ClasspathScanUtilTest {
 	@Test
 	void readAnnotationClassMap() {
 
-		String sb = "org.junit.jupiter.api.Test=org.joinfaces.autoconfigure.ClasspathScanUtil,org.joinfaces.autoconfigure.ClasspathScanUtilTest\n";
-		sb += "non.loadable.Annotation=org.joinfaces.autoconfigure.ClasspathScanUtil\n";
+		String sb = "org.junit.jupiter.api.Test=org.joinfaces.ClasspathScanUtil,org.joinfaces.ClasspathScanUtilTest\n";
+		sb += "non.loadable.Annotation=org.joinfaces.ClasspathScanUtil\n";
 		sb += "org.junit.jupiter.api.BeforeEach=\n";
-		sb += "org.junit.jupiter.api.BeforeAll=non.loadable.Class,org.joinfaces.autoconfigure.ClasspathScanUtil\n";
+		sb += "org.junit.jupiter.api.BeforeAll=non.loadable.Class,org.joinfaces.ClasspathScanUtil\n";
 
 		BufferedReader in = new BufferedReader(new StringReader(sb));
 

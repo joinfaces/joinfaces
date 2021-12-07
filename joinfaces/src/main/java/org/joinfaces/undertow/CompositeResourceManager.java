@@ -1,5 +1,5 @@
 /*
- * Copyright 2016-2016 the original author or authors.
+ * Copyright 2016-2021 the original author or authors.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package org.joinfaces.autoconfigure.undertow;
+package org.joinfaces.undertow;
 
 import java.io.IOException;
 import java.util.Arrays;
@@ -31,11 +31,11 @@ import io.undertow.server.handlers.resource.ResourceManager;
  * @author Marcelo Fernandes
  * @see org.springframework.boot.web.embedded.undertow.CompositeResourceManager
  */
-class CompositeResourceManager implements ResourceManager {
+public class CompositeResourceManager implements ResourceManager {
 
 	private final List<ResourceManager> resourceManagers;
 
-	CompositeResourceManager(ResourceManager... resourceManagers) {
+	public CompositeResourceManager(ResourceManager... resourceManagers) {
 		this.resourceManagers = Arrays.asList(resourceManagers);
 	}
 

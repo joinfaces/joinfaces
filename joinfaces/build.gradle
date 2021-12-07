@@ -1,7 +1,9 @@
 plugins {
     id 'java-library'
     id 'jacoco'
+    id 'pmd'
     id 'io.freefair.lombok'
+    id 'io.freefair.maven-optional'
     id 'io.freefair.maven-publish-java'
 }
 
@@ -11,13 +13,22 @@ dependencies {
     compileOnly 'jakarta.faces:jakarta.faces-api'
     compileOnly 'jakarta.servlet:jakarta.servlet-api'
     compileOnly 'jakarta.persistence:jakarta.persistence-api'
-    compileOnly 'org.primefaces:primefaces::jakarta'
-    compileOnly 'org.springframework.data:spring-data-jpa'
-    compileOnly 'org.springframework:spring-web'
+
+    implementation 'io.github.classgraph:classgraph'
+
+    optional 'org.primefaces:primefaces::jakarta'
+    optional 'org.springframework.data:spring-data-jpa'
+    optional 'org.springframework:spring-web'
+    optional 'org.springframework.boot:spring-boot'
+
+    optional 'org.springframework.boot:spring-boot-starter-tomcat'
+    optional 'org.springframework.boot:spring-boot-starter-jetty'
+    optional 'org.springframework.boot:spring-boot-starter-undertow'
 
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     testImplementation 'org.springframework.boot:spring-boot-starter-data-jpa'
     testImplementation project(":joinfaces-starters:primefaces-spring-boot-starter")
     testImplementation project(':joinfaces-test')
     testRuntimeOnly 'org.hsqldb:hsqldb'
+    testImplementation "org.apache.myfaces.core:myfaces-impl:$myfacesVersion"
 }

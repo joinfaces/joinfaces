@@ -19,8 +19,8 @@ package org.joinfaces.autoconfigure.mojarra;
 import com.sun.faces.config.ConfigureListener;
 import com.sun.faces.config.FacesInitializer;
 import org.joinfaces.autoconfigure.javaxfaces.JavaxFacesAutoConfiguration;
-import org.joinfaces.autoconfigure.servlet.TldListenerRegistrationBean;
-import org.joinfaces.autoconfigure.servlet.initializer.ServletContainerInitializerRegistrationBean;
+import org.joinfaces.servlet.TldListenerRegistrationBean;
+import org.joinfaces.servlet.ServletContainerInitializerRegistrationBean;
 
 import org.springframework.boot.autoconfigure.AutoConfigureAfter;
 import org.springframework.boot.autoconfigure.AutoConfigureBefore;

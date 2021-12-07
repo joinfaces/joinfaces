@@ -17,7 +17,7 @@
 package org.joinfaces.autoconfigure.omnifaces;
 
 import org.joinfaces.autoconfigure.javaxfaces.JavaxFacesAutoConfiguration;
-import org.joinfaces.autoconfigure.servlet.initializer.ServletContainerInitializerRegistrationBean;
+import org.joinfaces.servlet.ServletContainerInitializerRegistrationBean;
 import org.omnifaces.ApplicationInitializer;
 
 import org.springframework.boot.autoconfigure.AutoConfigureBefore;

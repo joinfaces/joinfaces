@@ -17,7 +17,7 @@
 package org.joinfaces.autoconfigure.weld;
 
 import org.jboss.weld.environment.servlet.EnhancedListener;
-import org.joinfaces.autoconfigure.servlet.initializer.ServletContainerInitializerRegistrationBean;
+import org.joinfaces.servlet.ServletContainerInitializerRegistrationBean;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 

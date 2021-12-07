@@ -22,6 +22,7 @@ import java.security.PrivilegedAction;
 import io.undertow.Undertow;
 import io.undertow.server.handlers.resource.ClassPathResourceManager;
 import lombok.extern.slf4j.Slf4j;
+import org.joinfaces.undertow.CompositeResourceManager;
 
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnWebApplication;
