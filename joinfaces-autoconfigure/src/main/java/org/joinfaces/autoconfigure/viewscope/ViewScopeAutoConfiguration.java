@@ -18,6 +18,7 @@ package org.joinfaces.autoconfigure.viewscope;
 
 import jakarta.faces.component.UIViewRoot;
 import jakarta.faces.context.FacesContext;
+
 import org.joinfaces.viewscope.ViewScope;
 
 import org.springframework.beans.factory.config.CustomScopeConfigurer;

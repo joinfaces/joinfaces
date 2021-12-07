@@ -20,6 +20,7 @@ import java.util.EnumSet;
 import java.util.stream.Collectors;
 
 import jakarta.servlet.DispatcherType;
+
 import org.joinfaces.session.SpringSessionFixFilter;
 
 import org.springframework.boot.autoconfigure.AutoConfigureAfter;
@@ -53,7 +54,7 @@ public class SpringSessionFixAutoConfiguration {
 	@Bean
 	@ConditionalOnBean(SessionRepositoryFilter.class)
 	public FilterRegistrationBean<SpringSessionFixFilter> springSessionFixFilterRegistrationBean(
-		SessionProperties sessionProperties
+			SessionProperties sessionProperties
 	) {
 		FilterRegistrationBean<SpringSessionFixFilter> registrationBean = new FilterRegistrationBean<>(new SpringSessionFixFilter());
 		registrationBean.setOrder(sessionProperties.getServlet().getFilterOrder() + 1);
@@ -68,6 +69,6 @@ public class SpringSessionFixAutoConfiguration {
 			return null;
 		}
 		return servletProperties.getFilterDispatcherTypes().stream().map((type) -> DispatcherType.valueOf(type.name()))
-			.collect(Collectors.collectingAndThen(Collectors.toSet(), EnumSet::copyOf));
+				.collect(Collectors.collectingAndThen(Collectors.toSet(), EnumSet::copyOf));
 	}
 }
