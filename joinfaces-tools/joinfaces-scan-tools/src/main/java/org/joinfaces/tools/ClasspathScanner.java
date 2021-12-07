@@ -47,8 +47,7 @@ public class ClasspathScanner {
 
 		ClassGraph classGraph = new ClassGraph()
 				.enableAllInfo()
-				.enableExternalClasses()
-				.enableSystemJarsAndModules();
+				.enableExternalClasses();
 
 		classGraph = getClassGraphConfigurer().apply(classGraph);
 

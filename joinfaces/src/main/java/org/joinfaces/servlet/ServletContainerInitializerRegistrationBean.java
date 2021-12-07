@@ -106,10 +106,6 @@ public class ServletContainerInitializerRegistrationBean<T extends ServletContai
 		}
 
 		classGraph = classGraph.enableExternalClasses()
-				.enableSystemJarsAndModules() // Find classes in javax.faces
-				.blacklistPackages("java", "jdk", "sun", "javafx", "oracle")
-				.blacklistPackages("javax.xml", "javax.el", "javax.persistence")
-				.blacklistModules("java.*", "jdk.*")
 				.filterClasspathElements(path -> {
 					log.debug("Path {}", path);
 					return true;
