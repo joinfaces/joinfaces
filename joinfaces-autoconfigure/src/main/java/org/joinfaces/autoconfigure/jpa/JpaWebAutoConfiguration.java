@@ -18,6 +18,8 @@ package org.joinfaces.autoconfigure.jpa;
 
 import jakarta.persistence.EntityManager;
 
+import org.joinfaces.jpa.OrderedOpenEntityManagerInViewFilter;
+
 import org.springframework.boot.autoconfigure.AutoConfigureBefore;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
