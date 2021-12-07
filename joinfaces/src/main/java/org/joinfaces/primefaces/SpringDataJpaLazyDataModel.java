@@ -25,6 +25,7 @@ import jakarta.persistence.criteria.CriteriaQuery;
 import jakarta.persistence.criteria.Path;
 import jakarta.persistence.criteria.Predicate;
 import jakarta.persistence.criteria.Root;
+
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
@@ -40,6 +41,12 @@ import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.lang.Nullable;
 import org.springframework.util.CollectionUtils;
 
+/**
+ * @param <T>  the domain type the repository manages
+ * @param <ID> the type of the id of the entity the repository manages
+ * @param <R>
+ * @author Lars Grefer
+ */
 public class SpringDataJpaLazyDataModel<T, ID, R extends JpaRepository<T, ID> & JpaSpecificationExecutor<T>> extends SpringDataLazyDataModel<T, ID, R> {
 
 	@Getter

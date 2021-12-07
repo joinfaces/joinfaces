@@ -26,6 +26,7 @@ import java.util.stream.Collectors;
 
 import jakarta.faces.context.FacesContext;
 import jakarta.faces.convert.Converter;
+
 import lombok.Getter;
 import lombok.Setter;
 import org.primefaces.model.FilterMeta;
@@ -42,6 +43,12 @@ import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.data.repository.core.EntityInformation;
 import org.springframework.util.CollectionUtils;
 
+/**
+ * @param <T>  the domain type the repository manages
+ * @param <ID> the type of the id of the entity the repository manages
+ * @param <R>
+ * @author Lars Grefer
+ */
 public class SpringDataLazyDataModel<T, ID, R extends PagingAndSortingRepository<T, ID>> extends LazyDataModel<T> {
 
 	@Getter
