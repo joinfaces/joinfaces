@@ -1,18 +1,9 @@
 description = 'MyFaces Spring Boot Starter'
 jar.manifest.attributes('Automatic-Module-Name': 'joinfaces.starter.myfaces')
 
-dependencyManagement {
-    dependencies {
-        dependencySet("org.apache.myfaces.core:$myfacesVersion") {
-            entry "myfaces-api"
-            entry "myfaces-impl"
-        }
-    }
-}
-
 dependencies {
-    api "org.apache.myfaces.core:myfaces-api:$myfacesVersion"
-    implementation("org.apache.myfaces.core:myfaces-impl:$myfacesVersion") {
+    api "org.apache.myfaces.core:myfaces-api"
+    implementation("org.apache.myfaces.core:myfaces-impl") {
         exclude group: 'commons-logging', module: 'commons-logging'
     }
 

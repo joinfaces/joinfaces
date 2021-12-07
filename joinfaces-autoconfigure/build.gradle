@@ -31,7 +31,7 @@ dependencies {
     optional 'jakarta.enterprise:jakarta.enterprise.cdi-api'
     optional 'org.jboss.weld.servlet:weld-servlet-core'
     optional 'org.glassfish:jakarta.faces'
-    optional "org.apache.myfaces.core:myfaces-impl:$myfacesVersion"
+    optional "org.apache.myfaces.core:myfaces-impl"
     optional 'org.omnifaces:omnifaces:4.0-M12'
     optional 'org.primefaces:primefaces::jakarta'
     optional 'org.butterfaces:components'

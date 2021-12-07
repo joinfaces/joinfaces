@@ -6,11 +6,11 @@ dependencies {
     api "io.github.classgraph:classgraph"
     implementation "org.slf4j:slf4j-api"
 
-    compileOnly "org.apache.myfaces.core:myfaces-impl:$myfacesVersion"
+    compileOnly "org.apache.myfaces.core:myfaces-impl"
     compileOnly 'jakarta.servlet:jakarta.servlet-api'
 
     testRuntimeOnly 'org.slf4j:slf4j-simple'
-    testRuntimeOnly "org.apache.myfaces.core:myfaces-impl:$myfacesVersion"
+    testRuntimeOnly "org.apache.myfaces.core:myfaces-impl"
     testRuntimeOnly 'org.glassfish:jakarta.faces'
     testRuntimeOnly 'org.primefaces:primefaces'
     testRuntimeOnly 'jakarta.annotation:jakarta.annotation-api'
