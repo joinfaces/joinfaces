@@ -57,7 +57,7 @@ allprojects {
 
             dependency 'io.github.classgraph:classgraph:4.8.137'
 
-            dependency 'org.primefaces:primefaces:10.0.0'
+            dependency 'org.primefaces:primefaces:11.0.0'
             dependencySet("org.primefaces.extensions:10.0.5") {
                 entry "primefaces-extensions"
                 entry "resources-ckeditor"
