@@ -49,7 +49,7 @@ public class JsfBeansAutoConfiguration {
 
 	@Bean("application")
 	@ConditionalOnMissingBean(name = "application")
-	@Scope(value = ConfigurableBeanFactory.SCOPE_PROTOTYPE, proxyMode = ScopedProxyMode.TARGET_CLASS)
+	@Scope(value = ConfigurableBeanFactory.SCOPE_PROTOTYPE)
 	public Object application() {
 		return FacesContext.getCurrentInstance().getExternalContext().getContext();
 	}
@@ -132,8 +132,8 @@ public class JsfBeansAutoConfiguration {
 	}
 
 	@Bean("request")
-	@ConditionalOnMissingBean
-	@Scope(value = ConfigurableBeanFactory.SCOPE_PROTOTYPE, proxyMode = ScopedProxyMode.TARGET_CLASS)
+	@ConditionalOnMissingBean(name = "request")
+	@Scope(value = ConfigurableBeanFactory.SCOPE_PROTOTYPE)
 	public Object request() {
 		return FacesContext.getCurrentInstance().getExternalContext().getRequest();
 	}
@@ -153,8 +153,8 @@ public class JsfBeansAutoConfiguration {
 	}
 
 	@Bean("session")
-	@Scope(value = ConfigurableBeanFactory.SCOPE_PROTOTYPE, proxyMode = ScopedProxyMode.TARGET_CLASS)
-	@ConditionalOnMissingBean
+	@Scope(value = ConfigurableBeanFactory.SCOPE_PROTOTYPE)
+	@ConditionalOnMissingBean(name = "session")
 	public Object session() {
 		return FacesContext.getCurrentInstance().getExternalContext().getSession(false);
 	}
