@@ -1,5 +1,5 @@
 /*
- * Copyright 2016-2018 the original author or authors.
+ * Copyright 2016-2022 the original author or authors.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -36,7 +36,7 @@ import org.springframework.context.annotation.ScopedProxyMode;
 
 /**
  * JSF 2.3-like Bean Definitions.
- *
+ * <p>
  * These bean definitions are taken from the mojarra {@link com.sun.faces.cdi.CdiProducer}s.
  *
  * @author Lars Grefer
@@ -49,7 +49,7 @@ public class JsfBeansAutoConfiguration {
 
 	@Bean("application")
 	@ConditionalOnMissingBean(name = "application")
-	@Scope(value = ConfigurableBeanFactory.SCOPE_PROTOTYPE)
+	@Scope(ConfigurableBeanFactory.SCOPE_PROTOTYPE)
 	public Object application() {
 		return FacesContext.getCurrentInstance().getExternalContext().getContext();
 	}
@@ -71,8 +71,8 @@ public class JsfBeansAutoConfiguration {
 	/**
 	 * Spring bean definition for the JSF {@link FacesContext}.
 	 *
-	 * @see com.sun.faces.cdi.FacesContextProducer
 	 * @return The current {@link FacesContext#getCurrentInstance() FacesContext}.
+	 * @see com.sun.faces.cdi.FacesContextProducer
 	 */
 	@Bean("facesContext")
 	@Scope(value = ConfigurableBeanFactory.SCOPE_PROTOTYPE, proxyMode = ScopedProxyMode.TARGET_CLASS)
@@ -133,7 +133,7 @@ public class JsfBeansAutoConfiguration {
 
 	@Bean("request")
 	@ConditionalOnMissingBean(name = "request")
-	@Scope(value = ConfigurableBeanFactory.SCOPE_PROTOTYPE)
+	@Scope(ConfigurableBeanFactory.SCOPE_PROTOTYPE)
 	public Object request() {
 		return FacesContext.getCurrentInstance().getExternalContext().getRequest();
 	}
@@ -153,7 +153,7 @@ public class JsfBeansAutoConfiguration {
 	}
 
 	@Bean("session")
-	@Scope(value = ConfigurableBeanFactory.SCOPE_PROTOTYPE)
+	@Scope(ConfigurableBeanFactory.SCOPE_PROTOTYPE)
 	@ConditionalOnMissingBean(name = "session")
 	public Object session() {
 		return FacesContext.getCurrentInstance().getExternalContext().getSession(false);
