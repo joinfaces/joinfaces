@@ -45,7 +45,7 @@ allprojects {
         dependencies {
             dependency 'jakarta.faces:jakarta.faces-api:2.3.2'
 
-            dependency 'org.glassfish:jakarta.faces:2.3.17'
+            dependency 'org.glassfish:jakarta.faces:3.0.2'
 
             dependency('jakarta.enterprise:jakarta.enterprise.cdi-api:2.0.2') {
                 exclude "jakarta.el:jakarta.el-api"
