@@ -61,7 +61,7 @@ public class JsfTomcatLifecycleListenerIT {
 		JsfTomcatLifecycleListener jsfTomcatLifecycleListener = new JsfTomcatLifecycleListener(standardContext);
 		jsfTomcatLifecycleListener.lifecycleEvent(this.lifecycleEvent);
 		assertThat(webResourceRoot.getPostResources())
-			.hasSizeGreaterThanOrEqualTo(6);
+			.hasSizeGreaterThanOrEqualTo(5);
 	}
 
 	@Test
@@ -87,7 +87,7 @@ public class JsfTomcatLifecycleListenerIT {
 			throw new RuntimeException("Could not delete dir: " + testClassesResources.toString());
 		}
 		assertThat(webResourceRoot.getPostResources())
-			.hasSizeGreaterThanOrEqualTo(7);
+			.hasSizeGreaterThanOrEqualTo(6);
 	}
 
 	@Test
