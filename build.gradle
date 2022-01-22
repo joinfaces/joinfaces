@@ -311,7 +311,7 @@ publishing {
             signing.sign it
         }
         javadoc(MavenPublication) {
-            artifactId = 'joinfaces'
+            artifactId = 'joinfaces-parent'
 
             pom {
                 name = "JoinFaces"

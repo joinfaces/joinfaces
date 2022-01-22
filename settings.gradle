@@ -1,4 +1,4 @@
-rootProject.name = 'joinfaces'
+rootProject.name = 'joinfaces-parent'
 
 include ':joinfaces'
 
