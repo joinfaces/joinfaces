@@ -89,6 +89,8 @@ allprojects {
                 entry 'tobago-theme-richmond'
                 entry 'tobago-theme-charlotteville'
             }
+
+            dependency 'org.omnifaces:omnifaces:4.0-M12'
         }
     }
 

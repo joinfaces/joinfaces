@@ -32,7 +32,7 @@ dependencies {
     optional 'org.jboss.weld.servlet:weld-servlet-core'
     optional 'org.glassfish:jakarta.faces'
     optional "org.apache.myfaces.core:myfaces-impl"
-    optional 'org.omnifaces:omnifaces:4.0-M12'
+    optional 'org.omnifaces:omnifaces'
     optional 'org.primefaces:primefaces::jakarta'
     optional 'commons-fileupload:commons-fileupload'
     optional 'org.glassfish.jaxb:jaxb-runtime'
