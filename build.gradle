@@ -72,8 +72,6 @@ allprojects {
                 entry "resources-monacoeditor"
             }
 
-            dependency 'org.butterfaces:components:3.5.0'
-
             dependency "commons-fileupload:commons-fileupload:1.4"
 
             dependency('org.jboss.weld.servlet:weld-servlet-core:4.0.2.Final') {

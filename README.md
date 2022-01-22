@@ -9,7 +9,7 @@ JoinFaces
 
 This project enables [JSF](https://www.oracle.com/technetwork/java/javaee/javaserverfaces-139869.html) usage inside [Spring Boot](https://projects.spring.io/spring-boot/) Application.
 
-It autoconfigures [PrimeFaces](https://primefaces.org/), [PrimeFaces Extensions](http://primefaces-extensions.github.io/), [ButterFaces](http://butterfaces.org/), [OmniFaces](http://omnifaces.org/), [Mojarra](https://javaserverfaces.java.net/) and [MyFaces](http://myfaces.apache.org/) libraries to run at embedded [Tomcat](http://tomcat.apache.org/), [Jetty](http://www.eclipse.org/jetty) or [Undertow](http://undertow.io) servlet containers. It autoconfigures [Weld](http://weld.cdi-spec.org) too.
+It autoconfigures [PrimeFaces](https://primefaces.org/), [PrimeFaces Extensions](http://primefaces-extensions.github.io/), [OmniFaces](http://omnifaces.org/), [Mojarra](https://javaserverfaces.java.net/) and [MyFaces](http://myfaces.apache.org/) libraries to run at embedded [Tomcat](http://tomcat.apache.org/), [Jetty](http://www.eclipse.org/jetty) or [Undertow](http://undertow.io) servlet containers. It autoconfigures [Weld](http://weld.cdi-spec.org) too.
 
 It also aims to solve [JSF](https://www.oracle.com/technetwork/java/javaee/javaserverfaces-139869.html) and [Spring Boot](https://projects.spring.io/spring-boot/) integration features. Current version includes [JSF](https://www.oracle.com/technetwork/java/javaee/javaserverfaces-139869.html) and [CDI](https://www.cdi-spec.org/) annotations support and [Spring Security](https://projects.spring.io/spring-security/) JSF Facelet Tag support.
 

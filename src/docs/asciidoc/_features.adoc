@@ -44,9 +44,6 @@ You can use the table below to discover the starters that fit your needs.
 |primefaces-spring-boot-starter
 |Component starter for https://primefaces.org[PrimeFaces], and https://primefaces-extensions.github.io/[PrimeFaces Extensions] JSF Component libraries. Pulls `jsf-spring-boot-starter`.
 
-|butterfaces-spring-boot-starter
-|Component starter for http://butterfaces.org[ButterFaces] JSF Component library. Pulls `jsf-spring-boot-starter`.
-
 |omnifaces1-spring-boot-starter
 |Component starter for https://omnifaces.org/[OmniFaces] JSF utility library. Pulls `jsf-spring-boot-starter`.
 
@@ -140,10 +137,6 @@ server.servlet.context-parameters._primefaces.THEME_=omega
 === Library Specific Features
 
 This section describes, what JoinFaces does for specific libraries.
-
-==== ButterFaces
-
-* `org.butterfaces.\*` servlet-context init-parameters are mapped from `joinfaces.butterfaces.*` properties.
 
 ==== Mojarra
 

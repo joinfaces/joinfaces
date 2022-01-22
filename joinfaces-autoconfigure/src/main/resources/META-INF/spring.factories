@@ -1,6 +1,5 @@
 org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
   org.joinfaces.autoconfigure.JoinfacesAutoConfiguration,\
-  org.joinfaces.autoconfigure.butterfaces.ButterfacesAutoConfiguration,\
   org.joinfaces.autoconfigure.javaxfaces.FacesServletAutoConfiguration,\
   org.joinfaces.autoconfigure.javaxfaces.JavaxFacesAutoConfiguration,\
   org.joinfaces.autoconfigure.javaxfaces.JsfBeansAutoConfiguration,\
