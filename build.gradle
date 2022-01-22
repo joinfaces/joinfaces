@@ -206,11 +206,16 @@ allprojects {
                         url = 'https://github.com/joinfaces/joinfaces/'
                     }
                 }
-            }
-        }
 
-        tasks.withType(GenerateModuleMetadata) {
-            enabled = false
+                versionMapping {
+                    usage('java-api') {
+                        fromResolutionOf('runtimeClasspath')
+                    }
+                    usage('java-runtime') {
+                        fromResolutionResult()
+                    }
+                }
+            }
         }
     }
 }
