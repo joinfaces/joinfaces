@@ -55,7 +55,7 @@ allprojects {
                 }
             }
 
-            dependency('jakarta.enterprise:jakarta.enterprise.cdi-api:3.0.0') {
+            dependency('jakarta.enterprise:jakarta.enterprise.cdi-api:3.0.1') {
                 exclude "jakarta.el:jakarta.el-api"
                 exclude "jakarta.ejb:jakarta.ejb-api"
             }
