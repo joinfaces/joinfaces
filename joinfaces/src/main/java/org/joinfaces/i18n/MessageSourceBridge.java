@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package org.joinfaces.autoconfigure.javaxfaces;
+package org.joinfaces.i18n;
 
 import java.util.AbstractMap;
 import java.util.Set;

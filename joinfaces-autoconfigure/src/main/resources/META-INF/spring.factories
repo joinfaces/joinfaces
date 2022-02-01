@@ -4,7 +4,7 @@ org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
   org.joinfaces.autoconfigure.javaxfaces.JavaxFacesAutoConfiguration,\
   org.joinfaces.autoconfigure.javaxfaces.JsfBeansAutoConfiguration,\
   org.joinfaces.autoconfigure.javaxfaces.ProjectStageAutoConfiguration,\
-  org.joinfaces.autoconfigure.javaxfaces.MessageSourceBridgeAutoConfiguration,\
+  org.joinfaces.autoconfigure.i18n.MessageSourceBridgeAutoConfiguration,\
   org.joinfaces.autoconfigure.jetty.JettyAutoConfiguration,\
   org.joinfaces.autoconfigure.jpa.JpaWebAutoConfiguration,\
   org.joinfaces.autoconfigure.mojarra.MojarraAutoConfiguration,\

@@ -14,8 +14,11 @@
  * limitations under the License.
  */
 
-package org.joinfaces.autoconfigure.javaxfaces;
+package org.joinfaces.autoconfigure.i18n;
 
+import org.joinfaces.i18n.MessageSourceBridge;
+
+import org.springframework.boot.autoconfigure.condition.ConditionalOnBean;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnWebApplication;
 import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;

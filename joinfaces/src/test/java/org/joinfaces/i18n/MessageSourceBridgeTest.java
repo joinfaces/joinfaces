@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package org.joinfaces.autoconfigure.javaxfaces;
+package org.joinfaces.i18n;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
