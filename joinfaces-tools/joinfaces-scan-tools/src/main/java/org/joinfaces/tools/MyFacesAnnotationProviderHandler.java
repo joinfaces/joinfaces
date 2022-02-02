@@ -34,7 +34,7 @@ import io.github.classgraph.ScanResult;
 public class MyFacesAnnotationProviderHandler extends ScanResultHandler {
 
 	private static final String MYFACES_ANNOTATION_PROVIDER = "org.apache.myfaces.spi.AnnotationProvider";
-	private static final List<String> MYFACES_ANNOTATIONS = Collections.unmodifiableList(Arrays.asList(
+	private static final List<String> MYFACES_ANNOTATIONS = List.of(
 			"jakarta.faces.bean.ManagedBean",
 			"jakarta.faces.component.FacesComponent",
 			"jakarta.faces.component.behavior.FacesBehavior",
@@ -43,7 +43,7 @@ public class MyFacesAnnotationProviderHandler extends ScanResultHandler {
 			"jakarta.faces.render.FacesRenderer",
 			"jakarta.faces.render.FacesBehaviorRenderer",
 			"jakarta.faces.validator.FacesValidator"
-	));
+	);
 
 	@Override
 	public void handle(ScanResult scanResult, File classpathRoot) throws IOException {

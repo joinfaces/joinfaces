@@ -155,37 +155,25 @@ public class InitParameterServletContextConfigurer implements ServletContextInit
 	}
 
 	static String convertToString(Duration duration, ChronoUnit chronoUnit) {
-		switch (chronoUnit) {
-			case NANOS:
-				return String.valueOf(duration.toNanos());
-			case MILLIS:
-				return String.valueOf(duration.toMillis());
-			case SECONDS:
-				return String.valueOf(duration.getSeconds());
-			case MINUTES:
-				return String.valueOf(duration.toMinutes());
-			case HOURS:
-				return String.valueOf(duration.toHours());
-			default:
-				throw new IllegalStateException("Unsupported ChronoUnit: " + chronoUnit);
-		}
+		return switch (chronoUnit) {
+			case NANOS -> String.valueOf(duration.toNanos());
+			case MILLIS -> String.valueOf(duration.toMillis());
+			case SECONDS -> String.valueOf(duration.getSeconds());
+			case MINUTES -> String.valueOf(duration.toMinutes());
+			case HOURS -> String.valueOf(duration.toHours());
+			default -> throw new IllegalStateException("Unsupported ChronoUnit: " + chronoUnit);
+		};
 	}
 
 	static String convertToString(DataSize dataSize, DataUnit dataUnit) {
-		switch (dataUnit) {
-			case BYTES:
-				return String.valueOf(dataSize.toBytes());
-			case KILOBYTES:
-				return String.valueOf(dataSize.toKilobytes());
-			case MEGABYTES:
-				return String.valueOf(dataSize.toMegabytes());
-			case GIGABYTES:
-				return String.valueOf(dataSize.toGigabytes());
-			case TERABYTES:
-				return String.valueOf(dataSize.toTerabytes());
-			default:
-				throw new IllegalStateException("Unsupported DataUnit: " + dataUnit);
-		}
+		return switch (dataUnit) {
+			case BYTES -> String.valueOf(dataSize.toBytes());
+			case KILOBYTES -> String.valueOf(dataSize.toKilobytes());
+			case MEGABYTES -> String.valueOf(dataSize.toMegabytes());
+			case GIGABYTES -> String.valueOf(dataSize.toGigabytes());
+			case TERABYTES -> String.valueOf(dataSize.toTerabytes());
+			default -> throw new IllegalStateException("Unsupported DataUnit: " + dataUnit);
+		};
 	}
 
 	static String convertToString(Object value) {

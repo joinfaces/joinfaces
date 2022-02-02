@@ -68,8 +68,7 @@ public class CustomScopeAnnotationConfigurer implements BeanFactoryPostProcessor
 	 */
 	private void registerJsfCdiToSpring(BeanDefinition definition) {
 
-		if (definition instanceof AnnotatedBeanDefinition) {
-			AnnotatedBeanDefinition annDef = (AnnotatedBeanDefinition) definition;
+		if (definition instanceof AnnotatedBeanDefinition annDef) {
 
 			String scopeName = null;
 			// firstly check whether bean is defined via configuration
