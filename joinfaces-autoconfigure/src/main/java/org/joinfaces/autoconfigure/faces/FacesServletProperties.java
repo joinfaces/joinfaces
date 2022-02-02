@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package org.joinfaces.autoconfigure.javaxfaces;
+package org.joinfaces.autoconfigure.faces;
 
 import java.util.Arrays;
 import java.util.LinkedHashSet;

@@ -19,7 +19,6 @@ package org.joinfaces.autoconfigure.faces;
 import jakarta.faces.context.FacesContext;
 
 import lombok.RequiredArgsConstructor;
-import org.joinfaces.autoconfigure.javaxfaces.FacesServletProperties;
 
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.config.BeanPostProcessor;
