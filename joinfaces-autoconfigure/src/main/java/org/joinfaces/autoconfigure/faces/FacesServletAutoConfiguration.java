@@ -52,7 +52,7 @@ public class FacesServletAutoConfiguration {
 	public ServletRegistrationBean<FacesServlet> facesServletRegistrationBean(
 			FacesServletProperties facesServletProperties
 	) {
-		ServletRegistrationBean<FacesServlet> facesServletServletRegistrationBean = new ServletRegistrationBean<FacesServlet>(new FacesServlet()) {
+		ServletRegistrationBean<FacesServlet> facesServletServletRegistrationBean = new ServletRegistrationBean<>(new FacesServlet()) {
 			@Override
 			protected ServletRegistration.Dynamic addRegistration(String description, ServletContext servletContext) {
 				ServletRegistration.Dynamic servletRegistration = super.addRegistration(description, servletContext);

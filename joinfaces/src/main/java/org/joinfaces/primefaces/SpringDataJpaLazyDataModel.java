@@ -111,6 +111,7 @@ public class SpringDataJpaLazyDataModel<T, ID, R extends JpaRepository<T, ID> & 
 
 		private final FilterMeta filterMeta;
 
+		@SuppressWarnings("rawtypes")
 		@Override
 		public Predicate toPredicate(Root<T> root, CriteriaQuery<?> query, CriteriaBuilder criteriaBuilder) {
 			Object filterValue = filterMeta.getFilterValue();

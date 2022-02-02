@@ -52,7 +52,7 @@ class ClasspathScannerTest {
 
 	@AfterEach
 	void deleteTempDir() throws IOException {
-		Files.walkFileTree(this.file.toPath(), new SimpleFileVisitor<Path>() {
+		Files.walkFileTree(this.file.toPath(), new SimpleFileVisitor<>() {
 			@Override
 			public FileVisitResult visitFile(Path file, BasicFileAttributes attrs) throws IOException {
 				Files.delete(file);
