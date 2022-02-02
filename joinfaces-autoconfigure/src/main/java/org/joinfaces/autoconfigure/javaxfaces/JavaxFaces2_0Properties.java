@@ -19,14 +19,12 @@ package org.joinfaces.autoconfigure.javaxfaces;
 import java.util.List;
 
 import jakarta.faces.application.ResourceHandler;
-import jakarta.faces.context.PartialViewContext;
 
 import lombok.Data;
 import org.joinfaces.autoconfigure.servlet.initparams.ServletContextInitParameter;
 import org.joinfaces.autoconfigure.servlet.initparams.ServletContextInitParameterProperties;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
-import org.springframework.boot.context.properties.NestedConfigurationProperty;
 
 /**
  * {@link ConfigurationProperties Configuration properties} for JSF 2.0.
@@ -47,40 +45,5 @@ public class JavaxFaces2_0Properties implements ServletContextInitParameterPrope
 	 */
 	@ServletContextInitParameter(value = ResourceHandler.RESOURCE_EXCLUDES_PARAM_NAME, listSeparator = ",")
 	private List<String> resourceExcludes;
-
-	@NestedConfigurationProperty
-	private final Partial partial = new Partial();
-
-	/**
-	 * Partial class for execute, render and resetValues parameters.
-	 */
-	@Data
-	public static class Partial {
-
-		/**
-		 * The request parameter name whose request parameter value is a
-		 * {@code Collection} of client identifiers identifying the
-		 * components that must be processed during the
-		 * <em>Apply Request Values</em>, <em>Process Validations</em>, and
-		 * <em>Update Model Values</em> phases of the request processing
-		 * lifecycle.
-		 *
-		 * @since 2.0
-		 */
-		@ServletContextInitParameter(PartialViewContext.PARTIAL_EXECUTE_PARAM_NAME)
-		private Boolean execute;
-
-		/**
-		 * The request parameter name whose request parameter value is a
-		 * {@code Collection} of client identifiers identifying the
-		 * components that must be processed during the
-		 * <em>Render Response</em> phase of the request processing
-		 * lifecycle.
-		 *
-		 * @since 2.0
-		 */
-		@ServletContextInitParameter(PartialViewContext.PARTIAL_RENDER_PARAM_NAME)
-		private Boolean render;
-	}
 
 }
