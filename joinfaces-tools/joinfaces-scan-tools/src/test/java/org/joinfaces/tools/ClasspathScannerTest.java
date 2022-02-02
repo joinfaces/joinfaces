@@ -19,19 +19,15 @@ package org.joinfaces.tools;
 import java.io.File;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
-import java.nio.file.FileVisitResult;
 import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.SimpleFileVisitor;
-import java.nio.file.attribute.BasicFileAttributes;
 import java.util.List;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 import lombok.extern.slf4j.Slf4j;
-import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.io.TempDir;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -39,33 +35,16 @@ import static org.assertj.core.api.Assertions.assertThat;
 class ClasspathScannerTest {
 
 	private ClasspathScanner classpathScanner;
+
+	@TempDir
 	private File file;
 
 	@BeforeEach
-	void setUp() throws IOException {
-		this.file = Files.createTempDirectory(getClass().getName()).toFile();
+	void setUp() {
 		this.classpathScanner = ClasspathScanner.builder()
 				.classGraphConfigurer(c -> c)
 				.classpathRoot(this.file)
 				.build();
-	}
-
-	@AfterEach
-	void deleteTempDir() throws IOException {
-		Files.walkFileTree(this.file.toPath(), new SimpleFileVisitor<>() {
-			@Override
-			public FileVisitResult visitFile(Path file, BasicFileAttributes attrs) throws IOException {
-				Files.delete(file);
-				return FileVisitResult.CONTINUE;
-			}
-
-			@Override
-			public FileVisitResult postVisitDirectory(Path dir, IOException exc) throws IOException {
-				Files.delete(dir);
-				return FileVisitResult.CONTINUE;
-			}
-		});
-		Files.deleteIfExists(this.file.toPath());
 	}
 
 	@Test
