@@ -14,12 +14,14 @@
  * limitations under the License.
  */
 
-package org.joinfaces.autoconfigure.javaxfaces;
+package org.joinfaces.autoconfigure.faces;
 
 import jakarta.faces.application.ProjectStage;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.joinfaces.autoconfigure.javaxfaces.JavaxFaces2_0Properties;
+import org.joinfaces.autoconfigure.javaxfaces.JavaxFacesAutoConfiguration;
 
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.config.BeanPostProcessor;
@@ -70,8 +72,8 @@ public class ProjectStageAutoConfiguration {
 
 		@Override
 		public Object postProcessAfterInitialization(Object bean, String beanName) throws BeansException {
-			if (bean instanceof JavaxFaces2_0Properties && ((JavaxFaces2_0Properties) bean).getProjectStage() == null) {
-				((JavaxFaces2_0Properties) bean).setProjectStage(this.projectStage);
+			if (bean instanceof JakartaFaces3Properties && ((JakartaFaces3Properties) bean).getProjectStage() == null) {
+				((JakartaFaces3Properties) bean).setProjectStage(this.projectStage);
 			}
 			return bean;
 		}

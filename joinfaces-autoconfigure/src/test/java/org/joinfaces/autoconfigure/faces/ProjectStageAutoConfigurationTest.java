@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package org.joinfaces.autoconfigure.javaxfaces;
+package org.joinfaces.autoconfigure.faces;
 
 import jakarta.faces.application.ProjectStage;
 
@@ -33,14 +33,14 @@ public class ProjectStageAutoConfigurationTest {
 	@BeforeEach
 	public void setUp() {
 		this.webApplicationContextRunner = new WebApplicationContextRunner()
-				.withConfiguration(AutoConfigurations.of(JavaxFacesAutoConfiguration.class, ProjectStageAutoConfiguration.class));
+				.withConfiguration(AutoConfigurations.of(JakartaFaces3AutoConfiguration.class, ProjectStageAutoConfiguration.class));
 	}
 
 	@Test
 	public void testProductionIsDefault() {
 		this.webApplicationContextRunner
 				.run(context ->
-						assertThat(context.getBean(JavaxFaces2_0Properties.class).getProjectStage()).isEqualTo(ProjectStage.Production)
+						assertThat(context.getBean(JakartaFaces3Properties.class).getProjectStage()).isEqualTo(ProjectStage.Production)
 				);
 	}
 
@@ -49,7 +49,7 @@ public class ProjectStageAutoConfigurationTest {
 		this.webApplicationContextRunner
 				.withPropertyValues("debug")
 				.run(context ->
-						assertThat(context.getBean(JavaxFaces2_0Properties.class).getProjectStage()).isEqualTo(ProjectStage.Development)
+						assertThat(context.getBean(JakartaFaces3Properties.class).getProjectStage()).isEqualTo(ProjectStage.Development)
 				);
 	}
 
@@ -58,12 +58,12 @@ public class ProjectStageAutoConfigurationTest {
 		this.webApplicationContextRunner
 				.withPropertyValues("joinfaces.jsf.project-stage=UnitTest")
 				.run(context ->
-						assertThat(context.getBean(JavaxFaces2_0Properties.class).getProjectStage()).isEqualTo(ProjectStage.UnitTest)
+						assertThat(context.getBean(JakartaFaces3Properties.class).getProjectStage()).isEqualTo(ProjectStage.UnitTest)
 				);
 		this.webApplicationContextRunner
 				.withPropertyValues("debug", "joinfaces.jsf.project-stage=UnitTest")
 				.run(context ->
-						assertThat(context.getBean(JavaxFaces2_0Properties.class).getProjectStage()).isEqualTo(ProjectStage.UnitTest)
+						assertThat(context.getBean(JakartaFaces3Properties.class).getProjectStage()).isEqualTo(ProjectStage.UnitTest)
 				);
 	}
 

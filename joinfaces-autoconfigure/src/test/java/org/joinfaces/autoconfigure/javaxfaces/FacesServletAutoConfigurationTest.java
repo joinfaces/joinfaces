@@ -21,6 +21,7 @@ import jakarta.servlet.Servlet;
 import jakarta.servlet.ServletContext;
 import jakarta.servlet.ServletRegistration;
 
+import org.joinfaces.autoconfigure.faces.JakartaFaces3AutoConfiguration;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -43,7 +44,7 @@ public class FacesServletAutoConfigurationTest {
 	@BeforeEach
 	public void setUp() {
 		this.webApplicationContextRunner = new WebApplicationContextRunner()
-				.withConfiguration(AutoConfigurations.of(FacesServletAutoConfiguration.class, JavaxFacesAutoConfiguration.class));
+				.withConfiguration(AutoConfigurations.of(FacesServletAutoConfiguration.class, JakartaFaces3AutoConfiguration.class));
 	}
 
 	@Test

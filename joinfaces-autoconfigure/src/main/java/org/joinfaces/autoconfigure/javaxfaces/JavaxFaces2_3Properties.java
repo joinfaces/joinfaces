@@ -16,12 +16,7 @@
 
 package org.joinfaces.autoconfigure.javaxfaces;
 
-import jakarta.faces.component.UIInput;
-import jakarta.faces.component.UIViewRoot;
-import jakarta.faces.event.PhaseListener;
 import jakarta.faces.push.PushContext;
-import jakarta.faces.validator.BeanValidator;
-import jakarta.faces.webapp.FacesServlet;
 
 import lombok.Data;
 import org.joinfaces.autoconfigure.servlet.initparams.ServletContextInitParameter;
@@ -44,60 +39,9 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 public class JavaxFaces2_3Properties implements ServletContextInitParameterProperties {
 
 	/**
-     * If this param is set, and calling toLowerCase().equals("true") on a
-     * String representation of its value returns true, validation
-     * must be performed, even when there is no corresponding value for this
-     * component in the incoming request. See {@link BeanValidator#validate(jakarta.faces.context.FacesContext, jakarta.faces.component.UIComponent, java.lang.Object)}.
-     */
-	@ServletContextInitParameter(UIInput.ALWAYS_PERFORM_VALIDATION_WHEN_REQUIRED_IS_TRUE)
-	private Boolean alwaysPerformValidationWhenRequiredIsTrue;
-
-	/**
-	 * The boolean context parameter name to explicitly enable web socket endpoint during startup.
-	 */
-	@ServletContextInitParameter(PushContext.ENABLE_WEBSOCKET_ENDPOINT_PARAM_NAME)
-	private Boolean enableWebsocketEndpoint;
-
-	/**
 	 * The integer context parameter name to specify the websocket endpoint port when it's different from HTTP port.
 	 */
 	@ServletContextInitParameter(PushContext.WEBSOCKET_ENDPOINT_PORT_PARAM_NAME)
 	private Integer websocketEndpointPort;
 
-	/**
-     * The {@code ServletContext} init
-     * parameter consulted by the runtime to tell if the automatic mapping
-     * of the {@code FacesServlet} to the extension {@code *.xhtml}
-     * should be disabled.  The implementation must disable this automatic
-     * mapping if and only if the value of this parameter is equal, ignoring
-     * case, to {@code true}.
-     *
-     * <p>If this parameter is not specified, this automatic mapping is enabled
-     * as specified above.</p>
-     */
-	@ServletContextInitParameter(FacesServlet.DISABLE_FACESSERVLET_TO_XHTML_PARAM_NAME)
-	private Boolean disableFacesservletToXhtml;
-
-	/**
-     * If this param is set, and calling toLowerCase().equals("true") on a
-     * String representation of its value returns true, exceptions thrown
-     * by {@link PhaseListener}s installed on the {@code UIViewRoot} are
-     * queued to the {@link jakarta.faces.context.ExceptionHandler} instead of
-     * being logged and swallowed.
-     *
-     * @since 2.3
-     */
-	@ServletContextInitParameter(UIViewRoot.VIEWROOT_PHASE_LISTENER_QUEUES_EXCEPTIONS_PARAM_NAME)
-	private Boolean viewrootPhaseListenerQueuesExceptions;
-
-	/**
-     * If this param is set, and calling toLowerCase().equals("true") on a
-     * String representation of its value returns {@code true} take
-     * the additional actions relating to {@code <validateWholeBean />}
-     * specified in {@link BeanValidator#validate(jakarta.faces.context.FacesContext, jakarta.faces.component.UIComponent, java.lang.Object)}.
-     *
-     * @since 2.3
-     */
-	@ServletContextInitParameter(BeanValidator.ENABLE_VALIDATE_WHOLE_BEAN_PARAM_NAME)
-	private Boolean enableValidateWholeBean;
 }

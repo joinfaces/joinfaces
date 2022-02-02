@@ -16,11 +16,8 @@
 
 package org.joinfaces.autoconfigure.javaxfaces;
 
-import jakarta.faces.application.ResourceHandler;
-import jakarta.faces.application.StateManager;
 import jakarta.faces.context.PartialViewContext;
 import jakarta.faces.flow.FlowHandler;
-import jakarta.faces.lifecycle.ClientWindow;
 
 import lombok.Data;
 import org.joinfaces.autoconfigure.servlet.initparams.ServletContextInitParameter;
@@ -42,65 +39,11 @@ import org.springframework.boot.context.properties.NestedConfigurationProperty;
 @ConfigurationProperties(prefix = "joinfaces.jsf")
 public class JavaxFaces2_2Properties implements ServletContextInitParameterProperties {
 
-	/**
-	 * If a {@code <context-param>} with the param name equal to the value of
-	 * {@link ResourceHandler#WEBAPP_CONTRACTS_DIRECTORY_PARAM_NAME} exists, the runtime must
-	 * interpret its value as a path, relative to the web app root, where
-	 * resource library contracts are to be located. This param value must not
-	 * start with a "/", though it may contain "/" characters. If no such
-	 * {@code <context-param>} exists, or its value is invalid, the
-	 * value "contracts", without the quotes, must be used by the runtime as the
-	 * value.
-	 *
-	 * @since 2.2
-	 */
-	@ServletContextInitParameter(ResourceHandler.WEBAPP_CONTRACTS_DIRECTORY_PARAM_NAME)
-	private String webappContractsDirectory;
-
-	/**
-	 * If a {@code <context-param>} with the param name equal to the value of
-	 * {@link ResourceHandler#WEBAPP_RESOURCES_DIRECTORY_PARAM_NAME} exists, the runtime must
-	 * interpret its value as a path, relative to the web app root, where
-	 * resources are to be located. This param value must not start with a "/",
-	 * though it may contain "/" characters. If no such
-	 * {@code <context-param>} exists, or its value is invalid, the
-	 * value "resources", without the quotes, must be used by the runtime as the
-	 * value.
-	 *
-	 * @since 2.2
-	 */
-	@ServletContextInitParameter(ResourceHandler.WEBAPP_RESOURCES_DIRECTORY_PARAM_NAME)
-	private String webappResourcesDirectory;
-
-	/**
-	 * If this param is set, and calling toLowerCase().equals("true") on a
-	 * String representation of its value returns true, and the
-	 * javax.faces.STATE_SAVING_METHOD is set to "server" (as indicated below),
-	 * the server state must be guaranteed to be Serializable such that the
-	 * aggregate state implements java.io.Serializable. The intent of this
-	 * parameter is to ensure that the act of writing out the state to an
-	 * ObjectOutputStream would not throw a NotSerializableException, but the
-	 * runtime is not required verify this before saving the state.
-	 */
-	@ServletContextInitParameter(StateManager.SERIALIZE_SERVER_STATE_PARAM_NAME)
-	private Boolean serializeServerState;
-
 	@NestedConfigurationProperty
 	private final Partial partial = new Partial();
 
 	@NestedConfigurationProperty
 	private final Flow flow = new Flow();
-
-	/**
-	 * The context-param that controls the operation of the {@code ClientWindow} feature.
-	 * The runtime must support the values "none" and "url", without the quotes, but other values
-	 * are possible. If not specified, or the value is not understood by the
-	 * implementation, "none" is assumed.
-	 *
-	 * @since 2.2
-	 */
-	@ServletContextInitParameter(ClientWindow.CLIENT_WINDOW_MODE_PARAM_NAME)
-	private String clientWindowMode;
 
 	/**
 	 * Partial class for execute, render and resetValues parameters.
