@@ -18,7 +18,7 @@ package org.joinfaces.autoconfigure.myfaces;
 
 import org.apache.myfaces.ee.MyFacesContainerInitializer;
 import org.apache.myfaces.webapp.StartupServletContextListener;
-import org.joinfaces.autoconfigure.javaxfaces.JavaxFacesAutoConfiguration;
+import org.joinfaces.autoconfigure.faces.JakartaFaces3AutoConfiguration;
 import org.joinfaces.servlet.WebFragmentRegistrationBean;
 
 import org.springframework.boot.autoconfigure.AutoConfigureAfter;
@@ -39,7 +39,7 @@ import org.springframework.context.annotation.Configuration;
 @EnableConfigurationProperties({MyfacesProperties.class, MyFaces2_3Properties.class})
 @ConditionalOnClass(MyFacesContainerInitializer.class)
 @AutoConfigureBefore(WebMvcAutoConfiguration.class)
-@AutoConfigureAfter({JavaxFacesAutoConfiguration.class})
+@AutoConfigureAfter({JakartaFaces3AutoConfiguration.class})
 @ConditionalOnWebApplication(type = ConditionalOnWebApplication.Type.SERVLET)
 public class MyFacesAutoConfiguration {
 

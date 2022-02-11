@@ -20,8 +20,6 @@ import jakarta.faces.webapp.FacesServlet;
 import jakarta.servlet.ServletContext;
 import jakarta.servlet.ServletRegistration;
 
-import org.joinfaces.autoconfigure.javaxfaces.JavaxFacesAutoConfiguration;
-
 import org.springframework.boot.autoconfigure.AutoConfigureAfter;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnWebApplication;
@@ -34,7 +32,7 @@ import org.springframework.context.annotation.Configuration;
 @ConditionalOnClass(FacesServlet.class)
 @ConditionalOnWebApplication(type = ConditionalOnWebApplication.Type.SERVLET)
 @EnableConfigurationProperties(FacesServletProperties.class)
-@AutoConfigureAfter(JavaxFacesAutoConfiguration.class)
+@AutoConfigureAfter(JakartaFaces3AutoConfiguration.class)
 public class FacesServletAutoConfiguration {
 
 	/**

@@ -18,7 +18,7 @@ package org.joinfaces.autoconfigure.mojarra;
 
 import com.sun.faces.config.ConfigureListener;
 import com.sun.faces.config.FacesInitializer;
-import org.joinfaces.autoconfigure.javaxfaces.JavaxFacesAutoConfiguration;
+import org.joinfaces.autoconfigure.faces.JakartaFaces3AutoConfiguration;
 import org.joinfaces.servlet.ServletContainerInitializerRegistrationBean;
 import org.joinfaces.servlet.TldListenerRegistrationBean;
 
@@ -40,7 +40,7 @@ import org.springframework.context.annotation.Configuration;
 @EnableConfigurationProperties(MojarraProperties.class)
 @ConditionalOnClass(FacesInitializer.class)
 @AutoConfigureBefore(WebMvcAutoConfiguration.class)
-@AutoConfigureAfter(JavaxFacesAutoConfiguration.class)
+@AutoConfigureAfter(JakartaFaces3AutoConfiguration.class)
 @ConditionalOnWebApplication(type = ConditionalOnWebApplication.Type.SERVLET)
 public class MojarraAutoConfiguration {
 

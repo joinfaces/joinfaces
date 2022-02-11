@@ -187,6 +187,21 @@ public class JakartaFaces3Properties implements ServletContextInitParameterPrope
 	private List<String> fullStateSavingViewIds;
 
 	/**
+	 * The {@code ServletContext} init
+	 * parameter consulted by the {@code UIComponent} to tell whether or
+	 * not the {@link UIComponent#CURRENT_COMPONENT} and
+	 * {@link UIComponent#CURRENT_COMPOSITE_COMPONENT} attribute keys should be honored as
+	 * specified.
+	 * <p>
+	 * If this parameter is not specified, or is set to false, the contract
+	 * specified by the {@link UIComponent#CURRENT_COMPONENT} and
+	 * {@link UIComponent#CURRENT_COMPOSITE_COMPONENT} method is not honored. If this
+	 * parameter is set to true, the contract is honored.
+	 */
+	@ServletContextInitParameter(UIComponent.HONOR_CURRENT_COMPONENT_ATTRIBUTES_PARAM_NAME)
+	private Boolean honorCurrentComponentAttributes;
+
+	/**
 	 * If true, consider empty UIInput values to be null instead of empty string.
 	 */
 	@ServletContextInitParameter("jakarta.faces.INTERPRET_EMPTY_STRING_SUBMITTED_VALUES_AS_NULL")
@@ -210,6 +225,14 @@ public class JakartaFaces3Properties implements ServletContextInitParameterPrope
 	 */
 	@ServletContextInitParameter(ProjectStage.PROJECT_STAGE_PARAM_NAME)
 	private ProjectStage projectStage;
+
+	/**
+	 * A space separated list of resource extensions for types that shouldn't be
+	 * served by the ResourceHandler implementation. See the specification for
+	 * further details.
+	 */
+	@ServletContextInitParameter(value = ResourceHandler.RESOURCE_EXCLUDES_PARAM_NAME, listSeparator = ",")
+	private List<String> resourceExcludes;
 
 	/**
 	 * The context-param that allows the separator char for clientId strings to be set on a per-web application basis.
@@ -265,6 +288,12 @@ public class JakartaFaces3Properties implements ServletContextInitParameterPrope
 	 */
 	@ServletContextInitParameter(PushContext.ENABLE_WEBSOCKET_ENDPOINT_PARAM_NAME)
 	private Boolean enableWebsocketEndpoint;
+
+	/**
+	 * The integer context parameter name to specify the websocket endpoint port when it's different from HTTP port.
+	 */
+	@ServletContextInitParameter(PushContext.WEBSOCKET_ENDPOINT_PORT_PARAM_NAME)
+	private Integer websocketEndpointPort;
 
 	/**
 	 * If a {@code <context-param>} with the param name equal to the value of

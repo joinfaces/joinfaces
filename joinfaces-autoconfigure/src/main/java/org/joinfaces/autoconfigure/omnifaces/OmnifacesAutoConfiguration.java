@@ -16,7 +16,7 @@
 
 package org.joinfaces.autoconfigure.omnifaces;
 
-import org.joinfaces.autoconfigure.javaxfaces.JavaxFacesAutoConfiguration;
+import org.joinfaces.autoconfigure.faces.JakartaFaces3AutoConfiguration;
 import org.joinfaces.servlet.ServletContainerInitializerRegistrationBean;
 import org.omnifaces.ApplicationInitializer;
 
@@ -38,7 +38,7 @@ import org.springframework.context.annotation.Configuration;
 @ConditionalOnClass(ApplicationInitializer.class)
 @ConditionalOnWebApplication(type = ConditionalOnWebApplication.Type.SERVLET)
 @EnableConfigurationProperties(OmnifacesProperties.class)
-@AutoConfigureBefore(JavaxFacesAutoConfiguration.class)
+@AutoConfigureBefore(JakartaFaces3AutoConfiguration.class)
 @ServletComponentScan("org.omnifaces")
 public class OmnifacesAutoConfiguration {
 

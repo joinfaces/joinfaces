@@ -21,7 +21,7 @@ import jakarta.servlet.MultipartConfigElement;
 import jakarta.servlet.ServletRegistration;
 import jakarta.servlet.annotation.MultipartConfig;
 
-import org.joinfaces.autoconfigure.javaxfaces.JavaxFacesAutoConfiguration;
+import org.joinfaces.autoconfigure.faces.JakartaFaces3AutoConfiguration;
 import org.primefaces.webapp.MultipartRequest;
 import org.primefaces.webapp.filter.FileUploadFilter;
 
@@ -55,7 +55,7 @@ import org.springframework.context.annotation.Configuration;
 @Configuration(proxyBeanMethods = false)
 @ConditionalOnClass(MultipartRequest.class)
 @ConditionalOnWebApplication(type = ConditionalOnWebApplication.Type.SERVLET)
-@AutoConfigureAfter(JavaxFacesAutoConfiguration.class)
+@AutoConfigureAfter(JakartaFaces3AutoConfiguration.class)
 public class PrimefacesFileUploadServletContextAutoConfiguration {
 
 	private static final String FACES_SERVLET_NAME = "FacesServlet";

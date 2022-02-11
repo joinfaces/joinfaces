@@ -16,7 +16,5 @@
 
 /**
  * JavaxFaces Spring Boot Auto Configuration classes.
- *
- * @see org.joinfaces.autoconfigure.javaxfaces.JavaxFacesAutoConfiguration
  */
 package org.joinfaces.autoconfigure.javaxfaces;

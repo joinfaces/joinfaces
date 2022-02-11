@@ -20,8 +20,6 @@ import jakarta.faces.application.ProjectStage;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.joinfaces.autoconfigure.javaxfaces.JavaxFaces2_0Properties;
-import org.joinfaces.autoconfigure.javaxfaces.JavaxFacesAutoConfiguration;
 
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.config.BeanPostProcessor;
@@ -41,7 +39,7 @@ import org.springframework.context.annotation.Configuration;
 @Slf4j
 @Configuration(proxyBeanMethods = false)
 @ConditionalOnClass(ProjectStage.class)
-@AutoConfigureBefore(JavaxFacesAutoConfiguration.class)
+@AutoConfigureBefore(JakartaFaces3AutoConfiguration.class)
 @ConditionalOnWebApplication(type = ConditionalOnWebApplication.Type.SERVLET)
 public class ProjectStageAutoConfiguration {
 
@@ -61,7 +59,7 @@ public class ProjectStageAutoConfiguration {
 
 	/**
 	 * {@link BeanPostProcessor} for setting the JSF
-	 * {@link JavaxFaces2_0Properties#projectStage project stage}.
+	 * {@link JakartaFaces3Properties#projectStage project stage}.
 	 *
 	 * @author Lars Grefer
 	 */
