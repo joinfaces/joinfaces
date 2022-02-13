@@ -1,5 +1,7 @@
 description = 'Security Spring Boot Starter'
-jar.manifest.attributes('Automatic-Module-Name': 'joinfaces.starter.security')
+tasks.named("jar", Jar) {
+    manifest.attributes('Automatic-Module-Name': 'joinfaces.starter.security')
+}
 
 dependencies {
     api project(':joinfaces-starters:jsf-spring-boot-starter')

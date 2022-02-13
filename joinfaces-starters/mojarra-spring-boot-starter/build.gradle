@@ -1,5 +1,7 @@
 description = 'Mojarra Spring Boot Starter'
-jar.manifest.attributes('Automatic-Module-Name': 'joinfaces.starter.mojarra')
+tasks.named("jar", Jar) {
+    manifest.attributes('Automatic-Module-Name': 'joinfaces.starter.mojarra')
+}
 
 dependencies {
     api 'org.glassfish:jakarta.faces'

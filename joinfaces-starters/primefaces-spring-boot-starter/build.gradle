@@ -1,5 +1,7 @@
 description = 'PrimeFaces Spring Boot Starter'
-jar.manifest.attributes('Automatic-Module-Name': 'joinfaces.starter.primefaces')
+tasks.named("jar", Jar) {
+    manifest.attributes('Automatic-Module-Name': 'joinfaces.starter.primefaces')
+}
 
 dependencies {
     api project(':joinfaces-starters:jsf-spring-boot-starter')

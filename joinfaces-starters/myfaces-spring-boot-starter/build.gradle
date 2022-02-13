@@ -1,5 +1,7 @@
 description = 'MyFaces Spring Boot Starter'
-jar.manifest.attributes('Automatic-Module-Name': 'joinfaces.starter.myfaces')
+tasks.named("jar", Jar) {
+    manifest.attributes('Automatic-Module-Name': 'joinfaces.starter.myfaces')
+}
 
 dependencies {
     api "org.apache.myfaces.core:myfaces-api"

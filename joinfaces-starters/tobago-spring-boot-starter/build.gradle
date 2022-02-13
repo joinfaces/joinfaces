@@ -15,7 +15,9 @@
  */
 
 description = 'Apache MyFaces Tobago Spring Boot Starter'
-jar.manifest.attributes('Automatic-Module-Name': 'joinfaces.starter.tobago')
+tasks.named("jar", Jar) {
+    manifest.attributes('Automatic-Module-Name': 'joinfaces.starter.tobago')
+}
 
 dependencies {
     api project(':joinfaces-starters:jsf-spring-boot-starter')

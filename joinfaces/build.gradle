@@ -7,7 +7,10 @@ plugins {
     id 'io.freefair.maven-publish-java'
 }
 
-description = 'JoinFaces AutoConfigure'
+description = 'JoinFaces'
+tasks.named("jar", Jar) {
+    manifest.attributes('Automatic-Module-Name': 'joinfaces')
+}
 
 dependencies {
     compileOnly 'jakarta.faces:jakarta.faces-api'

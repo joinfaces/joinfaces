@@ -7,7 +7,9 @@ apply plugin: "io.freefair.maven-optional"
 apply plugin: "io.freefair.maven-publish-java"
 
 description = 'Spring Security JSF Taglib'
-jar.manifest.attributes('Automatic-Module-Name': 'joinfaces.security.taglib')
+tasks.named("jar", Jar) {
+    manifest.attributes('Automatic-Module-Name': 'joinfaces.security.taglib')
+}
 
 dependencies {
     api('org.springframework.security:spring-security-taglibs') {

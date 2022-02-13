@@ -6,7 +6,9 @@ apply plugin: "io.freefair.maven-optional"
 apply plugin: "io.freefair.maven-publish-java"
 
 description = 'JoinFaces Test'
-jar.manifest.attributes('Automatic-Module-Name': 'joinfaces.test')
+tasks.named("jar", Jar) {
+    manifest.attributes('Automatic-Module-Name': 'joinfaces.test')
+}
 
 dependencies {
     api 'org.springframework.boot:spring-boot-starter-test'
