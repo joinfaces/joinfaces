@@ -249,10 +249,8 @@ tasks.register("propertyDocs", org.joinfaces.build.PropertyDocumentation) {
 }
 
 tasks.register("bomDocs", org.joinfaces.build.BomDocumentation) {
-    afterEvaluate {
-        dependsOn generatePomFileForBomPublication
-        inputFile = generatePomFileForBomPublication.destination
-    }
+    dependsOn generatePomFileForBomPublication
+    inputFile = generatePomFileForBomPublication.destination
     outputFile = file("src/docs/asciidoc/generated/_versions.adoc")
 }
 
