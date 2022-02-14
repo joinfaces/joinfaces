@@ -28,19 +28,16 @@ import org.gradle.testkit.runner.BuildResult;
 import org.gradle.testkit.runner.BuildTask;
 import org.gradle.testkit.runner.GradleRunner;
 import org.gradle.testkit.runner.TaskOutcome;
-import org.junit.jupiter.api.extension.ExtendWith;
+import org.junit.jupiter.api.io.TempDir;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
-import org.junitpioneer.jupiter.TempDirectory;
-import org.junitpioneer.jupiter.TempDirectory.TempDir;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-@ExtendWith(TempDirectory.class)
 class JoinfacesPluginIT {
 
 	@ParameterizedTest
-	@ValueSource(strings = {"7.3", "7.3.1"})
+	@ValueSource(strings = {"7.4", "7.3.1"})
 	public void postJdk17Build(String gradleVersion, @TempDir Path projectDir) throws IOException {
 		build(gradleVersion, projectDir);
 	}
