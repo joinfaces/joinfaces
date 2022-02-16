@@ -73,7 +73,7 @@ allprojects {
 
             dependency "commons-fileupload:commons-fileupload:1.4"
 
-            dependency('org.jboss.weld.servlet:weld-servlet-core:4.0.2.Final') {
+            dependency('org.jboss.weld.servlet:weld-servlet-core:4.0.3.Final') {
                 exclude 'jakarta.el:jakarta.el-api'
                 exclude 'jakarta.interceptor:jakarta.interceptor-api'
             }
