@@ -6,6 +6,10 @@ subprojects {
     apply plugin: "java"
     apply plugin: "org.springframework.boot"
 
+    tasks.withType(Javadoc).configureEach {
+        enabled = false
+    }
+
     dependencies {
         implementation project(":joinfaces-security-taglib")
         implementation 'org.springframework.boot:spring-boot-starter-security'
