@@ -23,18 +23,18 @@ import org.icefaces.util.EnvUtils;
 import org.joinfaces.autoconfigure.servlet.TldListenerRegistrationBean;
 
 import org.springframework.beans.factory.config.CustomScopeConfigurer;
+import org.springframework.boot.autoconfigure.AutoConfiguration;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnWebApplication;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
 
 /**
  * Spring Boot auto configuration for ICEfaces.
  *
  * @author Lars Grefer
  */
-@Configuration(proxyBeanMethods = false)
+@AutoConfiguration
 @ConditionalOnWebApplication(type = ConditionalOnWebApplication.Type.SERVLET)
 @ConditionalOnClass({EnvUtils.class, WindowScopeManager.class})
 @EnableConfigurationProperties(IcefacesProperties.class)

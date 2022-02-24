@@ -20,19 +20,17 @@ import javax.faces.webapp.FacesServlet;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletRegistration;
 
-import org.springframework.boot.autoconfigure.AutoConfigureAfter;
+import org.springframework.boot.autoconfigure.AutoConfiguration;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnWebApplication;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.boot.web.servlet.ServletRegistrationBean;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
 
-@Configuration(proxyBeanMethods = false)
+@AutoConfiguration(after = JavaxFacesAutoConfiguration.class)
 @ConditionalOnClass(FacesServlet.class)
 @ConditionalOnWebApplication(type = ConditionalOnWebApplication.Type.SERVLET)
 @EnableConfigurationProperties(FacesServletProperties.class)
-@AutoConfigureAfter(JavaxFacesAutoConfiguration.class)
 public class FacesServletAutoConfiguration {
 
 	/**

@@ -18,12 +18,12 @@ package org.joinfaces.autoconfigure.tomcat;
 
 import org.apache.catalina.Context;
 
+import org.springframework.boot.autoconfigure.AutoConfiguration;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnWebApplication;
 import org.springframework.boot.web.embedded.tomcat.TomcatServletWebServerFactory;
 import org.springframework.boot.web.server.WebServerFactoryCustomizer;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
 
 /**
  * Creating tomcat auto configuration to enable jsf read facelets at integration
@@ -32,7 +32,7 @@ import org.springframework.context.annotation.Configuration;
  * @author Marcelo Fernandes
  * @author Lars Grefer
  */
-@Configuration(proxyBeanMethods = false)
+@AutoConfiguration
 @ConditionalOnClass(Context.class)
 @ConditionalOnWebApplication(type = ConditionalOnWebApplication.Type.SERVLET)
 public class TomcatAutoConfiguration {

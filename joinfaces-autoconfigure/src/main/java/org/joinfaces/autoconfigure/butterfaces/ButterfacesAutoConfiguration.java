@@ -25,6 +25,7 @@ import org.joinfaces.autoconfigure.javaxfaces.JavaxFacesAutoConfiguration;
 
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.config.BeanPostProcessor;
+import org.springframework.boot.autoconfigure.AutoConfiguration;
 import org.springframework.boot.autoconfigure.AutoConfigureBefore;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnWebApplication;
@@ -38,10 +39,9 @@ import org.springframework.lang.Nullable;
  *
  * @author Marcelo Fernandes
  */
-@Configuration(proxyBeanMethods = false)
+@AutoConfiguration(before = JavaxFacesAutoConfiguration.class)
 @EnableConfigurationProperties(ButterfacesProperties.class)
 @ConditionalOnClass(ReflectionUtil.class)
-@AutoConfigureBefore(JavaxFacesAutoConfiguration.class)
 @ConditionalOnWebApplication(type = ConditionalOnWebApplication.Type.SERVLET)
 @Slf4j
 public class ButterfacesAutoConfiguration {

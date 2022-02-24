@@ -21,12 +21,11 @@ import org.joinfaces.autoconfigure.servlet.initializer.ServletContainerInitializ
 import org.richfaces.application.CoreConfiguration;
 import org.richfaces.webapp.ServletsInitializer;
 
-import org.springframework.boot.autoconfigure.AutoConfigureBefore;
+import org.springframework.boot.autoconfigure.AutoConfiguration;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnWebApplication;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
 
 /**
  * Spring Boot Auto Configuration of RichFaces.
@@ -34,10 +33,9 @@ import org.springframework.context.annotation.Configuration;
  * @author Jamillo Santos
  * @author Renato Soares
  */
-@Configuration(proxyBeanMethods = false)
+@AutoConfiguration(before = JavaxFacesAutoConfiguration.class)
 @EnableConfigurationProperties(RichfacesProperties.class)
 @ConditionalOnClass(CoreConfiguration.class)
-@AutoConfigureBefore(JavaxFacesAutoConfiguration.class)
 @ConditionalOnWebApplication(type = ConditionalOnWebApplication.Type.SERVLET)
 public class RichfacesAutoConfiguration {
 

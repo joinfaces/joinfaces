@@ -34,7 +34,7 @@ import org.joinfaces.autoconfigure.servlet.WebFragmentRegistrationBean;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.config.BeanPostProcessor;
-import org.springframework.boot.autoconfigure.AutoConfigureBefore;
+import org.springframework.boot.autoconfigure.AutoConfiguration;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnWebApplication;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
@@ -42,7 +42,6 @@ import org.springframework.boot.web.server.ErrorPage;
 import org.springframework.boot.web.servlet.ServletComponentScan;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
-import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Scope;
 import org.springframework.context.annotation.ScopedProxyMode;
 import org.springframework.http.HttpStatus;
@@ -54,7 +53,7 @@ import org.springframework.lang.Nullable;
  * @author Marcelo Fernandes
  */
 @Slf4j
-@Configuration(proxyBeanMethods = false)
+@AutoConfiguration(before = PrimefacesAutoConfiguration.class)
 @EnableConfigurationProperties(AdminfacesProperties.class)
 @ComponentScan({"com.github.adminfaces.template.bean",
 	"com.github.adminfaces.template.config",
@@ -62,7 +61,6 @@ import org.springframework.lang.Nullable;
 @ServletComponentScan({"com.github.adminfaces.template.security",
 	"com.github.adminfaces.template.session"})
 @ConditionalOnClass(AdminSession.class)
-@AutoConfigureBefore(PrimefacesAutoConfiguration.class)
 @ConditionalOnWebApplication(type = ConditionalOnWebApplication.Type.SERVLET)
 public class AdminfacesAutoConfiguration {
 

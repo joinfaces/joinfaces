@@ -22,7 +22,7 @@ import org.ocpsoft.rewrite.servlet.impl.RewriteServletContextListener;
 import org.ocpsoft.rewrite.servlet.impl.RewriteServletRequestListener;
 import org.ocpsoft.rewrite.spring.SpringExpressionLanguageProvider;
 
-import org.springframework.boot.autoconfigure.AutoConfigureAfter;
+import org.springframework.boot.autoconfigure.AutoConfiguration;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnWebApplication;
 import org.springframework.boot.autoconfigure.web.servlet.ConditionalOnMissingFilterBean;
@@ -31,7 +31,6 @@ import org.springframework.boot.context.properties.EnableConfigurationProperties
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.DependsOn;
 
 /**
@@ -40,10 +39,9 @@ import org.springframework.context.annotation.DependsOn;
  * @author Marcelo Fernandes
  * @author Lars Grefer
  */
-@Configuration(proxyBeanMethods = false)
+@AutoConfiguration(after = WebMvcAutoConfiguration.class)
 @EnableConfigurationProperties({RewriteProperties.class, RewriteFilterProperties.class})
 @ConditionalOnClass(RewriteFilter.class)
-@AutoConfigureAfter(WebMvcAutoConfiguration.class)
 @ConditionalOnWebApplication(type = ConditionalOnWebApplication.Type.SERVLET)
 public class RewriteAutoConfiguration {
 

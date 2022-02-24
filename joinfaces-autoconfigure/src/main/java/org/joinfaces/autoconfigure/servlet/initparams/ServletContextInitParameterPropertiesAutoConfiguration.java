@@ -18,11 +18,11 @@ package org.joinfaces.autoconfigure.servlet.initparams;
 
 import java.util.List;
 
+import org.springframework.boot.autoconfigure.AutoConfiguration;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnBean;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnWebApplication;
 import org.springframework.boot.web.servlet.ServletContextInitializer;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
 
 /**
  * Common base class for all auto-configuration classes which provide properties
@@ -30,7 +30,7 @@ import org.springframework.context.annotation.Configuration;
  *
  * @author Lars Grefer
  */
-@Configuration(proxyBeanMethods = false)
+@AutoConfiguration
 @ConditionalOnWebApplication
 public class ServletContextInitParameterPropertiesAutoConfiguration {
 

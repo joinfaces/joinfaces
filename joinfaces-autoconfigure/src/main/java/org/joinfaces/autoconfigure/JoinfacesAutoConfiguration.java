@@ -16,6 +16,7 @@
 
 package org.joinfaces.autoconfigure;
 
+import org.springframework.boot.autoconfigure.AutoConfiguration;
 import org.springframework.boot.autoconfigure.AutoConfigureAfter;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnWebApplication;
@@ -23,7 +24,6 @@ import org.springframework.boot.autoconfigure.web.servlet.ConditionalOnMissingFi
 import org.springframework.boot.autoconfigure.web.servlet.WebMvcAutoConfiguration;
 import org.springframework.boot.web.servlet.filter.OrderedRequestContextFilter;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
 import org.springframework.web.context.request.RequestContextListener;
 import org.springframework.web.filter.RequestContextFilter;
 
@@ -32,9 +32,8 @@ import org.springframework.web.filter.RequestContextFilter;
  *
  * @author Lars Grefer
  */
-@Configuration(proxyBeanMethods = false)
+@AutoConfiguration(after = WebMvcAutoConfiguration.class)
 @ConditionalOnWebApplication(type = ConditionalOnWebApplication.Type.SERVLET)
-@AutoConfigureAfter(WebMvcAutoConfiguration.class)
 public class JoinfacesAutoConfiguration {
 
 	/**

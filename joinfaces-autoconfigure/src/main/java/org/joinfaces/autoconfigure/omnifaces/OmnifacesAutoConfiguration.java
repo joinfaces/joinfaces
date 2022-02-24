@@ -22,7 +22,7 @@ import org.joinfaces.autoconfigure.javaxfaces.JavaxFacesAutoConfiguration;
 import org.joinfaces.autoconfigure.servlet.initializer.ServletContainerInitializerRegistrationBean;
 import org.omnifaces.facesviews.FacesViews;
 
-import org.springframework.boot.autoconfigure.AutoConfigureBefore;
+import org.springframework.boot.autoconfigure.AutoConfiguration;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnWebApplication;
@@ -36,11 +36,10 @@ import org.springframework.context.annotation.Configuration;
  *
  * @author Marcelo Fernandes
  */
-@Configuration(proxyBeanMethods = false)
+@AutoConfiguration(before = JavaxFacesAutoConfiguration.class)
 @ConditionalOnClass(FacesViews.class)
 @ConditionalOnWebApplication(type = ConditionalOnWebApplication.Type.SERVLET)
 @EnableConfigurationProperties(OmnifacesProperties.class)
-@AutoConfigureBefore(JavaxFacesAutoConfiguration.class)
 @ServletComponentScan("org.omnifaces")
 public class OmnifacesAutoConfiguration {
 

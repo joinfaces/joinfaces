@@ -25,12 +25,11 @@ import org.joinfaces.autoconfigure.javaxfaces.JavaxFacesAutoConfiguration;
 
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.config.BeanPostProcessor;
-import org.springframework.boot.autoconfigure.AutoConfigureBefore;
+import org.springframework.boot.autoconfigure.AutoConfiguration;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnWebApplication;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
 import org.springframework.lang.Nullable;
 
 /**
@@ -38,10 +37,9 @@ import org.springframework.lang.Nullable;
  *
  * @author Marcelo Fernandes
  */
-@Configuration(proxyBeanMethods = false)
+@AutoConfiguration(before = JavaxFacesAutoConfiguration.class)
 @EnableConfigurationProperties(AngularfacesProperties.class)
 @ConditionalOnClass(ELTools.class)
-@AutoConfigureBefore(JavaxFacesAutoConfiguration.class)
 @ConditionalOnWebApplication(type = ConditionalOnWebApplication.Type.SERVLET)
 public class AngularfacesAutoConfiguration {
 

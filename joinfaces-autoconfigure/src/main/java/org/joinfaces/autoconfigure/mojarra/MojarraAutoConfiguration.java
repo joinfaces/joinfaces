@@ -22,25 +22,21 @@ import org.joinfaces.autoconfigure.javaxfaces.JavaxFacesAutoConfiguration;
 import org.joinfaces.autoconfigure.servlet.TldListenerRegistrationBean;
 import org.joinfaces.autoconfigure.servlet.initializer.ServletContainerInitializerRegistrationBean;
 
-import org.springframework.boot.autoconfigure.AutoConfigureAfter;
-import org.springframework.boot.autoconfigure.AutoConfigureBefore;
+import org.springframework.boot.autoconfigure.AutoConfiguration;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnWebApplication;
 import org.springframework.boot.autoconfigure.web.servlet.WebMvcAutoConfiguration;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
 
 /**
  * Spring Boot Auto Configuration for Mojarra.
  *
  * @author Marcelo Fernandes
  */
-@Configuration(proxyBeanMethods = false)
+@AutoConfiguration(before = WebMvcAutoConfiguration.class, after = JavaxFacesAutoConfiguration.class)
 @EnableConfigurationProperties(MojarraProperties.class)
 @ConditionalOnClass(FacesInitializer.class)
-@AutoConfigureBefore(WebMvcAutoConfiguration.class)
-@AutoConfigureAfter(JavaxFacesAutoConfiguration.class)
 @ConditionalOnWebApplication(type = ConditionalOnWebApplication.Type.SERVLET)
 public class MojarraAutoConfiguration {
 

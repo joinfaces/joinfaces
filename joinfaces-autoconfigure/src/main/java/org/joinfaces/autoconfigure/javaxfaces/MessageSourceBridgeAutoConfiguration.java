@@ -16,17 +16,17 @@
 
 package org.joinfaces.autoconfigure.javaxfaces;
 
+import org.springframework.boot.autoconfigure.AutoConfiguration;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnWebApplication;
 import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
 
 /**
  * {@link org.springframework.boot.autoconfigure.EnableAutoConfiguration Auto configuration} for {@link MessageSourceBridge}.
  *
  * @author Lars Grefer
  */
-@Configuration(proxyBeanMethods = false)
+@AutoConfiguration
 @ConditionalOnWebApplication(type = ConditionalOnWebApplication.Type.SERVLET)
 public class MessageSourceBridgeAutoConfiguration {
 
