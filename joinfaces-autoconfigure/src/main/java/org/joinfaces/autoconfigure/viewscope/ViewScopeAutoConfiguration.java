@@ -22,11 +22,11 @@ import jakarta.faces.context.FacesContext;
 import org.joinfaces.viewscope.ViewScope;
 
 import org.springframework.beans.factory.config.CustomScopeConfigurer;
+import org.springframework.boot.autoconfigure.AutoConfiguration;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnWebApplication;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
 
 /**
  * An {@link org.springframework.boot.autoconfigure.EnableAutoConfiguration AutoConfiguration}
@@ -34,7 +34,7 @@ import org.springframework.context.annotation.Configuration;
  *
  * @author Lars Grefer
  */
-@Configuration(proxyBeanMethods = false)
+@AutoConfiguration
 @ConditionalOnWebApplication
 @ConditionalOnClass({FacesContext.class, UIViewRoot.class, ViewScope.class})
 public class ViewScopeAutoConfiguration {

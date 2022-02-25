@@ -20,7 +20,7 @@ import org.joinfaces.autoconfigure.faces.JakartaFaces3AutoConfiguration;
 import org.joinfaces.servlet.ServletContainerInitializerRegistrationBean;
 import org.omnifaces.ApplicationInitializer;
 
-import org.springframework.boot.autoconfigure.AutoConfigureBefore;
+import org.springframework.boot.autoconfigure.AutoConfiguration;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnWebApplication;
@@ -34,11 +34,10 @@ import org.springframework.context.annotation.Configuration;
  *
  * @author Marcelo Fernandes
  */
-@Configuration(proxyBeanMethods = false)
+@AutoConfiguration(before = JakartaFaces3AutoConfiguration.class)
 @ConditionalOnClass(ApplicationInitializer.class)
 @ConditionalOnWebApplication(type = ConditionalOnWebApplication.Type.SERVLET)
 @EnableConfigurationProperties(OmnifacesProperties.class)
-@AutoConfigureBefore(JakartaFaces3AutoConfiguration.class)
 @ServletComponentScan("org.omnifaces")
 public class OmnifacesAutoConfiguration {
 

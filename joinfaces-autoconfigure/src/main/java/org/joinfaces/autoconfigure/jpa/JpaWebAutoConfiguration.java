@@ -20,7 +20,7 @@ import jakarta.persistence.EntityManager;
 
 import org.joinfaces.jpa.OrderedOpenEntityManagerInViewFilter;
 
-import org.springframework.boot.autoconfigure.AutoConfigureBefore;
+import org.springframework.boot.autoconfigure.AutoConfiguration;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
@@ -28,7 +28,6 @@ import org.springframework.boot.autoconfigure.condition.ConditionalOnWebApplicat
 import org.springframework.boot.autoconfigure.orm.jpa.HibernateJpaAutoConfiguration;
 import org.springframework.boot.autoconfigure.web.servlet.ConditionalOnMissingFilterBean;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
 import org.springframework.orm.jpa.support.OpenEntityManagerInViewFilter;
 import org.springframework.orm.jpa.support.OpenEntityManagerInViewInterceptor;
 
@@ -43,11 +42,10 @@ import org.springframework.orm.jpa.support.OpenEntityManagerInViewInterceptor;
  * @author Lars Grefer
  * @see org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration
  */
-@Configuration(proxyBeanMethods = false)
+@AutoConfiguration(before = HibernateJpaAutoConfiguration.class)
 @ConditionalOnWebApplication(type = ConditionalOnWebApplication.Type.SERVLET)
 @ConditionalOnClass({EntityManager.class, OpenEntityManagerInViewFilter.class})
 @ConditionalOnProperty(prefix = "spring.jpa", name = "open-in-view", havingValue = "true", matchIfMissing = true)
-@AutoConfigureBefore(HibernateJpaAutoConfiguration.class)
 public class JpaWebAutoConfiguration {
 
 	@Bean

@@ -23,13 +23,12 @@ import lombok.extern.slf4j.Slf4j;
 
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.config.BeanPostProcessor;
-import org.springframework.boot.autoconfigure.AutoConfigureBefore;
+import org.springframework.boot.autoconfigure.AutoConfiguration;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnWebApplication;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
 
 /**
  * Auto configuration of JSF {@link ProjectStage}.
@@ -37,9 +36,8 @@ import org.springframework.context.annotation.Configuration;
  * @author Lars Grefer
  */
 @Slf4j
-@Configuration(proxyBeanMethods = false)
+@AutoConfiguration(before = JakartaFaces3AutoConfiguration.class)
 @ConditionalOnClass(ProjectStage.class)
-@AutoConfigureBefore(JakartaFaces3AutoConfiguration.class)
 @ConditionalOnWebApplication(type = ConditionalOnWebApplication.Type.SERVLET)
 public class ProjectStageAutoConfiguration {
 

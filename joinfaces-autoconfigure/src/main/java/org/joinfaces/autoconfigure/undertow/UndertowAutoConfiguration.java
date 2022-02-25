@@ -24,13 +24,13 @@ import io.undertow.server.handlers.resource.ClassPathResourceManager;
 import lombok.extern.slf4j.Slf4j;
 import org.joinfaces.undertow.CompositeResourceManager;
 
+import org.springframework.boot.autoconfigure.AutoConfiguration;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnWebApplication;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.boot.web.embedded.undertow.UndertowServletWebServerFactory;
 import org.springframework.boot.web.server.WebServerFactoryCustomizer;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
 
 /**
  * Spring Boot Auto Configuration of Undertow.
@@ -38,7 +38,7 @@ import org.springframework.context.annotation.Configuration;
  * @author Marcelo Fernandes
  */
 @Slf4j
-@Configuration(proxyBeanMethods = false)
+@AutoConfiguration
 @EnableConfigurationProperties(UndertowProperties.class)
 @ConditionalOnClass(Undertow.class)
 @ConditionalOnWebApplication(type = ConditionalOnWebApplication.Type.SERVLET)

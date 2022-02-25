@@ -22,7 +22,7 @@ import org.primefaces.cache.CacheProvider;
 import org.primefaces.component.captcha.Captcha;
 import org.primefaces.util.Constants;
 
-import org.springframework.boot.autoconfigure.AutoConfigureBefore;
+import org.springframework.boot.autoconfigure.AutoConfiguration;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnWebApplication;
@@ -36,10 +36,9 @@ import org.springframework.context.annotation.Configuration;
  * @author Marcelo Fernandes
  * @author Lars Grefer
  */
-@Configuration(proxyBeanMethods = false)
+@AutoConfiguration(before = JakartaFaces3AutoConfiguration.class)
 @ConditionalOnClass(Constants.class)
 @ConditionalOnWebApplication(type = ConditionalOnWebApplication.Type.SERVLET)
-@AutoConfigureBefore(JakartaFaces3AutoConfiguration.class)
 public class PrimefacesAutoConfiguration {
 
 	/**

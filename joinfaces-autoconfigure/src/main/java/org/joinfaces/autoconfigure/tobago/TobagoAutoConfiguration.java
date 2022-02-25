@@ -21,10 +21,10 @@ import java.util.EventListener;
 import org.apache.myfaces.tobago.webapp.TobagoServletContextListener;
 import org.joinfaces.servlet.WebFragmentRegistrationBean;
 
+import org.springframework.boot.autoconfigure.AutoConfiguration;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnWebApplication;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
 import org.springframework.util.ClassUtils;
 
 /**
@@ -34,7 +34,7 @@ import org.springframework.util.ClassUtils;
  * @author Lars Grefer
  * @author Carsten Dimmek
  */
-@Configuration(proxyBeanMethods = false)
+@AutoConfiguration
 @ConditionalOnClass(TobagoServletContextListener.class)
 @ConditionalOnWebApplication(type = ConditionalOnWebApplication.Type.SERVLET)
 public class TobagoAutoConfiguration {

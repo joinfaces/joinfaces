@@ -23,7 +23,7 @@ import jakarta.servlet.DispatcherType;
 
 import org.joinfaces.session.SpringSessionFixFilter;
 
-import org.springframework.boot.autoconfigure.AutoConfigureAfter;
+import org.springframework.boot.autoconfigure.AutoConfiguration;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnBean;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnWebApplication;
@@ -32,7 +32,6 @@ import org.springframework.boot.autoconfigure.session.SessionProperties;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
 import org.springframework.lang.Nullable;
 import org.springframework.session.SessionRepository;
 import org.springframework.session.web.http.SessionRepositoryFilter;
@@ -44,9 +43,8 @@ import org.springframework.session.web.http.SessionRepositoryFilter;
  * @author Lars Grefer
  * @see org.springframework.boot.autoconfigure.session.SessionRepositoryFilterConfiguration
  */
-@Configuration(proxyBeanMethods = false)
+@AutoConfiguration(after = SessionAutoConfiguration.class)
 @ConditionalOnWebApplication(type = ConditionalOnWebApplication.Type.SERVLET)
-@AutoConfigureAfter(SessionAutoConfiguration.class)
 @EnableConfigurationProperties(SessionProperties.class)
 @ConditionalOnClass(SessionRepository.class)
 public class SpringSessionFixAutoConfiguration {
