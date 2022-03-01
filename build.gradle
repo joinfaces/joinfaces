@@ -121,11 +121,11 @@ allprojects {
             useJUnitPlatform()
         }
 
-        afterEvaluate {
-            tasks.named("jar", Jar).configure {
+        afterEvaluate { p ->
+            tasks.named('jar', Jar) {
                 manifest {
-                    attributes 'Implementation-Title': "$description",
-                            'Implementation-Version': "$project.version",
+                    attributes 'Implementation-Title': "$p.description",
+                            'Implementation-Version': "$p.version",
                             'Implementation-Vendor': "JoinFaces"
                 }
             }
@@ -233,7 +233,9 @@ apply plugin: "maven-publish"
 apply plugin: "io.freefair.aggregate-javadoc-jar"
 apply plugin: "io.freefair.javadoc-links"
 
-aggregateJavadoc.title = "JoinFaces $version API"
+tasks.named("aggregateJavadoc") {
+    title = "JoinFaces $version API"
+}
 
 nexusPublishing {
     repositories {
@@ -318,7 +320,7 @@ publishing {
                 description = "JoinFaces"
             }
 
-            artifact aggregateJavadocJar
+            artifact tasks.named("aggregateJavadocJar")
 
             signing.sign it
         }
