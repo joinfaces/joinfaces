@@ -139,24 +139,26 @@ allprojects {
             withJavadocJar()
         }
 
-        tasks.withType(JavaCompile) {
+        tasks.withType(JavaCompile).configureEach {
             options.encoding = 'UTF-8'
         }
 
-        tasks.withType(Test) {
+        tasks.withType(Test).configureEach {
             useJUnitPlatform()
         }
 
-        afterEvaluate {
-            jar.manifest {
-                attributes 'Implementation-Title': "$description",
-                        'Implementation-Version': "$version",
-                        'Implementation-Vendor': "JoinFaces"
+        afterEvaluate { p ->
+            tasks.named('jar') {
+                manifest {
+                    attributes 'Implementation-Title': "$p.description",
+                            'Implementation-Version': "$p.version",
+                            'Implementation-Vendor': "JoinFaces"
+                }
             }
         }
     }
 
-    tasks.withType(Javadoc) {
+    tasks.withType(Javadoc).configureEach {
         failOnError = false
     }
 
@@ -243,7 +245,7 @@ allprojects {
 
 apply plugin: "de.aaschmid.cpd"
 
-cpdCheck {
+tasks.named("cpdCheck") {
     exclude "**/*Test.java"
     exclude "**/*IT.java"
 }
@@ -252,7 +254,9 @@ apply plugin: "maven-publish"
 apply plugin: "io.freefair.aggregate-javadoc-jar"
 apply plugin: "io.freefair.javadoc-links"
 
-aggregateJavadoc.title = "JoinFaces $version API"
+tasks.named("aggregateJavadoc") {
+    title = "JoinFaces $version API"
+}
 
 nexusPublishing {
     repositories {
@@ -262,21 +266,19 @@ nexusPublishing {
     }
 }
 
-task propertyDocs(type: org.joinfaces.build.PropertyDocumentation) {
+tasks.register("propertyDocs", org.joinfaces.build.PropertyDocumentation) {
     inputFile = file("joinfaces-autoconfigure/build/classes/java/main/META-INF/spring-configuration-metadata.json")
     outputFile = file("src/docs/asciidoc/generated/_properties.adoc")
     dependsOn ":joinfaces-autoconfigure:classes"
 }
 
-task bomDocs(type: org.joinfaces.build.BomDocumentation) {
-    afterEvaluate {
-        dependsOn generatePomFileForBomPublication
-        inputFile = generatePomFileForBomPublication.destination
-    }
+tasks.register("bomDocs", org.joinfaces.build.BomDocumentation) {
+    dependsOn tasks.generatePomFileForBomPublication
+    inputFile = tasks.generatePomFileForBomPublication.destination
     outputFile = file("src/docs/asciidoc/generated/_versions.adoc")
 }
 
-asciidoctor {
+tasks.named("asciidoctor") {
     baseDirFollowsSourceDir()
     dependsOn propertyDocs, bomDocs
     inputs.dir("src/docs/asciidoc")
@@ -285,7 +287,7 @@ asciidoctor {
             'spring-boot-version': org.springframework.boot.gradle.plugin.SpringBootPlugin.SPRING_BOOT_VERSION
 }
 
-task docsZip(type: Zip) {
+tasks.register("docsZip", Zip) {
     group = 'build'
     archiveClassifier = 'docs'
     dependsOn asciidoctor
@@ -300,7 +302,7 @@ task docsZip(type: Zip) {
 
 apply plugin: 'io.freefair.okhttp'
 
-task uploadDocs(type: io.freefair.gradle.plugins.okhttp.tasks.UploadFile) {
+tasks.register("uploadDocs", io.freefair.gradle.plugins.okhttp.tasks.UploadFile) {
     dependsOn docsZip
     file = docsZip.archiveFile
     username = findProperty("joinfacesDocsUser")
@@ -339,7 +341,7 @@ publishing {
                 description = "JoinFaces"
             }
 
-            artifact aggregateJavadocJar
+            artifact tasks.named("aggregateJavadocJar")
 
             signing.sign it
         }
