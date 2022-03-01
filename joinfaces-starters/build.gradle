@@ -2,8 +2,10 @@ subprojects {
     apply plugin: "java-library"
     apply plugin: "io.freefair.maven-publish-java"
 
-    jar.manifest {
-        attributes 'Spring-Boot-Jar-Type': 'dependencies-starter'
+    tasks.named("jar") {
+        manifest {
+            attributes 'Spring-Boot-Jar-Type': 'dependencies-starter'
+        }
     }
 
     // Starters should have a clean classpath.

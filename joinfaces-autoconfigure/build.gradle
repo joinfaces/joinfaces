@@ -8,7 +8,9 @@ apply plugin: "io.freefair.maven-optional"
 apply plugin: "io.freefair.maven-publish-java"
 
 description = 'JoinFaces AutoConfigure'
-jar.manifest.attributes('Automatic-Module-Name': 'joinfaces.autoconfigure')
+tasks.named("jar") {
+    manifest.attributes('Automatic-Module-Name': 'joinfaces.autoconfigure')
+}
 
 gradleLint.rules -= 'transitive-duplicate-dependency-class'
 
@@ -63,9 +65,11 @@ dependencies {
     testRuntimeOnly 'org.ocpsoft.logging:logging-adapter-slf4j'
 }
 
-compileJava.inputs.files(processResources)
+tasks.named("compileJava") {
+    inputs.files(processResources)
+}
 
-test {
+tasks.named("test") {
     include "**/*Test.class"
 }
 
@@ -80,21 +84,25 @@ configurations {
     myfacesIntegTestRuntime.exclude group: 'org.glassfish', module: 'jakarta.faces'
 }
 
-task mojarraIntegTest(type: Test) {
+tasks.register("mojarraIntegTest", Test) {
     include "**/*IT.class"
     exclude "**/myfaces/**.class"
     classpath = configurations.mojarraIntegTestRuntime + sourceSets.main.output + sourceSets.test.output
     shouldRunAfter test
 }
 
-task myfacesIntegTest(type: Test) {
+tasks.register("myfacesIntegTest", Test) {
     include "**/*IT.class"
     exclude "**/mojarra/**.class"
     classpath = configurations.myfacesIntegTestRuntime + sourceSets.main.output + sourceSets.test.output
     shouldRunAfter test
 }
 
-check.dependsOn mojarraIntegTest
-check.dependsOn myfacesIntegTest
+tasks.named("check") {
+    dependsOn mojarraIntegTest
+    dependsOn myfacesIntegTest
+}
 
-jacocoTestReport.executionData mojarraIntegTest, myfacesIntegTest
+tasks.named("jacocoTestReport") {
+    executionData mojarraIntegTest, myfacesIntegTest
+}
