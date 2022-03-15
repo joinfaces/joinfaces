@@ -39,6 +39,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Persistable;
 import org.springframework.data.domain.Sort;
+import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.data.repository.core.EntityInformation;
 import org.springframework.util.CollectionUtils;
@@ -49,7 +50,7 @@ import org.springframework.util.CollectionUtils;
  * @param <R>
  * @author Lars Grefer
  */
-public class SpringDataLazyDataModel<T, ID, R extends PagingAndSortingRepository<T, ID>> extends LazyDataModel<T> {
+public class SpringDataLazyDataModel<T, ID, R extends CrudRepository<T, ID> & PagingAndSortingRepository<T, ID>> extends LazyDataModel<T> {
 
 	@Getter
 	@Setter
