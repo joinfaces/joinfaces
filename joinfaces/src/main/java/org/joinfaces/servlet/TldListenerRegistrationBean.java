@@ -24,9 +24,12 @@ import lombok.RequiredArgsConstructor;
 import lombok.Singular;
 
 import org.springframework.boot.web.embedded.jetty.JettyServletWebServerFactory;
+import org.springframework.boot.web.embedded.tomcat.TomcatServletWebServerFactory;
 import org.springframework.boot.web.embedded.undertow.UndertowServletWebServerFactory;
 import org.springframework.boot.web.server.WebServerFactoryCustomizer;
 import org.springframework.boot.web.servlet.server.AbstractServletWebServerFactory;
+import org.springframework.boot.web.servlet.server.Jsp;
+import org.springframework.util.ClassUtils;
 
 /**
  * This class registers listeners to the servlet context, which would normally registered in a tld file.
@@ -34,6 +37,8 @@ import org.springframework.boot.web.servlet.server.AbstractServletWebServerFacto
  * Some JSF libraries declare listeners in JSP taglib files. Undertow and Jetty (since 9.4.14.v20181114)
  * don't find there listeners, so this class can be used as spring bean to manually add the listeners to an
  * embedded undertow or jetty.
+ * <p>
+ * Also the embedded Tomcat does not find the listeners, if tomcat-embed-jasper is not deployed.
  *
  * @author Lars Grefer
  */
@@ -46,8 +51,25 @@ public class TldListenerRegistrationBean implements WebServerFactoryCustomizer<A
 
 	@Override
 	public void customize(AbstractServletWebServerFactory factory) {
-		if (factory instanceof JettyServletWebServerFactory || factory instanceof UndertowServletWebServerFactory) {
+		if (mustAddInitializer(factory)) {
 			factory.addInitializers(servletContext -> this.listeners.forEach(servletContext::addListener));
 		}
+	}
+
+	private boolean mustAddInitializer(AbstractServletWebServerFactory factory) {
+		if (factory instanceof JettyServletWebServerFactory) {
+			return true;
+		}
+
+		if (factory instanceof UndertowServletWebServerFactory) {
+			return true;
+		}
+
+		if (factory instanceof TomcatServletWebServerFactory) {
+			Jsp jsp = factory.getJsp();
+			return !jsp.getRegistered() || !ClassUtils.isPresent(jsp.getClassName(), null);
+		}
+
+		return false;
 	}
 }
