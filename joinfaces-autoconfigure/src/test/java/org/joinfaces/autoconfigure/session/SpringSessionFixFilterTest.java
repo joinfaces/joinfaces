@@ -16,13 +16,24 @@
 
 package org.joinfaces.autoconfigure.session;
 
+import java.io.IOException;
+import java.util.Arrays;
+import java.util.Collections;
+
+import javax.servlet.FilterChain;
+import javax.servlet.ServletException;
+import javax.servlet.ServletRequest;
+import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.BDDMockito.mock;
+import static org.mockito.BDDMockito.times;
+import static org.mockito.BDDMockito.verify;
 import static org.mockito.BDDMockito.when;
 
 class SpringSessionFixFilterTest {
@@ -48,6 +59,55 @@ class SpringSessionFixFilterTest {
 		sessionWrapper.getValue("bar");
 
 		assertThat(sessionWrapper.getReadAttributeNames()).contains("foo", "bar");
+	}
+
+	@Test
+	void testSetAttributeWithValidSession() throws IOException, ServletException {
+		HttpServletRequest request = mock(HttpServletRequest.class);
+		HttpSession session = mock(HttpSession.class);
+		when(request.getSession(false)).thenReturn(session);
+		when(request.getSession()).thenReturn(session);
+		String fooName = "fooName";
+		String fooValue = "fooValue";
+		when(session.getAttributeNames()).thenReturn(Collections.enumeration(Arrays.asList(fooName)));
+		when(session.getAttribute(fooName)).thenReturn(fooValue);
+
+		HttpServletResponse response = mock(HttpServletResponse.class);
+
+		FilterChain filterChain = (ServletRequest sr, ServletResponse sr1) -> {
+			HttpSession session1 = ((HttpServletRequest) sr).getSession();
+			session1.getAttribute("fooName");
+		};
+
+		SpringSessionFixFilter filter = new SpringSessionFixFilter();
+
+		filter.doFilterInternal(request, response, filterChain);
+
+		verify(session, times(1)).setAttribute(fooName, fooValue);
+	}
+
+	@Test
+	void testSetAttributeWithInvalidatedSession() throws IOException, ServletException {
+		HttpServletRequest request = mock(HttpServletRequest.class);
+		HttpSession session = mock(HttpSession.class);
+		when(request.getSession(false)).thenReturn(session);
+		when(request.getSession()).thenReturn(session);
+		String fooName = "fooName";
+		String fooValue = "fooValue";
+
+		HttpServletResponse response = mock(HttpServletResponse.class);
+
+		FilterChain filterChain = (ServletRequest sr, ServletResponse sr1) -> {
+			HttpSession session1 = ((HttpServletRequest) sr).getSession();
+			session1.getAttribute(fooName);
+			session1.invalidate();
+		};
+
+		SpringSessionFixFilter filter = new SpringSessionFixFilter();
+
+		filter.doFilterInternal(request, response, filterChain);
+
+		verify(session, times(0)).setAttribute(fooName, fooValue);
 	}
 
 }

@@ -55,7 +55,7 @@ public class SpringSessionFixFilter extends OncePerRequestFilter {
 
 		HttpSession session = request.getSession(false);
 
-		if (session != null && wrappedRequest.sessionWrapper != null) {
+		if (session != null && wrappedRequest.sessionWrapper != null && !wrappedRequest.sessionWrapper.invalidated) {
 			reSetAttributes(wrappedRequest.sessionWrapper);
 		}
 
@@ -131,6 +131,7 @@ public class SpringSessionFixFilter extends OncePerRequestFilter {
 	@RequiredArgsConstructor
 	static class SessionWrapper implements HttpSession {
 		private final HttpSession delegate;
+		private boolean invalidated = false;
 
 		@NonNull
 		@Getter
@@ -223,6 +224,7 @@ public class SpringSessionFixFilter extends OncePerRequestFilter {
 		@Override
 		public void invalidate() {
 			this.delegate.invalidate();
+			this.invalidated = true;
 		}
 
 		@Override
