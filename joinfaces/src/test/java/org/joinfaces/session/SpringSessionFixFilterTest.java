@@ -32,23 +32,35 @@ class SpringSessionFixFilterTest {
 	void testRequestWrapper() {
 		HttpServletRequest request = mock(HttpServletRequest.class);
 		when(request.getSession()).thenReturn(mock(HttpSession.class));
+		when(request.getSession(true)).thenReturn(mock(HttpSession.class));
+		when(request.getSession(false)).thenReturn(null);
 
 		SpringSessionFixFilter.RequestWrapper requestWrapper = new SpringSessionFixFilter.RequestWrapper(request);
 
-		assertThat(requestWrapper.getSession()).isInstanceOf(SpringSessionFixFilter.SessionWrapper.class);
+		assertThat(requestWrapper.getSession(false)).isNull();
+		assertThat(requestWrapper.getSession(true)).isInstanceOf(SpringSessionFixFilter.RequestWrapper.SessionWrapper.class);
+		assertThat(requestWrapper.getSession()).isInstanceOf(SpringSessionFixFilter.RequestWrapper.SessionWrapper.class);
 	}
 
 	@SuppressWarnings("deprecation")
 	@Test
 	void testSessionWrapper() {
+		HttpServletRequest request = mock(HttpServletRequest.class);
 		HttpSession session = mock(HttpSession.class);
+		when(request.getSession()).thenReturn(session);
 
-		SpringSessionFixFilter.SessionWrapper sessionWrapper = new SpringSessionFixFilter.SessionWrapper(session);
+		SpringSessionFixFilter.RequestWrapper requestWrapper = new SpringSessionFixFilter.RequestWrapper(request);
+
+		HttpSession sessionWrapper = requestWrapper.getSession();
 
 		sessionWrapper.getAttribute("foo");
 		sessionWrapper.getValue("bar");
 
-		assertThat(sessionWrapper.getReadAttributeNames()).contains("foo", "bar");
+		assertThat(requestWrapper.getReadAttributeNames()).contains("foo", "bar");
+
+		sessionWrapper.invalidate();
+
+		assertThat(requestWrapper.getReadAttributeNames()).isEmpty();
 	}
 
 }
