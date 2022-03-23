@@ -36,6 +36,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.lang.NonNull;
 import org.springframework.lang.Nullable;
 import org.springframework.util.ClassUtils;
+import org.springframework.util.CollectionUtils;
 import org.springframework.web.filter.OncePerRequestFilter;
 
 /**
@@ -51,34 +52,40 @@ public class SpringSessionFixFilter extends OncePerRequestFilter {
 
 		RequestWrapper wrappedRequest = new RequestWrapper(request);
 
-		filterChain.doFilter(wrappedRequest, response);
+		try {
+			filterChain.doFilter(wrappedRequest, response);
+		}
+		finally {
+			HttpSession session = request.getSession(false);
 
-		HttpSession session = request.getSession(false);
-
-		if (session != null && wrappedRequest.sessionWrapper != null) {
-			reSetAttributes(wrappedRequest.sessionWrapper);
+			if (session != null) {
+				reSetAttributes(wrappedRequest, session);
+			}
 		}
 
 	}
 
-	private void reSetAttributes(SessionWrapper sessionWrapper) {
-		HttpSession realSession = sessionWrapper.delegate;
-		Enumeration<String> attributeNames = realSession.getAttributeNames();
+	private void reSetAttributes(RequestWrapper wrappedRequest, HttpSession session) {
+		if (CollectionUtils.isEmpty(wrappedRequest.readAttributeNames)) {
+			return;
+		}
+
+		Enumeration<String> attributeNames = session.getAttributeNames();
 		while (attributeNames.hasMoreElements()) {
 			String attributeName = attributeNames.nextElement();
 
-			if (!sessionWrapper.readAttributeNames.contains(attributeName)) {
+			if (!wrappedRequest.readAttributeNames.contains(attributeName)) {
 				//Attribute was not read, so we don't need to re-set it.
 				continue;
 			}
 
-			Object attributeValue = realSession.getAttribute(attributeName);
+			Object attributeValue = session.getAttribute(attributeName);
 			if (ClassUtils.isPrimitiveOrWrapper(attributeValue.getClass())) {
 				//Attribute is primitive (immutable), so we don't need to re-set it.
 				continue;
 			}
 
-			realSession.setAttribute(attributeName, attributeValue);
+			session.setAttribute(attributeName, attributeValue);
 		}
 	}
 
@@ -89,8 +96,10 @@ public class SpringSessionFixFilter extends OncePerRequestFilter {
 	 * @author Lars Grefer
 	 */
 	static class RequestWrapper extends HttpServletRequestWrapper {
-		@Nullable
-		private SessionWrapper sessionWrapper;
+
+		@NonNull
+		@Getter
+		private final Set<String> readAttributeNames = new HashSet<>();
 
 		/**
 		 * Constructs a request object wrapping the given request.
@@ -105,129 +114,118 @@ public class SpringSessionFixFilter extends OncePerRequestFilter {
 		@Override
 		@Nullable
 		public HttpSession getSession(boolean create) {
-			if (this.sessionWrapper == null) {
-				HttpSession session = super.getSession(create);
-				if (session != null) {
-					this.sessionWrapper = new SessionWrapper(session);
-				}
-			}
-			return this.sessionWrapper;
+			HttpSession session = super.getSession(create);
+			return session != null ? new SessionWrapper(session) : null;
 		}
 
 		@Override
 		public HttpSession getSession() {
-			if (this.sessionWrapper == null) {
-				this.sessionWrapper = new SessionWrapper(super.getSession());
+			return new SessionWrapper(super.getSession());
+		}
+
+		/**
+		 * Wrapper around a {@link HttpSession} which tracks the names of all read attributes.
+		 *
+		 * @author Lars Grefer
+		 */
+		@RequiredArgsConstructor
+		class SessionWrapper implements HttpSession {
+			private final HttpSession delegate;
+
+			@Override
+			public long getCreationTime() {
+				return this.delegate.getCreationTime();
 			}
-			return this.sessionWrapper;
-		}
-	}
 
-	/**
-	 * Wrapper around a {@link HttpSession} which tracks the names of all read attributes.
-	 *
-	 * @author Lars Grefer
-	 */
-	@RequiredArgsConstructor
-	static class SessionWrapper implements HttpSession {
-		private final HttpSession delegate;
+			@Override
+			public String getId() {
+				return this.delegate.getId();
+			}
 
-		@NonNull
-		@Getter
-		private final Set<String> readAttributeNames = new HashSet<>();
+			@Override
+			public long getLastAccessedTime() {
+				return this.delegate.getLastAccessedTime();
+			}
 
-		@Override
-		public long getCreationTime() {
-			return this.delegate.getCreationTime();
-		}
+			@Override
+			public ServletContext getServletContext() {
+				return this.delegate.getServletContext();
+			}
 
-		@Override
-		public String getId() {
-			return this.delegate.getId();
-		}
+			@Override
+			public void setMaxInactiveInterval(int interval) {
+				this.delegate.setMaxInactiveInterval(interval);
+			}
 
-		@Override
-		public long getLastAccessedTime() {
-			return this.delegate.getLastAccessedTime();
-		}
+			@Override
+			public int getMaxInactiveInterval() {
+				return this.delegate.getMaxInactiveInterval();
+			}
 
-		@Override
-		public ServletContext getServletContext() {
-			return this.delegate.getServletContext();
-		}
+			@Override
+			@Deprecated
+			public HttpSessionContext getSessionContext() {
+				return this.delegate.getSessionContext();
+			}
 
-		@Override
-		public void setMaxInactiveInterval(int interval) {
-			this.delegate.setMaxInactiveInterval(interval);
-		}
+			@Override
+			@Nullable
+			public Object getAttribute(String name) {
+				RequestWrapper.this.readAttributeNames.add(name);
+				return this.delegate.getAttribute(name);
+			}
 
-		@Override
-		public int getMaxInactiveInterval() {
-			return this.delegate.getMaxInactiveInterval();
-		}
+			@Override
+			@Deprecated
+			@Nullable
+			public Object getValue(String name) {
+				RequestWrapper.this.readAttributeNames.add(name);
+				return this.delegate.getValue(name);
+			}
 
-		@Override
-		@Deprecated
-		public HttpSessionContext getSessionContext() {
-			return this.delegate.getSessionContext();
-		}
+			@Override
+			public Enumeration<String> getAttributeNames() {
+				return this.delegate.getAttributeNames();
+			}
 
-		@Override
-		@Nullable
-		public Object getAttribute(String name) {
-			this.readAttributeNames.add(name);
-			return this.delegate.getAttribute(name);
-		}
+			@Override
+			@Deprecated
+			public String[] getValueNames() {
+				return this.delegate.getValueNames();
+			}
 
-		@Override
-		@Deprecated
-		@Nullable
-		public Object getValue(String name) {
-			this.readAttributeNames.add(name);
-			return this.delegate.getValue(name);
-		}
+			@Override
+			public void setAttribute(String name, Object value) {
+				this.delegate.setAttribute(name, value);
+			}
 
-		@Override
-		public Enumeration<String> getAttributeNames() {
-			return this.delegate.getAttributeNames();
-		}
+			@Override
+			@Deprecated
+			public void putValue(String name, Object value) {
+				this.delegate.putValue(name, value);
+			}
 
-		@Override
-		@Deprecated
-		public String[] getValueNames() {
-			return this.delegate.getValueNames();
-		}
+			@Override
+			public void removeAttribute(String name) {
+				this.delegate.removeAttribute(name);
+			}
 
-		@Override
-		public void setAttribute(String name, Object value) {
-			this.delegate.setAttribute(name, value);
-		}
+			@Override
+			@Deprecated
+			public void removeValue(String name) {
+				this.delegate.removeValue(name);
+			}
 
-		@Override
-		@Deprecated
-		public void putValue(String name, Object value) {
-			this.delegate.putValue(name, value);
-		}
+			@Override
+			public void invalidate() {
+				this.delegate.invalidate();
+				RequestWrapper.this.readAttributeNames.clear();
+			}
 
-		@Override
-		public void removeAttribute(String name) {
-			this.delegate.removeAttribute(name);
-		}
-
-		@Override
-		@Deprecated
-		public void removeValue(String name) {
-			this.delegate.removeValue(name);
-		}
-
-		@Override
-		public void invalidate() {
-			this.delegate.invalidate();
-		}
-
-		@Override
-		public boolean isNew() {
-			return this.delegate.isNew();
+			@Override
+			public boolean isNew() {
+				return this.delegate.isNew();
+			}
 		}
 	}
 }
