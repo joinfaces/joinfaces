@@ -63,7 +63,7 @@ allprojects {
 
             dependency "org.apache.tomcat:tomcat-jasper:${importedProperties['tomcat.version']}"
 
-            dependency 'io.github.classgraph:classgraph:4.8.145'
+            dependency 'io.github.classgraph:classgraph:4.8.146'
 
             dependency 'org.primefaces:primefaces:11.0.0'
             dependencySet("org.primefaces.extensions:11.0.2") {
