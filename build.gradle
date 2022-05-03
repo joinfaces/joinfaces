@@ -90,7 +90,7 @@ allprojects {
                 entry 'tobago-theme-charlotteville'
             }
 
-            dependency 'org.omnifaces:omnifaces:4.0-M13'
+            dependency 'org.omnifaces:omnifaces:4.0-M15'
         }
     }
 
