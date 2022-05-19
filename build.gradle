@@ -45,7 +45,7 @@ allprojects {
         }
 
         dependencies {
-            dependency 'jakarta.faces:jakarta.faces-api:3.0.0'
+            dependency 'jakarta.faces:jakarta.faces-api:4.0.0'
 
             dependency 'org.glassfish:jakarta.faces:3.0.2'
 
