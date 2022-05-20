@@ -3,7 +3,9 @@
   <component name="ExternalDependencies">
     <plugin id="CheckStyle-IDEA" />
     <plugin id="Lombook Plugin" />
+    <plugin id="com.intellij.jsf" />
     <plugin id="com.intellij.spring.boot" />
+    <plugin id="org.asciidoctor.intellij.asciidoc" />
     <plugin id="org.editorconfig.editorconfigjetbrains" />
     <plugin id="org.jetbrains.idea.maven" />
   </component>
