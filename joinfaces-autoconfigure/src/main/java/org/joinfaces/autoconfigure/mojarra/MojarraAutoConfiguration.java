@@ -18,6 +18,7 @@ package org.joinfaces.autoconfigure.mojarra;
 
 import com.sun.faces.config.ConfigureListener;
 import com.sun.faces.config.FacesInitializer;
+import org.joinfaces.autoconfigure.FacesImplementationAutoConfiguration;
 import org.joinfaces.autoconfigure.javaxfaces.JavaxFacesAutoConfiguration;
 import org.joinfaces.autoconfigure.servlet.TldListenerRegistrationBean;
 import org.joinfaces.autoconfigure.servlet.initializer.ServletContainerInitializerRegistrationBean;
@@ -25,6 +26,7 @@ import org.joinfaces.autoconfigure.servlet.initializer.ServletContainerInitializ
 import org.springframework.boot.autoconfigure.AutoConfigureAfter;
 import org.springframework.boot.autoconfigure.AutoConfigureBefore;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnWebApplication;
 import org.springframework.boot.autoconfigure.web.servlet.WebMvcAutoConfiguration;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
@@ -42,7 +44,8 @@ import org.springframework.context.annotation.Configuration;
 @AutoConfigureBefore(WebMvcAutoConfiguration.class)
 @AutoConfigureAfter(JavaxFacesAutoConfiguration.class)
 @ConditionalOnWebApplication(type = ConditionalOnWebApplication.Type.SERVLET)
-public class MojarraAutoConfiguration {
+@ConditionalOnMissingBean(FacesImplementationAutoConfiguration.class)
+public class MojarraAutoConfiguration implements FacesImplementationAutoConfiguration {
 
 	@Bean
 	public ServletContainerInitializerRegistrationBean<FacesInitializer> mojarraServletContainerInitializer() {
