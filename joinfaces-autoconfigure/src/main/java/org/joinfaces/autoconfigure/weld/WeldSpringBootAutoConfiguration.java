@@ -36,7 +36,7 @@ public class WeldSpringBootAutoConfiguration {
 
 	@Bean
 	public ServletContainerInitializerRegistrationBean<EnhancedListener> weldServletContainerInitializer() {
-		return new ServletContainerInitializerRegistrationBean<>(EnhancedListener.class);
+		return new WeldServletContainerInitializerRegistrationBean();
 	}
 
 }
