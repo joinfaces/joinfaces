@@ -18,6 +18,7 @@ package org.joinfaces.autoconfigure.weld;
 
 import org.jboss.weld.environment.servlet.EnhancedListener;
 import org.joinfaces.servlet.ServletContainerInitializerRegistrationBean;
+import org.joinfaces.weld.WeldServletContainerInitializerRegistrationBean;
 
 import org.springframework.boot.autoconfigure.AutoConfiguration;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
@@ -36,7 +37,7 @@ public class WeldSpringBootAutoConfiguration {
 
 	@Bean
 	public ServletContainerInitializerRegistrationBean<EnhancedListener> weldServletContainerInitializer() {
-		return new ServletContainerInitializerRegistrationBean<>(EnhancedListener.class);
+		return new WeldServletContainerInitializerRegistrationBean();
 	}
 
 }
