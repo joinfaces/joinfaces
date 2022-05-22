@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package org.joinfaces.autoconfigure.weld;
+package org.joinfaces.weld;
 
 import org.jboss.weld.environment.jetty.AbstractJettyContainer;
 import org.jboss.weld.environment.tomcat.TomcatContainer;
