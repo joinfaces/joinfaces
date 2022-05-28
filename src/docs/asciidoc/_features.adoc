@@ -47,6 +47,9 @@ You can use the table below to discover the starters that fit your needs.
 |omnifaces-spring-boot-starter
 |Component starter for https://omnifaces.org/[OmniFaces] JSF utility library. Pulls `jsf-spring-boot-starter` and `weld-spring-boot-starter`.
 
+|adminfaces-spring-boot-starter
+|Template and Theme starter for https://adminfaces.github.io/site/[AdminFaces]. Pulls `primefaces-spring-boot-starter`.
+
 |===========
 
 ==== Not using Tomcat or Mojarra
@@ -134,6 +137,13 @@ server.servlet.context-parameters._primefaces.THEME_=omega
 === Library Specific Features
 
 This section describes, what JoinFaces does for specific libraries.
+
+==== AdminFaces
+
+* Configurations are mapped from the `joinfaces.adminfaces.*` properties.
+* Spring Component scan for selected `com.github.adminfaces.template.*`-packages.
+* `primefaces.THEME` is set to `admin`.
+* `primefaces.FONT_AWESOME` is set to `true`.
 
 ==== Mojarra
 

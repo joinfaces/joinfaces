@@ -80,6 +80,10 @@ allprojects {
             }
 
             dependency 'jakarta.el:jakarta.el-api:4.0.0'
+            dependency 'jakarta.ejb:jakarta.ejb-api:4.0.1'
+
+            dependency "com.github.adminfaces:admin-template:1.5.1"
+            dependency "com.github.adminfaces:admin-theme:1.5.1"
 
             dependencySet('org.apache.myfaces.tobago:6.0.0-SNAPSHOT') {
                 entry 'tobago-core'
