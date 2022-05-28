@@ -4,7 +4,7 @@ jar.manifest.attributes('Automatic-Module-Name': 'joinfaces.starter.adminfaces')
 dependencies {
     api project(':joinfaces-starters:primefaces-spring-boot-starter')
     api project(':joinfaces-starters:omnifaces1-spring-boot-starter')
-    api('com.github.adminfaces:admin-template') {
+    api('com.github.adminfaces:admin-template::javax') {
         exclude group: "org.omnifaces", module: 'omnifaces'
     }
     api 'javax.persistence:javax.persistence-api'
