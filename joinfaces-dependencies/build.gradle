@@ -25,7 +25,6 @@ dependencies {
 
         //Jakarta EE (if not covered by Spring Boot)
         api 'jakarta.enterprise:jakarta.enterprise.cdi-api:3.0.1'
-        api 'jakarta.el:jakarta.el-api:4.0.0'
 
         //Primefaces
         api 'org.primefaces:primefaces:11.0.0'

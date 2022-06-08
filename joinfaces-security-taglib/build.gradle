@@ -22,7 +22,7 @@ dependencies {
 
     compileOnly 'jakarta.faces:jakarta.faces-api'
     compileOnly 'jakarta.servlet:jakarta.servlet-api'
-    compileOnly 'jakarta.el:jakarta.el-api'
+    compileOnly 'org.apache.tomcat.embed:tomcat-embed-el'
 
     //For javadoc references
     compileOnly 'org.springframework.webflow:spring-faces:2.5.1.RELEASE'
