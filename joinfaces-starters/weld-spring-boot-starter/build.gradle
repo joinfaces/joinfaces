@@ -6,5 +6,8 @@ tasks.named("jar", Jar) {
 dependencies {
     api project(':joinfaces-autoconfigure')
 
-    api 'org.jboss.weld.servlet:weld-servlet-core'
+    api('org.jboss.weld.servlet:weld-servlet-core') {
+        exclude group: 'jakarta.el', module: 'jakarta.el-api'
+        exclude group: 'jakarta.interceptor', module: 'jakarta.interceptor-api'
+    }
 }

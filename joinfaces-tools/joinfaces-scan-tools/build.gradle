@@ -3,6 +3,8 @@ apply plugin: "io.freefair.maven-publish-java"
 description = "JoinFaces Scan Tools"
 
 dependencies {
+    api platform(project(':joinfaces-dependencies'))
+
     api "io.github.classgraph:classgraph"
     implementation "org.slf4j:slf4j-api"
 
