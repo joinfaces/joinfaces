@@ -36,7 +36,6 @@ dependencies {
     optional "org.apache.myfaces.core:myfaces-impl"
     optional 'org.omnifaces:omnifaces'
     optional 'org.primefaces:primefaces::jakarta'
-    optional 'commons-fileupload:commons-fileupload'
     optional 'org.glassfish.jaxb:jaxb-runtime'
     optional 'jakarta.activation:jakarta.activation-api'
 
