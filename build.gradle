@@ -184,8 +184,8 @@ tasks.register("propertyDocs", org.joinfaces.build.PropertyDocumentation) {
 }
 
 tasks.register("bomDocs", org.joinfaces.build.BomDocumentation) {
-    dependsOn generatePomFileForBomPublication
-    inputFile = generatePomFileForBomPublication.destination
+    dependsOn ":joinfaces-dependencies:generatePomFileForBomPublication"
+    inputFile = tasks.findByPath(":joinfaces-dependencies:generatePomFileForBomPublication").destination
     outputFile = file("src/docs/asciidoc/generated/_versions.adoc")
 }
 
@@ -194,7 +194,7 @@ tasks.named("asciidoctor", org.asciidoctor.gradle.jvm.AsciidoctorTask) {
     dependsOn propertyDocs, bomDocs
     inputs.dir("src/docs/asciidoc")
     attributes revnumber: project.version,
-            'spring-version': dependencyManagement.importedProperties['spring-framework.version'],
+            'spring-version': '6.0.x',
             'spring-boot-version': org.springframework.boot.gradle.plugin.SpringBootPlugin.SPRING_BOOT_VERSION
 }
 
