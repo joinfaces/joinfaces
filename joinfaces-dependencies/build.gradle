@@ -18,7 +18,7 @@ dependencies {
         api 'org.glassfish:jakarta.faces:3.0.2'
 
         //MyFaces
-        api "org.apache.myfaces.core:myfaces-api:3.0.1"
+        api "org.apache.myfaces.core:myfaces-api:3.0.2"
         api "org.apache.myfaces.core:myfaces-impl:3.0.2"
 
         api 'io.github.classgraph:classgraph:4.8.147'
