@@ -16,7 +16,7 @@
 
 package org.joinfaces.autoconfigure.viewscope;
 
-import java.util.LinkedList;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -152,7 +152,7 @@ public class ViewScope implements Scope {
 	@Getter
 	static class SessionListener implements HttpSessionBindingListener {
 
-		private List<DestructionCallbackWrapper> destructionCallbackWrappers = new LinkedList<>();
+		private List<DestructionCallbackWrapper> destructionCallbackWrappers = new ArrayList<>();
 
 		void register(DestructionCallbackWrapper destructionCallbackWrapper) {
 			cleanup();
