@@ -1,3 +1,5 @@
+import org.springframework.boot.gradle.plugin.SpringBootPlugin
+
 plugins {
     id 'java-library'
     id 'jacoco'
@@ -13,6 +15,8 @@ tasks.named("jar", Jar) {
 }
 
 dependencies {
+    api platform(project(':joinfaces-dependencies'))
+
     compileOnly 'jakarta.faces:jakarta.faces-api'
     compileOnly 'jakarta.servlet:jakarta.servlet-api'
     compileOnly 'jakarta.persistence:jakarta.persistence-api'

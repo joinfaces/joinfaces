@@ -8,6 +8,10 @@ subprojects {
         }
     }
 
+    dependencies {
+        api platform(project(':joinfaces-dependencies'))
+    }
+
     // Starters should have a clean classpath.
     // Disabled because module-info conflict: https://github.com/nebula-plugins/gradle-lint-plugin/pull/223
     // https://github.com/nebula-plugins/gradle-lint-plugin/issues/263

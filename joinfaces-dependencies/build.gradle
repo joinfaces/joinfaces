@@ -1,0 +1,80 @@
+import org.springframework.boot.gradle.plugin.SpringBootPlugin
+
+plugins {
+    id 'java-platform'
+    id 'maven-publish'
+}
+
+javaPlatform {
+    allowDependencies()
+}
+
+dependencies {
+    api platform(SpringBootPlugin.BOM_COORDINATES)
+
+    constraints {
+        //Mojarra
+        api 'jakarta.faces:jakarta.faces-api:3.0.0'
+        api 'org.glassfish:jakarta.faces:3.0.2'
+
+        //MyFaces
+        api "org.apache.myfaces.core:myfaces-api:3.0.2"
+        api "org.apache.myfaces.core:myfaces-impl:3.0.2"
+
+        api 'io.github.classgraph:classgraph:4.8.147'
+
+        //Jakarta EE (if not covered by Spring Boot)
+        api 'jakarta.enterprise:jakarta.enterprise.cdi-api:3.0.1'
+        api 'jakarta.ejb:jakarta.ejb-api:4.0.1'
+
+        //AdminFaces
+        api "com.github.adminfaces:admin-template:1.5.2"
+        api "com.github.adminfaces:admin-theme:1.5.1"
+
+        //Primefaces
+        api 'org.primefaces:primefaces:11.0.0'
+        api "org.primefaces.extensions:primefaces-extensions:11.0.4"
+        api "org.primefaces.extensions:resources-ckeditor:11.0.4"
+        api "org.primefaces.extensions:resources-monacoeditor:11.0.4"
+
+        api 'org.jboss.weld.servlet:weld-servlet-core:4.0.3.Final'
+
+        //MyFaces Tobago
+        api 'org.apache.myfaces.tobago:tobago-core:6.0.0-SNAPSHOT'
+        api 'org.apache.myfaces.tobago:tobago-theme-standard:6.0.0-SNAPSHOT'
+        api 'org.apache.myfaces.tobago:tobago-theme-speyside:6.0.0-SNAPSHOT'
+        api 'org.apache.myfaces.tobago:tobago-theme-scarborough:6.0.0-SNAPSHOT'
+        api 'org.apache.myfaces.tobago:tobago-theme-richmond:6.0.0-SNAPSHOT'
+        api 'org.apache.myfaces.tobago:tobago-theme-charlotteville:6.0.0-SNAPSHOT'
+
+        api 'org.omnifaces:omnifaces:4.0-M16'
+
+        //JoinFaces
+        api project(":joinfaces")
+        api project(":joinfaces-autoconfigure")
+        api project(":joinfaces-security-taglib")
+        project(":joinfaces-starters").subprojects { starter ->
+            api starter
+        }
+        project(":joinfaces-tools").subprojects { tool ->
+            api tool
+        }
+    }
+}
+
+publishing {
+    publications {
+        bom(MavenPublication) {
+            from components.javaPlatform
+
+            pom {
+                name = 'JoinFaces Dependencies'
+                description = 'JoinFaces Dependencies'
+            }
+
+            signing.sign it
+        }
+    }
+}
+
+

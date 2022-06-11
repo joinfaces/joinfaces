@@ -11,6 +11,8 @@ tasks.named("jar", Jar) {
 }
 
 dependencies {
+    api platform(project(':joinfaces-dependencies'))
+
     api 'org.springframework.boot:spring-boot-starter-test'
     api 'org.junit.jupiter:junit-jupiter-api'
 

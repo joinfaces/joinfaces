@@ -61,4 +61,4 @@ This can be changed through the `spring.messages.encoding` property.
 ===== Links
 
 - https://docs.spring.io/spring-boot/docs/{spring-boot-version}/reference/html/features.html#features.internationalization
-- https://docs.spring.io/spring-framework/docs/{spring-version}/spring-framework-reference/core.html#context-functionality-messagesource
+- https://docs.spring.io/spring-framework/docs/{spring-version}/reference/html/core.html#context-functionality-messagesource

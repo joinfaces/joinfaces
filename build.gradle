@@ -1,11 +1,9 @@
-import org.springframework.boot.gradle.plugin.SpringBootPlugin
-
 buildscript {
     repositories {
         maven { url "https://plugins.gradle.org/m2/" }
     }
     dependencies {
-        def freefairGradleVersion = "6.4.3"
+        def freefairGradleVersion = "6.4.3.1"
         classpath "io.freefair.gradle:lombok-plugin:$freefairGradleVersion"
         classpath "io.freefair.gradle:maven-plugin:$freefairGradleVersion"
         classpath "io.freefair.gradle:maven-plugin-plugin:$freefairGradleVersion"
@@ -35,67 +33,6 @@ allprojects {
         maven { url 'https://repo.spring.io/milestone' }
         maven { url 'https://repo.spring.io/snapshot' }
         maven { url 'https://repository.apache.org/content/repositories/snapshots' }
-    }
-
-    apply plugin: "io.spring.dependency-management"
-
-    dependencyManagement {
-        imports {
-            mavenBom SpringBootPlugin.BOM_COORDINATES
-        }
-
-        dependencies {
-            dependency 'jakarta.faces:jakarta.faces-api:3.0.0'
-
-            dependency 'org.glassfish:jakarta.faces:3.0.2'
-
-            dependencySet('org.apache.myfaces.core:3.0.1') {
-                entry "myfaces-api"
-                entry("myfaces-impl") {
-                    exclude "commons-logging:commons-logging"
-                }
-            }
-
-            dependency('jakarta.enterprise:jakarta.enterprise.cdi-api:3.0.1') {
-                exclude "jakarta.el:jakarta.el-api"
-                exclude "jakarta.ejb:jakarta.ejb-api"
-            }
-
-            dependency "org.apache.tomcat:tomcat-jasper:${importedProperties['tomcat.version']}"
-
-            dependency 'io.github.classgraph:classgraph:4.8.147'
-
-            dependency 'org.primefaces:primefaces:11.0.0'
-            dependencySet("org.primefaces.extensions:11.0.4") {
-                entry "primefaces-extensions"
-                entry "resources-ckeditor"
-                entry "resources-monacoeditor"
-            }
-
-            dependency "commons-fileupload:commons-fileupload:1.4"
-
-            dependency('org.jboss.weld.servlet:weld-servlet-core:4.0.3.Final') {
-                exclude 'jakarta.el:jakarta.el-api'
-                exclude 'jakarta.interceptor:jakarta.interceptor-api'
-            }
-
-            dependency 'jakarta.el:jakarta.el-api:4.0.0'
-            dependency 'jakarta.ejb:jakarta.ejb-api:4.0.1'
-
-            dependency "com.github.adminfaces:admin-template:1.5.1"
-            dependency "com.github.adminfaces:admin-theme:1.5.1"
-
-            dependencySet('org.apache.myfaces.tobago:6.0.0-SNAPSHOT') {
-                entry 'tobago-core'
-                entry 'tobago-theme-standard'
-                entry 'tobago-theme-speyside'
-                entry 'tobago-theme-scarborough'
-                entry 'tobago-theme-richmond'
-                entry 'tobago-theme-charlotteville'
-            }
-
-            dependency 'org.omnifaces:omnifaces:4.0-M16'
-        }
     }
 
     apply plugin: 'nebula.lint'
@@ -212,15 +149,6 @@ allprojects {
                         url = 'https://github.com/joinfaces/joinfaces/'
                     }
                 }
-
-                versionMapping {
-                    usage('java-api') {
-                        fromResolutionOf('runtimeClasspath')
-                    }
-                    usage('java-runtime') {
-                        fromResolutionResult()
-                    }
-                }
             }
         }
     }
@@ -256,8 +184,8 @@ tasks.register("propertyDocs", org.joinfaces.build.PropertyDocumentation) {
 }
 
 tasks.register("bomDocs", org.joinfaces.build.BomDocumentation) {
-    dependsOn generatePomFileForBomPublication
-    inputFile = generatePomFileForBomPublication.destination
+    dependsOn ":joinfaces-dependencies:generatePomFileForBomPublication"
+    inputFile = tasks.findByPath(":joinfaces-dependencies:generatePomFileForBomPublication").destination
     outputFile = file("src/docs/asciidoc/generated/_versions.adoc")
 }
 
@@ -266,7 +194,7 @@ tasks.named("asciidoctor", org.asciidoctor.gradle.jvm.AsciidoctorTask) {
     dependsOn propertyDocs, bomDocs
     inputs.dir("src/docs/asciidoc")
     attributes revnumber: project.version,
-            'spring-version': dependencyManagement.importedProperties['spring-framework.version'],
+            'spring-version': '6.0.x',
             'spring-boot-version': org.springframework.boot.gradle.plugin.SpringBootPlugin.SPRING_BOOT_VERSION
 }
 
@@ -295,27 +223,6 @@ tasks.register("uploadDocs", io.freefair.gradle.plugins.okhttp.tasks.UploadFile)
 
 publishing {
     publications {
-        bom(MavenPublication) {
-            artifactId = 'joinfaces-dependencies'
-
-            pom {
-                name = 'JoinFaces Dependencies'
-                description = 'JoinFaces Dependencies'
-            }
-
-            pom.withXml {
-                rootProject.subprojects { p ->
-                    if (p.pluginManager.hasPlugin('maven-publish')) {
-                        def depNode = asNode().dependencyManagement.first().get('dependencies').first().appendNode('dependency')
-                        depNode.appendNode('groupId', p.group)
-                        depNode.appendNode('artifactId', p.name)
-                        depNode.appendNode('version', p.version)
-                    }
-                }
-            }
-
-            signing.sign it
-        }
         javadoc(MavenPublication) {
             artifactId = 'joinfaces-parent'
 

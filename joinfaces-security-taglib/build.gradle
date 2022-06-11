@@ -1,3 +1,5 @@
+import org.springframework.boot.gradle.plugin.SpringBootPlugin
+
 apply plugin: "java-library"
 apply plugin: "com.github.spotbugs"
 apply plugin: "checkstyle"
@@ -12,13 +14,15 @@ tasks.named("jar", Jar) {
 }
 
 dependencies {
+    api platform(project(':joinfaces-dependencies'))
+
     api('org.springframework.security:spring-security-taglibs') {
         exclude group: 'org.springframework.security', module: 'spring-security-acl'
     }
 
     compileOnly 'jakarta.faces:jakarta.faces-api'
     compileOnly 'jakarta.servlet:jakarta.servlet-api'
-    compileOnly 'jakarta.el:jakarta.el-api'
+    compileOnly 'org.apache.tomcat.embed:tomcat-embed-el'
 
     //For javadoc references
     compileOnly 'org.springframework.webflow:spring-faces:2.5.1.RELEASE'

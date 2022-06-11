@@ -15,6 +15,9 @@ tasks.named("jar", Jar) {
 gradleLint.rules -= 'transitive-duplicate-dependency-class'
 
 dependencies {
+    api platform(project(':joinfaces-dependencies'))
+    annotationProcessor platform(org.springframework.boot.gradle.plugin.SpringBootPlugin.BOM_COORDINATES)
+
     annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
     annotationProcessor 'org.springframework.boot:spring-boot-autoconfigure-processor'
 
@@ -36,7 +39,6 @@ dependencies {
     optional "org.apache.myfaces.core:myfaces-impl"
     optional 'org.omnifaces:omnifaces'
     optional 'org.primefaces:primefaces::jakarta'
-    optional 'commons-fileupload:commons-fileupload'
     optional 'org.glassfish.jaxb:jaxb-runtime'
     optional 'jakarta.activation:jakarta.activation-api'
 
