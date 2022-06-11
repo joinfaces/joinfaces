@@ -20,6 +20,7 @@ import jakarta.ejb.AccessLocalException;
 import jakarta.faces.application.ViewExpiredException;
 import jakarta.persistence.OptimisticLockException;
 
+import com.github.adminfaces.template.config.AdminConfig;
 import com.github.adminfaces.template.exception.AccessDeniedException;
 import com.github.adminfaces.template.session.AdminServletContextListener;
 import com.github.adminfaces.template.session.AdminSession;
