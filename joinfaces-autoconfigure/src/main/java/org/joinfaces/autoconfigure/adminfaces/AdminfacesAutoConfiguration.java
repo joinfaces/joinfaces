@@ -16,9 +16,9 @@
 
 package org.joinfaces.autoconfigure.adminfaces;
 
-import javax.ejb.AccessLocalException;
-import javax.faces.application.ViewExpiredException;
-import javax.persistence.OptimisticLockException;
+import jakarta.ejb.AccessLocalException;
+import jakarta.faces.application.ViewExpiredException;
+import jakarta.persistence.OptimisticLockException;
 
 import com.github.adminfaces.template.exception.AccessDeniedException;
 import com.github.adminfaces.template.session.AdminServletContextListener;
