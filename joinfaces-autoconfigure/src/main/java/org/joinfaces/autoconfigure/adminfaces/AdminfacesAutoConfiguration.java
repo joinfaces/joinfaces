@@ -74,8 +74,8 @@ public class AdminfacesAutoConfiguration {
 		return result;
 	}
 
-	// AdminSession does not contain @Named.
-	@Bean
+	@Bean("adminSession")
+	@ConditionalOnClass(name = "org.springframework.security.core.context.SecurityContextHolder")
 	@Scope(value = "session", proxyMode = ScopedProxyMode.TARGET_CLASS)
 	public AdminSession adminSession() {
 		return new AdminSession();
