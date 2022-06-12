@@ -104,8 +104,6 @@ public class AdminfacesAutoConfiguration {
 		bean.getErrorPages().add(new ErrorPage(ViewExpiredException.class, "/expired.xhtml"));
 		bean.getErrorPages().add(new ErrorPage(OptimisticLockException.class, "/optimistic.xhtml"));
 
-		bean.getListeners().add(AdminServletContextListener.class);
-
 		return bean;
 	}
 
