@@ -18,6 +18,8 @@ package org.joinfaces.security.taglib;
 
 import java.io.IOException;
 
+import lombok.experimental.UtilityClass;
+
 /**
  * This class provides static methods that are registered as EL functions and
  * available for use in Unified EL expressions in standard Facelets views.
@@ -25,10 +27,8 @@ import java.io.IOException;
  * @author Marcelo Fernandes
  * @see org.springframework.faces.security.FaceletsAuthorizeTagUtils
  */
+@UtilityClass
 public final class FaceletsAuthorizeTagUtils {
-
-	protected FaceletsAuthorizeTagUtils() {
-	}
 
 	/**
 	 * Returns true if the user has all of of the given authorities.

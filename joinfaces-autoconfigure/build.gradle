@@ -30,6 +30,7 @@ dependencies {
     optional 'org.springframework.boot:spring-boot-starter-tomcat'
     optional 'org.springframework.boot:spring-boot-starter-jetty'
     optional 'org.springframework.boot:spring-boot-starter-undertow'
+    optional 'org.springframework.boot:spring-boot-starter-security'
     optional 'org.springframework.session:spring-session-core'
     optional 'org.hibernate:hibernate-core-jakarta'
     optional 'org.springframework:spring-orm'
@@ -53,6 +54,7 @@ dependencies {
     testImplementation('org.springframework.boot:spring-boot-starter-test') {
         exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
     }
+    testImplementation 'org.springframework.security:spring-security-test'
     testImplementation project(':joinfaces-test')
     testImplementation 'org.apache.tomcat.embed:tomcat-embed-jasper'
     testImplementation 'org.junit.jupiter:junit-jupiter-api'

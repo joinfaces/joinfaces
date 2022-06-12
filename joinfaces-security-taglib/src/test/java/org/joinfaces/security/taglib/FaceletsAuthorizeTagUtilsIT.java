@@ -34,12 +34,6 @@ import static org.assertj.core.api.Assertions.assertThat;
 class FaceletsAuthorizeTagUtilsIT extends JsfIT {
 
 	@Test
-	void testConstructor() {
-		assertThat(new FaceletsAuthorizeTagUtils())
-			.isNotNull();
-	}
-
-	@Test
 	@WithMockUser
 	void testAnonymous() throws IOException {
 		assertThat(FaceletsAuthorizeTagUtils.isAnonymous()).isFalse();
