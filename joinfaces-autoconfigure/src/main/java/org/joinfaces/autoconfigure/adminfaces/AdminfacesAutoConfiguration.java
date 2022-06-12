@@ -22,7 +22,6 @@ import jakarta.persistence.OptimisticLockException;
 
 import com.github.adminfaces.template.config.AdminConfig;
 import com.github.adminfaces.template.exception.AccessDeniedException;
-import com.github.adminfaces.template.session.AdminServletContextListener;
 import com.github.adminfaces.template.session.AdminSession;
 import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
