@@ -28,7 +28,7 @@ dependencies {
         api 'jakarta.ejb:jakarta.ejb-api:4.0.1'
 
         //AdminFaces
-        api "com.github.adminfaces:admin-template:1.6.0"
+        api "com.github.adminfaces:admin-template:1.6.1"
         api "com.github.adminfaces:admin-theme:1.6.0"
 
         //Primefaces
