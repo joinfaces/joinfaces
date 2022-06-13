@@ -30,6 +30,7 @@ dependencies {
     optional 'org.springframework.boot:spring-boot-starter-tomcat'
     optional 'org.springframework.boot:spring-boot-starter-jetty'
     optional 'org.springframework.boot:spring-boot-starter-undertow'
+    optional 'org.springframework.boot:spring-boot-starter-security'
     optional 'org.springframework.session:spring-session-core'
     optional 'org.hibernate:hibernate-core-jakarta'
     optional 'org.springframework:spring-orm'
@@ -42,12 +43,18 @@ dependencies {
     optional 'org.glassfish.jaxb:jaxb-runtime'
     optional 'jakarta.activation:jakarta.activation-api'
 
+    compileOnly 'com.github.adminfaces:admin-template'
+    optional 'com.github.adminfaces:admin-template'
+    optional 'com.github.adminfaces:admin-theme'
+    optional 'jakarta.ejb:jakarta.ejb-api'
+
     optional 'org.apache.myfaces.tobago:tobago-core'
     optional 'org.apache.myfaces.tobago:tobago-theme-standard'
 
     testImplementation('org.springframework.boot:spring-boot-starter-test') {
         exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
     }
+    testImplementation 'org.springframework.security:spring-security-test'
     testImplementation project(':joinfaces-test')
     testImplementation 'org.apache.tomcat.embed:tomcat-embed-jasper'
     testImplementation 'org.junit.jupiter:junit-jupiter-api'

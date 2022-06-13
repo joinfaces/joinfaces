@@ -1,4 +1,5 @@
 org.joinfaces.autoconfigure.JoinfacesAutoConfiguration
+org.joinfaces.autoconfigure.adminfaces.AdminfacesAutoConfiguration
 org.joinfaces.autoconfigure.faces.JakartaFaces3AutoConfiguration
 org.joinfaces.autoconfigure.faces.FacesServletAutoConfiguration
 org.joinfaces.autoconfigure.javaxfaces.JsfBeansAutoConfiguration
