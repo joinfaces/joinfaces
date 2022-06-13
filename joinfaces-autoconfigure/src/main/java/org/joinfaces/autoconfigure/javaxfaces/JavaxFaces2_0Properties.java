@@ -32,10 +32,12 @@ import javax.faces.view.facelets.TagDecorator;
 import javax.faces.webapp.FacesServlet;
 
 import lombok.Data;
+import lombok.Getter;
 import org.joinfaces.autoconfigure.servlet.initparams.ServletContextInitParameter;
 import org.joinfaces.autoconfigure.servlet.initparams.ServletContextInitParameterProperties;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.boot.context.properties.DeprecatedConfigurationProperty;
 import org.springframework.boot.context.properties.NestedConfigurationProperty;
 
 /**
@@ -173,6 +175,7 @@ public class JavaxFaces2_0Properties implements ServletContextInitParameterPrope
 	 * An implementation of javax.faces.view.facelets.ResourceResolver.
 	 * See javadoc for details.
 	 */
+	@Deprecated
 	@ServletContextInitParameter(ResourceResolver.FACELETS_RESOURCE_RESOLVER_PARAM_NAME)
 	private Class<? extends ResourceResolver> faceletsResourceResolver;
 
