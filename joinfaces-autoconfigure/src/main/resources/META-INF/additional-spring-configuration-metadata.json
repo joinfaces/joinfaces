@@ -115,6 +115,18 @@
       ]
     },
     {
+      "name": "joinfaces.jsf.facelets-resource-resolver",
+      "providers": [
+        {
+          "name": "class-reference",
+          "parameters": {
+            "target": "jakarta.faces.view.facelets.ResourceResolver",
+            "concrete": true
+          }
+        }
+      ]
+    },
+    {
       "name": "joinfaces.mojarra.disable-unicode-escaping",
       "values": [
         {

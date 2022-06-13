@@ -33,7 +33,6 @@ import jakarta.faces.event.PhaseListener;
 import jakarta.faces.lifecycle.ClientWindow;
 import jakarta.faces.push.PushContext;
 import jakarta.faces.validator.BeanValidator;
-import jakarta.faces.view.facelets.ResourceResolver;
 import jakarta.faces.view.facelets.TagDecorator;
 import jakarta.faces.webapp.FacesServlet;
 
@@ -50,6 +49,7 @@ import org.springframework.boot.context.properties.NestedConfigurationProperty;
  * @see <a href="https://jakarta.ee/specifications/faces/3.0/jakarta-faces-3.0.html#a6088">https://jakarta.ee/specifications/faces/3.0/jakarta-faces-3.0.html#a6088</a>
  */
 @Data
+@SuppressWarnings("PMD.AvoidDuplicateLiterals")
 @ConfigurationProperties("joinfaces.jsf")
 public class JakartaFaces3Properties implements ServletContextInitParameterProperties {
 
@@ -100,6 +100,7 @@ public class JakartaFaces3Properties implements ServletContextInitParameterPrope
 	 *
 	 * @see ViewHandler#DEFAULT_SUFFIX_PARAM_NAME
 	 */
+	@Deprecated(forRemoval = true, since = "5.0.0")
 	@ServletContextInitParameter(value = ViewHandler.DEFAULT_SUFFIX_PARAM_NAME, listSeparator = " ")
 	private String defaultSuffix;
 
@@ -108,7 +109,8 @@ public class JakartaFaces3Properties implements ServletContextInitParameterPrope
 	 * Any behavior specified in Default ViewDeclarationLanguage Implementation and implemented in the default ViewHandler that pertains to handling requests for pages authored in the Jakarta Server Faces View Declaration Language must not be executed by the runtime.
 	 * For backward compatibility with previous versions of Facelets, the value DISABLE_FACELET_JSF_VIEWHANDLER must be supported.
 	 */
-	@ServletContextInitParameter(ViewHandler.DISABLE_FACELET_JSF_VIEWHANDLER_PARAM_NAME)
+	@Deprecated(forRemoval = true, since = "5.0.0")
+	@ServletContextInitParameter("jakarta.faces.DISABLE_FACELET_JSF_VIEWHANDLER")
 	private Boolean disableFaceletJsfViewhandler;
 
 	/**
@@ -156,8 +158,9 @@ public class JakartaFaces3Properties implements ServletContextInitParameterPrope
 	 * An implementation of javax.faces.view.facelets.ResourceResolver.
 	 * See javadoc for details.
 	 */
-	@ServletContextInitParameter(ResourceResolver.FACELETS_RESOURCE_RESOLVER_PARAM_NAME)
-	private Class<? extends ResourceResolver> faceletsResourceResolver;
+	@Deprecated(forRemoval = true, since = "5.0.0")
+	@ServletContextInitParameter("jakarta.faces.FACELETS_RESOURCE_RESOLVER")
+	private Class<?> faceletsResourceResolver;
 
 	/**
 	 * If true, strip XML comments out of Facelets before delivering to the
@@ -198,7 +201,8 @@ public class JakartaFaces3Properties implements ServletContextInitParameterPrope
 	 * {@link UIComponent#CURRENT_COMPOSITE_COMPONENT} method is not honored. If this
 	 * parameter is set to true, the contract is honored.
 	 */
-	@ServletContextInitParameter(UIComponent.HONOR_CURRENT_COMPONENT_ATTRIBUTES_PARAM_NAME)
+	@Deprecated(forRemoval = true, since = "5.0.0")
+	@ServletContextInitParameter("jakarta.faces.HONOR_CURRENT_COMPONENT_ATTRIBUTES")
 	private Boolean honorCurrentComponentAttributes;
 
 	/**
