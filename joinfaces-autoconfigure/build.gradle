@@ -49,7 +49,9 @@ dependencies {
     optional 'org.glassfish.jaxb:jaxb-runtime'
     optional 'javax.activation:javax.activation-api'
 
-    optional 'com.github.adminfaces:admin-template::javax'
+    optional('com.github.adminfaces:admin-template::javax') {
+        exclude group: 'org.primefaces', module: 'primefaces'
+    }
     optional 'jakarta.ejb:jakarta.ejb-api'
 
     optional 'org.apache.myfaces.tobago:tobago-core'

@@ -6,6 +6,7 @@ dependencies {
     api project(':joinfaces-starters:omnifaces1-spring-boot-starter')
     api('com.github.adminfaces:admin-template::javax') {
         exclude group: "org.omnifaces", module: 'omnifaces'
+        exclude group: 'org.primefaces', module: 'primefaces'
     }
     api 'javax.persistence:javax.persistence-api'
     api 'jakarta.ejb:jakarta.ejb-api'
