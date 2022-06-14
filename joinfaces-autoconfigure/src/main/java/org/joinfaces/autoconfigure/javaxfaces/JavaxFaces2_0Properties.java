@@ -32,12 +32,10 @@ import javax.faces.view.facelets.TagDecorator;
 import javax.faces.webapp.FacesServlet;
 
 import lombok.Data;
-import lombok.Getter;
 import org.joinfaces.autoconfigure.servlet.initparams.ServletContextInitParameter;
 import org.joinfaces.autoconfigure.servlet.initparams.ServletContextInitParameterProperties;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
-import org.springframework.boot.context.properties.DeprecatedConfigurationProperty;
 import org.springframework.boot.context.properties.NestedConfigurationProperty;
 
 /**
