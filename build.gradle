@@ -149,6 +149,23 @@ allprojects {
             useJUnitPlatform()
         }
 
+        plugins.withId("io.freefair.maven-publish-java") {
+            publishing {
+                publications {
+                    mavenJava(MavenPublication) {
+                        versionMapping {
+                            usage('java-api') {
+                                fromResolutionOf('runtimeClasspath')
+                            }
+                            usage('java-runtime') {
+                                fromResolutionResult()
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
         afterEvaluate { p ->
             tasks.named('jar') {
                 manifest {
@@ -237,10 +254,6 @@ allprojects {
                     }
                 }
             }
-        }
-
-        tasks.withType(GenerateModuleMetadata) {
-            enabled = false
         }
     }
 }
