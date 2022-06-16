@@ -23,39 +23,31 @@ import java.util.Collection;
 
 import jakarta.faces.context.ExternalContext;
 
+import lombok.NoArgsConstructor;
 import org.apache.myfaces.spi.FacesConfigResourceProvider;
+import org.joinfaces.FacesContextUtils;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.Resource;
-import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
-import org.springframework.core.io.support.ResourcePatternResolver;
+import org.springframework.web.context.WebApplicationContext;
 
 /**
  * @author Lars Grefer
  */
+@NoArgsConstructor
 public class SpringFacesConfigResourceProvider extends FacesConfigResourceProvider {
-
-	private final ResourcePatternResolver resourcePatternResolver;
-
-	public SpringFacesConfigResourceProvider() {
-		this(new PathMatchingResourcePatternResolver());
-	}
-
-	@Autowired
-	public SpringFacesConfigResourceProvider(ResourcePatternResolver resourcePatternResolver) {
-		this.resourcePatternResolver = resourcePatternResolver;
-	}
 
 	@Override
 	public Collection<URL> getMetaInfConfigurationResources(ExternalContext context) throws IOException {
 
+		WebApplicationContext applicationContext = FacesContextUtils.getRequiredWebApplicationContext(context);
+
 		Collection<URL> urls = new ArrayList<>();
 
-		for (Resource resource : resourcePatternResolver.getResources("classpath*:META-INF/faces-config.xml")) {
+		for (Resource resource : applicationContext.getResources("classpath*:META-INF/faces-config.xml")) {
 			urls.add(resource.getURL());
 		}
 
-		for (Resource resource : resourcePatternResolver.getResources("classpath*:META-INF/*.faces-config.xml")) {
+		for (Resource resource : applicationContext.getResources("classpath*:META-INF/*.faces-config.xml")) {
 			urls.add(resource.getURL());
 		}
 

@@ -24,34 +24,25 @@ import java.util.List;
 
 import jakarta.faces.context.ExternalContext;
 
+import lombok.NoArgsConstructor;
 import org.apache.myfaces.spi.FaceletConfigResourceProvider;
+import org.joinfaces.FacesContextUtils;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.Resource;
-import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
-import org.springframework.core.io.support.ResourcePatternResolver;
-import org.springframework.web.context.support.WebApplicationContextUtils;
+import org.springframework.web.context.WebApplicationContext;
 
 /**
  * @author Lars Grefer
  */
+@NoArgsConstructor
 public class SpringFaceletConfigResourceProvider extends FaceletConfigResourceProvider {
-
-	private final ResourcePatternResolver resourcePatternResolver;
-
-	public SpringFaceletConfigResourceProvider() {
-		this(new PathMatchingResourcePatternResolver());
-	}
-
-	@Autowired
-	public SpringFaceletConfigResourceProvider(ResourcePatternResolver resourcePatternResolver) {
-		this.resourcePatternResolver = resourcePatternResolver;
-	}
 
 	@Override
 	public Collection<URL> getFaceletTagLibConfigurationResources(ExternalContext context) throws IOException {
 
-		Resource[] resources = this.resourcePatternResolver.getResources("classpath*:/META-INF/*.taglib.xml");
+		WebApplicationContext applicationContext = FacesContextUtils.getRequiredWebApplicationContext(context);
+
+		Resource[] resources = applicationContext.getResources("classpath*:/META-INF/*.taglib.xml");
 
 		List<URL> urls = new ArrayList<>(resources.length);
 		for (Resource resource : resources) {

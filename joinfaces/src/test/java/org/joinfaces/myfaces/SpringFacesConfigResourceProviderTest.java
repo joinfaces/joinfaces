@@ -21,26 +21,43 @@ import java.net.URL;
 import java.util.Collection;
 
 import jakarta.faces.context.ExternalContext;
+import jakarta.servlet.ServletContext;
 
 import org.apache.myfaces.config.DefaultFacesConfigResourceProvider;
 import org.apache.myfaces.spi.FacesConfigResourceProvider;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import org.springframework.mock.web.MockServletContext;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.util.StopWatch;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
+@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.MOCK)
 class SpringFacesConfigResourceProviderTest {
 
-	FacesConfigResourceProvider provider = new SpringFacesConfigResourceProvider();
-	FacesConfigResourceProvider defaultProvider = new DefaultFacesConfigResourceProvider();
+	@Autowired
+	private ServletContext servletContext;
+
+	private FacesConfigResourceProvider springProvider;
+	private FacesConfigResourceProvider defaultProvider;
+	private ExternalContext externalContext;
+
+	@BeforeEach
+	void init() {
+		this.springProvider = new SpringFacesConfigResourceProvider();
+		this.defaultProvider = new DefaultFacesConfigResourceProvider();
+
+		this.externalContext = mock(ExternalContext.class);
+		when(this.externalContext.getContext()).thenReturn(this.servletContext);
+	}
 
 	@Test
 	void test() throws IOException {
-		Collection<URL> resources = provider.getMetaInfConfigurationResources(null);
+		Collection<URL> resources = this.springProvider.getMetaInfConfigurationResources(this.externalContext);
 
 		assertThat(resources).isNotEmpty();
 		assertThat(resources).anyMatch(u -> u.toString().endsWith("test.faces-config.xml"));
@@ -48,30 +65,28 @@ class SpringFacesConfigResourceProviderTest {
 
 	@Test
 	void test_compare() throws IOException {
-		ExternalContext externalContext = mock(ExternalContext.class);
-		when(externalContext.getContext()).thenReturn(new MockServletContext());
 
-		Collection<URL> actual = provider.getMetaInfConfigurationResources(externalContext);
-		Collection<URL> expected = defaultProvider.getMetaInfConfigurationResources(externalContext);
+		Collection<URL> actual = this.springProvider.getMetaInfConfigurationResources(this.externalContext);
+		Collection<URL> expected = this.defaultProvider.getMetaInfConfigurationResources(this.externalContext);
 
 		assertThat(actual).containsExactlyInAnyOrderElementsOf(expected);
 
 
 		for (int i = 0; i < 50; i++) {
-			provider.getMetaInfConfigurationResources(externalContext);
-			defaultProvider.getMetaInfConfigurationResources(externalContext);
+			this.springProvider.getMetaInfConfigurationResources(this.externalContext);
+			this.defaultProvider.getMetaInfConfigurationResources(this.externalContext);
 		}
 
 		StopWatch stopWatch = new StopWatch();
-		stopWatch.start("classgraph");
+		stopWatch.start("spring");
 		for (int i = 0; i < 100; i++) {
-			provider.getMetaInfConfigurationResources(externalContext);
+			this.springProvider.getMetaInfConfigurationResources(this.externalContext);
 		}
 		stopWatch.stop();
 
 		stopWatch.start("default");
 		for (int i = 0; i < 100; i++) {
-			defaultProvider.getMetaInfConfigurationResources(externalContext);
+			this.defaultProvider.getMetaInfConfigurationResources(this.externalContext);
 		}
 		stopWatch.stop();
 

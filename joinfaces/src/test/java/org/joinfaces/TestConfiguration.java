@@ -14,10 +14,11 @@
  * limitations under the License.
  */
 
-package org.joinfaces.primefaces;
+package org.joinfaces;
 
+import org.springframework.boot.SpringBootConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class PrimfacesTestApplication {
+public class TestConfiguration {
 }
