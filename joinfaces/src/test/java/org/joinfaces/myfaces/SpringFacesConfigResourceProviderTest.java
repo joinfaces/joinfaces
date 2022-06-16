@@ -36,24 +36,10 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
-@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.MOCK)
-class SpringFacesConfigResourceProviderTest {
+class SpringFacesConfigResourceProviderTest extends MyFacesSpiTest {
 
-	@Autowired
-	private ServletContext servletContext;
-
-	private FacesConfigResourceProvider springProvider;
-	private FacesConfigResourceProvider defaultProvider;
-	private ExternalContext externalContext;
-
-	@BeforeEach
-	void init() {
-		this.springProvider = new SpringFacesConfigResourceProvider();
-		this.defaultProvider = new DefaultFacesConfigResourceProvider();
-
-		this.externalContext = mock(ExternalContext.class);
-		when(this.externalContext.getContext()).thenReturn(this.servletContext);
-	}
+	private FacesConfigResourceProvider springProvider = new SpringFacesConfigResourceProvider();
+	private FacesConfigResourceProvider defaultProvider = new DefaultFacesConfigResourceProvider();
 
 	@Test
 	void test() throws IOException {

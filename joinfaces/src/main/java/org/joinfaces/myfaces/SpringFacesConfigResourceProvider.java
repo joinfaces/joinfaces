@@ -26,6 +26,7 @@ import jakarta.faces.context.ExternalContext;
 import lombok.NoArgsConstructor;
 import org.apache.myfaces.spi.FacesConfigResourceProvider;
 import org.joinfaces.FacesContextUtils;
+import org.joinfaces.SpiUtils;
 
 import org.springframework.core.io.Resource;
 import org.springframework.web.context.WebApplicationContext;
@@ -41,16 +42,10 @@ public class SpringFacesConfigResourceProvider extends FacesConfigResourceProvid
 
 		WebApplicationContext applicationContext = FacesContextUtils.getRequiredWebApplicationContext(context);
 
-		Collection<URL> urls = new ArrayList<>();
-
-		for (Resource resource : applicationContext.getResources("classpath*:META-INF/faces-config.xml")) {
-			urls.add(resource.getURL());
+		Collection<URL> result = new ArrayList<>();
+		for (Resource resource : SpiUtils.getFacesConfigs(applicationContext)) {
+			result.add(resource.getURL());
 		}
-
-		for (Resource resource : applicationContext.getResources("classpath*:META-INF/*.faces-config.xml")) {
-			urls.add(resource.getURL());
-		}
-
-		return urls;
+		return result;
 	}
 }

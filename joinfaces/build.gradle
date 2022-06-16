@@ -28,8 +28,8 @@ dependencies {
     optional 'org.springframework:spring-web'
     optional 'org.springframework.boot:spring-boot'
 
-    optional "org.apache.myfaces.core:myfaces-api"
     optional "org.apache.myfaces.core:myfaces-impl"
+    optional "org.glassfish:jakarta.faces"
 
     optional 'org.springframework.boot:spring-boot-starter-tomcat'
     optional 'org.springframework.boot:spring-boot-starter-jetty'
