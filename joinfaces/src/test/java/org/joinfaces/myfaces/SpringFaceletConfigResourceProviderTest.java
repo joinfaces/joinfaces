@@ -21,21 +21,53 @@ import java.net.URL;
 import java.util.Collection;
 
 import org.apache.myfaces.spi.FaceletConfigResourceProvider;
-import org.junit.jupiter.api.BeforeEach;
+import org.apache.myfaces.view.facelets.compiler.DefaultFaceletConfigResourceProvider;
 import org.junit.jupiter.api.Test;
 
+import org.springframework.util.StopWatch;
+
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
 
 class SpringFaceletConfigResourceProviderTest extends MyFacesSpiTest {
 
-	FaceletConfigResourceProvider provider = new SpringFaceletConfigResourceProvider();
+	private FaceletConfigResourceProvider springProvider = new SpringFaceletConfigResourceProvider();
+	private FaceletConfigResourceProvider defaultProvider = new DefaultFaceletConfigResourceProvider();
 
 	@Test
 	void getFaceletTagLibConfigurationResources() throws IOException {
 
-		Collection<URL> resources = this.provider.getFaceletTagLibConfigurationResources(externalContext);
+		Collection<URL> resources = this.springProvider.getFaceletTagLibConfigurationResources(this.externalContext);
 
 		assertThat(resources).isNotEmpty();
+	}
+
+	@Test
+	void test_compare() throws IOException {
+
+		Collection<URL> actual = this.springProvider.getFaceletTagLibConfigurationResources(this.externalContext);
+		Collection<URL> expected = this.defaultProvider.getFaceletTagLibConfigurationResources(this.externalContext);
+
+		assertThat(actual).containsExactlyInAnyOrderElementsOf(expected);
+
+
+		for (int i = 0; i < 50; i++) {
+			this.springProvider.getFaceletTagLibConfigurationResources(this.externalContext);
+			this.defaultProvider.getFaceletTagLibConfigurationResources(this.externalContext);
+		}
+
+		StopWatch stopWatch = new StopWatch();
+		stopWatch.start("spring");
+		for (int i = 0; i < 100; i++) {
+			this.springProvider.getFaceletTagLibConfigurationResources(this.externalContext);
+		}
+		stopWatch.stop();
+
+		stopWatch.start("default");
+		for (int i = 0; i < 100; i++) {
+			this.defaultProvider.getFaceletTagLibConfigurationResources(this.externalContext);
+		}
+		stopWatch.stop();
+
+		System.out.println(stopWatch.prettyPrint());
 	}
 }

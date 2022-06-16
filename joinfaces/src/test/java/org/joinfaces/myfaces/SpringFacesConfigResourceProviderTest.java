@@ -20,21 +20,13 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.Collection;
 
-import jakarta.faces.context.ExternalContext;
-import jakarta.servlet.ServletContext;
-
 import org.apache.myfaces.config.DefaultFacesConfigResourceProvider;
 import org.apache.myfaces.spi.FacesConfigResourceProvider;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.util.StopWatch;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
 
 class SpringFacesConfigResourceProviderTest extends MyFacesSpiTest {
 
