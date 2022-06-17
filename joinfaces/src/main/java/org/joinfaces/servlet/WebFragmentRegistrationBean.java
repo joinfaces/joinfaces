@@ -22,22 +22,10 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
-import io.undertow.servlet.api.DeploymentInfo;
-import io.undertow.servlet.api.ListenerInfo;
 import lombok.Getter;
-import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.catalina.Context;
-import org.eclipse.jetty.webapp.AbstractConfiguration;
-import org.eclipse.jetty.webapp.Configuration;
-import org.eclipse.jetty.webapp.WebAppContext;
 
-import org.springframework.boot.web.embedded.jetty.JettyServletWebServerFactory;
-import org.springframework.boot.web.embedded.tomcat.TomcatContextCustomizer;
-import org.springframework.boot.web.embedded.tomcat.TomcatServletWebServerFactory;
-import org.springframework.boot.web.embedded.undertow.UndertowDeploymentInfoCustomizer;
-import org.springframework.boot.web.embedded.undertow.UndertowServletWebServerFactory;
 import org.springframework.boot.web.server.ErrorPage;
 import org.springframework.boot.web.server.WebServerFactoryCustomizer;
 import org.springframework.boot.web.servlet.server.ConfigurableServletWebServerFactory;
@@ -53,6 +41,7 @@ import org.springframework.boot.web.servlet.server.ConfigurableServletWebServerF
  * restrictions of Section 4.4 of the Servlet Specification.
  *
  * @author Lars Grefer
+ * @see ServletContextListenerUtil
  */
 @Slf4j
 @Getter
@@ -68,75 +57,11 @@ public class WebFragmentRegistrationBean implements WebServerFactoryCustomizer<C
 	@Override
 	public void customize(ConfigurableServletWebServerFactory factory) {
 
-		if (factory instanceof TomcatServletWebServerFactory) {
-			((TomcatServletWebServerFactory) factory).addContextCustomizers(new TomcatListenerAdder(this.listeners));
-		}
-		else if (factory instanceof JettyServletWebServerFactory) {
-			((JettyServletWebServerFactory) factory).addConfigurations(new JettyListenerAdder(this.listeners));
-		}
-		else if (factory instanceof UndertowServletWebServerFactory) {
-			((UndertowServletWebServerFactory) factory).addDeploymentInfoCustomizers(new UndertowListenerAdder(this.listeners));
-		}
-		else {
-			log.warn("Unkown WebServerFactory implementation: {}", factory.getClass());
-			factory.addInitializers(servletContext -> this.listeners.forEach(servletContext::addListener));
-		}
+		ServletContextListenerUtil.addListeners(factory, this.listeners);
 
 		factory.addInitializers(servletContext -> this.contextParams.forEach(servletContext::setInitParameter));
 
 		this.errorPages.forEach(factory::addErrorPages);
-	}
-
-	/**
-	 * This {@link TomcatContextCustomizer} adds listeners to the servlet-context in a non-programmatic way,
-	 * so they aren't affected by the restrictions for programmatically registered listeners of Section 4.4
-	 * of the Servlet Specification.
-	 */
-	@RequiredArgsConstructor
-	public static class TomcatListenerAdder implements TomcatContextCustomizer {
-
-		private final List<Class<? extends EventListener>> listeners;
-
-		@Override
-		public void customize(Context context) {
-			this.listeners.forEach(listener ->
-				context.addApplicationListener(listener.getName())
-			);
-		}
-	}
-
-	/**
-	 * This {@link Configuration} adds listeners to the servlet-context in a non-programmatic way,
-	 * so they aren't affected by the restrictions for programmatically registered listeners of Section 4.4
-	 * of the Servlet Specification.
-	 */
-	@RequiredArgsConstructor
-	public static class JettyListenerAdder extends AbstractConfiguration {
-
-		private final List<Class<? extends EventListener>> listeners;
-
-		@Override
-		public void configure(WebAppContext context) throws Exception {
-			for (Class<? extends EventListener> listener : this.listeners) {
-				context.addEventListener(listener.getDeclaredConstructor().newInstance());
-			}
-		}
-	}
-
-	/**
-	 * This {@link UndertowDeploymentInfoCustomizer} adds listeners to the servlet-context in a non-programmatic way,
-	 * so they aren't affected by the restrictions for programmatically registered listeners of Section 4.4
-	 * of the Servlet Specification.
-	 */
-	@RequiredArgsConstructor
-	public static class UndertowListenerAdder implements UndertowDeploymentInfoCustomizer {
-
-		private final List<Class<? extends EventListener>> listeners;
-
-		@Override
-		public void customize(DeploymentInfo deploymentInfo) {
-			this.listeners.forEach(listener -> deploymentInfo.addListener(new ListenerInfo(listener, false)));
-		}
 	}
 
 }

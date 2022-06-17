@@ -25,7 +25,6 @@ import jakarta.servlet.ServletContainerInitializer;
 import jakarta.servlet.annotation.HandlesTypes;
 
 import io.github.classgraph.ClassGraph;
-import io.github.classgraph.ClassInfoList;
 import io.github.classgraph.ScanResult;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
@@ -102,7 +101,9 @@ public class ServletContainerInitializerRegistrationBean<T extends ServletContai
 
 		// Only scan for Annotations if we have to
 		if (Arrays.stream(handledTypes).anyMatch(Class::isAnnotation)) {
-			classGraph = classGraph.enableAnnotationInfo();
+			classGraph = classGraph.enableAnnotationInfo()
+					.enableMethodInfo()
+					.enableFieldInfo();
 		}
 
 		classGraph = classGraph.enableExternalClasses()
@@ -122,17 +123,17 @@ public class ServletContainerInitializerRegistrationBean<T extends ServletContai
 			stopWatch.start("collect results");
 
 			for (Class<?> handledType : handledTypes) {
-				ClassInfoList classInfos;
 				if (handledType.isAnnotation()) {
-					classInfos = scanResult.getClassesWithAnnotation(handledType.getName());
+					classes.addAll(scanResult.getClassesWithAnnotation(handledType.getName()).loadClasses());
+					classes.addAll(scanResult.getClassesWithMethodAnnotation(handledType.getName()).loadClasses());
+					classes.addAll(scanResult.getClassesWithFieldAnnotation(handledType.getName()).loadClasses());
 				}
 				else if (handledType.isInterface()) {
-					classInfos = scanResult.getClassesImplementing(handledType.getName());
+					classes.addAll(scanResult.getClassesImplementing(handledType).loadClasses());
 				}
 				else {
-					classInfos = scanResult.getSubclasses(handledType.getName());
+					classes.addAll(scanResult.getSubclasses(handledType.getName()).loadClasses());
 				}
-				classes.addAll(classInfos.loadClasses());
 			}
 
 			handleScanResult(scanResult);

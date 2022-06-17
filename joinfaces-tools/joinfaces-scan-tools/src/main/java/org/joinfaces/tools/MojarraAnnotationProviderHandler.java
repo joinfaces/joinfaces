@@ -16,18 +16,16 @@
 
 package org.joinfaces.tools;
 
-
 /**
  * {@link ScanResultHandler} for the {@link org.apache.myfaces.spi.AnnotationProvider}-SPI.
  *
  * @author Lars Grefer
  */
-public class MyFacesAnnotationProviderHandler extends FacesAnnotationProviderHandler {
+public class MojarraAnnotationProviderHandler extends FacesAnnotationProviderHandler {
 
-	private static final String MYFACES_ANNOTATION_PROVIDER = "org.apache.myfaces.spi.AnnotationProvider";
+	private static final String MOJARRA_ANNOTATION_PROVIDER = "com.sun.faces.spi.AnnotationProvider";
 
-	public MyFacesAnnotationProviderHandler() {
-		super(MYFACES_ANNOTATION_PROVIDER);
+	public MojarraAnnotationProviderHandler() {
+		super(MOJARRA_ANNOTATION_PROVIDER);
 	}
-
 }
