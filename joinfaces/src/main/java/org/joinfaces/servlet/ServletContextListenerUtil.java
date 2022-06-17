@@ -57,14 +57,14 @@ public class ServletContextListenerUtil {
 	 * @param listeners The listeners to add.
 	 */
 	public static void addListeners(ConfigurableServletWebServerFactory factory, Collection<Class<? extends EventListener>> listeners) {
-		if (factory instanceof TomcatServletWebServerFactory) {
-			((TomcatServletWebServerFactory) factory).addContextCustomizers(new TomcatListenerAdder(listeners));
+		if (factory instanceof TomcatServletWebServerFactory tomcatFactory) {
+			tomcatFactory.addContextCustomizers(new TomcatListenerAdder(listeners));
 		}
-		else if (factory instanceof JettyServletWebServerFactory) {
-			((JettyServletWebServerFactory) factory).addConfigurations(new JettyListenerAdder(listeners));
+		else if (factory instanceof JettyServletWebServerFactory jettyFactory) {
+			jettyFactory.addConfigurations(new JettyListenerAdder(listeners));
 		}
-		else if (factory instanceof UndertowServletWebServerFactory) {
-			((UndertowServletWebServerFactory) factory).addDeploymentInfoCustomizers(new UndertowListenerAdder(listeners));
+		else if (factory instanceof UndertowServletWebServerFactory undertowFactory) {
+			undertowFactory.addDeploymentInfoCustomizers(new UndertowListenerAdder(listeners));
 		}
 		else {
 			log.warn("Unkown WebServerFactory implementation: {}", factory.getClass());
