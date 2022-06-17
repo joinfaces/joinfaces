@@ -119,7 +119,7 @@ public class MockWebResourceRoot implements WebResourceRoot {
 
 	@Override
 	public WebResourceSet[] getJarResources() {
-		return this.jarResources.toArray(new WebResourceSet[this.jarResources.size()]);
+		return this.jarResources.toArray(new WebResourceSet[0]);
 	}
 
 	@Override

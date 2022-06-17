@@ -16,6 +16,7 @@
 
 package org.joinfaces.autoconfigure.adminfaces;
 
+import java.io.Serial;
 import java.io.Serializable;
 
 import lombok.Data;
@@ -37,6 +38,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 @ConfigurationProperties(prefix = "joinfaces.adminfaces")
 public class AdminfacesProperties implements Serializable {
 
+	@Serial
 	private static final long serialVersionUID = 1L;
 
 	/**
@@ -193,6 +195,7 @@ public class AdminfacesProperties implements Serializable {
 	@Data
 	public static class ControlSidebar implements Serializable {
 
+		@Serial
 		private static final long serialVersionUID = 1L;
 
 		/**
