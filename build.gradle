@@ -5,7 +5,7 @@ buildscript {
         maven { url "https://plugins.gradle.org/m2/" }
     }
     dependencies {
-        def freefairGradleVersion = "6.4.3.1"
+        def freefairGradleVersion = "6.5.0.2"
         classpath "io.freefair.gradle:lombok-plugin:$freefairGradleVersion"
         classpath "io.freefair.gradle:maven-plugin:$freefairGradleVersion"
         classpath "io.freefair.gradle:maven-plugin-plugin:$freefairGradleVersion"
