@@ -28,13 +28,6 @@ apply plugin: 'io.freefair.aggregate-jacoco-report'
 allprojects {
     group = 'org.joinfaces'
 
-    repositories {
-        mavenCentral()
-        maven { url 'https://repo.spring.io/milestone' }
-        maven { url 'https://repo.spring.io/snapshot' }
-        maven { url 'https://repository.apache.org/content/repositories/snapshots' }
-    }
-
     apply plugin: 'nebula.lint'
 
     gradleLint {
