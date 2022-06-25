@@ -16,7 +16,6 @@
 
 package org.joinfaces.servlet;
 
-import java.util.EventListener;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicBoolean;
 
@@ -30,12 +29,9 @@ import org.springframework.boot.web.embedded.jetty.JettyServletWebServerFactory;
 import org.springframework.boot.web.embedded.tomcat.TomcatServletWebServerFactory;
 import org.springframework.boot.web.embedded.undertow.UndertowServletWebServerFactory;
 import org.springframework.boot.web.server.WebServer;
-import org.springframework.boot.web.servlet.ServletContextInitializer;
 import org.springframework.boot.web.servlet.server.ConfigurableServletWebServerFactory;
-import org.springframework.boot.web.servlet.server.ServletWebServerFactory;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
 
 class ServletContextListenerUtilTest {
 
@@ -47,8 +43,7 @@ class ServletContextListenerUtilTest {
 
 		ServletContextListenerUtil.addListeners(factory, List.of(TestListener.class));
 
-		test(factory);
-
+		this.test(factory);
 	}
 
 	@Test
@@ -57,8 +52,7 @@ class ServletContextListenerUtilTest {
 
 		ServletContextListenerUtil.addListeners(factory, List.of(TestListener.class));
 
-		test(factory);
-
+		this.test(factory);
 	}
 
 	@Test
@@ -67,8 +61,7 @@ class ServletContextListenerUtilTest {
 
 		ServletContextListenerUtil.addListeners(factory, List.of(TestListener.class));
 
-		test(factory);
-
+		this.test(factory);
 	}
 
 	@SneakyThrows
@@ -79,8 +72,8 @@ class ServletContextListenerUtilTest {
 
 		WebServer webServer = factory.getWebServer(servletContext -> System.out.println("FOO"));
 
+		assertThat(webServer).isNotNull();
 		assertThat(atomicBoolean).isTrue();
-
 	}
 
 	public static class TestListener implements ServletContextListener {

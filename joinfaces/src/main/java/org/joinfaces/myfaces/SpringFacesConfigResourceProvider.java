@@ -29,9 +29,13 @@ import org.joinfaces.FacesContextUtils;
 import org.joinfaces.SpiUtils;
 
 import org.springframework.core.io.Resource;
+import org.springframework.core.io.support.ResourcePatternResolver;
 import org.springframework.web.context.WebApplicationContext;
 
 /**
+ * MyFaces {@link FacesConfigResourceProvider} implementation which uses the current Spring Context
+ * as {@link ResourcePatternResolver} in order to resolve the faces config files.
+ *
  * @author Lars Grefer
  */
 @NoArgsConstructor

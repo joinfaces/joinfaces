@@ -28,10 +28,14 @@ import lombok.SneakyThrows;
 import org.joinfaces.SpiUtils;
 
 import org.springframework.core.io.Resource;
+import org.springframework.core.io.support.ResourcePatternResolver;
 import org.springframework.web.context.WebApplicationContext;
 import org.springframework.web.context.support.WebApplicationContextUtils;
 
 /**
+ * Mojarra {@link FaceletConfigResourceProvider} implementation which uses the current Spring Context
+ * as {@link ResourcePatternResolver} in order to resolve the facelet config files.
+ *
  * @author Lars Grefer
  */
 public class SpringFaceletConfigResourceProvider implements FaceletConfigResourceProvider, ConfigurationResourceProvider {
