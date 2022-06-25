@@ -30,11 +30,6 @@ apply plugin: 'io.freefair.aggregate-jacoco-report'
 allprojects {
     group = 'org.joinfaces'
 
-    repositories {
-        mavenCentral()
-        maven { url 'https://repo.spring.io/milestone' }
-    }
-
     apply plugin: "io.spring.dependency-management"
 
     dependencyManagement {
