@@ -9,7 +9,8 @@ on:
       - 'dependabot**'
 
 jobs:
-  deploy-plugin:
+  deploy-docs:
+    if: github.repository == 'joinfaces/joinfaces'
     runs-on: ubuntu-latest
     env:
       ORG_GRADLE_PROJECT_joinfacesDocsUser: ${{ secrets.JOINFACES_DOCS_USER }}
