@@ -178,6 +178,7 @@ allprojects {
 
     plugins.withId("pmd") {
         pmd {
+            consoleOutput = true
             ruleSetConfig = resources.text.fromFile("$rootDir/config/pmd/pmd-ruleset.xml")
             ruleSets = []
         }
