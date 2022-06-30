@@ -1,8 +1,8 @@
 import org.springframework.boot.gradle.plugin.SpringBootPlugin
 
-apply plugin: "java-gradle-plugin"
-apply plugin: "com.gradle.plugin-publish"
-apply plugin: "maven-publish"
+plugins {
+    id 'com.gradle.plugin-publish' version '1.0.0'
+}
 
 description = "JoinFaces Gradle Plugin"
 
@@ -11,14 +11,20 @@ gradlePlugin {
         joinfaces {
             id = 'org.joinfaces'
             implementationClass = 'org.joinfaces.gradle.JoinfacesPlugin'
+            displayName = 'JoinFaces Gradle plugin'
+            description = 'JoinFaces Gradle Plugin'
         }
         classpathScan {
             id = 'org.joinfaces.classpath-scan'
             implementationClass = 'org.joinfaces.gradle.ClasspathScanPlugin'
+            displayName = 'JoinFaces classpath-scan plugin'
+            description = 'Performs the classpath scan at build-time for a faster application startup.'
         }
         bom {
             id = 'org.joinfaces.dependency-management'
             implementationClass = 'org.joinfaces.gradle.BomPlugin'
+            displayName = 'JoinFaces dependency management plugin'
+            description = 'Adds the joinfaces-dependencies bom to the projects dependency management.'
         }
     }
 }
@@ -27,21 +33,6 @@ pluginBundle {
     website = 'https://github.com/joinfaces/joinfaces'
     vcsUrl = 'https://github.com/joinfaces/joinfaces'
     tags = ['joinfaces', 'jsf']
-
-    plugins {
-        joinfaces {
-            displayName = 'JoinFaces Gradle plugin'
-            description = 'JoinFaces Gradle Plugin'
-        }
-        classpathScan {
-            displayName = 'JoinFaces classpath-scan plugin'
-            description = 'Performs the classpath scan at build-time for a faster application startup.'
-        }
-        bom {
-            displayName = 'JoinFaces dependency management plugin'
-            description = 'Adds the joinfaces-dependencies bom to the projects dependency management.'
-        }
-    }
 }
 
 dependencies {
@@ -49,19 +40,4 @@ dependencies {
 
     api "org.springframework.boot:spring-boot-gradle-plugin:${SpringBootPlugin.SPRING_BOOT_VERSION}"
     api "io.spring.gradle:dependency-management-plugin"
-}
-
-publishing {
-    publications.withType(MavenPublication) {
-        signing.sign it
-    }
-}
-
-afterEvaluate {
-    pluginBundle.plugins.each { plugin ->
-        publishing.publications.getByName("${plugin.name}PluginMarkerMaven") { publication ->
-            publication.pom.name = plugin.displayName
-            publication.pom.description = plugin.description
-        }
-    }
 }
