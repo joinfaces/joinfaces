@@ -21,7 +21,7 @@ dependencies {
         api "org.apache.myfaces.core:myfaces-api:3.0.2"
         api "org.apache.myfaces.core:myfaces-impl:3.0.2"
 
-        api 'io.github.classgraph:classgraph:4.8.147'
+        api 'io.github.classgraph:classgraph:4.8.148'
 
         //Jakarta EE (if not covered by Spring Boot)
         api 'jakarta.enterprise:jakarta.enterprise.cdi-api:3.0.1'
