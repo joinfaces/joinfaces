@@ -16,6 +16,10 @@ subprojects {
         enabled = false
     }
 
+    tasks.withType(Test).configureEach {
+        jvmArgs(["--add-opens=java.base/java.lang=ALL-UNNAMED"])
+    }
+
     dependencies {
         implementation project(":joinfaces-security-taglib")
         implementation 'org.springframework.boot:spring-boot-starter-security'
