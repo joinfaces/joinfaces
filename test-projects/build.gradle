@@ -17,7 +17,9 @@ subprojects {
     }
 
     tasks.withType(Test).configureEach {
-        jvmArgs(["--add-opens=java.base/java.lang=ALL-UNNAMED"])
+        if (JavaVersion.current().java11Compatible) {
+            jvmArgs(["--add-opens=java.base/java.lang=ALL-UNNAMED"])
+        }
     }
 
     dependencies {
