@@ -26,8 +26,8 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 /**
  * Configuration properties for Primefaces 10.0.0.
  *
- * @see <a href="https://primefaces.github.io/primefaces/10_0_0/#/gettingstarted/configuration">PrimeFaces 10</a>
  * @author Melloware
+ * @see <a href="https://primefaces.github.io/primefaces/10_0_0/#/gettingstarted/configuration">PrimeFaces 10</a>
  */
 @Data
 @ConfigurationProperties("joinfaces.primefaces")
