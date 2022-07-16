@@ -6,7 +6,6 @@ There are many JoinFaces Starters available: six basic starters, meta starter, s
 
 While most of the starters can be combined, some starters are mutually exclusive:
 
-- `tomcat-spring-boot-starter`, `jetty-spring-boot-starter` and `undertow-spring-boot-starter`
 - `mojarra-spring-boot-starter` and `myfaces-spring-boot-starter`
 - `omnifaces1-spring-boot-starter` and `omnifaces3-spring-boot-starter`
 
@@ -16,15 +15,6 @@ You can use the table below to discover the starters that fit your needs.
 [%autowidth]
 |===========
 |Starter |Description
-
-|tomcat-spring-boot-starter
-|Basic starter for https://tomcat.apache.org/[Tomcat] servlet container.
-
-|jetty-spring-boot-starter
-|Basic starter for https://www.eclipse.org/jetty[Jetty] servlet container.
-
-|undertow-spring-boot-starter
-|Basic starter for https://undertow.io[Undertow] servlet container.
 
 |mojarra-spring-boot-starter
 |Basic starter for https://javaee.github.io/javaserverfaces-spec/[Mojarra] JSF implementation.
@@ -36,7 +26,7 @@ You can use the table below to discover the starters that fit your needs.
 |Basic starter for https://weld.cdi-spec.org/[Weld] CDI Reference Implementation.
 
 |jsf-spring-boot-starter
-|Meta starter that pulls `tomcat-spring-boot-starter` and `mojarra-spring-boot-starter`.
+|Meta starter that pulls `spring-boot-starter-tomcat` and `mojarra-spring-boot-starter`.
 
 |security-spring-boot-starter
 |Security starter. Pulls `jsf-spring-boot-starter`, `spring-boot-starter-security` and `joinfaces-security-taglib`.

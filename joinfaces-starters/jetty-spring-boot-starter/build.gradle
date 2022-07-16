@@ -1,8 +1,0 @@
-description = 'Jetty Spring Boot Starter'
-tasks.named("jar", Jar) {
-    manifest.attributes('Automatic-Module-Name': 'joinfaces.starter.jetty')
-}
-
-dependencies {
-    api 'org.springframework.boot:spring-boot-starter-jetty'
-}

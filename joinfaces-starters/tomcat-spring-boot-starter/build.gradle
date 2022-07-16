@@ -1,8 +1,0 @@
-description = 'Tomcat Spring Boot Starter'
-tasks.named("jar", Jar) {
-    manifest.attributes('Automatic-Module-Name': 'joinfaces.starter.tomcat')
-}
-
-dependencies {
-    api 'org.springframework.boot:spring-boot-starter-tomcat'
-}
