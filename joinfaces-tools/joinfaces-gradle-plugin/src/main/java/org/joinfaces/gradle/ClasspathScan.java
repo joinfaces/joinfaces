@@ -18,8 +18,6 @@ package org.joinfaces.gradle;
 
 import java.io.IOException;
 
-import lombok.Getter;
-import lombok.Setter;
 import org.gradle.api.DefaultTask;
 import org.gradle.api.file.ConfigurableFileCollection;
 import org.gradle.api.file.DirectoryProperty;
@@ -37,18 +35,16 @@ import org.joinfaces.tools.ClasspathScanner;
  *
  * @author Lars Grefer
  */
-@Getter
-@Setter
 @CacheableTask
-public class ClasspathScan extends DefaultTask {
+public abstract class ClasspathScan extends DefaultTask {
 
 	@Classpath
 	@InputFiles
 	@SkipWhenEmpty
-	private final ConfigurableFileCollection classpath = getProject().files();
+	public abstract ConfigurableFileCollection getClasspath();
 
 	@OutputDirectory
-	private final DirectoryProperty destinationDir = getProject().getObjects().directoryProperty();
+	public abstract DirectoryProperty getDestinationDir();
 
 	@TaskAction
 	public void scanClasses() throws IOException {

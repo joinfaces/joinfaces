@@ -32,20 +32,21 @@ import org.gradle.api.tasks.InputFile;
 import org.gradle.api.tasks.OutputFile;
 import org.gradle.api.tasks.TaskAction;
 
-public class BomDocumentation extends DefaultTask {
+public abstract class BomDocumentation extends DefaultTask {
 
 	@OutputFile
-	private final RegularFileProperty outputFile = getProject().getObjects().fileProperty();
+	public abstract RegularFileProperty getOutputFile();
 
 	@InputFile
-	private final RegularFileProperty inputFile = getProject().getObjects().fileProperty();
+	public abstract RegularFileProperty getInputFile();
 
 	@TaskAction
 	public void generateBomDocumentation() throws IOException, XmlPullParserException {
 		MavenXpp3Reader reader = new MavenXpp3Reader();
-		Model model = reader.read(new FileReader(inputFile.getAsFile().get()));
-
-
+		Model model;
+		try (FileReader fileReader = new FileReader(getInputFile().getAsFile().get())) {
+			model = reader.read(fileReader);
+		}
 
 		try (PrintWriter writer = ResourceGroovyMethods.newPrintWriter(getOutputFile().getAsFile().get(), "UTF-8")) {
 
@@ -69,11 +70,4 @@ public class BomDocumentation extends DefaultTask {
 
 	}
 
-	public RegularFileProperty getOutputFile() {
-		return this.outputFile;
-	}
-
-	public RegularFileProperty getInputFile() {
-		return this.inputFile;
-	}
 }

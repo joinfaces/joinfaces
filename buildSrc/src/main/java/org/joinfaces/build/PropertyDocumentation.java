@@ -39,21 +39,23 @@ import org.springframework.boot.configurationmetadata.ConfigurationMetadataSourc
 /**
  * @author Lars Grefer
  */
-public class PropertyDocumentation extends DefaultTask {
+public abstract class PropertyDocumentation extends DefaultTask {
 
 	@InputFile
-	private final RegularFileProperty inputFile = getProject().getObjects().fileProperty();
+	public abstract RegularFileProperty getInputFile();
 
 	@OutputFile
-	private final RegularFileProperty outputFile = getProject().getObjects().fileProperty();
+	public abstract RegularFileProperty getOutputFile();
 
 	@TaskAction
 	public void generatePropertyDocumentation() throws IOException {
 		ConfigurationMetadataRepository configurationMetadataRepository;
 
-		configurationMetadataRepository = ConfigurationMetadataRepositoryJsonBuilder.create()
-				.withJsonResource(new FileInputStream(getInputFile().getAsFile().get()))
-				.build();
+		try (FileInputStream inputStream = new FileInputStream(getInputFile().getAsFile().get())) {
+			configurationMetadataRepository = ConfigurationMetadataRepositoryJsonBuilder.create()
+					.withJsonResource(inputStream)
+					.build();
+		}
 
 		try (PrintWriter writer = ResourceGroovyMethods.newPrintWriter(getOutputFile().getAsFile().get(), "UTF-8")) {
 
@@ -103,13 +105,5 @@ public class PropertyDocumentation extends DefaultTask {
 		}
 
 		writer.println();
-	}
-
-	public RegularFileProperty getInputFile() {
-		return this.inputFile;
-	}
-
-	public RegularFileProperty getOutputFile() {
-		return this.outputFile;
 	}
 }
