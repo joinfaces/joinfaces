@@ -14,8 +14,10 @@ jobs:
         with:
           java-version: 17
           distribution: 'temurin'
+      - name: Setup Gradle
+        uses: gradle/gradle-build-action@v2
       - name: Publish package
-        run: ./gradlew --no-parallel publishToSonatype publishPlugins uploadDocs closeAndReleaseSonatypeStagingRepository
+        run: ./gradlew -V --no-parallel publishToSonatype publishPlugins uploadDocs closeAndReleaseSonatypeStagingRepository
         env:
           ORG_GRADLE_PROJECT_sonatypeUsername: ${{ secrets.OSSRH_USERNAME }}
           ORG_GRADLE_PROJECT_sonatypePassword: ${{ secrets.OSSRH_PASSWORD }}
