@@ -32,7 +32,7 @@ dependencies {
     optional 'org.springframework.boot:spring-boot-starter-undertow'
     optional 'org.springframework.boot:spring-boot-starter-security'
     optional 'org.springframework.session:spring-session-core'
-    optional 'org.hibernate:hibernate-core-jakarta'
+    optional 'org.hibernate.orm:hibernate-core'
     optional 'org.springframework:spring-orm'
     optional 'jakarta.enterprise:jakarta.enterprise.cdi-api'
     optional 'org.jboss.weld.servlet:weld-servlet-core'
