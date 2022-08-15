@@ -47,7 +47,7 @@ dependencies {
         api 'org.apache.myfaces.tobago:tobago-theme-richmond:6.0.0-SNAPSHOT'
         api 'org.apache.myfaces.tobago:tobago-theme-charlotteville:6.0.0-SNAPSHOT'
 
-        api 'org.omnifaces:omnifaces:4.0-M16'
+        api 'org.omnifaces:omnifaces:4.0-M17'
 
         //JoinFaces
         api project(":joinfaces")
