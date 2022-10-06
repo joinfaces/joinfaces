@@ -24,7 +24,7 @@ dependencies {
         api 'io.github.classgraph:classgraph:4.8.149'
 
         //Jakarta EE (if not covered by Spring Boot)
-        api 'jakarta.enterprise:jakarta.enterprise.cdi-api:3.0.1'
+        api 'jakarta.enterprise:jakarta.enterprise.cdi-api:4.0.1'
         api 'jakarta.ejb:jakarta.ejb-api:4.0.1'
 
         //AdminFaces
