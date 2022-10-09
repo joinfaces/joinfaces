@@ -15,7 +15,7 @@ dependencies {
     constraints {
         //Mojarra
         api 'jakarta.faces:jakarta.faces-api:3.0.0'
-        api 'org.glassfish:jakarta.faces:3.0.2'
+        api 'org.glassfish:jakarta.faces:4.0.0'
 
         //MyFaces
         api "org.apache.myfaces.core:myfaces-api:3.0.2"
