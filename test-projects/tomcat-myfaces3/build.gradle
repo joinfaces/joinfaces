@@ -4,5 +4,5 @@ dependencies {
     implementation(project(':joinfaces-starters:jsf-spring-boot-starter')) {
         exclude module: "mojarra-spring-boot-starter"
     }
-    implementation project(':joinfaces-starters:myfaces-spring-boot-starter')
+    implementation project(':joinfaces-starters:myfaces3-spring-boot-starter')
 }
