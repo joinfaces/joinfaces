@@ -4,7 +4,7 @@ tasks.named("jar", Jar) {
 }
 
 dependencies {
-    api 'org.glassfish:jakarta.faces:4.0.0'
+    api "org.glassfish:jakarta.faces:$mojarra4Version"
 
     api project(':joinfaces-starters:weld-spring-boot-starter')
 

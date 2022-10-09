@@ -18,7 +18,6 @@ package org.joinfaces.autoconfigure.myfaces;
 
 import jakarta.servlet.ServletContainerInitializer;
 
-import org.apache.myfaces.ee.MyFacesContainerInitializer;
 import org.apache.myfaces.webapp.StartupServletContextListener;
 import org.joinfaces.autoconfigure.FacesImplementationAutoConfiguration;
 import org.joinfaces.autoconfigure.faces.JakartaFaces3AutoConfiguration;
@@ -27,7 +26,6 @@ import org.joinfaces.servlet.WebFragmentRegistrationBean;
 import org.springframework.boot.autoconfigure.AutoConfiguration;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
-import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingClass;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnWebApplication;
 import org.springframework.boot.autoconfigure.web.servlet.WebMvcAutoConfiguration;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
@@ -39,22 +37,16 @@ import org.springframework.context.annotation.Bean;
  * @author Marcelo Fernandes
  */
 @AutoConfiguration(before = WebMvcAutoConfiguration.class, after = JakartaFaces3AutoConfiguration.class)
-@EnableConfigurationProperties({MyfacesProperties.class, MyFaces2_3Properties.class})
+@EnableConfigurationProperties({MyFacesProperties.class, MyFaces2_3Properties.class})
 @ConditionalOnClass(StartupServletContextListener.class)
 @ConditionalOnWebApplication(type = ConditionalOnWebApplication.Type.SERVLET)
 @ConditionalOnMissingBean(FacesImplementationAutoConfiguration.class)
 public class MyFacesAutoConfiguration implements FacesImplementationAutoConfiguration {
 
 	@Bean
-	@ConditionalOnMissingClass("org.apache.myfaces.webapp.MyFacesContainerInitializer")
-	public MyFacesInitializerRegistrationBean<?> myFaces3ServletContainerInitializer() {
-		return new MyFacesInitializerRegistrationBean<>(MyFacesContainerInitializer.class);
-	}
-
-	@Bean
-	@ConditionalOnClass(name = "org.apache.myfaces.webapp.MyFacesContainerInitializer")
-	public MyFacesInitializerRegistrationBean<?> myFaces4ServletContainerInitializer() throws ClassNotFoundException {
-		Class<? extends ServletContainerInitializer> clazz = Class.forName("org.apache.myfaces.webapp.MyFacesContainerInitializer").asSubclass(ServletContainerInitializer.class);
+	@ConditionalOnClass(name = "org.apache.myfaces.ee.MyFacesContainerInitializer")
+	public MyFacesInitializerRegistrationBean<?> myFaces3ServletContainerInitializer() throws ClassNotFoundException {
+		Class<? extends ServletContainerInitializer> clazz = Class.forName("org.apache.myfaces.ee.MyFacesContainerInitializer").asSubclass(ServletContainerInitializer.class);
 		return new MyFacesInitializerRegistrationBean<>(clazz);
 	}
 
@@ -70,5 +62,17 @@ public class MyFacesAutoConfiguration implements FacesImplementationAutoConfigur
 		WebFragmentRegistrationBean webFragmentRegistrationBean = new WebFragmentRegistrationBean();
 		webFragmentRegistrationBean.getListeners().add(StartupServletContextListener.class);
 		return webFragmentRegistrationBean;
+	}
+
+	@AutoConfiguration
+	@EnableConfigurationProperties(MyFaces4Properties.class)
+	@ConditionalOnClass(name = "org.apache.myfaces.webapp.MyFacesContainerInitializer")
+	public static class MyFaces4AutoConfiguration {
+
+		@Bean
+		public MyFacesInitializerRegistrationBean<?> myFaces4ServletContainerInitializer() throws ClassNotFoundException {
+			Class<? extends ServletContainerInitializer> clazz = Class.forName("org.apache.myfaces.webapp.MyFacesContainerInitializer").asSubclass(ServletContainerInitializer.class);
+			return new MyFacesInitializerRegistrationBean<>(clazz);
+		}
 	}
 }

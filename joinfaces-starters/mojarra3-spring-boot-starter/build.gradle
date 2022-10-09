@@ -4,7 +4,7 @@ tasks.named("jar", Jar) {
 }
 
 dependencies {
-    api 'org.glassfish:jakarta.faces:3.0.2'
+    api "org.glassfish:jakarta.faces:$mojarra3Version"
 
     runtimeOnly('jakarta.enterprise:jakarta.enterprise.cdi-api') {
         exclude group: 'jakarta.el', module: 'jakarta.el-api'

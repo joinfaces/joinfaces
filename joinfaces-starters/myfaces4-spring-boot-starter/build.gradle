@@ -4,8 +4,8 @@ tasks.named("jar", Jar) {
 }
 
 dependencies {
-    api "org.apache.myfaces.core:myfaces-api:4.0.0-RC1"
-    implementation("org.apache.myfaces.core:myfaces-impl:4.0.0-RC1") {
+    api "org.apache.myfaces.core:myfaces-api"
+    implementation("org.apache.myfaces.core:myfaces-impl") {
         exclude group: 'commons-logging', module: 'commons-logging'
     }
 

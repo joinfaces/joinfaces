@@ -16,15 +16,10 @@
 
 package org.joinfaces.autoconfigure.scopemapping;
 
-import jakarta.faces.bean.ApplicationScoped;
-import jakarta.faces.bean.NoneScoped;
-import jakarta.faces.bean.RequestScoped;
-import jakarta.faces.bean.SessionScoped;
-import jakarta.faces.bean.ViewScoped;
+import jakarta.faces.view.ViewScoped;
 
 import org.joinfaces.viewscope.ViewScope;
 
-import org.springframework.beans.factory.config.ConfigurableBeanFactory;
 import org.springframework.boot.autoconfigure.AutoConfiguration;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
@@ -32,33 +27,27 @@ import org.springframework.boot.autoconfigure.condition.ConditionalOnWebApplicat
 import org.springframework.context.annotation.Bean;
 import org.springframework.core.Ordered;
 import org.springframework.core.env.Environment;
-import org.springframework.web.context.WebApplicationContext;
 
 /**
  * {@link org.springframework.boot.autoconfigure.EnableAutoConfiguration Auto configuration}
- * for {@code javax.faces.bean.*Scoped} annotations support.
+ * for {@link ViewScoped} annotations support.
  *
  * @author Diego Diez
  * @author Lars Grefer
  */
 @AutoConfiguration
-@ConditionalOnClass(RequestScoped.class)
+@ConditionalOnClass(ViewScoped.class)
 @ConditionalOnWebApplication(type = ConditionalOnWebApplication.Type.SERVLET)
-public class JsfScopeAnnotationsAutoConfiguration {
+public class FacesScopeAnnotationsAutoConfiguration {
 
 	@Bean
-	@ConditionalOnProperty(value = "joinfaces.scope-configurer.jsf.enabled", havingValue = "true", matchIfMissing = true)
-	public static CustomScopeAnnotationConfigurer jsfScopeAnnotationsConfigurer(Environment environment) {
+	@ConditionalOnProperty(value = "joinfaces.scope-configurer.faces.enabled", havingValue = "true", matchIfMissing = true)
+	public static CustomScopeAnnotationConfigurer facesScopeAnnotationsConfigurer(Environment environment) {
 		CustomScopeAnnotationConfigurer scopeAnnotationConfigurer = new CustomScopeAnnotationConfigurer();
 
-		scopeAnnotationConfigurer.setOrder(environment.getProperty("joinfaces.scope-configurer.jsf.order", Integer.class, Ordered.LOWEST_PRECEDENCE));
+		scopeAnnotationConfigurer.setOrder(environment.getProperty("joinfaces.scope-configurer.faces.order", Integer.class, Ordered.LOWEST_PRECEDENCE));
 
-		scopeAnnotationConfigurer.addMapping(NoneScoped.class, ConfigurableBeanFactory.SCOPE_PROTOTYPE);
-		scopeAnnotationConfigurer.addMapping(RequestScoped.class, WebApplicationContext.SCOPE_REQUEST);
 		scopeAnnotationConfigurer.addMapping(ViewScoped.class, ViewScope.SCOPE_VIEW);
-		scopeAnnotationConfigurer.addMapping(SessionScoped.class, WebApplicationContext.SCOPE_SESSION);
-		scopeAnnotationConfigurer.addMapping(ApplicationScoped.class, WebApplicationContext.SCOPE_APPLICATION);
-		scopeAnnotationConfigurer.addMapping(jakarta.faces.view.ViewScoped.class, ViewScope.SCOPE_VIEW);
 
 		return scopeAnnotationConfigurer;
 	}

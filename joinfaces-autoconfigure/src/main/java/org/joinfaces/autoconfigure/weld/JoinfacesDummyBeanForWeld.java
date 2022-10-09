@@ -14,11 +14,12 @@
  * limitations under the License.
  */
 
-package org.joinfaces.autoconfigure.scopemapping;
+package org.joinfaces.autoconfigure.weld;
 
-import jakarta.faces.bean.SessionScoped;
+import jakarta.enterprise.context.ApplicationScoped;
+import jakarta.inject.Named;
 
-@SessionScoped
-public class SessionScopedClass {
-
+@Named
+@ApplicationScoped
+public class JoinfacesDummyBeanForWeld {
 }

@@ -23,8 +23,7 @@ import org.springframework.beans.factory.annotation.AnnotatedGenericBeanDefiniti
 import org.springframework.beans.factory.support.RootBeanDefinition;
 import org.springframework.context.annotation.AnnotationConfigUtils;
 import org.springframework.context.support.GenericApplicationContext;
-import org.springframework.core.type.StandardAnnotationMetadata;
-import org.springframework.web.context.WebApplicationContext;
+import org.springframework.core.type.AnnotationMetadata;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -36,10 +35,10 @@ public class JsfCdiToSpringApplicationBeanFactoryPostProcessorIT {
 		AnnotationConfigUtils.registerAnnotationConfigProcessors(acx);
 
 		acx.registerBeanDefinition("viewScopedClass", new AnnotatedGenericBeanDefinition(
-			new StandardAnnotationMetadata(ViewScopedClass.class)));
+			AnnotationMetadata.introspect(ViewScopedClass.class)));
 		acx.registerBeanDefinition("scopedBeansConfiguration", new RootBeanDefinition(
 			ScopedBeansConfiguration.class));
-		acx.addBeanFactoryPostProcessor(JsfScopeAnnotationsAutoConfiguration.jsfScopeAnnotationsConfigurer(acx.getEnvironment()));
+		acx.addBeanFactoryPostProcessor(FacesScopeAnnotationsAutoConfiguration.facesScopeAnnotationsConfigurer(acx.getEnvironment()));
 		acx.addBeanFactoryPostProcessor(CdiScopeAnnotationsAutoConfiguration.cdiScopeAnnotationsConfigurer(acx.getEnvironment()));
 		acx.refresh();
 
@@ -50,34 +49,15 @@ public class JsfCdiToSpringApplicationBeanFactoryPostProcessorIT {
 	}
 
 	@Test
-	public void testSessionScopedClass() {
-		GenericApplicationContext acx = new GenericApplicationContext();
-		AnnotationConfigUtils.registerAnnotationConfigProcessors(acx);
-
-		acx.registerBeanDefinition("sessionScopedClass", new AnnotatedGenericBeanDefinition(
-			new StandardAnnotationMetadata(SessionScopedClass.class)));
-		acx.registerBeanDefinition("scopedBeansConfiguration", new RootBeanDefinition(
-			ScopedBeansConfiguration.class));
-		acx.addBeanFactoryPostProcessor(JsfScopeAnnotationsAutoConfiguration.jsfScopeAnnotationsConfigurer(acx.getEnvironment()));
-		acx.addBeanFactoryPostProcessor(CdiScopeAnnotationsAutoConfiguration.cdiScopeAnnotationsConfigurer(acx.getEnvironment()));
-		acx.refresh();
-
-		assertThat(acx.getBeanDefinition("sessionScopedClass").getScope())
-			.isEqualTo(WebApplicationContext.SCOPE_SESSION);
-		assertThat(acx.getBeanDefinition("sessionScopedBean").getScope())
-			.isEqualTo(WebApplicationContext.SCOPE_SESSION);
-	}
-
-	@Test
-	public void testNoScopedClass() {
+	public void testNoScopedClass() throws ClassNotFoundException {
 		GenericApplicationContext acx = new GenericApplicationContext();
 		AnnotationConfigUtils.registerAnnotationConfigProcessors(acx);
 
 		acx.registerBeanDefinition("noScopedClass", new AnnotatedGenericBeanDefinition(
-			new StandardAnnotationMetadata(NoScopedClass.class)));
+			AnnotationMetadata.introspect(NoScopedClass.class)));
 		acx.registerBeanDefinition("scopedBeansConfiguration", new RootBeanDefinition(
 			ScopedBeansConfiguration.class));
-		acx.addBeanFactoryPostProcessor(JsfScopeAnnotationsAutoConfiguration.jsfScopeAnnotationsConfigurer(acx.getEnvironment()));
+		acx.addBeanFactoryPostProcessor(FacesScopeAnnotationsAutoConfiguration.facesScopeAnnotationsConfigurer(acx.getEnvironment()));
 		acx.addBeanFactoryPostProcessor(CdiScopeAnnotationsAutoConfiguration.cdiScopeAnnotationsConfigurer(acx.getEnvironment()));
 		acx.refresh();
 

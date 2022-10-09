@@ -36,7 +36,7 @@ dependencies {
     optional 'org.springframework:spring-orm'
     optional 'jakarta.enterprise:jakarta.enterprise.cdi-api'
     optional 'org.jboss.weld.servlet:weld-servlet-core'
-    optional 'org.glassfish:jakarta.faces'
+    optional "org.glassfish:jakarta.faces:$mojarra4Version"
     optional "org.apache.myfaces.core:myfaces-impl"
     optional 'org.omnifaces:omnifaces'
     optional 'org.primefaces:primefaces::jakarta'

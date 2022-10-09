@@ -28,7 +28,7 @@ dependencies {
     compileOnly 'org.springframework.webflow:spring-faces:2.5.1.RELEASE'
 
     testImplementation project(':joinfaces-test')
-    testImplementation 'org.glassfish:jakarta.faces'
+    testImplementation "org.glassfish:jakarta.faces:$mojarra4Version"
     testImplementation 'org.springframework.boot:spring-boot-starter-security'
     testImplementation 'org.springframework.boot:spring-boot-starter-web'
     testImplementation 'org.springframework.security:spring-security-test'

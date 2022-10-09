@@ -56,7 +56,7 @@ class ClasspathScannerTest {
 	void scanClasses_myfaces_sci() throws IOException {
 		this.classpathScanner.scanClasses();
 
-		File classesFile = new File(this.file, "META-INF/joinfaces/org.apache.myfaces.ee.MyFacesContainerInitializer.classes");
+		File classesFile = new File(this.file, "META-INF/joinfaces/org.apache.myfaces.webapp.MyFacesContainerInitializer.classes");
 		assertThat(classesFile).isFile();
 
 		List<String> classNames = Files.lines(classesFile.toPath(), StandardCharsets.UTF_8)

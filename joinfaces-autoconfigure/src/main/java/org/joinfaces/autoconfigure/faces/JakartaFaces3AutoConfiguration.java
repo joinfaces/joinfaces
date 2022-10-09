@@ -34,7 +34,7 @@ import org.springframework.core.PriorityOrdered;
 @Configuration(proxyBeanMethods = false)
 @ConditionalOnClass(FacesContext.class)
 @ConditionalOnWebApplication(type = ConditionalOnWebApplication.Type.SERVLET)
-@EnableConfigurationProperties(JakartaFaces3Properties.class)
+@EnableConfigurationProperties({JakartaFaces3Properties.class, JakartaFaces4Properties.class})
 public class JakartaFaces3AutoConfiguration {
 
 	@Bean

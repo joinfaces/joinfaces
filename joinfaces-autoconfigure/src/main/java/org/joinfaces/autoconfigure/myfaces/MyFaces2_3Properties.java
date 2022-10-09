@@ -17,9 +17,6 @@
 package org.joinfaces.autoconfigure.myfaces;
 
 import lombok.Data;
-import org.apache.myfaces.shared.config.MyfacesConfig;
-import org.apache.myfaces.view.jsp.JspViewDeclarationLanguageStrategy;
-import org.apache.myfaces.webapp.AbstractFacesInitializer;
 import org.joinfaces.autoconfigure.servlet.initparams.ServletContextInitParameter;
 import org.joinfaces.autoconfigure.servlet.initparams.ServletContextInitParameterProperties;
 
@@ -41,10 +38,10 @@ public class MyFaces2_3Properties implements ServletContextInitParameterProperti
 	 * ManagedBeans are deprecated in JSF 2.3
 	 * Default value is true.
 	 *
-	 * @see MyfacesConfig#_supportManagedBeans
-	 * @see MyfacesConfig#INIT_PARAM_SUPPORT_MANAGED_BEANS
+	 * @deprecated Removed in MyFaces 4.
 	 */
-	@ServletContextInitParameter(MyfacesConfig.INIT_PARAM_SUPPORT_MANAGED_BEANS)
+	@Deprecated
+	@ServletContextInitParameter(MyFacesProperties.PREFFIX + "SUPPORT_MANAGED_BEANS")
 	private Boolean supportManagedBeans = false;
 
 	/**
@@ -54,14 +51,18 @@ public class MyFaces2_3Properties implements ServletContextInitParameterProperti
 	@ServletContextInitParameter("org.apache.myfaces.CLEAR_INPUT_WHEN_SUBMITTED_VALUE_IS_NULL_OR_EMPTY")
 	private Boolean clearInputWhenSubmittedValueIsNullOrEmpty;
 
-	@ServletContextInitParameter(JspViewDeclarationLanguageStrategy.JSP_SUFFIX_PARAM_NAME)
+	/**
+	 * JSP Suffix.
+	 *
+	 * @deprecated Removed in MyFaces 4.
+	 */
+	@Deprecated
+	@ServletContextInitParameter(MyFacesProperties.PREFFIX + "JSP_SUFFIX")
 	private String jspSuffix;
 
 	/**
 	 * This parameter enables automatic extensionless mapping for all JSF views.
-	 *
-	 * @see AbstractFacesInitializer#INIT_PARAM_AUTOMATIC_EXTENSIONLESS_MAPPING
 	 */
-	@ServletContextInitParameter(AbstractFacesInitializer.INIT_PARAM_AUTOMATIC_EXTENSIONLESS_MAPPING)
+	@ServletContextInitParameter(MyFacesProperties.PREFFIX + "AUTOMATIC_EXTENSIONLESS_MAPPINg")
 	private Boolean automaticExtensionlessMapping;
 }

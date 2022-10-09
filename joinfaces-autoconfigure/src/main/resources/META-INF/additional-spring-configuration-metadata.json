@@ -6,18 +6,6 @@
       "sourceType": "org.joinfaces.autoconfigure.viewscope.ViewScopeAutoConfiguration"
     },
     {
-      "name": "joinfaces.scope-configurer.jsf",
-      "type": "org.joinfaces.autoconfigure.scopemapping.JsfScopeAnnotationsAutoConfiguration",
-      "sourceType": "org.joinfaces.autoconfigure.scopemapping.JsfScopeAnnotationsAutoConfiguration",
-      "description": "Support for JSF @xxxScoped annotations."
-    },
-    {
-      "name": "joinfaces.scope-configurer.cdi",
-      "type": "org.joinfaces.autoconfigure.scopemapping.CdiScopeAnnotationsAutoConfiguration",
-      "sourceType": "org.joinfaces.autoconfigure.scopemapping.CdiScopeAnnotationsAutoConfiguration",
-      "description": "Support for CDI @javax.enterprise.context.xxxScoped annotations."
-    },
-    {
       "name": "joinfaces.faces-servlet",
       "description": "Configures the FacesServlet handled by JoinFaces."
     }
@@ -31,30 +19,6 @@
         "*.faces",
         "*.xhtml"
       ]
-    },
-    {
-      "name": "joinfaces.scope-configurer.jsf.enabled",
-      "defaultValue": true,
-      "type": "java.lang.Boolean",
-      "sourceType": "org.joinfaces.autoconfigure.scopemapping.JsfScopeAnnotationsAutoConfiguration"
-    },
-    {
-      "name": "joinfaces.scope-configurer.jsf.order",
-      "type": "java.lang.Integer",
-      "description": "The order of the BeanFactoryPostProcessor.",
-      "sourceType": "org.joinfaces.autoconfigure.scopemapping.JsfScopeAnnotationsAutoConfiguration"
-    },
-    {
-      "name": "joinfaces.scope-configurer.cdi.enabled",
-      "defaultValue": true,
-      "type": "java.lang.Boolean",
-      "sourceType": "org.joinfaces.autoconfigure.scopemapping.CdiScopeAnnotationsAutoConfiguration"
-    },
-    {
-      "name": "joinfaces.scope-configurer.cdi.order",
-      "type": "java.lang.Integer",
-      "description": "The order of the BeanFactoryPostProcessor.",
-      "sourceType": "org.joinfaces.autoconfigure.scopemapping.CdiScopeAnnotationsAutoConfiguration"
     },
     {
       "name": "joinfaces.view-scope.enabled",

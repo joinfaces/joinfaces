@@ -25,7 +25,7 @@ import jakarta.servlet.annotation.HandlesTypes;
 
 import com.sun.faces.config.FacesInitializer;
 import com.sun.faces.renderkit.html_basic.MessageRenderer;
-import org.apache.myfaces.ee.MyFacesContainerInitializer;
+import org.apache.myfaces.webapp.MyFacesContainerInitializer;
 import org.joinfaces.servlet.ServletContainerInitializerRegistrationBean;
 import org.junit.jupiter.api.Test;
 import org.primefaces.component.inputnumber.InputNumberRenderer;

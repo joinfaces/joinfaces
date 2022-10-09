@@ -1,7 +1,7 @@
 description = 'JoinFaces Jetty-Mojarra Test Project'
 
 dependencies {
-    implementation(project(':joinfaces-starters:jsf-spring-boot-starter')) {
+    implementation(project(':joinfaces-starters:faces4-spring-boot-starter')) {
         exclude module: "spring-boot-starter-tomcat"
     }
     implementation 'org.springframework.boot:spring-boot-starter-jetty'
