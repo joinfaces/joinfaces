@@ -16,10 +16,6 @@ dependencies {
         //Mojarra
         api 'jakarta.faces:jakarta.faces-api:4.0.1'
 
-        //MyFaces
-        api "org.apache.myfaces.core:myfaces-api:4.0.0-RC1"
-        api "org.apache.myfaces.core:myfaces-impl:4.0.0-RC1"
-
         api 'io.github.classgraph:classgraph:4.8.149'
 
         //Jakarta EE (if not covered by Spring Boot)
