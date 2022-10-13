@@ -70,7 +70,7 @@ public class FacesServletAutoConfigurationTest {
 	@Test
 	public void testDisableFacesservletToXhtmlDefaultMapping_false() {
 		this.webApplicationContextRunner
-				.withPropertyValues("joinfaces.jsf.disable-facesservlet-to-xhtml=false")
+				.withPropertyValues("joinfaces.faces.disable-facesservlet-to-xhtml=false")
 				.run(context -> {
 					ServletRegistrationBean<FacesServlet> facesServletRegistrationBean = (ServletRegistrationBean<FacesServlet>) context.getBean("facesServletRegistrationBean");
 
@@ -81,7 +81,7 @@ public class FacesServletAutoConfigurationTest {
 	@Test
 	public void testDisableFacesservletToXhtmlDefaultMapping_true() {
 		this.webApplicationContextRunner
-				.withPropertyValues("joinfaces.jsf.disable-facesservlet-to-xhtml=true")
+				.withPropertyValues("joinfaces.faces.disable-facesservlet-to-xhtml=true")
 				.run(context -> {
 					ServletRegistrationBean<FacesServlet> facesServletRegistrationBean = (ServletRegistrationBean<FacesServlet>) context.getBean("facesServletRegistrationBean");
 
@@ -92,7 +92,7 @@ public class FacesServletAutoConfigurationTest {
 	@Test
 	public void testDisableFacesservletToXhtmlCustomMapping() {
 		this.webApplicationContextRunner
-				.withPropertyValues("joinfaces.jsf.disable-facesservlet-to-xhtml=true", "joinfaces.faces-servlet.url-mappings=*.xhtml")
+				.withPropertyValues("joinfaces.faces.disable-facesservlet-to-xhtml=true", "joinfaces.faces-servlet.url-mappings=*.xhtml")
 				.run(context -> {
 					ServletRegistrationBean<FacesServlet> facesServletRegistrationBean = (ServletRegistrationBean<FacesServlet>) context.getBean("facesServletRegistrationBean");
 

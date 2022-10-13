@@ -16,17 +16,42 @@
 
 package org.joinfaces.autoconfigure.faces;
 
+import jakarta.faces.lifecycle.ClientWindow;
+import jakarta.faces.webapp.FacesServlet;
+
 import lombok.Data;
 import org.joinfaces.autoconfigure.servlet.initparams.ServletContextInitParameter;
 import org.joinfaces.autoconfigure.servlet.initparams.ServletContextInitParameterProperties;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
+/**
+ * Configuration Properties for Jakarta Faces 4.
+ *
+ * @author Lars Grefer
+ * @see <a href="https://jakarta.ee/specifications/faces/4.0/jakarta-faces-4.0.html#a6088">11.1.3. Application Configuration Parameters</a>
+ * @see <a href="https://myfaces.apache.org/#/core40?id=configuration">MyFaces 4 Configuration</a>
+ */
 @Data
 @SuppressWarnings("PMD.AvoidDuplicateLiterals")
 @ConfigurationProperties("joinfaces.faces")
 public class JakartaFaces4Properties implements ServletContextInitParameterProperties {
 
-	@ServletContextInitParameter("jakarta.faces.AUTOMATIC_EXTENSIONLESS_MAPPING")
+	/**
+	 * The ServletContext init parameter consulted by the runtime to tell if the automatic mapping of the FacesServlet to the extensionless variant (without *.xhtml) should be enabled.
+	 * The implementation must enable this automatic mapping if and only if the value of this parameter is equal, ignoring case, to true.
+	 *
+	 * @see FacesServlet#AUTOMATIC_EXTENSIONLESS_MAPPING_PARAM_NAME
+	 */
+	@ServletContextInitParameter(FacesServlet.AUTOMATIC_EXTENSIONLESS_MAPPING_PARAM_NAME)
 	private Boolean automaticExtensionlessMapping;
+
+	/**
+	 * Indicate the max number of ClientWindows, which is used by ClientWindowScoped.
+	 * It is only active when jakarta.faces.CLIENT_WINDOW_MODE is enabled.
+	 *
+	 * @see ClientWindow#CLIENT_WINDOW_MODE_PARAM_NAME
+	 */
+	@ServletContextInitParameter(ClientWindow.NUMBER_OF_CLIENT_WINDOWS_PARAM_NAME)
+	private Integer numberOfClientWindows;
 }

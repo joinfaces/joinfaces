@@ -30,11 +30,243 @@
     {
       "name": "joinfaces.mojarra.disable-unicode-escaping",
       "defaultValue": false
+    },
+    {
+      "name": "joinfaces.jsf.always-perform-validation-when-required-is-true",
+      "type": "java.lang.Boolean",
+      "deprecation": {
+        "level": "error",
+        "replacement": "joinfaces.faces.always-perform-validation-when-required-is-true"
+      }
+    },
+    {
+      "name": "joinfaces.jsf.client-window-mode",
+      "type": "java.lang.String",
+      "deprecation": {
+        "level": "error",
+        "replacement": "joinfaces.faces.client-window-mode"
+      }
+    },
+    {
+      "name": "joinfaces.jsf.config-files",
+      "type": "java.util.List<java.lang.String>",
+      "deprecation": {
+        "level": "error",
+        "replacement": "joinfaces.faces.config-files"
+      }
+    },
+    {
+      "name": "joinfaces.jsf.datetimeconverter-default-timezone-is-system-timezone",
+      "type": "java.lang.Boolean",
+      "deprecation": {
+        "level": "error",
+        "replacement": "joinfaces.faces.datetimeconverter-default-timezone-is-system-timezone"
+      }
+    },
+    {
+      "name": "joinfaces.jsf.disable-facesservlet-to-xhtml",
+      "type": "java.lang.Boolean",
+      "deprecation": {
+        "level": "error",
+        "replacement": "joinfaces.faces.disable-facesservlet-to-xhtml"
+      }
+    },
+    {
+      "name": "joinfaces.faces.enable-websocket-endpoint",
+      "type": "java.lang.Boolean",
+      "deprecation": {
+        "level": "error",
+        "replacement": "joinfaces.faces.enable-websocket-endpoint"
+      }
+    },
+    {
+      "name": "joinfaces.jsf.facelets-buffer-size",
+      "type": "java.lang.Integer",
+      "deprecation": {
+        "level": "error",
+        "replacement": "joinfaces.faces.facelets-buffer-size"
+      }
+    },
+    {
+      "name": "joinfaces.jsf.facelets-decorators",
+      "type": "java.util.List<java.lang.Class<? extends jakarta.faces.view.facelets.TagDecorator>>",
+      "deprecation": {
+        "level": "error",
+        "replacement": "joinfaces.faces.facelets-decorators"
+      }
+    },
+    {
+      "name": "joinfaces.jsf.facelets-libraries",
+      "type": "java.util.List<java.lang.String>",
+      "deprecation": {
+        "level": "error",
+        "replacement": "joinfaces.faces.facelets-libraries"
+      }
+    },
+    {
+      "name": "joinfaces.jsf.facelets-refresh-period",
+      "type": "java.lang.Integer",
+      "deprecation": {
+        "level": "error",
+        "replacement": "joinfaces.faces.facelets-refresh-period"
+      }
+    },
+    {
+      "name": "joinfaces.jsf.facelets-skip-comments",
+      "type": "java.lang.Boolean",
+      "deprecation": {
+        "level": "error",
+        "replacement": "joinfaces.faces.facelets-skip-comments"
+      }
+    },
+    {
+      "name": "joinfaces.jsf.facelets-suffix",
+      "type": "java.lang.String",
+      "deprecation": {
+        "level": "error",
+        "replacement": "joinfaces.faces.facelets-suffix"
+      }
+    },
+    {
+      "name": "joinfaces.jsf.facelets-view-mappings",
+      "type": "java.util.List<java.lang.String>",
+      "deprecation": {
+        "level": "error",
+        "replacement": "joinfaces.faces.facelets-view-mappings"
+      }
+    },
+    {
+      "name": "joinfaces.jsf.full-state-saving-view-ids",
+      "type": "java.util.List<java.lang.String>",
+      "deprecation": {
+        "level": "error",
+        "replacement": "joinfaces.faces.full-state-saving-view-ids"
+      }
+    },
+    {
+      "name": "joinfaces.jsf.interpret-empty-string-submitted-values-as-null",
+      "type": "java.lang.Boolean",
+      "deprecation": {
+        "level": "error",
+        "replacement": "joinfaces.faces.interpret-empty-string-submitted-values-as-null"
+      }
+    },
+    {
+      "name": "joinfaces.jsf.lifecycle-id",
+      "type": "java.lang.String",
+      "deprecation": {
+        "level": "error",
+        "replacement": "joinfaces.faces.lifecycle-id"
+      }
+    },
+    {
+      "name": "joinfaces.jsf.partial-state-saving",
+      "type": "java.lang.Boolean",
+      "deprecation": {
+        "level": "error",
+        "replacement": "joinfaces.faces.partial-state-saving"
+      }
+    },
+    {
+      "name": "joinfaces.jsf.project-stage",
+      "type": "jakarta.faces.application.ProjectStage",
+      "deprecation": {
+        "level": "error",
+        "replacement": "joinfaces.faces.project-stage"
+      }
+    },
+    {
+      "name": "joinfaces.jsf.resource-excludes",
+      "type": "java.util.List<java.lang.String>",
+      "deprecation": {
+        "level": "error",
+        "replacement": "joinfaces.faces.resource-excludes"
+      }
+    },
+    {
+      "name": "joinfaces.jsf.separator-char",
+      "type": "java.lang.String",
+      "deprecation": {
+        "level": "error",
+        "replacement": "joinfaces.faces.separator-char"
+      }
+    },
+    {
+      "name": "joinfaces.jsf.serialize-server-state",
+      "type": "java.lang.Boolean",
+      "deprecation": {
+        "level": "error",
+        "replacement": "joinfaces.faces.serialize-server-state"
+      }
+    },
+    {
+      "name": "joinfaces.jsf.state-saving-method",
+      "type": "java.lang.String",
+      "deprecation": {
+        "level": "error",
+        "replacement": "joinfaces.faces.state-saving-method"
+      }
+    },
+    {
+      "name": "joinfaces.jsf.validate-empty-fields",
+      "type": "java.lang.String",
+      "deprecation": {
+        "level": "error",
+        "replacement": "joinfaces.faces.validate-empty-fields"
+      }
+    },
+    {
+      "name": "joinfaces.jsf.validator.disable-default-bean-validator",
+      "type": "java.lang.Boolean",
+      "deprecation": {
+        "level": "error",
+        "replacement": "joinfaces.faces.validator.disable-default-bean-validator"
+      }
+    },
+    {
+      "name": "joinfaces.jsf.validator.enable-validate-whole-bean",
+      "type": "java.lang.Boolean",
+      "deprecation": {
+        "level": "error",
+        "replacement": "joinfaces.faces.validator.enable-validate-whole-bean"
+      }
+    },
+    {
+      "name": "joinfaces.jsf.viewroot-phase-listener-queues-exceptions",
+      "type": "java.lang.Boolean",
+      "deprecation": {
+        "level": "error",
+        "replacement": "joinfaces.faces.viewroot-phase-listener-queues-exceptions"
+      }
+    },
+    {
+      "name": "joinfaces.jsf.webapp-contracts-directory",
+      "type": "java.lang.String",
+      "deprecation": {
+        "level": "error",
+        "replacement": "joinfaces.faces.webapp-contracts-directory"
+      }
+    },
+    {
+      "name": "joinfaces.jsf.webapp-resources-directory",
+      "type": "java.lang.String",
+      "deprecation": {
+        "level": "error",
+        "replacement": "joinfaces.faces.webapp-resources-directory"
+      }
+    },
+    {
+      "name": "joinfaces.jsf.websocket-endpoint-port",
+      "type": "java.lang.Integer",
+      "deprecation": {
+        "level": "error",
+        "replacement": "joinfaces.faces.websocket-endpoint-port"
+      }
     }
   ],
   "hints": [
     {
-      "name": "joinfaces.jsf.state-saving-method",
+      "name": "joinfaces.faces.state-saving-method",
       "values": [
         {
           "value": "client",
@@ -47,7 +279,7 @@
       ]
     },
     {
-      "name": "joinfaces.jsf.client-window-mode",
+      "name": "joinfaces.faces.client-window-mode",
       "values": [
         {
           "value": "none"
@@ -63,7 +295,7 @@
       ]
     },
     {
-      "name": "joinfaces.jsf.validate-empty-fields",
+      "name": "joinfaces.faces.validate-empty-fields",
       "values": [
         {
           "value": "true"
@@ -79,7 +311,7 @@
       ]
     },
     {
-      "name": "joinfaces.jsf.facelets-resource-resolver",
+      "name": "joinfaces.faces.facelets-resource-resolver",
       "providers": [
         {
           "name": "class-reference",

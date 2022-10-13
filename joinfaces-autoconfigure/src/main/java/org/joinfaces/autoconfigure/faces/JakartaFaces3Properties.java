@@ -50,7 +50,7 @@ import org.springframework.boot.context.properties.NestedConfigurationProperty;
  */
 @Data
 @SuppressWarnings("PMD.AvoidDuplicateLiterals")
-@ConfigurationProperties("joinfaces.jsf")
+@ConfigurationProperties("joinfaces.faces")
 public class JakartaFaces3Properties implements ServletContextInitParameterProperties {
 
 	/**

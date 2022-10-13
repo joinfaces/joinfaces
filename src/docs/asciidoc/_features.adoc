@@ -110,7 +110,7 @@ https://docs.spring.io/spring-boot/docs/{spring-boot-version}/reference/html/fea
 
 [source,properties]
 ----
-joinfaces.jsf.project-stage=development
+joinfaces.faces.project-stage=development
 joinfaces.primefaces.theme=omega
 ----
 
