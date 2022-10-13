@@ -1,0 +1,13 @@
+description = 'Mojarra Spring Boot Starter'
+tasks.named("jar", Jar) {
+    manifest.attributes('Automatic-Module-Name': 'joinfaces.starter.mojarra3')
+}
+
+dependencies {
+    api "org.glassfish:jakarta.faces:$mojarra3Version"
+
+    runtimeOnly('jakarta.enterprise:jakarta.enterprise.cdi-api') {
+        exclude group: 'jakarta.el', module: 'jakarta.el-api'
+        exclude group: 'jakarta.ejb', module: 'jakarta.ejb-api'
+    }
+}

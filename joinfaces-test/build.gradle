@@ -17,7 +17,7 @@ dependencies {
     api 'org.junit.jupiter:junit-jupiter-api'
 
     optional 'org.springframework.boot:spring-boot-starter-web'
-    optional 'org.glassfish:jakarta.faces'
+    optional "org.glassfish:jakarta.faces:$mojarra4Version"
 
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine'
 }

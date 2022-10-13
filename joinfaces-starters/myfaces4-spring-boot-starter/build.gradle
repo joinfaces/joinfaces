@@ -1,0 +1,16 @@
+description = 'MyFaces Spring Boot Starter'
+tasks.named("jar", Jar) {
+    manifest.attributes('Automatic-Module-Name': 'joinfaces.starter.myfaces4')
+}
+
+dependencies {
+    api "org.apache.myfaces.core:myfaces-api:$myfaces4Version"
+    implementation("org.apache.myfaces.core:myfaces-impl:$myfaces4Version") {
+        exclude group: 'commons-logging', module: 'commons-logging'
+    }
+
+    runtimeOnly('jakarta.enterprise:jakarta.enterprise.cdi-api') {
+        exclude group: 'jakarta.el', module: 'jakarta.el-api'
+        exclude group: 'jakarta.ejb', module: 'jakarta.ejb-api'
+    }
+}

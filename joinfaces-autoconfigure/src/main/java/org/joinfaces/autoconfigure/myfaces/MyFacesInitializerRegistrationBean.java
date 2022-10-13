@@ -20,10 +20,11 @@ import java.lang.annotation.Annotation;
 import java.util.Map;
 import java.util.Set;
 
+import jakarta.servlet.ServletContainerInitializer;
+
 import io.github.classgraph.ScanResult;
 import lombok.AccessLevel;
 import lombok.Getter;
-import org.apache.myfaces.ee.MyFacesContainerInitializer;
 import org.joinfaces.autoconfigure.FacesAnnotationProviderUtil;
 import org.joinfaces.servlet.ServletContainerInitializerRegistrationBean;
 
@@ -36,13 +37,13 @@ import org.joinfaces.servlet.ServletContainerInitializerRegistrationBean;
  * @see org.apache.myfaces.config.annotation.AnnotationConfigurator
  * @see JoinFacesAnnotationProvider
  */
-public class MyFacesInitializerRegistrationBean extends ServletContainerInitializerRegistrationBean<MyFacesContainerInitializer> {
+public class MyFacesInitializerRegistrationBean<T extends ServletContainerInitializer> extends ServletContainerInitializerRegistrationBean<T> {
 
 	@Getter(AccessLevel.PACKAGE)
 	private Map<Class<? extends Annotation>, Set<Class<?>>> annotatedClasses;
 
-	public MyFacesInitializerRegistrationBean() {
-		super(MyFacesContainerInitializer.class);
+	public MyFacesInitializerRegistrationBean(Class<T> servletContainerInitializerClass) {
+		super(servletContainerInitializerClass);
 	}
 
 	@Override

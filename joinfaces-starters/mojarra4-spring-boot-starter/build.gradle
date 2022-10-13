@@ -1,10 +1,12 @@
 description = 'Mojarra Spring Boot Starter'
 tasks.named("jar", Jar) {
-    manifest.attributes('Automatic-Module-Name': 'joinfaces.starter.mojarra')
+    manifest.attributes('Automatic-Module-Name': 'joinfaces.starter.mojarra4')
 }
 
 dependencies {
-    api 'org.glassfish:jakarta.faces'
+    api "org.glassfish:jakarta.faces:$mojarra4Version"
+
+    api project(':joinfaces-starters:weld-spring-boot-starter')
 
     runtimeOnly('jakarta.enterprise:jakarta.enterprise.cdi-api') {
         exclude group: 'jakarta.el', module: 'jakarta.el-api'

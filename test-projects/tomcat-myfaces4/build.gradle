@@ -1,10 +1,8 @@
-description = 'JoinFaces Undertow-MyFaces Test Project'
+description = 'JoinFaces Tomcat-MyFaces Test Project'
 
 dependencies {
     implementation(project(':joinfaces-starters:faces4-spring-boot-starter')) {
-        exclude module: "spring-boot-starter-tomcat"
         exclude module: "mojarra4-spring-boot-starter"
     }
-    implementation 'org.springframework.boot:spring-boot-starter-undertow'
     implementation project(':joinfaces-starters:myfaces4-spring-boot-starter')
 }

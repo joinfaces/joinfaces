@@ -1,6 +1,6 @@
 description = 'JSF Spring Boot Starter'
 tasks.named("jar", Jar) {
-    manifest.attributes('Automatic-Module-Name': 'joinfaces.starter.jsf')
+    manifest.attributes('Automatic-Module-Name': 'joinfaces.starter.faces4')
 }
 
 dependencies {
@@ -10,5 +10,5 @@ dependencies {
     api 'org.springframework:spring-web'
 
     api 'org.springframework.boot:spring-boot-starter-tomcat'
-    api project(':joinfaces-starters:mojarra3-spring-boot-starter')
+    api project(':joinfaces-starters:mojarra4-spring-boot-starter')
 }

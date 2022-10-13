@@ -9,7 +9,6 @@ subprojects {
 
     application {
         mainClass = "org.joinfaces.test.JoinfacesTestApplication"
-        applicationDefaultJvmArgs = ['--add-opens', 'java.base/java.lang=ALL-UNNAMED']
     }
 
     tasks.withType(Javadoc).configureEach {

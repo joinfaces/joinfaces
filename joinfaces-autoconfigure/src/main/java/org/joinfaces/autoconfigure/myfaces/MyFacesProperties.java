@@ -21,30 +21,22 @@ import java.time.Duration;
 import java.time.temporal.ChronoUnit;
 import java.util.Comparator;
 import java.util.List;
+import java.util.function.Predicate;
 
 import jakarta.el.ELResolver;
 import jakarta.el.ExpressionFactory;
 
 import lombok.Data;
-import org.apache.myfaces.application.ResourceHandlerImpl;
-import org.apache.myfaces.application.StateCache;
-import org.apache.myfaces.config.FacesConfigValidator;
-import org.apache.myfaces.config.annotation.CdiAnnotationProviderExtension;
-import org.apache.myfaces.config.annotation.DefaultAnnotationProvider;
-import org.apache.myfaces.el.unified.ResolverBuilderBase;
-import org.apache.myfaces.lifecycle.ClientWindowFactoryImpl;
+import org.apache.myfaces.config.MyfacesConfig;
+import org.apache.myfaces.lifecycle.clientwindow.ClientWindowFactoryImpl;
 import org.apache.myfaces.renderkit.ErrorPageWriter;
-import org.apache.myfaces.renderkit.html.HtmlResponseStateManager;
 import org.apache.myfaces.resource.InternalClassLoaderResourceLoader;
-import org.apache.myfaces.shared.util.serial.SerialFactory;
 import org.apache.myfaces.spi.ServiceProviderFinder;
-import org.apache.myfaces.view.facelets.DefaultFaceletsStateManagementStrategy;
+import org.apache.myfaces.util.token.CsrfSessionTokenFactory;
+import org.apache.myfaces.util.token.CsrfSessionTokenFactorySecureRandom;
 import org.apache.myfaces.view.facelets.ELExpressionCacheMode;
 import org.apache.myfaces.view.facelets.FaceletViewDeclarationLanguage;
-import org.apache.myfaces.view.facelets.el.ContextAwareUtils;
-import org.apache.myfaces.view.facelets.impl.FaceletCompositionContextImpl;
 import org.apache.myfaces.view.facelets.pool.ViewPool;
-import org.apache.myfaces.webapp.AbstractFacesInitializer;
 import org.apache.myfaces.webapp.FacesInitializer;
 import org.joinfaces.autoconfigure.servlet.initparams.ServletContextInitParameter;
 import org.joinfaces.autoconfigure.servlet.initparams.ServletContextInitParameterProperties;
@@ -65,7 +57,7 @@ import org.springframework.util.unit.DataUnit;
  */
 @Data
 @ConfigurationProperties(prefix = "joinfaces.myfaces")
-public class MyfacesProperties implements ServletContextInitParameterProperties {
+public class MyFacesProperties implements ServletContextInitParameterProperties {
 
 	static final String PREFFIX = "org.apache.myfaces.";
 
@@ -73,7 +65,7 @@ public class MyfacesProperties implements ServletContextInitParameterProperties 
 	 * Indicate if log all web config params should be done before initialize
 	 * the webapp.
 	 */
-	@ServletContextInitParameter(AbstractFacesInitializer.INIT_PARAM_LOG_WEB_CONTEXT_PARAMS)
+	@ServletContextInitParameter(MyfacesConfig.LOG_WEB_CONTEXT_PARAMS)
 	private String logWebContextParams;
 
 	/**
@@ -423,9 +415,12 @@ public class MyfacesProperties implements ServletContextInitParameterProperties 
 	/**
 	 * Defines the factory class name using for serialize/deserialize the view
 	 * state returned by state manager into a byte array.
+	 *
+	 * @see org.apache.myfaces.shared.util.serial.SerialFactory
+	 * @see org.apache.myfaces.spi.SerialFactory
 	 */
 	@ServletContextInitParameter(PREFFIX + "SERIAL_FACTORY")
-	private Class<? extends SerialFactory> serialFactory;
+	private Class<?> serialFactory;
 
 	/**
 	 * Indicate if the view state should be compressed before
@@ -465,44 +460,44 @@ public class MyfacesProperties implements ServletContextInitParameterProperties 
 	/**
 	 * Allow slash in the library name of a Resource.
 	 */
-	@ServletContextInitParameter(ResourceHandlerImpl.INIT_PARAM_STRICT_JSF_2_ALLOW_SLASH_LIBRARY_NAME)
+	@ServletContextInitParameter(MyfacesConfig.STRICT_JSF_2_ALLOW_SLASH_LIBRARY_NAME)
 	private Boolean strictJsf2AllowSlashLibraryName;
 
 	/**
 	 * Define the default buffer size that is used between Resource.
 	 */
 	@DataSizeUnit(DataUnit.BYTES)
-	@ServletContextInitParameter(ResourceHandlerImpl.INIT_PARAM_RESOURCE_BUFFER_SIZE)
+	@ServletContextInitParameter(MyfacesConfig.RESOURCE_BUFFER_SIZE)
 	private DataSize resourceBufferSize;
 
 	/**
 	 * Defines how to generate the csrf session token.
 	 */
-	@ServletContextInitParameter(StateCache.RANDOM_KEY_IN_CSRF_SESSION_TOKEN_PARAM)
+	@ServletContextInitParameter(MyfacesConfig.RANDOM_KEY_IN_CSRF_SESSION_TOKEN)
 	private String randomKeyInCsrfSessionToken;
 
 	/**
 	 * Set the default length of the random key used for the csrf session token.
 	 */
-	@ServletContextInitParameter(StateCache.RANDOM_KEY_IN_CSRF_SESSION_TOKEN_LENGTH_PARAM)
+	@ServletContextInitParameter(CsrfSessionTokenFactory.RANDOM_KEY_IN_CSRF_SESSION_TOKEN_LENGTH_PARAM)
 	private Integer randomKeyInCsrfSessionTokenLength;
 
 	/**
 	 * Sets the random class to initialize the secure random id generator.
 	 */
-	@ServletContextInitParameter(StateCache.RANDOM_KEY_IN_CSRF_SESSION_TOKEN_SECURE_RANDOM_CLASS_PARAM)
+	@ServletContextInitParameter(CsrfSessionTokenFactorySecureRandom.RANDOM_KEY_IN_CSRF_SESSION_TOKEN_SECURE_RANDOM_CLASS_PARAM)
 	private String randomKeyInCsrfSessionTokenSecureRandomClass;
 
 	/**
 	 * Sets the random provider to initialize the secure random id generator.
 	 */
-	@ServletContextInitParameter(StateCache.RANDOM_KEY_IN_CSRF_SESSION_TOKEN_SECURE_RANDOM_PROVIDER_PARAM)
+	@ServletContextInitParameter(CsrfSessionTokenFactorySecureRandom.RANDOM_KEY_IN_CSRF_SESSION_TOKEN_SECURE_RANDOM_PROVIDER_PARAM)
 	private String randomKeyInCsrfSessionTokenSecureRandomProvider;
 
 	/**
 	 * Sets the random algorithm to initialize the secure random id generator.
 	 */
-	@ServletContextInitParameter(StateCache.RANDOM_KEY_IN_CSRF_SESSION_TOKEN_SECURE_RANDOM_ALGORITM_PARAM)
+	@ServletContextInitParameter(CsrfSessionTokenFactorySecureRandom.RANDOM_KEY_IN_CSRF_SESSION_TOKEN_SECURE_RANDOM_ALGORITM_PARAM)
 	private String randomKeyInCsrfSessionTokenSecureRandomAlgoritm;
 
 	/**
@@ -574,7 +569,7 @@ public class MyfacesProperties implements ServletContextInitParameterProperties 
 	/**
 	 * Validate if the managed beans and navigations rules are correct.
 	 */
-	@ServletContextInitParameter(FacesConfigValidator.VALIDATE_CONTEXT_PARAM)
+	@ServletContextInitParameter(MyfacesConfig.VALIDATE)
 	private Boolean validate;
 
 	@NestedConfigurationProperty
@@ -591,7 +586,7 @@ public class MyfacesProperties implements ServletContextInitParameterProperties 
 	/**
 	 * The Class of an {@code Comparator<ELResolver/>} implementation.
 	 */
-	@ServletContextInitParameter(ResolverBuilderBase.EL_RESOLVER_COMPARATOR)
+	@ServletContextInitParameter(MyfacesConfig.EL_RESOLVER_COMPARATOR)
 	private Class<? extends Comparator<ELResolver>> elResolverComparator;
 
 	/**
@@ -599,16 +594,11 @@ public class MyfacesProperties implements ServletContextInitParameterProperties 
 	 * If used and returns true for a ELResolver instance, such resolver will not be installed in ELResolvers chain.
 	 * Use with caution - can break functionality defined in JSF specification 'ELResolver Instances Provided by Faces'.
 	 *
-	 * For MyFaces versions up to 2.2.x the class provided here must implement the
-	 * {@link org.apache.commons.collections.Predicate} interface,
-	 * since version 2.3.0 the class must implement the {@link java.util.function.Predicate} interface.
-	 *
-	 * @see ResolverBuilderBase#EL_RESOLVER_PREDICATE
-	 * @see org.apache.commons.collections.Predicate
+	 * @see MyfacesConfig#EL_RESOLVER_PREDICATE
 	 * @see java.util.function.Predicate
 	 */
-	@ServletContextInitParameter(ResolverBuilderBase.EL_RESOLVER_PREDICATE)
-	private Class<?> elResolverPredicate;
+	@ServletContextInitParameter(MyfacesConfig.EL_RESOLVER_PREDICATE)
+	private Class<Predicate<ELResolver>> elResolverPredicate;
 
 	/**
 	 * no description.
@@ -639,7 +629,7 @@ public class MyfacesProperties implements ServletContextInitParameterProperties 
 	/**
 	 * Add autocomplete="off" to the view state hidden field.
 	 */
-	@ServletContextInitParameter(HtmlResponseStateManager.INIT_PARAM_AUTOCOMPLETE_OFF_VIEW_STATE)
+	@ServletContextInitParameter(MyfacesConfig.AUTOCOMPLETE_OFF_VIEW_STATE)
 	private Boolean autocompleteOffViewState;
 
 	/**
@@ -679,7 +669,7 @@ public class MyfacesProperties implements ServletContextInitParameterProperties 
 	 * default (auto) it only check ids of components that does not encapsulate
 	 * markup (like facelets UILeaf).
 	 */
-	@ServletContextInitParameter(DefaultFaceletsStateManagementStrategy.CHECK_ID_PRODUCTION_MODE)
+	@ServletContextInitParameter(MyfacesConfig.CHECK_ID_PRODUCTION_MODE)
 	private String checkIdProductionMode;
 
 	/**
@@ -694,13 +684,13 @@ public class MyfacesProperties implements ServletContextInitParameterProperties 
 	 * ExceptionHandler implementation and used to output meaningful information
 	 * about itself.
 	 */
-	@ServletContextInitParameter(ContextAwareUtils.INIT_PARAM_WRAP_TAG_EXCEPTIONS_AS_CONTEXT_AWARE)
+	@ServletContextInitParameter(MyfacesConfig.WRAP_TAG_EXCEPTIONS_AS_CONTEXT_AWARE)
 	private Boolean wrapTagExceptionsAsContextAware;
 
 	/**
 	 * Indicates if expressions generated by facelets should be cached or not.
 	 */
-	@ServletContextInitParameter(FaceletCompositionContextImpl.INIT_PARAM_CACHE_EL_EXPRESSIONS)
+	@ServletContextInitParameter(MyfacesConfig.CACHE_EL_EXPRESSIONS)
 	private ELExpressionCacheMode cacheElExpressions;
 
 	/**
@@ -759,22 +749,31 @@ public class MyfacesProperties implements ServletContextInitParameterProperties 
 
 	/**
 	 * Annotation class of useCdiForAnnotationScanning and scanPackages properties.
+	 *
+	 * @deprecated Removed in MyFaces 4
 	 */
 	@Data
+	@Deprecated
 	public static class Annotation {
 
 		/**
 		 * Defines if CDI should be used for annotation scanning to improve the
 		 * startup performance.
+		 *
+		 * @deprecated Removed in MyFaces 4
 		 */
-		@ServletContextInitParameter(CdiAnnotationProviderExtension.USE_CDI_FOR_ANNOTATION_SCANNING)
+		@Deprecated
+		@ServletContextInitParameter(PREFFIX + "annotation.USE_CDI_FOR_ANNOTATION_SCANNING")
 		private Boolean useCdiForAnnotationScanning;
 
 		/**
 		 * Servlet context init parameter which defines which packages to scan
 		 * for beans, separated by commas.
+		 *
+		 * @deprecated Removed in MyFaces 4
 		 */
-		@ServletContextInitParameter(DefaultAnnotationProvider.SCAN_PACKAGES)
+		@Deprecated
+		@ServletContextInitParameter(PREFFIX + "annotation.SCAN_PACKAGES")
 		private String scanPackages;
 	}
 

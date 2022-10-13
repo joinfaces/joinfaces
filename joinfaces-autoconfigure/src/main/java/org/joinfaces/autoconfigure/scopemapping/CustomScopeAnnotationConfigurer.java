@@ -33,6 +33,7 @@ import org.springframework.beans.factory.config.ConfigurableListableBeanFactory;
 import org.springframework.core.Ordered;
 import org.springframework.core.type.AnnotationMetadata;
 import org.springframework.core.type.MethodMetadata;
+import org.springframework.util.ClassUtils;
 
 /**
  * Add custom JSF CDI scope implementations. Picks up JSF and CDI annotations both on
@@ -118,6 +119,11 @@ public class CustomScopeAnnotationConfigurer implements BeanFactoryPostProcessor
 
 	public void addMapping(Class<? extends Annotation> annotation, String scopeName) {
 		addMapping(new AnnotationToScopeMapping(annotation, scopeName));
+	}
+
+	public void addMapping(String annotationName, String scopeName) throws ClassNotFoundException {
+		Class<? extends Annotation> aClass = (Class<? extends Annotation>) ClassUtils.forName(annotationName, null);
+		addMapping(aClass, scopeName);
 	}
 
 	public void addMapping(AnnotationToScopeMapping annotationToScopeMapping) {

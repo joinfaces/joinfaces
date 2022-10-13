@@ -42,5 +42,5 @@ dependencies {
     testImplementation project(":joinfaces-starters:primefaces-spring-boot-starter")
     testImplementation project(':joinfaces-test')
     testRuntimeOnly 'org.hsqldb:hsqldb'
-    testImplementation "org.apache.myfaces.core:myfaces-impl"
+    testImplementation "org.apache.myfaces.core:myfaces-impl:$myfaces4Version"
 }

@@ -50,7 +50,7 @@ import org.springframework.boot.context.properties.NestedConfigurationProperty;
  */
 @Data
 @SuppressWarnings("PMD.AvoidDuplicateLiterals")
-@ConfigurationProperties("joinfaces.jsf")
+@ConfigurationProperties("joinfaces.faces")
 public class JakartaFaces3Properties implements ServletContextInitParameterProperties {
 
 	/**
@@ -59,9 +59,9 @@ public class JakartaFaces3Properties implements ServletContextInitParameterPrope
 	 * must be performed, even when there is no corresponding value for this
 	 * component in the incoming request.
 	 *
+	 * @since 2.3
 	 * @see UIInput#ALWAYS_PERFORM_VALIDATION_WHEN_REQUIRED_IS_TRUE
 	 * @see BeanValidator#validate(FacesContext, UIComponent, Object)
-	 * @since 2.3
 	 */
 	@ServletContextInitParameter(UIInput.ALWAYS_PERFORM_VALIDATION_WHEN_REQUIRED_IS_TRUE)
 	private Boolean alwaysPerformValidationWhenRequiredIsTrue;
@@ -72,8 +72,8 @@ public class JakartaFaces3Properties implements ServletContextInitParameterPrope
 	 * are possible. If not specified, or the value is not understood by the
 	 * implementation, "none" is assumed.
 	 *
-	 * @see ClientWindow#CLIENT_WINDOW_MODE_PARAM_NAME
 	 * @since 2.2
+	 * @see ClientWindow#CLIENT_WINDOW_MODE_PARAM_NAME
 	 */
 	@ServletContextInitParameter(ClientWindow.CLIENT_WINDOW_MODE_PARAM_NAME)
 	private String clientWindowMode;

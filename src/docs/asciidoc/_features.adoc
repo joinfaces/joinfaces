@@ -6,8 +6,7 @@ There are many JoinFaces Starters available: six basic starters, meta starter, s
 
 While most of the starters can be combined, some starters are mutually exclusive:
 
-- `tomcat-spring-boot-starter`, `jetty-spring-boot-starter` and `undertow-spring-boot-starter`
-- `mojarra-spring-boot-starter` and `myfaces-spring-boot-starter`
+- `mojarra3-spring-boot-starter`, `mojarra4-spring-boot-starter`, `myfaces3-spring-boot-starter` and `myfaces4-spring-boot-starter`
 - `omnifaces1-spring-boot-starter` and `omnifaces3-spring-boot-starter`
 
 You can use the table below to discover the starters that fit your needs.
@@ -17,26 +16,23 @@ You can use the table below to discover the starters that fit your needs.
 |===========
 |Starter |Description
 
-|tomcat-spring-boot-starter
-|Basic starter for https://tomcat.apache.org/[Tomcat] servlet container.
+|mojarra3-spring-boot-starter
+|Basic starter for https://github.com/eclipse-ee4j/mojarra[Mojarra] JSF implementation.
 
-|jetty-spring-boot-starter
-|Basic starter for https://www.eclipse.org/jetty[Jetty] servlet container.
+|mojarra4-spring-boot-starter
+|Basic starter for https://github.com/eclipse-ee4j/mojarra[Mojarra] JSF implementation.
 
-|undertow-spring-boot-starter
-|Basic starter for https://undertow.io[Undertow] servlet container.
+|myfaces3-spring-boot-starter
+|Basic starter for https://myfaces.apache.org/#/core30[MyFaces] JSF implementation.
 
-|mojarra-spring-boot-starter
-|Basic starter for https://javaee.github.io/javaserverfaces-spec/[Mojarra] JSF implementation.
-
-|myfaces-spring-boot-starter
-|Basic starter for https://myfaces.apache.org/[MyFaces] JSF implementation.
+|myfaces4-spring-boot-starter
+|Basic starter for https://myfaces.apache.org/#/core40[MyFaces] JSF implementation.
 
 |weld-spring-boot-starter
 |Basic starter for https://weld.cdi-spec.org/[Weld] CDI Reference Implementation.
 
 |jsf-spring-boot-starter
-|Meta starter that pulls `tomcat-spring-boot-starter` and `mojarra-spring-boot-starter`.
+|Meta starter that pulls `spring-boot-starter-tomcat` and `mojarra-spring-boot-starter`.
 
 |security-spring-boot-starter
 |Security starter. Pulls `jsf-spring-boot-starter`, `spring-boot-starter-security` and `joinfaces-security-taglib`.
@@ -114,7 +110,7 @@ https://docs.spring.io/spring-boot/docs/{spring-boot-version}/reference/html/fea
 
 [source,properties]
 ----
-joinfaces.jsf.project-stage=development
+joinfaces.faces.project-stage=development
 joinfaces.primefaces.theme=omega
 ----
 

@@ -6,11 +6,11 @@ repositories {
     maven { url 'https://repo.spring.io/snapshot' }
 }
 
-def springBootVersion = "3.0.0-M3"
+def springBootVersion = "3.0.0-M5"
 
 dependencies {
     api "org.springframework.boot:spring-boot-gradle-plugin:$springBootVersion"
     implementation "org.springframework.boot:spring-boot-configuration-metadata:$springBootVersion"
 
-    implementation 'org.apache.maven:maven-model:3.8.1'
+    implementation 'org.apache.maven:maven-model:3.8.6'
 }

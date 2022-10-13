@@ -77,7 +77,7 @@ public class Primefaces4_0Properties implements ServletContextInitParameterPrope
 	/**
 	 * Controls client side validatation.
 	 */
-	@ServletContextInitParameter(Constants.ContextParams.PFV_KEY)
+	@ServletContextInitParameter(Constants.ContextParams.CSV)
 	private Boolean clientSideValidation;
 
 	/**

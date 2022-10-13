@@ -38,8 +38,8 @@ public class JoinfacesAutoConfiguration {
 	/**
 	 * This registers a {@link RequestContextFilter} in case {@link WebMvcAutoConfiguration} is not loaded.
 	 *
-	 * @see WebMvcAutoConfiguration.WebMvcAutoConfigurationAdapter#requestContextFilter()
 	 * @return The {@link RequestContextFilter} Bean.
+	 * @see WebMvcAutoConfiguration.WebMvcAutoConfigurationAdapter#requestContextFilter()
 	 */
 	@Bean
 	@ConditionalOnMissingBean({ RequestContextListener.class, RequestContextFilter.class })

@@ -32,7 +32,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 @SpringBootTest(
 		properties = {
 				"joinfaces.scope-configurer.cdi.order=100",
-				"joinfaces.scope-configurer.jsf.order=200"
+				"joinfaces.scope-configurer.faces.order=200"
 		},
 		webEnvironment = SpringBootTest.WebEnvironment.MOCK
 )
@@ -43,8 +43,8 @@ public class CustomScopeAnnotationConfigurerOrderIT {
 	private CustomScopeAnnotationConfigurer cdiScopeAnnotationsConfigurer;
 
 	@Autowired
-	@Qualifier("jsfScopeAnnotationsConfigurer")
-	private CustomScopeAnnotationConfigurer jsfScopeAnnotationsConfigurer;
+	@Qualifier("facesScopeAnnotationsConfigurer")
+	private CustomScopeAnnotationConfigurer facesScopeAnnotationsConfigurer;
 
 	@Test
 	public void testCdiOrder() {
@@ -53,8 +53,8 @@ public class CustomScopeAnnotationConfigurerOrderIT {
 	}
 
 	@Test
-	public void testJsfOrder() {
-		assertThat(this.jsfScopeAnnotationsConfigurer.getOrder())
+	public void testFacesOrder() {
+		assertThat(this.facesScopeAnnotationsConfigurer.getOrder())
 				.isEqualTo(200);
 	}
 }
