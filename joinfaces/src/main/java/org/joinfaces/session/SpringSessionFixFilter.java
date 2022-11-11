@@ -28,7 +28,6 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletRequestWrapper;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
-import jakarta.servlet.http.HttpSessionContext;
 
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
@@ -40,7 +39,7 @@ import org.springframework.util.CollectionUtils;
 import org.springframework.web.filter.OncePerRequestFilter;
 
 /**
- * {@link javax.servlet.Filter Servlet filter} which re-sets session attributes in order to workaround
+ * {@link jakarta.servlet.Filter Servlet filter} which re-sets session attributes in order to workaround
  * <a href="https://github.com/spring-projects/spring-session/issues/177">spring-projects/spring-session#177</a>.
  *
  * @author Lars Grefer
@@ -163,24 +162,10 @@ public class SpringSessionFixFilter extends OncePerRequestFilter {
 			}
 
 			@Override
-			@Deprecated
-			public HttpSessionContext getSessionContext() {
-				return this.delegate.getSessionContext();
-			}
-
-			@Override
 			@Nullable
 			public Object getAttribute(String name) {
 				RequestWrapper.this.readAttributeNames.add(name);
 				return this.delegate.getAttribute(name);
-			}
-
-			@Override
-			@Deprecated
-			@Nullable
-			public Object getValue(String name) {
-				RequestWrapper.this.readAttributeNames.add(name);
-				return this.delegate.getValue(name);
 			}
 
 			@Override
@@ -189,31 +174,13 @@ public class SpringSessionFixFilter extends OncePerRequestFilter {
 			}
 
 			@Override
-			@Deprecated
-			public String[] getValueNames() {
-				return this.delegate.getValueNames();
-			}
-
-			@Override
 			public void setAttribute(String name, Object value) {
 				this.delegate.setAttribute(name, value);
 			}
 
 			@Override
-			@Deprecated
-			public void putValue(String name, Object value) {
-				this.delegate.putValue(name, value);
-			}
-
-			@Override
 			public void removeAttribute(String name) {
 				this.delegate.removeAttribute(name);
-			}
-
-			@Override
-			@Deprecated
-			public void removeValue(String name) {
-				this.delegate.removeValue(name);
 			}
 
 			@Override
