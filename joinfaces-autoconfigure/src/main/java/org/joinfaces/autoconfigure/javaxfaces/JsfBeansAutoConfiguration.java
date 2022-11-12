@@ -76,14 +76,14 @@ public class JsfBeansAutoConfiguration {
 	 * @see com.sun.faces.cdi.FacesContextProducer
 	 */
 	@Bean("facesContext")
-	@Scope(ConfigurableBeanFactory.SCOPE_PROTOTYPE)
+	@Scope(value = ConfigurableBeanFactory.SCOPE_PROTOTYPE, proxyMode = ScopedProxyMode.TARGET_CLASS)
 	@ConditionalOnMissingBean
 	public FacesContext facesContext() {
 		return FacesContext.getCurrentInstance();
 	}
 
 	@Bean("flash")
-	@Scope(ConfigurableBeanFactory.SCOPE_PROTOTYPE)
+	@Scope(value = ConfigurableBeanFactory.SCOPE_PROTOTYPE, proxyMode = ScopedProxyMode.TARGET_CLASS)
 	@ConditionalOnMissingBean
 	public Flash flash() {
 		return FacesContext.getCurrentInstance().getExternalContext().getFlash();
@@ -147,7 +147,7 @@ public class JsfBeansAutoConfiguration {
 	}
 
 	@Bean("resource")
-	@Scope(ConfigurableBeanFactory.SCOPE_PROTOTYPE)
+	@Scope(value = ConfigurableBeanFactory.SCOPE_PROTOTYPE, proxyMode = ScopedProxyMode.TARGET_CLASS)
 	@ConditionalOnMissingBean
 	public ResourceHandler resourceHandler() {
 		return FacesContext.getCurrentInstance().getApplication().getResourceHandler();
@@ -168,7 +168,7 @@ public class JsfBeansAutoConfiguration {
 	}
 
 	@Bean("view")
-	@Scope(ConfigurableBeanFactory.SCOPE_PROTOTYPE)
+	@Scope(value = ConfigurableBeanFactory.SCOPE_PROTOTYPE, proxyMode = ScopedProxyMode.TARGET_CLASS)
 	@ConditionalOnMissingBean
 	public UIViewRoot viewRoot() {
 		return FacesContext.getCurrentInstance().getViewRoot();
@@ -182,7 +182,7 @@ public class JsfBeansAutoConfiguration {
 	}
 
 	@Bean("externalContext")
-	@Scope(ConfigurableBeanFactory.SCOPE_PROTOTYPE)
+	@Scope(value = ConfigurableBeanFactory.SCOPE_PROTOTYPE, proxyMode = ScopedProxyMode.TARGET_CLASS)
 	@ConditionalOnMissingBean
 	public ExternalContext externalContext() {
 		return FacesContext.getCurrentInstance().getExternalContext();
