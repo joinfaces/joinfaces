@@ -16,8 +16,6 @@
 
 package org.joinfaces.test.mock;
 
-import java.util.function.Predicate;
-
 import jakarta.el.ValueExpression;
 
 import org.junit.jupiter.api.Assertions;

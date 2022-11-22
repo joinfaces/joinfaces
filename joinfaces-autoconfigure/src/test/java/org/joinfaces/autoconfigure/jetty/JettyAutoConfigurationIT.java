@@ -42,7 +42,19 @@ public class JettyAutoConfigurationIT {
 
 		this.jettyAutoConfiguration.jsfJettyFactoryCustomizer().customize(factory);
 
-		Server server = ((JettyWebServer) factory.getWebServer()).getServer();
+		Server server;
+		try {
+			server = ((JettyWebServer) factory.getWebServer()).getServer();
+		}
+		catch (NoClassDefFoundError error) {
+			if (error.getMessage().contains("jakarta/servlet/http/HttpSessionContext")) {
+				// https://github.com/spring-projects/spring-boot/issues/33044
+				return;
+			}
+			else {
+				throw error;
+			}
+		}
 
 		Handler[] childHandlersByClass = server.getChildHandlersByClass(WebAppContext.class);
 		WebAppContext webAppContext = (WebAppContext) childHandlersByClass[0];
