@@ -19,7 +19,6 @@ package org.joinfaces.session;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 
-import org.joinfaces.session.SpringSessionFixFilter;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -54,7 +53,7 @@ class SpringSessionFixFilterTest {
 		HttpSession sessionWrapper = requestWrapper.getSession();
 
 		sessionWrapper.getAttribute("foo");
-		sessionWrapper.getValue("bar");
+		sessionWrapper.getAttribute("bar");
 
 		assertThat(requestWrapper.getReadAttributeNames()).contains("foo", "bar");
 

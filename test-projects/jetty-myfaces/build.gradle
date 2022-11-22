@@ -1,10 +1,16 @@
 description = 'JoinFaces Jetty-MyFaces Test Project'
 
 dependencies {
-    implementation(project(':joinfaces-starters:faces4-spring-boot-starter')) {
+    implementation(project(':joinfaces-starters:faces-spring-boot-starter')) {
         exclude module: "spring-boot-starter-tomcat"
         exclude module: "mojarra4-spring-boot-starter"
     }
     implementation 'org.springframework.boot:spring-boot-starter-jetty'
+    implementation("jakarta.servlet:jakarta.servlet-api") {
+        version {
+            strictly "5.0.0"
+            because "Jetty 11 does not support Servlet 6"
+        }
+    }
     implementation project(':joinfaces-starters:myfaces4-spring-boot-starter')
 }

@@ -16,6 +16,8 @@
 
 package org.joinfaces.test.mock;
 
+import java.util.function.Predicate;
+
 import jakarta.el.ValueExpression;
 
 import org.junit.jupiter.api.Assertions;
@@ -115,7 +117,7 @@ public class MockTagAttributeTest {
 		ValueExpression valueExpression = this.mockTagAttribute.getValueExpression(null, null);
 
 		assertThat(valueExpression).isInstanceOf(MockValueExpression.class);
-		assertThat(valueExpression.getValue(null)).isEqualTo(FOO);
+		assertThat((String) valueExpression.getValue(null)).isEqualTo(FOO);
 	}
 
 	@Test

@@ -1,0 +1,6 @@
+description = 'MyFaces Spring Boot Starter'
+jar.manifest.attributes('Automatic-Module-Name': 'joinfaces.starter.myfaces')
+
+dependencies {
+    api project(':joinfaces-starters:myfaces4-spring-boot-starter')
+}
