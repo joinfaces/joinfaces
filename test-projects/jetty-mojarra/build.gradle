@@ -5,4 +5,10 @@ dependencies {
         exclude module: "spring-boot-starter-tomcat"
     }
     implementation 'org.springframework.boot:spring-boot-starter-jetty'
+    implementation("jakarta.servlet:jakarta.servlet-api") {
+        version {
+            strictly "5.0.0"
+            because "Jetty 11 does not support Servlet 6"
+        }
+    }
 }
