@@ -51,8 +51,17 @@ class ServletContextListenerUtilTest {
 		ConfigurableServletWebServerFactory factory = new JettyServletWebServerFactory();
 
 		ServletContextListenerUtil.addListeners(factory, List.of(TestListener.class));
-
-		this.test(factory);
+		try {
+			this.test(factory);
+		}
+		catch (NoClassDefFoundError error) {
+			if (error.getMessage().contains("jakarta/servlet/http/HttpSessionContext")) {
+				// https://github.com/spring-projects/spring-boot/issues/33044#issuecomment-1322743032
+			}
+			else {
+				throw error;
+			}
+		}
 	}
 
 	@Test
