@@ -1,7 +1,7 @@
 description = 'JoinFaces Tomcat-MyFaces Test Project'
 
 dependencies {
-    implementation(project(':joinfaces-starters:faces4-spring-boot-starter')) {
+    implementation(project(':joinfaces-starters:faces-spring-boot-starter')) {
         exclude module: "mojarra4-spring-boot-starter"
     }
     implementation project(':joinfaces-starters:myfaces4-spring-boot-starter')

@@ -10,5 +10,5 @@ dependencies {
     api 'org.springframework:spring-web'
 
     api 'org.springframework.boot:spring-boot-starter-tomcat'
-    api project(':joinfaces-starters:mojarra4-spring-boot-starter')
+    api project(':joinfaces-starters:mojarra-spring-boot-starter')
 }
