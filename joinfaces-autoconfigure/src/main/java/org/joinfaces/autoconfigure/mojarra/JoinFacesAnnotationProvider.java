@@ -14,57 +14,56 @@
  * limitations under the License.
  */
 
-package org.joinfaces.autoconfigure.myfaces;
+package org.joinfaces.autoconfigure.mojarra;
 
 import java.lang.annotation.Annotation;
+import java.net.URI;
 import java.util.Map;
 import java.util.Set;
 
-import jakarta.faces.context.ExternalContext;
 import jakarta.servlet.ServletContext;
 
-import lombok.extern.slf4j.Slf4j;
-import org.apache.myfaces.spi.AnnotationProvider;
-import org.apache.myfaces.spi.AnnotationProviderWrapper;
-import org.joinfaces.FacesContextUtils;
+import com.sun.faces.spi.AnnotationProvider;
+import lombok.NoArgsConstructor;
 import org.joinfaces.autoconfigure.FacesAnnotationProviderUtil;
 
 import org.springframework.web.context.support.WebApplicationContextUtils;
 
 /**
- * Servlet context configurer of MyFaces.
+ * Mojarra {@link AnnotationProvider} implementation which will use existing scan results, if available.
  *
- * @author Marcelo Fernandes
  * @author Lars Grefer
- * @see org.apache.myfaces.spi.AnnotationProvider
- * @see MyFacesInitializerRegistrationBean
  */
-@Slf4j
-public class JoinFacesAnnotationProvider extends AnnotationProviderWrapper {
+@NoArgsConstructor
+public class JoinFacesAnnotationProvider extends AnnotationProvider {
 
-	public JoinFacesAnnotationProvider(AnnotationProvider delegate) {
-		super(delegate);
+	public JoinFacesAnnotationProvider(ServletContext servletContext) {
+		super(servletContext);
+	}
+
+	public JoinFacesAnnotationProvider(ServletContext servletContext, AnnotationProvider parent) {
+		super(servletContext);
+		this.wrappedAnnotationProvider = parent;
 	}
 
 	@Override
-	public Map<Class<? extends Annotation>, Set<Class<?>>> getAnnotatedClasses(ExternalContext ctx) {
+	public Map<Class<? extends Annotation>, Set<Class<?>>> getAnnotatedClasses(Set<URI> urls) {
 
-		ServletContext servletContext = FacesContextUtils.getServletContext(ctx);
-
-		var preparedScanResult = FacesAnnotationProviderUtil.findPreparedScanResult(AnnotationProvider.class, servletContext.getClassLoader());
+		var preparedScanResult = FacesAnnotationProviderUtil.findPreparedScanResult(AnnotationProvider.class, this.servletContext.getClassLoader());
 
 		if (preparedScanResult.isPresent()) {
 			return preparedScanResult.get();
 		}
 
-		MyFacesInitializerRegistrationBean registrationBean = WebApplicationContextUtils
-				.getRequiredWebApplicationContext(servletContext)
-				.getBeanProvider(MyFacesInitializerRegistrationBean.class)
+		MojarraInitializerRegistrationBean registrationBean = WebApplicationContextUtils
+				.getRequiredWebApplicationContext(this.servletContext)
+				.getBeanProvider(MojarraInitializerRegistrationBean.class)
 				.getIfAvailable();
 		if (registrationBean != null && registrationBean.getAnnotatedClasses() != null) {
 			return registrationBean.getAnnotatedClasses();
 		}
 
-		return super.getAnnotatedClasses(ctx);
+		return this.wrappedAnnotationProvider.getAnnotatedClasses(urls);
 	}
+
 }

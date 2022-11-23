@@ -14,20 +14,10 @@
  * limitations under the License.
  */
 
-package org.joinfaces.tools;
+package org.joinfaces;
 
+import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-/**
- * {@link ScanResultHandler} for the {@link org.apache.myfaces.spi.AnnotationProvider}-SPI.
- *
- * @author Lars Grefer
- */
-public class MyFacesAnnotationProviderHandler extends FacesAnnotationProviderHandler {
-
-	private static final String MYFACES_ANNOTATION_PROVIDER = "org.apache.myfaces.spi.AnnotationProvider";
-
-	public MyFacesAnnotationProviderHandler() {
-		super(MYFACES_ANNOTATION_PROVIDER);
-	}
-
+@SpringBootApplication
+public class TestConfiguration {
 }

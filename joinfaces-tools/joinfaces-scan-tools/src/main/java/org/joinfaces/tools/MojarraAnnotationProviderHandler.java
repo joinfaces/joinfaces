@@ -14,10 +14,18 @@
  * limitations under the License.
  */
 
-package org.joinfaces.primefaces;
+package org.joinfaces.tools;
 
-import org.springframework.boot.autoconfigure.SpringBootApplication;
+/**
+ * {@link ScanResultHandler} for the {@link org.apache.myfaces.spi.AnnotationProvider}-SPI.
+ *
+ * @author Lars Grefer
+ */
+public class MojarraAnnotationProviderHandler extends FacesAnnotationProviderHandler {
 
-@SpringBootApplication
-public class PrimfacesTestApplication {
+	private static final String MOJARRA_ANNOTATION_PROVIDER = "com.sun.faces.spi.AnnotationProvider";
+
+	public MojarraAnnotationProviderHandler() {
+		super(MOJARRA_ANNOTATION_PROVIDER);
+	}
 }

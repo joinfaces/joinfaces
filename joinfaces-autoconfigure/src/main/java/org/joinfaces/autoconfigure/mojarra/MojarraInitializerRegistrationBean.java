@@ -14,14 +14,13 @@
  * limitations under the License.
  */
 
-package org.joinfaces.autoconfigure.myfaces;
+package org.joinfaces.autoconfigure.mojarra;
 
 import java.lang.annotation.Annotation;
 import java.util.Map;
 import java.util.Set;
 
-import jakarta.servlet.ServletContainerInitializer;
-
+import com.sun.faces.config.FacesInitializer;
 import io.github.classgraph.ScanResult;
 import lombok.AccessLevel;
 import lombok.Getter;
@@ -29,21 +28,17 @@ import org.joinfaces.autoconfigure.FacesAnnotationProviderUtil;
 import org.joinfaces.servlet.ServletContainerInitializerRegistrationBean;
 
 /**
- * Servlet context initializer of MyFaces.
+ * Servlet Context Initializer of Mojarra.
  *
- * @author Marcelo Fernandes
  * @author Lars Grefer
- * @see org.apache.myfaces.spi.AnnotationProvider
- * @see org.apache.myfaces.config.annotation.AnnotationConfigurator
- * @see JoinFacesAnnotationProvider
  */
-public class MyFacesInitializerRegistrationBean<T extends ServletContainerInitializer> extends ServletContainerInitializerRegistrationBean<T> {
+public class MojarraInitializerRegistrationBean extends ServletContainerInitializerRegistrationBean<FacesInitializer> {
 
 	@Getter(AccessLevel.PACKAGE)
 	private Map<Class<? extends Annotation>, Set<Class<?>>> annotatedClasses;
 
-	public MyFacesInitializerRegistrationBean(Class<T> servletContainerInitializerClass) {
-		super(servletContainerInitializerClass);
+	public MojarraInitializerRegistrationBean() {
+		super(FacesInitializer.class);
 	}
 
 	@Override

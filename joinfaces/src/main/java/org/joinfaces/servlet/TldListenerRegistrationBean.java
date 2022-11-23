@@ -41,6 +41,7 @@ import org.springframework.util.ClassUtils;
  * Also the embedded Tomcat does not find the listeners, if tomcat-embed-jasper is not deployed.
  *
  * @author Lars Grefer
+ * @see ServletContextListenerUtil
  */
 @Builder
 @RequiredArgsConstructor
@@ -52,7 +53,7 @@ public class TldListenerRegistrationBean implements WebServerFactoryCustomizer<A
 	@Override
 	public void customize(AbstractServletWebServerFactory factory) {
 		if (mustAddInitializer(factory)) {
-			factory.addInitializers(servletContext -> this.listeners.forEach(servletContext::addListener));
+			ServletContextListenerUtil.addListeners(factory, listeners);
 		}
 	}
 

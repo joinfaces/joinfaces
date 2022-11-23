@@ -45,7 +45,7 @@ public class MojarraAutoConfiguration implements FacesImplementationAutoConfigur
 
 	@Bean
 	public ServletContainerInitializerRegistrationBean<FacesInitializer> mojarraServletContainerInitializer() {
-		return new ServletContainerInitializerRegistrationBean<>(FacesInitializer.class);
+		return new MojarraInitializerRegistrationBean();
 	}
 
 	@Bean

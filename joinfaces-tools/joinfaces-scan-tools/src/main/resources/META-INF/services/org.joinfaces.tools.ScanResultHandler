@@ -1,2 +1,3 @@
 org.joinfaces.tools.MyFacesAnnotationProviderHandler
+org.joinfaces.tools.MojarraAnnotationProviderHandler
 org.joinfaces.tools.ServletContainerInitializerHandler
