@@ -12,5 +12,5 @@ dependencies {
             because "Jetty 11 does not support Servlet 6"
         }
     }
-    implementation project(':joinfaces-starters:myfaces4-spring-boot-starter')
+    implementation project(':joinfaces-starters:myfaces3-spring-boot-starter')
 }
