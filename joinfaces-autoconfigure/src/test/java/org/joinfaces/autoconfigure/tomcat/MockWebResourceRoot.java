@@ -20,7 +20,6 @@ import java.io.InputStream;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Locale;
 import java.util.Set;
 
 import lombok.Getter;
@@ -191,23 +190,6 @@ public class MockWebResourceRoot implements WebResourceRoot {
 	@Override
 	public boolean getTrackLockedFiles() {
 		throw new UnsupportedOperationException(NOT_SUPPORTED_YET);
-	}
-
-	private ArchiveIndexStrategy archiveIndexStrategy = ArchiveIndexStrategy.SIMPLE;
-
-	@Override
-	public void setArchiveIndexStrategy(String archiveIndexStrategy) {
-		this.archiveIndexStrategy = ArchiveIndexStrategy.valueOf(archiveIndexStrategy.toUpperCase(Locale.ENGLISH));
-	}
-
-	@Override
-	public String getArchiveIndexStrategy() {
-		return this.archiveIndexStrategy.name();
-	}
-
-	@Override
-	public ArchiveIndexStrategy getArchiveIndexStrategyEnum() {
-		return this.archiveIndexStrategy;
 	}
 
 	@Override
