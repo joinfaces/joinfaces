@@ -16,9 +16,6 @@
 
 package org.joinfaces.autoconfigure.undertow;
 
-import java.security.AccessController;
-import java.security.PrivilegedAction;
-
 import io.undertow.Undertow;
 import io.undertow.server.handlers.resource.ClassPathResourceManager;
 import lombok.extern.slf4j.Slf4j;
@@ -35,6 +32,7 @@ import org.springframework.context.annotation.Bean;
 /**
  * Spring Boot Auto Configuration of Undertow.
  * Configure undertow to load jsf resources from classpath.
+ *
  * @author Marcelo Fernandes
  */
 @Slf4j
@@ -47,14 +45,9 @@ public class UndertowAutoConfiguration {
 	@Bean
 	public WebServerFactoryCustomizer<UndertowServletWebServerFactory> jsfUndertowFactoryCustomizer(UndertowProperties undertowProperties) {
 		return factory -> factory.addDeploymentInfoCustomizers(deploymentInfo -> {
-			AccessController.doPrivileged((PrivilegedAction<Void>) () -> {
-				deploymentInfo.setResourceManager(new CompositeResourceManager(
+			deploymentInfo.setResourceManager(new CompositeResourceManager(
 					new ClassPathResourceManager(deploymentInfo.getClassLoader(), undertowProperties.getClassPathResource()),
 					deploymentInfo.getResourceManager()));
-
-				return null;
-			});
-
 			log.info("Setting Undertow classLoader to {} directory", undertowProperties.getClassPathResource());
 		});
 	}
