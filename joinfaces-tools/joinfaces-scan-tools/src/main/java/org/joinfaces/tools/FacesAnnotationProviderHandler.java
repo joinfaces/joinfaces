@@ -18,7 +18,6 @@ package org.joinfaces.tools;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.LinkedHashSet;
 import java.util.List;
@@ -35,7 +34,14 @@ import io.github.classgraph.ScanResult;
 public abstract class FacesAnnotationProviderHandler extends ScanResultHandler {
 
 	private final String spiClassName;
-	private List<String> annotations = new ArrayList<>(List.of(
+
+	/**
+	 * The set of classes wanted by the AnnotationProvider SPI's of Mojarra and MyFaces.
+	 *
+	 * @see com.sun.faces.spi.AnnotationProvider
+	 * @see org.apache.myfaces.spi.AnnotationProvider
+	 */
+	private static final List<String> annotations = List.of(
 			"jakarta.faces.bean.ManagedBean",
 			"jakarta.faces.component.FacesComponent",
 			"jakarta.faces.component.behavior.FacesBehavior",
@@ -44,7 +50,7 @@ public abstract class FacesAnnotationProviderHandler extends ScanResultHandler {
 			"jakarta.faces.render.FacesRenderer",
 			"jakarta.faces.render.FacesBehaviorRenderer",
 			"jakarta.faces.validator.FacesValidator"
-	));
+	);
 
 	protected FacesAnnotationProviderHandler(String spiClassName) {
 		this.spiClassName = spiClassName;
@@ -58,7 +64,7 @@ public abstract class FacesAnnotationProviderHandler extends ScanResultHandler {
 
 		Map<String, Set<String>> result = new LinkedHashMap<>();
 
-		for (String annotation : this.annotations) {
+		for (String annotation : annotations) {
 			Set<String> annotatedClasses = new LinkedHashSet<>();
 
 			annotatedClasses.addAll(scanResult.getClassesWithAnnotation(annotation).getNames());
@@ -70,7 +76,7 @@ public abstract class FacesAnnotationProviderHandler extends ScanResultHandler {
 
 		File resultFile = new File(classpathRoot, "META-INF/joinfaces/" + this.spiClassName + ".classes");
 
-		writeClassMap(resultFile, result);
+		this.writeClassMap(resultFile, result);
 
 	}
 }

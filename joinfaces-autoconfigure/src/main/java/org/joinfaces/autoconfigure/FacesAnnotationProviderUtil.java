@@ -17,10 +17,8 @@
 package org.joinfaces.autoconfigure;
 
 import java.lang.annotation.Annotation;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.LinkedHashSet;
-import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
@@ -48,7 +46,13 @@ import org.joinfaces.ClasspathScanUtil;
 @UtilityClass
 public class FacesAnnotationProviderUtil {
 
-	public static final List<Class<? extends Annotation>> CLASSES = Arrays.asList(
+	/**
+	 * The set of classes wanted by the AnnotationProvider SPI's of Mojarra and MyFaces.
+	 *
+	 * @see com.sun.faces.spi.AnnotationProvider
+	 * @see org.apache.myfaces.spi.AnnotationProvider
+	 */
+	static final Set<Class<? extends Annotation>> CLASSES = Set.of(
 			ManagedBean.class,
 			FacesComponent.class,
 			FacesBehavior.class,
