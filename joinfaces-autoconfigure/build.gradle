@@ -49,6 +49,9 @@ dependencies {
 
     optional 'org.apache.myfaces.tobago:tobago-core'
     optional 'org.apache.myfaces.tobago:tobago-theme-standard'
+    
+    optional 'org.ocpsoft.rewrite:rewrite-servlet'
+    optional 'org.ocpsoft.rewrite:rewrite-integration-spring'
 
     testImplementation('org.springframework.boot:spring-boot-starter-test') {
         exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
