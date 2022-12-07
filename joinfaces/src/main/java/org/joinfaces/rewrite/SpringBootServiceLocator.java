@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package org.joinfaces.autoconfigure.rewrite;
+package org.joinfaces.rewrite;
 
 import java.util.Collection;
 import java.util.LinkedHashSet;

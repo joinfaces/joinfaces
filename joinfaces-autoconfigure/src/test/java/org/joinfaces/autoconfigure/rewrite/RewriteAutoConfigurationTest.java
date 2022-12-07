@@ -16,6 +16,8 @@
 
 package org.joinfaces.autoconfigure.rewrite;
 
+import org.joinfaces.rewrite.SpringBootBeanNameResolver;
+import org.joinfaces.rewrite.SpringBootServiceLocator;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.ocpsoft.rewrite.servlet.config.HttpConfigurationProvider;

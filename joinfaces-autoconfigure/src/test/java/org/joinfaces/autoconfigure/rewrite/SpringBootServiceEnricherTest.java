@@ -18,6 +18,8 @@ package org.joinfaces.autoconfigure.rewrite;
 
 import java.util.Collection;
 
+import org.joinfaces.rewrite.ApplicationContextProvider;
+import org.joinfaces.rewrite.SpringBootServiceEnricher;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 

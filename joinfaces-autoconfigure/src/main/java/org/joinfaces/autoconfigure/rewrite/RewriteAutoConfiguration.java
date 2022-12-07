@@ -16,6 +16,9 @@
 
 package org.joinfaces.autoconfigure.rewrite;
 
+import org.joinfaces.rewrite.ApplicationContextProvider;
+import org.joinfaces.rewrite.SpringBootAnnotationConfigProvider;
+import org.joinfaces.rewrite.SpringBootBeanNameResolver;
 import org.joinfaces.servlet.WebFragmentRegistrationBean;
 import org.ocpsoft.rewrite.servlet.RewriteFilter;
 import org.ocpsoft.rewrite.servlet.impl.RewriteServletContextListener;
@@ -27,6 +30,7 @@ import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnWebApplication;
 import org.springframework.boot.autoconfigure.web.servlet.ConditionalOnMissingFilterBean;
 import org.springframework.boot.autoconfigure.web.servlet.WebMvcAutoConfiguration;
+import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.ApplicationContext;
@@ -100,11 +104,11 @@ public class RewriteAutoConfiguration {
 	 * {@link org.ocpsoft.rewrite.servlet.config.HttpConfigurationProvider} which scans for Rewrite annotations within
 	 * the classpath.
 	 *
-	 * @param rewriteProperties The {@link org.springframework.boot.context.properties.ConfigurationProperties} for Rewrite.
 	 * @return rewrite annotation scanner
 	 */
 	@Bean
-	public SpringBootAnnotationConfigProvider rewriteAnnotationConfigProvider(RewriteProperties rewriteProperties) {
-		return new SpringBootAnnotationConfigProvider(rewriteProperties.getAnnotationConfigProvider());
+	@ConfigurationProperties("joinfaces.rewrite.annotation-config-provider")
+	public SpringBootAnnotationConfigProvider rewriteAnnotationConfigProvider() {
+		return new SpringBootAnnotationConfigProvider();
 	}
 }

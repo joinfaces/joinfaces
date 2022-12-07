@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package org.joinfaces.autoconfigure.rewrite;
+package org.joinfaces.rewrite;
 
 import java.lang.annotation.Annotation;
 import java.util.ArrayList;
@@ -27,7 +27,9 @@ import jakarta.servlet.ServletContext;
 
 import io.github.classgraph.ClassGraph;
 import io.github.classgraph.ScanResult;
+import lombok.Getter;
 import lombok.RequiredArgsConstructor;
+import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
 import org.joinfaces.ClasspathScanUtil;
 import org.ocpsoft.common.services.ServiceLoader;
@@ -38,6 +40,7 @@ import org.ocpsoft.rewrite.config.Configuration;
 import org.ocpsoft.rewrite.servlet.config.HttpConfigurationProvider;
 
 import org.springframework.lang.Nullable;
+import org.springframework.util.CollectionUtils;
 
 /**
  * An {@link HttpConfigurationProvider} that scans classes in the classpath for
@@ -55,13 +58,19 @@ import org.springframework.lang.Nullable;
 @RequiredArgsConstructor
 public class SpringBootAnnotationConfigProvider extends HttpConfigurationProvider {
 
-	private final RewriteProperties.AnnotationConfigProviderProperties properties;
+	@Getter
+	@Setter
+	private boolean enabled = true;
+
+	@Getter
+	@Setter
+	private List<String> basePackages;
 
 	@Override
 	@Nullable
 	public Configuration getConfiguration(final ServletContext servletContext) {
 
-		if (!this.properties.isEnabled()) {
+		if (!this.isEnabled()) {
 			return null;
 		}
 
@@ -94,9 +103,8 @@ public class SpringBootAnnotationConfigProvider extends HttpConfigurationProvide
 		ClassGraph classGraph = new ClassGraph()
 				.enableAllInfo()
 				.enableExternalClasses();
-		List<String> basePackages = this.properties.getBasePackages();
-		if (basePackages != null && !basePackages.isEmpty()) {
-			classGraph = classGraph.whitelistPackages(basePackages.toArray(new String[0]));
+		if (!CollectionUtils.isEmpty(this.basePackages)) {
+			classGraph = classGraph.whitelistPackages(this.basePackages.toArray(new String[0]));
 		}
 
 		try (ScanResult scanResult = classGraph.scan()) {

@@ -35,6 +35,9 @@ dependencies {
     optional 'org.springframework.boot:spring-boot-starter-jetty'
     optional 'org.springframework.boot:spring-boot-starter-undertow'
 
+    optional 'org.ocpsoft.rewrite:rewrite-servlet'
+    optional 'org.ocpsoft.rewrite:rewrite-integration-spring'
+
     optional 'org.jboss.weld.servlet:weld-servlet-core'
 
     testImplementation 'org.springframework.boot:spring-boot-starter-test'

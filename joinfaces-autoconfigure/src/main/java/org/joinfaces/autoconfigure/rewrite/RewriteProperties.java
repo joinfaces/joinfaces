@@ -23,6 +23,7 @@ import java.util.List;
 import lombok.Data;
 import org.joinfaces.autoconfigure.servlet.initparams.ServletContextInitParameter;
 import org.joinfaces.autoconfigure.servlet.initparams.ServletContextInitParameterProperties;
+import org.joinfaces.rewrite.SpringBootAnnotationConfigProvider;
 import org.ocpsoft.rewrite.annotation.config.AnnotationConfigProvider;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
@@ -63,11 +64,4 @@ public class RewriteProperties implements ServletContextInitParameterProperties 
 	@ServletContextInitParameter(AnnotationConfigProvider.CONFIG_BASE_PACKAGES)
 	private List<String> basePackages = new ArrayList<>(Collections.singletonList("none"));
 
-	private final AnnotationConfigProviderProperties annotationConfigProvider = new AnnotationConfigProviderProperties();
-
-	@Data
-	public static class AnnotationConfigProviderProperties {
-		private boolean enabled = true;
-		private List<String> basePackages;
-	}
 }

@@ -14,4 +14,4 @@
 # limitations under the License.
 #
 
-org.joinfaces.autoconfigure.rewrite.SpringBootServiceEnricher
+org.joinfaces.rewrite.SpringBootServiceEnricher

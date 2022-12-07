@@ -14,9 +14,8 @@
  * limitations under the License.
  */
 
-package org.joinfaces.autoconfigure.rewrite;
+package org.joinfaces.rewrite;
 
-import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import lombok.Getter;
 
 import org.springframework.beans.BeansException;
@@ -25,7 +24,6 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
 import org.springframework.lang.Nullable;
 
-@SuppressFBWarnings("ST_WRITE_TO_STATIC_FROM_INSTANCE_METHOD")
 public class ApplicationContextProvider implements ApplicationContextAware, DisposableBean {
 
 	@Nullable
