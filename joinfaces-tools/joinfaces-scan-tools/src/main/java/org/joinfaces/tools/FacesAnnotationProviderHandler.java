@@ -65,6 +65,11 @@ public abstract class FacesAnnotationProviderHandler extends ScanResultHandler {
 		Map<String, Set<String>> result = new LinkedHashMap<>();
 
 		for (String annotation : annotations) {
+
+			if (scanResult.getClassInfo(annotation) == null) {
+				continue;
+			}
+
 			Set<String> annotatedClasses = new LinkedHashSet<>();
 
 			annotatedClasses.addAll(scanResult.getClassesWithAnnotation(annotation).getNames());
