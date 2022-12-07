@@ -23,7 +23,6 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
 
-import jakarta.annotation.ManagedBean;
 import jakarta.faces.component.FacesComponent;
 import jakarta.faces.component.behavior.FacesBehavior;
 import jakarta.faces.convert.FacesConverter;
@@ -34,6 +33,7 @@ import jakarta.faces.validator.FacesValidator;
 
 import io.github.classgraph.ScanResult;
 import lombok.experimental.UtilityClass;
+import lombok.extern.slf4j.Slf4j;
 import org.joinfaces.ClasspathScanUtil;
 
 /**
@@ -42,7 +42,10 @@ import org.joinfaces.ClasspathScanUtil;
  * @author Lars Grefer
  * @see org.joinfaces.autoconfigure.mojarra.JoinFacesAnnotationProvider
  * @see org.joinfaces.autoconfigure.myfaces.JoinFacesAnnotationProvider
+ * @see com.sun.faces.spi.AnnotationProvider
+ * @see org.apache.myfaces.spi.AnnotationProvider
  */
+@Slf4j
 @UtilityClass
 public class FacesAnnotationProviderUtil {
 
@@ -52,22 +55,32 @@ public class FacesAnnotationProviderUtil {
 	 * @see com.sun.faces.spi.AnnotationProvider
 	 * @see org.apache.myfaces.spi.AnnotationProvider
 	 */
-	static final Set<Class<? extends Annotation>> CLASSES = Set.of(
-			ManagedBean.class,
-			FacesComponent.class,
-			FacesBehavior.class,
-			FacesConverter.class,
-			NamedEvent.class,
-			FacesRenderer.class,
-			FacesBehaviorRenderer.class,
-			FacesValidator.class
+	static final Set<String> CLASSES = Set.of(
+			"jakarta.faces.bean.ManagedBean",
+			FacesComponent.class.getName(),
+			FacesBehavior.class.getName(),
+			FacesConverter.class.getName(),
+			NamedEvent.class.getName(),
+			FacesRenderer.class.getName(),
+			FacesBehaviorRenderer.class.getName(),
+			FacesValidator.class.getName()
 	);
 
 	public static Map<Class<? extends Annotation>, Set<Class<?>>> findAnnotatedClasses(ScanResult scanResult) {
 
 		Map<Class<? extends Annotation>, Set<Class<?>>> annotatedClasses = new HashMap<>();
 
-		for (Class<? extends Annotation> annotationClass : CLASSES) {
+		for (String annotationClassName : CLASSES) {
+
+			Class<? extends Annotation> annotationClass;
+			try {
+				annotationClass = Class.forName(annotationClassName).asSubclass(Annotation.class);
+			}
+			catch (ClassNotFoundException e) {
+				log.debug("Annotation class {} not found", annotationClassName, e);
+				continue;
+			}
+
 			Set<Class<?>> classes = new LinkedHashSet<>();
 
 			classes.addAll(scanResult.getClassesWithAnnotation(annotationClass).loadClasses());
