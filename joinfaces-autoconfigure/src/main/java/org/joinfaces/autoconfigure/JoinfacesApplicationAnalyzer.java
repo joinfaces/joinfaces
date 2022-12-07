@@ -38,7 +38,7 @@ public class JoinfacesApplicationAnalyzer implements ApplicationListener<Applica
 	@Override
 	public void onApplicationEvent(ApplicationStartedEvent event) {
 		try {
-			Class<? extends Annotation> managedBeanClass = (Class<? extends Annotation>) Class.forName("javax.faces.bean.ManagedBean");
+			Class<? extends Annotation> managedBeanClass = (Class<? extends Annotation>) Class.forName("jakarta.faces.bean.ManagedBean");
 			warnAboutJsfManagedBeans(event.getApplicationContext(), managedBeanClass);
 		}
 		catch (ClassNotFoundException | LinkageError ignored) {
