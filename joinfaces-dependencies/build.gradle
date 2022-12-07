@@ -44,6 +44,13 @@ dependencies {
 
         api 'org.omnifaces:omnifaces:4.0.1'
 
+        //Ocpsoft Rewrite
+        api 'org.ocpsoft.rewrite:rewrite-servlet:6.0.0.Alpha1'
+        api 'org.ocpsoft.rewrite:rewrite-config-prettyfaces:6.0.0.Alpha1'
+        api 'org.ocpsoft.rewrite:rewrite-integration-spring:6.0.0.Alpha1'
+        api 'org.ocpsoft.rewrite:rewrite-integration-faces:6.0.0.Alpha1'
+        api 'org.ocpsoft.rewrite:rewrite-integration-cdi:6.0.0.Alpha1'
+        
         //JoinFaces
         api project(":joinfaces")
         api project(":joinfaces-autoconfigure")

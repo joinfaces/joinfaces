@@ -32,6 +32,28 @@
       "defaultValue": false
     },
     {
+      "name": "joinfaces.rewrite.base-packages",
+      "defaultValue": [
+        "none"
+      ]
+    },
+    {
+      "name": "joinfaces.rewrite.filter.url-patterns",
+      "defaultValue": [
+        "/*"
+      ]
+    },
+    {
+      "name": "joinfaces.rewrite.filter.dispatcher-types",
+      "defaultValue": [
+        "forward",
+        "include",
+        "request",
+        "async",
+        "error"
+      ]
+    },
+    {
       "name": "joinfaces.jsf.always-perform-validation-when-required-is-true",
       "type": "java.lang.Boolean",
       "deprecation": {
