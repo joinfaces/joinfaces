@@ -20,7 +20,7 @@ tasks.named("jar", Jar) {
 }
 
 dependencies {
-    api project(':joinfaces-starters:jsf-spring-boot-starter')
+    api project(':joinfaces-starters:faces-spring-boot-starter')
     api 'org.apache.myfaces.tobago:tobago-core'
     api 'org.apache.myfaces.tobago:tobago-theme-standard'
 }

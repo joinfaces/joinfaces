@@ -4,7 +4,7 @@ tasks.named("jar", Jar) {
 }
 
 dependencies {
-    api project(':joinfaces-starters:jsf-spring-boot-starter')
+    api project(':joinfaces-starters:faces-spring-boot-starter')
     api project(':joinfaces-security-taglib')
 
     api 'org.springframework.boot:spring-boot-starter-security'

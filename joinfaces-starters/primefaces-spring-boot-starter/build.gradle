@@ -4,7 +4,7 @@ tasks.named("jar", Jar) {
 }
 
 dependencies {
-    api project(':joinfaces-starters:jsf-spring-boot-starter')
+    api project(':joinfaces-starters:faces-spring-boot-starter')
     api 'org.primefaces:primefaces::jakarta'
     api 'org.primefaces.extensions:primefaces-extensions::jakarta'
     runtimeOnly 'org.primefaces.extensions:resources-ckeditor'
