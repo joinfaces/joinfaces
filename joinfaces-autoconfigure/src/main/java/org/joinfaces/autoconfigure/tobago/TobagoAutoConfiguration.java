@@ -45,7 +45,8 @@ import org.springframework.util.ClassUtils;
 @ConditionalOnWebApplication(type = ConditionalOnWebApplication.Type.SERVLET)
 public class TobagoAutoConfiguration {
 
-
+	private static final String FACES_SERVLET_NAME = "FacesServlet";
+	
 	private static final String SECRET_SESSION_LISTENER = "org.apache.myfaces.tobago.webapp.SecretSessionListener";
 
 	/**
