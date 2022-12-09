@@ -16,6 +16,11 @@
 
 package org.joinfaces.autoconfigure.tobago;
 
+import jakarta.faces.webapp.FacesServlet;
+import jakarta.servlet.MultipartConfigElement;
+import jakarta.servlet.ServletRegistration;
+import jakarta.servlet.annotation.MultipartConfig;
+
 import java.util.EventListener;
 
 import org.apache.myfaces.tobago.webapp.TobagoServletContextListener;
