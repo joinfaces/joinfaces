@@ -58,4 +58,14 @@ public class TobagoAutoConfiguration {
 		}
 		return bean;
 	}
+	
+	@Bean
+	public ServletContextInitializer tobagoFileUploadServletContextInitializer(MultipartConfigElement multipartConfigElement) {
+		return servletContext -> {
+			ServletRegistration servletRegistration = servletContext.getServletRegistration(FACES_SERVLET_NAME);
+			if (servletRegistration instanceof ServletRegistration.Dynamic) {
+				((ServletRegistration.Dynamic) servletRegistration).setMultipartConfig(multipartConfigElement);
+			}
+		};
+	}
 }
