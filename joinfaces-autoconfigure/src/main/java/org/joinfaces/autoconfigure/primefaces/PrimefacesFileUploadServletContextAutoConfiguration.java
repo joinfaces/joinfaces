@@ -17,74 +17,68 @@
 package org.joinfaces.autoconfigure.primefaces;
 
 import javax.faces.webapp.FacesServlet;
-import javax.servlet.MultipartConfigElement;
-import javax.servlet.ServletRegistration;
-import javax.servlet.annotation.MultipartConfig;
 
 import org.joinfaces.autoconfigure.javaxfaces.JavaxFacesAutoConfiguration;
 import org.primefaces.webapp.MultipartRequest;
 import org.primefaces.webapp.filter.FileUploadFilter;
 
+import org.springframework.beans.factory.ObjectProvider;
 import org.springframework.boot.autoconfigure.AutoConfigureAfter;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
-import org.springframework.boot.autoconfigure.condition.ConditionalOnExpression;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnWebApplication;
-import org.springframework.boot.autoconfigure.web.servlet.MultipartAutoConfiguration;
-import org.springframework.boot.autoconfigure.web.servlet.MultipartProperties;
-import org.springframework.boot.web.servlet.ServletContextInitializer;
+import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.boot.context.properties.EnableConfigurationProperties;
+import org.springframework.boot.web.servlet.FilterRegistrationBean;
+import org.springframework.boot.web.servlet.RegistrationBean;
+import org.springframework.boot.web.servlet.ServletRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 /**
- * Jetty does not resolve part parameters without associating a multipart config
- * to corresponding servlet. This configuration needed to manually add that
- * configuration and native file upload of JSF can work.
- *
- * This configuration is also possible with using jetty-annotations module.
- * Since {@link FacesServlet} is annotated with {@link MultipartConfig}.
- *
  * {@link FileUploadFilter} bean is needed for requests to be wrapped as a
  * {@link MultipartRequest}.
  *
- * Finally multipart configuration properties are borrowed and set up from
- * spring's {@link MultipartProperties}
- *
  * @author Nurettin Yilmaz
+ * @author Lars Grefer
  */
 @Configuration(proxyBeanMethods = false)
-@ConditionalOnClass(MultipartRequest.class)
+@ConditionalOnClass(FileUploadFilter.class)
 @ConditionalOnWebApplication(type = ConditionalOnWebApplication.Type.SERVLET)
 @AutoConfigureAfter(JavaxFacesAutoConfiguration.class)
+@EnableConfigurationProperties(PrimefacesFileUploadFilterProperties.class)
 public class PrimefacesFileUploadServletContextAutoConfiguration {
-
-	private static final String FACES_SERVLET_NAME = "FacesServlet";
-
-	/**
-	 * PrimefacesFileUploadServletContextInitializer for native uploader,
-	 * since {@link FileUploadFilter} suffices for commons file uploader.
-	 *
-	 * @param multipartConfigElement {@link MultipartAutoConfiguration#multipartConfigElement()}
-	 * @return primefaces file upload servlet context initializer
-	 */
-	@ConditionalOnExpression("'${joinfaces.primefaces.uploader}' != 'commons'")
-	@Bean
-	public ServletContextInitializer primefacesFileUploadServletContextInitializer(MultipartConfigElement multipartConfigElement) {
-		return servletContext -> {
-			ServletRegistration servletRegistration = servletContext.getServletRegistration(FACES_SERVLET_NAME);
-			if (servletRegistration instanceof ServletRegistration.Dynamic) {
-				((ServletRegistration.Dynamic) servletRegistration).setMultipartConfig(multipartConfigElement);
-			}
-		};
-	}
 
 	/**
 	 * File upload filter is required only if commons fileupload is chosen.
+	 *
+	 * @param uploadFilterProperties       {@link ConfigurationProperties} object for the {@link FileUploadFilter}.
+	 * @param facesServletRegistrationBean {@link RegistrationBean} for the {@link FacesServlet}, if available.
 	 * @return file upload filter
 	 */
 	@Bean
 	@ConditionalOnProperty(value = "joinfaces.primefaces.uploader", havingValue = "commons")
-	public FileUploadFilter fileUploadFilter() {
-		return new FileUploadFilter();
+	@ConditionalOnClass(name = "org.apache.commons.fileupload.servlet.ServletFileUpload")
+	public FilterRegistrationBean<FileUploadFilter> primefacesFileUploadFilterRegistrationBean(
+			PrimefacesFileUploadFilterProperties uploadFilterProperties,
+			ObjectProvider<ServletRegistrationBean<FacesServlet>> facesServletRegistrationBean
+	) {
+		FilterRegistrationBean<FileUploadFilter> registrationBean = new FilterRegistrationBean<>();
+
+		registrationBean.setFilter(new FileUploadFilter());
+		registrationBean.setName(uploadFilterProperties.getName());
+		registrationBean.setOrder(uploadFilterProperties.getOrder());
+
+		facesServletRegistrationBean.ifAvailable(registrationBean::addServletRegistrationBeans);
+
+		if (uploadFilterProperties.getThresholdSize() != null) {
+			registrationBean.addInitParameter("thresholdSize", String.valueOf(uploadFilterProperties.getThresholdSize().toBytes()));
+		}
+
+		if (uploadFilterProperties.getUploadDirectory() != null) {
+			registrationBean.addInitParameter("uploadDirectory", uploadFilterProperties.getUploadDirectory());
+		}
+
+		return registrationBean;
 	}
 }

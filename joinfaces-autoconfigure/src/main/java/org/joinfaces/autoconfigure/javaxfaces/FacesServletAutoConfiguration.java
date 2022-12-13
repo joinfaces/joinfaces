@@ -17,9 +17,11 @@
 package org.joinfaces.autoconfigure.javaxfaces;
 
 import javax.faces.webapp.FacesServlet;
+import javax.servlet.MultipartConfigElement;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletRegistration;
 
+import org.springframework.beans.factory.ObjectProvider;
 import org.springframework.boot.autoconfigure.AutoConfiguration;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnWebApplication;
@@ -41,12 +43,14 @@ public class FacesServletAutoConfiguration {
 	 * the dynamically added Servlet.
 	 *
 	 * @param facesServletProperties The properties for the {@link FacesServlet}-registration.
+	 * @param multipartConfig The {@link MultipartConfigElement} for the FacesServlet, if available.
 	 *
 	 * @return A custom {@link ServletRegistrationBean} which registers the {@link FacesServlet}.
 	 */
 	@Bean
 	public ServletRegistrationBean<FacesServlet> facesServletRegistrationBean(
-			FacesServletProperties facesServletProperties
+			FacesServletProperties facesServletProperties,
+			ObjectProvider<MultipartConfigElement> multipartConfig
 	) {
 		ServletRegistrationBean<FacesServlet> facesServletServletRegistrationBean = new ServletRegistrationBean<FacesServlet>(new FacesServlet()) {
 			@Override
@@ -66,6 +70,8 @@ public class FacesServletAutoConfiguration {
 		facesServletServletRegistrationBean.setEnabled(facesServletProperties.isEnabled());
 		facesServletServletRegistrationBean.setAsyncSupported(facesServletProperties.isAsyncSupported());
 		facesServletServletRegistrationBean.setOrder(facesServletProperties.getOrder());
+
+		multipartConfig.ifAvailable(facesServletServletRegistrationBean::setMultipartConfig);
 
 		return facesServletServletRegistrationBean;
 	}
