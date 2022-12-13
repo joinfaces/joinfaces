@@ -18,7 +18,6 @@ package org.joinfaces.autoconfigure.primefaces;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.primefaces.webapp.filter.FileUploadFilter;
 
 import org.springframework.boot.autoconfigure.AutoConfigurations;
 import org.springframework.boot.autoconfigure.web.servlet.MultipartAutoConfiguration;
@@ -40,7 +39,7 @@ public class FileUploadFilterTest {
 	public void testNotAdded() {
 		this.webApplicationContextRunner
 				.run(context -> {
-					assertThat(context).doesNotHaveBean(FileUploadFilter.class);
+					assertThat(context).doesNotHaveBean("primefacesFileUploadFilterRegistrationBean");
 				});
 	}
 }
