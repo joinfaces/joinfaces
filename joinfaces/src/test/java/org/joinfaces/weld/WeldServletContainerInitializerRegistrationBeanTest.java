@@ -47,11 +47,4 @@ class WeldServletContainerInitializerRegistrationBeanTest {
 		this.bean.setContainerClass(new UndertowServletWebServerFactory());
 	}
 
-	@Test
-	void findContainerClass() {
-		assertThat(this.bean.findContainerClass(mock(TomcatServletWebServerFactory.class))).isEqualTo(TomcatContainer.class);
-		assertThat(this.bean.findContainerClass(mock(JettyServletWebServerFactory.class))).hasSuperclass(AbstractJettyContainer.class);
-		assertThat(this.bean.findContainerClass(mock(UndertowServletWebServerFactory.class))).isEqualTo(UndertowContainer.class);
-		assertThat(this.bean.findContainerClass(mock(AbstractServletWebServerFactory.class))).isNull();
-	}
 }

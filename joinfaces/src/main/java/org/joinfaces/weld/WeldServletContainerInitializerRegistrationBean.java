@@ -17,18 +17,11 @@
 package org.joinfaces.weld;
 
 import lombok.extern.slf4j.Slf4j;
-import org.jboss.weld.environment.jetty.JettyLegacyContainer;
 import org.jboss.weld.environment.servlet.Container;
 import org.jboss.weld.environment.servlet.EnhancedListener;
-import org.jboss.weld.environment.tomcat.TomcatContainer;
-import org.jboss.weld.environment.undertow.UndertowContainer;
 import org.joinfaces.servlet.ServletContainerInitializerRegistrationBean;
 
-import org.springframework.boot.web.embedded.jetty.JettyServletWebServerFactory;
-import org.springframework.boot.web.embedded.tomcat.TomcatServletWebServerFactory;
-import org.springframework.boot.web.embedded.undertow.UndertowServletWebServerFactory;
 import org.springframework.boot.web.servlet.server.ConfigurableServletWebServerFactory;
-import org.springframework.lang.Nullable;
 import org.springframework.util.StringUtils;
 
 /**
@@ -52,35 +45,19 @@ public class WeldServletContainerInitializerRegistrationBean extends ServletCont
 	}
 
 	void setContainerClass(ConfigurableServletWebServerFactory factory) {
-		Class<? extends Container> containerClass = findContainerClass(factory);
+		Class<? extends Container> containerClass = NoopContainer.class;
 
-		if (containerClass != null) {
-			String containerClassName = containerClass.getName();
-			factory.addInitializers(servletContext -> {
-						String currentContainerClass = servletContext.getInitParameter(Container.CONTEXT_PARAM_CONTAINER_CLASS);
-						if (StringUtils.hasText(currentContainerClass)) {
-							log.info("{} has already been set to {}", Container.CONTEXT_PARAM_CONTAINER_CLASS, currentContainerClass);
-						}
-						else {
-							log.debug("Setting {} to {}", Container.CONTEXT_PARAM_CONTAINER_CLASS, containerClassName);
-							servletContext.setInitParameter(Container.CONTEXT_PARAM_CONTAINER_CLASS, containerClassName);
-						}
+		String containerClassName = containerClass.getName();
+		factory.addInitializers(servletContext -> {
+					String currentContainerClass = servletContext.getInitParameter(Container.CONTEXT_PARAM_CONTAINER_CLASS);
+					if (StringUtils.hasText(currentContainerClass)) {
+						log.info("{} has already been set to {}", Container.CONTEXT_PARAM_CONTAINER_CLASS, currentContainerClass);
 					}
-			);
-		}
-	}
-
-	@Nullable
-	Class<? extends Container> findContainerClass(ConfigurableServletWebServerFactory factory) {
-		if (factory instanceof TomcatServletWebServerFactory) {
-			return TomcatContainer.class;
-		}
-		else if (factory instanceof JettyServletWebServerFactory) {
-			return JettyLegacyContainer.class;
-		}
-		else if (factory instanceof UndertowServletWebServerFactory) {
-			return UndertowContainer.class;
-		}
-		return null;
+					else {
+						log.debug("Setting {} to {}", Container.CONTEXT_PARAM_CONTAINER_CLASS, containerClassName);
+						servletContext.setInitParameter(Container.CONTEXT_PARAM_CONTAINER_CLASS, containerClassName);
+					}
+				}
+		);
 	}
 }

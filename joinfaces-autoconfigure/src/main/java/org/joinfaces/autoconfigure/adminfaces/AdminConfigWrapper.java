@@ -16,6 +16,8 @@
 
 package org.joinfaces.autoconfigure.adminfaces;
 
+import jakarta.enterprise.inject.Specializes;
+
 import com.github.adminfaces.template.config.AdminConfig;
 import com.github.adminfaces.template.config.ControlSidebarConfig;
 import lombok.Setter;
@@ -26,6 +28,7 @@ import lombok.Setter;
  *
  * @author Marcelo Fernandes
  */
+@Specializes
 public class AdminConfigWrapper extends AdminConfig {
 	@Setter
 	private AdminfacesProperties adminfacesProperties;
