@@ -56,10 +56,10 @@ import org.springframework.lang.Nullable;
 @Configuration(proxyBeanMethods = false)
 @EnableConfigurationProperties(AdminfacesProperties.class)
 @ComponentScan({"com.github.adminfaces.template.bean",
-	"com.github.adminfaces.template.config",
-	"com.github.adminfaces.template.security"})
+		"com.github.adminfaces.template.config",
+		"com.github.adminfaces.template.security"})
 @ServletComponentScan({"com.github.adminfaces.template.security",
-	"com.github.adminfaces.template.session"})
+		"com.github.adminfaces.template.session"})
 @ConditionalOnClass(AdminSession.class)
 @AutoConfigureBefore(PrimefacesAutoConfiguration.class)
 @ConditionalOnWebApplication(type = ConditionalOnWebApplication.Type.SERVLET)
@@ -96,7 +96,12 @@ public class AdminfacesAutoConfiguration {
 
 		bean.getErrorPages().add(new ErrorPage(HttpStatus.FORBIDDEN, "/403.xhtml"));
 		bean.getErrorPages().add(new ErrorPage(AccessDeniedException.class, "/403.xhtml"));
-		bean.getErrorPages().add(new ErrorPage(AccessLocalException.class, "/403.xhtml"));
+		try {
+			bean.getErrorPages().add(new ErrorPage(AccessLocalException.class, "/403.xhtml"));
+		}
+		catch (NoClassDefFoundError e) {
+			log.debug("EJB-Api not available", e);
+		}
 		bean.getErrorPages().add(new ErrorPage(HttpStatus.NOT_FOUND, "/404.xhtml"));
 		bean.getErrorPages().add(new ErrorPage(HttpStatus.INTERNAL_SERVER_ERROR, "/500.xhtml"));
 		bean.getErrorPages().add(new ErrorPage(Throwable.class, "/500.xhtml"));

@@ -25,6 +25,8 @@ dependencies {
     api project(":joinfaces")
     implementation 'io.github.classgraph:classgraph'
 
+    compileOnly 'jakarta.platform:jakarta.jakartaee-web-api:10.0.0'
+
     optional 'org.springframework.boot:spring-boot-starter'
     optional 'org.springframework:spring-web'
     optional 'org.springframework.boot:spring-boot-starter-tomcat'
@@ -34,18 +36,15 @@ dependencies {
     optional 'org.springframework.session:spring-session-core'
     optional 'org.hibernate.orm:hibernate-core'
     optional 'org.springframework:spring-orm'
-    optional 'jakarta.enterprise:jakarta.enterprise.cdi-api'
     optional 'org.jboss.weld.servlet:weld-servlet-core'
     optional "org.glassfish:jakarta.faces:$mojarra4Version"
     optional "org.apache.myfaces.core:myfaces-impl:$myfaces4Version"
     optional 'org.omnifaces:omnifaces'
     optional 'org.primefaces:primefaces::jakarta'
     optional 'org.glassfish.jaxb:jaxb-runtime'
-    optional 'jakarta.activation:jakarta.activation-api'
 
     optional 'com.github.adminfaces:admin-template'
     optional 'com.github.adminfaces:admin-theme'
-    optional 'jakarta.ejb:jakarta.ejb-api'
 
     optional 'org.apache.myfaces.tobago:tobago-core'
     optional 'org.apache.myfaces.tobago:tobago-theme-standard'
