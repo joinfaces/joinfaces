@@ -12,5 +12,5 @@ dependencies {
     api 'jakarta.ejb:jakarta.ejb-api'
     api 'jakarta.enterprise:jakarta.enterprise.cdi-api'
 
-    testImplementation "org.springframework.boot:spring-boot-starter-test"
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
 }

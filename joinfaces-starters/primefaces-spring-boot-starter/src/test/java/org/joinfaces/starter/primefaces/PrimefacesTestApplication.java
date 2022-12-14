@@ -1,5 +1,5 @@
 /*
- * Copyright 2016-2019 the original author or authors.
+ * Copyright 2016-2022 the original author or authors.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,13 +14,10 @@
  * limitations under the License.
  */
 
-description = 'Apache MyFaces Tobago Spring Boot Starter'
-jar.manifest.attributes('Automatic-Module-Name': 'joinfaces.starter.tobago')
+package org.joinfaces.starter.primefaces;
 
-dependencies {
-    api project(':joinfaces-starters:jsf-spring-boot-starter')
-    api 'org.apache.myfaces.tobago:tobago-core'
-    api 'org.apache.myfaces.tobago:tobago-theme-standard'
+import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+@SpringBootApplication
+public class PrimefacesTestApplication {
 }
