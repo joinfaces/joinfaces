@@ -35,6 +35,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.config.BeanPostProcessor;
 import org.springframework.boot.autoconfigure.AutoConfigureBefore;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingClass;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnWebApplication;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.boot.web.server.ErrorPage;
@@ -76,7 +78,16 @@ public class AdminfacesAutoConfiguration {
 	}
 
 	@Bean("adminSession")
+	@ConditionalOnMissingBean
 	@ConditionalOnClass(name = "org.springframework.security.core.context.SecurityContextHolder")
+	@Scope(value = "session", proxyMode = ScopedProxyMode.TARGET_CLASS)
+	public SpringSecurityAdminSession springSecurityAdminSession() {
+		return new SpringSecurityAdminSession();
+	}
+
+	@Bean("adminSession")
+	@ConditionalOnMissingBean
+	@ConditionalOnMissingClass("org.springframework.security.core.context.SecurityContextHolder")
 	@Scope(value = "session", proxyMode = ScopedProxyMode.TARGET_CLASS)
 	public AdminSession adminSession() {
 		return new AdminSession();
