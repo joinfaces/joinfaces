@@ -27,7 +27,7 @@ import jakarta.el.ELResolver;
 import jakarta.el.ExpressionFactory;
 
 import lombok.Data;
-import org.apache.myfaces.config.MyfacesConfig;
+import org.apache.myfaces.config.webparameters.MyfacesConfig;
 import org.apache.myfaces.lifecycle.clientwindow.ClientWindowFactoryImpl;
 import org.apache.myfaces.renderkit.ErrorPageWriter;
 import org.apache.myfaces.resource.InternalClassLoaderResourceLoader;
