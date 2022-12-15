@@ -9,11 +9,6 @@ dependencies {
         exclude group: 'commons-logging', module: 'commons-logging'
     }
 
-    runtimeOnly('jakarta.enterprise:jakarta.enterprise.cdi-api') {
-        exclude group: 'jakarta.el', module: 'jakarta.el-api'
-        exclude group: 'jakarta.ejb', module: 'jakarta.ejb-api'
-    }
-
     testImplementation project(':joinfaces-autoconfigure')
     testImplementation 'org.springframework.boot:spring-boot-starter'
     testImplementation 'org.springframework:spring-web'
