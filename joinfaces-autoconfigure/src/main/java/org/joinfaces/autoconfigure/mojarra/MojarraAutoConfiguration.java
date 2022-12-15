@@ -26,6 +26,7 @@ import org.joinfaces.servlet.TldListenerRegistrationBean;
 import org.springframework.boot.autoconfigure.AutoConfiguration;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnResource;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnWebApplication;
 import org.springframework.boot.autoconfigure.web.servlet.WebMvcAutoConfiguration;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
@@ -48,7 +49,14 @@ public class MojarraAutoConfiguration implements FacesImplementationAutoConfigur
 		return new MojarraInitializerRegistrationBean();
 	}
 
+	/**
+	 * {@link TldListenerRegistrationBean} for the 'jsf_core.tld' of Mojarra 3.
+	 *
+	 * @return The {@link TldListenerRegistrationBean}.
+	 * @deprecated Not needed for Mojarra 4+.
+	 */
 	@Bean
+	@ConditionalOnResource(resources = "classpath:/META-INF/jsf_core.tld")
 	public TldListenerRegistrationBean mojarraTldListenerRegistrationBean() {
 		return TldListenerRegistrationBean.builder()
 				.listener(ConfigureListener.class)

@@ -27,6 +27,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.apache.myfaces.spi.AnnotationProvider;
 import org.apache.myfaces.spi.AnnotationProviderWrapper;
 import org.joinfaces.FacesContextUtils;
+import org.joinfaces.ServletContextUtils;
 import org.joinfaces.autoconfigure.FacesAnnotationProviderUtil;
 
 import org.springframework.web.context.support.WebApplicationContextUtils;
@@ -51,7 +52,8 @@ public class JoinFacesAnnotationProvider extends AnnotationProviderWrapper {
 
 		ServletContext servletContext = FacesContextUtils.getServletContext(ctx);
 
-		var preparedScanResult = FacesAnnotationProviderUtil.findPreparedScanResult(AnnotationProvider.class, servletContext.getClassLoader());
+		ClassLoader classLoader = ServletContextUtils.getClassLoader(servletContext);
+		var preparedScanResult = FacesAnnotationProviderUtil.findPreparedScanResult(AnnotationProvider.class, classLoader);
 
 		if (preparedScanResult.isPresent()) {
 			return preparedScanResult.get();

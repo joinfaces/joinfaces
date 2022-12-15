@@ -25,6 +25,7 @@ import jakarta.servlet.ServletContext;
 
 import com.sun.faces.spi.AnnotationProvider;
 import lombok.NoArgsConstructor;
+import org.joinfaces.ServletContextUtils;
 import org.joinfaces.autoconfigure.FacesAnnotationProviderUtil;
 
 import org.springframework.web.context.support.WebApplicationContextUtils;
@@ -49,7 +50,8 @@ public class JoinFacesAnnotationProvider extends AnnotationProvider {
 	@Override
 	public Map<Class<? extends Annotation>, Set<Class<?>>> getAnnotatedClasses(Set<URI> urls) {
 
-		var preparedScanResult = FacesAnnotationProviderUtil.findPreparedScanResult(AnnotationProvider.class, this.servletContext.getClassLoader());
+		ClassLoader classLoader = ServletContextUtils.getClassLoader(this.servletContext);
+		var preparedScanResult = FacesAnnotationProviderUtil.findPreparedScanResult(AnnotationProvider.class, classLoader);
 
 		if (preparedScanResult.isPresent()) {
 			return preparedScanResult.get();
