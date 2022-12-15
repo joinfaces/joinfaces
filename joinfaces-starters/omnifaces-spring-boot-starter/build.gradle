@@ -9,4 +9,6 @@ dependencies {
     api(project(':joinfaces-starters:weld-spring-boot-starter')) {
         exclude group: "jakarta.annotation", module: "jakarta.annotation-api"
     }
+
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
 }
