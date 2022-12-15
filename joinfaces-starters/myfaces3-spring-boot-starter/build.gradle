@@ -13,4 +13,10 @@ dependencies {
         exclude group: 'jakarta.el', module: 'jakarta.el-api'
         exclude group: 'jakarta.ejb', module: 'jakarta.ejb-api'
     }
+
+    testImplementation project(':joinfaces-autoconfigure')
+    testImplementation 'org.springframework.boot:spring-boot-starter'
+    testImplementation 'org.springframework:spring-web'
+    testImplementation 'org.springframework.boot:spring-boot-starter-tomcat'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
 }
