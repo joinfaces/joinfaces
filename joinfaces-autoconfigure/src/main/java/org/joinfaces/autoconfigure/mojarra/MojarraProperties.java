@@ -50,7 +50,7 @@ public class MojarraProperties implements ServletContextInitParameterProperties 
 	 * Maximum time, in seconds, that client state will be considered valid by
 	 * the default StateManager/ResponseStateManager implementations. If the
 	 * time between requests exceeds the configured time, a
-	 * javax.faces.application.ViewExpiredException. will be thrown. It is
+	 * jakarta.faces.application.ViewExpiredException. will be thrown. It is
 	 * important to note that if this feature is enabled, and client requests
 	 * are recieved with view state produced from a previous version, the
 	 * ViewExpiredException will be thrown immediately.
@@ -133,7 +133,7 @@ public class MojarraProperties implements ServletContextInitParameterProperties 
 	 * being stored in the session. This may be desirable for applications that
 	 * may have issues with view state being sensitive to model changes after
 	 * state saving which are reflected back in view state. This has since JSF
-	 * 2.2 been replaced by javax.faces.SERIALIZE_SERVER_STATE.
+	 * 2.2 been replaced by jakarta.faces.SERIALIZE_SERVER_STATE.
 	 */
 	@ServletContextInitParameter(PREFIX + "serializeServerState")
 	private Boolean serializeServerState;
@@ -221,11 +221,11 @@ public class MojarraProperties implements ServletContextInitParameterProperties 
 
 	/**
 	 * If true, the view state hidden field will be rendered with both the id
-	 * and name attributes having the value of "javax.faces.ViewState". This is
+	 * and name attributes having the value of "jakarta.faces.ViewState". This is
 	 * what the spec requires, however, if there are multiple forms within a
 	 * view and the response content-type is XHTML, the result will be XHTML
 	 * that will fail validation due to multiple ID attributes with the same
-	 * value: javax.faces.ViewState. Setting this parameter to false will result
+	 * value: jakarta.faces.ViewState. Setting this parameter to false will result
 	 * in the ID attribute not being rendered. Keep in mind however, that doing
 	 * this may break integration with AJAX frameworks that get the state field
 	 * via ID. See issue 433 for details.
@@ -247,7 +247,7 @@ public class MojarraProperties implements ServletContextInitParameterProperties 
 	 * This parameter specifies the size, in bytes, of the buffer that is used
 	 * to write all generated JSP content excluding state. Note that this is
 	 * ignored when Facelets is used. For Facelets, use
-	 * javax.faces.FACELETS_BUFFER_SIZE instead.
+	 * jakarta.faces.FACELETS_BUFFER_SIZE instead.
 	 */
 	@DataSizeUnit(DataUnit.BYTES)
 	@ServletContextInitParameter(PREFIX + "responseBufferSize")
@@ -298,7 +298,7 @@ public class MojarraProperties implements ServletContextInitParameterProperties 
 	private Boolean enableMissingResourceLibraryDetection;
 
 	/**
-	 * When javax.faces.PROJECT_STATE is Production, UnitTest, or SystemTest
+	 * When jakarta.faces.PROJECT_STATE is Production, UnitTest, or SystemTest
 	 * resource paths will be cached to reduce the overhead of resource path
 	 * compuation. By default, updates (i.e. new files, new directories, new
 	 * versions, etc.) will be checked for every 5 minutes. If a change is
@@ -329,7 +329,7 @@ public class MojarraProperties implements ServletContextInitParameterProperties 
 
 	/**
 	 * The value of this context init parameter is a whitespace separated list
-	 * of values that control which class packages are scanned for javax.faces
+	 * of values that control which class packages are scanned for jakarta.faces
 	 * annotations. To restrict which jars/packages are scanned, use the
 	 * following entry format: jar:'jar name':'comma separated list of packages'
 	 * So an example would be: jar:a.jar:com.acme.package1,com.acme.package2.

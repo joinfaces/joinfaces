@@ -49,7 +49,7 @@ import org.springframework.util.ReflectionUtils;
  * This {@link BeanPostProcessor} injects JSF artifacts which use a custom qualifier annotation.
  *
  * @author Lars Grefer
- * @see javax.faces.annotation
+ * @see jakarta.faces.annotation
  */
 public class JsfBeansAnnotationPostProcessor implements BeanPostProcessor {
 

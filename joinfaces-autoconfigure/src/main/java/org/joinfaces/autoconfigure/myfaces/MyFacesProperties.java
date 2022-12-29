@@ -159,7 +159,7 @@ public class MyFacesProperties implements ServletContextInitParameterProperties 
 
 	/**
 	 * Define an alternate class name that will be used to initialize MyFaces,
-	 * instead the default javax.
+	 * instead the default jakarta.
 	 */
 	@ServletContextInitParameter(PREFFIX + "DELEGATE_FACES_SERVLET")
 	private Class<?> delegateFacesServlet;
@@ -246,8 +246,8 @@ public class MyFacesProperties implements ServletContextInitParameterProperties 
 	private Integer componentUniqueIdsCacheSize;
 
 	/**
-	 * If set false, myfaces won't support JSP and javax.faces.el. JSP are
-	 * deprecated in " + "JSF 2.X, javax.faces.el in in JSF 1.2. Default value
+	 * If set false, myfaces won't support JSP and jakarta.faces.el. JSP are
+	 * deprecated in " + "JSF 2.X, jakarta.faces.el in in JSF 1.2. Default value
 	 * is true.
 	 */
 	@ServletContextInitParameter(PREFFIX + "SUPPORT_JSP_AND_FACES_EL")

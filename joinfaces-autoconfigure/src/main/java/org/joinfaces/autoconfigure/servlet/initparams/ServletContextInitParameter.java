@@ -24,7 +24,7 @@ import java.lang.annotation.Target;
 
 /**
  * Marks a field of a {@link org.springframework.boot.context.properties.ConfigurationProperties Properties class}
- * as {@link javax.servlet.ServletContext#setInitParameter(String, String) servlet context init parameter}.
+ * as {@link jakarta.servlet.ServletContext#setInitParameter(String, String) servlet context init parameter}.
  *
  * @author Lars Grefer
  * @see InitParameterServletContextConfigurer

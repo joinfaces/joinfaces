@@ -26,7 +26,7 @@ import org.springframework.context.annotation.Bean;
 
 /**
  * Common base class for all auto-configuration classes which provide properties
- * as {@link javax.servlet.ServletContext} init parameters.
+ * as {@link jakarta.servlet.ServletContext} init parameters.
  *
  * @author Lars Grefer
  */

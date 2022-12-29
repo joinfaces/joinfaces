@@ -95,7 +95,7 @@ JSF implementations and JSF component libraries are usually configured using ser
 [source,xml]
 ----
 <context-param>
-    <param-name>javax.faces.PROJECT_STAGE</param-name>
+    <param-name>jakarta.faces.PROJECT_STAGE</param-name>
     <param-value>Development</param-value>
 </context-param>
 <context-param>
@@ -125,7 +125,7 @@ If you need a to set a parameter which isn't specially handled by JoinFaces, you
 
 [source,properties,subs="+quotes"]
 ----
-server.servlet.context-parameters._javax.faces.PROJECT_STAGE_=Development
+server.servlet.context-parameters._jakarta.faces.PROJECT_STAGE_=Development
 server.servlet.context-parameters._primefaces.THEME_=omega
 ----
 ====
@@ -183,25 +183,25 @@ The following annotations can be used to define the scope of Spring beans:
 
 ==== New JSF Scope annotation (JSF >= 2.2)
 
-- https://docs.oracle.com/javaee/7/api/javax/faces/view/ViewScoped.html[`@javax.faces.view.ViewScoped`] (mapped to Joinfaces' `view` scope)
+- https://docs.oracle.com/javaee/7/api/javax/faces/view/ViewScoped.html[`@jakarta.faces.view.ViewScoped`] (mapped to Joinfaces' `view` scope)
 
 ==== Old JSF Scope annotations (JSF <= 2.1)
 
 CAUTION: The following annotations are only supported for backwards compatibility.
 New applications should only use the annotations above.
 
-- https://docs.oracle.com/javaee/7/api/javax/faces/bean/ApplicationScoped.html[`@javax.faces.bean.ApplicationScoped`] (mapped to Spring's `application` scope)
-- https://docs.oracle.com/javaee/7/api/javax/faces/bean/NoneScoped.html[`@javax.faces.bean.NoneScoped`] (mapped to Spring's `prototype` scope)
-- https://docs.oracle.com/javaee/7/api/javax/faces/bean/RequestScoped.html[`@javax.faces.bean.RequestScoped`] (mapped to Spring's `request` scope)
-- https://docs.oracle.com/javaee/7/api/javax/faces/bean/SessionScoped.html[`@javax.faces.bean.SessionScoped`] (mapped to Spring's `session` scope)
-- https://docs.oracle.com/javaee/7/api/javax/faces/bean/ViewScoped.html[`@javax.faces.bean.ViewScoped`] (mapped to Joinfaces' `view` scope)
+- https://docs.oracle.com/javaee/7/api/javax/faces/bean/ApplicationScoped.html[`@jakarta.faces.bean.ApplicationScoped`] (mapped to Spring's `application` scope)
+- https://docs.oracle.com/javaee/7/api/javax/faces/bean/NoneScoped.html[`@jakarta.faces.bean.NoneScoped`] (mapped to Spring's `prototype` scope)
+- https://docs.oracle.com/javaee/7/api/javax/faces/bean/RequestScoped.html[`@jakarta.faces.bean.RequestScoped`] (mapped to Spring's `request` scope)
+- https://docs.oracle.com/javaee/7/api/javax/faces/bean/SessionScoped.html[`@jakarta.faces.bean.SessionScoped`] (mapped to Spring's `session` scope)
+- https://docs.oracle.com/javaee/7/api/javax/faces/bean/ViewScoped.html[`@jakarta.faces.bean.ViewScoped`] (mapped to Joinfaces' `view` scope)
 
 ==== CDI Annotations
 
-- https://docs.oracle.com/javaee/7/api/javax/enterprise/context/ApplicationScoped.html[`@javax.enterprise.context.ApplicationScoped`] (mapped to Spring's `application` scope)
-- https://docs.oracle.com/javaee/7/api/javax/enterprise/context/ConversationScoped.html[`@javax.enterprise.context.ConversationScoped`] (mapped to Spring's `session` scope)
-- https://docs.oracle.com/javaee/7/api/javax/enterprise/context/RequestScoped.html[`@javax.enterprise.context.RequestScoped`] (mapped to Spring's `request` scope)
-- https://docs.oracle.com/javaee/7/api/javax/enterprise/context/SessionScoped.html[`@javax.enterprise.context.SessionScoped`] (mapped to Spring's `session` scope)
+- https://docs.oracle.com/javaee/7/api/javax/enterprise/context/ApplicationScoped.html[`@jakarta.enterprise.context.ApplicationScoped`] (mapped to Spring's `application` scope)
+- https://docs.oracle.com/javaee/7/api/javax/enterprise/context/ConversationScoped.html[`@jakarta.enterprise.context.ConversationScoped`] (mapped to Spring's `session` scope)
+- https://docs.oracle.com/javaee/7/api/javax/enterprise/context/RequestScoped.html[`@jakarta.enterprise.context.RequestScoped`] (mapped to Spring's `request` scope)
+- https://docs.oracle.com/javaee/7/api/javax/enterprise/context/SessionScoped.html[`@jakarta.enterprise.context.SessionScoped`] (mapped to Spring's `session` scope)
 
 === Spring Security JSF Facelet Tag support
 
