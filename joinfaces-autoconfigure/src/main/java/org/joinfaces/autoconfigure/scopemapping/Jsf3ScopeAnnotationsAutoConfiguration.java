@@ -30,7 +30,7 @@ import org.springframework.web.context.WebApplicationContext;
 
 /**
  * {@link org.springframework.boot.autoconfigure.EnableAutoConfiguration Auto configuration}
- * for {@code javax.faces.bean.*Scoped} annotations support.
+ * for {@code jakarta.faces.bean.*Scoped} annotations support.
  *
  * @author Diego Diez
  * @author Lars Grefer

@@ -20,7 +20,7 @@ import org.springframework.boot.context.properties.NestedConfigurationProperty;
 
 /**
  * Marker interface for all {@link org.springframework.boot.context.properties.ConfigurationProperties configuration properties}
- * which contain {@link ServletContextInitParameter init parameters} to be set on a {@link javax.servlet.ServletContext servlet context}.
+ * which contain {@link ServletContextInitParameter init parameters} to be set on a {@link jakarta.servlet.ServletContext servlet context}.
  * <p>
  * Classes implementing this interface should
  * <ul>

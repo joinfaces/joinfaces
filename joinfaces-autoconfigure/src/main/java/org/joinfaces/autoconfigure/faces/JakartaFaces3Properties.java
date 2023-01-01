@@ -142,7 +142,7 @@ public class JakartaFaces3Properties implements ServletContextInitParameterPrope
 	private Integer faceletsBufferSize;
 
 	/**
-	 * TagDecorator implementations. See javadoc for javax.faces.view.facelets.TagDecorator.
+	 * TagDecorator implementations. See javadoc for jakarta.faces.view.facelets.TagDecorator.
 	 */
 	@ServletContextInitParameter(value = ViewHandler.FACELETS_DECORATORS_PARAM_NAME, listSeparator = ";")
 	private List<Class<? extends TagDecorator>> faceletsDecorators;
@@ -155,7 +155,7 @@ public class JakartaFaces3Properties implements ServletContextInitParameterPrope
 	private Integer faceletsRefreshPeriod;
 
 	/**
-	 * An implementation of javax.faces.view.facelets.ResourceResolver.
+	 * An implementation of jakarta.faces.view.facelets.ResourceResolver.
 	 * See javadoc for details.
 	 */
 	@Deprecated(forRemoval = true, since = "5.0.0")
@@ -249,7 +249,7 @@ public class JakartaFaces3Properties implements ServletContextInitParameterPrope
 	/**
 	 * If this param is set, and calling toLowerCase().equals("true") on a
 	 * String representation of its value returns true, and the
-	 * javax.faces.STATE_SAVING_METHOD is set to "server" (as indicated below),
+	 * jakarta.faces.STATE_SAVING_METHOD is set to "server" (as indicated below),
 	 * the server state must be guaranteed to be Serializable such that the
 	 * aggregate state implements java.io.Serializable. The intent of this
 	 * parameter is to ensure that the act of writing out the state to an

@@ -43,7 +43,7 @@ public class ScopeConfigurerProperties {
 	private final ScopeConfigurer faces = new ScopeConfigurer();
 
 	/**
-	 * Support for CDI @javax.enterprise.context.xxxScoped annotations.
+	 * Support for CDI @jakarta.enterprise.context.xxxScoped annotations.
 	 */
 	@NestedConfigurationProperty
 	private final ScopeConfigurer cdi = new ScopeConfigurer();

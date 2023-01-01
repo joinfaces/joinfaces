@@ -51,7 +51,7 @@ public class JoinfacesApplicationAnalyzer implements ApplicationListener<Applica
 
 		for (String managedBeanName : managedBeanNames) {
 			log.warn(
-					"The spring bean '{}' of type '{}' is also annotated with '@javax.faces.bean.ManagedBean'. This may lead to unexpected behaviour.",
+					"The spring bean '{}' of type '{}' is also annotated with '@jakarta.faces.bean.ManagedBean'. This may lead to unexpected behaviour.",
 					managedBeanName,
 					applicationContext.getType(managedBeanName).getName()
 			);
