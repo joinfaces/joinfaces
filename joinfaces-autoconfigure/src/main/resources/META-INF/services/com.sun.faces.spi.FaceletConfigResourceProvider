@@ -14,4 +14,4 @@
 # limitations under the License.
 #
 
-org.joinfaces.mojarra.SpringFaceletConfigResourceProvider
+#org.joinfaces.mojarra.SpringFaceletConfigResourceProvider
