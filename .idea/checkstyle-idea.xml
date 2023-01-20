@@ -1,19 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="CheckStyle-IDEA">
-    <option name="configuration">
-      <map>
-        <entry key="active-configuration" value="PROJECT_RELATIVE:$PROJECT_DIR$/config/checkstyle/checkstyle.xml:JoinFaces" />
-        <entry key="checkstyle-version" value="8.17" />
-        <entry key="copy-libs" value="false" />
-        <entry key="location-0" value="BUNDLED:(bundled):Sun Checks" />
-        <entry key="location-1" value="BUNDLED:(bundled):Google Checks" />
-        <entry key="location-2" value="PROJECT_RELATIVE:$PROJECT_DIR$/config/checkstyle/checkstyle.xml:JoinFaces" />
-        <entry key="property-2.config_loc" value="$PROJECT_DIR$/config/checkstyle/" />
-        <entry key="scan-before-checkin" value="false" />
-        <entry key="scanscope" value="JavaOnly" />
-        <entry key="suppress-errors" value="false" />
-      </map>
+  <component name="CheckStyle-IDEA" serialisationVersion="2">
+    <checkstyleVersion>8.17</checkstyleVersion>
+    <scanScope>JavaOnly</scanScope>
+    <option name="thirdPartyClasspath" />
+    <option name="activeLocationIds">
+      <option value="9074885e-8da8-43fe-bbbe-15cc7c11acf0" />
+    </option>
+    <option name="locations">
+      <list>
+        <ConfigurationLocation id="bundled-sun-checks" type="BUNDLED" scope="All" description="Sun Checks">(bundled)</ConfigurationLocation>
+        <ConfigurationLocation id="bundled-google-checks" type="BUNDLED" scope="All" description="Google Checks">(bundled)</ConfigurationLocation>
+        <ConfigurationLocation id="9074885e-8da8-43fe-bbbe-15cc7c11acf0" type="PROJECT_RELATIVE" scope="All" description="JoinFaces">
+          $PROJECT_DIR$/config/checkstyle/checkstyle.xml
+          <option name="properties">
+            <map>
+              <entry key="config_loc" value="$PROJECT_DIR$/config/checkstyle/" />
+            </map>
+          </option>
+        </ConfigurationLocation>
+      </list>
     </option>
   </component>
 </project>
