@@ -6,7 +6,7 @@ repositories {
     maven { url 'https://repo.spring.io/snapshot' }
 }
 
-def springBootVersion = "3.0.1"
+def springBootVersion = "3.0.2"
 
 dependencies {
     api "org.springframework.boot:spring-boot-gradle-plugin:$springBootVersion"
