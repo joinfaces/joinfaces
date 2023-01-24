@@ -17,10 +17,12 @@
 package org.joinfaces.autoconfigure.adminfaces;
 
 import jakarta.enterprise.inject.Specializes;
+import jakarta.faces.context.FacesContext;
 
 import com.github.adminfaces.template.config.AdminConfig;
 import com.github.adminfaces.template.config.ControlSidebarConfig;
 import lombok.Setter;
+import org.joinfaces.FacesContextUtils;
 
 /**
  * AdminConfig Wrapper to use AdminFacesProperties.
@@ -64,6 +66,11 @@ public class AdminConfigWrapper extends AdminConfig {
 	}
 
 	private void configureAdminFacesProperties() {
+		if (this.adminfacesProperties == null) {
+			//We are a CDI bean and not a Spring bean.
+			this.adminfacesProperties = FacesContextUtils.getRequiredWebApplicationContext(FacesContext.getCurrentInstance()).getBean(AdminfacesProperties.class);
+		}
+
 		setLoginPage(getAdminFacesStringProperty(getLoginPage(), this.adminfacesProperties.getLoginPage()));
 		setIndexPage(getAdminFacesStringProperty(getIndexPage(), this.adminfacesProperties.getIndexPage()));
 		setDateFormat(getAdminFacesStringProperty(getDateFormat(), this.adminfacesProperties.getDateFormat()));
