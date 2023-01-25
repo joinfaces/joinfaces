@@ -9,5 +9,4 @@ dependencies {
     api('org.jboss.weld.servlet:weld-servlet-core') {
         exclude group: 'jakarta.el', module: 'jakarta.el-api'
     }
-    implementation "io.smallrye:jandex:3.0.5"
 }
