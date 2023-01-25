@@ -2,8 +2,6 @@ apply plugin: "java-library"
 
 repositories {
     mavenCentral()
-    maven { url 'https://repo.spring.io/milestone' }
-    maven { url 'https://repo.spring.io/snapshot' }
 }
 
 def springBootVersion = "3.0.2"

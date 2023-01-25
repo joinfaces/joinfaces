@@ -3,7 +3,6 @@ rootProject.name = 'joinfaces-parent'
 dependencyResolutionManagement {
     repositories {
         mavenCentral()
-        maven { url 'https://repo.spring.io/milestone' }
         maven { url 'https://repository.apache.org/content/repositories/snapshots' }
     }
 }
