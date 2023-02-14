@@ -82,7 +82,7 @@ allprojects {
                 entry 'icefaces-ace'
             }
 
-            dependency "commons-fileupload:commons-fileupload:1.4"
+            dependency "commons-fileupload:commons-fileupload:1.5"
 
             dependency('org.jboss.weld.servlet:weld-servlet-core:3.1.9.Final') {
                 exclude 'org.jboss.spec.javax.el:jboss-el-api_3.0_spec'
