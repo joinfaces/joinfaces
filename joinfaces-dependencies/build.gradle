@@ -28,7 +28,7 @@ dependencies {
 
         //Primefaces
         api 'org.primefaces:primefaces:12.0.0'
-        api "org.primefaces.extensions:primefaces-extensions:12.0.3"
+        api "org.primefaces.extensions:primefaces-extensions:12.0.4"
         api "org.primefaces.extensions:resources-ckeditor:12.0.3"
         api "org.primefaces.extensions:resources-monacoeditor:12.0.3"
 
