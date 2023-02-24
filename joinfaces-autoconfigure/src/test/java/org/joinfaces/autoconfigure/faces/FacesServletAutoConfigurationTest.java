@@ -121,6 +121,7 @@ public class FacesServletAutoConfigurationTest {
 		this.webApplicationContextRunner
 				.run(context -> {
 					ServletRegistrationBean<FacesServlet> facesServletRegistrationBean = (ServletRegistrationBean<FacesServlet>) context.getBean("facesServletRegistrationBean");
+					facesServletRegistrationBean.setIgnoreRegistrationFailure(true);
 
 					ServletContext servletContext = mock(ServletContext.class);
 
