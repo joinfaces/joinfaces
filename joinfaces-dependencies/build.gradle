@@ -16,7 +16,7 @@ dependencies {
         //Mojarra
         api 'jakarta.faces:jakarta.faces-api:4.0.1'
 
-        api 'io.github.classgraph:classgraph:4.8.154'
+        api 'io.github.classgraph:classgraph:4.8.155'
 
         //Jakarta EE (if not covered by Spring Boot)
         api 'jakarta.enterprise:jakarta.enterprise.cdi-api:4.0.1'
@@ -42,7 +42,7 @@ dependencies {
         api 'org.apache.myfaces.tobago:tobago-theme-richmond:6.0.0-SNAPSHOT'
         api 'org.apache.myfaces.tobago:tobago-theme-charlotteville:6.0.0-SNAPSHOT'
 
-        api 'org.omnifaces:omnifaces:4.0.1'
+        api 'org.omnifaces:omnifaces:4.1'
 
         //Ocpsoft Rewrite
         api 'org.ocpsoft.rewrite:rewrite-servlet:6.0.0.Alpha1'
