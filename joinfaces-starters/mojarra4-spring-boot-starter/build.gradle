@@ -13,3 +13,18 @@ dependencies {
         exclude group: 'jakarta.ejb', module: 'jakarta.ejb-api'
     }
 }
+
+configurations {
+    apiElements {
+        outgoing {
+            capability("$group:$archivesBaseName:$version")
+            capability("$group:faces-impl-spring-boot-starter:$version")
+        }
+    }
+    runtimeElements {
+        outgoing {
+            capability("$group:$archivesBaseName:$version")
+            capability("$group:faces-impl-spring-boot-starter:$version")
+        }
+    }
+}

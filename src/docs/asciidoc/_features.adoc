@@ -2,12 +2,11 @@
 
 === Starters
 
-There are many JoinFaces Starters available: six basic starters, meta starter, security starter,  component starters, theme starter and extra starter.
+There are many JoinFaces Starters available: six basic starters, meta starter, security starter, component starters, theme starter and extra starter.
 
 While most of the starters can be combined, some starters are mutually exclusive:
 
 - `mojarra3-spring-boot-starter`, `mojarra4-spring-boot-starter`, `myfaces3-spring-boot-starter` and `myfaces4-spring-boot-starter`
-- `omnifaces1-spring-boot-starter` and `omnifaces3-spring-boot-starter`
 
 You can use the table below to discover the starters that fit your needs.
 
@@ -15,6 +14,12 @@ You can use the table below to discover the starters that fit your needs.
 [%autowidth]
 |===========
 |Starter |Description
+
+|jsf-spring-boot-starter
+|Meta starter that pulls `spring-boot-starter-tomcat` and `mojarra3-spring-boot-starter`.
+
+|faces-spring-boot-starter
+|Meta starter that pulls `spring-boot-starter-tomcat` and `mojarra4-spring-boot-starter`.
 
 |mojarra3-spring-boot-starter
 |Basic starter for https://github.com/eclipse-ee4j/mojarra[Mojarra] JSF implementation.
@@ -31,17 +36,14 @@ You can use the table below to discover the starters that fit your needs.
 |weld-spring-boot-starter
 |Basic starter for https://weld.cdi-spec.org/[Weld] CDI Reference Implementation.
 
-|jsf-spring-boot-starter
-|Meta starter that pulls `spring-boot-starter-tomcat` and `mojarra-spring-boot-starter`.
-
 |security-spring-boot-starter
-|Security starter. Pulls `jsf-spring-boot-starter`, `spring-boot-starter-security` and `joinfaces-security-taglib`.
+|Security starter. Pulls `faces-spring-boot-starter`, `spring-boot-starter-security` and `joinfaces-security-taglib`.
 
 |primefaces-spring-boot-starter
-|Component starter for https://primefaces.org[PrimeFaces], and https://primefaces-extensions.github.io/[PrimeFaces Extensions] JSF Component libraries. Pulls `jsf-spring-boot-starter`.
+|Component starter for https://primefaces.org[PrimeFaces], and https://primefaces-extensions.github.io/[PrimeFaces Extensions] JSF Component libraries. Pulls `faces-spring-boot-starter`.
 
 |omnifaces-spring-boot-starter
-|Component starter for https://omnifaces.org/[OmniFaces] JSF utility library. Pulls `jsf-spring-boot-starter` and `weld-spring-boot-starter`.
+|Component starter for https://omnifaces.org/[OmniFaces] JSF utility library. Pulls `faces-spring-boot-starter` and `weld-spring-boot-starter`.
 
 |adminfaces-spring-boot-starter
 |Template and Theme starter for https://adminfaces.github.io/site/[AdminFaces]. Pulls `primefaces-spring-boot-starter`.
@@ -49,7 +51,7 @@ You can use the table below to discover the starters that fit your needs.
 |===========
 
 ==== Not using Tomcat or Mojarra
-The `jsf-spring-boot-starter` pulls tomcat and mojarra as defaults. If you want to change this, you have to exclude one starter and pull another one instead.
+`faces-spring-boot-starter` and `jsf-spring-boot-starter` pull Tomcat and Mojarra as defaults. If you want to change this, you have to exclude one starter and pull another one instead.
 
 The principle behind this is the same as described here:
 
@@ -62,17 +64,17 @@ The principle behind this is the same as described here:
 <dependencies>
     <dependency>
         <groupId>org.joinfaces</groupId>
-        <artifactId>jsf-spring-boot-starter</artifactId>
+        <artifactId>faces-spring-boot-starter</artifactId>
         <exclusions>
             <exclusion>
                 <groupId>org.joinfaces</groupId>
-                <artifactId>mojarra-spring-boot-starter</artifactId>
+                <artifactId>mojarra4-spring-boot-starter</artifactId>
             </exclusion>
         </exclusions>
     </dependency>
     <dependency>
         <groupId>org.joinfaces</groupId>
-        <artifactId>myfaces-spring-boot-starter</artifactId>
+        <artifactId>myfaces4-spring-boot-starter</artifactId>
     </dependency>
 </dependencies>
 ----
@@ -80,10 +82,13 @@ The principle behind this is the same as described here:
 [source,groovy]
 ----
 dependencies {
-    compile ("org.joinfaces:jsf-spring-boot-starter") {
-        exclude module: "mojarra-spring-boot-starter"
+    implementation "org.joinfaces:faces-spring-boot-starter"
+    implementation "org.joinfaces:myfaces-spring-boot-starter"
+    modules {
+        module("org.joinfaces:mojarra4-spring-boot-starter") {
+            replacedBy("org.joinfaces:myfaces4-spring-boot-starter", "Use MyFaces instead of Mojarra")
+        }
     }
-    compile "org.joinfaces:myfaces-spring-boot-starter"
     // ...
 }
 ----
