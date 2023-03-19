@@ -27,10 +27,9 @@ import jakarta.el.ELResolver;
 import jakarta.el.ExpressionFactory;
 
 import lombok.Data;
+import lombok.Getter;
 import org.apache.myfaces.config.webparameters.MyfacesConfig;
-import org.apache.myfaces.lifecycle.clientwindow.ClientWindowFactoryImpl;
 import org.apache.myfaces.renderkit.ErrorPageWriter;
-import org.apache.myfaces.resource.InternalClassLoaderResourceLoader;
 import org.apache.myfaces.spi.ServiceProviderFinder;
 import org.apache.myfaces.util.token.CsrfSessionTokenFactory;
 import org.apache.myfaces.util.token.CsrfSessionTokenFactorySecureRandom;
@@ -42,6 +41,7 @@ import org.joinfaces.autoconfigure.servlet.initparams.ServletContextInitParamete
 import org.joinfaces.autoconfigure.servlet.initparams.ServletContextInitParameterProperties;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.boot.context.properties.DeprecatedConfigurationProperty;
 import org.springframework.boot.context.properties.NestedConfigurationProperty;
 import org.springframework.boot.convert.DataSizeUnit;
 import org.springframework.boot.convert.DurationUnit;
@@ -603,7 +603,9 @@ public class MyFacesProperties implements ServletContextInitParameterProperties 
 	/**
 	 * no description.
 	 */
-	@ServletContextInitParameter(ClientWindowFactoryImpl.INIT_PARAM_DEFAULT_WINDOW_MODE)
+	@Deprecated
+	@Getter(onMethod_ = @DeprecatedConfigurationProperty(replacement = "joinfaces.faces.client-window-mode"))
+	@ServletContextInitParameter("org.apache.myfaces.DEFAULT_WINDOW_MODE")
 	private String defaultWindowMode;
 
 	/**
@@ -638,13 +640,17 @@ public class MyFacesProperties implements ServletContextInitParameterProperties 
 	 * just one file, to preserve line numbers and make javascript debugging of
 	 * the default jsf javascript file more simple.
 	 */
-	@ServletContextInitParameter(InternalClassLoaderResourceLoader.USE_MULTIPLE_JS_FILES_FOR_JSF_UNCOMPRESSED_JS)
+	@Deprecated
+	@Getter(onMethod_ = @DeprecatedConfigurationProperty(reason = "Removed in MyFaces 4.0.0"))
+	@ServletContextInitParameter("org.apache.myfaces.USE_MULTIPLE_JS_FILES_FOR_JSF_UNCOMPRESSED_JS")
 	private Boolean useMultipleJsFilesForJsfUncompressedJs;
 
 	/**
 	 * Define the mode used for jsf.
 	 */
-	@ServletContextInitParameter(InternalClassLoaderResourceLoader.MYFACES_JSF_MODE)
+	@Deprecated
+	@Getter(onMethod_ = @DeprecatedConfigurationProperty(reason = "Removed in MyFaces 4.0.0"))
+	@ServletContextInitParameter("org.apache.myfaces.JSF_JS_MODE")
 	private String jsfJsMode;
 
 	/**

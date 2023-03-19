@@ -15,3 +15,18 @@ dependencies {
     testImplementation 'org.springframework.boot:spring-boot-starter-tomcat'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
 }
+
+configurations {
+    apiElements {
+        outgoing {
+            capability("$group:$archivesBaseName:$version")
+            capability("$group:faces-impl-spring-boot-starter:$version")
+        }
+    }
+    runtimeElements {
+        outgoing {
+            capability("$group:$archivesBaseName:$version")
+            capability("$group:faces-impl-spring-boot-starter:$version")
+        }
+    }
+}
