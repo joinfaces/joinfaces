@@ -1,0 +1,85 @@
+plugins {
+    id "org.asciidoctor.jvm.convert" version "3.3.2"
+    id "io.freefair.aggregate-javadoc"
+    id "io.freefair.javadoc-links"
+    id "io.freefair.okhttp"
+    id "maven-publish"
+}
+
+dependencies {
+    javadoc project(":joinfaces")
+    javadoc project(":joinfaces-autoconfigure")
+    javadoc project(":joinfaces-security-taglib")
+    project(":joinfaces-tools").subprojects { tool ->
+        javadoc tool
+    }
+
+    javadocClasspath "org.omnifaces:omnifaces"
+    javadocClasspath "org.springframework.boot:spring-boot-starter-data-jpa"
+    javadocClasspath "org.springframework.session:spring-session-core"
+    javadocClasspath "com.github.spotbugs:spotbugs-annotations:4.7.3"
+    javadocClasspath "org.apache.maven.plugin-tools:maven-plugin-annotations:3.8.1"
+}
+
+tasks.named("javadoc", Javadoc) {
+    title = "JoinFaces $version API"
+}
+
+tasks.register("propertyDocs", org.joinfaces.build.PropertyDocumentation) {
+    inputFile = file("$rootDir/joinfaces-autoconfigure/build/classes/java/main/META-INF/spring-configuration-metadata.json")
+    outputFile = file("src/docs/asciidoc/generated/_properties.adoc")
+    dependsOn ":joinfaces-autoconfigure:classes"
+}
+
+tasks.register("bomDocs", org.joinfaces.build.BomDocumentation) {
+    dependsOn ":joinfaces-dependencies:generatePomFileForBomPublication"
+    inputFile = tasks.findByPath(":joinfaces-dependencies:generatePomFileForBomPublication").destination
+    outputFile = file("src/docs/asciidoc/generated/_versions.adoc")
+}
+
+tasks.named("asciidoctor") {
+    baseDirFollowsSourceDir()
+    dependsOn propertyDocs, bomDocs
+    inputs.dir("src/docs/asciidoc")
+    attributes revnumber: project.version,
+            'spring-version': '6.0.x',
+            'spring-boot-version': org.springframework.boot.gradle.plugin.SpringBootPlugin.SPRING_BOOT_VERSION
+}
+
+tasks.register("docsZip", Zip) {
+    group = 'build'
+    archiveClassifier = 'docs'
+    dependsOn asciidoctor
+
+    into("api") {
+        from javadoc
+    }
+    from("$asciidoctor.outputDir") {
+        into "reference"
+    }
+}
+
+tasks.register("uploadDocs", io.freefair.gradle.plugins.okhttp.tasks.UploadFile) {
+    dependsOn docsZip
+    file = docsZip.archiveFile
+    username = findProperty("joinfacesDocsUser")
+    password = findProperty("joinfacesDocsPass")
+    url = "https://docs.joinfaces.org/api/$project.version"
+}
+
+publishing {
+    publications {
+        javadoc(MavenPublication) {
+            artifactId = 'joinfaces-documentation'
+
+            pom {
+                name = "JoinFaces"
+                description = "JoinFaces"
+            }
+
+            artifact tasks.named("javadocJar")
+
+            signing.sign it
+        }
+    }
+}
