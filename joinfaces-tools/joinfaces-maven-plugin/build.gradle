@@ -1,5 +1,7 @@
-apply plugin: "io.freefair.maven-publish-java"
-apply plugin: "io.freefair.maven-plugin"
+plugins {
+    id "io.freefair.maven-plugin"
+    id "io.freefair.maven-publish-java"
+}
 
 description = "JoinFaces Maven Plugin"
 
