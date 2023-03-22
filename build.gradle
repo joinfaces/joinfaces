@@ -19,7 +19,6 @@ buildscript {
 }
 
 plugins {
-    id "org.asciidoctor.jvm.convert" version "3.3.2"
     id "io.github.gradle-nexus.publish-plugin" version "1.3.0"
 }
 
@@ -263,12 +262,6 @@ tasks.named("cpdCheck") {
 }
 
 apply plugin: "maven-publish"
-apply plugin: "io.freefair.aggregate-javadoc-jar"
-apply plugin: "io.freefair.javadoc-links"
-
-tasks.named("aggregateJavadoc") {
-    title = "JoinFaces $version API"
-}
 
 nexusPublishing {
     repositories {
@@ -276,50 +269,6 @@ nexusPublishing {
             stagingProfileId = '9d2198adfd84d'
         }
     }
-}
-
-tasks.register("propertyDocs", org.joinfaces.build.PropertyDocumentation) {
-    inputFile = file("joinfaces-autoconfigure/build/classes/java/main/META-INF/spring-configuration-metadata.json")
-    outputFile = file("src/docs/asciidoc/generated/_properties.adoc")
-    dependsOn ":joinfaces-autoconfigure:classes"
-}
-
-tasks.register("bomDocs", org.joinfaces.build.BomDocumentation) {
-    dependsOn tasks.generatePomFileForBomPublication
-    inputFile = tasks.generatePomFileForBomPublication.destination
-    outputFile = file("src/docs/asciidoc/generated/_versions.adoc")
-}
-
-tasks.named("asciidoctor") {
-    baseDirFollowsSourceDir()
-    dependsOn propertyDocs, bomDocs
-    inputs.dir("src/docs/asciidoc")
-    attributes revnumber: project.version,
-            'spring-version': dependencyManagement.importedProperties['spring-framework.version'],
-            'spring-boot-version': org.springframework.boot.gradle.plugin.SpringBootPlugin.SPRING_BOOT_VERSION
-}
-
-tasks.register("docsZip", Zip) {
-    group = 'build'
-    archiveClassifier = 'docs'
-    dependsOn asciidoctor
-
-    into("api") {
-        from aggregateJavadoc
-    }
-    from("$asciidoctor.outputDir") {
-        into "reference"
-    }
-}
-
-apply plugin: 'io.freefair.okhttp'
-
-tasks.register("uploadDocs", io.freefair.gradle.plugins.okhttp.tasks.UploadFile) {
-    dependsOn docsZip
-    file = docsZip.archiveFile
-    username = findProperty("joinfacesDocsUser")
-    password = findProperty("joinfacesDocsPass")
-    url = "https://docs.joinfaces.org/api/$project.version"
 }
 
 publishing {
@@ -342,18 +291,6 @@ publishing {
                     }
                 }
             }
-
-            signing.sign it
-        }
-        javadoc(MavenPublication) {
-            artifactId = 'joinfaces'
-
-            pom {
-                name = "JoinFaces"
-                description = "JoinFaces"
-            }
-
-            artifact tasks.named("aggregateJavadocJar")
 
             signing.sign it
         }

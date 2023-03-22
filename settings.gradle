@@ -1,3 +1,7 @@
+plugins {
+    id "io.freefair.settings.plugin-versions" version "8.0.1"
+}
+
 rootProject.name = 'joinfaces'
 
 dependencyResolutionManagement {
@@ -5,6 +9,10 @@ dependencyResolutionManagement {
         mavenCentral()
     }
 }
+
+includeBuild "/Users/larsgrefer/git/freefair/gradle-plugins"
+
+include ':joinfaces-documentation'
 
 include ':joinfaces-tools:joinfaces-scan-tools'
 include ':joinfaces-tools:joinfaces-gradle-plugin'
