@@ -1,28 +1,12 @@
-buildscript {
-    repositories {
-        maven { url "https://plugins.gradle.org/m2/" }
-    }
-    dependencies {
-        def freefairGradleVersion = "6.6.3"
-        classpath "io.freefair.gradle:lombok-plugin:$freefairGradleVersion"
-        classpath "io.freefair.gradle:maven-plugin:$freefairGradleVersion"
-        classpath "io.freefair.gradle:maven-plugin-plugin:$freefairGradleVersion"
-        classpath "io.freefair.gradle:git-plugin:$freefairGradleVersion"
-        classpath "io.freefair.gradle:okhttp-plugin:$freefairGradleVersion"
-        classpath "io.freefair.gradle:jacoco-plugin:$freefairGradleVersion"
-        classpath "gradle.plugin.com.github.spotbugs.snom:spotbugs-gradle-plugin:4.7.5"
-        classpath "com.netflix.nebula:gradle-lint-plugin:18.0.3"
-        classpath "de.aaschmid:gradle-cpd-plugin:3.3"
-    }
-}
-
 plugins {
-    id "org.asciidoctor.jvm.convert" version "3.3.2"
+    id "io.freefair.git-version"
+    id "io.freefair.aggregate-jacoco-report"
+    id "io.freefair.lombok" apply false
+    id "io.freefair.maven-central.validate-poms" apply false
+    id "de.aaschmid.cpd" version "3.3"
     id "io.github.gradle-nexus.publish-plugin" version "1.3.0"
+    id "nebula.lint" version "18.0.3" apply false
 }
-
-apply plugin: 'io.freefair.git-version'
-apply plugin: 'io.freefair.aggregate-jacoco-report'
 
 allprojects {
     group = 'org.joinfaces'
@@ -165,86 +149,17 @@ allprojects {
     }
 }
 
-apply plugin: "de.aaschmid.cpd"
-
 tasks.named("cpdCheck") {
     exclude "**/*Test.java"
     exclude "**/*IT.java"
 }
 
 apply plugin: "maven-publish"
-apply plugin: "io.freefair.aggregate-javadoc-jar"
-apply plugin: "io.freefair.javadoc-links"
-
-tasks.named("aggregateJavadoc") {
-    title = "JoinFaces $version API"
-}
 
 nexusPublishing {
     repositories {
         sonatype {
             stagingProfileId = '9d2198adfd84d'
-        }
-    }
-}
-
-tasks.register("propertyDocs", org.joinfaces.build.PropertyDocumentation) {
-    inputFile = file("joinfaces-autoconfigure/build/classes/java/main/META-INF/spring-configuration-metadata.json")
-    outputFile = file("src/docs/asciidoc/generated/_properties.adoc")
-    dependsOn ":joinfaces-autoconfigure:classes"
-}
-
-tasks.register("bomDocs", org.joinfaces.build.BomDocumentation) {
-    dependsOn ":joinfaces-dependencies:generatePomFileForBomPublication"
-    inputFile = tasks.findByPath(":joinfaces-dependencies:generatePomFileForBomPublication").destination
-    outputFile = file("src/docs/asciidoc/generated/_versions.adoc")
-}
-
-tasks.named("asciidoctor", org.asciidoctor.gradle.jvm.AsciidoctorTask) {
-    baseDirFollowsSourceDir()
-    dependsOn propertyDocs, bomDocs
-    inputs.dir("src/docs/asciidoc")
-    attributes revnumber: project.version,
-            'spring-version': '6.0.x',
-            'spring-boot-version': org.springframework.boot.gradle.plugin.SpringBootPlugin.SPRING_BOOT_VERSION
-}
-
-tasks.register("docsZip", Zip) {
-    group = 'build'
-    archiveClassifier = 'docs'
-    dependsOn asciidoctor
-
-    into("api") {
-        from aggregateJavadoc
-    }
-    from("$asciidoctor.outputDir") {
-        into "reference"
-    }
-}
-
-apply plugin: 'io.freefair.okhttp'
-
-tasks.register("uploadDocs", io.freefair.gradle.plugins.okhttp.tasks.UploadFile) {
-    dependsOn docsZip
-    file = docsZip.archiveFile
-    username = findProperty("joinfacesDocsUser")
-    password = findProperty("joinfacesDocsPass")
-    url = "https://docs.joinfaces.org/api/$project.version"
-}
-
-publishing {
-    publications {
-        javadoc(MavenPublication) {
-            artifactId = 'joinfaces-parent'
-
-            pom {
-                name = "JoinFaces"
-                description = "JoinFaces"
-            }
-
-            artifact tasks.named("aggregateJavadocJar")
-
-            signing.sign it
         }
     }
 }

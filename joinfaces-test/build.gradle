@@ -1,5 +1,8 @@
+plugins {
+    id "com.github.spotbugs" version "4.7.5"
+}
+
 apply plugin: "java-library"
-apply plugin: "com.github.spotbugs"
 apply plugin: "checkstyle"
 apply plugin: "io.freefair.lombok"
 apply plugin: "io.freefair.maven-optional"
