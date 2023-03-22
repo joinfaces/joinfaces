@@ -1,5 +1,3 @@
-src/docs/asciidoc/generated
-
 .idea/*
 
 !.idea/checkstyle-idea.xml

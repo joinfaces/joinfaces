@@ -10,8 +10,6 @@ dependencyResolutionManagement {
     }
 }
 
-includeBuild "/Users/larsgrefer/git/freefair/gradle-plugins"
-
 include ':joinfaces-documentation'
 
 include ':joinfaces-tools:joinfaces-scan-tools'
