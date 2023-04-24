@@ -17,7 +17,7 @@ dependencies {
     javadocClasspath "org.springframework.boot:spring-boot-starter-data-jpa"
     javadocClasspath "org.springframework.session:spring-session-core"
     javadocClasspath "com.github.spotbugs:spotbugs-annotations:4.7.3"
-    javadocClasspath "org.apache.maven.plugin-tools:maven-plugin-annotations:3.8.1"
+    javadocClasspath "org.apache.maven.plugin-tools:maven-plugin-annotations:3.8.2"
 }
 
 tasks.named("javadoc", Javadoc) {
