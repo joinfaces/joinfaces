@@ -16,7 +16,7 @@ dependencies {
         //Mojarra
         api 'jakarta.faces:jakarta.faces-api:4.0.1'
 
-        api 'io.github.classgraph:classgraph:4.8.158'
+        api 'io.github.classgraph:classgraph:4.8.160'
 
         //Jakarta EE (if not covered by Spring Boot)
         api 'jakarta.enterprise:jakarta.enterprise.cdi-api:4.0.1'
