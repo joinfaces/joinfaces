@@ -42,7 +42,7 @@ dependencies {
         api 'org.apache.myfaces.tobago:tobago-theme-richmond:6.0.0-SNAPSHOT'
         api 'org.apache.myfaces.tobago:tobago-theme-charlotteville:6.0.0-SNAPSHOT'
 
-        api 'org.omnifaces:omnifaces:4.1'
+        api 'org.omnifaces:omnifaces:4.2'
 
         //Ocpsoft Rewrite
         api 'org.ocpsoft.rewrite:rewrite-servlet:6.0.0.Alpha1'
