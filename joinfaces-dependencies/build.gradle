@@ -30,7 +30,7 @@ dependencies {
         api 'org.primefaces:primefaces:12.0.0'
         api "org.primefaces.extensions:primefaces-extensions:12.0.7"
         api "org.primefaces.extensions:resources-ckeditor:12.0.4"
-        api "org.primefaces.extensions:resources-monacoeditor:12.0.7"
+        api "org.primefaces.extensions:resources-monacoeditor:12.0.8"
 
         api 'org.jboss.weld.servlet:weld-servlet-core:5.1.1.Final'
 
