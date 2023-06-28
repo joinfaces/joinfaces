@@ -1,5 +1,5 @@
 plugins {
-    id "io.freefair.settings.plugin-versions" version "8.0.1"
+    id "io.freefair.settings.plugin-versions" version "8.1.0"
 }
 
 rootProject.name = 'joinfaces'
