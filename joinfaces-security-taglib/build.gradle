@@ -22,7 +22,7 @@ dependencies {
     compileOnly 'jakarta.el:jakarta.el-api'
 
     //For javadoc references
-    compileOnly 'org.springframework.webflow:spring-faces:2.5.1.RELEASE'
+    compileOnly 'org.springframework.webflow:spring-faces:3.0.0'
 
     testImplementation project(':joinfaces-test')
     testImplementation 'org.glassfish:jakarta.faces'
