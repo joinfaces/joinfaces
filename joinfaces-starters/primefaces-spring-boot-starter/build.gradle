@@ -7,7 +7,6 @@ dependencies {
     api project(':joinfaces-starters:faces-spring-boot-starter')
     api 'org.primefaces:primefaces::jakarta'
     api 'org.primefaces.extensions:primefaces-extensions::jakarta'
-    runtimeOnly 'org.primefaces.extensions:resources-ckeditor'
 
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
 }
