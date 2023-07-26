@@ -70,6 +70,7 @@ public class FacesServletAutoConfiguration {
 		facesServletServletRegistrationBean.setEnabled(facesServletProperties.isEnabled());
 		facesServletServletRegistrationBean.setAsyncSupported(facesServletProperties.isAsyncSupported());
 		facesServletServletRegistrationBean.setOrder(facesServletProperties.getOrder());
+		facesServletServletRegistrationBean.setIgnoreRegistrationFailure(facesServletProperties.isIgnoreRegistrationFailure());
 
 		multipartConfig.ifAvailable(facesServletServletRegistrationBean::setMultipartConfig);
 

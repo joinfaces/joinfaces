@@ -55,4 +55,6 @@ public class FacesServletProperties {
 	 */
 	private int order = 0;
 
+	private boolean ignoreRegistrationFailure = true;
+
 }
