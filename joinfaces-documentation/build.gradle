@@ -14,7 +14,22 @@ dependencies {
         javadoc tool
     }
 
-    javadocClasspath "org.omnifaces:omnifaces"
+    javadocClasspath "jakarta.platform:jakarta.jakartaee-web-api:10.0.0"
+
+    javadocClasspath "org.glassfish:jakarta.faces:$mojarra4Version"
+    javadocClasspath "org.apache.myfaces.core:myfaces-impl:$myfaces4Version"
+
+    javadocClasspath "org.springframework.boot:spring-boot-starter-tomcat"
+    javadocClasspath "org.springframework.boot:spring-boot-starter-jetty"
+    javadocClasspath "org.springframework.boot:spring-boot-starter-undertow"
+
+    javadocClasspath project(":joinfaces-starters:adminfaces-spring-boot-starter")
+    javadocClasspath project(":joinfaces-starters:omnifaces-spring-boot-starter")
+    javadocClasspath project(":joinfaces-starters:primefaces-spring-boot-starter")
+    javadocClasspath project(":joinfaces-starters:rewrite-spring-boot-starter")
+    javadocClasspath project(":joinfaces-starters:tobago-spring-boot-starter")
+    javadocClasspath project(":joinfaces-starters:weld-spring-boot-starter")
+
     javadocClasspath "org.springframework.boot:spring-boot-starter-data-jpa"
     javadocClasspath "org.springframework.session:spring-session-core"
     javadocClasspath "com.github.spotbugs:spotbugs-annotations:4.7.3"
