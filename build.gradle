@@ -112,10 +112,10 @@ allprojects {
     plugins.withId("java") {
         apply plugin: "io.freefair.lombok"
 
-        sourceCompatibility = 1.8
-        targetCompatibility = 1.8
-
         java {
+            sourceCompatibility = 1.8
+            targetCompatibility = 1.8
+
             withSourcesJar()
             withJavadocJar()
         }
