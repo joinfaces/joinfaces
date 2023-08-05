@@ -4,6 +4,17 @@ plugins {
 
 rootProject.name = 'joinfaces'
 
+buildCache {
+    remote(HttpBuildCache) {
+        url = 'https://build-cache.grefer-hosting.de/cache/'
+        push = System.getenv().containsKey("CI")
+        credentials {
+            username = providers.gradleProperty('joinfacesBuildCacheUsername').getOrElse(null)
+            password = providers.gradleProperty('joinfacesBuildCachePassword').getOrElse(null)
+        }
+    }
+}
+
 dependencyResolutionManagement {
     repositories {
         mavenCentral()
