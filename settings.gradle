@@ -9,7 +9,7 @@ buildCache {
         url = 'https://build-cache.grefer-hosting.de/cache/'
         push = System.getenv().containsKey("CI")
         credentials {
-            username = providers.gradleProperty('joinfacesBuildCacheUsername').getOrElse(null)
+            username = "joinfaces"
             password = providers.gradleProperty('joinfacesBuildCachePassword').getOrElse(null)
         }
     }

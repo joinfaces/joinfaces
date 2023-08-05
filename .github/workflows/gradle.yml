@@ -18,7 +18,6 @@ jobs:
 
     runs-on: ubuntu-latest
     env:
-      ORG_GRADLE_PROJECT_joinfacesBuildCacheUsername: ${{ secrets.BUILD_CACHE_USERNAME }}
       ORG_GRADLE_PROJECT_joinfacesBuildCachePassword: ${{ secrets.BUILD_CACHE_PASSWORD }}
     strategy:
       fail-fast: false
