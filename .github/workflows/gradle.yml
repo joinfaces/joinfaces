@@ -17,6 +17,8 @@ jobs:
   build:
 
     runs-on: ubuntu-latest
+    env:
+      ORG_GRADLE_PROJECT_joinfacesBuildCachePassword: ${{ secrets.BUILD_CACHE_PASSWORD }}
     strategy:
       fail-fast: false
       matrix:
