@@ -104,7 +104,7 @@ public class SpringBootAnnotationConfigProvider extends HttpConfigurationProvide
 				.enableAllInfo()
 				.enableExternalClasses();
 		if (!CollectionUtils.isEmpty(this.basePackages)) {
-			classGraph = classGraph.whitelistPackages(this.basePackages.toArray(new String[0]));
+			classGraph = classGraph.acceptPackages(this.basePackages.toArray(new String[0]));
 		}
 
 		try (ScanResult scanResult = classGraph.scan()) {
