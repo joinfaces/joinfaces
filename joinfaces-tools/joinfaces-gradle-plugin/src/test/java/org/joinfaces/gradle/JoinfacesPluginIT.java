@@ -37,7 +37,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 class JoinfacesPluginIT {
 
 	@ParameterizedTest
-	@ValueSource(strings = {"7.4", "7.3.1"})
+	@ValueSource(strings = {"7.5", "8.0"})
 	public void postJdk17Build(String gradleVersion, @TempDir Path projectDir) throws IOException {
 		build(gradleVersion, projectDir);
 	}
