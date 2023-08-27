@@ -36,6 +36,7 @@ public class SecurityConfiguration {
 	}
 
 	@Bean
+	@SuppressWarnings("deprecation")
 	public UserDetailsService userDetailsService() {
 		InMemoryUserDetailsManager manager = new InMemoryUserDetailsManager();
 		manager.createUser(User.withDefaultPasswordEncoder().username("admin").password("admin").roles("admin").build());
