@@ -86,8 +86,10 @@ The principle behind this is the same as described here:
 - https://docs.spring.io/spring-boot/docs/{spring-boot-version}/reference/html/howto.html#howto.webserver.use-another[Use Another Web Server]
 - https://docs.spring.io/spring-boot/docs/{spring-boot-version}/reference/html/howto.html#howto.logging.log4j[Configure Log4j for Logging]
 
-===== Example: Using MyFaces instead of Mojarra
-[source,xml]
+.Using MyFaces instead of Mojarra
+====
+[source,xml,role=primary]
+.Maven
 ----
 <dependencies>
     <dependency>
@@ -107,7 +109,8 @@ The principle behind this is the same as described here:
 </dependencies>
 ----
 
-[source,groovy]
+[source,groovy,role=secondary]
+.Gradle
 ----
 dependencies {
     compile ("org.joinfaces:jsf-spring-boot-starter") {
@@ -117,6 +120,7 @@ dependencies {
     // ...
 }
 ----
+====
 
 === Servlet-Context Init-Parameters
 
