@@ -1,14 +1,13 @@
 plugins {
     id "com.github.spotbugs"
+    id "java-library"
+    id "checkstyle"
+    id "pmd"
+    id "jacoco"
+    id "io.freefair.lombok"
+    id "io.freefair.maven-optional"
+    id "io.freefair.maven-publish-java"
 }
-
-apply plugin: "java-library"
-apply plugin: "checkstyle"
-apply plugin: "pmd"
-apply plugin: "jacoco"
-apply plugin: "io.freefair.lombok"
-apply plugin: "io.freefair.maven-optional"
-apply plugin: "io.freefair.maven-publish-java"
 
 description = 'JoinFaces AutoConfigure'
 tasks.named("jar", Jar) {
