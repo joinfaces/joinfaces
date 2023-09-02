@@ -14,8 +14,6 @@ tasks.named("jar", Jar) {
     manifest.attributes('Automatic-Module-Name': 'joinfaces.autoconfigure')
 }
 
-gradleLint.rules -= 'transitive-duplicate-dependency-class'
-
 dependencies {
     api platform(project(':joinfaces-dependencies'))
     annotationProcessor platform(org.springframework.boot.gradle.plugin.SpringBootPlugin.BOM_COORDINATES)
