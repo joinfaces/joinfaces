@@ -66,7 +66,7 @@ public class ViewScope implements Scope {
 	public static final String DESTRUCTION_CALLBACK_NAME_PREFIX = ViewScope.class.getName() + ".DESTRUCTION_CALLBACK.";
 
 	@Getter(AccessLevel.PACKAGE)
-	private PreDestroyViewMapListener preDestroyViewMapListener = new PreDestroyViewMapListener();
+	private final PreDestroyViewMapListener preDestroyViewMapListener = new PreDestroyViewMapListener();
 
 	@Override
 	public Object get(String name, ObjectFactory objectFactory) {
@@ -152,7 +152,7 @@ public class ViewScope implements Scope {
 	@Getter
 	static class SessionListener implements HttpSessionBindingListener {
 
-		private List<DestructionCallbackWrapper> destructionCallbackWrappers = new ArrayList<>();
+		private final List<DestructionCallbackWrapper> destructionCallbackWrappers = new ArrayList<>();
 
 		void register(DestructionCallbackWrapper destructionCallbackWrapper) {
 			cleanup();

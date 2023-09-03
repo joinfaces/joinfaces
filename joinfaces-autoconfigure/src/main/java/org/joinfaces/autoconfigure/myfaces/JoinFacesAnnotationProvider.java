@@ -59,7 +59,7 @@ public class JoinFacesAnnotationProvider extends AnnotationProviderWrapper {
 			return preparedScanResult.get();
 		}
 
-		MyFacesInitializerRegistrationBean registrationBean = WebApplicationContextUtils
+		MyFacesInitializerRegistrationBean<?> registrationBean = WebApplicationContextUtils
 				.getRequiredWebApplicationContext(servletContext)
 				.getBeanProvider(MyFacesInitializerRegistrationBean.class)
 				.getIfAvailable();

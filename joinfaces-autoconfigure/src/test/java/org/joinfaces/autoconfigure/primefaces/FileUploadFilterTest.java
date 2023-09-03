@@ -38,8 +38,6 @@ public class FileUploadFilterTest {
 	@Test
 	public void testNotAdded() {
 		this.webApplicationContextRunner
-				.run(context -> {
-					assertThat(context).doesNotHaveBean("primefacesFileUploadFilterRegistrationBean");
-				});
+				.run(context -> assertThat(context).doesNotHaveBean("primefacesFileUploadFilterRegistrationBean"));
 	}
 }
