@@ -1,18 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
-<faces-config xmlns="http://xmlns.jcp.org/xml/ns/javaee"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-facesconfig_2_3.xsd"
-	version="2.3">
-    
-	<name>JoinFaces</name>
-	
+<faces-config
+        xmlns="https://jakarta.ee/xml/ns/jakartaee"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee
+        https://jakarta.ee/xml/ns/jakartaee/web-facesconfig_3_0.xsd"
+        version="3.0">
+
+    <name>JoinFaces</name>
+
     <ordering>
         <after>
             <others/>
         </after>
     </ordering>
-    
-    <application>        
+
+    <application>
         <el-resolver>org.springframework.web.jsf.el.SpringBeanFacesELResolver</el-resolver>
     </application>
 </faces-config>
