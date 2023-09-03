@@ -31,6 +31,6 @@ import org.springframework.web.context.annotation.SessionScope;
 public class DummyBean {
 
 	public String getText() {
-		return "Hello from Spring: " + LocalDateTime.now().toString();
+		return "Hello from Spring: " + LocalDateTime.now();
 	}
 }

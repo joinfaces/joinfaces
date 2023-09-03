@@ -2,7 +2,6 @@ plugins {
     id "com.github.spotbugs"
     id "java-library"
     id "checkstyle"
-    id "pmd"
     id "jacoco"
     id "io.freefair.lombok"
     id "io.freefair.maven-optional"

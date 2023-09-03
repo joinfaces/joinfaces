@@ -3,7 +3,6 @@ import org.springframework.boot.gradle.plugin.SpringBootPlugin
 plugins {
     id 'java-library'
     id 'jacoco'
-    id 'pmd'
     id 'io.freefair.lombok'
     id 'io.freefair.maven-optional'
     id 'io.freefair.maven-publish-java'
