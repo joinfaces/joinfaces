@@ -63,15 +63,6 @@ allprojects {
         failOnError = false
     }
 
-    plugins.withId("pmd") {
-        pmd {
-            consoleOutput = true
-            ruleSetConfig = resources.text.fromFile("$rootDir/config/pmd/pmd-ruleset.xml")
-            ruleSets = []
-        }
-        pmdTest.enabled = false
-    }
-
     plugins.withId("jacoco") {
         tasks.withType(JacocoReport).configureEach {
             reports.xml.required = true

@@ -38,7 +38,7 @@ public class SpringBootServiceLocator implements ServiceLocator {
 	@Override
 	@SuppressWarnings("unchecked")
 	public <T> Collection<Class<T>> locate(Class<T> clazz) {
-		Set<Class<T>> result = new LinkedHashSet<Class<T>>();
+		Set<Class<T>> result = new LinkedHashSet<>();
 
 		// use the Spring API to obtain the WebApplicationContext
 		ApplicationContext context = ApplicationContextProvider.getApplicationContext();
