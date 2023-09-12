@@ -1,13 +1,12 @@
 plugins {
-    id "com.github.spotbugs" version "5.1.0"
+    id "com.github.spotbugs"
+    id "java-library"
+    id "checkstyle"
+    id "jacoco"
+    id "io.freefair.lombok"
+    id "io.freefair.maven-optional"
+    id "io.freefair.maven-publish-java"
 }
-
-apply plugin: "java-library"
-apply plugin: "checkstyle"
-apply plugin: "jacoco"
-apply plugin: "io.freefair.lombok"
-apply plugin: "io.freefair.maven-optional"
-apply plugin: "io.freefair.maven-publish-java"
 
 description = 'Spring Security JSF Taglib'
 tasks.named("jar", Jar) {

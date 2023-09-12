@@ -17,10 +17,13 @@
 package org.joinfaces;
 
 import jakarta.faces.context.ExternalContext;
+import jakarta.faces.context.FacesContext;
 import jakarta.servlet.ServletContext;
 
 import lombok.experimental.UtilityClass;
 
+import org.springframework.lang.NonNull;
+import org.springframework.lang.Nullable;
 import org.springframework.web.context.WebApplicationContext;
 import org.springframework.web.context.support.WebApplicationContextUtils;
 
@@ -36,10 +39,24 @@ public class FacesContextUtils extends org.springframework.web.jsf.FacesContextU
 		return (ServletContext) externalContext.getContext();
 	}
 
+	/**
+	 * @param externalContext The ExternalContext to find the web application context for
+	 * @return the root WebApplicationContext for this web app, or {@code null} if none
+	 * @see WebApplicationContextUtils#getWebApplicationContext(ServletContext)
+	 * @see org.springframework.web.jsf.FacesContextUtils#getWebApplicationContext(FacesContext)
+	 */
+	@Nullable
 	public static WebApplicationContext getWebApplicationContext(ExternalContext externalContext) {
 		return WebApplicationContextUtils.getWebApplicationContext(getServletContext(externalContext));
 	}
 
+	/**
+	 * @param externalContext The ExternalContext to find the web application context for
+	 * @return the root WebApplicationContext for this web app
+	 * @see WebApplicationContextUtils#getRequiredWebApplicationContext(ServletContext)
+	 * @see org.springframework.web.jsf.FacesContextUtils#getRequiredWebApplicationContext(FacesContext)
+	 */
+	@NonNull
 	public static WebApplicationContext getRequiredWebApplicationContext(ExternalContext externalContext) {
 		return WebApplicationContextUtils.getRequiredWebApplicationContext(getServletContext(externalContext));
 	}

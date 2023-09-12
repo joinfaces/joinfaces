@@ -1,8 +1,32 @@
 plugins {
-    id "io.freefair.settings.plugin-versions" version "8.1.0"
+    id "io.freefair.settings.plugin-versions" version "8.3"
+    id "com.gradle.enterprise" version "3.14.1"
 }
 
 rootProject.name = 'joinfaces-parent'
+
+boolean isCiServer = System.getenv().containsKey("CI")
+
+gradleEnterprise {
+    if (isCiServer) {
+        buildScan {
+            publishAlways()
+            termsOfServiceUrl = "https://gradle.com/terms-of-service"
+            termsOfServiceAgree = "yes"
+        }
+    }
+}
+
+buildCache {
+    remote(HttpBuildCache) {
+        url = 'https://build-cache.grefer-hosting.de/cache/'
+        push = isCiServer
+        credentials {
+            username = "joinfaces"
+            password = providers.gradleProperty('joinfacesBuildCachePassword').getOrElse(null)
+        }
+    }
+}
 
 dependencyResolutionManagement {
     repositories {

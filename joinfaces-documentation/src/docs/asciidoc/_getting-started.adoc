@@ -72,7 +72,7 @@ NOTE: Please also consult the official Spring Boot documentation: https://docs.s
     <dependencies>
         <dependency>
             <groupId>org.joinfaces</groupId>
-            <artifactId>jsf-spring-boot-starter</artifactId>
+            <artifactId>faces-spring-boot-starter</artifactId>
         </dependency>
 
         <dependency>
@@ -125,7 +125,7 @@ apply plugin: 'org.springframework.boot'
 apply plugin: 'io.spring.dependency-management'
 
 dependencies {
-    compile 'org.joinfaces:jsf-spring-boot-starter'
+    compile 'org.joinfaces:faces-spring-boot-starter'
 
     testCompile 'org.springframework.boot:spring-boot-starter-test'
 }
@@ -148,7 +148,7 @@ dependencyManagement {
 }
 
 dependencies {
-    compile 'org.joinfaces:jsf-spring-boot-starter'
+    compile 'org.joinfaces:faces-spring-boot-starter'
 
     testCompile 'org.springframework.boot:spring-boot-starter-test'
 }

@@ -49,7 +49,7 @@ public class SpringBootBeanNameResolver implements BeanNameResolver {
 		Set<String> beanNames = resolveBeanNames(this.context, clazz);
 
 		// no beans of that type, nothing we can do
-		if (beanNames.size() == 0) {
+		if (beanNames.isEmpty()) {
 			return null;
 		}
 
@@ -75,7 +75,7 @@ public class SpringBootBeanNameResolver implements BeanNameResolver {
 	 */
 	private Set<String> resolveBeanNames(ListableBeanFactory beanFactory, Class<?> clazz) {
 
-		final Set<String> result = new HashSet<String>();
+		final Set<String> result = new HashSet<>();
 
 		Map<String, ?> beanMap = beanFactory.getBeansOfType(clazz);
 		for (String name : beanMap.keySet()) {

@@ -3,29 +3,21 @@ plugins {
     id "io.freefair.aggregate-jacoco-report"
     id "io.freefair.lombok" apply false
     id "io.freefair.maven-central.validate-poms" apply false
+    id "com.github.spotbugs" version "5.1.3" apply false
     id "de.aaschmid.cpd" version "3.3"
     id "io.github.gradle-nexus.publish-plugin" version "1.3.0"
-    id "nebula.lint" version "18.1.0" apply false
 }
 
 allprojects {
     group = 'org.joinfaces'
 
-    apply plugin: 'nebula.lint'
-
-    gradleLint {
-        //https://github.com/nebula-plugins/gradle-lint-plugin/issues/263
-        //rules = ['transitive-duplicate-dependency-class', 'duplicate-dependency-class']
-        criticalRules = ['dependency-parentheses']
-    }
-
     plugins.withId("java") {
         apply plugin: "io.freefair.lombok"
 
-        sourceCompatibility = 17
-        targetCompatibility = 17
-
         java {
+            sourceCompatibility = 17
+            targetCompatibility = 17
+
             withSourcesJar()
             withJavadocJar()
         }
@@ -69,15 +61,6 @@ allprojects {
 
     tasks.withType(Javadoc).configureEach {
         failOnError = false
-    }
-
-    plugins.withId("pmd") {
-        pmd {
-            consoleOutput = true
-            ruleSetConfig = resources.text.fromFile("$rootDir/config/pmd/pmd-ruleset.xml")
-            ruleSets = []
-        }
-        pmdTest.enabled = false
     }
 
     plugins.withId("jacoco") {

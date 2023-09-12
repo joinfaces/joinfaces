@@ -49,7 +49,6 @@ import org.springframework.boot.context.properties.NestedConfigurationProperty;
  * @see <a href="https://jakarta.ee/specifications/faces/3.0/jakarta-faces-3.0.html#a6088">https://jakarta.ee/specifications/faces/3.0/jakarta-faces-3.0.html#a6088</a>
  */
 @Data
-@SuppressWarnings("PMD.AvoidDuplicateLiterals")
 @ConfigurationProperties("joinfaces.faces")
 public class JakartaFaces3Properties implements ServletContextInitParameterProperties {
 

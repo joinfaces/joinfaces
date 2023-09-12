@@ -155,9 +155,7 @@ public class SpringDataJpaLazyDataModel<T, ID, R extends JpaRepository<T, ID> & 
 				case GREATER_THAN_EQUALS -> {
 					return criteriaBuilder.greaterThanOrEqualTo((Path<Comparable>) path, (Comparable) filterValue);
 				}
-				default -> {
-					throw new IllegalArgumentException("MatchMode " + filterMeta.getMatchMode() + " is not supported");
-				}
+				default -> throw new IllegalArgumentException("MatchMode " + filterMeta.getMatchMode() + " is not supported");
 			}
 
 		}

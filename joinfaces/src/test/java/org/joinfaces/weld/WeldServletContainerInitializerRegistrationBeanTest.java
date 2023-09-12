@@ -16,20 +16,12 @@
 
 package org.joinfaces.weld;
 
-import org.jboss.weld.environment.jetty.AbstractJettyContainer;
-import org.jboss.weld.environment.tomcat.TomcatContainer;
-import org.jboss.weld.environment.undertow.UndertowContainer;
-import org.joinfaces.weld.WeldServletContainerInitializerRegistrationBean;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import org.springframework.boot.web.embedded.jetty.JettyServletWebServerFactory;
 import org.springframework.boot.web.embedded.tomcat.TomcatServletWebServerFactory;
 import org.springframework.boot.web.embedded.undertow.UndertowServletWebServerFactory;
-import org.springframework.boot.web.servlet.server.AbstractServletWebServerFactory;
-
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.mockito.Mockito.mock;
 
 class WeldServletContainerInitializerRegistrationBeanTest {
 

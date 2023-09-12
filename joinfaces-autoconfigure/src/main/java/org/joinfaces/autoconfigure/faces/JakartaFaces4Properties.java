@@ -33,7 +33,6 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
  * @see <a href="https://myfaces.apache.org/#/core40?id=configuration">MyFaces 4 Configuration</a>
  */
 @Data
-@SuppressWarnings("PMD.AvoidDuplicateLiterals")
 @ConfigurationProperties("joinfaces.faces")
 public class JakartaFaces4Properties implements ServletContextInitParameterProperties {
 
