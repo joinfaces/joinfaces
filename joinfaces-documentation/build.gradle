@@ -6,6 +6,10 @@ plugins {
     id "maven-publish"
 }
 
+configurations {
+    asciidoctorExt
+}
+
 dependencies {
     javadoc project(":joinfaces")
     javadoc project(":joinfaces-autoconfigure")
@@ -34,6 +38,8 @@ dependencies {
     javadocClasspath "org.springframework.session:spring-session-core"
     javadocClasspath "com.github.spotbugs:spotbugs-annotations:4.7.3"
     javadocClasspath "org.apache.maven.plugin-tools:maven-plugin-annotations:3.9.0"
+
+    asciidoctorExt "io.spring.asciidoctor:spring-asciidoctor-extensions-block-switch:0.6.2"
 }
 
 tasks.named("javadoc", Javadoc) {
@@ -56,6 +62,7 @@ tasks.named("asciidoctor") {
     baseDirFollowsSourceDir()
     dependsOn propertyDocs, bomDocs
     inputs.dir("src/docs/asciidoc")
+    configurations 'asciidoctorExt'
     attributes revnumber: project.version,
             'spring-version': '6.0.x',
             'spring-boot-version': org.springframework.boot.gradle.plugin.SpringBootPlugin.SPRING_BOOT_VERSION
