@@ -15,8 +15,9 @@ allprojects {
         apply plugin: "io.freefair.lombok"
 
         java {
-            sourceCompatibility = 17
-            targetCompatibility = 17
+            toolchain {
+                languageVersion = JavaLanguageVersion.of(17)
+            }
 
             withSourcesJar()
             withJavadocJar()
