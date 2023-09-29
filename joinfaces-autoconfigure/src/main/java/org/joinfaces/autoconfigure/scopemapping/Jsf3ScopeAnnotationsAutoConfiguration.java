@@ -18,12 +18,16 @@ package org.joinfaces.autoconfigure.scopemapping;
 
 import org.joinfaces.viewscope.ViewScope;
 
+import org.springframework.aot.hint.RuntimeHints;
+import org.springframework.aot.hint.RuntimeHintsRegistrar;
+import org.springframework.aot.hint.TypeReference;
 import org.springframework.beans.factory.config.ConfigurableBeanFactory;
 import org.springframework.boot.autoconfigure.AutoConfiguration;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnWebApplication;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ImportRuntimeHints;
 import org.springframework.core.Ordered;
 import org.springframework.core.env.Environment;
 import org.springframework.web.context.WebApplicationContext;
@@ -39,6 +43,7 @@ import org.springframework.web.context.WebApplicationContext;
 @AutoConfiguration
 @ConditionalOnClass(name = "jakarta.faces.bean.RequestScoped")
 @ConditionalOnWebApplication(type = ConditionalOnWebApplication.Type.SERVLET)
+@ImportRuntimeHints(Jsf3ScopeAnnotationsAutoConfiguration.Jsf3ScopeAnnotationRuntimeHints.class)
 public class Jsf3ScopeAnnotationsAutoConfiguration {
 
 	@Bean
@@ -55,6 +60,18 @@ public class Jsf3ScopeAnnotationsAutoConfiguration {
 		scopeAnnotationConfigurer.addMapping("jakarta.faces.bean.ApplicationScoped", WebApplicationContext.SCOPE_APPLICATION);
 
 		return scopeAnnotationConfigurer;
+	}
+
+	public static class Jsf3ScopeAnnotationRuntimeHints implements RuntimeHintsRegistrar {
+
+		@Override
+		public void registerHints(RuntimeHints hints, ClassLoader classLoader) {
+			hints.reflection().registerType(TypeReference.of("jakarta.faces.bean.NoneScoped"));
+			hints.reflection().registerType(TypeReference.of("jakarta.faces.bean.RequestScoped"));
+			hints.reflection().registerType(TypeReference.of("jakarta.faces.bean.ViewScoped"));
+			hints.reflection().registerType(TypeReference.of("jakarta.faces.bean.SessionScoped"));
+			hints.reflection().registerType(TypeReference.of("jakarta.faces.bean.ApplicationScoped"));
+		}
 	}
 
 }

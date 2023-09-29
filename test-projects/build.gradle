@@ -15,6 +15,12 @@ subprojects {
         enabled = false
     }
 
+    java {
+        toolchain {
+            languageVersion = JavaLanguageVersion.of(21)
+        }
+    }
+
     dependencies {
         implementation project(":joinfaces-security-taglib")
         implementation 'org.springframework.boot:spring-boot-starter-security'
@@ -24,5 +30,26 @@ subprojects {
         }
         testImplementation 'org.junit.jupiter:junit-jupiter-api'
         testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine'
+    }
+
+    apply plugin: "org.graalvm.buildtools.native"
+
+    processAot {
+        javaLauncher = javaToolchains.launcherFor {
+            languageVersion = JavaLanguageVersion.of(21)
+            vendor = JvmVendorSpec.GRAAL_VM
+        }
+    }
+
+    graalvmNative {
+        toolchainDetection = true
+        binaries {
+            main {
+                javaLauncher = javaToolchains.launcherFor {
+                    languageVersion = JavaLanguageVersion.of(21)
+                    vendor = JvmVendorSpec.GRAAL_VM
+                }
+            }
+        }
     }
 }
