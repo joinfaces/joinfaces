@@ -19,6 +19,7 @@ package org.joinfaces.weld;
 import lombok.extern.slf4j.Slf4j;
 import org.jboss.weld.environment.servlet.Container;
 import org.jboss.weld.environment.servlet.EnhancedListener;
+import org.jboss.weld.environment.servlet.WeldServletLifecycle;
 import org.joinfaces.servlet.ServletContainerInitializerRegistrationBean;
 
 import org.springframework.boot.web.servlet.server.ConfigurableServletWebServerFactory;
@@ -33,6 +34,12 @@ import org.springframework.util.StringUtils;
  */
 @Slf4j
 public class WeldServletContainerInitializerRegistrationBean extends ServletContainerInitializerRegistrationBean<EnhancedListener> {
+
+	/**
+	 * @see WeldServletLifecycle
+	 */
+	public static final String CONTEXT_PARAM_ARCHIVE_ISOLATION = "org.jboss.weld.environment.servlet.archive.isolation";
+
 	public WeldServletContainerInitializerRegistrationBean() {
 		super(EnhancedListener.class);
 	}
@@ -40,8 +47,27 @@ public class WeldServletContainerInitializerRegistrationBean extends ServletCont
 	@Override
 	public void customize(ConfigurableServletWebServerFactory factory) {
 		setContainerClass(factory);
+		forceCdiInitialization(factory);
 
 		super.customize(factory);
+	}
+
+	/**
+	 * Force the initialization of WELD even with an empty BDA.
+	 *
+	 * @see <a href="https://github.com/eclipse-ee4j/mojarra/issues/5232#issuecomment-1555916766">eclipse-ee4j/mojarra#5232</a>
+	 */
+	void forceCdiInitialization(ConfigurableServletWebServerFactory factory) {
+		factory.addInitializers(servletContext -> {
+			String currentArchiveIsolation = servletContext.getInitParameter(CONTEXT_PARAM_ARCHIVE_ISOLATION);
+			if (StringUtils.hasText(currentArchiveIsolation)) {
+				log.info("{} has already been set to {}", CONTEXT_PARAM_ARCHIVE_ISOLATION, currentArchiveIsolation);
+			}
+			else {
+				log.debug("Setting {} to {}", CONTEXT_PARAM_ARCHIVE_ISOLATION, "false");
+				servletContext.setInitParameter(CONTEXT_PARAM_ARCHIVE_ISOLATION, "false");
+			}
+		});
 	}
 
 	void setContainerClass(ConfigurableServletWebServerFactory factory) {
@@ -49,15 +75,15 @@ public class WeldServletContainerInitializerRegistrationBean extends ServletCont
 
 		String containerClassName = containerClass.getName();
 		factory.addInitializers(servletContext -> {
-					String currentContainerClass = servletContext.getInitParameter(Container.CONTEXT_PARAM_CONTAINER_CLASS);
-					if (StringUtils.hasText(currentContainerClass)) {
-						log.info("{} has already been set to {}", Container.CONTEXT_PARAM_CONTAINER_CLASS, currentContainerClass);
-					}
-					else {
-						log.debug("Setting {} to {}", Container.CONTEXT_PARAM_CONTAINER_CLASS, containerClassName);
-						servletContext.setInitParameter(Container.CONTEXT_PARAM_CONTAINER_CLASS, containerClassName);
-					}
+				String currentContainerClass = servletContext.getInitParameter(Container.CONTEXT_PARAM_CONTAINER_CLASS);
+				if (StringUtils.hasText(currentContainerClass)) {
+					log.info("{} has already been set to {}", Container.CONTEXT_PARAM_CONTAINER_CLASS, currentContainerClass);
 				}
+				else {
+					log.debug("Setting {} to {}", Container.CONTEXT_PARAM_CONTAINER_CLASS, containerClassName);
+					servletContext.setInitParameter(Container.CONTEXT_PARAM_CONTAINER_CLASS, containerClassName);
+				}
+			}
 		);
 	}
 }
