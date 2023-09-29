@@ -31,6 +31,7 @@ import org.springframework.boot.autoconfigure.condition.ConditionalOnWebApplicat
 import org.springframework.boot.autoconfigure.web.servlet.WebMvcAutoConfiguration;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ImportRuntimeHints;
 
 /**
  * Spring Boot Auto Configuration for Mojarra.
@@ -42,6 +43,7 @@ import org.springframework.context.annotation.Bean;
 @ConditionalOnClass(FacesInitializer.class)
 @ConditionalOnWebApplication(type = ConditionalOnWebApplication.Type.SERVLET)
 @ConditionalOnMissingBean(FacesImplementationAutoConfiguration.class)
+@ImportRuntimeHints(MojarraRuntimeHintsRegistrar.class)
 public class MojarraAutoConfiguration implements FacesImplementationAutoConfiguration {
 
 	@Bean

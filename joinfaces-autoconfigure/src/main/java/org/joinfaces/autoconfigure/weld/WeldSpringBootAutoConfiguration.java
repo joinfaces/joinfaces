@@ -24,6 +24,7 @@ import org.springframework.boot.autoconfigure.AutoConfiguration;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnWebApplication;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ImportRuntimeHints;
 
 /**
  * This class initialize weld in order to have a full cdi environment.
@@ -33,6 +34,7 @@ import org.springframework.context.annotation.Bean;
 @AutoConfiguration
 @ConditionalOnClass(EnhancedListener.class)
 @ConditionalOnWebApplication(type = ConditionalOnWebApplication.Type.SERVLET)
+@ImportRuntimeHints(WeldRuntimeHintsRegistrar.class)
 public class WeldSpringBootAutoConfiguration {
 
 	@Bean

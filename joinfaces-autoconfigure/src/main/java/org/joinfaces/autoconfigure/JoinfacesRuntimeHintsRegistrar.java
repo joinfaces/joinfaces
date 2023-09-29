@@ -1,5 +1,5 @@
 /*
- * Copyright 2016-2022 the original author or authors.
+ * Copyright 2016-2023 the original author or authors.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,12 +14,20 @@
  * limitations under the License.
  */
 
-/**
- * Weld Spring Boot Auto Configuration classes.
- *
- * @see org.joinfaces.autoconfigure.weld.WeldSpringBootAutoConfiguration
- */
-@NonNullApi
-package org.joinfaces.autoconfigure.weld;
+package org.joinfaces.autoconfigure;
 
-import org.springframework.lang.NonNullApi;
+import org.springframework.aot.hint.RuntimeHints;
+import org.springframework.aot.hint.RuntimeHintsRegistrar;
+import org.springframework.lang.Nullable;
+
+/**
+ * {@link RuntimeHintsRegistrar} for JoinFaces.
+ *
+ * @author Lars Grefer
+ */
+public class JoinfacesRuntimeHintsRegistrar implements RuntimeHintsRegistrar {
+	@Override
+	public void registerHints(RuntimeHints hints, @Nullable ClassLoader classLoader) {
+		hints.resources().registerPattern("META-INF/joinfaces/*.classes");
+	}
+}

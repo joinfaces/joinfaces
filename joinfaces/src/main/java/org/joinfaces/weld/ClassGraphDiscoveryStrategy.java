@@ -32,6 +32,7 @@ import org.jboss.weld.environment.deployment.discovery.FileSystemBeanArchiveHand
 import org.jboss.weld.environment.deployment.discovery.jandex.JandexDiscoveryStrategy;
 import org.jboss.weld.environment.util.Reflections;
 
+import org.springframework.util.CollectionUtils;
 import org.springframework.util.StopWatch;
 
 /**
@@ -52,6 +53,10 @@ public class ClassGraphDiscoveryStrategy extends AbstractDiscoveryStrategy {
 	@Override
 	protected void beforeDiscovery(Collection<BeanArchiveBuilder> builders) {
 		super.beforeDiscovery(builders);
+
+		if (CollectionUtils.isEmpty(builders)) {
+			return;
+		}
 
 		StopWatch stopWatch = new StopWatch("weld-bean-discovery");
 

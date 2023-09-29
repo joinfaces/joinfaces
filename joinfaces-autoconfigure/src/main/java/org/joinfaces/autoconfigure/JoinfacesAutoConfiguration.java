@@ -23,6 +23,7 @@ import org.springframework.boot.autoconfigure.web.servlet.ConditionalOnMissingFi
 import org.springframework.boot.autoconfigure.web.servlet.WebMvcAutoConfiguration;
 import org.springframework.boot.web.servlet.filter.OrderedRequestContextFilter;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ImportRuntimeHints;
 import org.springframework.web.context.request.RequestContextListener;
 import org.springframework.web.filter.RequestContextFilter;
 
@@ -33,6 +34,7 @@ import org.springframework.web.filter.RequestContextFilter;
  */
 @AutoConfiguration(after = WebMvcAutoConfiguration.class)
 @ConditionalOnWebApplication(type = ConditionalOnWebApplication.Type.SERVLET)
+@ImportRuntimeHints(JoinfacesRuntimeHintsRegistrar.class)
 public class JoinfacesAutoConfiguration {
 
 	/**
