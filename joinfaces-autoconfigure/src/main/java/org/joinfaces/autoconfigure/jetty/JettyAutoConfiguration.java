@@ -21,11 +21,9 @@ import java.io.IOException;
 import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
-import org.eclipse.jetty.server.Handler;
+import org.eclipse.jetty.ee10.webapp.WebAppContext;
 import org.eclipse.jetty.server.Server;
-import org.eclipse.jetty.util.resource.Resource;
-import org.eclipse.jetty.util.resource.ResourceCollection;
-import org.eclipse.jetty.webapp.WebAppContext;
+import org.eclipse.jetty.util.resource.ResourceFactory;
 
 import org.springframework.boot.autoconfigure.AutoConfiguration;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
@@ -61,13 +59,12 @@ public class JettyAutoConfiguration {
 			@Override
 			@SneakyThrows(IOException.class)
 			public void customize(Server server) {
-				Handler[] childHandlersByClass = server.getChildHandlersByClass(WebAppContext.class);
-				final WebAppContext webAppContext = (WebAppContext) childHandlersByClass[0];
+				final WebAppContext webAppContext = (WebAppContext) server.getHandler();
 
 				String classPathResourceString = JettyAutoConfiguration.this.jettyProperties.getClassPathResource();
 
-				webAppContext.setBaseResource(new ResourceCollection(
-					Resource.newResource(new ClassPathResource(classPathResourceString).getURI()),
+				webAppContext.setBaseResource(ResourceFactory.combine(
+					ResourceFactory.root().newResource(new ClassPathResource(classPathResourceString).getURI()),
 					webAppContext.getBaseResource()));
 
 				log.info("Setting Jetty classLoader to {} directory", classPathResourceString);

@@ -19,7 +19,7 @@ package org.joinfaces;
 import jakarta.servlet.ServletContext;
 
 import lombok.experimental.UtilityClass;
-import org.eclipse.jetty.server.handler.ContextHandler;
+import org.eclipse.jetty.ee10.servlet.ServletContextHandler;
 
 /**
  * Utility Methods for working with {@link ServletContext}s.
@@ -40,7 +40,7 @@ public class ServletContextUtils {
 			return servletContext.getClassLoader();
 		}
 		catch (UnsupportedOperationException e) {
-			if (servletContext instanceof ContextHandler.Context jettyContext) {
+			if (servletContext instanceof ServletContextHandler.ServletContextApi  jettyContext) {
 				boolean enabled = jettyContext.isEnabled();
 				try {
 					jettyContext.setEnabled(true);

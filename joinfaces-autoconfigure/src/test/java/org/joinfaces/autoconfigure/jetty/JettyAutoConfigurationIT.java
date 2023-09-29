@@ -18,9 +18,8 @@ package org.joinfaces.autoconfigure.jetty;
 
 import java.io.IOException;
 
-import org.eclipse.jetty.server.Handler;
+import org.eclipse.jetty.ee10.webapp.WebAppContext;
 import org.eclipse.jetty.server.Server;
-import org.eclipse.jetty.webapp.WebAppContext;
 import org.junit.jupiter.api.Test;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,24 +41,11 @@ public class JettyAutoConfigurationIT {
 
 		this.jettyAutoConfiguration.jsfJettyFactoryCustomizer().customize(factory);
 
-		Server server;
-		try {
-			server = ((JettyWebServer) factory.getWebServer()).getServer();
-		}
-		catch (NoClassDefFoundError error) {
-			if (error.getMessage().contains("jakarta/servlet/http/HttpSessionContext")) {
-				// https://github.com/spring-projects/spring-boot/issues/33044
-				return;
-			}
-			else {
-				throw error;
-			}
-		}
+		Server server = ((JettyWebServer) factory.getWebServer()).getServer();
 
-		Handler[] childHandlersByClass = server.getChildHandlersByClass(WebAppContext.class);
-		WebAppContext webAppContext = (WebAppContext) childHandlersByClass[0];
+		WebAppContext webAppContext = (WebAppContext) server.getHandler();
 
-		assertThat(webAppContext.getBaseResource().getResource("testJetty.txt").exists())
+		assertThat(webAppContext.getResource("/testJetty.txt").exists())
 			.isTrue();
 	}
 }

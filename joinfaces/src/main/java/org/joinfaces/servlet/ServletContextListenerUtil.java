@@ -25,9 +25,9 @@ import lombok.RequiredArgsConstructor;
 import lombok.experimental.UtilityClass;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.catalina.Context;
-import org.eclipse.jetty.webapp.AbstractConfiguration;
-import org.eclipse.jetty.webapp.Configuration;
-import org.eclipse.jetty.webapp.WebAppContext;
+import org.eclipse.jetty.ee10.webapp.AbstractConfiguration;
+import org.eclipse.jetty.ee10.webapp.Configuration;
+import org.eclipse.jetty.ee10.webapp.WebAppContext;
 
 import org.springframework.beans.BeanUtils;
 import org.springframework.boot.web.embedded.jetty.JettyServletWebServerFactory;
@@ -95,10 +95,14 @@ public class ServletContextListenerUtil {
 	 * so they aren't affected by the restrictions for programmatically registered listeners of Section 4.4
 	 * of the Servlet Specification.
 	 */
-	@RequiredArgsConstructor
 	public static class JettyListenerAdder extends AbstractConfiguration {
 
 		private final Collection<Class<? extends EventListener>> listeners;
+
+		protected JettyListenerAdder(Collection<Class<? extends EventListener>> listeners) {
+			super(new Builder());
+			this.listeners = listeners;
+		}
 
 		@Override
 		public void configure(WebAppContext context) {
