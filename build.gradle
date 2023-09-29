@@ -136,6 +136,7 @@ allprojects {
 tasks.named("cpdCheck") {
     exclude "**/*Test.java"
     exclude "**/*IT.java"
+    exclude "**/*__*.java"
 }
 
 apply plugin: "maven-publish"
