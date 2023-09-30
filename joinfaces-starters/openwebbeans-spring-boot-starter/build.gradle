@@ -1,14 +1,14 @@
-description = 'Weld Spring Boot Starter'
+description = 'OpenWebBeans Spring Boot Starter'
 tasks.named("jar", Jar) {
-    manifest.attributes('Automatic-Module-Name': 'joinfaces.starter.weld')
+    manifest.attributes('Automatic-Module-Name': 'joinfaces.starter.openwebbeans')
 }
 
 dependencies {
     api project(':joinfaces-autoconfigure')
 
-    api('org.jboss.weld.servlet:weld-servlet-core') {
-        exclude group: 'jakarta.el', module: 'jakarta.el-api'
-    }
+    api 'org.apache.openwebbeans:openwebbeans-web'
+    implementation 'org.apache.openwebbeans:openwebbeans-el22'
+    implementation 'org.apache.openwebbeans:openwebbeans-jsf'
 }
 
 configurations {

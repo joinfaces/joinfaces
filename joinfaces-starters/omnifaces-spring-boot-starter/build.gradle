@@ -10,5 +10,7 @@ dependencies {
         exclude group: "jakarta.annotation", module: "jakarta.annotation-api"
     }
 
+    runtimeOnly "jakarta.validation:jakarta.validation-api"
+
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
 }

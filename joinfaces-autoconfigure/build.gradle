@@ -36,6 +36,7 @@ dependencies {
     optional 'org.hibernate.orm:hibernate-core'
     optional 'org.springframework:spring-orm'
     optional 'org.jboss.weld.servlet:weld-servlet-core'
+    optional 'org.apache.openwebbeans:openwebbeans-web'
     optional "org.glassfish:jakarta.faces:$mojarra4Version"
     optional "org.apache.myfaces.core:myfaces-impl:$myfaces4Version"
     optional 'org.omnifaces:omnifaces'
