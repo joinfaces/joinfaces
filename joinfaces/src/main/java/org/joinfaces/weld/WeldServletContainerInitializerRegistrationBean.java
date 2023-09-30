@@ -36,6 +36,8 @@ import org.springframework.util.StringUtils;
 public class WeldServletContainerInitializerRegistrationBean extends ServletContainerInitializerRegistrationBean<EnhancedListener> {
 
 	/**
+	 * A servlet-context init-param used by Weld, which can be used to force its initialization.
+	 *
 	 * @see WeldServletLifecycle
 	 */
 	public static final String CONTEXT_PARAM_ARCHIVE_ISOLATION = "org.jboss.weld.environment.servlet.archive.isolation";
@@ -55,6 +57,7 @@ public class WeldServletContainerInitializerRegistrationBean extends ServletCont
 	/**
 	 * Force the initialization of WELD even with an empty BDA.
 	 *
+	 * @param factory ConfigurableServletWebServerFactory
 	 * @see <a href="https://github.com/eclipse-ee4j/mojarra/issues/5232#issuecomment-1555916766">eclipse-ee4j/mojarra#5232</a>
 	 */
 	void forceCdiInitialization(ConfigurableServletWebServerFactory factory) {

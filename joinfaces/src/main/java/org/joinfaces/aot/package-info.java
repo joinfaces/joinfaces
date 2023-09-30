@@ -14,6 +14,9 @@
  * limitations under the License.
  */
 
+/**
+ * Spring AOT related classes.
+ */
 @NonNullApi
 package org.joinfaces.aot;
 
