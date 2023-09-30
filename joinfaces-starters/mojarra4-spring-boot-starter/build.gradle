@@ -17,13 +17,13 @@ dependencies {
 configurations {
     apiElements {
         outgoing {
-            capability("$group:$archivesBaseName:$version")
+            capability("$group:${base.archivesName.get()}:$version")
             capability("$group:faces-impl-spring-boot-starter:$version")
         }
     }
     runtimeElements {
         outgoing {
-            capability("$group:$archivesBaseName:$version")
+            capability("$group:${base.archivesName.get()}:$version")
             capability("$group:faces-impl-spring-boot-starter:$version")
         }
     }
