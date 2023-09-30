@@ -30,7 +30,7 @@ import org.eclipse.jetty.ee10.servlet.ServletContextHandler;
 public class ServletContextUtils {
 
 	/**
-	 * Jetty-safe variant of calling {@link ServletContext#getClassLoader()}
+	 * Jetty-safe variant of calling {@link ServletContext#getClassLoader()}.
 	 *
 	 * @param servletContext The {@link ServletContext} on which {@link ServletContext#getClassLoader()} will be called.
 	 * @return The {@link ClassLoader} of the given {@link ServletContext}.

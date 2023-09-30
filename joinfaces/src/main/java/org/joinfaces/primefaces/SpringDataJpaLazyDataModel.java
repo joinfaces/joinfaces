@@ -30,6 +30,7 @@ import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 import org.primefaces.model.FilterMeta;
+import org.primefaces.model.LazyDataModel;
 import org.primefaces.model.SortMeta;
 
 import org.springframework.data.domain.Page;
@@ -42,9 +43,11 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.CollectionUtils;
 
 /**
+ * Primefaces {@link LazyDataModel} implementation which wraps a {@link JpaRepository Spring Data JPA Repository}.
+ *
  * @param <T>  the domain type the repository manages
  * @param <ID> the type of the id of the entity the repository manages
- * @param <R>
+ * @param <R>  the type of the repository interface
  * @author Lars Grefer
  */
 public class SpringDataJpaLazyDataModel<T, ID, R extends JpaRepository<T, ID> & JpaSpecificationExecutor<T>> extends SpringDataLazyDataModel<T, ID, R> {
@@ -84,9 +87,9 @@ public class SpringDataJpaLazyDataModel<T, ID, R extends JpaRepository<T, ID> & 
 		}
 
 		return filterBy.values().stream()
-				.map(this::getSpecification)
-				.reduce((a, b) -> Specification.where(a).and(b))
-				.orElse(null);
+			.map(this::getSpecification)
+			.reduce((a, b) -> Specification.where(a).and(b))
+			.orElse(null);
 	}
 
 	protected Specification<T> getSpecification(FilterMeta filterMeta) {
@@ -155,7 +158,8 @@ public class SpringDataJpaLazyDataModel<T, ID, R extends JpaRepository<T, ID> & 
 				case GREATER_THAN_EQUALS -> {
 					return criteriaBuilder.greaterThanOrEqualTo((Path<Comparable>) path, (Comparable) filterValue);
 				}
-				default -> throw new IllegalArgumentException("MatchMode " + filterMeta.getMatchMode() + " is not supported");
+				default ->
+					throw new IllegalArgumentException("MatchMode " + filterMeta.getMatchMode() + " is not supported");
 			}
 
 		}
