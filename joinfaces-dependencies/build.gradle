@@ -31,7 +31,7 @@ dependencies {
         api "org.primefaces.extensions:primefaces-extensions:13.0.1"
         api "org.primefaces.extensions:resources-monacoeditor:13.0.1"
 
-        api 'org.jboss.weld.servlet:weld-servlet-core:5.1.1.Final'
+        api 'org.jboss.weld.servlet:weld-servlet-core:5.1.1.SP2'
 
         //MyFaces Tobago
         api 'org.apache.myfaces.tobago:tobago-core:6.0.0-SNAPSHOT'
