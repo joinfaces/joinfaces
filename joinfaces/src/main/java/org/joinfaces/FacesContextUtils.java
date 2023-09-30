@@ -35,11 +35,19 @@ import org.springframework.web.context.support.WebApplicationContextUtils;
 @UtilityClass
 public class FacesContextUtils extends org.springframework.web.jsf.FacesContextUtils {
 
+	/**
+	 * Returns the {@link ServletContext} for the given {@link ExternalContext}.
+	 *
+	 * @param externalContext the {@link ExternalContext} to find the {@link ServletContext} for.
+	 * @return the ServletContext for the given ExternalContext
+	 */
 	public static ServletContext getServletContext(ExternalContext externalContext) {
 		return (ServletContext) externalContext.getContext();
 	}
 
 	/**
+	 * Find the root {@code WebApplicationContext} for this web app.
+	 *
 	 * @param externalContext The ExternalContext to find the web application context for
 	 * @return the root WebApplicationContext for this web app, or {@code null} if none
 	 * @see WebApplicationContextUtils#getWebApplicationContext(ServletContext)
@@ -51,6 +59,8 @@ public class FacesContextUtils extends org.springframework.web.jsf.FacesContextU
 	}
 
 	/**
+	 * Find the root {@code WebApplicationContext} for this web app.
+	 *
 	 * @param externalContext The ExternalContext to find the web application context for
 	 * @return the root WebApplicationContext for this web app
 	 * @see WebApplicationContextUtils#getRequiredWebApplicationContext(ServletContext)

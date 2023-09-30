@@ -41,13 +41,16 @@ import org.springframework.data.domain.Persistable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.PagingAndSortingRepository;
+import org.springframework.data.repository.Repository;
 import org.springframework.data.repository.core.EntityInformation;
 import org.springframework.util.CollectionUtils;
 
 /**
+ * Primefaces {@link LazyDataModel} implementation which wraps a {@link Repository Spring Data Repository}.
+ *
  * @param <T>  the domain type the repository manages
  * @param <ID> the type of the id of the entity the repository manages
- * @param <R>
+ * @param <R>  the type of the repository interface
  * @author Lars Grefer
  */
 public class SpringDataLazyDataModel<T, ID, R extends CrudRepository<T, ID> & PagingAndSortingRepository<T, ID>> extends LazyDataModel<T> {

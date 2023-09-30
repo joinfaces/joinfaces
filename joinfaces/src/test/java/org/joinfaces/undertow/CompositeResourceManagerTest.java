@@ -19,7 +19,6 @@ package org.joinfaces.undertow;
 import java.io.IOException;
 
 import io.undertow.server.handlers.resource.ResourceManager;
-import org.joinfaces.undertow.CompositeResourceManager;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
