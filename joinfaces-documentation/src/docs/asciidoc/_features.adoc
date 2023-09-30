@@ -7,6 +7,7 @@ There are many JoinFaces Starters available: six basic starters, meta starter, s
 While most of the starters can be combined, some starters are mutually exclusive:
 
 - `mojarra3-spring-boot-starter`, `mojarra4-spring-boot-starter`, `myfaces3-spring-boot-starter` and `myfaces4-spring-boot-starter`
+- `weld-spring-boot-starter` and `openwebbeans-spring-boot-starter`
 
 You can use the table below to discover the starters that fit your needs.
 
@@ -35,6 +36,9 @@ You can use the table below to discover the starters that fit your needs.
 
 |weld-spring-boot-starter
 |Basic starter for https://weld.cdi-spec.org/[Weld] CDI Reference Implementation.
+
+|openwebbeans-spring-boot-starter
+|Basic starter for https://openwebbeans.apache.org/[Apache OpenWebBeans] CDI Implementation.
 
 |security-spring-boot-starter
 |Security starter. Pulls `faces-spring-boot-starter`, `spring-boot-starter-security` and `joinfaces-security-taglib`.
@@ -176,6 +180,10 @@ are executed for embedded servlet containers.
 ==== Weld
 
 * `org.jboss.weld.environment.servlet.EnhancedListener` is executed for embedded servlet containers.
+
+==== Apache OpenWebBeans
+
+* `org.apache.webbeans.servlet.WebBeansConfigurationListener$Auto` is executed for embedded servlet containers.
 
 === JSF and CDI scope-annotations support
 

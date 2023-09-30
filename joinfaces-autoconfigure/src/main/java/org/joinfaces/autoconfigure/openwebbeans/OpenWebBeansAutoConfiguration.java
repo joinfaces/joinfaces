@@ -1,5 +1,5 @@
 /*
- * Copyright 2016-2022 the original author or authors.
+ * Copyright 2016-2023 the original author or authors.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,33 +14,35 @@
  * limitations under the License.
  */
 
-package org.joinfaces.autoconfigure.weld;
+package org.joinfaces.autoconfigure.openwebbeans;
 
-import org.jboss.weld.environment.servlet.EnhancedListener;
+import org.apache.webbeans.servlet.WebBeansConfigurationListener;
 import org.joinfaces.autoconfigure.CdiImplementationAutoConfiguration;
 import org.joinfaces.servlet.ServletContainerInitializerRegistrationBean;
-import org.joinfaces.weld.WeldServletContainerInitializerRegistrationBean;
 
 import org.springframework.boot.autoconfigure.AutoConfiguration;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnWebApplication;
 import org.springframework.context.annotation.Bean;
+import org.springframework.core.Ordered;
+import org.springframework.core.annotation.Order;
 
 /**
- * This class initialize weld in order to have a full cdi environment.
+ * Spring Boot Auto Configuration for Apache OpenWebBeans.
  *
- * @author classicPintus
+ * @author Lars Grefer
  */
 @AutoConfiguration
-@ConditionalOnClass(EnhancedListener.class)
 @ConditionalOnWebApplication(type = ConditionalOnWebApplication.Type.SERVLET)
+@ConditionalOnClass(WebBeansConfigurationListener.class)
 @ConditionalOnMissingBean(CdiImplementationAutoConfiguration.class)
-public class WeldSpringBootAutoConfiguration implements CdiImplementationAutoConfiguration {
+public class OpenWebBeansAutoConfiguration implements CdiImplementationAutoConfiguration {
 
 	@Bean
-	public ServletContainerInitializerRegistrationBean<EnhancedListener> weldServletContainerInitializer() {
-		return new WeldServletContainerInitializerRegistrationBean();
+	@Order(Ordered.HIGHEST_PRECEDENCE)
+	public ServletContainerInitializerRegistrationBean<WebBeansConfigurationListener.Auto> openWebBeansServletContainerInitializer() {
+		System.setProperty("openwebbeans.web.sci.active", "true");
+		return new ServletContainerInitializerRegistrationBean<>(WebBeansConfigurationListener.Auto.class);
 	}
-
 }
