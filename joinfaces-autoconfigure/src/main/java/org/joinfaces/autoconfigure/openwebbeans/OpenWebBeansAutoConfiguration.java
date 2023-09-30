@@ -25,6 +25,7 @@ import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnWebApplication;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ImportRuntimeHints;
 import org.springframework.core.Ordered;
 import org.springframework.core.annotation.Order;
 
@@ -37,6 +38,7 @@ import org.springframework.core.annotation.Order;
 @ConditionalOnWebApplication(type = ConditionalOnWebApplication.Type.SERVLET)
 @ConditionalOnClass(WebBeansConfigurationListener.class)
 @ConditionalOnMissingBean(CdiImplementationAutoConfiguration.class)
+@ImportRuntimeHints(OpenWebBeansRuntimeHintsRegistrar.class)
 public class OpenWebBeansAutoConfiguration implements CdiImplementationAutoConfiguration {
 
 	@Bean

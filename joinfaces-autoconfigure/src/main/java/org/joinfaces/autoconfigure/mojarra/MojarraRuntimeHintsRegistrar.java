@@ -17,6 +17,8 @@
 package org.joinfaces.autoconfigure.mojarra;
 
 import com.sun.faces.config.ConfigureListener;
+import com.sun.faces.config.manager.spi.FilterClassesFromFacesInitializerAnnotationProvider;
+import lombok.SneakyThrows;
 
 import org.springframework.aot.hint.MemberCategory;
 import org.springframework.aot.hint.RuntimeHints;
@@ -28,10 +30,14 @@ import org.springframework.aot.hint.RuntimeHintsRegistrar;
  * @author Lars Grefer
  */
 public class MojarraRuntimeHintsRegistrar implements RuntimeHintsRegistrar {
+	@SneakyThrows
 	@Override
 	public void registerHints(RuntimeHints hints, ClassLoader classLoader) {
 		hints.resources().registerResourceBundle("jakarta.faces.LogStrings");
 
 		hints.reflection().registerType(ConfigureListener.class, MemberCategory.INVOKE_PUBLIC_CONSTRUCTORS);
+
+		hints.reflection().registerType(FilterClassesFromFacesInitializerAnnotationProvider.class, MemberCategory.INVOKE_PUBLIC_CONSTRUCTORS);
 	}
+
 }

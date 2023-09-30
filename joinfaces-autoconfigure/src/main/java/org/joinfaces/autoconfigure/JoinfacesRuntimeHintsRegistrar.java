@@ -16,9 +16,11 @@
 
 package org.joinfaces.autoconfigure;
 
+import org.springframework.aot.hint.MemberCategory;
 import org.springframework.aot.hint.RuntimeHints;
 import org.springframework.aot.hint.RuntimeHintsRegistrar;
 import org.springframework.lang.Nullable;
+import org.springframework.web.jsf.el.SpringBeanFacesELResolver;
 
 /**
  * {@link RuntimeHintsRegistrar} for JoinFaces.
@@ -29,5 +31,7 @@ public class JoinfacesRuntimeHintsRegistrar implements RuntimeHintsRegistrar {
 	@Override
 	public void registerHints(RuntimeHints hints, @Nullable ClassLoader classLoader) {
 		hints.resources().registerPattern("META-INF/joinfaces/*.classes");
+
+		hints.reflection().registerType(SpringBeanFacesELResolver.class, MemberCategory.INVOKE_PUBLIC_CONSTRUCTORS, MemberCategory.INVOKE_PUBLIC_METHODS);
 	}
 }

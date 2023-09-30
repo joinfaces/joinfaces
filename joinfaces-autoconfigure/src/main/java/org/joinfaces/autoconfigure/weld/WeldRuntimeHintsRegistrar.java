@@ -19,13 +19,12 @@ package org.joinfaces.autoconfigure.weld;
 import jakarta.enterprise.event.Event;
 import jakarta.enterprise.inject.spi.Extension;
 
-import io.github.classgraph.ClassGraph;
 import io.github.classgraph.ClassInfo;
 import io.github.classgraph.ScanResult;
-import lombok.SneakyThrows;
 import org.jboss.weld.bootstrap.api.helpers.RegistrySingletonProvider;
 import org.jboss.weld.environment.logging.WeldEnvironmentLogger;
 import org.jboss.weld.logging.WeldLogger;
+import org.joinfaces.aot.ClassGraphRuntimeHintsRegistrar;
 
 import org.springframework.aot.hint.MemberCategory;
 import org.springframework.aot.hint.RuntimeHints;
@@ -38,36 +37,24 @@ import org.springframework.lang.Nullable;
  *
  * @author Lars Grefer
  */
-public class WeldRuntimeHintsRegistrar implements RuntimeHintsRegistrar {
-	@SneakyThrows
+public class WeldRuntimeHintsRegistrar extends ClassGraphRuntimeHintsRegistrar {
+
 	@Override
-	public void registerHints(RuntimeHints hints, @Nullable ClassLoader classLoader) {
-		scanHints(hints, classLoader);
+	public void registerHints(RuntimeHints hints, @Nullable ClassLoader classLoader, ScanResult scanResult) {
 
 		hints.reflection().registerType(RegistrySingletonProvider.class, MemberCategory.INVOKE_PUBLIC_CONSTRUCTORS);
 
 		hints.proxies().registerJdkProxy(Event.class);
-	}
 
-	void scanHints(RuntimeHints hints, @Nullable ClassLoader classLoader) {
-		ClassGraph classGraph = new ClassGraph()
-			.enableClassInfo();
-
-		if (classLoader != null) {
-			classGraph = classGraph.overrideClassLoaders(classLoader);
+		for (ClassInfo loggerImpl : scanResult.getClassesImplementing(WeldLogger.class)) {
+			registerLogger(hints, loggerImpl);
+		}
+		for (ClassInfo loggerImpl : scanResult.getClassesImplementing(WeldEnvironmentLogger.class)) {
+			registerLogger(hints, loggerImpl);
 		}
 
-		try (ScanResult scanResult = classGraph.scan()) {
-			for (ClassInfo loggerImpl : scanResult.getClassesImplementing(WeldLogger.class)) {
-				registerLogger(hints, loggerImpl);
-			}
-			for (ClassInfo loggerImpl : scanResult.getClassesImplementing(WeldEnvironmentLogger.class)) {
-				registerLogger(hints, loggerImpl);
-			}
-
-			for (ClassInfo classInfo : scanResult.getClassesImplementing(Extension.class)) {
-				hints.reflection().registerType(TypeReference.of(classInfo.getName()), MemberCategory.INVOKE_DECLARED_METHODS);
-			}
+		for (ClassInfo classInfo : scanResult.getClassesImplementing(Extension.class)) {
+			hints.reflection().registerType(TypeReference.of(classInfo.getName()), MemberCategory.INVOKE_DECLARED_METHODS);
 		}
 	}
 

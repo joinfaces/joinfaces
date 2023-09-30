@@ -28,6 +28,7 @@ import org.springframework.boot.context.properties.EnableConfigurationProperties
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.ImportRuntimeHints;
 import org.springframework.core.Ordered;
 import org.springframework.core.PriorityOrdered;
 
@@ -35,6 +36,7 @@ import org.springframework.core.PriorityOrdered;
 @ConditionalOnClass(FacesContext.class)
 @ConditionalOnWebApplication(type = ConditionalOnWebApplication.Type.SERVLET)
 @EnableConfigurationProperties({JakartaFaces3Properties.class, JakartaFaces4Properties.class})
+@ImportRuntimeHints(FacesRuntimeHintsRegistrar.class)
 public class JakartaFaces3AutoConfiguration {
 
 	@Bean
