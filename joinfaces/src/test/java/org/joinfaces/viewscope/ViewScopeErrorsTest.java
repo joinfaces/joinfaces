@@ -18,7 +18,6 @@ package org.joinfaces.viewscope;
 
 import jakarta.faces.context.FacesContext;
 
-import org.joinfaces.viewscope.ViewScope;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

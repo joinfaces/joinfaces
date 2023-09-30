@@ -14,6 +14,11 @@
  * limitations under the License.
  */
 
+/**
+ * Spring implementation for the JSF View Scope.
+ *
+ * @author Lars Grefer
+ */
 @NonNullApi
 package org.joinfaces.viewscope;
 

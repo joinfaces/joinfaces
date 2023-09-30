@@ -16,7 +16,6 @@
 
 package org.joinfaces.viewscope;
 
-import org.joinfaces.viewscope.ViewScope;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 

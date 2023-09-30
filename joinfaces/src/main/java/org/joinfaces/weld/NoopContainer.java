@@ -23,7 +23,9 @@ import org.jboss.weld.resources.spi.ResourceLoader;
 /**
  * Simple {@link Container} implementation which does nothing.
  * <p>
- * The main purpose of this class is to stop weld from re-injecting fields in {@link com.github.adminfaces.template.session.AdminFilter}
+ * The main purpose of this class is to stop weld from re-injecting fields in {@link com.github.adminfaces.template.session.AdminFilter}.
+ *
+ * @author Lars Grefer
  */
 public class NoopContainer implements Container {
 
