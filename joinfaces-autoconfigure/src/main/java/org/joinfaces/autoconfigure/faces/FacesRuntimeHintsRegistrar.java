@@ -40,6 +40,11 @@ public class FacesRuntimeHintsRegistrar extends ClassGraphRuntimeHintsRegistrar 
 
 	@Override
 	public void registerHints(RuntimeHints hints, ClassLoader classLoader, ScanResult scanResult) {
+		hints.resources().registerPattern("*/faces-config.xml");
+		hints.resources().registerPattern("*.faces-config.xml");
+
+		hints.resources().registerPattern("*.taglib.xml");
+
 		registerStandardClasses(scanResult.getClassesImplementing(FacesWrapper.class), hints);
 
 		registerStandardClasses(scanResult.getSubclasses(FlowHandlerFactory.class), hints);

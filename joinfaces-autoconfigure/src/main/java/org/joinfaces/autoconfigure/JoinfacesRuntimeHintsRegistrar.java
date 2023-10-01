@@ -32,6 +32,8 @@ public class JoinfacesRuntimeHintsRegistrar implements RuntimeHintsRegistrar {
 	public void registerHints(RuntimeHints hints, @Nullable ClassLoader classLoader) {
 		hints.resources().registerPattern("META-INF/joinfaces/*.classes");
 
+		hints.resources().registerPattern("META-INF/resources/*");
+
 		hints.reflection().registerType(SpringBeanFacesELResolver.class, MemberCategory.INVOKE_PUBLIC_CONSTRUCTORS, MemberCategory.INVOKE_PUBLIC_METHODS);
 	}
 }

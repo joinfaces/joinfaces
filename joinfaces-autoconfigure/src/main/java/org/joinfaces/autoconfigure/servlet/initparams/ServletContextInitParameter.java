@@ -22,6 +22,8 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
+import org.springframework.aot.hint.annotation.Reflective;
+
 /**
  * Marks a field of a {@link org.springframework.boot.context.properties.ConfigurationProperties Properties class}
  * as {@link jakarta.servlet.ServletContext#setInitParameter(String, String) servlet context init parameter}.
@@ -32,6 +34,7 @@ import java.lang.annotation.Target;
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.FIELD)
 @Documented
+@Reflective
 public @interface ServletContextInitParameter {
 
 	String value() default "";

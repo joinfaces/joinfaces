@@ -81,7 +81,7 @@ public class ServletContainerInitializerRegistrationBean<T extends ServletContai
 	}
 
 	@Nullable
-	protected Set<Class<?>> performClasspathScan() {
+	public Set<Class<?>> performClasspathScan() {
 		HandlesTypes handlesTypes = AnnotationUtils.findAnnotation(getServletContainerInitializerClass(), HandlesTypes.class);
 
 		if (handlesTypes == null) {
