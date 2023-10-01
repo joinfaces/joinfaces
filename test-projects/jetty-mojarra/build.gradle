@@ -1,10 +1,15 @@
 description = 'JoinFaces Jetty-Mojarra Test Project'
 
 dependencies {
-    implementation(project(':joinfaces-starters:faces-spring-boot-starter')) {
-        exclude module: "spring-boot-starter-tomcat"
-    }
+    implementation project(':joinfaces-starters:faces-spring-boot-starter')
+
     implementation 'org.springframework.boot:spring-boot-starter-jetty'
+
+    modules {
+        module("org.springframework.boot:spring-boot-starter-tomcat") {
+            replacedBy("org.springframework.boot:spring-boot-starter-jetty", "Use Jetty instead of Tomcat")
+        }
+    }
 }
 
 // https://github.com/spring-projects/spring-boot/pull/37638
