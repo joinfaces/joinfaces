@@ -1,0 +1,10 @@
+{
+  "resources": {
+    "includes": [
+      {
+        "pattern": "META-INF/joinfaces-security.taglib.xml"
+      }
+    ]
+  },
+  "bundles": []
+}

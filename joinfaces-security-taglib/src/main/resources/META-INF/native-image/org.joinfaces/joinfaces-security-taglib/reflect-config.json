@@ -1,6 +1,27 @@
 [
   {
+    "name": "org.joinfaces.security.taglib.AnonymousFaceletsTagHandler",
+    "allPublicConstructors": true,
+    "allPublicMethods": true
+  },
+  {
+    "name": "org.joinfaces.security.taglib.AuthenticatedFaceletsTagHandler",
+    "allPublicConstructors": true,
+    "allPublicMethods": true
+  },
+  {
+    "name": "org.joinfaces.security.taglib.FaceletsAuthorizeTagHandler",
+    "allPublicConstructors": true,
+    "allPublicMethods": true
+  },
+  {
+    "name": "org.joinfaces.security.taglib.FullyAuthenticatedFaceletsTagHandler",
+    "allPublicConstructors": true,
+    "allPublicMethods": true
+  },
+  {
     "name": "org.joinfaces.security.taglib.FaceletsAuthorizeTagUtils",
+    "allPublicConstructors": true,
     "allPublicMethods": true
   }
 ]
