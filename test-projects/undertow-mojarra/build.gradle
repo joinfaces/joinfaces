@@ -1,8 +1,13 @@
 description = 'JoinFaces Undertow-Mojarra Test Project'
 
 dependencies {
-    implementation(project(':joinfaces-starters:faces-spring-boot-starter')) {
-        exclude module: "spring-boot-starter-tomcat"
-    }
+    implementation project(':joinfaces-starters:faces-spring-boot-starter')
+
     implementation 'org.springframework.boot:spring-boot-starter-undertow'
+
+    modules {
+        module("org.springframework.boot:spring-boot-starter-tomcat") {
+            replacedBy("org.springframework.boot:spring-boot-starter-undertow", "Use Undertow instead of Tomcat")
+        }
+    }
 }
