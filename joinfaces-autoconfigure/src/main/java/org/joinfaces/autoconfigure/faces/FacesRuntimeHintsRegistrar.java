@@ -27,9 +27,11 @@ import jakarta.faces.event.PhaseListener;
 import jakarta.faces.event.SystemEvent;
 import jakarta.faces.flow.FlowHandlerFactory;
 import jakarta.faces.render.ClientBehaviorRenderer;
+import jakarta.faces.render.RenderKit;
 import jakarta.faces.render.Renderer;
 import jakarta.faces.view.facelets.ConverterHandler;
 import jakarta.faces.view.facelets.FaceletHandler;
+import jakarta.faces.view.facelets.TagHandler;
 
 import io.github.classgraph.ScanResult;
 import org.joinfaces.aot.ClassGraphRuntimeHintsRegistrar;
@@ -66,6 +68,10 @@ public class FacesRuntimeHintsRegistrar extends ClassGraphRuntimeHintsRegistrar 
 		registerStandardClasses(scanResult.getSubclasses(Renderer.class), hints);
 
 		registerStandardClasses(scanResult.getSubclasses(ClientBehaviorRenderer.class), hints);
+
+		registerStandardClasses(scanResult.getSubclasses(RenderKit.class), hints);
+
+		registerStandardClasses(scanResult.getSubclasses(TagHandler.class), hints);
 
 		registerStandardClasses(scanResult.getClassesImplementing(PhaseListener.class), hints);
 

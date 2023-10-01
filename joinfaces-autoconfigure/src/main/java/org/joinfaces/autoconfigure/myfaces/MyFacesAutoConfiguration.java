@@ -30,6 +30,7 @@ import org.springframework.boot.autoconfigure.condition.ConditionalOnWebApplicat
 import org.springframework.boot.autoconfigure.web.servlet.WebMvcAutoConfiguration;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ImportRuntimeHints;
 
 /**
  * Spring Boot Auto Configuration of MyFaces.
@@ -41,6 +42,7 @@ import org.springframework.context.annotation.Bean;
 @ConditionalOnClass(StartupServletContextListener.class)
 @ConditionalOnWebApplication(type = ConditionalOnWebApplication.Type.SERVLET)
 @ConditionalOnMissingBean(FacesImplementationAutoConfiguration.class)
+@ImportRuntimeHints(MyFacesRuntimeHintsRegistrar.class)
 public class MyFacesAutoConfiguration implements FacesImplementationAutoConfiguration {
 
 	@Bean
