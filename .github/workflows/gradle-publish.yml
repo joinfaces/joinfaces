@@ -15,7 +15,7 @@ jobs:
           java-version: 17
           distribution: 'temurin'
       - name: Setup Gradle
-        uses: gradle/gradle-build-action@v2.8.0
+        uses: gradle/gradle-build-action@v2.9.0
       - name: Publish package
         run: ./gradlew -V --no-parallel publishToSonatype publishPlugins uploadDocs closeAndReleaseSonatypeStagingRepository
         env:
