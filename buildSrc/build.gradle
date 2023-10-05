@@ -14,5 +14,5 @@ dependencies {
     runtimeOnly "org.graalvm.buildtools:native-gradle-plugin:0.9.27"
     implementation "org.springframework.boot:spring-boot-configuration-metadata:$springBootVersion"
 
-    implementation 'org.apache.maven:maven-model:3.9.4'
+    implementation 'org.apache.maven:maven-model:3.9.5'
 }
