@@ -17,15 +17,15 @@
 package org.joinfaces.autoconfigure.aot;
 
 import java.util.Collection;
-import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.joinfaces.ClasspathScanUtil;
 import org.joinfaces.servlet.ServletContainerInitializerRegistrationBean;
 
 import org.springframework.aot.generate.GenerationContext;
-import org.springframework.aot.hint.TypeReference;
 import org.springframework.beans.factory.aot.BeanFactoryInitializationAotContribution;
 import org.springframework.beans.factory.aot.BeanFactoryInitializationAotProcessor;
 import org.springframework.beans.factory.aot.BeanFactoryInitializationCode;
@@ -42,9 +42,13 @@ public class ServletContainerInitializerRegistrationBeanAotProcessor implements 
 
 	@Override
 	public BeanFactoryInitializationAotContribution processAheadOfTime(ConfigurableListableBeanFactory beanFactory) {
-		Collection<ServletContainerInitializerRegistrationBean> values = beanFactory.getBeansOfType(ServletContainerInitializerRegistrationBean.class).values();
+		Map<String, ServletContainerInitializerRegistrationBean> servletContainerInitializerRegistrationBeans = beanFactory.getBeansOfType(ServletContainerInitializerRegistrationBean.class);
 
-		return new Contrib(values);
+		if (CollectionUtils.isEmpty(servletContainerInitializerRegistrationBeans)) {
+			return null;
+		}
+
+		return new Contrib(servletContainerInitializerRegistrationBeans.values());
 	}
 
 	@RequiredArgsConstructor
@@ -62,25 +66,7 @@ public class ServletContainerInitializerRegistrationBeanAotProcessor implements 
 					continue;
 				}
 
-				String resourceFilePath = "META-INF/joinfaces/" + bean.getServletContainerInitializerClass().getName() + ".classes";
-
-				generationContext.getRuntimeHints().resources().registerPattern(resourceFilePath);
-
-				List<String> sortedClassNames = classes.stream()
-					.map(Class::getName)
-					.sorted(String::compareTo)
-					.toList();
-
-				generationContext.getGeneratedFiles().addResourceFile(resourceFilePath, appendable -> {
-					for (String className : sortedClassNames) {
-						appendable.append(className);
-						appendable.append("\n");
-					}
-				});
-
-				for (String className : sortedClassNames) {
-					generationContext.getRuntimeHints().reflection().registerType(TypeReference.of(className));
-				}
+				ClasspathScanUtil.writeClassSet(generationContext, bean.getPreparedScanResultPath(), classes);
 			}
 
 		}

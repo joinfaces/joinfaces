@@ -58,6 +58,11 @@ import org.springframework.util.CollectionUtils;
 @RequiredArgsConstructor
 public class SpringBootAnnotationConfigProvider extends HttpConfigurationProvider {
 
+	/**
+	 * Resource path for the AOT classpath scan result.
+	 */
+	public static final String PREPARED_SCAN_RESULT_PATH = "META-INF/joinfaces/" + AnnotationHandler.class.getName() + ".classes";
+
 	@Getter
 	@Setter
 	private boolean enabled = true;
@@ -74,18 +79,12 @@ public class SpringBootAnnotationConfigProvider extends HttpConfigurationProvide
 			return null;
 		}
 
-		// Generate a list of all relevant annotations
-		final Set<Class<? extends Annotation>> ruleAnnotations = new LinkedHashSet<>();
-		final List<AnnotationHandler<Annotation>> annotationHandlers = new ArrayList<>();
-		for (AnnotationHandler<Annotation> handler : (Iterable<AnnotationHandler<Annotation>>) ServiceLoader.load(AnnotationHandler.class)) {
-			annotationHandlers.add(handler);
-			ruleAnnotations.add(handler.handles());
-		}
+		final List<AnnotationHandler<Annotation>> annotationHandlers = getAnnotationHandlers();
 
 		final ClassVisitorImpl ruleBuilderVisitor = new ClassVisitorImpl(annotationHandlers, servletContext);
 
 		Set<Class<?>> scanResult = findPreparedScanResult(servletContext.getClassLoader())
-				.orElseGet(() -> scanClasses(ruleAnnotations));
+				.orElseGet(() -> scanClasses(getAnnotationClasses(annotationHandlers)));
 
 		scanResult.forEach(ruleBuilderVisitor::visit);
 
@@ -97,7 +96,23 @@ public class SpringBootAnnotationConfigProvider extends HttpConfigurationProvide
 		return 100;
 	}
 
-	private Set<Class<?>> scanClasses(final Set<Class<? extends Annotation>> supportedAnnotations) {
+	public List<AnnotationHandler<Annotation>> getAnnotationHandlers() {
+		final List<AnnotationHandler<Annotation>> annotationHandlers = new ArrayList<>();
+		for (AnnotationHandler<Annotation> handler : (Iterable<AnnotationHandler<Annotation>>) ServiceLoader.load(AnnotationHandler.class)) {
+			annotationHandlers.add(handler);
+		}
+		return annotationHandlers;
+	}
+
+	public <T extends Annotation> Set<Class<T>> getAnnotationClasses(List<AnnotationHandler<T>> annotationHandlers) {
+		final Set<Class<T>> ruleAnnotations = new LinkedHashSet<>();
+		for (AnnotationHandler<T> handler : annotationHandlers) {
+			ruleAnnotations.add(handler.handles());
+		}
+		return ruleAnnotations;
+	}
+
+	public Set<Class<?>> scanClasses(final Set<Class<Annotation>> supportedAnnotations) {
 		Set<Class<?>> result = new LinkedHashSet<>();
 
 		ClassGraph classGraph = new ClassGraph()
@@ -119,7 +134,6 @@ public class SpringBootAnnotationConfigProvider extends HttpConfigurationProvide
 	}
 
 	private Optional<Set<Class<?>>> findPreparedScanResult(ClassLoader classLoader) {
-		String resourceName = "META-INF/joinfaces/" + AnnotationHandler.class.getName() + ".classes";
-		return ClasspathScanUtil.readClassSet(resourceName, classLoader);
+		return ClasspathScanUtil.readClassSet(PREPARED_SCAN_RESULT_PATH, classLoader);
 	}
 }

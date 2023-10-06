@@ -23,8 +23,10 @@ import java.io.InputStreamReader;
 import java.lang.annotation.Annotation;
 import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
@@ -37,6 +39,8 @@ import java.util.stream.Stream;
 import lombok.experimental.UtilityClass;
 import lombok.extern.slf4j.Slf4j;
 
+import org.springframework.aot.generate.GenerationContext;
+import org.springframework.aot.hint.TypeReference;
 import org.springframework.util.StringUtils;
 
 /**
@@ -50,15 +54,36 @@ public class ClasspathScanUtil {
 
 	public static Optional<Set<Class<?>>> readClassSet(String resourceName, ClassLoader classLoader) {
 		return readClasses(
-				resourceName, classLoader,
-				ClasspathScanUtil::readClassSet
+			resourceName, classLoader,
+			ClasspathScanUtil::readClassSet
 		);
+	}
+
+	public static void writeClassSet(GenerationContext generationContext, String resourceFilePath, Collection<Class<?>> classes) {
+
+		generationContext.getRuntimeHints().resources().registerPattern(resourceFilePath);
+
+		List<String> sortedClassNames = classes.stream()
+			.map(Class::getName)
+			.sorted(String::compareTo)
+			.toList();
+
+		generationContext.getGeneratedFiles().addResourceFile(resourceFilePath, appendable -> {
+			for (String className : sortedClassNames) {
+				appendable.append(className);
+				appendable.append("\n");
+			}
+		});
+
+		for (String className : sortedClassNames) {
+			generationContext.getRuntimeHints().reflection().registerType(TypeReference.of(className));
+		}
 	}
 
 	public static Optional<Map<Class<? extends Annotation>, Set<Class<?>>>> readClassMap(String resourceName, ClassLoader classLoader) {
 		return readClasses(
-				resourceName, classLoader,
-				ClasspathScanUtil::readClassMap
+			resourceName, classLoader,
+			ClasspathScanUtil::readClassMap
 		);
 	}
 
@@ -123,27 +148,27 @@ public class ClasspathScanUtil {
 		AtomicInteger missingDependentClasses = new AtomicInteger();
 
 		Set<Class<?>> collect = classNames
-				.map(className -> {
-					try {
-						return classLoader.loadClass(className);
-					}
-					catch (ClassNotFoundException e) {
-						missingClasses.incrementAndGet();
-						log.debug("Failed to load class {} although it's listed in the prepared scan result.", className);
-						log.trace("Stacktrace", e);
-					}
-					catch (NoClassDefFoundError e) {
-						missingDependentClasses.incrementAndGet();
-						log.debug("Failed to load class {} because it's dependency {} is missing.", className, e.getMessage());
-						log.trace("Stacktrace", e);
-					}
-					catch (LinkageError e) {
-						log.warn("Failed to load class {} from prepared scan result", className, e);
-					}
-					return null;
-				})
-				.filter(Objects::nonNull)
-				.collect(Collectors.toSet());
+			.map(className -> {
+				try {
+					return classLoader.loadClass(className);
+				}
+				catch (ClassNotFoundException e) {
+					missingClasses.incrementAndGet();
+					log.debug("Failed to load class {} although it's listed in the prepared scan result.", className);
+					log.trace("Stacktrace", e);
+				}
+				catch (NoClassDefFoundError e) {
+					missingDependentClasses.incrementAndGet();
+					log.debug("Failed to load class {} because it's dependency {} is missing.", className, e.getMessage());
+					log.trace("Stacktrace", e);
+				}
+				catch (LinkageError e) {
+					log.warn("Failed to load class {} from prepared scan result", className, e);
+				}
+				return null;
+			})
+			.filter(Objects::nonNull)
+			.collect(Collectors.toSet());
 
 		if (missingClasses.get() > 0) {
 			log.warn("{} classes listed in the prepared scan result could not be found. Set the log-level to debug for more information.", missingClasses.get());

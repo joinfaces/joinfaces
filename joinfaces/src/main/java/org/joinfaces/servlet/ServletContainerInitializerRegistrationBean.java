@@ -76,8 +76,11 @@ public class ServletContainerInitializerRegistrationBean<T extends ServletContai
 			return Optional.empty();
 		}
 
-		String resourceName = "META-INF/joinfaces/" + getServletContainerInitializerClass().getName() + ".classes";
-		return ClasspathScanUtil.readClassSet(resourceName, classLoader);
+		return ClasspathScanUtil.readClassSet(getPreparedScanResultPath(), classLoader);
+	}
+
+	public String getPreparedScanResultPath() {
+		return "META-INF/joinfaces/" + getServletContainerInitializerClass().getName() + ".classes";
 	}
 
 	@Nullable
