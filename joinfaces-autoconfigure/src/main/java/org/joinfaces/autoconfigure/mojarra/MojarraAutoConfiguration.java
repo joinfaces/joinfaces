@@ -18,6 +18,7 @@ package org.joinfaces.autoconfigure.mojarra;
 
 import com.sun.faces.config.ConfigureListener;
 import com.sun.faces.config.FacesInitializer;
+import com.sun.faces.config.FacesInitializer2;
 import org.joinfaces.autoconfigure.FacesImplementationAutoConfiguration;
 import org.joinfaces.autoconfigure.faces.JakartaFaces3AutoConfiguration;
 import org.joinfaces.servlet.ServletContainerInitializerRegistrationBean;
@@ -49,6 +50,12 @@ public class MojarraAutoConfiguration implements FacesImplementationAutoConfigur
 	@Bean
 	public ServletContainerInitializerRegistrationBean<FacesInitializer> mojarraServletContainerInitializer() {
 		return new MojarraInitializerRegistrationBean();
+	}
+
+	@Bean
+	@ConditionalOnClass(FacesInitializer2.class)
+	public ServletContainerInitializerRegistrationBean<FacesInitializer2> mojarraServletContainerInitializer2() {
+		return new ServletContainerInitializerRegistrationBean<>(FacesInitializer2.class);
 	}
 
 	/**
