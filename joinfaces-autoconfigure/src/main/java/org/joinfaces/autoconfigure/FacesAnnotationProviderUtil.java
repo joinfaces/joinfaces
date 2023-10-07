@@ -17,7 +17,7 @@
 package org.joinfaces.autoconfigure;
 
 import java.lang.annotation.Annotation;
-import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.LinkedHashSet;
 import java.util.Map;
 import java.util.Optional;
@@ -57,6 +57,7 @@ public class FacesAnnotationProviderUtil {
 	 */
 	static final Set<String> CLASSES = Set.of(
 			"jakarta.faces.bean.ManagedBean",
+			"jakarta.faces.view.facelets.FaceletsResourceResolver",
 			FacesComponent.class.getName(),
 			FacesBehavior.class.getName(),
 			FacesConverter.class.getName(),
@@ -68,7 +69,7 @@ public class FacesAnnotationProviderUtil {
 
 	public static Map<Class<? extends Annotation>, Set<Class<?>>> findAnnotatedClasses(ScanResult scanResult) {
 
-		Map<Class<? extends Annotation>, Set<Class<?>>> annotatedClasses = new HashMap<>();
+		Map<Class<? extends Annotation>, Set<Class<?>>> annotatedClasses = new LinkedHashMap<>();
 
 		for (String annotationClassName : CLASSES) {
 

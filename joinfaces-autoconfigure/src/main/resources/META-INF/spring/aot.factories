@@ -1,3 +1,5 @@
 org.springframework.beans.factory.aot.BeanFactoryInitializationAotProcessor=\
   org.joinfaces.autoconfigure.aot.ServletContainerInitializerRegistrationBeanAotProcessor,\
-  org.joinfaces.autoconfigure.rewrite.RewriteAnnotationHandlerAotProcessor
+  org.joinfaces.autoconfigure.rewrite.RewriteAnnotationHandlerAotProcessor,\
+  org.joinfaces.autoconfigure.myfaces.MyFacesAnnotationProviderAotProcessor,\
+  org.joinfaces.autoconfigure.mojarra.MojarraAnnotationProviderAotProcessor

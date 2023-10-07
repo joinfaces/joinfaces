@@ -87,6 +87,34 @@ public class ClasspathScanUtil {
 		);
 	}
 
+	public static void writeClassMap(GenerationContext generationContext, String resourceFilePath, Map<Class<? extends Annotation>, Set<Class<?>>> classMap) {
+
+		generationContext.getRuntimeHints().resources().registerPattern(resourceFilePath);
+
+		List<String> sortedClassNames = classMap.values().stream()
+			.flatMap(Collection::stream)
+			.map(Class::getName)
+			.sorted(String::compareTo)
+			.distinct()
+			.toList();
+
+		generationContext.getGeneratedFiles().addResourceFile(resourceFilePath, appendable -> {
+
+			for (Map.Entry<Class<? extends Annotation>, Set<Class<?>>> classSetEntry : classMap.entrySet()) {
+				appendable.append(classSetEntry.getKey().getName());
+				appendable.append("=");
+
+				appendable.append(classSetEntry.getValue().stream().map(Class::getName).sorted().collect(Collectors.joining(",")));
+				appendable.append("\n");
+			}
+
+		});
+
+		for (String className : sortedClassNames) {
+			generationContext.getRuntimeHints().reflection().registerType(TypeReference.of(className));
+		}
+	}
+
 	private static <T> Optional<T> readClasses(String resourceName, ClassLoader classLoader, BiFunction<BufferedReader, ClassLoader, T> function) {
 		InputStream resourceAsStream = classLoader.getResourceAsStream(resourceName);
 
