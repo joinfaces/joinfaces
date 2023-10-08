@@ -40,10 +40,6 @@ include ':joinfaces'
 include ':joinfaces-dependencies'
 include ':joinfaces-documentation'
 
-include ':joinfaces-tools:joinfaces-scan-tools'
-include ':joinfaces-tools:joinfaces-gradle-plugin'
-include ':joinfaces-tools:joinfaces-maven-plugin'
-
 include ':joinfaces-test'
 include ':joinfaces-security-taglib'
 include ':joinfaces-autoconfigure'

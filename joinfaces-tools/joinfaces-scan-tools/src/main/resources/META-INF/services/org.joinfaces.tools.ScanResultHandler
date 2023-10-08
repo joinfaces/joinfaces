@@ -1,4 +1,0 @@
-org.joinfaces.tools.MyFacesAnnotationProviderHandler
-org.joinfaces.tools.MojarraAnnotationProviderHandler
-org.joinfaces.tools.RewriteAnnotationProviderHandler
-org.joinfaces.tools.ServletContainerInitializerHandler

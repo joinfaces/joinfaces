@@ -53,16 +53,12 @@ NOTE: Please also consult the official Spring Boot documentation: https://docs.s
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
 
-    <properties>
-        <joinfaces.version>{revnumber}</joinfaces.version>
-    </properties>
-
     <dependencyManagement>
         <dependencies>
             <dependency>
                 <groupId>org.joinfaces</groupId>
                 <artifactId>joinfaces-dependencies</artifactId>
-                <version>${joinfaces.version}</version>
+                <version>{revnumber}</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
@@ -82,32 +78,6 @@ NOTE: Please also consult the official Spring Boot documentation: https://docs.s
         </dependency>
     </dependencies>
 
-    <build>
-        <pluginManagement>
-            <plugins>
-                <plugin>
-                    <groupId>org.joinfaces</groupId>
-                    <artifactId>joinfaces-maven-plugin</artifactId>
-                    <version>${joinfaces.version}</version>
-                    <executions>
-                        <execution>
-                            <goals>
-                                <goal>classpath-scan</goal>
-                            </goals>
-                        </execution>
-                    </executions>
-                </plugin>
-            </plugins>
-        </pluginManagement>
-
-        <plugins>
-            <plugin>
-                <groupId>org.joinfaces</groupId>
-                <artifactId>joinfaces-maven-plugin</artifactId>
-            </plugin>
-        </plugins>
-    </build>
-
 </project>
 ----
 
@@ -118,38 +88,18 @@ NOTE: Please also consult the official Spring Boot documentation: https://docs.s
 [source,groovy,subs=attributes+]
 ----
 plugins {
-    id 'org.joinfaces' version '{revnumber}'
-}
-apply plugin: 'java' //or 'war'
-apply plugin: 'org.springframework.boot'
-apply plugin: 'io.spring.dependency-management'
-
-dependencies {
-    compile 'org.joinfaces:faces-spring-boot-starter'
-
-    testCompile 'org.springframework.boot:spring-boot-starter-test'
-}
-----
-
-==== Not using the JoinFaces gradle plugin
-
-[source,groovy,subs=attributes+]
-----
-plugins {
+    id 'java' //or 'war'
     id 'org.springframework.boot' version '{spring-boot-version}'
 }
-apply plugin: 'java' //or 'war'
-apply plugin: 'io.spring.dependency-management'
-
-dependencyManagement {
-    imports {
-        mavenBom 'org.joinfaces:joinfaces-dependencies:{revnumber}'
-    }
-}
 
 dependencies {
-    compile 'org.joinfaces:faces-spring-boot-starter'
+    implementation platform("org.joinfaces:joinfaces-dependencies:{revnumber}")
+    implementation 'org.joinfaces:faces-spring-boot-starter'
 
-    testCompile 'org.springframework.boot:spring-boot-starter-test'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+}
+
+tasks.named('test') {
+    useJUnitPlatform()
 }
 ----

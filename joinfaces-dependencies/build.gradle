@@ -61,9 +61,6 @@ dependencies {
         project(":joinfaces-starters").subprojects { starter ->
             api starter
         }
-        project(":joinfaces-tools").subprojects { tool ->
-            api tool
-        }
     }
 }
 

@@ -14,9 +14,6 @@ dependencies {
     javadoc project(":joinfaces")
     javadoc project(":joinfaces-autoconfigure")
     javadoc project(":joinfaces-security-taglib")
-    project(":joinfaces-tools").subprojects { tool ->
-        javadoc tool
-    }
 
     javadocClasspath "jakarta.platform:jakarta.jakartaee-web-api:10.0.0"
 

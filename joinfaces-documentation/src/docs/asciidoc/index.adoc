@@ -29,8 +29,6 @@ include::_getting-started.adoc[]
 
 include::_features.adoc[]
 
-include::_build-tools.adoc[]
-
 include::_how-to-faq.adoc[]
 
 [[properties]]
