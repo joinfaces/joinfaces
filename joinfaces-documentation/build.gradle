@@ -20,7 +20,7 @@ dependencies {
     javadocClasspath "org.omnifaces:omnifaces:1.14.1"
     javadocClasspath "org.springframework.boot:spring-boot-starter-data-jpa"
     javadocClasspath "org.springframework.session:spring-session-core"
-    javadocClasspath "com.github.spotbugs:spotbugs-annotations:4.7.3"
+    javadocClasspath "com.github.spotbugs:spotbugs-annotations:4.8.0"
     javadocClasspath "org.apache.maven.plugin-tools:maven-plugin-annotations:3.9.0"
 
     asciidoctorExt "io.spring.asciidoctor:spring-asciidoctor-extensions-block-switch:0.6.2"
