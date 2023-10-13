@@ -21,5 +21,5 @@ import org.springframework.context.annotation.Configuration;
 
 @Configuration
 @ConditionalOnWebApplication
-public class SimpleConfiguration {
+public class TestSimpleConfiguration {
 }
