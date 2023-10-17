@@ -36,9 +36,9 @@ public class MockTagAttributesTest {
 
 	@Test
 	public void testGetAll() {
-		Assertions.assertThrows(UnsupportedOperationException.class, () ->
+		assertThat(Assertions.assertThrows(UnsupportedOperationException.class, () ->
 				this.mockTagAttributes.getAll()
-		);
+		)).isNotNull();
 	}
 
 	@Test
@@ -48,23 +48,23 @@ public class MockTagAttributesTest {
 
 	@Test
 	public void testGet1() {
-		Assertions.assertThrows(UnsupportedOperationException.class, () ->
+		assertThat(Assertions.assertThrows(UnsupportedOperationException.class, () ->
 				this.mockTagAttributes.get(null, null)
-		);
+		)).isNotNull();
 	}
 
 	@Test
 	public void testGetAll1() {
-		Assertions.assertThrows(UnsupportedOperationException.class, () ->
+		assertThat(Assertions.assertThrows(UnsupportedOperationException.class, () ->
 				this.mockTagAttributes.getAll(null)
-		);
+		)).isNotNull();
 	}
 
 	@Test
 	public void testGetNamespaces() {
-		Assertions.assertThrows(UnsupportedOperationException.class, () ->
+		assertThat(Assertions.assertThrows(UnsupportedOperationException.class, () ->
 				this.mockTagAttributes.getNamespaces()
-		);
+		)).isNotNull();
 	}
 
 }
