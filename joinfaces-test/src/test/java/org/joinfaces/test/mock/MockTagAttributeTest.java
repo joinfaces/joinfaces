@@ -39,58 +39,58 @@ public class MockTagAttributeTest {
 
 	@Test
 	public void testGetBoolean() {
-		Assertions.assertThrows(UnsupportedOperationException.class, () ->
+		assertThat(Assertions.assertThrows(UnsupportedOperationException.class, () ->
 				this.mockTagAttribute.getBoolean(null)
-		);
+		)).isNotNull();
 	}
 
 	@Test
 	public void testGetInt() {
-		Assertions.assertThrows(UnsupportedOperationException.class, () ->
+		assertThat(Assertions.assertThrows(UnsupportedOperationException.class, () ->
 				this.mockTagAttribute.getInt(null)
-		);
+		)).isNotNull();
 	}
 
 	@Test
 	public void testGetLocalName() {
-		Assertions.assertThrows(UnsupportedOperationException.class, () ->
+		assertThat(Assertions.assertThrows(UnsupportedOperationException.class, () ->
 				this.mockTagAttribute.getLocalName()
-		);
+		)).isNotNull();
 	}
 
 	@Test
 	public void testGetLocation() {
-		Assertions.assertThrows(UnsupportedOperationException.class, () ->
+		assertThat(Assertions.assertThrows(UnsupportedOperationException.class, () ->
 				this.mockTagAttribute.getLocation()
-		);
+		)).isNotNull();
 	}
 
 	@Test
 	public void testGetMethodExpression() {
-		Assertions.assertThrows(UnsupportedOperationException.class, () ->
+		assertThat(Assertions.assertThrows(UnsupportedOperationException.class, () ->
 				this.mockTagAttribute.getMethodExpression(null, null, null)
-		);
+		)).isNotNull();
 	}
 
 	@Test
 	public void testGetNamespace() {
-		Assertions.assertThrows(UnsupportedOperationException.class, () ->
+		assertThat(Assertions.assertThrows(UnsupportedOperationException.class, () ->
 				this.mockTagAttribute.getNamespace()
-		);
+		)).isNotNull();
 	}
 
 	@Test
 	public void testGetObject() {
-		Assertions.assertThrows(UnsupportedOperationException.class, () ->
+		assertThat(Assertions.assertThrows(UnsupportedOperationException.class, () ->
 				this.mockTagAttribute.getObject(null)
-		);
+		)).isNotNull();
 	}
 
 	@Test
 	public void testGetQName() {
-		Assertions.assertThrows(UnsupportedOperationException.class, () ->
+		assertThat(Assertions.assertThrows(UnsupportedOperationException.class, () ->
 				this.mockTagAttribute.getQName()
-		);
+		)).isNotNull();
 	}
 
 	@Test
@@ -105,9 +105,9 @@ public class MockTagAttributeTest {
 
 	@Test
 	public void testGetObject1() {
-		Assertions.assertThrows(UnsupportedOperationException.class, () ->
+		assertThat(Assertions.assertThrows(UnsupportedOperationException.class, () ->
 				this.mockTagAttribute.getObject(null, null)
-		);
+		)).isNotNull();
 	}
 
 	@Test
@@ -120,9 +120,9 @@ public class MockTagAttributeTest {
 
 	@Test
 	public void testIsLiteral() {
-		Assertions.assertThrows(UnsupportedOperationException.class, () ->
+		assertThat(Assertions.assertThrows(UnsupportedOperationException.class, () ->
 				this.mockTagAttribute.isLiteral()
-		);
+		)).isNotNull();
 	}
 
 }

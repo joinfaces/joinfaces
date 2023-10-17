@@ -50,44 +50,44 @@ public class MockValueExpressionTest {
 
 	@Test
 	public void testSetValue() {
-		Assertions.assertThrows(UnsupportedOperationException.class, () ->
+		assertThat(Assertions.assertThrows(UnsupportedOperationException.class, () ->
 				this.mockValueExpression.setValue(null, null)
-		);
+		)).isNotNull();
 	}
 
 	@Test
 	public void testIsReadOnly() {
-		Assertions.assertThrows(UnsupportedOperationException.class, () ->
+		assertThat(Assertions.assertThrows(UnsupportedOperationException.class, () ->
 				this.mockValueExpression.isReadOnly(null)
-		);
+		)).isNotNull();
 	}
 
 	@Test
 	public void testGetType() {
-		Assertions.assertThrows(UnsupportedOperationException.class, () ->
+		assertThat(Assertions.assertThrows(UnsupportedOperationException.class, () ->
 				this.mockValueExpression.getType(null)
-		);
+		)).isNotNull();
 	}
 
 	@Test
 	public void testGetExpectedType() {
-		Assertions.assertThrows(UnsupportedOperationException.class, () ->
+		assertThat(Assertions.assertThrows(UnsupportedOperationException.class, () ->
 				this.mockValueExpression.getExpectedType()
-		);
+		)).isNotNull();
 	}
 
 	@Test
 	public void testGetExpressionString() {
-		Assertions.assertThrows(UnsupportedOperationException.class, () ->
+		assertThat(Assertions.assertThrows(UnsupportedOperationException.class, () ->
 				this.mockValueExpression.getExpressionString()
-		);
+		)).isNotNull();
 	}
 
 	@Test
 	public void testIsLiteralText() {
-		Assertions.assertThrows(UnsupportedOperationException.class, () ->
+		assertThat(Assertions.assertThrows(UnsupportedOperationException.class, () ->
 				this.mockValueExpression.isLiteralText()
-		);
+		)).isNotNull();
 	}
 
 }
