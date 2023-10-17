@@ -18,11 +18,11 @@ package org.joinfaces.test.mock;
 
 import jakarta.el.ELContext;
 
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
 import static org.mockito.Mockito.mock;
 
 /**
@@ -50,44 +50,44 @@ public class MockValueExpressionTest {
 
 	@Test
 	public void testSetValue() {
-		assertThat(Assertions.assertThrows(UnsupportedOperationException.class, () ->
+		assertThatExceptionOfType(UnsupportedOperationException.class).isThrownBy(() ->
 				this.mockValueExpression.setValue(null, null)
-		)).isNotNull();
+		);
 	}
 
 	@Test
 	public void testIsReadOnly() {
-		assertThat(Assertions.assertThrows(UnsupportedOperationException.class, () ->
+		assertThatExceptionOfType(UnsupportedOperationException.class).isThrownBy(() ->
 				this.mockValueExpression.isReadOnly(null)
-		)).isNotNull();
+		);
 	}
 
 	@Test
 	public void testGetType() {
-		assertThat(Assertions.assertThrows(UnsupportedOperationException.class, () ->
+		assertThatExceptionOfType(UnsupportedOperationException.class).isThrownBy(() ->
 				this.mockValueExpression.getType(null)
-		)).isNotNull();
+		);
 	}
 
 	@Test
 	public void testGetExpectedType() {
-		assertThat(Assertions.assertThrows(UnsupportedOperationException.class, () ->
+		assertThatExceptionOfType(UnsupportedOperationException.class).isThrownBy(() ->
 				this.mockValueExpression.getExpectedType()
-		)).isNotNull();
+		);
 	}
 
 	@Test
 	public void testGetExpressionString() {
-		assertThat(Assertions.assertThrows(UnsupportedOperationException.class, () ->
+		assertThatExceptionOfType(UnsupportedOperationException.class).isThrownBy(() ->
 				this.mockValueExpression.getExpressionString()
-		)).isNotNull();
+		);
 	}
 
 	@Test
 	public void testIsLiteralText() {
-		assertThat(Assertions.assertThrows(UnsupportedOperationException.class, () ->
+		assertThatExceptionOfType(UnsupportedOperationException.class).isThrownBy(() ->
 				this.mockValueExpression.isLiteralText()
-		)).isNotNull();
+		);
 	}
 
 }

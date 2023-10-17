@@ -16,11 +16,11 @@
 
 package org.joinfaces.test.mock;
 
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
 
 /**
  * @author Lars Grefer
@@ -36,9 +36,9 @@ public class MockTagAttributesTest {
 
 	@Test
 	public void testGetAll() {
-		assertThat(Assertions.assertThrows(UnsupportedOperationException.class, () ->
+		assertThatExceptionOfType(UnsupportedOperationException.class).isThrownBy(() ->
 				this.mockTagAttributes.getAll()
-		)).isNotNull();
+		);
 	}
 
 	@Test
@@ -48,23 +48,23 @@ public class MockTagAttributesTest {
 
 	@Test
 	public void testGet1() {
-		assertThat(Assertions.assertThrows(UnsupportedOperationException.class, () ->
+		assertThatExceptionOfType(UnsupportedOperationException.class).isThrownBy(() ->
 				this.mockTagAttributes.get(null, null)
-		)).isNotNull();
+		);
 	}
 
 	@Test
 	public void testGetAll1() {
-		assertThat(Assertions.assertThrows(UnsupportedOperationException.class, () ->
+		assertThatExceptionOfType(UnsupportedOperationException.class).isThrownBy(() ->
 				this.mockTagAttributes.getAll(null)
-		)).isNotNull();
+		);
 	}
 
 	@Test
 	public void testGetNamespaces() {
-		assertThat(Assertions.assertThrows(UnsupportedOperationException.class, () ->
+		assertThatExceptionOfType(UnsupportedOperationException.class).isThrownBy(() ->
 				this.mockTagAttributes.getNamespaces()
-		)).isNotNull();
+		);
 	}
 
 }
