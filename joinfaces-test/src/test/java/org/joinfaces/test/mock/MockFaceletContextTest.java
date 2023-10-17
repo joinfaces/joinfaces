@@ -50,30 +50,30 @@ public class MockFaceletContextTest {
 
 	@Test
 	public void testGenerateUniqueId() {
-		Assertions.assertThrows(UnsupportedOperationException.class, () ->
+		assertThat(Assertions.assertThrows(UnsupportedOperationException.class, () ->
 				this.mockFaceletContext.generateUniqueId(null)
-		);
+		)).isNotNull();
 	}
 
 	@Test
 	public void testGetExpressionFactory() {
-		Assertions.assertThrows(UnsupportedOperationException.class, () ->
+		assertThat(Assertions.assertThrows(UnsupportedOperationException.class, () ->
 				this.mockFaceletContext.getExpressionFactory()
-		);
+		)).isNotNull();
 	}
 
 	@Test
 	public void testSetVariableMapper() {
-		Assertions.assertThrows(UnsupportedOperationException.class, () ->
+		assertThat(Assertions.assertThrows(UnsupportedOperationException.class, () ->
 				this.mockFaceletContext.setVariableMapper(mock(VariableMapper.class))
-		);
+		)).isNotNull();
 	}
 
 	@Test
 	public void testSetFunctionMapper() {
-		Assertions.assertThrows(UnsupportedOperationException.class, () ->
+		assertThat(Assertions.assertThrows(UnsupportedOperationException.class, () ->
 				this.mockFaceletContext.setFunctionMapper(mock(FunctionMapper.class))
-		);
+		)).isNotNull();
 	}
 
 	@Test
@@ -87,37 +87,37 @@ public class MockFaceletContextTest {
 
 	@Test
 	public void testIncludeFacelet_String() {
-		Assertions.assertThrows(UnsupportedOperationException.class, () ->
+		assertThat(Assertions.assertThrows(UnsupportedOperationException.class, () ->
 				this.mockFaceletContext.includeFacelet(null, (String) null)
-		);
+		)).isNotNull();
 	}
 
 	@Test
 	public void testIncludeFacelet_URL() {
-		Assertions.assertThrows(UnsupportedOperationException.class, () ->
+		assertThat(Assertions.assertThrows(UnsupportedOperationException.class, () ->
 				this.mockFaceletContext.includeFacelet(null, (URL) null)
-		);
+		)).isNotNull();
 	}
 
 	@Test
 	public void testGetELResolver() {
-		Assertions.assertThrows(UnsupportedOperationException.class, () ->
+		assertThat(Assertions.assertThrows(UnsupportedOperationException.class, () ->
 				this.mockFaceletContext.getELResolver()
-		);
+		)).isNotNull();
 	}
 
 	@Test
 	public void testGetFunctionMapper() {
-		Assertions.assertThrows(UnsupportedOperationException.class, () ->
+		assertThat(Assertions.assertThrows(UnsupportedOperationException.class, () ->
 				this.mockFaceletContext.getFunctionMapper()
-		);
+		)).isNotNull();
 	}
 
 	@Test
 	public void testGetVariableMapper() {
-		Assertions.assertThrows(UnsupportedOperationException.class, () ->
+		assertThat(Assertions.assertThrows(UnsupportedOperationException.class, () ->
 				this.mockFaceletContext.getVariableMapper()
-		);
+		)).isNotNull();
 	}
 
 }
