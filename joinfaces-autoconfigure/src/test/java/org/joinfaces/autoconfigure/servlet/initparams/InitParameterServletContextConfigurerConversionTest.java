@@ -74,8 +74,8 @@ public class InitParameterServletContextConfigurerConversionTest {
 
 	@Test
 	public void convertToString_Duration_Invalid() {
-		Assertions.assertThrows(RuntimeException.class, () ->
-				InitParameterServletContextConfigurer.convertToString(Duration.ZERO, ChronoUnit.YEARS)
-		);
+		assertThat(Assertions.assertThrows(RuntimeException.class, () ->
+				InitParameterServletContextConfigurer.convertToString(Duration.ZERO, ChronoUnit.YEARS))
+		).isNotNull();
 	}
 }
