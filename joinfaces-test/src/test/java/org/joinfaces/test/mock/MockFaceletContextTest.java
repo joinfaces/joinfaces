@@ -22,11 +22,11 @@ import jakarta.el.FunctionMapper;
 import jakarta.el.VariableMapper;
 import jakarta.faces.context.FacesContext;
 
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
 import static org.mockito.Mockito.mock;
 
 /**
@@ -50,30 +50,30 @@ public class MockFaceletContextTest {
 
 	@Test
 	public void testGenerateUniqueId() {
-		assertThat(Assertions.assertThrows(UnsupportedOperationException.class, () ->
+		assertThatExceptionOfType(UnsupportedOperationException.class).isThrownBy(() ->
 				this.mockFaceletContext.generateUniqueId(null)
-		)).isNotNull();
+		);
 	}
 
 	@Test
 	public void testGetExpressionFactory() {
-		assertThat(Assertions.assertThrows(UnsupportedOperationException.class, () ->
+		assertThatExceptionOfType(UnsupportedOperationException.class).isThrownBy(() ->
 				this.mockFaceletContext.getExpressionFactory()
-		)).isNotNull();
+		);
 	}
 
 	@Test
 	public void testSetVariableMapper() {
-		assertThat(Assertions.assertThrows(UnsupportedOperationException.class, () ->
+		assertThatExceptionOfType(UnsupportedOperationException.class).isThrownBy(() ->
 				this.mockFaceletContext.setVariableMapper(mock(VariableMapper.class))
-		)).isNotNull();
+		);
 	}
 
 	@Test
 	public void testSetFunctionMapper() {
-		assertThat(Assertions.assertThrows(UnsupportedOperationException.class, () ->
+		assertThatExceptionOfType(UnsupportedOperationException.class).isThrownBy(() ->
 				this.mockFaceletContext.setFunctionMapper(mock(FunctionMapper.class))
-		)).isNotNull();
+		);
 	}
 
 	@Test
@@ -87,37 +87,37 @@ public class MockFaceletContextTest {
 
 	@Test
 	public void testIncludeFacelet_String() {
-		assertThat(Assertions.assertThrows(UnsupportedOperationException.class, () ->
+		assertThatExceptionOfType(UnsupportedOperationException.class).isThrownBy(() ->
 				this.mockFaceletContext.includeFacelet(null, (String) null)
-		)).isNotNull();
+		);
 	}
 
 	@Test
 	public void testIncludeFacelet_URL() {
-		assertThat(Assertions.assertThrows(UnsupportedOperationException.class, () ->
+		assertThatExceptionOfType(UnsupportedOperationException.class).isThrownBy(() ->
 				this.mockFaceletContext.includeFacelet(null, (URL) null)
-		)).isNotNull();
+		);
 	}
 
 	@Test
 	public void testGetELResolver() {
-		assertThat(Assertions.assertThrows(UnsupportedOperationException.class, () ->
+		assertThatExceptionOfType(UnsupportedOperationException.class).isThrownBy(() ->
 				this.mockFaceletContext.getELResolver()
-		)).isNotNull();
+		);
 	}
 
 	@Test
 	public void testGetFunctionMapper() {
-		assertThat(Assertions.assertThrows(UnsupportedOperationException.class, () ->
+		assertThatExceptionOfType(UnsupportedOperationException.class).isThrownBy(() ->
 				this.mockFaceletContext.getFunctionMapper()
-		)).isNotNull();
+		);
 	}
 
 	@Test
 	public void testGetVariableMapper() {
-		assertThat(Assertions.assertThrows(UnsupportedOperationException.class, () ->
+		assertThatExceptionOfType(UnsupportedOperationException.class).isThrownBy(() ->
 				this.mockFaceletContext.getVariableMapper()
-		)).isNotNull();
+		);
 	}
 
 }
