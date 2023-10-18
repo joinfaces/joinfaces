@@ -18,11 +18,11 @@ package org.joinfaces.test.mock;
 
 import jakarta.el.ValueExpression;
 
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
 
 /**
  * @author Lars Grefer
@@ -39,58 +39,58 @@ public class MockTagAttributeTest {
 
 	@Test
 	public void testGetBoolean() {
-		assertThat(Assertions.assertThrows(UnsupportedOperationException.class, () ->
+		assertThatExceptionOfType(UnsupportedOperationException.class).isThrownBy(() ->
 				this.mockTagAttribute.getBoolean(null)
-		)).isNotNull();
+		);
 	}
 
 	@Test
 	public void testGetInt() {
-		assertThat(Assertions.assertThrows(UnsupportedOperationException.class, () ->
+		assertThatExceptionOfType(UnsupportedOperationException.class).isThrownBy(() ->
 				this.mockTagAttribute.getInt(null)
-		)).isNotNull();
+		);
 	}
 
 	@Test
 	public void testGetLocalName() {
-		assertThat(Assertions.assertThrows(UnsupportedOperationException.class, () ->
+		assertThatExceptionOfType(UnsupportedOperationException.class).isThrownBy(() ->
 				this.mockTagAttribute.getLocalName()
-		)).isNotNull();
+		);
 	}
 
 	@Test
 	public void testGetLocation() {
-		assertThat(Assertions.assertThrows(UnsupportedOperationException.class, () ->
+		assertThatExceptionOfType(UnsupportedOperationException.class).isThrownBy(() ->
 				this.mockTagAttribute.getLocation()
-		)).isNotNull();
+		);
 	}
 
 	@Test
 	public void testGetMethodExpression() {
-		assertThat(Assertions.assertThrows(UnsupportedOperationException.class, () ->
+		assertThatExceptionOfType(UnsupportedOperationException.class).isThrownBy(() ->
 				this.mockTagAttribute.getMethodExpression(null, null, null)
-		)).isNotNull();
+		);
 	}
 
 	@Test
 	public void testGetNamespace() {
-		assertThat(Assertions.assertThrows(UnsupportedOperationException.class, () ->
+		assertThatExceptionOfType(UnsupportedOperationException.class).isThrownBy(() ->
 				this.mockTagAttribute.getNamespace()
-		)).isNotNull();
+		);
 	}
 
 	@Test
 	public void testGetObject() {
-		assertThat(Assertions.assertThrows(UnsupportedOperationException.class, () ->
+		assertThatExceptionOfType(UnsupportedOperationException.class).isThrownBy(() ->
 				this.mockTagAttribute.getObject(null)
-		)).isNotNull();
+		);
 	}
 
 	@Test
 	public void testGetQName() {
-		assertThat(Assertions.assertThrows(UnsupportedOperationException.class, () ->
+		assertThatExceptionOfType(UnsupportedOperationException.class).isThrownBy(() ->
 				this.mockTagAttribute.getQName()
-		)).isNotNull();
+		);
 	}
 
 	@Test
@@ -105,9 +105,9 @@ public class MockTagAttributeTest {
 
 	@Test
 	public void testGetObject1() {
-		assertThat(Assertions.assertThrows(UnsupportedOperationException.class, () ->
+		assertThatExceptionOfType(UnsupportedOperationException.class).isThrownBy(() ->
 				this.mockTagAttribute.getObject(null, null)
-		)).isNotNull();
+		);
 	}
 
 	@Test
@@ -120,9 +120,9 @@ public class MockTagAttributeTest {
 
 	@Test
 	public void testIsLiteral() {
-		assertThat(Assertions.assertThrows(UnsupportedOperationException.class, () ->
+		assertThatExceptionOfType(UnsupportedOperationException.class).isThrownBy(() ->
 				this.mockTagAttribute.isLiteral()
-		)).isNotNull();
+		);
 	}
 
 }
