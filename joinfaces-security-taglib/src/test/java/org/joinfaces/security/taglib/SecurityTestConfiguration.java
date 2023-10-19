@@ -26,5 +26,5 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 @Configuration
 @ConditionalOnWebApplication
 @EnableWebSecurity
-public class TestSecurityConfiguration {
+public class SecurityTestConfiguration {
 }

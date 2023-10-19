@@ -24,7 +24,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-@SpringBootTest(classes = TestSimpleConfiguration.class, webEnvironment = SpringBootTest.WebEnvironment.MOCK)
+@SpringBootTest(classes = SimpleTestConfiguration.class, webEnvironment = SpringBootTest.WebEnvironment.MOCK)
 public class JsfITTest extends JsfIT {
 
 	private static final String KEY = "key";

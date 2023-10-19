@@ -29,7 +29,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 /**
  * Unit tests for {@link AnonymousFaceletsTag}.
  */
-@SpringBootTest(classes = TestSecurityConfiguration.class, webEnvironment = SpringBootTest.WebEnvironment.MOCK)
+@SpringBootTest(classes = SecurityTestConfiguration.class, webEnvironment = SpringBootTest.WebEnvironment.MOCK)
 class AnonymousFaceletsTagIT extends JsfIT {
 
 	@Test

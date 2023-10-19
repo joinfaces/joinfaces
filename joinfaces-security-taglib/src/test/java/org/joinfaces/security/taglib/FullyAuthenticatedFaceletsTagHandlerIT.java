@@ -30,7 +30,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 /**
  * Unit tests for {@link FullyAuthenticatedFaceletsTagHandler}.
  */
-@SpringBootTest(classes = TestSecurityConfiguration.class, webEnvironment = SpringBootTest.WebEnvironment.MOCK)
+@SpringBootTest(classes = SecurityTestConfiguration.class, webEnvironment = SpringBootTest.WebEnvironment.MOCK)
 class FullyAuthenticatedFaceletsTagHandlerIT extends JsfIT {
 
 	@Test
