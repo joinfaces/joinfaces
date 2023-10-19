@@ -42,16 +42,17 @@ Take a look at [Reference Guide](https://docs.joinfaces.org/master-SNAPSHOT/refe
 
 Joinfaces | Java           | Spring Boot | JSF / Faces
 ----------|----------------|-------------|-----
-`2.x`     | `1.6` to `1.8` |`1.x`|`2.0` to `2.2`
-`3.0` to `3.2`| `1.8`          |`2.0`|`2.0` to `2.3`
-`4.0.x`   | `1.8` to `11`  |`2.1`|`2.0` to `2.3`
-`4.1.x`   | `1.8` to `12`  |`2.2`|`2.0` to `2.3`
-`4.3.x`   | `1.8` to `14`  |`2.3`|`2.0` to `2.3`
-`4.4.x`   | `1.8` to `15`  |`2.4`|`2.0` to `2.3`
-`4.5.x`   | `1.8` to `16`  |`2.5`|`2.0` to `2.3`
-`4.6.x`   | `1.8` to `16`  |`2.6`|`2.0` to `2.3`
-`4.7.x`   | `1.8` to `17`  |`2.7`|`2.0` to `2.3`
-`5.0.x`   | `17` to `19`   |`3.0`|`3.0` to `4.0`
+`2.x`     | `1.6` to `1.8` | `1.x`       |`2.0` to `2.2`
+`3.0` to `3.2`| `1.8`          | `2.0`       |`2.0` to `2.3`
+`4.0.x`   | `1.8` to `11`  | `2.1`       |`2.0` to `2.3`
+`4.1.x`   | `1.8` to `12`  | `2.2`       |`2.0` to `2.3`
+`4.3.x`   | `1.8` to `14`  | `2.3`       |`2.0` to `2.3`
+`4.4.x`   | `1.8` to `15`  | `2.4`       |`2.0` to `2.3`
+`4.5.x`   | `1.8` to `16`  | `2.5`       |`2.0` to `2.3`
+`4.6.x`   | `1.8` to `16`  | `2.6`       |`2.0` to `2.3`
+`4.7.x`   | `1.8` to `17`  | `2.7`       |`2.0` to `2.3`
+`5.0.x`   | `17` to `19`   | `3.0`       |`3.0` to `4.0`
+`5.1.x`   | `17` to `20`   | `3.1`       |`3.0` to `4.0`
 
 This are the combinations we have tested and expect to work, but depending on the features you are using, other combinations might work, too.
 When using Java 9 or higher, make sure to use JoinFaces only on the classpath and not on the modulepath.
