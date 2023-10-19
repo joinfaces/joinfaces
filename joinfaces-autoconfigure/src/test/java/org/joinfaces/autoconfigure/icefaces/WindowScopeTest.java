@@ -22,6 +22,7 @@ import javax.faces.application.Application;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 
+import org.icefaces.impl.application.WindowScopeManager;
 import org.joinfaces.test.mock.FacesContextMocker;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
