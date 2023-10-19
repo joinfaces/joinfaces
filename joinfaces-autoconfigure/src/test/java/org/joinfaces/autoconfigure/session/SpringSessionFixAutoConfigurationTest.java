@@ -26,7 +26,6 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.session.web.http.SessionRepositoryFilter;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
 import static org.mockito.BDDMockito.mock;
 
 class SpringSessionFixAutoConfigurationTest {

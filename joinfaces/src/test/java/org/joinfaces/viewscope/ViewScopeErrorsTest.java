@@ -41,7 +41,7 @@ public class ViewScopeErrorsTest {
 	public void testNoFacesContext_get() {
 		DummyFacesContext.setInstance(null);
 
-		assertThatExceptionOfType(IllegalStateException.class, () ->
+		assertThatExceptionOfType(IllegalStateException.class).isThrownBy(() ->
 				this.viewScope.get(BEAN_NAME, Object::new)
 		);
 	}
@@ -50,7 +50,7 @@ public class ViewScopeErrorsTest {
 	public void testNoFacesContext_remove() {
 		DummyFacesContext.setInstance(null);
 
-		assertThatExceptionOfType(IllegalStateException.class, () ->
+		assertThatExceptionOfType(IllegalStateException.class).isThrownBy(() ->
 				this.viewScope.remove(BEAN_NAME)
 		);
 	}
@@ -59,7 +59,7 @@ public class ViewScopeErrorsTest {
 	public void testNoFacesContext_getConversationId() {
 		DummyFacesContext.setInstance(null);
 
-		assertThatExceptionOfType(IllegalStateException.class, () ->
+		assertThatExceptionOfType(IllegalStateException.class).isThrownBy(() ->
 				this.viewScope.getConversationId()
 		);
 	}
@@ -68,7 +68,7 @@ public class ViewScopeErrorsTest {
 	public void testNoViewRoot_get() {
 		DummyFacesContext.setInstance(mock(FacesContext.class));
 
-		assertThatExceptionOfType(IllegalStateException.class, () ->
+		assertThatExceptionOfType(IllegalStateException.class).isThrownBy(() ->
 				this.viewScope.get(BEAN_NAME, Object::new)
 		);
 	}
@@ -77,7 +77,7 @@ public class ViewScopeErrorsTest {
 	public void testNoViewRoot_remove() {
 		DummyFacesContext.setInstance(mock(FacesContext.class));
 
-		assertThatExceptionOfType(IllegalStateException.class, () ->
+		assertThatExceptionOfType(IllegalStateException.class).isThrownBy(() ->
 				this.viewScope.remove(BEAN_NAME)
 		);
 	}

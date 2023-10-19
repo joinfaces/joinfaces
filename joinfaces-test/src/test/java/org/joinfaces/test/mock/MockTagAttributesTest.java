@@ -16,7 +16,6 @@
 
 package org.joinfaces.test.mock;
 
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -37,7 +36,7 @@ public class MockTagAttributesTest {
 
 	@Test
 	public void testGetAll() {
-		assertThatExceptionOfType(UnsupportedOperationException.class, () ->
+		assertThatExceptionOfType(UnsupportedOperationException.class).isThrownBy(() ->
 				this.mockTagAttributes.getAll()
 		);
 	}
@@ -49,21 +48,21 @@ public class MockTagAttributesTest {
 
 	@Test
 	public void testGet1() {
-		assertThatExceptionOfType(UnsupportedOperationException.class, () ->
+		assertThatExceptionOfType(UnsupportedOperationException.class).isThrownBy(() ->
 				this.mockTagAttributes.get(null, null)
 		);
 	}
 
 	@Test
 	public void testGetAll1() {
-		assertThatExceptionOfType(UnsupportedOperationException.class, () ->
+		assertThatExceptionOfType(UnsupportedOperationException.class).isThrownBy(() ->
 				this.mockTagAttributes.getAll(null)
 		);
 	}
 
 	@Test
 	public void testGetNamespaces() {
-		assertThatExceptionOfType(UnsupportedOperationException.class, () ->
+		assertThatExceptionOfType(UnsupportedOperationException.class).isThrownBy(() ->
 				this.mockTagAttributes.getNamespaces()
 		);
 	}

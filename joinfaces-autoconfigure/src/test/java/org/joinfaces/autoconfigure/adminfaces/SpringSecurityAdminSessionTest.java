@@ -56,7 +56,7 @@ class SpringSecurityAdminSessionTest {
 
 	@Test
 	void setIsLoggedIn() {
-		assertThatExceptionOfType(UnsupportedOperationException.class, () -> this.adminSession.setIsLoggedIn(true));
-		assertThatExceptionOfType(UnsupportedOperationException.class, () -> this.adminSession.setIsLoggedIn(false));
+		assertThatExceptionOfType(UnsupportedOperationException.class).isThrownBy(() -> this.adminSession.setIsLoggedIn(true));
+		assertThatExceptionOfType(UnsupportedOperationException.class).isThrownBy(() -> this.adminSession.setIsLoggedIn(false));
 	}
 }

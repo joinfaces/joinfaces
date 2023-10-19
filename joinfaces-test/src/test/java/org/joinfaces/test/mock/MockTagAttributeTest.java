@@ -18,7 +18,6 @@ package org.joinfaces.test.mock;
 
 import jakarta.el.ValueExpression;
 
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -40,56 +39,56 @@ public class MockTagAttributeTest {
 
 	@Test
 	public void testGetBoolean() {
-		assertThatExceptionOfType(UnsupportedOperationException.class, () ->
+		assertThatExceptionOfType(UnsupportedOperationException.class).isThrownBy(() ->
 				this.mockTagAttribute.getBoolean(null)
 		);
 	}
 
 	@Test
 	public void testGetInt() {
-		assertThatExceptionOfType(UnsupportedOperationException.class, () ->
+		assertThatExceptionOfType(UnsupportedOperationException.class).isThrownBy(() ->
 				this.mockTagAttribute.getInt(null)
 		);
 	}
 
 	@Test
 	public void testGetLocalName() {
-		assertThatExceptionOfType(UnsupportedOperationException.class, () ->
+		assertThatExceptionOfType(UnsupportedOperationException.class).isThrownBy(() ->
 				this.mockTagAttribute.getLocalName()
 		);
 	}
 
 	@Test
 	public void testGetLocation() {
-		assertThatExceptionOfType(UnsupportedOperationException.class, () ->
+		assertThatExceptionOfType(UnsupportedOperationException.class).isThrownBy(() ->
 				this.mockTagAttribute.getLocation()
 		);
 	}
 
 	@Test
 	public void testGetMethodExpression() {
-		assertThatExceptionOfType(UnsupportedOperationException.class, () ->
+		assertThatExceptionOfType(UnsupportedOperationException.class).isThrownBy(() ->
 				this.mockTagAttribute.getMethodExpression(null, null, null)
 		);
 	}
 
 	@Test
 	public void testGetNamespace() {
-		assertThatExceptionOfType(UnsupportedOperationException.class, () ->
+		assertThatExceptionOfType(UnsupportedOperationException.class).isThrownBy(() ->
 				this.mockTagAttribute.getNamespace()
 		);
 	}
 
 	@Test
 	public void testGetObject() {
-		assertThatExceptionOfType(UnsupportedOperationException.class, () ->
+		assertThatExceptionOfType(UnsupportedOperationException.class).isThrownBy(() ->
 				this.mockTagAttribute.getObject(null)
 		);
 	}
 
 	@Test
 	public void testGetQName() {
-		assertThatExceptionOfType(UnsupportedOperationException.class, () ->
+		assertThatExceptionOfType(UnsupportedOperationException.class).isThrownBy(() ->
 				this.mockTagAttribute.getQName()
 		);
 	}
@@ -106,7 +105,7 @@ public class MockTagAttributeTest {
 
 	@Test
 	public void testGetObject1() {
-		assertThatExceptionOfType(UnsupportedOperationException.class, () ->
+		assertThatExceptionOfType(UnsupportedOperationException.class).isThrownBy(() ->
 				this.mockTagAttribute.getObject(null, null)
 		);
 	}
@@ -121,7 +120,7 @@ public class MockTagAttributeTest {
 
 	@Test
 	public void testIsLiteral() {
-		assertThatExceptionOfType(UnsupportedOperationException.class, () ->
+		assertThatExceptionOfType(UnsupportedOperationException.class).isThrownBy(() ->
 				this.mockTagAttribute.isLiteral()
 		);
 	}

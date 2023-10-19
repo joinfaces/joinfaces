@@ -61,14 +61,14 @@ public class CompositeResourceManagerTest {
 
 	@Test
 	public void testRegisterResourceChangeListener() {
-		assertThatExceptionOfType(IllegalArgumentException.class, () ->
+		assertThatExceptionOfType(IllegalArgumentException.class).isThrownBy(() ->
 				new CompositeResourceManager().registerResourceChangeListener(null)
 		);
 	}
 
 	@Test
 	public void testRemoveResourceChangeListener() {
-		assertThatExceptionOfType(IllegalArgumentException.class, () ->
+		assertThatExceptionOfType(IllegalArgumentException.class).isThrownBy(() ->
 				new CompositeResourceManager().removeResourceChangeListener(null)
 		);
 	}
