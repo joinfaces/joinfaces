@@ -14,12 +14,17 @@
  * limitations under the License.
  */
 
-package org.joinfaces.test.mock;
+package org.joinfaces.security.taglib;
 
 import org.springframework.boot.autoconfigure.condition.ConditionalOnWebApplication;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 
+/**
+ * Spring security configuration for tests
+ */
 @Configuration
 @ConditionalOnWebApplication
-public class SimpleConfiguration {
+@EnableWebSecurity
+public class SecurityTestConfiguration {
 }
