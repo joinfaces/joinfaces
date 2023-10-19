@@ -48,14 +48,14 @@ class SpringSessionFixAutoConfigurationTest {
 	@Test
 	void withSessionRepository() {
 		this.contextRunner.withConfiguration(AutoConfigurations.of(SpringSessionFixAutoConfiguration.class))
-			.withUserConfiguration(Config.class)
+			.withUserConfiguration(TestConfig.class)
 			.run(context -> {
 				assertThat(context).hasBean("springSessionFixFilterRegistrationBean");
 			});
 	}
 
 	@Configuration
-	public static class Config {
+	public static class TestConfig {
 
 		@Bean
 		public SessionRepositoryFilter<?> sessionRepositoryFilter() {
