@@ -23,8 +23,9 @@ import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
 
-@SpringBootTest(classes = SimpleConfiguration.class, webEnvironment = SpringBootTest.WebEnvironment.MOCK)
+@SpringBootTest(classes = SimpleTestConfiguration.class, webEnvironment = SpringBootTest.WebEnvironment.MOCK)
 public class JsfITTest extends JsfIT {
 
 	private static final String KEY = "key";

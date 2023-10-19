@@ -26,6 +26,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.session.web.http.SessionRepositoryFilter;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
 import static org.mockito.BDDMockito.mock;
 
 class SpringSessionFixAutoConfigurationTest {
@@ -48,14 +49,14 @@ class SpringSessionFixAutoConfigurationTest {
 	@Test
 	void withSessionRepository() {
 		this.contextRunner.withConfiguration(AutoConfigurations.of(SpringSessionFixAutoConfiguration.class))
-			.withUserConfiguration(Config.class)
+			.withUserConfiguration(TestConfig.class)
 			.run(context -> {
 				assertThat(context).hasBean("springSessionFixFilterRegistrationBean");
 			});
 	}
 
 	@Configuration
-	public static class Config {
+	public static class TestConfig {
 
 		@Bean
 		public SessionRepositoryFilter<?> sessionRepositoryFilter() {

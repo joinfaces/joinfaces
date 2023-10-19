@@ -25,7 +25,7 @@ import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
 
 @ExtendWith(SpringExtension.class)
 class SpringSecurityAdminSessionTest {
@@ -56,7 +56,7 @@ class SpringSecurityAdminSessionTest {
 
 	@Test
 	void setIsLoggedIn() {
-		assertThrows(UnsupportedOperationException.class, () -> this.adminSession.setIsLoggedIn(true));
-		assertThrows(UnsupportedOperationException.class, () -> this.adminSession.setIsLoggedIn(false));
+		assertThatExceptionOfType(UnsupportedOperationException.class, () -> this.adminSession.setIsLoggedIn(true));
+		assertThatExceptionOfType(UnsupportedOperationException.class, () -> this.adminSession.setIsLoggedIn(false));
 	}
 }

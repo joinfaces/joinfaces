@@ -21,6 +21,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
 
 /**
  * @author Lars Grefer
@@ -36,7 +37,7 @@ public class MockTagAttributesTest {
 
 	@Test
 	public void testGetAll() {
-		Assertions.assertThrows(UnsupportedOperationException.class, () ->
+		assertThatExceptionOfType(UnsupportedOperationException.class, () ->
 				this.mockTagAttributes.getAll()
 		);
 	}
@@ -48,21 +49,21 @@ public class MockTagAttributesTest {
 
 	@Test
 	public void testGet1() {
-		Assertions.assertThrows(UnsupportedOperationException.class, () ->
+		assertThatExceptionOfType(UnsupportedOperationException.class, () ->
 				this.mockTagAttributes.get(null, null)
 		);
 	}
 
 	@Test
 	public void testGetAll1() {
-		Assertions.assertThrows(UnsupportedOperationException.class, () ->
+		assertThatExceptionOfType(UnsupportedOperationException.class, () ->
 				this.mockTagAttributes.getAll(null)
 		);
 	}
 
 	@Test
 	public void testGetNamespaces() {
-		Assertions.assertThrows(UnsupportedOperationException.class, () ->
+		assertThatExceptionOfType(UnsupportedOperationException.class, () ->
 				this.mockTagAttributes.getNamespaces()
 		);
 	}

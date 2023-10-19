@@ -18,12 +18,12 @@ package org.joinfaces.viewscope;
 
 import jakarta.faces.context.FacesContext;
 
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import org.springframework.lang.Nullable;
 
+import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
 import static org.mockito.BDDMockito.mock;
 
 public class ViewScopeErrorsTest {
@@ -41,7 +41,7 @@ public class ViewScopeErrorsTest {
 	public void testNoFacesContext_get() {
 		DummyFacesContext.setInstance(null);
 
-		Assertions.assertThrows(IllegalStateException.class, () ->
+		assertThatExceptionOfType(IllegalStateException.class, () ->
 				this.viewScope.get(BEAN_NAME, Object::new)
 		);
 	}
@@ -50,7 +50,7 @@ public class ViewScopeErrorsTest {
 	public void testNoFacesContext_remove() {
 		DummyFacesContext.setInstance(null);
 
-		Assertions.assertThrows(IllegalStateException.class, () ->
+		assertThatExceptionOfType(IllegalStateException.class, () ->
 				this.viewScope.remove(BEAN_NAME)
 		);
 	}
@@ -59,7 +59,7 @@ public class ViewScopeErrorsTest {
 	public void testNoFacesContext_getConversationId() {
 		DummyFacesContext.setInstance(null);
 
-		Assertions.assertThrows(IllegalStateException.class, () ->
+		assertThatExceptionOfType(IllegalStateException.class, () ->
 				this.viewScope.getConversationId()
 		);
 	}
@@ -68,7 +68,7 @@ public class ViewScopeErrorsTest {
 	public void testNoViewRoot_get() {
 		DummyFacesContext.setInstance(mock(FacesContext.class));
 
-		Assertions.assertThrows(IllegalStateException.class, () ->
+		assertThatExceptionOfType(IllegalStateException.class, () ->
 				this.viewScope.get(BEAN_NAME, Object::new)
 		);
 	}
@@ -77,7 +77,7 @@ public class ViewScopeErrorsTest {
 	public void testNoViewRoot_remove() {
 		DummyFacesContext.setInstance(mock(FacesContext.class));
 
-		Assertions.assertThrows(IllegalStateException.class, () ->
+		assertThatExceptionOfType(IllegalStateException.class, () ->
 				this.viewScope.remove(BEAN_NAME)
 		);
 	}

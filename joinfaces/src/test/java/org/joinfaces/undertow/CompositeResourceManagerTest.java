@@ -19,10 +19,10 @@ package org.joinfaces.undertow;
 import java.io.IOException;
 
 import io.undertow.server.handlers.resource.ResourceManager;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
 import static org.mockito.BDDMockito.mock;
 import static org.mockito.BDDMockito.verify;
 
@@ -61,14 +61,14 @@ public class CompositeResourceManagerTest {
 
 	@Test
 	public void testRegisterResourceChangeListener() {
-		Assertions.assertThrows(IllegalArgumentException.class, () ->
+		assertThatExceptionOfType(IllegalArgumentException.class, () ->
 				new CompositeResourceManager().registerResourceChangeListener(null)
 		);
 	}
 
 	@Test
 	public void testRemoveResourceChangeListener() {
-		Assertions.assertThrows(IllegalArgumentException.class, () ->
+		assertThatExceptionOfType(IllegalArgumentException.class, () ->
 				new CompositeResourceManager().removeResourceChangeListener(null)
 		);
 	}

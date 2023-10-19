@@ -21,10 +21,10 @@ import java.time.temporal.ChronoUnit;
 
 import jakarta.faces.application.ProjectStage;
 
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
 
 /**
  * @author Lars Grefer
@@ -74,7 +74,7 @@ public class InitParameterServletContextConfigurerConversionTest {
 
 	@Test
 	public void convertToString_Duration_Invalid() {
-		Assertions.assertThrows(RuntimeException.class, () ->
+		assertThatExceptionOfType(RuntimeException.class).isThrownBy(() ->
 				InitParameterServletContextConfigurer.convertToString(Duration.ZERO, ChronoUnit.YEARS)
 		);
 	}
