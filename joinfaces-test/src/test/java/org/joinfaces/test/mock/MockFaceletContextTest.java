@@ -22,11 +22,11 @@ import javax.el.FunctionMapper;
 import javax.el.VariableMapper;
 import javax.faces.context.FacesContext;
 
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
 import static org.mockito.Mockito.mock;
 
 /**
@@ -50,28 +50,28 @@ public class MockFaceletContextTest {
 
 	@Test
 	public void testGenerateUniqueId() {
-		Assertions.assertThrows(UnsupportedOperationException.class, () ->
+		assertThatExceptionOfType(UnsupportedOperationException.class).isThrownBy(() ->
 				this.mockFaceletContext.generateUniqueId(null)
 		);
 	}
 
 	@Test
 	public void testGetExpressionFactory() {
-		Assertions.assertThrows(UnsupportedOperationException.class, () ->
+		assertThatExceptionOfType(UnsupportedOperationException.class).isThrownBy(() ->
 				this.mockFaceletContext.getExpressionFactory()
 		);
 	}
 
 	@Test
 	public void testSetVariableMapper() {
-		Assertions.assertThrows(UnsupportedOperationException.class, () ->
+		assertThatExceptionOfType(UnsupportedOperationException.class).isThrownBy(() ->
 				this.mockFaceletContext.setVariableMapper(mock(VariableMapper.class))
 		);
 	}
 
 	@Test
 	public void testSetFunctionMapper() {
-		Assertions.assertThrows(UnsupportedOperationException.class, () ->
+		assertThatExceptionOfType(UnsupportedOperationException.class).isThrownBy(() ->
 				this.mockFaceletContext.setFunctionMapper(mock(FunctionMapper.class))
 		);
 	}
@@ -87,35 +87,35 @@ public class MockFaceletContextTest {
 
 	@Test
 	public void testIncludeFacelet_String() {
-		Assertions.assertThrows(UnsupportedOperationException.class, () ->
+		assertThatExceptionOfType(UnsupportedOperationException.class).isThrownBy(() ->
 				this.mockFaceletContext.includeFacelet(null, (String) null)
 		);
 	}
 
 	@Test
 	public void testIncludeFacelet_URL() {
-		Assertions.assertThrows(UnsupportedOperationException.class, () ->
+		assertThatExceptionOfType(UnsupportedOperationException.class).isThrownBy(() ->
 				this.mockFaceletContext.includeFacelet(null, (URL) null)
 		);
 	}
 
 	@Test
 	public void testGetELResolver() {
-		Assertions.assertThrows(UnsupportedOperationException.class, () ->
+		assertThatExceptionOfType(UnsupportedOperationException.class).isThrownBy(() ->
 				this.mockFaceletContext.getELResolver()
 		);
 	}
 
 	@Test
 	public void testGetFunctionMapper() {
-		Assertions.assertThrows(UnsupportedOperationException.class, () ->
+		assertThatExceptionOfType(UnsupportedOperationException.class).isThrownBy(() ->
 				this.mockFaceletContext.getFunctionMapper()
 		);
 	}
 
 	@Test
 	public void testGetVariableMapper() {
-		Assertions.assertThrows(UnsupportedOperationException.class, () ->
+		assertThatExceptionOfType(UnsupportedOperationException.class).isThrownBy(() ->
 				this.mockFaceletContext.getVariableMapper()
 		);
 	}
