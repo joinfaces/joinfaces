@@ -16,8 +16,9 @@
 
 package org.joinfaces.autoconfigure.omnifaces;
 
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+
+import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
 
 public class Omnifaces2AutoConfigurationTest {
 
@@ -25,7 +26,7 @@ public class Omnifaces2AutoConfigurationTest {
 	public void testOmnifaces2AutoConfiguration() {
 		OmnifacesAutoConfiguration.Omnifaces2AutoConfiguration configuration = new OmnifacesAutoConfiguration.Omnifaces2AutoConfiguration();
 
-		Assertions.assertThrows(ClassNotFoundException.class, () ->
+		assertThatExceptionOfType(ClassNotFoundException.class).isThrownBy(() ->
 				configuration.omnifacesServletContainerInitializer()
 		);
 	}
