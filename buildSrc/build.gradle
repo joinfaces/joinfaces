@@ -11,7 +11,7 @@ def springBootVersion = "3.2.0-M3"
 
 dependencies {
     api "org.springframework.boot:spring-boot-gradle-plugin:$springBootVersion"
-    runtimeOnly "org.graalvm.buildtools:native-gradle-plugin:0.9.27"
+    runtimeOnly "org.graalvm.buildtools:native-gradle-plugin:0.9.28"
     implementation "org.springframework.boot:spring-boot-configuration-metadata:$springBootVersion"
 
     implementation 'org.apache.maven:maven-model:3.9.5'
