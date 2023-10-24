@@ -17,13 +17,11 @@ jobs:
       - name: Setup Gradle
         uses: gradle/gradle-build-action@v2.9.0
       - name: Publish package
-        run: ./gradlew -V --no-parallel publishToSonatype publishPlugins uploadDocs closeAndReleaseSonatypeStagingRepository
+        run: ./gradlew -V --no-parallel publishToSonatype uploadDocs closeAndReleaseSonatypeStagingRepository
         env:
           ORG_GRADLE_PROJECT_sonatypeUsername: ${{ secrets.OSSRH_USERNAME }}
           ORG_GRADLE_PROJECT_sonatypePassword: ${{ secrets.OSSRH_PASSWORD }}
           ORG_GRADLE_PROJECT_signingKey: ${{ secrets.JOINFACES_SIGNING_KEY }}
           ORG_GRADLE_PROJECT_signingPassword: ${{ secrets.JOINFACES_SIGNING_PASSWORD }}
-          GRADLE_PUBLISH_KEY: ${{ secrets.GRADLE_PUBLISH_KEY }}
-          GRADLE_PUBLISH_SECRET: ${{ secrets.GRADLE_PUBLISH_SECRET }}
           ORG_GRADLE_PROJECT_joinfacesDocsUser: ${{ secrets.JOINFACES_DOCS_USER }}
           ORG_GRADLE_PROJECT_joinfacesDocsPass: ${{ secrets.JOINFACES_DOCS_PASS }}
