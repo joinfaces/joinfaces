@@ -46,42 +46,57 @@ public class JsfTomcatLifecycleListener implements LifecycleListener {
 
 	private final Context context;
 
-	private JarWarResourceSet getFirstJarWarResourceSetAtJarResources(WebResourceRoot resources) {
-		JarWarResourceSet result = null;
-		for (WebResourceSet resourceSet :resources.getJarResources()) {
-			if (resourceSet instanceof JarWarResourceSet) {
-				result = (JarWarResourceSet) resourceSet;
+	private boolean isJarWarResourceSet(WebResourceSet resourceSet) {
+		return (resourceSet != null) && (resourceSet instanceof JarWarResourceSet);
+	}
+
+	private boolean isNestedJarResourceSet(WebResourceSet resourceSet) {
+		return (resourceSet != null) && (resourceSet.getClass().getSimpleName().equals("NestedJarResourceSet"));
+	}
+
+	private boolean isDirResourceSet(WebResourceSet resourceSet) {
+		return (resourceSet != null) && (resourceSet instanceof DirResourceSet);
+	}
+
+	private WebResourceSet findFirstWebResourceSet(WebResourceRoot resources, WebResourceSetCondition condition) {
+		WebResourceSet result = null;
+		for (WebResourceSet resourceSet : resources.getJarResources()) {
+			if (condition.check(resourceSet)) {
+				result = resourceSet;
 				break;
 			}
 		}
 		return result;
 	}
 
-	private DirResourceSet getFirstDirResourceSetAtJarResources(WebResourceRoot resources) {
-		DirResourceSet result = null;
-		for (WebResourceSet resourceSet :resources.getJarResources()) {
-			if (resourceSet instanceof DirResourceSet) {
-				result = (DirResourceSet) resourceSet;
-				break;
-			}
-		}
-		return result;
+	private WebResourceSet findFirstJarWarResourceSetOrNestedJarResourceSet(WebResourceRoot resources) {
+		return findFirstWebResourceSet(resources, (r) -> {
+			return isJarWarResourceSet(r) || isNestedJarResourceSet(r);
+		});
+	}
+
+	private WebResourceSet findFirstDirResourceSet(WebResourceRoot resources) {
+		return findFirstWebResourceSet(resources, (r) -> {
+			return isDirResourceSet(r);
+		});
 	}
 
 	private URL mainFile(WebResourceRoot resources) {
 		URL result = null;
-		for (WebResourceSet resourceSet :resources.getJarResources()) {
-			if (resourceSet instanceof JarWarResourceSet) {
-				result = resourceSet.getBaseUrl();
-				break;
-			}
+		WebResourceSet resourceSet = findFirstJarWarResourceSetOrNestedJarResourceSet(resources);
+		if (resourceSet != null) {
+			result = resourceSet.getBaseUrl();
 		}
 		return result;
 	}
 
 	private String base(URL url) throws URISyntaxException {
 		String result;
-		if (url.getProtocol().equals("jar")) {
+		if (url.getProtocol().equals("nested")) {
+			result = Paths.get(url.toURI()).toString();
+			result = result.substring(0, result.indexOf("!BOOT-INF") - 1);
+		}
+		else if (url.getProtocol().equals("jar")) {
 			result = url.getFile();
 			result = result.substring("file:".length());
 			result = result.substring(0, result.indexOf("!/"));
@@ -94,32 +109,32 @@ public class JsfTomcatLifecycleListener implements LifecycleListener {
 	}
 
 	private boolean isUberJar(WebResourceRoot resources) {
-		JarWarResourceSet jarWarResourceSet = getFirstJarWarResourceSetAtJarResources(resources);
-		return jarWarResourceSet != null
-				&& jarWarResourceSet.getBaseUrl().getFile().endsWith(".jar");
+		WebResourceSet resourceSet = findFirstJarWarResourceSetOrNestedJarResourceSet(resources);
+		return (resourceSet != null)
+			&& resourceSet.getBaseUrl().getFile().endsWith(".jar");
 	}
 
 	private boolean isUberWar(WebResourceRoot resources) {
-		JarWarResourceSet jarWarResourceSet = getFirstJarWarResourceSetAtJarResources(resources);
-		return jarWarResourceSet != null
-				&& jarWarResourceSet.getBaseUrl().getFile().endsWith(".war");
+		WebResourceSet resourceSet = findFirstJarWarResourceSetOrNestedJarResourceSet(resources);
+		return (resourceSet != null)
+			&& resourceSet.getBaseUrl().getFile().endsWith(".war");
 	}
 
 	private boolean isTesting(WebResourceRoot resources) {
 		return !isUberJar(resources) && !isUberWar(resources)
-				&& getFirstDirResourceSetAtJarResources(resources) == null;
+			&& findFirstDirResourceSet(resources) == null;
 	}
 
 	private boolean isUnpackagedJar(WebResourceRoot resources) {
 		return !isUberJar(resources)
-				&& getFirstDirResourceSetAtJarResources(resources) != null;
+			&& findFirstDirResourceSet(resources) != null;
 	}
 
 	/**
 	 * Inform tomcat runtime setup. UNPACKAGED_WAR not covered yet.
 	 * @param resources of the tomcat
 	 * @return tomcat runtime
-	 */
+	*/
 	TomcatRuntime getTomcatRuntime(WebResourceRoot resources) {
 		TomcatRuntime result = null;
 
@@ -150,24 +165,24 @@ public class JsfTomcatLifecycleListener implements LifecycleListener {
 				switch (tomcatRuntime) {
 					// add main resource
 					case UBER_JAR: try {
-							addMainJarResourceSet(resources);
-						}
-						catch (URISyntaxException ex) {
-							log.error(ex.getMessage());
-						}
-						break;
+						addMainJarResourceSet(resources);
+					}
+					catch (URISyntaxException ex) {
+						log.error(ex.getMessage());
+					}
+					break;
 					// do nothing, already working with main resource and lib resources
 					case UNPACKAGED_JAR: break;
 					// do nothing, already working with main resource and lib resources
 					case UBER_WAR: break;
 					// test jar: adding main resource and lib resources; test war: add lib resources
 					case TEST: try {
-							addClasspathResourceSets(resources);
-						}
-						catch (URISyntaxException | IOException ex) {
-							log.error(ex.getMessage());
-						}
-						break;
+						addClasspathResourceSets(resources);
+					}
+					catch (URISyntaxException | IOException ex) {
+						log.error(ex.getMessage());
+					}
+					break;
 					// default do nothing
 					default: break;
 				}
@@ -202,7 +217,11 @@ public class JsfTomcatLifecycleListener implements LifecycleListener {
 				url = new URL(url, url.toExternalForm().substring(0, index));
 			}
 			resources.createWebResourceSet(WebResourceRoot.ResourceSetType.POST,
-					webAppMount, base(url), archivePath, internalPath);
+				webAppMount, base(url), archivePath, internalPath);
 		}
+	}
+
+	interface WebResourceSetCondition {
+		boolean check(WebResourceSet resourceSet);
 	}
 }
