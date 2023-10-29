@@ -21,11 +21,10 @@ import java.util.EnumSet;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
-import jakarta.servlet.DispatcherType;
-
 import lombok.Data;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.boot.web.servlet.DispatcherType;
 import org.springframework.core.Ordered;
 
 /**

@@ -16,6 +16,11 @@
 
 package org.joinfaces.autoconfigure.rewrite;
 
+import java.util.EnumSet;
+import java.util.stream.Collectors;
+
+import jakarta.servlet.DispatcherType;
+
 import org.joinfaces.rewrite.ApplicationContextProvider;
 import org.joinfaces.rewrite.SpringBootAnnotationConfigProvider;
 import org.joinfaces.rewrite.SpringBootBeanNameResolver;
@@ -79,9 +84,16 @@ public class RewriteAutoConfiguration {
 		rewriteFilterRegistrationBean.setEnabled(rewriteFilterProperties.isEnabled());
 		rewriteFilterRegistrationBean.setOrder(rewriteFilterProperties.getOrder());
 		rewriteFilterRegistrationBean.setUrlPatterns(rewriteFilterProperties.getUrlPatterns());
-		rewriteFilterRegistrationBean.setDispatcherTypes(rewriteFilterProperties.getDispatcherTypes());
+		rewriteFilterRegistrationBean.setDispatcherTypes(getDispatcherTypes(rewriteFilterProperties));
 
 		return rewriteFilterRegistrationBean;
+	}
+
+	private static EnumSet<DispatcherType> getDispatcherTypes(RewriteFilterProperties rewriteFilterProperties) {
+		return rewriteFilterProperties.getDispatcherTypes()
+			.stream()
+			.map(type -> DispatcherType.valueOf(type.name()))
+			.collect(Collectors.toCollection(() -> EnumSet.noneOf(DispatcherType.class)));
 	}
 
 	@Bean
