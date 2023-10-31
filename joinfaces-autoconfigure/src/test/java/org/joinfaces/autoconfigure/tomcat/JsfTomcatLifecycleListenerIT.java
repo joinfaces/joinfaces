@@ -119,21 +119,6 @@ public class JsfTomcatLifecycleListenerIT {
 	}
 
 	@Test
-	public void testingResources() throws LifecycleException {
-		ContextMock contextMock = new ContextMock();
-
-		DirResourceSet dirResourceSet = new DirResourceSet(contextMock.getWebResourceRoot(),
-			TEST, TEST, TEST);
-
-		contextMock.init(dirResourceSet);
-
-		callApplicationEvent(contextMock);
-
-		assertThat(contextMock.getWebResourceRoot().getCreateWebResourceSetCalls())
-			.isEqualTo(0);
-	}
-
-	@Test
 	public void embeddedJarWithoutAppResources() throws LifecycleException {
 		ContextMock contextMock = new ContextMock();
 

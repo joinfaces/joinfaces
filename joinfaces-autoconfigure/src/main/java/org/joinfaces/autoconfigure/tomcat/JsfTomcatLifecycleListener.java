@@ -35,7 +35,7 @@ import org.apache.catalina.webresources.JarWarResourceSet;
 
 /**
  * Jsf Tomcat lifecycle listener to add resources to jsf access resources at
- * integration tests or embedded jar.
+ * unpackaged or embedded jar.
  *
  * @author Marcelo Fernandes
  * @see org.springframework.boot.web.embedded.tomcat.TomcatServletWebServerFactory.StaticResourceConfigurer
@@ -54,8 +54,11 @@ public class JsfTomcatLifecycleListener implements LifecycleListener {
 		return (resourceSet != null) && (resourceSet.getClass().getSimpleName().equals("NestedJarResourceSet"));
 	}
 
-	private boolean isDirResourceSet(WebResourceSet resourceSet) {
-		return (resourceSet != null) && (resourceSet instanceof DirResourceSet);
+	private boolean isDirResourceSetWithoutBootInfFolder(WebResourceSet resourceSet) {
+		return (resourceSet != null) && (resourceSet instanceof DirResourceSet)
+			&& resourceSet.getBaseUrl() != null
+			&& resourceSet.getBaseUrl().getFile() != null
+			&& !resourceSet.getBaseUrl().getFile().contains("BOOT-INF");
 	}
 
 	private WebResourceSet findFirstWebResourceSet(WebResourceRoot resources, WebResourceSetCondition condition) {
@@ -75,9 +78,9 @@ public class JsfTomcatLifecycleListener implements LifecycleListener {
 		});
 	}
 
-	private WebResourceSet findFirstDirResourceSet(WebResourceRoot resources) {
+	private WebResourceSet findFirstDirResourceSetWithoutBootInfFolder(WebResourceRoot resources) {
 		return findFirstWebResourceSet(resources, (r) -> {
-			return isDirResourceSet(r);
+			return isDirResourceSetWithoutBootInfFolder(r);
 		});
 	}
 
@@ -120,18 +123,13 @@ public class JsfTomcatLifecycleListener implements LifecycleListener {
 			&& resourceSet.getBaseUrl().getFile().endsWith(".war");
 	}
 
-	private boolean isTesting(WebResourceRoot resources) {
+	private boolean containsDirResourceSetWithoutBootInfFolder(WebResourceRoot resources) {
 		return !isUberJar(resources) && !isUberWar(resources)
-			&& findFirstDirResourceSet(resources) == null;
-	}
-
-	private boolean isUnpackagedJar(WebResourceRoot resources) {
-		return !isUberJar(resources)
-			&& findFirstDirResourceSet(resources) != null;
+			&& findFirstDirResourceSetWithoutBootInfFolder(resources) != null;
 	}
 
 	/**
-	 * Inform tomcat runtime setup. UNPACKAGED_WAR not covered yet.
+	 * Inform tomcat runtime setup. UNPACKAGED war not covered yet.
 	 * @param resources of the tomcat
 	 * @return tomcat runtime
 	*/
@@ -144,11 +142,8 @@ public class JsfTomcatLifecycleListener implements LifecycleListener {
 		else if (isUberWar(resources)) {
 			result = TomcatRuntime.UBER_WAR;
 		}
-		else if (isTesting(resources)) {
-			result = TomcatRuntime.TEST;
-		}
-		else if (isUnpackagedJar(resources)) {
-			result = TomcatRuntime.UNPACKAGED_JAR;
+		else {
+			result = TomcatRuntime.UNPACKAGED;
 		}
 
 		return result;
@@ -172,15 +167,16 @@ public class JsfTomcatLifecycleListener implements LifecycleListener {
 					}
 					break;
 					// do nothing, already working with main resource and lib resources
-					case UNPACKAGED_JAR: break;
-					// do nothing, already working with main resource and lib resources
 					case UBER_WAR: break;
-					// test jar: adding main resource and lib resources; test war: add lib resources
-					case TEST: try {
-						addClasspathResourceSets(resources);
-					}
-					catch (URISyntaxException | IOException ex) {
-						log.error(ex.getMessage());
+					// adding classpath resources
+					// should not contains dir resource set without BOOT-INF folder
+					case UNPACKAGED: if (!containsDirResourceSetWithoutBootInfFolder(resources)) {
+						try {
+							addClasspathResourceSets(resources);
+						}
+						catch (URISyntaxException | IOException ex) {
+							log.error(ex.getMessage());
+						}
 					}
 					break;
 					// default do nothing
