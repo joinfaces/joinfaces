@@ -17,6 +17,10 @@ jobs:
       ORG_GRADLE_PROJECT_joinfacesDocsPass: ${{ secrets.JOINFACES_DOCS_PASS }}
     steps:
       - uses: actions/checkout@v4
+
+      - name: Setup Graphviz
+        uses: ts-graphviz/setup-graphviz@v1
+
       - name: Set up JDK 17
         uses: actions/setup-java@v3
         with:
