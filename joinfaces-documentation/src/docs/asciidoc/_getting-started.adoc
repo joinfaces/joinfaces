@@ -29,13 +29,45 @@ When using Java 9 or higher, make sure to use JoinFaces only on the classpath an
 [#bom]
 === Dependency Management
 
-Each release of JoinFaces provides a curated list of dependencies that it supports.
-This list is an extension of
-https://docs.spring.io/spring-boot/docs/{spring-boot-version}/reference/html/using.html#using.build-systems.dependency-management[Spring Boot's dependency management] and therefore works exactly the same way.
+Each release of JoinFaces provides curated lists of dependencies that it supports:
 
-The `joinfaces-dependencies` BOM also imports the `spring-boot-dependencies` BOM.
-If you want to override the imported Spring Boot version, make sure to specify the
-Spring Boot BOM after the JoinFaces one.
+- `joinfaces-bom` contains dependency management information for all JoinFaces modules.
+- `joinfaces-dependencies` contains dependency management for external dependencies like Primefaces.
+- `joinfaces-platform` combines the first two together with https://docs.spring.io/spring-boot/docs/{spring-boot-version}/reference/html/using.html#using.build-systems.dependency-management[Spring Boot's dependency management]
+
+
+The `joinfaces-platform` BOM also imports the `spring-boot-dependencies` BOM.
+If you want to override the imported Spring Boot version, you can import `joinfaces-bom`, `joinfaces-dependencies` and the Spring Boot BOM separately.
+
+.Relationships between different BOMs
+[graphviz, "deps", svg]
+....
+digraph {
+    fontname="Helvetica,Arial,sans-serif"
+	node [fontname="monospace", shape="box"]
+
+    subgraph cluster_joinfaces {
+        label = "JoinFaces";
+        style = rounded;
+
+        bom [ label = "joinfaces-bom" ]
+        dependencies [ label = "joinfaces-dependencies" ]
+        platform [label = "joinfaces-platform"]
+
+        platform -> bom
+        platform -> dependencies
+    }
+
+    subgraph cluster_springboot {
+        label = "Spring Boot";
+        style = rounded;
+
+        boot [label = "spring-boot-dependencies"]
+    }
+
+    platform -> boot
+}
+....
 
 The complete list of managed versions can befound in the appendix <<versions>>.
 

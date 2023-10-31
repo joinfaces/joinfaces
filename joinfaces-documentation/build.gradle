@@ -57,6 +57,13 @@ tasks.register("bomDocs", org.joinfaces.build.BomDocumentation) {
     outputFile = file("src/docs/asciidoc/generated/_versions.adoc")
 }
 
+asciidoctorj {
+    modules {
+        diagram.use()
+        diagram.version '1.5.16'
+    }
+}
+
 tasks.named("asciidoctor") {
     baseDirFollowsSourceDir()
     dependsOn propertyDocs, bomDocs

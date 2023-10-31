@@ -1,0 +1,31 @@
+plugins {
+    id 'java-platform'
+    id 'maven-publish'
+}
+
+dependencies {
+    constraints {
+        api project(":joinfaces")
+        api project(":joinfaces-autoconfigure")
+        api project(":joinfaces-security-taglib")
+        api project(":joinfaces-test")
+        project(":joinfaces-starters").subprojects { starter ->
+            api starter
+        }
+    }
+}
+
+publishing {
+    publications {
+        bom(MavenPublication) {
+            from components.javaPlatform
+
+            pom {
+                name = 'JoinFaces BOM'
+                description = 'Dependency management for JoinFaces Artifacts'
+            }
+
+            signing.sign it
+        }
+    }
+}

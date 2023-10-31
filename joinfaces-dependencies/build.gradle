@@ -1,16 +1,9 @@
-import org.springframework.boot.gradle.plugin.SpringBootPlugin
-
 plugins {
     id 'java-platform'
     id 'maven-publish'
 }
 
-javaPlatform {
-    allowDependencies()
-}
-
 dependencies {
-    api platform(SpringBootPlugin.BOM_COORDINATES)
 
     constraints {
         //Mojarra
@@ -53,14 +46,6 @@ dependencies {
         api 'org.ocpsoft.rewrite:rewrite-integration-spring:10.0.0.Final'
         api 'org.ocpsoft.rewrite:rewrite-integration-faces:10.0.0.Final'
         api 'org.ocpsoft.rewrite:rewrite-integration-cdi:10.0.0.Final'
-        
-        //JoinFaces
-        api project(":joinfaces")
-        api project(":joinfaces-autoconfigure")
-        api project(":joinfaces-security-taglib")
-        project(":joinfaces-starters").subprojects { starter ->
-            api starter
-        }
     }
 }
 
@@ -71,7 +56,7 @@ publishing {
 
             pom {
                 name = 'JoinFaces Dependencies'
-                description = 'JoinFaces Dependencies'
+                description = 'Dependency management for JoinFaces Dependencies'
             }
 
             signing.sign it

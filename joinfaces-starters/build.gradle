@@ -9,6 +9,6 @@ subprojects {
     }
 
     dependencies {
-        api platform(project(':joinfaces-dependencies'))
+        api platform(project(':joinfaces-platform'))
     }
 }

@@ -14,7 +14,7 @@ tasks.named("jar", Jar) {
 }
 
 dependencies {
-    api platform(project(':joinfaces-dependencies'))
+    api platform(project(':joinfaces-platform'))
 
     api('org.springframework.security:spring-security-taglibs') {
         exclude group: 'org.springframework.security', module: 'spring-security-acl'

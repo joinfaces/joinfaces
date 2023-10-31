@@ -37,7 +37,9 @@ dependencyResolutionManagement {
 }
 
 include ':joinfaces'
+include ':joinfaces-bom'
 include ':joinfaces-dependencies'
+include ':joinfaces-platform'
 include ':joinfaces-documentation'
 
 include ':joinfaces-test'

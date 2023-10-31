@@ -15,7 +15,7 @@ tasks.named("jar", Jar) {
 }
 
 dependencies {
-    api platform(project(':joinfaces-dependencies'))
+    api platform(project(':joinfaces-platform'))
 
     compileOnly 'jakarta.faces:jakarta.faces-api'
     compileOnly 'jakarta.servlet:jakarta.servlet-api'

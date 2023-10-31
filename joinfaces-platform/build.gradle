@@ -1,0 +1,29 @@
+import org.springframework.boot.gradle.plugin.SpringBootPlugin
+
+plugins {
+    id 'java-platform'
+    id 'maven-publish'
+}
+
+javaPlatform.allowDependencies()
+
+dependencies {
+    api platform(SpringBootPlugin.BOM_COORDINATES)
+    api platform(project(":joinfaces-bom"))
+    api platform(project(":joinfaces-dependencies"))
+}
+
+publishing {
+    publications {
+        bom(MavenPublication) {
+            from components.javaPlatform
+
+            pom {
+                name = 'JoinFaces Platform'
+                description = 'JoinFaces Platform'
+            }
+
+            signing.sign it
+        }
+    }
+}
