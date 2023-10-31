@@ -24,7 +24,7 @@ https://docs.spring.io/spring-boot/docs/{spring-boot-version}/reference/html/get
 Unless otherwise noted, JoinFaces has the same system requirements as
 https://docs.spring.io/spring-boot/docs/{spring-boot-version}/reference/html/getting-started.html#getting-started.system-requirements[_Spring Boot {spring-boot-version}_].
 
-When using Java 9 or higher, make sure to use JoinFaces only on the classpath and not on the modulepath.
+Make sure to use JoinFaces only on the classpath and not on the modulepath.
 
 [#bom]
 === Dependency Management
