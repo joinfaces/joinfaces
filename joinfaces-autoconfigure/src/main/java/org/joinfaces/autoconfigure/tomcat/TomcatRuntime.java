@@ -23,13 +23,9 @@ package org.joinfaces.autoconfigure.tomcat;
  */
 public enum TomcatRuntime  {
 	/**
-	 * Runtime jar inside IDE.
+	 * Runtime jar with main class, jar launcher or test.
 	 */
-	UNPACKAGED_JAR,
-	/**,
-	 * Runtime jar testing or war testing.
-	 */
-	TEST,
+	UNPACKAGED,
 	/**
 	 * Runtime java -jar jar packaging.
 	 */
@@ -37,9 +33,5 @@ public enum TomcatRuntime  {
 	/**
 	 * Runtime java -jar war packaging.
 	 */
-	UBER_WAR,
-	/**
-	 * Runtime war inside tomcat servlet container.
-	 */
-	UNPACKAGED_WAR
+	UBER_WAR
 }
