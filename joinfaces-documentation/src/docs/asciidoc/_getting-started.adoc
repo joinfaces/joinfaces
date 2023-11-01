@@ -50,9 +50,9 @@ digraph {
         label = "JoinFaces";
         style = rounded;
 
+        platform [label = "joinfaces-platform"]
         bom [ label = "joinfaces-bom" ]
         dependencies [ label = "joinfaces-dependencies" ]
-        platform [label = "joinfaces-platform"]
 
         platform -> bom
         platform -> dependencies
@@ -89,7 +89,7 @@ NOTE: Please also consult the official Spring Boot documentation: https://docs.s
         <dependencies>
             <dependency>
                 <groupId>org.joinfaces</groupId>
-                <artifactId>joinfaces-dependencies</artifactId>
+                <artifactId>joinfaces-platform</artifactId>
                 <version>{revnumber}</version>
                 <type>pom</type>
                 <scope>import</scope>
@@ -125,7 +125,7 @@ plugins {
 }
 
 dependencies {
-    implementation platform("org.joinfaces:joinfaces-dependencies:{revnumber}")
+    implementation platform('org.joinfaces:joinfaces-platform:{revnumber}')
     implementation 'org.joinfaces:faces-spring-boot-starter'
 
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
