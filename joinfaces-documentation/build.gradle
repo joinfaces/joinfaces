@@ -1,3 +1,6 @@
+import org.joinfaces.build.BomDocumentation
+import org.joinfaces.build.PropertyDocumentation
+
 plugins {
     id "org.asciidoctor.jvm.convert" version "3.3.2"
     id "io.freefair.aggregate-javadoc"
@@ -45,13 +48,13 @@ tasks.named("javadoc", Javadoc) {
     title = "JoinFaces $version API"
 }
 
-tasks.register("propertyDocs", org.joinfaces.build.PropertyDocumentation) {
+tasks.register("propertyDocs", PropertyDocumentation) {
     inputFile = file("$rootDir/joinfaces-autoconfigure/build/classes/java/main/META-INF/spring-configuration-metadata.json")
     outputFile = file("src/docs/asciidoc/generated/_properties.adoc")
     dependsOn ":joinfaces-autoconfigure:classes"
 }
 
-tasks.register("bomDocs", org.joinfaces.build.BomDocumentation) {
+tasks.register("bomDocs", BomDocumentation) {
     dependsOn ":joinfaces-dependencies:generatePomFileForBomPublication"
     inputFile = tasks.findByPath(":joinfaces-dependencies:generatePomFileForBomPublication").destination
     outputFile = file("src/docs/asciidoc/generated/_versions.adoc")

@@ -7,7 +7,7 @@ JoinFaces can be used in traditional web applications which are deployed to an e
 1. Create a deployable war file as descibed in the https://docs.spring.io/spring-boot/docs/{spring-boot-version}/reference/html/howto.html#howto.traditional-deployment.war[_Spring Boot Reference Guide_].
 2. Mark all dependencies as `provided` which will be provided by the server you are deploying to.
 (Keep in mind that full Java-EE servers like Glassfish or WebLogic already provide a JSF implementation and other
-Java-EE related libraries which the joinfaces starters have to pull in for embeddede containers.)
+Java-EE related libraries which the joinfaces starters have to pull in for embedded containers.)
 3. The Servlet and ServletFilter configurations through `joinfaces.faces-servlet`
 will not work correctly. You can configure those in the traditional way in `web.xml` if you need to.
 
