@@ -1,5 +1,5 @@
 = JoinFaces Reference Guide
-Marcelo Fernandes <persapiens@joinfaces.org>; Lars Grefer <larsgrefer@joinfaces.org>
+Marcelo Fernandes; Lars Grefer
 :toc: left
 :icons: font
 :stylesheet: asciidoctor.css
