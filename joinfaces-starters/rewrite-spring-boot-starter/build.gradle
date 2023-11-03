@@ -6,4 +6,7 @@ dependencies {
     api 'org.ocpsoft.rewrite:rewrite-servlet'
     api 'org.ocpsoft.rewrite:rewrite-integration-spring'
     api 'org.ocpsoft.rewrite:rewrite-integration-faces'
+
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    testImplementation project(':joinfaces-starters:faces-spring-boot-starter')
 }
