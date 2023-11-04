@@ -6,7 +6,7 @@ tasks.named("jar", Jar) {
 dependencies {
     api project(':joinfaces-starters:faces-spring-boot-starter')
     api 'org.omnifaces:omnifaces'
-    api(project(':joinfaces-starters:weld-spring-boot-starter')) {
+    api(project(':joinfaces-starters:cdi-spring-boot-starter')) {
         exclude group: "jakarta.annotation", module: "jakarta.annotation-api"
     }
 

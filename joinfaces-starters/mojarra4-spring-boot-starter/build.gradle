@@ -6,7 +6,7 @@ tasks.named("jar", Jar) {
 dependencies {
     api "org.glassfish:jakarta.faces:$mojarra4Version"
 
-    api project(':joinfaces-starters:weld-spring-boot-starter')
+    api project(':joinfaces-starters:cdi-spring-boot-starter')
 
     runtimeOnly('jakarta.enterprise:jakarta.enterprise.cdi-api') {
         exclude group: 'jakarta.el', module: 'jakarta.el-api'

@@ -1,0 +1,8 @@
+description = 'CDI Spring Boot Starter'
+tasks.named("jar", Jar) {
+    manifest.attributes('Automatic-Module-Name': 'joinfaces.starter.cdi')
+}
+
+dependencies {
+    api project(':joinfaces-starters:weld-spring-boot-starter')
+}
