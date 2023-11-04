@@ -9,6 +9,9 @@ dependencies {
     api('org.jboss.weld.servlet:weld-servlet-core') {
         exclude group: 'jakarta.el', module: 'jakarta.el-api'
     }
+
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    testImplementation 'org.springframework.boot:spring-boot-starter-web'
 }
 
 configurations {

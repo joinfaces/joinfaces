@@ -9,6 +9,9 @@ dependencies {
     api 'org.apache.openwebbeans:openwebbeans-web'
     implementation 'org.apache.openwebbeans:openwebbeans-el22'
     implementation 'org.apache.openwebbeans:openwebbeans-jsf'
+
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    testImplementation 'org.springframework.boot:spring-boot-starter-web'
 }
 
 configurations {
