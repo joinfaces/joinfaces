@@ -50,7 +50,7 @@ dependencies {
         //Ocpsoft Rewrite
         api 'org.ocpsoft.rewrite:rewrite-servlet:9.0.0.Final'
         api 'org.ocpsoft.rewrite:rewrite-config-prettyfaces:9.0.0.Final'
-        api 'org.ocpsoft.rewrite:rewrite-integration-spring:9.0.0.Final'
+        api 'org.ocpsoft.rewrite:rewrite-integration-spring:9.0.1.Final'
         api 'org.ocpsoft.rewrite:rewrite-integration-faces:9.0.0.Final'
         api 'org.ocpsoft.rewrite:rewrite-integration-cdi:9.0.0.Final'
         
