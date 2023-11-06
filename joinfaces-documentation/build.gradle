@@ -39,7 +39,7 @@ dependencies {
     javadocClasspath "com.github.spotbugs:spotbugs-annotations:4.8.0"
     javadocClasspath "org.apache.maven.plugin-tools:maven-plugin-annotations:3.10.1"
 
-    asciidoctorExt "io.spring.asciidoctor:spring-asciidoctor-extensions-block-switch:0.6.2"
+    asciidoctorExt "io.spring.asciidoctor:spring-asciidoctor-extensions-block-switch:0.6.3"
 }
 
 tasks.named("javadoc", Javadoc) {
