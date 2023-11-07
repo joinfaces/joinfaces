@@ -3,7 +3,7 @@ plugins {
     id "io.freefair.aggregate-jacoco-report"
     id "io.freefair.lombok" apply false
     id "io.freefair.maven-central.validate-poms" apply false
-    id "com.github.spotbugs" version "5.2.1" apply false
+    id "com.github.spotbugs" version "5.2.3" apply false
     id "de.aaschmid.cpd" version "3.3"
     id "io.github.gradle-nexus.publish-plugin" version "1.3.0"
 }
