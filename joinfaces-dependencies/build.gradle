@@ -34,7 +34,7 @@ dependencies {
         api 'org.jboss.weld.servlet:weld-servlet-core:5.1.2.Final'
 
         //MyFaces Tobago
-        api 'org.apache.myfaces.tobago:tobago-core:6.0.0-beta-1'
+        api 'org.apache.myfaces.tobago:tobago-core:6.0.0'
         api 'org.apache.myfaces.tobago:tobago-theme-standard:6.0.0-beta-1'
         api 'org.apache.myfaces.tobago:tobago-theme-speyside:6.0.0-beta-1'
         api 'org.apache.myfaces.tobago:tobago-theme-scarborough:6.0.0-beta-1'
