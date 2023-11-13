@@ -52,7 +52,7 @@ dependencies {
         api 'org.ocpsoft.rewrite:rewrite-config-prettyfaces:9.0.0.Final'
         api 'org.ocpsoft.rewrite:rewrite-integration-spring:9.0.0.Final'
         api 'org.ocpsoft.rewrite:rewrite-integration-faces:9.0.0.Final'
-        api 'org.ocpsoft.rewrite:rewrite-integration-cdi:9.0.0.Final'
+        api 'org.ocpsoft.rewrite:rewrite-integration-cdi:9.0.2.Final'
         
         //JoinFaces
         api project(":joinfaces")
