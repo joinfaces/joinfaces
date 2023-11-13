@@ -24,6 +24,7 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
 import org.springframework.lang.Nullable;
 
+@Deprecated(forRemoval = true)
 public class ApplicationContextProvider implements ApplicationContextAware, DisposableBean {
 
 	@Nullable
