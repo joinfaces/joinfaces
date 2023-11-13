@@ -37,6 +37,7 @@ import org.springframework.lang.Nullable;
  */
 @Slf4j
 @RequiredArgsConstructor
+@Deprecated(forRemoval = true)
 public class SpringBootBeanNameResolver implements BeanNameResolver {
 
 	private final ApplicationContext context;

@@ -16,11 +16,8 @@
 
 package org.joinfaces.autoconfigure.rewrite;
 
-import org.joinfaces.rewrite.SpringBootBeanNameResolver;
-import org.joinfaces.rewrite.SpringBootServiceLocator;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.ocpsoft.rewrite.servlet.config.HttpConfigurationProvider;
 
 import org.springframework.boot.autoconfigure.AutoConfigurations;
 import org.springframework.boot.test.context.runner.WebApplicationContextRunner;
@@ -34,37 +31,16 @@ public class RewriteAutoConfigurationTest {
 	@BeforeEach
 	public void setUp() {
 		this.webApplicationContextRunner = new WebApplicationContextRunner()
-				.withConfiguration(AutoConfigurations.of(RewriteAutoConfiguration.class, FooConfiguration.class));
+			.withConfiguration(AutoConfigurations.of(RewriteAutoConfiguration.class, FooConfiguration.class));
 	}
 
 	@Test
 	public void testConfigurationProvider() {
 		this.webApplicationContextRunner
-				.run(context -> {
-					Foo1ConfigurationProvider fooConfigurationProvider = (Foo1ConfigurationProvider) context.getBean("foo1ConfigurationProvider");
+			.run(context -> {
+				Foo1ConfigurationProvider fooConfigurationProvider = (Foo1ConfigurationProvider) context.getBean("foo1ConfigurationProvider");
 
-					assertThat(fooConfigurationProvider)
-						.isNotNull();
-
-					SpringBootBeanNameResolver beanNameResolver = new SpringBootBeanNameResolver(context);
-					assertThat(beanNameResolver.getBeanName(HttpConfigurationProvider.class))
-						.isNull();
-					assertThat(beanNameResolver.getBeanName(Foo1ConfigurationProvider.class))
-						.isEqualTo("foo1ConfigurationProvider");
-					assertThat(beanNameResolver.getBeanName(Foo2ConfigurationProvider.class))
-						.isEqualTo("foo2ConfigurationProvider");
-					assertThat(beanNameResolver.getBeanName(Foo3ConfigurationProvider.class))
-						.isNull();
-
-					SpringBootServiceLocator serviceLocator = new SpringBootServiceLocator();
-					assertThat(serviceLocator.locate(HttpConfigurationProvider.class))
-						.hasSize(3);
-					assertThat(serviceLocator.locate(Foo1ConfigurationProvider.class))
-						.hasSize(1);
-					assertThat(serviceLocator.locate(Foo2ConfigurationProvider.class))
-						.hasSize(1);
-					assertThat(serviceLocator.locate(Foo3ConfigurationProvider.class))
-						.isEmpty();
-				});
+				assertThat(fooConfigurationProvider).isNotNull();
+			});
 	}
 }
