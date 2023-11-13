@@ -21,9 +21,7 @@ import java.util.stream.Collectors;
 
 import jakarta.servlet.DispatcherType;
 
-import org.joinfaces.rewrite.ApplicationContextProvider;
 import org.joinfaces.rewrite.SpringBootAnnotationConfigProvider;
-import org.joinfaces.rewrite.SpringBootBeanNameResolver;
 import org.joinfaces.servlet.WebFragmentRegistrationBean;
 import org.ocpsoft.rewrite.servlet.RewriteFilter;
 import org.ocpsoft.rewrite.servlet.impl.RewriteServletContextListener;
@@ -38,9 +36,7 @@ import org.springframework.boot.autoconfigure.web.servlet.WebMvcAutoConfiguratio
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
-import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.DependsOn;
 
 /**
  * Spring Boot Auto Configuration of Rewrite.
@@ -61,7 +57,6 @@ public class RewriteAutoConfiguration {
 	 * @return rewriteWebFragmentRegistrationBean
 	 */
 	@Bean
-	@DependsOn("applicationContextProvider")
 	public WebFragmentRegistrationBean rewriteWebFragmentRegistrationBean() {
 		WebFragmentRegistrationBean bean = new WebFragmentRegistrationBean();
 
@@ -72,7 +67,6 @@ public class RewriteAutoConfiguration {
 	}
 
 	@Bean
-	@DependsOn("applicationContextProvider")
 	@ConditionalOnMissingFilterBean
 	public FilterRegistrationBean<RewriteFilter> rewriteFilterRegistrationBean(RewriteFilterProperties rewriteFilterProperties) {
 		FilterRegistrationBean<RewriteFilter> rewriteFilterRegistrationBean = new FilterRegistrationBean<>(new RewriteFilter());
@@ -97,18 +91,8 @@ public class RewriteAutoConfiguration {
 	}
 
 	@Bean
-	public ApplicationContextProvider applicationContextProvider() {
-		return new ApplicationContextProvider();
-	}
-
-	@Bean
 	public SpringExpressionLanguageProvider rewriteExpressionLanguageProvider() {
 		return new SpringExpressionLanguageProvider();
-	}
-
-	@Bean
-	public SpringBootBeanNameResolver rewriteBeanNameResolver(ApplicationContext applicationContext) {
-		return new SpringBootBeanNameResolver(applicationContext);
 	}
 
 	/**

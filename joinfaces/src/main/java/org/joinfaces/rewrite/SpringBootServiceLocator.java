@@ -33,6 +33,7 @@ import org.springframework.context.ApplicationContext;
  * @author Marcelo Fernandes
  * @see SpringServiceLocator
  */
+@Deprecated(forRemoval = true)
 public class SpringBootServiceLocator implements ServiceLocator {
 
 	@Override

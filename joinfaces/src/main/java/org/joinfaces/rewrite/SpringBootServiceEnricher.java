@@ -34,6 +34,7 @@ import org.springframework.context.ApplicationContext;
  * @author Lars Grefer
  * @see org.ocpsoft.rewrite.spring.SpringServiceEnricher
  */
+@Deprecated(forRemoval = true)
 @Slf4j
 public class SpringBootServiceEnricher implements ServiceEnricher {
 
