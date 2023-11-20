@@ -34,7 +34,7 @@ dependencies {
         api 'org.jboss.weld.servlet:weld-servlet-core:5.1.2.Final'
 
         api 'org.apache.openwebbeans:openwebbeans-web:4.0.1'
-        api 'org.apache.openwebbeans:openwebbeans-jsf:4.0.0'
+        api 'org.apache.openwebbeans:openwebbeans-jsf:4.0.1'
         api 'org.apache.openwebbeans:openwebbeans-el22:4.0.1'
 
         //MyFaces Tobago
