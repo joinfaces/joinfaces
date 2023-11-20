@@ -28,7 +28,7 @@ dependencies {
 
         api 'org.apache.openwebbeans:openwebbeans-web:4.0.0'
         api 'org.apache.openwebbeans:openwebbeans-jsf:4.0.1'
-        api 'org.apache.openwebbeans:openwebbeans-el22:4.0.0'
+        api 'org.apache.openwebbeans:openwebbeans-el22:4.0.1'
 
         //MyFaces Tobago
         api 'org.apache.myfaces.tobago:tobago-core:6.0.0'
