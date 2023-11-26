@@ -12,6 +12,7 @@ This project enables [JSF](https://www.oracle.com/technetwork/java/javaee/javase
 It autoconfigures 
 [PrimeFaces](https://primefaces.org/), 
 [PrimeFaces Extensions](http://primefaces-extensions.github.io/), 
+[Apache MyFaces Tobago](https://github.com/apache/myfaces-tobago), 
 [OmniFaces](http://omnifaces.org/),
 [AdminFaces](https://adminfaces.github.io/site/), 
 [Mojarra](https://javaserverfaces.java.net/) and 
@@ -19,7 +20,9 @@ It autoconfigures
 [Tomcat](http://tomcat.apache.org/), 
 [Jetty](http://www.eclipse.org/jetty) or 
 [Undertow](http://undertow.io) servlet containers.
-It autoconfigures [Weld](http://weld.cdi-spec.org) and [Rewrite](https://www.ocpsoft.org/rewrite/) too.
+It autoconfigures [Weld](http://weld.cdi-spec.org),
+[Apache OpenWebBeans](https://openwebbeans.apache.org/), and
+[Rewrite](https://www.ocpsoft.org/rewrite/) too.
 
 It also aims to solve [JSF](https://www.oracle.com/technetwork/java/javaee/javaserverfaces-139869.html) and [Spring Boot](https://projects.spring.io/spring-boot/) integration features. Current version includes [JSF](https://www.oracle.com/technetwork/java/javaee/javaserverfaces-139869.html) and [CDI](https://www.cdi-spec.org/) annotations support and [Spring Security](https://projects.spring.io/spring-security/) JSF Facelet Tag support.
 
