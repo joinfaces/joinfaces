@@ -51,7 +51,7 @@ import org.springframework.util.ReflectionUtils;
  * @author Lars Grefer
  * @see jakarta.faces.annotation
  */
-public class JsfBeansAnnotationPostProcessor implements BeanPostProcessor {
+public final class JsfBeansAnnotationPostProcessor implements BeanPostProcessor {
 
 	private final Set<Class<? extends Annotation>> autowiredAnnotationTypes = new LinkedHashSet<>();
 	private final Map<Class<? extends Annotation>, Function<JsfBeansAutoConfiguration, ?>> mappers = new HashMap<>();
