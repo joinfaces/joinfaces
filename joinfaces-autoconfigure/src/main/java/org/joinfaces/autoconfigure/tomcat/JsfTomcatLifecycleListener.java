@@ -112,15 +112,31 @@ public class JsfTomcatLifecycleListener implements LifecycleListener {
 	}
 
 	private boolean isUberJar(WebResourceRoot resources) {
-		WebResourceSet resourceSet = findFirstJarWarResourceSetOrNestedJarResourceSet(resources);
-		return (resourceSet != null)
-			&& resourceSet.getBaseUrl().getFile().endsWith(".jar");
+		return isUber(resources, ".jar", "/!BOOT-INF/");
 	}
 
 	private boolean isUberWar(WebResourceRoot resources) {
+		return isUber(resources, ".war", "/!WEB-INF/");
+	}
+
+	private boolean isUber(WebResourceRoot resources, String suffix, String infFolder) {
 		WebResourceSet resourceSet = findFirstJarWarResourceSetOrNestedJarResourceSet(resources);
-		return (resourceSet != null)
-			&& resourceSet.getBaseUrl().getFile().endsWith(".war");
+		boolean result = (resourceSet != null);
+		if (result) {
+			if (isJarWarResourceSet(resourceSet)) {
+				result = resourceSet.getBaseUrl().getFile().endsWith(suffix);
+			}
+			else if (isNestedJarResourceSet(resourceSet)) {
+				String file = resourceSet.getBaseUrl().getFile();
+				int indexOfInf = file.indexOf(infFolder);
+				result = indexOfInf != -1;
+				if (result) {
+					file = file.substring(0, indexOfInf);
+					result = file.endsWith(suffix);
+				}
+			}
+		}
+		return result;
 	}
 
 	private boolean containsDirResourceSetWithoutBootInfFolder(WebResourceRoot resources) {
