@@ -22,6 +22,7 @@ import java.io.Serializable;
 import lombok.Data;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.boot.context.properties.NestedConfigurationProperty;
 
 /**
  * Configuration properties of AdminFaces.
@@ -172,6 +173,7 @@ public class AdminfacesProperties implements Serializable {
 	/**
 	 * When true it will activate control sidebar component.
 	 */
+	@NestedConfigurationProperty
 	private final ControlSidebar controlSidebar = new ControlSidebar();
 
 	/**

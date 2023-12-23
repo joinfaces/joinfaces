@@ -14,8 +14,18 @@
 - limitations under the License.
 -->
 
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://xmlns.jcp.org/jsf/html">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                template="#{layoutMB.template}">
 
-<h:outputText value="Hello Adminfaces"/>
+    <ui:define name="head-end">
+        <ui:param name="renderBreadCrumb" value="false"/>
+    </ui:define>
 
-</html>
+    <ui:define name="title">
+        <h:outputText value="Hello Adminfaces"/>
+    </ui:define>
+
+
+</ui:composition>

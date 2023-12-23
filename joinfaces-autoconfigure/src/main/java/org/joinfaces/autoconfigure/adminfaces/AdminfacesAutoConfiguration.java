@@ -20,10 +20,8 @@ import jakarta.ejb.AccessLocalException;
 import jakarta.faces.application.ViewExpiredException;
 import jakarta.persistence.OptimisticLockException;
 
-import com.github.adminfaces.template.config.AdminConfig;
 import com.github.adminfaces.template.exception.AccessDeniedException;
 import com.github.adminfaces.template.session.AdminSession;
-import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
 import org.joinfaces.autoconfigure.primefaces.Primefaces4_0Properties;
 import org.joinfaces.autoconfigure.primefaces.Primefaces5_2Properties;
@@ -67,14 +65,14 @@ import org.springframework.lang.Nullable;
 @ConditionalOnWebApplication(type = ConditionalOnWebApplication.Type.SERVLET)
 public class AdminfacesAutoConfiguration {
 
-	@Autowired
-	private AdminfacesProperties adminfacesProperties;
-
 	@Bean
-	public BeanPostProcessor adminfacesPrimeFacesPropertiesPostProcessor() {
-		PrimeFacesPropertiesPostProcessor result = new PrimeFacesPropertiesPostProcessor();
-		result.setAdminfacesProperties(this.adminfacesProperties);
-		return result;
+	public static BeanPostProcessor adminfacesPrimeFacesPropertiesPostProcessor() {
+		return new PrimeFacesPropertiesPostProcessor();
+	}
+
+	@Autowired
+	public void mapConfigProperties(AdminfacesProperties adminfacesProperties) {
+		AdminfacesConfigSupport.mapProperties(adminfacesProperties);
 	}
 
 	@Bean("adminSession")
@@ -144,8 +142,6 @@ public class AdminfacesAutoConfiguration {
 	 * @author Marcelo Fernandes
 	 */
 	static class PrimeFacesPropertiesPostProcessor implements BeanPostProcessor {
-		@Setter
-		private AdminfacesProperties adminfacesProperties;
 
 		@Override
 		public Object postProcessBeforeInitialization(@Nullable Object bean, @Nullable String beanName) throws BeansException {
@@ -156,11 +152,6 @@ public class AdminfacesAutoConfiguration {
 			if (bean instanceof Primefaces5_2Properties properties) {
 				log.warn("Changing primefaces fontAwesome from 'false' to 'true'.");
 				properties.setFontAwesome(true);
-			}
-			if (bean instanceof AdminConfig) {
-				AdminConfigWrapper adminConfigWrapper = new AdminConfigWrapper();
-				adminConfigWrapper.setAdminfacesProperties(this.adminfacesProperties);
-				bean = adminConfigWrapper;
 			}
 			return bean;
 		}

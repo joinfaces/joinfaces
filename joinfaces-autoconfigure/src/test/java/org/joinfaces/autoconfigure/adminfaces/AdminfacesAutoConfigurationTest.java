@@ -54,9 +54,6 @@ public class AdminfacesAutoConfigurationTest {
 
 				assertThat(context.getBean("adminSession", AdminSession.class))
 					.isNotNull();
-
-				assertThat(context.getBean(AdminConfigWrapper.class))
-					.isNotNull();
 			});
 	}
 }

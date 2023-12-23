@@ -27,7 +27,7 @@ import org.springframework.web.context.WebApplicationContext;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
+@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT, properties = "joinfaces.adminfaces.skin=skin-joinfaces")
 public class AdminfacesTest {
 
 	@Autowired
@@ -49,6 +49,7 @@ public class AdminfacesTest {
 		ResponseEntity<String> response = restTemplate.getForEntity("/index.xhtml", String.class);
 		assertThat(response.getStatusCode()).isEqualTo(HttpStatus.OK);
 		assertThat(response.getBody()).contains("Hello Adminfaces");
+		assertThat(response.getBody()).contains("skin-joinfaces");
 
 		ResponseEntity<String> response2 = restTemplate.getForEntity("/foo.xhtml", String.class);
 		assertThat(response2.getStatusCode()).isEqualTo(HttpStatus.NOT_FOUND);
