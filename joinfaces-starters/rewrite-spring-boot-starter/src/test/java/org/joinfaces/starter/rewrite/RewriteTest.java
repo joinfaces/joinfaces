@@ -16,6 +16,10 @@
 
 package org.joinfaces.starter.rewrite;
 
+import java.util.Map;
+
+import jakarta.servlet.FilterRegistration;
+
 import org.junit.jupiter.api.Test;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,5 +37,11 @@ public class RewriteTest {
 	@Test
 	void contextLoads() {
 		assertThat(this.webApplicationContext).isNotNull();
+	}
+
+	@Test
+	void filterIsApplied() {
+		Map<String, ? extends FilterRegistration> filterRegistrations = this.webApplicationContext.getServletContext().getFilterRegistrations();
+		assertThat(filterRegistrations).containsKey("OCPsoft Rewrite Filter");
 	}
 }

@@ -25,6 +25,7 @@ import org.ocpsoft.rewrite.spring.SpringExpressionLanguageProvider;
 
 import org.springframework.boot.autoconfigure.AutoConfiguration;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnNotWarDeployment;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnWebApplication;
 import org.springframework.boot.autoconfigure.web.servlet.ConditionalOnMissingFilterBean;
 import org.springframework.boot.autoconfigure.web.servlet.WebMvcAutoConfiguration;
@@ -63,6 +64,7 @@ public class RewriteAutoConfiguration {
 
 	@Bean
 	@ConditionalOnMissingFilterBean
+	@ConditionalOnNotWarDeployment
 	public FilterRegistrationBean<RewriteFilter> rewriteFilterRegistrationBean(RewriteFilterProperties rewriteFilterProperties) {
 		FilterRegistrationBean<RewriteFilter> rewriteFilterRegistrationBean = new FilterRegistrationBean<>(new RewriteFilter());
 
