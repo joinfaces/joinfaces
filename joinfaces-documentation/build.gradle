@@ -2,7 +2,7 @@ import org.joinfaces.build.BomDocumentation
 import org.joinfaces.build.PropertyDocumentation
 
 plugins {
-    id "org.asciidoctor.jvm.convert" version "4.0.0"
+    id "org.asciidoctor.jvm.convert" version "4.0.1"
     id "io.freefair.aggregate-javadoc"
     id "io.freefair.javadoc-links"
     id "io.freefair.okhttp"
