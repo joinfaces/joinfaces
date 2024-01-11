@@ -1,5 +1,5 @@
 plugins {
-    id "org.asciidoctor.jvm.convert" version "3.3.2"
+    id "org.asciidoctor.jvm.convert" version "4.0.0"
     id "io.freefair.aggregate-javadoc"
     id "io.freefair.javadoc-links"
     id "io.freefair.okhttp"
