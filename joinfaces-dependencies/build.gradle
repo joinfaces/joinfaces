@@ -20,23 +20,23 @@ dependencies {
         api "com.github.adminfaces:admin-theme:1.6.0"
 
         //Primefaces
-        api 'org.primefaces:primefaces:13.0.5'
-        api "org.primefaces.extensions:primefaces-extensions:13.0.5"
-        api "org.primefaces.extensions:resources-monacoeditor:13.0.5"
+        api 'org.primefaces:primefaces:13.0.6'
+        api "org.primefaces.extensions:primefaces-extensions:13.0.6"
+        api "org.primefaces.extensions:resources-monacoeditor:13.0.6"
 
         api 'org.jboss.weld.servlet:weld-servlet-core:5.1.2.Final'
 
-        api 'org.apache.openwebbeans:openwebbeans-web:4.0.1'
-        api 'org.apache.openwebbeans:openwebbeans-jsf:4.0.1'
-        api 'org.apache.openwebbeans:openwebbeans-el22:4.0.1'
+        api 'org.apache.openwebbeans:openwebbeans-web:4.0.2'
+        api 'org.apache.openwebbeans:openwebbeans-jsf:4.0.2'
+        api 'org.apache.openwebbeans:openwebbeans-el22:4.0.2'
 
         //MyFaces Tobago
-        api 'org.apache.myfaces.tobago:tobago-core:6.2.0'
-        api 'org.apache.myfaces.tobago:tobago-theme-standard:6.2.0'
-        api 'org.apache.myfaces.tobago:tobago-theme-speyside:6.2.0'
-        api 'org.apache.myfaces.tobago:tobago-theme-scarborough:6.2.0'
-        api 'org.apache.myfaces.tobago:tobago-theme-roxborough:6.2.0'
-        api 'org.apache.myfaces.tobago:tobago-theme-charlotteville:6.2.0'
+        api 'org.apache.myfaces.tobago:tobago-core:6.3.0'
+        api 'org.apache.myfaces.tobago:tobago-theme-standard:6.3.0'
+        api 'org.apache.myfaces.tobago:tobago-theme-speyside:6.3.0'
+        api 'org.apache.myfaces.tobago:tobago-theme-scarborough:6.3.0'
+        api 'org.apache.myfaces.tobago:tobago-theme-roxborough:6.3.0'
+        api 'org.apache.myfaces.tobago:tobago-theme-charlotteville:6.3.0'
 
         api 'org.omnifaces:omnifaces:4.3'
 
