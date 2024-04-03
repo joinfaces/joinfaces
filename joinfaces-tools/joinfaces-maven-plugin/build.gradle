@@ -11,6 +11,6 @@ dependencies {
     api 'org.apache.maven:maven-core:3.9.6'
     api 'org.apache.maven:maven-plugin-api:3.9.6'
 
-    compileOnly 'org.apache.maven.plugin-tools:maven-plugin-annotations:3.11.0'
+    compileOnly 'org.apache.maven.plugin-tools:maven-plugin-annotations:3.12.0'
 }
 
