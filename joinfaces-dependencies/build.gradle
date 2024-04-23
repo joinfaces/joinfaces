@@ -46,6 +46,7 @@ dependencies {
         api 'org.ocpsoft.rewrite:rewrite-integration-spring:10.0.2.Final'
         api 'org.ocpsoft.rewrite:rewrite-integration-faces:10.0.2.Final'
         api 'org.ocpsoft.rewrite:rewrite-integration-cdi:10.0.2.Final'
+        api 'org.ocpsoft.logging:logging-adapter-slf4j:1.0.5.Final'
     }
 }
 
