@@ -16,6 +16,9 @@
 
 package org.joinfaces.primefaces;
 
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -158,6 +161,13 @@ public class SpringDataJpaLazyDataModel<T, ID, R extends JpaRepository<T, ID> & 
 				case GREATER_THAN_EQUALS -> {
 					return criteriaBuilder.greaterThanOrEqualTo((Path<Comparable>) path, (Comparable) filterValue);
 				}
+				case BETWEEN -> {
+					List<LocalDate> list = (List) filterValue;
+					Date dateI = convertToDateViaInstant(list.get(0));
+					Date dateII = convertToDateViaInstant(list.get(1));
+					return criteriaBuilder.between(root.get(filterMeta.getField()),
+						criteriaBuilder.literal(dateI), criteriaBuilder.literal(dateII));
+				}
 				default ->
 					throw new IllegalArgumentException("MatchMode " + filterMeta.getMatchMode() + " is not supported");
 			}
@@ -170,6 +180,12 @@ public class SpringDataJpaLazyDataModel<T, ID, R extends JpaRepository<T, ID> & 
 				path = path.get(part);
 			}
 			return (Path<P>) path;
+		}
+
+		protected static Date convertToDateViaInstant(LocalDate dateToConvert) {
+			return Date.from(dateToConvert.atStartOfDay()
+				.atZone(ZoneId.systemDefault())
+				.toInstant());
 		}
 	}
 }
