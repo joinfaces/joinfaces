@@ -37,9 +37,9 @@ public class Person implements Persistable<UUID> {
 
 	private String name;
 
-	private LocalDate birthday;
+	private LocalDate birthday = LocalDate.of(2000, 1, 1);
 
-	private int size;
+	private int size = 180;
 
 	@Override
 	public boolean isNew() {

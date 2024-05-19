@@ -17,7 +17,6 @@
 package org.joinfaces.primefaces;
 
 import java.time.LocalDate;
-import java.time.ZoneId;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
@@ -34,8 +33,10 @@ import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 import org.primefaces.model.FilterMeta;
 import org.primefaces.model.LazyDataModel;
+import org.primefaces.model.MatchMode;
 import org.primefaces.model.SortMeta;
 
+import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Persistable;
@@ -161,12 +162,24 @@ public class SpringDataJpaLazyDataModel<T, ID, R extends JpaRepository<T, ID> & 
 				case GREATER_THAN_EQUALS -> {
 					return criteriaBuilder.greaterThanOrEqualTo((Path<Comparable>) path, (Comparable) filterValue);
 				}
-				case BETWEEN -> {
-					List<LocalDate> list = (List) filterValue;
-					Date dateI = convertToDateViaInstant(list.get(0));
-					Date dateII = convertToDateViaInstant(list.get(1));
-					return criteriaBuilder.between(root.get(filterMeta.getField()),
-						criteriaBuilder.literal(dateI), criteriaBuilder.literal(dateII));
+				case BETWEEN, NOT_BETWEEN -> {
+					List<Comparable> list = (List<Comparable>) filterValue;
+					Comparable first = list.get(0);
+					Comparable second = list.get(1);
+
+					if (path.getJavaType().equals(Date.class) && first instanceof LocalDate ld1 && second instanceof LocalDate ld2) {
+						first = convertToDateViaInstant(ld1);
+						second = convertToDateViaInstant(ld2);
+					}
+
+					Predicate between = criteriaBuilder.between((Path<Comparable>) path, first, second);
+
+					if (filterMeta.getMatchMode().equals(MatchMode.NOT_BETWEEN)) {
+						return between.not();
+					}
+					else {
+						return between;
+					}
 				}
 				default ->
 					throw new IllegalArgumentException("MatchMode " + filterMeta.getMatchMode() + " is not supported");
@@ -184,7 +197,7 @@ public class SpringDataJpaLazyDataModel<T, ID, R extends JpaRepository<T, ID> & 
 
 		protected static Date convertToDateViaInstant(LocalDate dateToConvert) {
 			return Date.from(dateToConvert.atStartOfDay()
-				.atZone(ZoneId.systemDefault())
+				.atZone(LocaleContextHolder.getTimeZone().toZoneId())
 				.toInstant());
 		}
 	}

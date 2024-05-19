@@ -16,6 +16,7 @@
 
 package org.joinfaces.primefaces;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
@@ -25,13 +26,15 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
+import org.primefaces.model.FilterMeta;
+import org.primefaces.model.MatchMode;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-@SpringBootTest
+@SpringBootTest(properties = {"spring.jpa.show-sql=true", "logging.level.sql=debug"})
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 class SpringDataJpaLazyDataModelTest {
 
@@ -59,6 +62,7 @@ class SpringDataJpaLazyDataModelTest {
 
 		assertThat(load).isNotEmpty();
 	}
+
 	@Test
 	void testRowKeys() {
 
@@ -74,6 +78,84 @@ class SpringDataJpaLazyDataModelTest {
 		}
 
 		assertThat(dataModel.getIdClass()).isEqualTo(UUID.class);
+	}
+
+	@Test
+	void testBetweenInt() {
+
+		FilterMeta filterMeta = FilterMeta.builder()
+			.field("size")
+			.matchMode(MatchMode.BETWEEN)
+			.filterValue(List.of(100, 200))
+			.build();
+		List<Person> load = dataModel.load(0, 10, Map.of(), Map.of("size", filterMeta));
+
+		assertThat(load).isNotEmpty();
+	}
+
+	@Test
+	void testNotBetweenInt() {
+
+		FilterMeta filterMeta = FilterMeta.builder()
+			.field("size")
+			.matchMode(MatchMode.NOT_BETWEEN)
+			.filterValue(List.of(100, 200))
+			.build();
+		List<Person> load = dataModel.load(0, 10, Map.of(), Map.of("size", filterMeta));
+
+		assertThat(load).isEmpty();
+	}
+
+	@Test
+	void testBetweenDate() {
+
+		FilterMeta filterMeta = FilterMeta.builder()
+			.field("birthday")
+			.matchMode(MatchMode.BETWEEN)
+			.filterValue(List.of(LocalDate.of(1990, 1, 1), LocalDate.now()))
+			.build();
+		List<Person> load = dataModel.load(0, 10, Map.of(), Map.of("birthday", filterMeta));
+
+		assertThat(load).isNotEmpty();
+	}
+
+	@Test
+	void testNotBetweenDate() {
+
+		FilterMeta filterMeta = FilterMeta.builder()
+			.field("birthday")
+			.matchMode(MatchMode.NOT_BETWEEN)
+			.filterValue(List.of(LocalDate.of(1990, 1, 1), LocalDate.now()))
+			.build();
+		List<Person> load = dataModel.load(0, 10, Map.of(), Map.of("birthday", filterMeta));
+
+		assertThat(load).isEmpty();
+	}
+
+	@Test
+	void testBetweenDate_noMatch() {
+
+		FilterMeta filterMeta = FilterMeta.builder()
+			.field("birthday")
+			.matchMode(MatchMode.BETWEEN)
+			.filterValue(List.of(LocalDate.of(2005, 1, 1), LocalDate.now()))
+			.build();
+		List<Person> load = dataModel.load(0, 10, Map.of(), Map.of("birthday", filterMeta));
+
+		assertThat(load).isEmpty();
+	}
+
+	@Test
+	void testNotBetweenDate_noMatch() {
+
+		FilterMeta filterMeta = FilterMeta.builder()
+			.field("birthday")
+			.matchMode(MatchMode.NOT_BETWEEN)
+			.filterValue(List.of(LocalDate.of(2005, 1, 1), LocalDate.now()))
+			.build();
+		List<Person> load = dataModel.load(0, 10, Map.of(), Map.of("birthday", filterMeta));
+
+		assertThat(load).isNotEmpty();
 	}
 
 	@AfterAll
