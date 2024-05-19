@@ -16,7 +16,11 @@
 
 package org.joinfaces.primefaces;
 
+import java.time.Instant;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.ZonedDateTime;
+import java.time.temporal.Temporal;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
@@ -31,6 +35,7 @@ import jakarta.persistence.criteria.Root;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
+import org.apache.myfaces.core.api.shared.lang.Assert;
 import org.primefaces.model.FilterMeta;
 import org.primefaces.model.LazyDataModel;
 import org.primefaces.model.MatchMode;
@@ -167,9 +172,9 @@ public class SpringDataJpaLazyDataModel<T, ID, R extends JpaRepository<T, ID> & 
 					Comparable first = list.get(0);
 					Comparable second = list.get(1);
 
-					if (path.getJavaType().equals(Date.class) && first instanceof LocalDate ld1 && second instanceof LocalDate ld2) {
-						first = convertToDateViaInstant(ld1);
-						second = convertToDateViaInstant(ld2);
+					if (path.getJavaType().equals(Date.class) && first instanceof Temporal t1 && second instanceof Temporal t2) {
+						first = convertToDate(t1);
+						second = convertToDate(t2);
 					}
 
 					Predicate between = criteriaBuilder.between((Path<Comparable>) path, first, second);
@@ -195,10 +200,39 @@ public class SpringDataJpaLazyDataModel<T, ID, R extends JpaRepository<T, ID> & 
 			return (Path<P>) path;
 		}
 
-		protected static Date convertToDateViaInstant(LocalDate dateToConvert) {
-			return Date.from(dateToConvert.atStartOfDay()
-				.atZone(LocaleContextHolder.getTimeZone().toZoneId())
-				.toInstant());
+		protected static Date convertToDate(Temporal temporal) {
+			Assert.notNull(temporal, "temporal must not be null");
+
+			if (temporal instanceof LocalDate localDate) {
+				return convertToDate(localDate);
+			}
+			else if (temporal instanceof LocalDateTime localDateTime) {
+				return convertToDate(localDateTime);
+			}
+			else if (temporal instanceof ZonedDateTime zonedDateTime) {
+				return convertToDate(zonedDateTime);
+			}
+			else if (temporal instanceof Instant instant) {
+				return convertToDate(instant);
+			}
+
+			throw new IllegalArgumentException("Temporal " + temporal.getClass() + " is not supported");
+		}
+
+		protected static Date convertToDate(LocalDate localDate) {
+			return convertToDate(localDate.atStartOfDay());
+		}
+
+		protected static Date convertToDate(LocalDateTime localDateTime) {
+			return convertToDate(localDateTime.atZone(LocaleContextHolder.getTimeZone().toZoneId()));
+		}
+
+		protected static Date convertToDate(ZonedDateTime zonedDateTime) {
+			return convertToDate(zonedDateTime.toInstant());
+		}
+
+		protected static Date convertToDate(Instant instant) {
+			return Date.from(instant);
 		}
 	}
 }
