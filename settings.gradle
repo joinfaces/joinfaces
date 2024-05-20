@@ -1,6 +1,6 @@
 plugins {
     id "io.freefair.settings.plugin-versions" version "8.6"
-    id "com.gradle.enterprise" version "3.17.3"
+    id "com.gradle.enterprise" version "3.17.4"
 }
 
 rootProject.name = 'joinfaces-parent'
