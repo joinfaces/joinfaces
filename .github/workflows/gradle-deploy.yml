@@ -27,7 +27,7 @@ jobs:
           java-version: 17
           distribution: 'temurin'
       - name: Setup Gradle
-        uses: gradle/actions/setup-gradle@v3.3.2
+        uses: gradle/actions/setup-gradle@v3.4.1
       - run: ./gradlew -V uploadDocs -s
       - run: ./gradlew -V publish
         if: ${{ github.event_name == 'push' && github.ref_type == 'branch' }}
