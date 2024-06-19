@@ -7,7 +7,7 @@ dependencies {
 
     constraints {
         //Mojarra
-        api 'jakarta.faces:jakarta.faces-api:4.0.1'
+        api 'jakarta.faces:jakarta.faces-api:4.1.0'
 
         api 'io.github.classgraph:classgraph:4.8.174'
 
