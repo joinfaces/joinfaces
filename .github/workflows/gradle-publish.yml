@@ -20,7 +20,7 @@ jobs:
           distribution: 'temurin'
 
       - name: Setup Gradle
-        uses: gradle/actions/setup-gradle@v3.4.2
+        uses: gradle/actions/setup-gradle@v3.5.0
 
       - name: Publish package
         run: ./gradlew -V --no-parallel publishToSonatype uploadDocs closeAndReleaseSonatypeStagingRepository
