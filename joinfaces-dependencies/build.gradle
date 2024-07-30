@@ -20,7 +20,7 @@ dependencies {
         api "com.github.adminfaces:admin-theme:1.6.0"
 
         //Primefaces
-        api 'org.primefaces:primefaces:14.0.2'
+        api 'org.primefaces:primefaces:14.0.3'
         api "org.primefaces.extensions:primefaces-extensions:14.0.3"
         api "org.primefaces.extensions:resources-monacoeditor:14.0.3"
 
