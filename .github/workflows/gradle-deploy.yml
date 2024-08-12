@@ -19,7 +19,7 @@ jobs:
         uses: ts-graphviz/setup-graphviz@v2.0.2
 
       - name: Set up JDK 17
-        uses: actions/setup-java@v4.2.1
+        uses: actions/setup-java@v4.2.2
         with:
           java-version: 17
           distribution: 'temurin'
