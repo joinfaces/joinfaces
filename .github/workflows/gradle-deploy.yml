@@ -13,7 +13,7 @@ jobs:
       ORG_GRADLE_PROJECT_joinfacesDocsUser: ${{ secrets.JOINFACES_DOCS_USER }}
       ORG_GRADLE_PROJECT_joinfacesDocsPass: ${{ secrets.JOINFACES_DOCS_PASS }}
     steps:
-      - uses: actions/checkout@v4.2.0
+      - uses: actions/checkout@v4.2.1
 
       - name: Setup Graphviz
         uses: ts-graphviz/setup-graphviz@v2.0.2
