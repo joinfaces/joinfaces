@@ -10,6 +10,11 @@ dependencies {
     implementation 'org.apache.openwebbeans:openwebbeans-el22'
     implementation 'org.apache.openwebbeans:openwebbeans-jsf'
 
+    runtimeOnly('jakarta.enterprise:jakarta.enterprise.cdi-api') {
+        exclude group: 'jakarta.el', module: 'jakarta.el-api'
+        exclude group: 'jakarta.ejb', module: 'jakarta.ejb-api'
+    }
+
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     testImplementation 'org.springframework.boot:spring-boot-starter-web'
 }
