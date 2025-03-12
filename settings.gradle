@@ -1,5 +1,5 @@
 plugins {
-    id "io.freefair.settings.plugin-versions" version "8.12.2"
+    id "io.freefair.settings.plugin-versions" version "8.13"
     id "com.gradle.develocity" version "3.19.2"
     id 'org.gradle.toolchains.foojay-resolver-convention' version '0.9.0'
 }
