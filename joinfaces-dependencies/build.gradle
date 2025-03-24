@@ -24,7 +24,7 @@ dependencies {
 
         //Primefaces
         api 'org.primefaces:primefaces:15.0.1'
-        api 'org.primefaces:primefaces-themes:15.0.1'
+        api 'org.primefaces:primefaces-themes:15.0.2'
         api "org.primefaces.extensions:primefaces-extensions:15.0.1"
         api "org.primefaces.extensions:resources-monacoeditor:15.0.1"
 
