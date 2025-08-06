@@ -23,7 +23,7 @@ dependencies {
         api 'net.bootsfaces:bootsfaces:2.0.1'
 
         //Primefaces
-        api 'org.primefaces:primefaces:14.0.12'
+        api 'org.primefaces:primefaces:14.0.13-LTS'
         api "org.primefaces.extensions:primefaces-extensions:14.0.16"
         api "org.primefaces.extensions:resources-monacoeditor:14.0.16"
 
