@@ -18,7 +18,7 @@ dependencies {
     javadoc project(":joinfaces-autoconfigure")
     javadoc project(":joinfaces-security-taglib")
 
-    javadocClasspath "jakarta.platform:jakarta.jakartaee-web-api:10.0.0"
+    javadocClasspath "jakarta.platform:jakarta.jakartaee-web-api:11.0.0"
 
     javadocClasspath "org.glassfish:jakarta.faces:$mojarra4Version"
     javadocClasspath "org.apache.myfaces.core:myfaces-impl:$myfaces4Version"

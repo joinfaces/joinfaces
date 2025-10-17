@@ -24,7 +24,7 @@ dependencies {
     api project(":joinfaces")
     implementation 'io.github.classgraph:classgraph'
 
-    compileOnly 'jakarta.platform:jakarta.jakartaee-web-api:10.0.0'
+    compileOnly 'jakarta.platform:jakarta.jakartaee-web-api:11.0.0'
 
     optional 'org.springframework.boot:spring-boot-starter'
     optional 'org.springframework.boot:spring-boot-servlet'
