@@ -23,10 +23,10 @@ dependencies {
         api 'net.bootsfaces:bootsfaces:2.0.1'
 
         //Primefaces
-        api 'org.primefaces:primefaces:15.0.8'
-        api 'org.primefaces:primefaces-themes:15.0.8'
-        api "org.primefaces.extensions:primefaces-extensions:15.0.8"
-        api "org.primefaces.extensions:resources-monacoeditor:15.0.8"
+        api 'org.primefaces:primefaces:15.0.9'
+        api 'org.primefaces:primefaces-themes:15.0.9'
+        api "org.primefaces.extensions:primefaces-extensions:15.0.9"
+        api "org.primefaces.extensions:resources-monacoeditor:15.0.9"
 
         api 'org.jboss.weld.servlet:weld-servlet-core:5.1.6.Final'
 
