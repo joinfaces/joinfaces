@@ -25,8 +25,8 @@ dependencies {
         //Primefaces
         api 'org.primefaces:primefaces:15.0.9'
         api 'org.primefaces:primefaces-themes:15.0.9'
-        api "org.primefaces.extensions:primefaces-extensions:15.0.9.1"
-        api "org.primefaces.extensions:resources-monacoeditor:15.0.9.1"
+        api "org.primefaces.extensions:primefaces-extensions:15.0.10"
+        api "org.primefaces.extensions:resources-monacoeditor:15.0.10"
 
         api 'org.jboss.weld.servlet:weld-servlet-core:5.1.6.Final'
 
