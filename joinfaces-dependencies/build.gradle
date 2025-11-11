@@ -24,8 +24,8 @@ dependencies {
         api 'net.bootsfaces:bootsfaces:2.0.1'
 
         //Primefaces
-        api 'org.primefaces:primefaces:15.0.9'
-        api 'org.primefaces:primefaces-themes:15.0.9'
+        api 'org.primefaces:primefaces:15.0.10'
+        api 'org.primefaces:primefaces-themes:15.0.10'
         api "org.primefaces.extensions:primefaces-extensions:15.0.10"
         api "org.primefaces.extensions:resources-monacoeditor:15.0.10"
 
