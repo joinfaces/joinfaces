@@ -10,7 +10,7 @@ def springBootVersion = "4.0.0-RC2"
 
 dependencies {
     api "org.springframework.boot:spring-boot-gradle-plugin:$springBootVersion"
-    runtimeOnly "org.graalvm.buildtools:native-gradle-plugin:0.11.2"
+    runtimeOnly "org.graalvm.buildtools:native-gradle-plugin:0.11.3"
     runtimeOnly "org.apache.commons:commons-compress:1.28.0"
     implementation "org.springframework.boot:spring-boot-configuration-metadata:$springBootVersion"
 
