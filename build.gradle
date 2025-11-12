@@ -4,7 +4,7 @@ plugins {
     id "io.freefair.aggregate-jacoco-report"
     id "io.freefair.lombok" apply false
     id "io.freefair.maven-central.validate-poms" apply false
-    id "com.github.spotbugs" version "6.1.13" apply false
+    id "com.github.spotbugs" version "6.4.5" apply false
     //id "de.aaschmid.cpd" version "3.4"
     id 'org.jreleaser' version '1.21.0'
 }
