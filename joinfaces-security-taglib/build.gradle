@@ -25,7 +25,7 @@ dependencies {
     compileOnly 'org.apache.tomcat.embed:tomcat-embed-el'
 
     //For javadoc references
-    compileOnly 'org.springframework.webflow:spring-faces:3.0.1'
+    compileOnly 'org.springframework.webflow:spring-faces:4.0.0'
 
     testImplementation project(':joinfaces-test')
     testImplementation "org.glassfish:jakarta.faces:$mojarra4Version"
