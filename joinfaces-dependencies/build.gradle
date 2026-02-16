@@ -36,12 +36,12 @@ dependencies {
         api 'org.apache.openwebbeans:openwebbeans-el22:4.0.3'
 
         //MyFaces Tobago
-        api 'org.apache.myfaces.tobago:tobago-core:6.9.0'
-        api 'org.apache.myfaces.tobago:tobago-theme-standard:6.9.0'
-        api 'org.apache.myfaces.tobago:tobago-theme-speyside:6.9.0'
-        api 'org.apache.myfaces.tobago:tobago-theme-scarborough:6.9.0'
-        api 'org.apache.myfaces.tobago:tobago-theme-roxborough:6.9.0'
-        api 'org.apache.myfaces.tobago:tobago-theme-charlotteville:6.9.0'
+        api 'org.apache.myfaces.tobago:tobago-core:6.9.1'
+        api 'org.apache.myfaces.tobago:tobago-theme-standard:6.9.1'
+        api 'org.apache.myfaces.tobago:tobago-theme-speyside:6.9.1'
+        api 'org.apache.myfaces.tobago:tobago-theme-scarborough:6.9.1'
+        api 'org.apache.myfaces.tobago:tobago-theme-roxborough:6.9.1'
+        api 'org.apache.myfaces.tobago:tobago-theme-charlotteville:6.9.1'
 
         api 'org.omnifaces:omnifaces:5.0'
 
