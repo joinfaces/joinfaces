@@ -14,5 +14,5 @@ dependencies {
     runtimeOnly "org.apache.commons:commons-compress:1.28.0"
     implementation "org.springframework.boot:spring-boot-configuration-metadata:$springBootVersion"
 
-    implementation 'org.apache.maven:maven-model:3.9.15'
+    implementation 'org.apache.maven:maven-model:3.9.16'
 }
