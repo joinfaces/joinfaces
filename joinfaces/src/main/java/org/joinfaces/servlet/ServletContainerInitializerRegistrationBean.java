@@ -149,7 +149,7 @@ public class ServletContainerInitializerRegistrationBean<T extends ServletContai
 			}
 		}
 
-		return classes.isEmpty() ? null : classes;
+		return classes;
 	}
 
 	protected void handleScanResult(ScanResult scanResult) {

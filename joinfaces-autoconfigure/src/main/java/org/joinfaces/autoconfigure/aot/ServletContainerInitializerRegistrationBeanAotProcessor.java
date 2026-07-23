@@ -62,7 +62,7 @@ public class ServletContainerInitializerRegistrationBeanAotProcessor implements 
 			for (ServletContainerInitializerRegistrationBean<?> bean : beans) {
 				Set<Class<?>> classes = bean.performClasspathScan();
 
-				if (CollectionUtils.isEmpty(classes)) {
+				if (classes == null) {
 					continue;
 				}
 
