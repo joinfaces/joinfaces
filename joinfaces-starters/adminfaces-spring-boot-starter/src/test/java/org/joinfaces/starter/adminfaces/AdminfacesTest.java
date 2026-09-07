@@ -19,25 +19,26 @@ package org.joinfaces.starter.adminfaces;
 import org.junit.jupiter.api.Test;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.resttestclient.TestRestTemplate;
-import org.springframework.boot.resttestclient.autoconfigure.AutoConfigureTestRestTemplate;
+import org.springframework.boot.resttestclient.autoconfigure.AutoConfigureRestTestClient;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
+import org.springframework.test.web.servlet.client.EntityExchangeResult;
+import org.springframework.test.web.servlet.client.ExchangeResult;
+import org.springframework.test.web.servlet.client.RestTestClient;
 import org.springframework.web.context.WebApplicationContext;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 @Deprecated(since = "5.5")
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT, properties = "joinfaces.adminfaces.skin=skin-joinfaces")
-@AutoConfigureTestRestTemplate
+@AutoConfigureRestTestClient
 public class AdminfacesTest {
 
 	@Autowired
 	private WebApplicationContext webApplicationContext;
 
 	@Autowired
-	private TestRestTemplate restTemplate;
+	private RestTestClient restTemplate;
 
 	@Test
 	void contextLoads() {
@@ -49,12 +50,12 @@ public class AdminfacesTest {
 	 */
 	@Test
 	void requestWorks() {
-		ResponseEntity<String> response = restTemplate.getForEntity("/index.xhtml", String.class);
-		assertThat(response.getStatusCode()).isEqualTo(HttpStatus.OK);
-		assertThat(response.getBody()).contains("Hello Adminfaces");
-		assertThat(response.getBody()).contains("skin-joinfaces");
+		EntityExchangeResult<String> response = restTemplate.get().uri("/index.xhtml").exchange().expectBody(String.class).returnResult();
+		assertThat(response.getStatus()).isEqualTo(HttpStatus.OK);
+		assertThat(response.getResponseBody()).contains("Hello Adminfaces");
+		assertThat(response.getResponseBody()).contains("skin-joinfaces");
 
-		ResponseEntity<String> response2 = restTemplate.getForEntity("/foo.xhtml", String.class);
-		assertThat(response2.getStatusCode()).isEqualTo(HttpStatus.NOT_FOUND);
+		ExchangeResult response2 = restTemplate.get().uri("/foo.xhtml").exchange().returnResult();
+		assertThat(response2.getStatus()).isEqualTo(HttpStatus.NOT_FOUND);
 	}
 }
