@@ -45,7 +45,7 @@ dependencies {
 }
 
 configurations.javadocClasspath.resolutionStrategy {
-    force "org.primefaces:primefaces:15.+"
+    force "org.primefaces:primefaces:16.+"
 }
 
 tasks.named("javadoc", Javadoc) {
