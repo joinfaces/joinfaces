@@ -18,6 +18,8 @@ package org.joinfaces.weld;
 
 import java.io.File;
 import java.io.IOException;
+import java.net.URI;
+import java.nio.file.Path;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -57,7 +59,7 @@ public class NestedJarArchiveHandler extends FileSystemBeanArchiveHandler {
 				innerJar = BOOT_INF_INNER_JAR_WITHOUT_TRAILING_SLASH;
 			}
 
-			File file = new File(outerJar);
+			File file = Path.of(URI.create("file:%s".formatted(outerJar))).toFile();
 			String path = outerJar + URLUtils.JAR_URL_SEPARATOR + innerJar;
 
 			BeanArchiveBuilder builder = new BeanArchiveBuilder();
