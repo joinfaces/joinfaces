@@ -25,7 +25,7 @@ subprojects {
         implementation project(":joinfaces-security-taglib")
         implementation 'org.springframework.boot:spring-boot-starter-security'
 
-        implementation 'org.primefaces:primefaces::jakarta'
+        implementation 'org.primefaces:primefaces'
 
         testImplementation('org.springframework.boot:spring-boot-starter-restclient')
         testImplementation('org.springframework.boot:spring-boot-resttestclient')

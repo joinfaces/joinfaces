@@ -42,11 +42,13 @@ dependencies {
     optional "org.glassfish:jakarta.faces:$mojarra4Version"
     optional "org.apache.myfaces.core:myfaces-impl:$myfaces4Version"
     optional 'org.omnifaces:omnifaces'
-    optional 'org.primefaces:primefaces::jakarta'
+    optional 'org.primefaces:primefaces'
     optional 'net.bootsfaces:bootsfaces'
     optional 'org.glassfish.jaxb:jaxb-runtime'
 
-    optional 'com.github.adminfaces:admin-template'
+    optional('com.github.adminfaces:admin-template') {
+        exclude(group: "org.primefaces")
+    }
     optional 'com.github.adminfaces:admin-theme'
 
     optional 'org.apache.myfaces.tobago:tobago-core'

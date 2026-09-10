@@ -5,9 +5,9 @@ tasks.named("jar", Jar) {
 
 dependencies {
     api project(':joinfaces-starters:faces-spring-boot-starter')
-    api 'org.primefaces:primefaces::jakarta'
+    api 'org.primefaces:primefaces'
     api 'org.primefaces:primefaces-themes'
-    api 'org.primefaces.extensions:primefaces-extensions::jakarta'
+    api 'org.primefaces.extensions:primefaces-extensions'
 
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
 }
