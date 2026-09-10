@@ -27,8 +27,9 @@ subprojects {
 
         implementation 'org.primefaces:primefaces'
 
-        testImplementation('org.springframework.boot:spring-boot-starter-restclient')
+        testImplementation('org.springframework.boot:spring-boot-starter-restclient-test')
         testImplementation('org.springframework.boot:spring-boot-resttestclient')
+        testRuntimeOnly('org.springframework:spring-webmvc')
         testImplementation('org.springframework.boot:spring-boot-starter-test') {
             exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
         }

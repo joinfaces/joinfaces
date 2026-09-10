@@ -19,31 +19,38 @@ package org.joinfaces.test;
 import org.junit.jupiter.api.Test;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.resttestclient.TestRestTemplate;
-import org.springframework.boot.resttestclient.autoconfigure.AutoConfigureTestRestTemplate;
+import org.springframework.boot.resttestclient.autoconfigure.AutoConfigureRestTestClient;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.web.servlet.client.EntityExchangeResult;
+import org.springframework.test.web.servlet.client.RestTestClient;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-@AutoConfigureTestRestTemplate
+@AutoConfigureRestTestClient
 class SecurityTest {
 
 	@Autowired
-	private TestRestTemplate restTemplate;
+	private RestTestClient restTestClient;
 
 	@Test
 	void anonymous() {
-		String body = restTemplate.getForObject("/security.xhtml", String.class);
+		String body = restTestClient.get().uri("/security.xhtml")
+				.exchange()
+				.returnResult(String.class)
+				.getResponseBody();
 
 		assertThat(body).contains("Security Test Page");
 		assertThat(body).contains("anonymous");
 	}
+
 	@Test
 	void user() {
-		String body = restTemplate
-			.withBasicAuth("user", "user")
-			.getForObject("/security.xhtml", String.class);
+		String body = restTestClient.get().uri("/security.xhtml")
+				.headers(headers -> headers.setBasicAuth("user", "user"))
+				.exchange()
+				.returnResult(String.class)
+				.getResponseBody();
 
 		assertThat(body).contains("Security Test Page");
 		assertThat(body).doesNotContain("anonymous");

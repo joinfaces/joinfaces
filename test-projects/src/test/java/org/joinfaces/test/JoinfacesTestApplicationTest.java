@@ -19,10 +19,10 @@ package org.joinfaces.test;
 import org.junit.jupiter.api.Test;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.resttestclient.TestRestTemplate;
-import org.springframework.boot.resttestclient.autoconfigure.AutoConfigureTestRestTemplate;
+import org.springframework.boot.resttestclient.autoconfigure.AutoConfigureRestTestClient;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.http.ResponseEntity;
+import org.springframework.test.web.servlet.client.EntityExchangeResult;
+import org.springframework.test.web.servlet.client.RestTestClient;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -33,18 +33,18 @@ import static org.assertj.core.api.Assertions.assertThat;
 		classes = JoinfacesTestApplication.class,
 		webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT
 )
-@AutoConfigureTestRestTemplate
+@AutoConfigureRestTestClient
 public class JoinfacesTestApplicationTest {
 
 	@Autowired
-	private TestRestTemplate restTemplate;
+	private RestTestClient restTestClient;
 
 	@Test
 	public void testHelloFromSpring() {
-		ResponseEntity<String> entity = this.restTemplate.getForEntity("/index.xhtml", String.class);
+		EntityExchangeResult<String> response = this.restTestClient.get().uri("/index.xhtml").exchange().returnResult(String.class);
 
-		assertThat(entity.getStatusCode().is2xxSuccessful()).isTrue();
+		assertThat(response.getStatus().is2xxSuccessful()).isTrue();
 
-		assertThat(entity.getBody()).contains("Hello from Spring:");
+		assertThat(response.getResponseBody()).contains("Hello from Spring:");
 	}
 }
