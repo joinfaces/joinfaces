@@ -38,7 +38,7 @@ public class AdminfacesTest {
 	private WebApplicationContext webApplicationContext;
 
 	@Autowired
-	private RestTestClient restTemplate;
+	private RestTestClient restTestClient;
 
 	@Test
 	void contextLoads() {
@@ -50,12 +50,12 @@ public class AdminfacesTest {
 	 */
 	@Test
 	void requestWorks() {
-		EntityExchangeResult<String> response = restTemplate.get().uri("/index.xhtml").exchange().expectBody(String.class).returnResult();
+		EntityExchangeResult<String> response = restTestClient.get().uri("/index.xhtml").exchange().expectBody(String.class).returnResult();
 		assertThat(response.getStatus()).isEqualTo(HttpStatus.OK);
 		assertThat(response.getResponseBody()).contains("Hello Adminfaces");
 		assertThat(response.getResponseBody()).contains("skin-joinfaces");
 
-		ExchangeResult response2 = restTemplate.get().uri("/foo.xhtml").exchange().returnResult();
+		ExchangeResult response2 = restTestClient.get().uri("/foo.xhtml").exchange().returnResult();
 		assertThat(response2.getStatus()).isEqualTo(HttpStatus.NOT_FOUND);
 	}
 }
