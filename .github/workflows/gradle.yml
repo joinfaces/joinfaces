@@ -37,7 +37,7 @@ jobs:
       - name: Setup Gradle
         uses: gradle/actions/setup-gradle@v5
 
-      - run: ./gradlew -V build
+      - run: ./gradlew -V --no-parallel build
 
       - run: ./gradlew -V jacocoTestReport aggregateJacocoReport
 
