@@ -48,13 +48,5 @@ subprojects {
 
     graalvmNative {
         toolchainDetection = true
-        binaries {
-            main {
-                javaLauncher = javaToolchains.launcherFor {
-                    languageVersion = JavaLanguageVersion.of(21)
-                    vendor = JvmVendorSpec.GRAAL_VM
-                }
-            }
-        }
     }
 }
