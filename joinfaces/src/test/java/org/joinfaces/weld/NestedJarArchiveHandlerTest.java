@@ -56,7 +56,7 @@ class NestedJarArchiveHandlerTest {
 
 	private static byte[] createNestedJar() throws IOException {
 		try (ByteArrayOutputStream output = new ByteArrayOutputStream();
-			 JarOutputStream jar = new JarOutputStream(output)) {
+			JarOutputStream jar = new JarOutputStream(output)) {
 
 			jar.putNextEntry(new JarEntry("META-INF/beans.xml"));
 			jar.write("<beans/>".getBytes(StandardCharsets.UTF_8));
