@@ -16,17 +16,6 @@ develocity {
     }
 }
 
-buildCache {
-    remote(HttpBuildCache) {
-        url = 'https://build-cache.grefer-hosting.de/cache/'
-        push = isCiServer
-        credentials {
-            username = "joinfaces"
-            password = providers.gradleProperty('joinfacesBuildCachePassword').getOrElse(null)
-        }
-    }
-}
-
 dependencyResolutionManagement {
     repositories {
         mavenCentral()
