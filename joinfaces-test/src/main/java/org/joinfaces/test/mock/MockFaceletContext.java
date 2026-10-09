@@ -38,7 +38,7 @@ import lombok.NoArgsConstructor;
  *
  * @author Marcelo Romulo Fernandes
  */
-@SuppressFBWarnings({"EI_EXPOSE_REP", "EI_EXPOSE_REP2"})
+@SuppressFBWarnings({"EI_EXPOSE_REP"})
 @NoArgsConstructor
 @AllArgsConstructor
 public class MockFaceletContext extends FaceletContext {
