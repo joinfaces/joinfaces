@@ -43,7 +43,7 @@ public class MyFacesRuntimeHintsRegistrar extends ClassGraphRuntimeHintsRegistra
 
 		for (ClassInfo classInfo : scanResult.getAllClasses()) {
 			if (classInfo.getPackageName().equals("org.apache.myfaces.spi") && classInfo.isAbstract()) {
-				registerStandardClasses(scanResult.getSubclasses(classInfo.getName()), hints);
+				registerStandardClasses(scanResult.getAllSubclasses(classInfo.getName()), hints);
 			}
 		}
 

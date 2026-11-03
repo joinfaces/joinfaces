@@ -46,14 +46,14 @@ public class WeldRuntimeHintsRegistrar extends ClassGraphRuntimeHintsRegistrar {
 
 		hints.proxies().registerJdkProxy(Event.class);
 
-		for (ClassInfo loggerImpl : scanResult.getClassesImplementing(WeldLogger.class)) {
+		for (ClassInfo loggerImpl : scanResult.getAllClassesImplementing(WeldLogger.class)) {
 			registerLogger(hints, loggerImpl);
 		}
-		for (ClassInfo loggerImpl : scanResult.getClassesImplementing(WeldEnvironmentLogger.class)) {
+		for (ClassInfo loggerImpl : scanResult.getAllClassesImplementing(WeldEnvironmentLogger.class)) {
 			registerLogger(hints, loggerImpl);
 		}
 
-		for (ClassInfo classInfo : scanResult.getClassesImplementing(Extension.class)) {
+		for (ClassInfo classInfo : scanResult.getAllClassesImplementing(Extension.class)) {
 			hints.reflection().registerType(TypeReference.of(classInfo.getName()), MemberCategory.INVOKE_DECLARED_METHODS);
 		}
 	}

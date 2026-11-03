@@ -44,10 +44,15 @@ public abstract class ClassGraphRuntimeHintsRegistrar implements RuntimeHintsReg
 
 	void scanHints(RuntimeHints hints, @Nullable ClassLoader classLoader) {
 		ClassGraph classGraph = new ClassGraph()
+			.enableNonSystemModules()
+			.enableSystemModules()
 			.enableClassInfo();
 
 		if (classLoader != null) {
-			classGraph = classGraph.overrideClassLoaders(classLoader);
+			classGraph = classGraph.enableClassLoaders(classLoader);
+		}
+		else {
+			classGraph = classGraph.enableClasspath();
 		}
 
 		try (ScanResult scanResult = classGraph.scan()) {

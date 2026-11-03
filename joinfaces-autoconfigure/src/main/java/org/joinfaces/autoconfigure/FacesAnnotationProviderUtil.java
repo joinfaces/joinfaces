@@ -22,6 +22,7 @@ import java.util.LinkedHashSet;
 import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 import jakarta.faces.component.FacesComponent;
 import jakarta.faces.component.behavior.FacesBehavior;
@@ -35,6 +36,8 @@ import io.github.classgraph.ScanResult;
 import lombok.experimental.UtilityClass;
 import lombok.extern.slf4j.Slf4j;
 import org.joinfaces.ClasspathScanUtil;
+
+import org.springframework.util.ClassUtils;
 
 /**
  * Helper methods for the implementations of the AnnotationProvider SPI's of Mojarra and MyFaces.
@@ -82,11 +85,22 @@ public class FacesAnnotationProviderUtil {
 				continue;
 			}
 
-			Set<Class<?>> classes = new LinkedHashSet<>();
+			Set<String> classNames = new LinkedHashSet<>();
 
-			classes.addAll(scanResult.getClassesWithAnnotation(annotationClass).loadClasses());
-			classes.addAll(scanResult.getClassesWithMethodAnnotation(annotationClass).loadClasses());
-			classes.addAll(scanResult.getClassesWithFieldAnnotation(annotationClass).loadClasses());
+			classNames.addAll(scanResult.getClassesWithAnnotation(annotationClass).getNames());
+			classNames.addAll(scanResult.getClassesWithMethodAnnotation(annotationClass).getNames());
+			classNames.addAll(scanResult.getClassesWithFieldAnnotation(annotationClass).getNames());
+
+			Set<Class<?>> classes = classNames.stream()
+				.map(className -> {
+					try {
+						return ClassUtils.forName(className, null);
+					}
+					catch (ClassNotFoundException e) {
+						throw new RuntimeException("Class " + className + " not found", e);
+					}
+				})
+				.collect(Collectors.toSet());
 
 			annotatedClasses.put(annotationClass, classes);
 		}

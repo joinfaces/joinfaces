@@ -20,6 +20,7 @@ import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Optional;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 import jakarta.servlet.ServletContainerInitializer;
 import jakarta.servlet.annotation.HandlesTypes;
@@ -38,6 +39,7 @@ import org.springframework.boot.web.server.WebServerFactoryCustomizer;
 import org.springframework.boot.web.server.servlet.ConfigurableServletWebServerFactory;
 import org.springframework.boot.web.servlet.RegistrationBean;
 import org.springframework.core.annotation.AnnotationUtils;
+import org.springframework.util.ClassUtils;
 import org.springframework.util.StopWatch;
 
 /**
@@ -67,7 +69,7 @@ public class ServletContainerInitializerRegistrationBean<T extends ServletContai
 	}
 
 	protected Set<Class<?>> getClasses(ClassLoader classLoader) {
-		return findPreparedScanResult(classLoader).orElseGet(this::performClasspathScan);
+		return findPreparedScanResult(classLoader).orElseGet(() -> performClasspathScan(classLoader));
 	}
 
 	protected Optional<Set<Class<?>>> findPreparedScanResult(ClassLoader classLoader) {
@@ -84,7 +86,7 @@ public class ServletContainerInitializerRegistrationBean<T extends ServletContai
 	}
 
 	@Nullable
-	public Set<Class<?>> performClasspathScan() {
+	public Set<Class<?>> performClasspathScan(@Nullable ClassLoader classLoader) {
 		HandlesTypes handlesTypes = AnnotationUtils.findAnnotation(getServletContainerInitializerClass(), HandlesTypes.class);
 
 		if (handlesTypes == null) {
@@ -100,22 +102,25 @@ public class ServletContainerInitializerRegistrationBean<T extends ServletContai
 		stopWatch.start("prepare");
 
 		ClassGraph classGraph = new ClassGraph()
-				.enableClassInfo();
+			.enableSystemModules()
+			.enableNonSystemModules()
+			.enableClasspath()
+			.enableClassInfo();
 
 		// Only scan for Annotations if we have to
 		if (Arrays.stream(handledTypes).anyMatch(Class::isAnnotation)) {
 			classGraph = classGraph.enableAnnotationInfo()
-					.enableMethodInfo()
-					.enableFieldInfo();
+				.enableMethodInfo()
+				.enableFieldInfo();
 		}
 
 		classGraph = classGraph.enableExternalClasses()
-				.filterClasspathElements(path -> {
-					log.debug("Path {}", path);
-					return true;
-				});
+			.filterClasspathElements(path -> {
+				log.debug("Path {}", path);
+				return true;
+			});
 
-		Set<Class<?>> classes = new HashSet<>();
+		Set<String> classes = new HashSet<>();
 
 		stopWatch.stop();
 		stopWatch.start("classpath scan");
@@ -127,15 +132,15 @@ public class ServletContainerInitializerRegistrationBean<T extends ServletContai
 
 			for (Class<?> handledType : handledTypes) {
 				if (handledType.isAnnotation()) {
-					classes.addAll(scanResult.getClassesWithAnnotation(handledType.getName()).loadClasses());
-					classes.addAll(scanResult.getClassesWithMethodAnnotation(handledType.getName()).loadClasses());
-					classes.addAll(scanResult.getClassesWithFieldAnnotation(handledType.getName()).loadClasses());
+					classes.addAll(scanResult.getClassesWithAnnotation(handledType.getName()).getNames());
+					classes.addAll(scanResult.getClassesWithMethodAnnotation(handledType.getName()).getNames());
+					classes.addAll(scanResult.getClassesWithFieldAnnotation(handledType.getName()).getNames());
 				}
 				else if (handledType.isInterface()) {
-					classes.addAll(scanResult.getClassesImplementing(handledType).loadClasses());
+					classes.addAll(scanResult.getAllClassesImplementing(handledType).getNames());
 				}
 				else {
-					classes.addAll(scanResult.getSubclasses(handledType.getName()).loadClasses());
+					classes.addAll(scanResult.getAllSubclasses(handledType.getName()).getNames());
 				}
 			}
 
@@ -149,7 +154,15 @@ public class ServletContainerInitializerRegistrationBean<T extends ServletContai
 			}
 		}
 
-		return classes;
+		return classes.stream().map(name -> {
+			try {
+				return ClassUtils.forName(name, classLoader);
+			}
+			catch (Exception ex) {
+				log.warn("Could not load class {}", name, ex);
+				throw new RuntimeException(ex);
+			}
+		}).collect(Collectors.toSet());
 	}
 
 	protected void handleScanResult(ScanResult scanResult) {

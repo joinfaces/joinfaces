@@ -62,7 +62,7 @@ public class RewriteAnnotationHandlerAotProcessor implements BeanFactoryInitiali
 
 			Set<Class<Annotation>> annotationClasses = rewriteAnnotationConfigProvider.getAnnotationClasses(annotationHandlers);
 
-			Set<Class<?>> classes = rewriteAnnotationConfigProvider.scanClasses(annotationClasses);
+			Set<Class<?>> classes = rewriteAnnotationConfigProvider.scanClasses(annotationClasses, null);
 
 			ClasspathScanUtil.writeClassSet(generationContext, SpringBootAnnotationConfigProvider.PREPARED_SCAN_RESULT_PATH, classes);
 		}

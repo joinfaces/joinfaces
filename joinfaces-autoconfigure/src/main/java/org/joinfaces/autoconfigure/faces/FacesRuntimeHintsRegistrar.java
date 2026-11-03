@@ -47,37 +47,37 @@ public class FacesRuntimeHintsRegistrar extends ClassGraphRuntimeHintsRegistrar 
 
 		hints.resources().registerPattern("*.taglib.xml");
 
-		registerStandardClasses(scanResult.getClassesImplementing(FacesWrapper.class), hints);
+		registerStandardClasses(scanResult.getAllClassesImplementing(FacesWrapper.class), hints);
 
-		registerStandardClasses(scanResult.getSubclasses(FlowHandlerFactory.class), hints);
+		registerStandardClasses(scanResult.getAllSubclasses(FlowHandlerFactory.class), hints);
 
-		registerStandardClasses(scanResult.getSubclasses(NavigationHandler.class), hints);
+		registerStandardClasses(scanResult.getAllSubclasses(NavigationHandler.class), hints);
 
-		registerStandardClasses(scanResult.getSubclasses(StateManager.class), hints);
+		registerStandardClasses(scanResult.getAllSubclasses(StateManager.class), hints);
 
-		registerStandardClasses(scanResult.getSubclasses(ConverterHandler.class), hints);
+		registerStandardClasses(scanResult.getAllSubclasses(ConverterHandler.class), hints);
 
-		registerStandardClasses(scanResult.getSubclasses(ResourceHandler.class), hints);
+		registerStandardClasses(scanResult.getAllSubclasses(ResourceHandler.class), hints);
 
-		registerStandardClasses(scanResult.getSubclasses(SearchExpressionHandler.class), hints);
+		registerStandardClasses(scanResult.getAllSubclasses(SearchExpressionHandler.class), hints);
 
-		registerStandardClasses(scanResult.getSubclasses(SystemEvent.class), hints);
+		registerStandardClasses(scanResult.getAllSubclasses(SystemEvent.class), hints);
 
-		registerStandardClasses(scanResult.getSubclasses(ViewHandler.class), hints);
+		registerStandardClasses(scanResult.getAllSubclasses(ViewHandler.class), hints);
 
-		registerStandardClasses(scanResult.getSubclasses(Renderer.class), hints);
+		registerStandardClasses(scanResult.getAllSubclasses(Renderer.class), hints);
 
-		registerStandardClasses(scanResult.getSubclasses(ClientBehaviorRenderer.class), hints);
+		registerStandardClasses(scanResult.getAllSubclasses(ClientBehaviorRenderer.class), hints);
 
-		registerStandardClasses(scanResult.getSubclasses(RenderKit.class), hints);
+		registerStandardClasses(scanResult.getAllSubclasses(RenderKit.class), hints);
 
-		registerStandardClasses(scanResult.getSubclasses(TagHandler.class), hints);
+		registerStandardClasses(scanResult.getAllSubclasses(TagHandler.class), hints);
 
-		registerStandardClasses(scanResult.getClassesImplementing(PhaseListener.class), hints);
+		registerStandardClasses(scanResult.getAllClassesImplementing(PhaseListener.class), hints);
 
-		registerStandardClasses(scanResult.getClassesImplementing(FacesListener.class), hints);
+		registerStandardClasses(scanResult.getAllClassesImplementing(FacesListener.class), hints);
 
-		registerStandardClasses(scanResult.getClassesImplementing(FaceletHandler.class), hints);
+		registerStandardClasses(scanResult.getAllClassesImplementing(FaceletHandler.class), hints);
 	}
 
 }

@@ -61,7 +61,10 @@ public class ClassGraphDiscoveryStrategy extends AbstractDiscoveryStrategy {
 		StopWatch stopWatch = new StopWatch("weld-bean-discovery");
 
 		stopWatch.start("prepare");
-		ClassGraph classGraph = new ClassGraph().enableAnnotationInfo();
+		ClassGraph classGraph = new ClassGraph()
+			.enableClasspath().enableNonSystemModules()
+			.enableClassInfo()
+			.enableAnnotationInfo();
 
 		for (BeanArchiveBuilder builder : builders) {
 			for (String clazz : builder.getClasses()) {

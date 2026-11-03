@@ -45,7 +45,7 @@ public class SpringBootAnnotationConfigProviderTest {
 			assertThat(annotationConfigProvider).isNotNull();
 			MockServletContext servletContext = new MockServletContext();
 			Configuration configuration = annotationConfigProvider.getConfiguration(servletContext);
-			assertThat(configuration.getRules().size()).isEqualTo(1);
+			assertThat(configuration.getRules()).hasSize(1);
 		});
 	}
 
@@ -71,7 +71,7 @@ public class SpringBootAnnotationConfigProviderTest {
 			assertThat(annotationConfigProvider).isNotNull();
 			MockServletContext servletContext = new MockServletContext();
 			Configuration configuration = annotationConfigProvider.getConfiguration(servletContext);
-			assertThat(configuration.getRules().isEmpty()).isFalse();
+			assertThat(configuration.getRules()).isNotEmpty();
 		});
 	}
 }

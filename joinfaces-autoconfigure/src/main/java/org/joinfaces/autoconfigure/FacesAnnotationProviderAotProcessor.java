@@ -52,7 +52,8 @@ public abstract class FacesAnnotationProviderAotProcessor implements BeanFactory
 			String resourceName = "META-INF/joinfaces/" + getSpiClassName() + ".classes";
 
 			try (ScanResult scanResult = new ClassGraph()
-				.enableAllInfo()
+				.enableClasspath().enableNonSystemModules()
+				.enableClassInfo().enableFieldInfo().enableMethodInfo().enableAnnotationInfo().ignoreClassVisibility().ignoreFieldVisibility().ignoreMethodVisibility()
 				.enableExternalClasses()
 				.scan()) {
 				Map<Class<? extends Annotation>, Set<Class<?>>> annotatedClasses = FacesAnnotationProviderUtil.findAnnotatedClasses(scanResult);

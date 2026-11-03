@@ -36,7 +36,7 @@ public class OpenWebBeansRuntimeHintsRegistrar extends ClassGraphRuntimeHintsReg
 		for (ClassInfo interfaceInfo : scanResult.getAllInterfaces()) {
 			if (interfaceInfo.getPackageName().startsWith("org.apache.webbeans.spi")) {
 
-				registerStandardClasses(scanResult.getClassesImplementing(interfaceInfo.getName()), hints);
+				registerStandardClasses(scanResult.getAllClassesImplementing(interfaceInfo.getName()), hints);
 
 			}
 		}

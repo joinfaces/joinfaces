@@ -22,6 +22,7 @@ import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 import jakarta.servlet.ServletContext;
 
@@ -40,6 +41,7 @@ import org.ocpsoft.rewrite.annotation.spi.AnnotationHandler;
 import org.ocpsoft.rewrite.config.Configuration;
 import org.ocpsoft.rewrite.servlet.config.HttpConfigurationProvider;
 
+import org.springframework.util.ClassUtils;
 import org.springframework.util.CollectionUtils;
 
 /**
@@ -84,7 +86,7 @@ public class SpringBootAnnotationConfigProvider extends HttpConfigurationProvide
 		final ClassVisitorImpl ruleBuilderVisitor = new ClassVisitorImpl(annotationHandlers, servletContext);
 
 		Set<Class<?>> scanResult = findPreparedScanResult(servletContext.getClassLoader())
-				.orElseGet(() -> scanClasses(getAnnotationClasses(annotationHandlers)));
+				.orElseGet(() -> scanClasses(getAnnotationClasses(annotationHandlers), servletContext.getClassLoader()));
 
 		scanResult.forEach(ruleBuilderVisitor::visit);
 
@@ -112,11 +114,12 @@ public class SpringBootAnnotationConfigProvider extends HttpConfigurationProvide
 		return ruleAnnotations;
 	}
 
-	public Set<Class<?>> scanClasses(final Set<Class<Annotation>> supportedAnnotations) {
-		Set<Class<?>> result = new LinkedHashSet<>();
+	public Set<Class<?>> scanClasses(final Set<Class<Annotation>> supportedAnnotations, ClassLoader classLoader) {
+		Set<String> result = new LinkedHashSet<>();
 
 		ClassGraph classGraph = new ClassGraph()
-				.enableAllInfo()
+				.enableClassInfo().enableFieldInfo().enableMethodInfo().enableAnnotationInfo().ignoreClassVisibility().ignoreFieldVisibility().ignoreMethodVisibility()
+				.enableClasspath().enableNonSystemModules()
 				.enableExternalClasses();
 		if (!CollectionUtils.isEmpty(this.basePackages)) {
 			classGraph = classGraph.acceptPackages(this.basePackages.toArray(new String[0]));
@@ -124,13 +127,20 @@ public class SpringBootAnnotationConfigProvider extends HttpConfigurationProvide
 
 		try (ScanResult scanResult = classGraph.scan()) {
 			for (final Class<? extends Annotation> supportedAnnotation : supportedAnnotations) {
-				result.addAll(scanResult.getClassesWithAnnotation(supportedAnnotation.getName()).loadClasses(true));
-				result.addAll(scanResult.getClassesWithMethodAnnotation(supportedAnnotation.getName()).loadClasses(true));
-				result.addAll(scanResult.getClassesWithFieldAnnotation(supportedAnnotation.getName()).loadClasses(true));
+				result.addAll(scanResult.getClassesWithAnnotation(supportedAnnotation.getName()).getNames());
+				result.addAll(scanResult.getClassesWithMethodAnnotation(supportedAnnotation.getName()).getNames());
+				result.addAll(scanResult.getClassesWithFieldAnnotation(supportedAnnotation.getName()).getNames());
 			}
 		}
 
-		return result;
+		return result.stream().map(className -> {
+			try {
+				return ClassUtils.forName(className, classLoader);
+			}
+			catch (ClassNotFoundException e) {
+				throw new RuntimeException(e);
+			}
+		}).collect(Collectors.toSet());
 	}
 
 	private Optional<Set<Class<?>>> findPreparedScanResult(ClassLoader classLoader) {

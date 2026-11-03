@@ -60,7 +60,7 @@ public class ServletContainerInitializerRegistrationBeanAotProcessor implements 
 		public void applyTo(GenerationContext generationContext, BeanFactoryInitializationCode beanFactoryInitializationCode) {
 
 			for (ServletContainerInitializerRegistrationBean<?> bean : beans) {
-				Set<Class<?>> classes = bean.performClasspathScan();
+				Set<Class<?>> classes = bean.performClasspathScan(null);
 
 				if (classes == null) {
 					continue;
