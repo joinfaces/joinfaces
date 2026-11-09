@@ -7,7 +7,7 @@ javaPlatform.allowDependencies()
 
 dependencies {
 
-    api platform("io.github.classgraph:classgraph-bom:5.0.1")
+    api platform("io.github.classgraph:classgraph-bom:6.0.2")
 
     constraints {
         //Mojarra
